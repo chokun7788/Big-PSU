@@ -234,6 +234,11 @@ def verify(index,question,contract,answer='',children=None):
                     actual=(calc.get('unit_calculation') or {}).get('requested_minutes') if constraint['kind']=='duration' else calc.get('billing_quantity') if constraint['kind']=='persons' else calc.get('sessions')
                     if actual==expected:proof.append({'fact_id':calc['fact_id'],'basis':'independently_observed_quantity_matches_calculation_receipt','value':actual})
             if constraint['kind']=='duration':
+                from .calculation_check import duration_proofs
+                for task in related:
+                    executor=next((e for e in executors if e.get('task_id')==task['id']),{})
+                    ledger=next((l for l in ledgers if l.get('task_id')==task['id']),{})
+                    proof.extend(duration_proofs(index,task,executor,ledger,(contract.get('request_plan') or {}).get('snapshot',{}),expected))
                 # A single source rate for the exact requested period can prove
                 # the period without inventing multi-period arithmetic.
                 from .projection import value
