@@ -1,0 +1,86 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 266,
+  "question_key": "ad28947d610ba429ff05e73c28cf5c3a6b1bbfc7afa9df226af42dffc29a9ed7",
+  "raw_question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Tekken 8",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Tekken 8",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "เลือกด่าน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One Tekken8 question asks stage selection; verified framing is style.",
+    "intent_operation_facet": "competition_rules/rule_lookup/rule_clause retains the tournament setting purpose.",
+    "entities_and_slot_roles": "Add เลือกด่าน as the requested scope rather than retrieving every rule.",
+    "local_shared_history_scope": "No stage name, game result, player or prior match is supplied.",
+    "negation_and_ambiguity": "The question does not grant a player permission to choose a favorite stage.",
+    "source_version_alignment": "Actual TEKKEN section004 revision5 has a Stage setting alongside round/time/advantage fields; these are separate settings, not all requested.",
+    "no_business_answer_target": "No random-stage answer, player-choice permission or other game settings enter the target."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "competition_competition_rules_tekken8_psu_esports_section_004"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 267,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "competition_competition_rules_tekken8_psu_esports_section_004": {
+      "revision": 5,
+      "record_sha256": "690a488fcfcd9105241763a1a260c54d7ddfd6fedcec7a650448b3e6f7b57771"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

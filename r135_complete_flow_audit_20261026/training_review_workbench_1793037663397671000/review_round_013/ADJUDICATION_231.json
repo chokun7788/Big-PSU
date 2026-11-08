@@ -1,0 +1,134 @@
+{
+  "question_key": "e802f63d00af0c176800befff8b374ab34cb20c5480864cf3e5fbeb64ecd823d",
+  "example_sha256": "8a9ee6574c3fbe350090c41234b297abaf96f2a72a760e54f55297f4290840b4",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One payer-identity requirement asks whether the sender must be named in the booking; visit planning and summary language are framing.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/payer remains distinct from general payment procedure or personnel lookup.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ผู้โอนเงิน and มีชื่อในรายการจอง are literal requested actor/booking-identity scopes.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual name, account, primary-booker role or participant identity is inherited.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A boolean requirement query does not assert that the sender is already named or must be only the primary booker.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_r108_payer_payer states named-in-booking payer scope, which is not a primary-booker-only restriction.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": [
+        "r114_r108_payer_payer"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no requirement answer, identity, bank details or permission enters the label.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Named payer is not necessarily only the primary booker.",
+      "handling": "Keep actor condition without inventing a primary-only restriction."
+    }
+  ],
+  "historical_review_row": 231,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "payer",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "payer",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ผู้โอนเงิน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "มีชื่อในรายการจอง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_r108_payer_payer": {
+      "revision": 1,
+      "record_sha256": "38941bfaa48f59251a0da6f681b1f900803a05b2dc40debf7c8a3a0760333c85"
+    }
+  }
+}

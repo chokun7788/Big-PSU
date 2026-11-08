@@ -1,0 +1,150 @@
+{
+  "question_key": "a6eb5e4dddda911c8b5c97ce6f0f650fb124053854f18a1b089892e56b3e3029",
+  "example_sha256": "850c0fc33f68e98213e2830467d163d0d8c43034047254887da2e9a7c0721577",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One tourist equipment-use eligibility question; only-that-point is style.",
+      "raw_quotes": [
+        "Can a tourist use the studio's equipment? Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains the actor-specific permission.",
+      "raw_quotes": [
+        "Can a tourist use the studio's equipment? Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "tourist is audience; use the studio's equipment is the local action.",
+      "raw_quotes": [
+        "Can a tourist use the studio's equipment? Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No nationality, age, student status or prior visitor document is inherited.",
+      "raw_quotes": [
+        "Can a tourist use the studio's equipment? Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Tourist does not establish possession of a national ID or eligibility for a specific fee group.",
+      "raw_quotes": [
+        "Can a tourist use the studio's equipment? Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Public-access clauses describe public visitors with booking/ID conditions but do not exhaust tourist/foreign-document exceptions.",
+      "raw_quotes": [
+        "Can a tourist use the studio's equipment? Please answer only that point."
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_public_access_general",
+        "migrated_policy_text_public_access_booking_required"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No unconditional tourist permission, nationality assumption or passport requirement is taught.",
+      "raw_quotes": [
+        "Can a tourist use the studio's equipment? Please answer only that point."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Public-access national-ID conditions do not settle all tourist/foreign-document exceptions.",
+      "handling": "Keep missing actor/document coverage unknown rather than asserting passport requirements."
+    }
+  ],
+  "historical_review_row": 140,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [
+      "tourist"
+    ],
+    "tasks": [
+      {
+        "quote": "Can a tourist use the studio's equipment? Please answer only that point.",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "tourist",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [
+      "tourist"
+    ],
+    "tasks": [
+      {
+        "quote": "Can a tourist use the studio's equipment? Please answer only that point.",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "tourist",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "use the studio's equipment",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_public_access_general": {
+      "revision": 2,
+      "record_sha256": "df8c8a2d3c4b0fa505909395eb1bcaadfd832b630f1ecf9ced55d8fa1fa48f91"
+    },
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    }
+  }
+}

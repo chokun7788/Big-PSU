@@ -1,0 +1,228 @@
+{
+  "question_key": "89b39aa857ac086c3f5bedd309d625af76a22dd8a50a57c6d452d552095245a4",
+  "example_sha256": "2c6c4e9cb383c88cb4c3cec5c9fe3f0811d12c44a53d1fc61797ec2a1f65cb76",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs request VR two-hour price and booking procedure.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount and reservation/detail/owner_policy preserve both needs.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "2 ชั่วโมง is duration,นักศึกษา PSU audience and VR the service.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Add the missing shared service edge to booking; do not share duration/audience.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "แล้ว is procedural continuation, not a price-output condition or a completed booking.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "VR30/VR60 PSU rates are separate session_ceil packages; booking_steps is independent policy.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": [
+        "migrated_rate_vr_30_1_5_psu_student_staff",
+        "migrated_rate_vr_60_1_5_psu_student_staff",
+        "migrated_faq_rule_booking_steps"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No free-price total, selected package or actual booking outcome is taught.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 135,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "นักศึกษา PSU",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "แล้วจองยังไง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "VR",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "นักศึกษา PSU",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "แล้วจองยังไง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "VR",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "VR",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_vr_30_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "cbb10c075112bf48345bdfd11b307d02ed5edfc120ef5c3644a97d924de3f823"
+    },
+    "migrated_rate_vr_60_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "3b937929a76c3c519ddfe1d1afdef0a6fa6e699b4e298b63f1aaac0d736ea0df"
+    },
+    "migrated_faq_rule_booking_steps": {
+      "revision": 4,
+      "record_sha256": "3d46ed93710725b42212be78cc05d7197ba3043e04ade3b26ae2890e897dd846"
+    }
+  }
+}

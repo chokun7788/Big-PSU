@@ -1,0 +1,96 @@
+{
+  "source": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r74_semantic_profile_20261016",
+  "source_manifest_count": 1423,
+  "source_files_changed": [],
+  "logical_tables_equal": true,
+  "database_source_sha256": "4bffab309215faca927e5ef8477944659558f3bcfe7b8e1c0faccad12953cd0d",
+  "database_copy_sha256": "4bffab309215faca927e5ef8477944659558f3bcfe7b8e1c0faccad12953cd0d",
+  "tables": {
+    "approvals": {
+      "rows": 0,
+      "schema": "CREATE TABLE approvals (\n                    record_id TEXT NOT NULL, version INTEGER NOT NULL, hash TEXT NOT NULL,\n                    approved_by TEXT NOT NULL, approved_at TEXT NOT NULL, PRIMARY KEY(record_id,version))",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "audit": {
+      "rows": 0,
+      "schema": "CREATE TABLE audit (\n                    id INTEGER PRIMARY KEY, at TEXT NOT NULL, event TEXT NOT NULL, actor TEXT NOT NULL, detail TEXT NOT NULL)",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cc_approvals": {
+      "rows": 0,
+      "schema": "CREATE TABLE cc_approvals (record_id TEXT NOT NULL,version INTEGER NOT NULL,hash TEXT NOT NULL,actor TEXT NOT NULL,at TEXT NOT NULL,PRIMARY KEY(record_id,version))",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cc_audit": {
+      "rows": 3684,
+      "schema": "CREATE TABLE cc_audit (id INTEGER PRIMARY KEY,event TEXT NOT NULL,actor TEXT NOT NULL,at TEXT NOT NULL,detail TEXT NOT NULL)",
+      "sha256": "0555542ff4a7b850be863b59592db4fdcbc89eeb546d993faad25b35a3653ba7"
+    },
+    "cc_heads": {
+      "rows": 602,
+      "schema": "CREATE TABLE cc_heads (record_id TEXT PRIMARY KEY,kind TEXT NOT NULL,head INTEGER NOT NULL,withdrawn INTEGER NOT NULL DEFAULT 0)",
+      "sha256": "837f635cdba847d9fe60f9c2bfee113f686f12bedb2f9cd0adb9ea520f98b622"
+    },
+    "cc_meta": {
+      "rows": 4,
+      "schema": "CREATE TABLE cc_meta (key TEXT PRIMARY KEY,value TEXT NOT NULL)",
+      "sha256": "8b37e20e8cd73ec3eb3be9261f66029f4bd8b73f98b842a448b7fe9de5b0b13b"
+    },
+    "cc_names": {
+      "rows": 0,
+      "schema": "CREATE TABLE cc_names (record_id TEXT NOT NULL,name TEXT NOT NULL,PRIMARY KEY(record_id,name))",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cc_releases": {
+      "rows": 0,
+      "schema": "CREATE TABLE cc_releases (release_id TEXT PRIMARY KEY,payload TEXT NOT NULL,hash TEXT NOT NULL,base_release TEXT NOT NULL,request_key TEXT UNIQUE NOT NULL,at TEXT NOT NULL)",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cc_revisions": {
+      "rows": 1840,
+      "schema": "CREATE TABLE cc_revisions (record_id TEXT NOT NULL,version INTEGER NOT NULL,payload TEXT NOT NULL,hash TEXT NOT NULL,actor TEXT NOT NULL,at TEXT NOT NULL,PRIMARY KEY(record_id,version))",
+      "sha256": "cd387c5f757f05e6e12b9b97c9d479788123fc6cf22d0b1654e81edb97b9b871"
+    },
+    "cc_sources": {
+      "rows": 1844,
+      "schema": "CREATE TABLE cc_sources (source_id TEXT PRIMARY KEY,payload TEXT NOT NULL,snapshot TEXT NOT NULL)",
+      "sha256": "2fe30f32566f7b93e0a614724288435472053332048bca7694f050cf340c2ae6"
+    },
+    "meta": {
+      "rows": 3,
+      "schema": "CREATE TABLE meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)",
+      "sha256": "d68b23200d4f0ae08f584b1e9e0162c913ca817280a9a8d849feca242e5de216"
+    },
+    "ownership": {
+      "rows": 0,
+      "schema": "CREATE TABLE ownership (\n                    alias TEXT NOT NULL, record_id TEXT NOT NULL, PRIMARY KEY(alias,record_id))",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "records": {
+      "rows": 0,
+      "schema": "CREATE TABLE records (\n                    record_id TEXT PRIMARY KEY, head INTEGER NOT NULL, withdrawn INTEGER NOT NULL DEFAULT 0)",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "releases": {
+      "rows": 0,
+      "schema": "CREATE TABLE releases (\n                    release_id TEXT PRIMARY KEY, created_at TEXT NOT NULL, payload TEXT NOT NULL,\n                    hash TEXT NOT NULL, request_key TEXT UNIQUE NOT NULL)",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "revisions": {
+      "rows": 0,
+      "schema": "CREATE TABLE revisions (\n                    record_id TEXT NOT NULL, version INTEGER NOT NULL, payload TEXT NOT NULL,\n                    hash TEXT NOT NULL, created_by TEXT NOT NULL, PRIMARY KEY(record_id,version))",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "changed_code_syntax_checked": [
+    "app/knowledge/common/answer.py",
+    "app/knowledge/common/dialogue.py",
+    "app/knowledge/common/entity_search.py",
+    "app/knowledge/common/profile_confirmation.py",
+    "app/knowledge/common/question_profiles.py",
+    "app/knowledge/common/semantic_profile.py"
+  ],
+  "heads": 602,
+  "approvals": 0,
+  "real_model_inference_verified": false
+}

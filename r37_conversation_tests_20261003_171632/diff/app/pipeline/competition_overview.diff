@@ -1,0 +1,21 @@
+--- before/app/pipeline/competition_overview.py
++++ after/app/pipeline/competition_overview.py
+@@ -64,7 +64,17 @@
+             return None
+         row = candidates[0]
+         selected.append(row)
+-        tournament = (approved_localization(row, 'tournament') or str(row['tournament'])) if english else str(row['tournament'])
++        tournament = str(row['tournament'])
++        if english:
++            localized = approved_localization(row, 'tournament')
++            if localized:
++                tournament = localized
++            elif re.search(r'[\u0e00-\u0e7f]', tournament):
++                # Reuse the source-backed game/year identity when no English
++                # event-title field exists. Never pass untranslated Thai prose
++                # through an English-only answer or invent an approved title.
++                years = re.findall(r'\b20\d{2}\b', tournament)
++                tournament = target.label + (' / ' + ', '.join(dict.fromkeys(years)) if years else '')
+         lines.append(f'• {target.label}: {tournament}')
+     lines.extend(['', 'These are stored rulebooks; this does not confirm current registration or an upcoming event. Name a game to see its recorded rules.' if english else 'รายการนี้อ้างอิงเอกสารที่มี ไม่ได้ยืนยันว่ากำลังเปิดรับสมัครหรือเป็นรายการที่จะจัดครั้งถัดไปครับ พิมพ์ชื่อเกมเพื่อดูกติกาจากเอกสารได้'])
+     return CompetitionOverview('\n'.join(lines), [hit_from_curated(row) for row in selected], tuple(row['id'] for row in selected))

@@ -1,0 +1,200 @@
+{
+  "question_key": "463ac544e5aac743c6b38fded937e44d10d18f4b237d4e5ecf2901f2524b0b4e",
+  "example_sha256": "6dfc1d1d21c405b44855cf0fe24049af68dc8dada6b25b524e34eeb0d55cd080",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two RoV overheating-pause needs ask maximum duration and applicable conditions.",
+      "raw_quotes": [
+        "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Split two competition_rules/rule_lookup/rule_clause tasks so conditions cannot disappear behind a duration result.",
+      "raw_quotes": [
+        "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "RoV is game,เครื่องร้อน condition,หยุด action; กี่นาที and เงื่อนไขอะไร are separate requested scopes.",
+      "raw_quotes": [
+        "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Share only game/overheating/action from the first clause; no source duration or participant permission is inherited.",
+      "raw_quotes": [
+        "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The question does not establish that a participant may independently pause or select an event edition.",
+      "raw_quotes": [
+        "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_rov_62/63 separate the overheating heading from the staff discretion/condition/duration clause; neighboring unauthorized-pause rules are different.",
+      "raw_quotes": [
+        "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร"
+      ],
+      "source_record_ids": [
+        "r114_rov_62_rule_clause",
+        "r114_rov_63_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No five-minute limit, staff ruling, FPS/Ping condition or penalty is taught.",
+      "raw_quotes": [
+        "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The overheating clause involves staff discretion and further pause-rule dependencies; no event edition is supplied.",
+      "handling": "Preserve actor/condition/duration and source dependency scope before permission."
+    }
+  ],
+  "historical_review_row": 175,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "RoV",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "RoV",
+      "เครื่องร้อน",
+      "หยุด"
+    ],
+    "tasks": [
+      {
+        "id": "t1",
+        "quote": "กติกกา RoV เครื่องร้อนหยุดได้กี่นาที",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "RoV",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "เครื่องร้อน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "หยุด",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "กี่นาที",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      },
+      {
+        "id": "t2",
+        "quote": "เงื่อนไขอะไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "RoV",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "เครื่องร้อน",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "action",
+            "quote": "หยุด",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เงื่อนไขอะไร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "RoV",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "condition",
+        "quote": "เครื่องร้อน",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "action",
+        "quote": "หยุด",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_rov_62_rule_clause": {
+      "revision": 1,
+      "record_sha256": "358e30648796370aac07100a9e56e97515190471ef08589cd501cd9bd43ea3bf"
+    },
+    "r114_rov_63_rule_clause": {
+      "revision": 1,
+      "record_sha256": "a479131b8cb0e05ff9cf179d4828a29196e8ffb15199eb0acb97d5558a66377c"
+    }
+  }
+}

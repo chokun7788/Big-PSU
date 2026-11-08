@@ -1,0 +1,125 @@
+{
+  "question_key": "3020765f9449c4044241f3945cf7241a89f090e4742bdab7592f7504bc36f074",
+  "example_sha256": "296099fe62ff6322496e7b9de6ecfbfe598d01e63ad276d6f67c4f8b25708f5c",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One physical-location request despite typo-bearing polite text.",
+      "raw_quotes": [
+        "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "contact/detail/address asks where the studio is, not how to message it.",
+      "raw_quotes": [
+        "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "No separate building/floor-only need is requested, so the target remains empty.",
+      "raw_quotes": [
+        "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The studio is the current question subject; no named person or earlier location is inherited.",
+      "raw_quotes": [
+        "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The informal suffix อะ is not ambiguity or a second requested action.",
+      "raw_quotes": [
+        "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "center_psu_phuket and migrated_owner_claim_location include Building5/Floor1 and address; legacy address FAQs are less specific, so current source authority stays with execution.",
+      "raw_quotes": [
+        "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ"
+      ],
+      "source_record_ids": [
+        "center_psu_phuket",
+        "migrated_owner_claim_location",
+        "migrated_faq_rule_contact_location"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No building number, postal address or map URL enters the planner label.",
+      "raw_quotes": [
+        "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 44,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "location",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ",
+        "domain": "contact",
+        "operation": "detail",
+        "facet": "address",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "location",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถมหนาอยครับ ศูนย์อยู่ที่ไหน อะ",
+        "domain": "contact",
+        "operation": "detail",
+        "facet": "address",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "center_psu_phuket": {
+      "revision": 3,
+      "record_sha256": "0c09c855062618368b5a0ad2a43a3d6269a9c7f8443cc93584ab89ba8cb42927"
+    },
+    "migrated_owner_claim_location": {
+      "revision": 2,
+      "record_sha256": "03582d4dcbee5b82689cdbed6ca63554557cb7c7bdabbcbe3aa677575bad8194"
+    },
+    "migrated_faq_rule_contact_location": {
+      "revision": 4,
+      "record_sha256": "831286e6dc3bb43ff981657bec27163d50e0c831ef71e9beff2d48e3f3fa790d"
+    }
+  }
+}

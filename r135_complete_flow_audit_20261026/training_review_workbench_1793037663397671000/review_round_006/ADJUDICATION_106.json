@@ -1,0 +1,184 @@
+{
+  "question_key": "842376e3983728d8814fb7ad1dc89732751677e24f4c66f26c1044cd3b0bd6e9",
+  "example_sha256": "4a77d997555f110c33e3ee811e2b6ba8b95c5361629d1f3d36cb7ab4801744ed",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One live query asks which PC stations are free on a weekday at a time.",
+      "raw_quotes": [
+        "Which PC stations are free on Monday at 1 pm?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "live/availability/live_status is retained rather than a regular opening timetable.",
+      "raw_quotes": [
+        "Which PC stations are free on Monday at 1 pm?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Monday, 1 pm and PC are literal date/time/platform-service scopes.",
+      "raw_quotes": [
+        "Which PC stations are free on Monday at 1 pm?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No absolute date, timezone offset or previously selected station is inserted by the label.",
+      "raw_quotes": [
+        "Which PC stations are free on Monday at 1 pm?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The weekday must resolve against the request clock or be clarified by the live adapter; no provider result is inferred from a known calendar.",
+      "raw_quotes": [
+        "Which PC stations are free on Monday at 1 pm?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned PC service/resource identities are source scope only; actual availability requires a request-local provider observation, absent from this static snapshot.",
+      "raw_quotes": [
+        "Which PC stations are free on Monday at 1 pm?"
+      ],
+      "source_record_ids": [
+        "availability_pc_03_10",
+        "resource_pc_03"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No free/occupied status, station list or opening-hours answer is taught.",
+      "raw_quotes": [
+        "Which PC stations are free on Monday at 1 pm?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The static snapshot has no request-local live observation for Monday at1pm.",
+      "handling": "Provider/window/freshness proof remains a runtime requirement."
+    }
+  ],
+  "historical_review_row": 106,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "Monday",
+      "1 pm",
+      "PC"
+    ],
+    "tasks": [
+      {
+        "quote": "Which PC stations are free on Monday at 1 pm?",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "1 pm",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "Monday",
+      "1 pm",
+      "PC"
+    ],
+    "tasks": [
+      {
+        "quote": "Which PC stations are free on Monday at 1 pm?",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "1 pm",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_pc_03_10": {
+      "revision": 5,
+      "record_sha256": "472e782a0ac21bd680d205ea4207a9e3bb2d73b0e7fe87c37c13463b0ad6bf70"
+    },
+    "resource_pc_03": {
+      "revision": 2,
+      "record_sha256": "a46735819ea398b754ad7240018a7336c8b0fc9bcee5d7793b9d2685807ed183"
+    }
+  }
+}

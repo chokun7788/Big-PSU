@@ -1,0 +1,134 @@
+{
+  "question_key": "e6cc3a843838b1c5ec229aca442fe188357dbc4344acecbcc151098adad4850d",
+  "example_sha256": "16bf8864b51aa024f1a5f4cc7a256431c71d50c87db9418efa97319e42ca243d",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks the procedure for an overpayment; source-verification framing is style.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy retains overpayment, not underpayment, ordinary service pricing or a general refund.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "โอนเงินเกินยอด is the local payment case and ต้องทำอย่างไร is the requested procedure scope.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No excess amount, person, session, receipt date or prior history is supplied.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The question does not assert eligibility for cash refund or authorize a transfer, credit or booking change.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_q014 distinguishes overpayment handling and recorded future-session credit from cash refund; expiry and current applicability remain source limitations.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร"
+      ],
+      "source_record_ids": [
+        "r114_q014_owner_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No credit balance, expiry, contact address or yes/no refund verdict is taught.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Future-session credit has no recorded expiry or full application procedure here.",
+      "handling": "Do not infer cash refund, deadline or a usable balance for this user."
+    }
+  ],
+  "historical_review_row": 226,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "โอนเงินเกินยอด",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ต้องทำอย่างไร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q014_owner_policy": {
+      "revision": 1,
+      "record_sha256": "9e1c7d8e585ac439d2f7cef2dcb775b8452832d6c5d28c8f54acccdce359c85b"
+    }
+  }
+}

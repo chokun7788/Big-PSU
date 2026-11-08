@@ -1,0 +1,144 @@
+{
+  "question_key": "d42ce15f001b4cfd61360f1496c1361fa7880a24f727bc19def9b8bd88c9baa4",
+  "example_sha256": "2e51cb7a8ea8c3b992ea250415cd52c710e74286ddcece8bf81b050df18d41d9",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One TEKKEN8 question asks if breaking rules can cause a loss.",
+      "raw_quotes": [
+        "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Keep competition_rules/rule_lookup/rule_clause, not general studio damage policy.",
+      "raw_quotes": [
+        "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add ถ้าทำผิดกติกา as condition and ปรับแพ้ as requested penalty scope.",
+      "raw_quotes": [
+        "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual breach, player, sanction unit or referee decision is supplied.",
+      "raw_quotes": [
+        "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A general violation is not proof every breach loses an entire match.",
+      "raw_quotes": [
+        "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "TEKKEN sections003/005/007 distinguish deliberate-pause round loss, conduct loss and unauthorized exit; their conditions and apparent pause differences need separate source treatment.",
+      "raw_quotes": [
+        "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_tekken8_psu_esports_section_003",
+        "competition_competition_rules_tekken8_psu_esports_section_005",
+        "competition_competition_rules_tekken8_psu_esports_section_007"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No automatic match-loss verdict or sanction unit is taught.",
+      "raw_quotes": [
+        "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Sanctions vary by breach and pause clauses differ.",
+      "handling": "Do not equate every breach with full-match forfeit."
+    }
+  ],
+  "historical_review_row": 261,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "TEKKEN 8",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "TEKKEN 8",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้าทำผิดกติกา",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ปรับแพ้",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_tekken8_psu_esports_section_003": {
+      "revision": 5,
+      "record_sha256": "652ca66a8af5c1bba7b5b54711008f9129d06c783c1bb933bea76faf7d81a2dd"
+    },
+    "competition_competition_rules_tekken8_psu_esports_section_005": {
+      "revision": 5,
+      "record_sha256": "b92946a7aa09bba17291302db62c23d77fcac622c51096bbab87cd04e48c0dab"
+    },
+    "competition_competition_rules_tekken8_psu_esports_section_007": {
+      "revision": 5,
+      "record_sha256": "a10ef7cd5e9b5c51ba2764b25b8086f0bd6b2287a6a20cf9f52222010d37357b"
+    }
+  }
+}

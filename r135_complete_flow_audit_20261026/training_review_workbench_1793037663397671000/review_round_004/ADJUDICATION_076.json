@@ -1,0 +1,164 @@
+{
+  "question_key": "3129ac0e5c5b4dc6599041f0aa2cd780209b068a2e3d5ee5aae33c0890fb42b1",
+  "example_sha256": "539faab7cc8358fcf6fd91a100ea598e23c8dfb5ba8d3e0ed8d6e90770266c07",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One PC play-price request; จอง is context of the intended play purchase.",
+      "raw_quotes": [
+        "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount is retained rather than performing a booking.",
+      "raw_quotes": [
+        "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PC and คนทั่วไป are local service/platform and audience quotes.",
+      "raw_quotes": [
+        "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No duration, machine count, actual reservation or age is inherited.",
+      "raw_quotes": [
+        "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A clear price need can still need input; the label must not create an hour or default audience subtype.",
+      "raw_quotes": [
+        "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Two PC rate pools have current source relations and explicit duration/billing fields; the raw phrase does not choose a physical pool.",
+      "raw_quotes": [
+        "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่"
+      ],
+      "source_record_ids": [
+        "rate_recovered_pc_availability_pc_01_02_general_adult",
+        "rate_recovered_pc_availability_pc_03_10_general_adult"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No rate, total, payment completion or reservation fact is supervised.",
+      "raw_quotes": [
+        "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 76,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "PC",
+      "คนทั่วไป"
+    ],
+    "tasks": [
+      {
+        "quote": "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "คนทั่วไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "PC",
+      "คนทั่วไป"
+    ],
+    "tasks": [
+      {
+        "quote": "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "คนทั่วไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "rate_recovered_pc_availability_pc_01_02_general_adult": {
+      "revision": 2,
+      "record_sha256": "af3471e8402f2e0e99b71b793be0cad4ddc5d05bb2a5e9645ffed81ff8f8a3e7"
+    },
+    "rate_recovered_pc_availability_pc_03_10_general_adult": {
+      "revision": 2,
+      "record_sha256": "297ff6a5a43bc2a9ec360a62124e97163dc378e7bc9fbc5a84bb17a3f0ddf5cf"
+    }
+  }
+}

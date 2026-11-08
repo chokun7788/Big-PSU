@@ -1,0 +1,134 @@
+{
+  "question_key": "d5fd6df678650dc85e371e93485f1fcd066eb6a439c4f18e99d65ef4ed3ce0f4",
+  "example_sha256": "36e093a13eb61d524d7f2b59b71e9043791c6dd6a01da3f145399803af67abf8",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inverse person lookup requests the intern with a specified project and role.",
+      "raw_quotes": [
+        "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "members/role_lookup must return display_name rather than the role text already supplied.",
+      "raw_quotes": [
+        "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "AI Chat Bot Developer is quoted role target; Super AI SS6 project and student intern remain requested scopes.",
+      "raw_quotes": [
+        "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No person name, university or unrelated project affiliation is inherited.",
+      "raw_quotes": [
+        "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Who asks for identity; the role/project alone must not cause all interns to be returned.",
+      "raw_quotes": [
+        "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "member_68e4915433f294b7 has the exact intern/project/role relation; its en display_name is Thai, so do not invent Romanization.",
+      "raw_quotes": [
+        "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role"
+      ],
+      "source_record_ids": [
+        "member_68e4915433f294b7"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No person name, university, role answer or transliteration is taught.",
+      "raw_quotes": [
+        "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The English display-name field is Thai text.",
+      "handling": "Keep the actual name as a proper noun if used; never invent Romanization."
+    }
+  ],
+  "historical_review_row": 178,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "role",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "display_name",
+        "target": "AI Chat Bot Developer",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "Super AI SS6 project",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "student intern",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "member_68e4915433f294b7": {
+      "revision": 5,
+      "record_sha256": "a4d9aa9baa9650ab9695300beb68b65fa283a6b46a6d3cfa8fc83ea9b72f9235"
+    }
+  }
+}

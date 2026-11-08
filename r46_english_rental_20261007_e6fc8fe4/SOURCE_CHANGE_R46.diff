@@ -1,0 +1,97 @@
+--- before/zone_rental.py
++++ after/zone_rental.py
+@@ -11,7 +11,7 @@
+ GROUPS=('external','internal');PERIODS=('half_day','full_day')
+ RENTAL=re.compile(r'เหมา(?!ะ)|เช่า|\b(?:rent(?:al)?|hire)\b',re.I)
+ HALF=re.compile(r'ครึ่งวัน|\bhalf[ -]?day\b',re.I)
+-FULL=re.compile(r'เต็มวัน|ทั้งวัน|เหมาวัน|\b(?:full[ -]?day|whole day|daily|per day)\b',re.I)
++FULL=re.compile(r'เต็มวัน|ทั้งวัน|เหมาวัน|\b(?:full[ -]?day|whole[ -]?day|daily|per day)\b',re.I)
+ PRICE=re.compile(r'ราคา|ค่าบริการ|กี่บาท|เท่าไหร่|เท่าไร|\b(?:price|prices|fees?|rates?|cost|how much)\b',re.I)
+ HOURLY=re.compile(r'รายชั่วโมง|ต่อชั่วโมง|\bhourly\b|\bper hour\b',re.I)
+ RETURN=re.compile(r'^(?:กลับ(?:ไป|มา)(?:เรื่อง|ที่)?|(?:go )?back to|return to)',re.I)
+@@ -75,7 +75,13 @@
+     bundle=bool(re.search(r'ทุกโซน|ทั้งศูนย์|ทั้งห้อง|\ball zones\b|\b(?:entire|whole)\s+(?:studio|venue|room)\b',q,re.I))
+     catalog=bool(re.search(r'แต่ละโซน|แยก.{0,8}โซน|ทุกแพ็กเกจ|ราคาทั้งหมด|ทุกแบบ|ทั้งหมด|\b(?:all (?:rental )?(?:prices|rates|packages)|all of them|each zone)\b',q,re.I))
+     selected=list(TARGETS) if catalog else (['all_zones'] if bundle else [])+selected
++    # Resolve a misspelled service token even inside a long rental sentence.
++    for token in re.findall(r'[a-z]{4,}',_mask_unknown_codes(q),re.I):
++        selected.extend(service_mentions(token,fuzzy=True))
+     excluded=excluded_services(q)
++    if excluded and not [t for t in selected if t not in excluded]:
++        positive_text=re.sub(r'\b(?:except|exclude|excluding|not)\b\s*[^,;\n]+|(?:ยกเว้น|ไม่เอา|ไม่ใช่|เว้น)[^,;\n]+',' ',q,flags=re.I)
++        if not service_mentions(_mask_unknown_codes(positive_text),fuzzy=True):selected=list(TARGETS)
+     return list(dict.fromkeys(t for t in selected if t not in excluded))
+ 
+ def _groups(q):
+@@ -85,14 +91,14 @@
+     if re.fullmatch(r'(?:ภายนอก|นอกมหาวิทยาลัย)[.!?\s]*',q):external=True
+     return [g for g in GROUPS if g in groups or (g=='internal' and internal) or (g=='external' and external)]
+ 
+-def _asks(q):
++def _asks(q, *, default_rates=True):
+     asks=[]
+     if PRICE.search(q):asks.append('rates')
+     for key,pattern in [
+         ('capacity',r'ที่นั่ง|รองรับ|กี่คน|\b(?:seats|seating|capacity|how many people)\b'),
+         ('equipment',r'อุปกรณ์|กี่เครื่อง|รวมอะไร|มีอะไรให้|\b(?:equipment|included devices|how many machines|what is included)\b'),
+         ('duration_definition',r'กี่ชั่วโมง|กี่โมง|ช่วงเวลา|นับเวลา|\b(?:how many hours|what hours|what times|how long)\b'),
+-        ('effective_date',r'เริ่มใช้|มีผล|หมดอายุ|\b(?:validity|effective date|valid from|expiry)\b'),
++        ('effective_date',r'เริ่มใช้|มีผล|หมดอายุ|\b(?:validity|effective date|valid from|expiry|take effect)\b'),
+         ('booking',r'จอง|\b(?:book|booking|reserve|reservation)\b'),
+         ('live_availability',r'ว่าง|ถูกจอง|\b(?:available|availability|booked)\b'),
+         ('overtime',r'เจ้าหน้าที่|นอกเวลา|\b(?:staff|overtime|extra charge)\b'),
+@@ -106,19 +112,21 @@
+         asks=[a for a in asks if a!='rates']
+     if 'effective_date' in asks and not re.search(r'กี่บาท|เท่าไหร่|เท่าไร|\b(?:how much|prices|rates|fees)\b',q,re.I):
+         asks=[a for a in asks if a!='rates']
+-    return list(dict.fromkeys(asks)) or ['rates']
++    if 'effective_date' in asks and re.search(r'\bwhen\b.*\btake effect\b',q,re.I):
++        asks=[a for a in asks if a!='rates']
++    return list(dict.fromkeys(asks)) or (['rates'] if default_rates else [])
+ 
+ def _unknown_targets(q):
+     # Read the requested noun phrase; a supplied unknown noun cannot mean all zones.
+     from app.core.normalization import SERVICE_ALIASES
+     from app.session.conversation_plan import service_mentions
+     found=[]
+-    spans=[m[1] for m in re.finditer(r'(?:เหมา(?!ะ)|เช่า|\b(?:rent(?:al)?|hire)\b)\s*(.*?)(?=ครึ่งวัน|เต็มวัน|ทั้งวัน|รายชั่วโมง|รองรับ|กี่คน|มีอุปกรณ์|มีค่า|เจ้าหน้าที่|นอกเวลา|ว่าง|กี่ชั่วโมง|เริ่มใช้|มีผล|หมดอายุ|ยังไง|อย่างไร|\b(?:half[ -]?day|full[ -]?day|whole day)\b|$)',q,re.I)]
++    spans=[m[1] for m in re.finditer(r'(?:เหมา(?!ะ)|เช่า|\b(?:rent(?:al)?|hire)\b)\s*(.*?)(?=ครึ่งวัน|เต็มวัน|ทั้งวัน|รายชั่วโมง|รองรับ|กี่คน|มีอุปกรณ์|มีค่า|เจ้าหน้าที่|นอกเวลา|ว่าง|กี่ชั่วโมง|เริ่มใช้|มีผล|หมดอายุ|ยังไง|อย่างไร|\b(?:half[ -]?day|full[ -]?day|whole[ -]?day)\b|$)',q,re.I)]
+     if q.isascii():
+         spans.extend(m[1] for m in re.finditer(r'([^?;\n]*?)\brental\b',q,re.I))
+     for span in spans:
+         span=re.sub(r'หน่วยงาน(?:ภายใน|ภายนอก|นอก|ในมหาวิทยาลัย)|\b(?:internal|external)(?:\s+organizations?)?\b|\b(?:for )?(?:a )?(?:psu |private )?(?:student|individual|department|unit|organization)\b',' ',span,flags=re.I)
+-        span=re.split(r'\b(?:staff|overtime|available|availability|effective|expiry|seating|capacity|included)\b',span,maxsplit=1,flags=re.I)[0]
++        span=re.split(r'\b(?:staff|overtime|available|availability|effective|expiry|seating|capacity|included|per machine|per device)\b',span,maxsplit=1,flags=re.I)[0]
+         span=re.sub(r'\d+\s*(?:วัน|days|ชั่วโมง|hours)\b',' ',span,flags=re.I)
+         span=re.sub(r'\bpc\s*#?\s*\d+\b','pc',span,flags=re.I)
+         for alias in sorted({a for aa in SERVICE_ALIASES.values() for a in aa},key=len,reverse=True):
+@@ -126,7 +134,7 @@
+             pattern=r'(?<![a-z0-9])'+re.escape(normalized)+r'(?![a-z0-9])' if normalized.isascii() else re.escape(normalized)
+             span=re.sub(pattern,' ',span,flags=re.I)
+         span=re.sub(r'ทุกแพ็กเกจ|ทั้งศูนย์|ทั้งห้อง|ทุกแบบ|แต่ละโซน|ยกเว้น|ไม่เอา|อุปกรณ์|ห้อง|โซน|เครื่อง|ทั้งหมด|ทุกโซน|หน่วยงานภายใน|หน่วยงานภายนอก|ราคา|กี่บาท|เท่าไหร่|เท่าไร|\b(?:what|is|are|how|much|show|when|do|i|book|hourly|full|half|whole|day|entire|seating|capacity|included|for|a|an|the|zone|studio|all|zones|and|of|equipment|prices?|rates?|fees?|external|internal|organizations?|please|except)\b|และ|กับ|ครับ|ค่ะ|หน่อย|[^\w\u0e00-\u0e7f]+',' ',span,flags=re.I).strip()
+-        span=re.sub(r'สำหรับ|แบบ|ล่ะ|\b(?:excluding|exclude|not|instead|cost|to)\b',' ',span,flags=re.I).strip()
++        span=re.sub(r'สำหรับ|แบบ|ล่ะ|\b(?:excluding|exclude|not|instead|cost|to|compare|versus|vs|with)\b',' ',span,flags=re.I).strip()
+         span=' '.join(token for token in span.split() if not service_mentions(_mask_unknown_codes(token),fuzzy=True))
+         if span and len(span)<=100:found.append(span)
+     return list(dict.fromkeys(found))[:6]
+@@ -146,7 +154,8 @@
+     bare=re.fullmatch(r'(?:ทั้งหมด(?:เลย)?|ทุกแบบ|all(?: of them)?|both|both periods|ภายใน|ภายนอก|internal|external)[.!?\s]*',q,re.I)
+     other_topic=bool(OTHER_TASK.search(q) or SCHEDULE_TASK.search(q))
+     short_selection=bool(targets or groups or periods or re.search(r'ทั้งสองกลุ่ม|\bboth groups\b',q,re.I)) and len(q)<=90 and not other_topic
+-    information_followup=bool(previous and re.search(r'กี่ชั่วโมง|กี่โมง|ที่นั่ง|อุปกรณ์|รวมอะไร|มีอะไรให้|เจ้าหน้าที่|นอกเวลา|เริ่มใช้|^จอง(?:ยังไง|อย่างไร)|\b(?:how many hours|seats|equipment|what is included|overtime|effective date|how do i book it)\b',q,re.I))
++    field_asks=set(_asks(q,default_rates=False))
++    information_followup=bool(previous and field_asks & {'capacity','equipment','duration_definition','effective_date','booking','overtime'} and not re.search(r'เกม|กฎ|แข่งขัน|\b(?:games?|competition|rules?|controls?)\b',q,re.I))
+     generic_price=bool(previous and PRICE.search(q) and not targets and len(q)<=50 and not other_topic)
+     unknown_selection=bool(previous and not explicit and not targets and not groups and not periods and not bare and not short_selection and not information_followup and not generic_price and not other_topic and re.fullmatch(r'[a-z0-9][a-z0-9 _#-]{0,35}',q) and not re.search(r'\b(?:what|where|when|how|why|hi|hello|thanks|help|yes|no)\b',q))
+     if not explicit and not (previous and (bare or short_selection or information_followup or generic_price or unknown_selection)):return None
+@@ -167,7 +176,9 @@
+     if unknown and not targets:p['targets']=[]
+     p['unresolved_targets']=unknown
+     # Preserve conditions per clause rather than combining unrelated dimensions.
+-    pieces=re.split(r'\s*(?:และ|;|\band\b)\s*',q,flags=re.I)
++    clause_pattern=r'\s*(?:และ|;|\band\b|\bversus\b|\bvs\.?\b)\s*'
++    if re.search(r'\bcompare\b',q,re.I):clause_pattern=r'\s*(?:และ|;|\band\b|\bversus\b|\bvs\.?\b|\bwith\b)\s*'
++    pieces=re.split(clause_pattern,q,flags=re.I)
+     scoped=[piece for piece in pieces if _targets(piece)]
+     if len(scoped)>1:
+         requests=[]

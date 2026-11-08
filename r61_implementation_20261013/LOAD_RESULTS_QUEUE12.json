@@ -1,0 +1,1727 @@
+{
+  "actual_pipeline": true,
+  "actual_llm": true,
+  "synthetic": true,
+  "warmth_not_independently_verified": true,
+  "threads_not_browser_or_worker_process_capacity_proof": true,
+  "runs": [
+    {
+      "summary": {
+        "clients": 8,
+        "passed": 8,
+        "requests": 8,
+        "p50_sec": 8.746874499949627,
+        "p95_observed_sec": 14.664772700052708,
+        "max_sec": 14.664772700052708,
+        "requests_per_sec": 0.545269727521851,
+        "small_sample": true
+      },
+      "rows": [
+        {
+          "clients": 8,
+          "index": 0,
+          "id": "game-th-clean_new",
+          "seconds": 13.526261400198564,
+          "passed": true,
+          "reasons": [],
+          "answer": "**เกมสมมุติ ประภาคารเสมือน**\n• เป้าหมาย/วงจรการเล่นโดยสรุป: ใช้มือเสมือนจัดแสงนำทางเรือ; ใช้คำสั่งตามชุดควบคุมทดลอง [S1]\n\n**ชุดควบคุมทดลอง ละอองฝน**\n• เกม/edition ที่ตรงกัน: เกมสมมุติ ประภาคารเสมือน [S2]\n• PC/PS5/Nintendo Switch/VR: VR [S3]\n• ชนิดอุปกรณ์ควบคุม: vr_motion [S4]\n• default/custom profile ชื่อชุดปุ่ม: DEMO_LAYOUT_3 [S5]\n• เวอร์ชันที่ตรวจชุดปุ่ม: DEMO BUILD 3 [S6]\n• ปุ่ม + กด/ค้าง/กดพร้อมกัน/ลำดับ + action + context; ทุกรายการต้องมีหลักฐานชุดเดียวกัน มิฉะนั้นแยก record: • ยืนยัน → DEMO_vr_motion_1 (press; คำสั่งสมมุติของ ประภาคารเสมือน) [S7]\n• ข้อจำกัดหรือปุ่มที่ยังไม่ยืนยัน: ชุดควบคุมเกมแต่งขึ้น ใช้ทดสอบเท่านั้น [S8]",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_game_03"
+              ],
+              "requested_fields": [
+                "how_to_play",
+                "game_id",
+                "platform",
+                "input_device",
+                "preset",
+                "game_version",
+                "bindings",
+                "limitations"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+              "field_selection": [],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_game_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [
+                  "เริ่มเล่น",
+                  "ต้องทำอะไรให้ผ่านเกมนี้"
+                ],
+                "preserved_strong_needs": [],
+                "removed_unrequested_identity_fields": [],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "game",
+                        "key": "how_to_play"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n2",
+                    "field_refs": [
+                      {
+                        "kind": "control_set",
+                        "key": "game_id"
+                      },
+                      {
+                        "kind": "game_mode",
+                        "key": "game_id"
+                      },
+                      {
+                        "kind": "game_service",
+                        "key": "game_id"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": true
+                  },
+                  {
+                    "id": "n3",
+                    "field_refs": [
+                      {
+                        "kind": "control_set",
+                        "key": "platform"
+                      },
+                      {
+                        "kind": "game_mode",
+                        "key": "platform"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": true
+                  },
+                  {
+                    "id": "n4",
+                    "field_refs": [
+                      {
+                        "kind": "control_set",
+                        "key": "input_device"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n5",
+                    "field_refs": [
+                      {
+                        "kind": "control_set",
+                        "key": "preset"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n6",
+                    "field_refs": [
+                      {
+                        "kind": "control_set",
+                        "key": "game_version"
+                      },
+                      {
+                        "kind": "game_service",
+                        "key": "game_version"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": true
+                  },
+                  {
+                    "id": "n7",
+                    "field_refs": [
+                      {
+                        "kind": "control_set",
+                        "key": "bindings"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n8",
+                    "field_refs": [
+                      {
+                        "kind": "control_set",
+                        "key": "limitations"
+                      }
+                    ],
+                    "source_span": "เกมสมมุติ ละอองฝน เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_game_03",
+                  "fields": {
+                    "how_to_play": "explicit"
+                  }
+                },
+                {
+                  "record_id": "demo20_control_set_03",
+                  "fields": {
+                    "game_id": "explicit",
+                    "platform": "explicit",
+                    "input_device": "explicit",
+                    "preset": "explicit",
+                    "game_version": "explicit",
+                    "bindings": "explicit",
+                    "limitations": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_game_03",
+                "field": "how_to_play",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/how_to_play",
+                    "source_id": "fixture20_demo20_game_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_control_set_03",
+                "field": "game_id",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/game_id",
+                    "source_id": "fixture20_demo20_control_set_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_control_set_03",
+                "field": "platform",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/platform",
+                    "source_id": "fixture20_demo20_control_set_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_control_set_03",
+                "field": "input_device",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/input_device",
+                    "source_id": "fixture20_demo20_control_set_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_control_set_03",
+                "field": "preset",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/preset",
+                    "source_id": "fixture20_demo20_control_set_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_control_set_03",
+                "field": "game_version",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/game_version",
+                    "source_id": "fixture20_demo20_control_set_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_control_set_03",
+                "field": "bindings",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/bindings",
+                    "source_id": "fixture20_demo20_control_set_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_control_set_03",
+                "field": "limitations",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/limitations",
+                    "source_id": "fixture20_demo20_control_set_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "how_to_play",
+                    "game_id",
+                    "platform",
+                    "input_device",
+                    "preset",
+                    "game_version",
+                    "bindings",
+                    "limitations"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "how_to_play"
+                      ]
+                    },
+                    {
+                      "id": 1,
+                      "requested_fields": [
+                        "game_id",
+                        "platform",
+                        "input_device",
+                        "preset",
+                        "game_version",
+                        "bindings",
+                        "limitations"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "how_to_play",
+                    "game_id",
+                    "platform",
+                    "input_device",
+                    "preset",
+                    "game_version",
+                    "bindings",
+                    "limitations"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [
+                    "เริ่มเล่น",
+                    "ต้องทำอะไรให้ผ่านเกมนี้"
+                  ],
+                  "preserved_strong_needs": [],
+                  "removed_unrequested_identity_fields": [],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "เริ่มเล่นแล้วต้องทำอะไรให้ผ่านเกมนี้",
+                "prompt_eval_count": 1420,
+                "queue_wait_ms": 7782.032300019637,
+                "elapsed_ms": 2672.041099984199
+              }
+            ]
+          }
+        },
+        {
+          "clients": 8,
+          "index": 1,
+          "id": "game-en-clean_new",
+          "seconds": 14.664772700052708,
+          "passed": true,
+          "reasons": [],
+          "answer": "**Fictional Virtual Beacon**\n• how to play: Use motion inputs to arrange lights guiding ships; follow the demonstration controls [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_game_03"
+              ],
+              "requested_fields": [
+                "how_to_play"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "what should a beginner do to complete this game?",
+              "field_selection": [],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_game_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [
+                  "what should a beginner do to complete this game"
+                ],
+                "preserved_strong_needs": [],
+                "removed_unrequested_identity_fields": [],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "game",
+                        "key": "how_to_play"
+                      }
+                    ],
+                    "source_span": "Fictional game Drizzle What should a beginner do to complete this game?",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_game_03",
+                  "fields": {
+                    "how_to_play": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_game_03",
+                "field": "how_to_play",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/how_to_play",
+                    "source_id": "fixture20_demo20_game_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "how_to_play"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "how_to_play"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "how_to_play"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [
+                    "what should a beginner do to complete this game"
+                  ],
+                  "preserved_strong_needs": [],
+                  "removed_unrequested_identity_fields": [],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "what should a beginner do to complete this game?",
+                "prompt_eval_count": 1123,
+                "queue_wait_ms": 10431.56179995276,
+                "elapsed_ms": 1138.8802998699248
+              }
+            ]
+          }
+        },
+        {
+          "clients": 8,
+          "index": 2,
+          "id": "procedure-th-clean_new",
+          "seconds": 10.838635300053284,
+          "passed": true,
+          "reasons": [],
+          "answer": "**DEMO Motion discomfort breaks**\n• สถานการณ์ก่อนทำ เช่น จองผิดเครื่อง: • field: demo_session; operator: eq; value: มี/ใช่ [S1]\n• ลำดับจริง; contact_id ตรวจ FK ด้วย semantic validator ใน production: 1. เลือกบริการสมมุติ ละอองฝน\n2. ตรวจชื่อและเงื่อนไขก่อนยืนยัน — https://example.invalid/demo20/contact/3\n3. แจ้งผู้ดูแลเพื่อขอความช่วยเหลือเฉพาะรอบทดลอง — https://example.invalid/demo20/contact/3 [S2]\n• หลักฐาน/รายการที่ต้องเตรียม: • DEMO pass Drizzle [S3]\n• กำหนดเวลา ถ้าไม่ทราบอย่าเติม: 30 [S4]\n• หลังทำแล้วได้อะไร ขอบเขตสิ่งที่ยืนยัน: ผลทดสอบ: ตรวจสอบ พักเมื่อเวียนหัว เสร็จ [S5]",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_procedure_03"
+              ],
+              "requested_fields": [
+                "preconditions",
+                "steps",
+                "required_documents",
+                "deadline_minutes",
+                "outcome"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "ช่วยไล่สิ่งที่ต้องทำและของที่ต้องเตรียมที",
+              "field_selection": [],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_procedure_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [
+                  "ช่วยไล่สิ่งที่ต้องทำ",
+                  "ของที่ต้องเตรียมที"
+                ],
+                "preserved_strong_needs": [],
+                "removed_unrequested_identity_fields": [
+                  "topic"
+                ],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "procedure",
+                        "key": "preconditions"
+                      }
+                    ],
+                    "source_span": "ขั้นตอนทดลอง ละอองฝน ช่วยไล่สิ่งที่ต้องทำและของที่ต้องเตรียมที",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n2",
+                    "field_refs": [
+                      {
+                        "kind": "procedure",
+                        "key": "steps"
+                      }
+                    ],
+                    "source_span": "ขั้นตอนทดลอง ละอองฝน ช่วยไล่สิ่งที่ต้องทำ",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n3",
+                    "field_refs": [
+                      {
+                        "kind": "procedure",
+                        "key": "required_documents"
+                      }
+                    ],
+                    "source_span": "ขั้นตอนทดลอง ละอองฝน ช่วยไล่สิ่งที่ต้องทำและของที่ต้องเตรียมที",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n4",
+                    "field_refs": [
+                      {
+                        "kind": "procedure",
+                        "key": "deadline_minutes"
+                      }
+                    ],
+                    "source_span": "ขั้นตอนทดลอง ละอองฝน ช่วยไล่สิ่งที่ต้องทำและของที่ต้องเตรียมที",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n5",
+                    "field_refs": [
+                      {
+                        "kind": "procedure",
+                        "key": "outcome"
+                      }
+                    ],
+                    "source_span": "ขั้นตอนทดลอง ละอองฝน ช่วยไล่สิ่งที่ต้องทำและของที่ต้องเตรียมที",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_procedure_03",
+                  "fields": {
+                    "preconditions": "explicit",
+                    "steps": "explicit",
+                    "required_documents": "explicit",
+                    "deadline_minutes": "explicit",
+                    "outcome": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_procedure_03",
+                "field": "preconditions",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/preconditions",
+                    "source_id": "fixture20_demo20_procedure_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_procedure_03",
+                "field": "steps",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/steps",
+                    "source_id": "fixture20_demo20_procedure_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_procedure_03",
+                "field": "required_documents",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/required_documents",
+                    "source_id": "fixture20_demo20_procedure_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_procedure_03",
+                "field": "deadline_minutes",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/deadline_minutes",
+                    "source_id": "fixture20_demo20_procedure_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_procedure_03",
+                "field": "outcome",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/outcome",
+                    "source_id": "fixture20_demo20_procedure_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "topic",
+                    "preconditions",
+                    "steps",
+                    "required_documents",
+                    "deadline_minutes",
+                    "outcome"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "topic",
+                        "preconditions",
+                        "steps",
+                        "required_documents",
+                        "deadline_minutes",
+                        "outcome"
+                      ]
+                    },
+                    {
+                      "id": 1,
+                      "requested_fields": [
+                        "required_documents"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "preconditions",
+                    "steps",
+                    "required_documents",
+                    "deadline_minutes",
+                    "outcome"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [
+                    "ช่วยไล่สิ่งที่ต้องทำ",
+                    "ของที่ต้องเตรียมที"
+                  ],
+                  "preserved_strong_needs": [],
+                  "removed_unrequested_identity_fields": [
+                    "topic"
+                  ],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "ช่วยไล่สิ่งที่ต้องทำและของที่ต้องเตรียมที",
+                "prompt_eval_count": 466,
+                "queue_wait_ms": 6303.326499881223,
+                "elapsed_ms": 1499.3190998211503
+              }
+            ]
+          }
+        },
+        {
+          "clients": 8,
+          "index": 3,
+          "id": "procedure-en-clean_new",
+          "seconds": 7.013142399955541,
+          "passed": true,
+          "reasons": [],
+          "answer": "**DEMO Motion discomfort breaks**\n• steps: 1. Select the fictional Drizzle service\n2. Check names and conditions before confirming — https://example.invalid/demo20/contact/3\n3. Ask the demo operator for session-specific help — https://example.invalid/demo20/contact/3 [S1]\n• required documents: • DEMO pass Drizzle [S2]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_procedure_03"
+              ],
+              "requested_fields": [
+                "steps",
+                "required_documents"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "guide me through what to do and which paperwork to prepare.",
+              "field_selection": [],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_procedure_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [
+                  "guide me through what to do",
+                  "which paperwork to prepare"
+                ],
+                "preserved_strong_needs": [],
+                "removed_unrequested_identity_fields": [],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "procedure",
+                        "key": "steps"
+                      }
+                    ],
+                    "source_span": "demo procedure drizzle guide me through what to do",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n2",
+                    "field_refs": [
+                      {
+                        "kind": "procedure",
+                        "key": "required_documents"
+                      }
+                    ],
+                    "source_span": "Demo procedure Drizzle Guide me through what to do and which paperwork to prepare.",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_procedure_03",
+                  "fields": {
+                    "steps": "explicit",
+                    "required_documents": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_procedure_03",
+                "field": "steps",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/steps",
+                    "source_id": "fixture20_demo20_procedure_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_procedure_03",
+                "field": "required_documents",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/required_documents",
+                    "source_id": "fixture20_demo20_procedure_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "steps",
+                    "required_documents"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "steps"
+                      ]
+                    },
+                    {
+                      "id": 1,
+                      "requested_fields": [
+                        "required_documents"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "steps",
+                    "required_documents"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [
+                    "guide me through what to do",
+                    "which paperwork to prepare"
+                  ],
+                  "preserved_strong_needs": [],
+                  "removed_unrequested_identity_fields": [],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "guide me through what to do and which paperwork to prepare.",
+                "prompt_eval_count": 398,
+                "queue_wait_ms": 2806.2809000257403,
+                "elapsed_ms": 1180.7995999697596
+              }
+            ]
+          }
+        },
+        {
+          "clients": 8,
+          "index": 4,
+          "id": "competition-th-clean_new",
+          "seconds": 9.336695099947974,
+          "passed": true,
+          "reasons": [],
+          "answer": "**รายการฝึก ละอองฝน**\n• วันที่การแข่งขันจากต้นทาง: • 2026-12-03 [S1]\n• ฉบับและเวอร์ชันกติกา: DEMO20_REV_3 [S2]",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_competition_03"
+              ],
+              "requested_fields": [
+                "competition_dates",
+                "rulebook_release"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "แข่งกันวันไหนและยึดกฎฉบับใด",
+              "field_selection": [
+                {
+                  "field": "text",
+                  "cue": "competition rule text",
+                  "method": "schema_attribute"
+                }
+              ],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_competition_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [
+                  "แข่งกันวันไหน"
+                ],
+                "preserved_strong_needs": [],
+                "removed_unrequested_identity_fields": [],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "competition",
+                        "key": "competition_dates"
+                      }
+                    ],
+                    "source_span": "รายการฝึก ละอองฝน แข่งกันวันไหนและยึดกฎฉบับใด",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n2",
+                    "field_refs": [
+                      {
+                        "kind": "competition",
+                        "key": "rulebook_release"
+                      }
+                    ],
+                    "source_span": "รายการฝึก ละอองฝน แข่งกันวันไหนและยึดกฎฉบับใด",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_competition_03",
+                  "fields": {
+                    "competition_dates": "explicit",
+                    "rulebook_release": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_competition_03",
+                "field": "competition_dates",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/competition_dates",
+                    "source_id": "fixture20_demo20_competition_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_competition_03",
+                "field": "rulebook_release",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/rulebook_release",
+                    "source_id": "fixture20_demo20_competition_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "competition_dates",
+                    "rulebook_release"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "competition_dates"
+                      ]
+                    },
+                    {
+                      "id": 1,
+                      "requested_fields": [
+                        "rulebook_release"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "competition_dates",
+                    "rulebook_release"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [
+                    "แข่งกันวันไหน"
+                  ],
+                  "preserved_strong_needs": [],
+                  "removed_unrequested_identity_fields": [],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "แข่งกันวันไหนและยึดกฎฉบับใด",
+                "prompt_eval_count": 680,
+                "queue_wait_ms": 5136.441400041804,
+                "elapsed_ms": 1176.8298000097275
+              }
+            ]
+          }
+        },
+        {
+          "clients": 8,
+          "index": 5,
+          "id": "competition-en-clean_new",
+          "seconds": 4.573733299970627,
+          "passed": true,
+          "reasons": [],
+          "answer": "**Demo event Drizzle**\n• competition dates: • 2026-12-03 [S1]\n• rulebook release: DEMO20_REV_3 [S2]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_competition_03"
+              ],
+              "requested_fields": [
+                "competition_dates",
+                "rulebook_release"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "when is the tournament held and which edition of the rulebook governs it?",
+              "field_selection": [],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_competition_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [
+                  "when is the tournament held",
+                  "which edition of the rulebook governs it"
+                ],
+                "preserved_strong_needs": [],
+                "removed_unrequested_identity_fields": [],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "competition",
+                        "key": "competition_dates"
+                      }
+                    ],
+                    "source_span": "Demo event Drizzle When is the tournament held and which edition of the rulebook governs it?",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n2",
+                    "field_refs": [
+                      {
+                        "kind": "competition",
+                        "key": "rulebook_release"
+                      }
+                    ],
+                    "source_span": "Demo event Drizzle When is the tournament held and which edition of the rulebook governs it?",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_competition_03",
+                  "fields": {
+                    "competition_dates": "explicit",
+                    "rulebook_release": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_competition_03",
+                "field": "competition_dates",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/competition_dates",
+                    "source_id": "fixture20_demo20_competition_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_competition_03",
+                "field": "rulebook_release",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/rulebook_release",
+                    "source_id": "fixture20_demo20_competition_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "competition_dates",
+                    "rulebook_release"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "competition_dates"
+                      ]
+                    },
+                    {
+                      "id": 1,
+                      "requested_fields": [
+                        "rulebook_release"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "competition_dates",
+                    "rulebook_release"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [
+                    "when is the tournament held",
+                    "which edition of the rulebook governs it"
+                  ],
+                  "preserved_strong_needs": [],
+                  "removed_unrequested_identity_fields": [],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "when is the tournament held and which edition of the rulebook governs it?",
+                "prompt_eval_count": 590,
+                "queue_wait_ms": 481.00459994748235,
+                "elapsed_ms": 1605.3042998537421
+              }
+            ]
+          }
+        },
+        {
+          "clients": 8,
+          "index": 6,
+          "id": "person-th-clean_new",
+          "seconds": 8.15705389995128,
+          "passed": true,
+          "reasons": [],
+          "answer": "**ผู้ดูแลสมมุติ ละอองฝน**\n• ตำแหน่ง/หน้าที่: ผู้ดูแลสมมุติเรื่อง พักเมื่อเวียนหัว [S1]\n• ช่องทางงานที่อนุญาตเผยแพร่: https://example.invalid/demo20/contact/3 [S2]",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_person_03"
+              ],
+              "requested_fields": [
+                "role",
+                "public_contact_id"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "คนนี้ดูแลเรื่องไหน ติดต่อเรื่องงานทางไหน",
+              "field_selection": [
+                {
+                  "field": "public_contact_id",
+                  "cue": "ติดต่อ",
+                  "method": "schema_attribute"
+                }
+              ],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_person_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [],
+                "preserved_strong_needs": [
+                  "public_contact_id"
+                ],
+                "removed_unrequested_identity_fields": [],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "person",
+                        "key": "role"
+                      }
+                    ],
+                    "source_span": "ผู้ดูแลสมมุติ ละอองฝน คนนี้ดูแลเรื่องไหน ติดต่อเรื่องงานทางไหน",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n2",
+                    "field_refs": [
+                      {
+                        "kind": "person",
+                        "key": "public_contact_id"
+                      }
+                    ],
+                    "source_span": "ผู้ดูแลสมมุติ ละอองฝน คนนี้ดูแลเรื่องไหน ติดต่อเรื่องงานทางไหน",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_person_03",
+                  "fields": {
+                    "role": "explicit",
+                    "public_contact_id": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_person_03",
+                "field": "role",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/role",
+                    "source_id": "fixture20_demo20_person_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_person_03",
+                "field": "public_contact_id",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/public_contact_id",
+                    "source_id": "fixture20_demo20_person_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "role",
+                    "public_contact_id"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "role",
+                        "public_contact_id"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "role",
+                    "public_contact_id"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [],
+                  "preserved_strong_needs": [
+                    "public_contact_id"
+                  ],
+                  "removed_unrequested_identity_fields": [],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "คนนี้ดูแลเรื่องไหน ติดต่อเรื่องงานทางไหน",
+                "prompt_eval_count": 431,
+                "queue_wait_ms": 3985.5897000525147,
+                "elapsed_ms": 1151.6136000864208
+              }
+            ]
+          }
+        },
+        {
+          "clients": 8,
+          "index": 7,
+          "id": "person-en-clean_new",
+          "seconds": 5.813094599870965,
+          "passed": true,
+          "reasons": [],
+          "answer": "**Fictional host Drizzle**\n• role: Fictional host for Motion discomfort breaks [S1]\n• public contact id: https://example.invalid/demo20/contact/3 [S2]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+          "decision": {
+            "response_type": "answer",
+            "release_id": "6a976d45840645759f5bd0219c1c0e40",
+            "query_plan": {
+              "record_ids": [
+                "demo20_person_03"
+              ],
+              "requested_fields": [
+                "role",
+                "public_contact_id"
+              ],
+              "all_fields": false,
+              "method": "bounded_llm_schema_fields",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "what is this person responsible for, and how can i contact them for work?",
+              "field_selection": [
+                {
+                  "field": "public_contact_id",
+                  "cue": "contact",
+                  "method": "schema_attribute"
+                }
+              ],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "demo20_person_03"
+                ],
+                "release_id": "6a976d45840645759f5bd0219c1c0e40",
+                "epoch": 722
+              },
+              "unresolved_clauses": [],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": true,
+              "planner_semantic_audit": {
+                "semantic_status": "schema_only_unverified_intent",
+                "unresolved_clauses": [
+                  "what is this person responsible for"
+                ],
+                "preserved_strong_needs": [
+                  "public_contact_id"
+                ],
+                "removed_unrequested_identity_fields": [],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [
+                      {
+                        "kind": "person",
+                        "key": "role"
+                      }
+                    ],
+                    "source_span": "Fictional host Drizzle What is this person responsible for, and how can I contact them for work?",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  },
+                  {
+                    "id": "n2",
+                    "field_refs": [
+                      {
+                        "kind": "person",
+                        "key": "public_contact_id"
+                      }
+                    ],
+                    "source_span": "how can i contact them for work",
+                    "resolution": "model_proposed",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "demo20_person_03",
+                  "fields": {
+                    "role": "explicit",
+                    "public_contact_id": "explicit"
+                  }
+                }
+              ]
+            },
+            "obligations": [
+              {
+                "record_id": "demo20_person_03",
+                "field": "role",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/role",
+                    "source_id": "fixture20_demo20_person_03"
+                  }
+                ]
+              },
+              {
+                "record_id": "demo20_person_03",
+                "field": "public_contact_id",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/values/public_contact_id",
+                    "source_id": "fixture20_demo20_person_03"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": true,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "role",
+                    "public_contact_id"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "role"
+                      ]
+                    },
+                    {
+                      "id": 1,
+                      "requested_fields": [
+                        "public_contact_id"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": {
+                  "requested_fields": [
+                    "role",
+                    "public_contact_id"
+                  ],
+                  "all_fields": false,
+                  "platform": null,
+                  "method": "bounded_llm_schema_fields"
+                },
+                "semantic": {
+                  "semantic_status": "schema_only_unverified_intent",
+                  "unresolved_clauses": [
+                    "what is this person responsible for"
+                  ],
+                  "preserved_strong_needs": [
+                    "public_contact_id"
+                  ],
+                  "removed_unrequested_identity_fields": [],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "what is this person responsible for, and how can i contact them for work?",
+                "prompt_eval_count": 393,
+                "queue_wait_ms": 1813.1009999196976,
+                "elapsed_ms": 1237.1350000612438
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

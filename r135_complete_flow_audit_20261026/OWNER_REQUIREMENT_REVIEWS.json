@@ -1,0 +1,284 @@
+{
+  "reviewed_at": 1792991210.3403897,
+  "candidate": "R135 working unfrozen uninstalled",
+  "whole_flow_complete": false,
+  "limits": [
+    "controlled source tests do not prove all natural-language questions",
+    "model instruction-following resistance and arbitrary new-name planning are unassessed",
+    "final candidate source replay/API/installation acceptance still pending"
+  ],
+  "final_model_wire_unchanged_evidence": "wire_compatibility_1792991179262046700\\RESULT.json",
+  "code_sha256": {
+    "app/knowledge/common/registry.py": "c624dfad00f5e22cd779776f4e00cdd506e11deb30d4282dc61d3a1ec0c951b7",
+    "app/knowledge/common/store.py": "e3b86b383585e8a5e2ca4230ebf2ebed31ecbdf5856e58661299355fbdcdf43f",
+    "app/knowledge/store.py": "d50d143aa1e010bfbed9434a7e0be8c176b65fc4f1ec389811cf3bfa088cb885",
+    "app/knowledge/common/task_registry.py": "92ea16d2bc15d5475f7a6039dd6caceb38d5b5a53eda7844f589df5e14d87570",
+    "app/knowledge/common/snapshot_provider.py": "82c6feb286e65d39b00498418d9f9d703d05663a1297c0c2adcfce47096ca26c",
+    "app/knowledge/common/domain_flow/projection.py": "b2b7ab098c886b7b8b71bdf45823e625c74d3d3e6208dc0be24855a95e1849aa",
+    "app/knowledge/common/domain_flow/index.py": "ae8015c2d75a3f283a793207ef939edc4c24e4377ebd3b6eb855551ac4617759",
+    "app/knowledge/common/domain_flow/capabilities.py": "932e748d5381f9f85680c52fb2e40aaefcb5e45022a3525af114692fd03f4b51",
+    "app/knowledge/common/domain_flow/model.py": "ed47ccfbc4e34fcecdefb723ce0c6726f8ec1fffd0ec2cd9b04e94ee75a0f67a",
+    "app/knowledge/common/domain_flow/scope.py": "db544778868e844751433d819cf378e631b8b4783a78e48c46965d081de978cb",
+    "app/knowledge/common/domain_flow/receipt_scope.py": "9199f0b2902a0189c2ca5df956b70104eac1248c0ad0f36a6cce82c870854e0d"
+  },
+  "requirements": [
+    {
+      "requirement_id": "FLOW-04",
+      "original_text_sha256": "56e2fdc21d741cf74eb046d8528982455adee43b0fea56e20f56f2b18b268f61",
+      "criteria": [
+        {
+          "criterion": "เพิ่ม game alias / equipment / price ตามชนิดเดิมและถาม typed ได้โดยไม่เปลี่ยน weights หรือ prompt",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "new_game_alias_reaches_typed_answer_without_training",
+            "new_equipment_source_reaches_typed_answer_without_training",
+            "new_rate_reaches_typed_answer_without_training",
+            "edited_rate_changes_next_typed_answer_without_training"
+          ]
+        },
+        {
+          "criterion": "game-service และ rate-service/audience เป็น relation จริงพร้อม source pointers",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "valid_price_relation_and_currency_accepted",
+            "offering_projection_keeps_relation_evidence",
+            "wrong_service_kind_reported"
+          ]
+        },
+        {
+          "criterion": "operation ใหม่ยัง unsupported จนมี reader contract",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "unknown_operation_not_advertised_or_silently_detail"
+          ]
+        },
+        {
+          "criterion": "competition rule ผูก game/event/edition และ dependency จากsourceจริง ไม่เลือกฉบับใกล้เคียง",
+          "state": "passed_controlled_acceptance",
+          "evidence": "competition_relations_1792990836988341600\\RESULT.json",
+          "evidence_sha256": "6618b00e11d9c6eb97b6c7d92d03e1932649e8cdad7a6189ce9d4e72a4cd7164",
+          "checks": [
+            "valid_event_and_rule_foreign_keys_accepted",
+            "rule_cannot_link_game_as_event",
+            "event_cannot_link_rule_as_game",
+            "cross_edition_rule_dependency_rejected",
+            "cyclic_rule_dependency_rejected",
+            "edition_2025_source_delivered_only",
+            "edition_2026_source_delivered_only",
+            "nonnumeric_rulebook_release_is_source_bound",
+            "other_edition_receipt_rejected_independently",
+            "game_title_year_does_not_choose_event_release"
+          ]
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "FLOW-05",
+      "original_text_sha256": "8f23dc268598001ecd47652f2cdb7c9941dceaec8514dcbb6dd864c118cdef6c",
+      "criteria": [
+        {
+          "criterion": "type / currency / unit / duration / foreign keys ตรวจต่อ field ก่อน index",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "currency_rejected_before_index",
+            "unit_rejected_before_index",
+            "duration_zero_rejected_before_index",
+            "duration_string_rejected_before_index",
+            "negative_price_rejected_before_index",
+            "missing_service_reported",
+            "wrong_service_kind_reported"
+          ]
+        },
+        {
+          "criterion": "unknown / not_applicable / conflicted เป็นสถานะแยก ไม่ assert value",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "unknown_has_explicit_nonasserting_representation",
+            "not_applicable_has_explicit_nonasserting_representation",
+            "conflicted_has_explicit_nonasserting_representation",
+            "conflicted_not_publishable"
+          ]
+        },
+        {
+          "criterion": "การแก้เนื้อหาทำให้ translation review เก่าใช้ต่อไม่ได้",
+          "state": "passed_controlled_acceptance",
+          "evidence": "owner_contract_verification_1792990125129066000\\RESULT.json",
+          "evidence_sha256": "7a2fbe68fd9d6fc4ac02f6cfd505014f631efd0c855e7e83f566f4518ba1958f",
+          "checks": [
+            "content_edit_invalidates_translation_review"
+          ]
+        },
+        {
+          "criterion": "withdrawal และ revision ทำให้ผลเก่าถูกถอน/ตรวจ stale request",
+          "state": "passed_controlled_acceptance",
+          "evidence": "owner_contract_verification_1792990125129066000\\RESULT.json",
+          "evidence_sha256": "7a2fbe68fd9d6fc4ac02f6cfd505014f631efd0c855e7e83f566f4518ba1958f",
+          "checks": [
+            "withdrawn_published_content_not_in_next_index",
+            "epoch_invalidates_inflight_snapshot",
+            "rollback_does_not_resurrect_withdrawn"
+          ]
+        },
+        {
+          "criterion": "owner เห็น missing/incomplete game-service relation และรับเฉพาะ target kind ถูก",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "missing_game_service_relation_reported",
+            "incomplete_offering_relation_not_ready",
+            "related_wrong_target_kind_not_ready",
+            "explicit_relation_resolves_owner_gap",
+            "unfinished_sibling_does_not_erase_complete_relation"
+          ]
+        },
+        {
+          "criterion": "schedule validation ใช้ contiguous union และยังปฏิเสธช่องว่างจริง",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "adjacent_opening_union_accepts_valid_booking",
+            "real_opening_gap_rejects_booking"
+          ]
+        },
+        {
+          "criterion": "คำสั่งในเอกสารคงเป็น data และ adversarial selector proposal ไม่สร้าง approval/publication หรือข้ามbudget (ไม่ใช่การวัดความต้านทาน prompt injection ของโมเดลจริง)",
+          "state": "passed_controlled_acceptance",
+          "evidence": "source_instruction_boundary_1792990955312802400\\RESULT.json",
+          "evidence_sha256": "befa4b39a67eb18eae7afaa2b24764333d86bcc8f885395eae5f40309bf62413",
+          "checks": [
+            "source_command_stays_in_json_data_not_a_message_role",
+            "trusted_selector_instruction_explicitly_denies_source_authority",
+            "model_extras_cannot_create_authority_actions",
+            "invented_source_choice_rejected",
+            "source_command_cannot_bypass_zero_budget",
+            "source_and_adversarial_response_do_not_approve_or_publish",
+            "owner_record_stays_draft"
+          ]
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "FLOW-06",
+      "original_text_sha256": "88a9ca0879b9d4af3b4e2e00592cb3ce50533b4181ea00b5cf6e550fc9ba9d89",
+      "criteria": [
+        {
+          "criterion": "save ที่ผ่าน schema ยังคง draft ไม่สร้าง approval/publication",
+          "state": "passed_controlled_acceptance",
+          "evidence": "owner_contract_verification_1792990125129066000\\RESULT.json",
+          "evidence_sha256": "7a2fbe68fd9d6fc4ac02f6cfd505014f631efd0c855e7e83f566f4518ba1958f",
+          "checks": [
+            "save_is_draft_not_approval",
+            "draft_not_silently_published",
+            "unapproved_publish_rejected"
+          ]
+        },
+        {
+          "criterion": "การ publish ต้อง explicit revision/hash และการแก้ต้อง review ใหม่",
+          "state": "passed_controlled_acceptance",
+          "evidence": "owner_contract_verification_1792990125129066000\\RESULT.json",
+          "evidence_sha256": "7a2fbe68fd9d6fc4ac02f6cfd505014f631efd0c855e7e83f566f4518ba1958f",
+          "checks": [
+            "reviewed_fixture_publish_requires_explicit_revision_hash",
+            "new_revision_does_not_inherit_old_approval",
+            "stale_edit_rejected"
+          ]
+        },
+        {
+          "criterion": "published view คงรุ่นเดิมจน publish และ draft view แยกชัด",
+          "state": "passed_controlled_acceptance",
+          "evidence": "owner_contract_verification_1792990125129066000\\RESULT.json",
+          "evidence_sha256": "7a2fbe68fd9d6fc4ac02f6cfd505014f631efd0c855e7e83f566f4518ba1958f",
+          "checks": [
+            "published_snapshot_keeps_prior_revision",
+            "draft_view_explicitly_separate",
+            "publish_idempotent"
+          ]
+        },
+        {
+          "criterion": "audit ครอบ save/review/publish/edit/withdraw และ rollbackไม่ฟื้นwithdrawn",
+          "state": "passed_controlled_acceptance",
+          "evidence": "owner_contract_verification_1792990125129066000\\RESULT.json",
+          "evidence_sha256": "7a2fbe68fd9d6fc4ac02f6cfd505014f631efd0c855e7e83f566f4518ba1958f",
+          "checks": [
+            "save_review_publish_edit_withdraw_audited",
+            "rollback_does_not_resurrect_withdrawn"
+          ]
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "FLOW-07",
+      "original_text_sha256": "aae135928a6cdf50692268c1ebc992503d74495f87e2d615d14a14fc900c6610",
+      "criteria": [
+        {
+          "criterion": "request pin records/aliases เป็น revision เดียว และ sourcechange invalidate request เก่า",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "pinned_records_and_aliases_remain_one_revision",
+            "source_change_invalidates_old_request"
+          ]
+        },
+        {
+          "criterion": "capability catalog ผูกกับ source index จริงและไม่รับ arbitrary operations",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "catalog_is_bound_to_added_price_and_game_sources",
+            "offering_projection_keeps_relation_evidence",
+            "unknown_operation_not_advertised_or_silently_detail"
+          ]
+        },
+        {
+          "criterion": "เพิ่ม/แก้ราคา เกม อุปกรณ์ แล้ว typed อ่านข้อมูลใหม่โดยไม่ฝึก",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "new_game_alias_reaches_typed_answer_without_training",
+            "new_equipment_source_reaches_typed_answer_without_training",
+            "new_rate_reaches_typed_answer_without_training",
+            "edited_rate_changes_next_typed_answer_without_training"
+          ]
+        },
+        {
+          "criterion": "คำถามต่อเกม อุปกรณ์ และราคาที่เพิ่มใหม่ผ่าน normal CommonAnswerer โดยไม่ inject MeaningTask หรือใช้ model/provider HTTP",
+          "state": "passed_controlled_acceptance",
+          "evidence": "data_ingestion_1792991002489571000\\RESULT.json",
+          "evidence_sha256": "6ce6b6aea51894729294064e6786f16ea883d7a85bffc766672e6fa3a85d1819",
+          "checks": [
+            "game_new_data_works_through_normal_common_answerer",
+            "equipment_new_data_works_through_normal_common_answerer",
+            "rate_new_data_works_through_normal_common_answerer"
+          ]
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    }
+  ]
+}

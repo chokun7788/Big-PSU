@@ -1,0 +1,151 @@
+{
+  "question_key": "5b2d0e1344332824fb7bb1565e2eb07efde375061314bb3e784fd9becd7abc28",
+  "example_sha256": "bce6831a73634942a264ad1600320830ee3396c6f905f1a2b0dbc76ff8c6bd17",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One studio game-offering query; briefly is style.",
+      "raw_quotes": [
+        "Can I play Beat Saber in the VR Zone? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/availability/studio_services requests whether the specified zone offers the game.",
+      "raw_quotes": [
+        "Can I play Beat Saber in the VR Zone? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Beat Saber is game target; VR Zone is requested zone scope, not two service slots.",
+      "raw_quotes": [
+        "Can I play Beat Saber in the VR Zone? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Game and zone are both local; no current machine occupancy is requested.",
+      "raw_quotes": [
+        "Can I play Beat Saber in the VR Zone? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Can I play asks about an offering, not personal eligibility or a booked live slot.",
+      "raw_quotes": [
+        "Can I play Beat Saber in the VR Zone? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_beat_saber has zone_vr and explicit VR30/60 offers, preserving the game-service-zone distinction.",
+      "raw_quotes": [
+        "Can I play Beat Saber in the VR Zone? Please answer briefly"
+      ],
+      "source_record_ids": [
+        "game_detail_beat_saber",
+        "migrated_link_availability_vr_30_game_detail_beat_saber",
+        "migrated_link_availability_vr_60_game_detail_beat_saber"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No affirmative availability, time slot or price becomes a label answer.",
+      "raw_quotes": [
+        "Can I play Beat Saber in the VR Zone? Please answer briefly"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 51,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [
+      "VR Zone",
+      "Beat Saber"
+    ],
+    "tasks": [
+      {
+        "quote": "Can I play Beat Saber in the VR Zone? Please answer briefly",
+        "domain": "games",
+        "operation": "availability",
+        "facet": "studio_services",
+        "target": "Beat Saber",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Beat Saber",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [
+      "VR Zone",
+      "Beat Saber"
+    ],
+    "tasks": [
+      {
+        "quote": "Can I play Beat Saber in the VR Zone? Please answer briefly",
+        "domain": "games",
+        "operation": "availability",
+        "facet": "studio_services",
+        "target": "Beat Saber",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "VR Zone",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_beat_saber": {
+      "revision": 8,
+      "record_sha256": "dfbf27c636ad6adb354b5f496cc32ab9d0d1ba431fbd7bfc3a4a22b37c794d3c"
+    },
+    "migrated_link_availability_vr_30_game_detail_beat_saber": {
+      "revision": 1,
+      "record_sha256": "95aff7251c89434de1847bab21195b4517c90b21559ee47e130717a604f08f5f"
+    },
+    "migrated_link_availability_vr_60_game_detail_beat_saber": {
+      "revision": 1,
+      "record_sha256": "3d395c4651d525c0cff6c602cb7e1531c03ef61361a154da2d8770dfa817afb1"
+    }
+  }
+}

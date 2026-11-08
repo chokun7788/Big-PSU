@@ -1,0 +1,698 @@
+[
+  {
+    "id": "C01-F01",
+    "category": "C01",
+    "name": "ค้นฟิลด์ที่อยู่และช่องทางตรง",
+    "family": "lexical",
+    "source_scope": [
+      "center",
+      "zone",
+      "facility",
+      "contact",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C01-F02",
+    "category": "C01",
+    "name": "กราฟอาคาร–ชั้น–สิ่งอำนวยความสะดวก",
+    "family": "typed",
+    "source_scope": [
+      "center",
+      "zone",
+      "facility",
+      "contact",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C01-F08",
+    "category": "C01",
+    "name": "ฟิลด์ก่อนและ semantic เมื่อกำกวม",
+    "family": "hybrid",
+    "source_scope": [
+      "center",
+      "zone",
+      "facility",
+      "contact",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C02-F01",
+    "category": "C02",
+    "name": "อ่าน role พร้อมขอบเขตชื่อสาธารณะ",
+    "family": "lexical",
+    "source_scope": [
+      "person",
+      "contact",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C02-F04",
+    "category": "C02",
+    "name": "แยกชื่อ–ตำแหน่งแล้วเลือกฟิลด์",
+    "family": "typed",
+    "source_scope": [
+      "person",
+      "contact",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C02-F09",
+    "category": "C02",
+    "name": "อ่านฟิลด์ก่อนแล้ว semantic แก้ชื่อกำกวม",
+    "family": "hybrid",
+    "source_scope": [
+      "person",
+      "contact",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C03-F01",
+    "category": "C03",
+    "name": "ค้นคำอธิบายรุ่นอุปกรณ์",
+    "family": "lexical",
+    "source_scope": [
+      "equipment_model",
+      "resource",
+      "service",
+      "zone",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C03-F05",
+    "category": "C03",
+    "name": "ตีความจำนวน/หน่วย/ที่ตั้งก่อนอ่าน",
+    "family": "typed",
+    "source_scope": [
+      "equipment_model",
+      "resource",
+      "service",
+      "zone",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C03-F10",
+    "category": "C03",
+    "name": "กราฟตาม predicate พร้อม semantic fallback",
+    "family": "hybrid",
+    "source_scope": [
+      "equipment_model",
+      "resource",
+      "service",
+      "zone",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C04-F01",
+    "category": "C04",
+    "name": "enumerate offerings ตามโซน",
+    "family": "lexical",
+    "source_scope": [
+      "game",
+      "game_service",
+      "game_mode",
+      "service",
+      "resource",
+      "zone",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C04-F05",
+    "category": "C04",
+    "name": "แยก catalog/overview/how-to ก่อนอ่าน",
+    "family": "typed",
+    "source_scope": [
+      "game",
+      "game_service",
+      "game_mode",
+      "service",
+      "resource",
+      "zone",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C04-F10",
+    "category": "C04",
+    "name": "typed game reader และ semantic แก้เจตนา",
+    "family": "hybrid",
+    "source_scope": [
+      "game",
+      "game_service",
+      "game_mode",
+      "service",
+      "resource",
+      "zone",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C05-F01",
+    "category": "C05",
+    "name": "exact action-to-button",
+    "family": "lexical",
+    "source_scope": [
+      "control_set",
+      "game",
+      "game_service",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C05-F04",
+    "category": "C05",
+    "name": "ผูกเกม–platform–preset ก่อน action",
+    "family": "typed",
+    "source_scope": [
+      "control_set",
+      "game",
+      "game_service",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C05-F08",
+    "category": "C05",
+    "name": "binding ตรงก่อนแล้ว semantic rerank",
+    "family": "hybrid",
+    "source_scope": [
+      "control_set",
+      "game",
+      "game_service",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C06-F01",
+    "category": "C06",
+    "name": "ตีความบริการ–กลุ่ม–รอบแบบเดิม",
+    "family": "lexical",
+    "source_scope": [
+      "rate",
+      "audience",
+      "service",
+      "resource",
+      "game_service",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C06-F04",
+    "category": "C06",
+    "name": "typed rate/unit/audience calculator",
+    "family": "typed",
+    "source_scope": [
+      "rate",
+      "audience",
+      "service",
+      "resource",
+      "game_service",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C06-F10",
+    "category": "C06",
+    "name": "calculator แบบ typed พร้อม semantic plan",
+    "family": "hybrid",
+    "source_scope": [
+      "rate",
+      "audience",
+      "service",
+      "resource",
+      "game_service",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C07-F01",
+    "category": "C07",
+    "name": "เลือกแพ็กเกจแล้วอ่านราคา",
+    "family": "lexical",
+    "source_scope": [
+      "rental_package",
+      "audience",
+      "zone",
+      "resource",
+      "equipment_model",
+      "policy",
+      "procedure",
+      "contact",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C07-F04",
+    "category": "C07",
+    "name": "tuple zone–audience–period",
+    "family": "typed",
+    "source_scope": [
+      "rental_package",
+      "audience",
+      "zone",
+      "resource",
+      "equipment_model",
+      "policy",
+      "procedure",
+      "contact",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C07-F09",
+    "category": "C07",
+    "name": "package contract พร้อม semantic fallback",
+    "family": "hybrid",
+    "source_scope": [
+      "rental_package",
+      "audience",
+      "zone",
+      "resource",
+      "equipment_model",
+      "policy",
+      "procedure",
+      "contact",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C08-F01",
+    "category": "C08",
+    "name": "FAQ จองที่ใกล้ที่สุด",
+    "family": "lexical",
+    "source_scope": [
+      "procedure",
+      "policy",
+      "audience",
+      "service",
+      "contact",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C08-F06",
+    "category": "C08",
+    "name": "อ่าน policy/procedure เฉพาะเงื่อนไข",
+    "family": "typed",
+    "source_scope": [
+      "procedure",
+      "policy",
+      "audience",
+      "service",
+      "contact",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C08-F10",
+    "category": "C08",
+    "name": "action contract และ semantic correction",
+    "family": "hybrid",
+    "source_scope": [
+      "procedure",
+      "policy",
+      "audience",
+      "service",
+      "contact",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C09-F01",
+    "category": "C09",
+    "name": "แยก action โอน/สลิป/เอกสาร",
+    "family": "lexical",
+    "source_scope": [
+      "policy",
+      "procedure",
+      "contact",
+      "faq",
+      "audience"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C09-F04",
+    "category": "C09",
+    "name": "สถานการณ์ผู้โอน–ยอด–หลักฐาน",
+    "family": "typed",
+    "source_scope": [
+      "policy",
+      "procedure",
+      "contact",
+      "faq",
+      "audience"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C09-F09",
+    "category": "C09",
+    "name": "typed payment policy และ semantic correction",
+    "family": "hybrid",
+    "source_scope": [
+      "policy",
+      "procedure",
+      "contact",
+      "faq",
+      "audience"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C10-F02",
+    "category": "C10",
+    "name": "action–subject permission matcher",
+    "family": "lexical",
+    "source_scope": [
+      "policy",
+      "procedure",
+      "audience",
+      "game_service",
+      "game",
+      "service",
+      "resource",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C10-F05",
+    "category": "C10",
+    "name": "condition/exception policy graph",
+    "family": "typed",
+    "source_scope": [
+      "policy",
+      "procedure",
+      "audience",
+      "game_service",
+      "game",
+      "service",
+      "resource",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C10-F10",
+    "category": "C10",
+    "name": "policy contract พร้อม semantic ในขอบเขต",
+    "family": "hybrid",
+    "source_scope": [
+      "policy",
+      "procedure",
+      "audience",
+      "game_service",
+      "game",
+      "service",
+      "resource",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C11-F01",
+    "category": "C11",
+    "name": "อ่านตารางวัน/ช่วงเวลาตรง",
+    "family": "lexical",
+    "source_scope": [
+      "schedule",
+      "closure",
+      "service",
+      "zone",
+      "news",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C11-F04",
+    "category": "C11",
+    "name": "แยก opening/bookable/maintenance/closure",
+    "family": "typed",
+    "source_scope": [
+      "schedule",
+      "closure",
+      "service",
+      "zone",
+      "news",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C11-F09",
+    "category": "C11",
+    "name": "calendar contract พร้อม semantic dates",
+    "family": "hybrid",
+    "source_scope": [
+      "schedule",
+      "closure",
+      "service",
+      "zone",
+      "news",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C12-F01",
+    "category": "C12",
+    "name": "อ่าน provider ตาม resource/time",
+    "family": "lexical",
+    "source_scope": [
+      "live_binding",
+      "service",
+      "resource",
+      "zone"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C12-F04",
+    "category": "C12",
+    "name": "typed binding + freshness + status mapping",
+    "family": "typed",
+    "source_scope": [
+      "live_binding",
+      "service",
+      "resource",
+      "zone"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C12-F10",
+    "category": "C12",
+    "name": "live contract หลาย needs และ bounded interpretation",
+    "family": "hybrid",
+    "source_scope": [
+      "live_binding",
+      "service",
+      "resource",
+      "zone"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C13-F02",
+    "category": "C13",
+    "name": "retrieval ข้อกติกาตามคำถาม",
+    "family": "lexical",
+    "source_scope": [
+      "competition",
+      "competition_rule",
+      "game",
+      "contact",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C13-F05",
+    "category": "C13",
+    "name": "event–facet–dependency clause graph",
+    "family": "typed",
+    "source_scope": [
+      "competition",
+      "competition_rule",
+      "game",
+      "contact",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C13-F10",
+    "category": "C13",
+    "name": "clause contract และ semantic clause selection",
+    "family": "hybrid",
+    "source_scope": [
+      "competition",
+      "competition_rule",
+      "game",
+      "contact",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C14-F01",
+    "category": "C14",
+    "name": "กรองกิจกรรมตามวันที่ที่ถาม",
+    "family": "lexical",
+    "source_scope": [
+      "news",
+      "contact",
+      "competition",
+      "policy",
+      "faq"
+    ],
+    "strategy": "domain-scoped lexical retrieval; do not enforce entity/facet slots beyond the selected source text",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C14-F04",
+    "category": "C14",
+    "name": "อ่าน news clause ตาม scope และวัน",
+    "family": "typed",
+    "source_scope": [
+      "news",
+      "contact",
+      "competition",
+      "policy",
+      "faq"
+    ],
+    "strategy": "bind subject and requested facets; enumerate matching claims and use deterministic arithmetic/status",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  },
+  {
+    "id": "C14-F09",
+    "category": "C14",
+    "name": "event contract พร้อม semantic fallback",
+    "family": "hybrid",
+    "source_scope": [
+      "news",
+      "contact",
+      "competition",
+      "policy",
+      "faq"
+    ],
+    "strategy": "typed plan plus bounded local-model evidence selection for unresolved or ambiguous wording",
+    "llm_enabled": true,
+    "model_facts_generated": false
+  }
+]

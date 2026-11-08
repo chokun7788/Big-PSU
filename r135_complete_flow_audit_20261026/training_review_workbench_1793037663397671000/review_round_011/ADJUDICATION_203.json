@@ -1,0 +1,138 @@
+{
+  "question_key": "018f56c5215afb08cb821daa0c234f38fbc5cc661d5d5a0b0b1f95d41e238cb8",
+  "example_sha256": "69a0559435f500fa545f4a160f6f9c4f7b9c6b6f7f3e6ac83303329c22403699",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One action-to-button lookup asks which control performs movement in Monster Hunter Rise.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings is retained.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Monster Hunter Rise is the game target and เคลื่อนที่ the exact action slot; no button value is given.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No platform, stick label, camera action or prior layout is inherited.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Movement must not be silently replaced by camera movement or generalized from an unrelated edition.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "controls_ps5_monster_hunter_rise has an explicit movement binding and separate camera rows; its PS5 source scope differs from Nintendo studio offering relations.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร"
+      ],
+      "source_record_ids": [
+        "controls_ps5_monster_hunter_rise",
+        "game_detail_monster_hunter_rise",
+        "migrated_link_availability_nintendo_1_2_game_detail_monster_hunter_rise"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Left Stick value, PS5 user requirement, Nintendo mapping or controller compatibility answer is taught.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Controls are PS5-scoped while recorded studio offering relations are Nintendo-scoped.",
+      "handling": "Require the actual requested platform/layout relation; do not copy bindings across platforms."
+    }
+  ],
+  "historical_review_row": 203,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Monster Hunter Rise",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Monster Hunter Rise",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "เคลื่อนที่",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_ps5_monster_hunter_rise": {
+      "revision": 6,
+      "record_sha256": "cf3e8d03f73d7bddf7e5a9939b1a2301f6b4f5c6818b01e89551e1e2b03b0f99"
+    },
+    "game_detail_monster_hunter_rise": {
+      "revision": 9,
+      "record_sha256": "e4da33b74e091dc8aa5d08675cf2b51f765bdc3560c9afb8c9f3ab43121f6431"
+    },
+    "migrated_link_availability_nintendo_1_2_game_detail_monster_hunter_rise": {
+      "revision": 1,
+      "record_sha256": "0af3f64c1c0b96bb6b3e017f492dcb7441522b99e78e187675ce8b519d2a84cb"
+    }
+  }
+}

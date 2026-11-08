@@ -1,0 +1,201 @@
+[
+  {
+    "key": "46e1e3743b1cf5dbce4668f13743cbf619929f0b791f0516631b72b528119865",
+    "question": "What PC games are available? Please use verified information",
+    "locale": "en",
+    "domain": "games_catalog_availability",
+    "answer": "**Relevant information**\n• Confirmed information: The games listed for PC include Tekken 8, Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS, VALORANT and Call of Duty: Warzone [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "old_answer": "I could not match this question to the migrated information. Please specify the game, device or topic you want to know about.",
+    "mode": "pipeline:common_answer",
+    "path": {
+      "version": "r95",
+      "path": "semantic:bounded_task_contract",
+      "task": "faq_content",
+      "executor": "shared_common_reader"
+    },
+    "task_plan": {
+      "task": "faq_content",
+      "record_ids": [
+        "migrated_faq_curated_games_pc"
+      ],
+      "requested_fields": [
+        "answer"
+      ],
+      "operation": "read",
+      "acceptance_path": "semantic:bounded_task_contract",
+      "bindings": [
+        {
+          "source": "normalized_query",
+          "quote": "what pc games are available"
+        }
+      ],
+      "slots": {},
+      "qualifiers": [],
+      "unresolved_spans": [],
+      "all_fields": false
+    },
+    "query_plan": {
+      "record_ids": [
+        "migrated_faq_curated_games_pc"
+      ],
+      "scope_ids": [
+        "migrated_faq_curated_games_pc"
+      ],
+      "requested_fields": [
+        "answer"
+      ],
+      "operation": "read",
+      "all_fields": false,
+      "method": "common_r95_task_plan",
+      "platform": null,
+      "task_plan": {
+        "task": "faq_content",
+        "record_ids": [
+          "migrated_faq_curated_games_pc"
+        ],
+        "requested_fields": [
+          "answer"
+        ],
+        "operation": "read",
+        "acceptance_path": "semantic:bounded_task_contract",
+        "bindings": [
+          {
+            "source": "normalized_query",
+            "quote": "what pc games are available"
+          }
+        ],
+        "slots": {},
+        "qualifiers": [],
+        "unresolved_spans": [],
+        "all_fields": false
+      },
+      "unresolved_clauses": [],
+      "read_contract": {
+        "schema_version": "task_needs_v2",
+        "needs": [
+          {
+            "id": "faq_content",
+            "source_span": "what pc games are available",
+            "required_fields": [
+              "answer"
+            ],
+            "dependencies": []
+          }
+        ],
+        "semantic_correctness_verified": false
+      },
+      "authority": {
+        "decision": "common",
+        "reason": "published_target_owned",
+        "record_ids": [
+          "migrated_faq_curated_games_pc"
+        ],
+        "release_id": "migration-preview-r69",
+        "epoch": 1840
+      },
+      "field_authority": [
+        {
+          "record_id": "migrated_faq_curated_games_pc",
+          "field": "answer",
+          "authority": "common",
+          "status": "known",
+          "revision": 2
+        }
+      ],
+      "response_projection": [
+        {
+          "record_id": "migrated_faq_curated_games_pc",
+          "fields": {
+            "answer": "explicit"
+          }
+        }
+      ]
+    },
+    "need_ledger": {
+      "version": "common_need_ledger_v1",
+      "needs": [
+        {
+          "id": "field_answer",
+          "field": "answer",
+          "status": "answered",
+          "evidence_refs": [
+            {
+              "record_id": "migrated_faq_curated_games_pc",
+              "field": "answer",
+              "sources": [
+                {
+                  "locator": "/mapped_fields/answer",
+                  "source_id": "r66_en_aba9da5f690146fc33077f54"
+                }
+              ]
+            }
+          ],
+          "unanswered_records": []
+        }
+      ],
+      "total_needs": 1,
+      "answered_needs": 1,
+      "scope_limits": [],
+      "snapshot_consistent": true,
+      "semantic_correctness_verified": false,
+      "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+      "evidence_hits": 1,
+      "response_type": "answer"
+    },
+    "exception": null,
+    "rejected_candidate": null,
+    "failures": [
+      {
+        "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+        "row": 6641,
+        "id": "MASTER-GT-EN-01642",
+        "strict_failures": [
+          "route:knowledge expected:['games']"
+        ],
+        "text_failures": [],
+        "positive": true,
+        "passed": true,
+        "old_passed": false
+      },
+      {
+        "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+        "row": 6641,
+        "id": "MASTER-GT-EN-01642",
+        "strict_failures": [
+          "route:knowledge expected:['games']"
+        ],
+        "text_failures": [],
+        "positive": true,
+        "passed": true,
+        "old_passed": false
+      },
+      {
+        "file": "data/eval/master_ground_truth_en_5000_v1.jsonl",
+        "row": 1641,
+        "id": "MASTER-GT-EN-01642",
+        "strict_failures": [
+          "route:knowledge expected:['games']"
+        ],
+        "text_failures": [],
+        "positive": true,
+        "passed": true,
+        "old_passed": false
+      },
+      {
+        "file": "data/eval/master_ground_truth_en_5000_v2.jsonl",
+        "row": 1641,
+        "id": "MASTER-GT-EN-01642",
+        "strict_failures": [
+          "route:knowledge expected:['games']"
+        ],
+        "text_failures": [],
+        "positive": true,
+        "passed": true,
+        "old_passed": false
+      }
+    ],
+    "positive_contracts": 4,
+    "all_positive_pass": true,
+    "old_all_positive_pass": false
+  }
+]

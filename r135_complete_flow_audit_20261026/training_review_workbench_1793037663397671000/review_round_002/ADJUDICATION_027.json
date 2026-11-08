@@ -1,0 +1,173 @@
+{
+  "question_key": "044f667114ab611667f0d97496b6ba029d49dfd88337fc90123cd7a189623458",
+  "example_sha256": "2d47a6edb3aa6d43905074415919e9407278aff0a4ffe49ad8ad276b9f6cdc92",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One ordinary PS5 play-cost calculation; the typo-bearing polite prefix is style.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount requests total cost for the quoted duration.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "บุคคลทั่วไป is audience; PS5 service/platform; 2 ชั่วโมง requested duration, not source billing period.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "All price constraints are local; no shared binding or booking action exists.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "No person count or session count is specified, so neither is fabricated.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_rate_playstation_5_60_1_2_general_adult is the current general-adult PS5 rate and billing rule.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": [
+        "migrated_rate_playstation_5_60_1_2_general_adult"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "The stored 15000 minor-unit rate and any calculated total stay out of labels.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 27,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "PS5",
+      "บุคคลทั่วไป"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "บุคคลทั่วไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "PS5",
+      "บุคคลทั่วไป"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยยครับ บุคคลทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "บุคคลทั่วไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "migrated_rate_playstation_5_60_1_2_general_adult": {
+      "revision": 2,
+      "record_sha256": "849e90ceb622b1877aff3f0f31ff11233a989df3e3527c6fae081a2971cc7523"
+    }
+  }
+}

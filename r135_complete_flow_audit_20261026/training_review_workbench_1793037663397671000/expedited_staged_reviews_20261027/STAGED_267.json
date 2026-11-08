@@ -1,0 +1,102 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 267,
+  "question_key": "9226ff9f7b760af0bf0c83351a5604026900bb7e9d820b7e95960f8e8b406c50",
+  "raw_question": "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Monday"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Monday"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One query asks when play is possible on Monday afternoon.",
+    "intent_operation_facet": "The needed facet is service_periods for play, distinct from physical open_periods and booking availability.",
+    "entities_and_slot_roles": "Monday and afternoon are literal local scopes; no calendar date is supplied.",
+    "local_shared_history_scope": "The duplicated Monday top context cannot convert physical opening into play-service periods.",
+    "negation_and_ambiguity": "Do not relabel this as bookable_periods merely because v2 lacks service_periods.",
+    "source_version_alignment": "Monday schedule revision4 separates morning maintenance and afternoon open service slot from unknown physical open_periods; native service_periods/v3 can represent the request but the frozen v2 wire cannot.",
+    "no_business_answer_target": "Quarantine the original v2 proposal unchanged; individual v3 readmission is required, with no hours or play-permission answer taught."
+  },
+  "decision": "quarantined",
+  "source_record_ids": [
+    "migrated_schedule_0"
+  ],
+  "source_answer_issues": [
+    [
+      "V2 lacks the required service_periods facet.",
+      "Retain original v2 quarantine and require an individual versioned v3 readmission, never bookable substitution."
+    ]
+  ],
+  "quarantine_reason": "Required play-service period facet is absent from preserved r129-plan-v2; original proposal is not semantically acceptable as open_periods. Explicit individual v3 readmission required.",
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 268,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_schedule_0": {
+      "revision": 4,
+      "record_sha256": "43877514a17f5ca9e24a3d1036e1746148a1ad002e7096d2d4db073f6ce27d0a"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

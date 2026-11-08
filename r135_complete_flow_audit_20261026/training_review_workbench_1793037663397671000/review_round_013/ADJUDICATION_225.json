@@ -1,0 +1,155 @@
+{
+  "question_key": "89f627e4123ba68de40899e8c635d1c9563636bea483097a9465615129ddfcb8",
+  "example_sha256": "2b043c3e9a2981fcff9a4d173253e5ae7b6d5b691bdee4b9cfe2218a2c32d52b",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One payment-verification procedure asks normal checking time and what to do if status stays unchanged.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy keeps both attributes under the same verification purpose, not a query of a particular live booking.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "โอนแล้ว is scenario context, กี่นาทีตรวจเสร็จ requests an unknown time value, ถ้ายังไม่เปลี่ยนสถานะ is the conditional branch and ทำไง requests its procedure.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The condition belongs locally to this request; remove its false top-level shared-context quote. No supplied booking ID, elapsed minutes, payment amount or date is inherited.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The user asks the normal duration rather than asserting an exact deadline; unchanged status is hypothetical, not evidence that payment failed.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned r114_q017 records normal checking time separately from Facebook follow-up on unchanged status; its unknown applicability cannot certify a particular transaction.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง"
+      ],
+      "source_record_ids": [
+        "r114_q017_owner_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No30-minute value, Facebook destination, payment result, refund or booking status enters the language label.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Normal checking time is not a guaranteed transaction deadline and current applicability remains unknown.",
+      "handling": "Keep normal/conditional wording, both requested attributes and no live status confirmation."
+    }
+  ],
+  "historical_review_row": 225,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [
+      "ถ้ายังไม่เปลี่ยนสถานะทำไง"
+    ],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้ายังไม่เปลี่ยนสถานะทำไง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้ายังไม่เปลี่ยนสถานะ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "โอนแล้ว",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "กี่นาทีตรวจเสร็จ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ทำไง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q017_owner_policy": {
+      "revision": 1,
+      "record_sha256": "83669cd17aa33c064bf579cc6be0cc180add9117e272e203517febf47035f0aa"
+    }
+  }
+}

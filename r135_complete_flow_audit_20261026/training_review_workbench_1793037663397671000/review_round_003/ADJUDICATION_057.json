@@ -1,0 +1,122 @@
+{
+  "question_key": "88b3a23be4d1646dfc07b79b19b6118016e431f6bb281f64facf06b6dc09b0bf",
+  "example_sha256": "9eaed91f5affd83fa9ef3eb680a4316bea581bff548083aaa9e346f713802980",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One GPU-model hardware question; both polite/planning prefixes and nee typo are style.",
+      "raw_quotes": [
+        "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "equipment/detail/specifications requests a hardware specification.",
+      "raw_quotes": [
+        "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PCs is the named equipment target and GPU model the requested specification scope.",
+      "raw_quotes": [
+        "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No other device, station or earlier PC model is inherited.",
+      "raw_quotes": [
+        "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not treat the numbers in a recorded GPU model as requested quantities.",
+      "raw_quotes": [
+        "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "equipment_gaming_pc has explicit GPU/CPU/RAM specification rows; only the GPU row is requested.",
+      "raw_quotes": [
+        "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs"
+      ],
+      "source_record_ids": [
+        "equipment_gaming_pc"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No MSI model, RTX model, memory size or unit count is taught.",
+      "raw_quotes": [
+        "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 57,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "hardware",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs",
+        "domain": "equipment",
+        "operation": "detail",
+        "facet": "specifications",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "hardware",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: I am planning a visit and nee to know: What GPU model is inside the PCs",
+        "domain": "equipment",
+        "operation": "detail",
+        "facet": "specifications",
+        "target": "PCs",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "GPU model",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "equipment_gaming_pc": {
+      "revision": 11,
+      "record_sha256": "75d28be7ff6714faff153e6aac7de920ecccccad8bb428b1188f8f70e5c38044"
+    }
+  }
+}

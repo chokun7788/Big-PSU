@@ -1,0 +1,186 @@
+--- before/app/knowledge/common/answer.py
++++ r61/app/knowledge/common/answer.py
+@@ -7,7 +7,12 @@
+ from app.pipeline.schemas import PipelineAnswer,PipelineRoute,PipelineTrace,EntityBundle,ValidationResult
+ from .store import CommonStore
+ from .registry import CATALOG,value,aware
+-from .query_contract import normalize,broad_request,live_request,strip_names,resolve_fields,unresolved_clauses,overview_request,bare_selector,focus_request,resolution_uncertain
++from .semantics import project,label
++from .read_contract import build_needs
++from .authority import classify as authority_decision
++from .relations import linked_policies
++from .discovery import discover_games
++from .query_contract import normalize,broad_request,live_request,strip_names,resolve_fields,unresolved_clauses,overview_request,bare_selector,focus_request,resolution_uncertain,scope_kinds
+ 
+ ROOT=Path(__file__).resolve().parents[3]
+ # Kept for older diagnostic scripts only. Routing uses query_contract instead.
+@@ -152,6 +157,22 @@
+         current_kinds={records[k]['kind'] for k in ids}
+         q,focus=focus_request(q,current_kinds or None)
+         broad=all_query(q);requested=field_requests(q);kind=None
++        discovery=None;discovery_requested=[]
++        if not ids:
++            discovery=discover_games(q,{k:r for k,r in records.items() if effective(r,at,records)})
++            if discovery:
++                ids=discovery['record_ids'];method=discovery['method'];broad=False
++                discovery_requested=['game_id','mode_name','platform','players_min','players_max','studio_supported']
++                if not ids:
++                    return self.finish(snap,started,'ยังไม่พบโหมดเกมที่ศูนย์ยืนยันว่ารองรับจำนวนผู้เล่นนี้ / No confirmed venue-supported game mode matches this player count.',[],{'discovery':discovery},[],response='list')
++        if ids and broad and method.startswith('history_'):
++            for turn in reversed((history or [])[-6:]):
++                if not isinstance(turn,dict) or turn.get('role')!='user':continue
++                prior=str(turn.get('content') or turn.get('text') or turn.get('question') or '')
++                previous,_=named(prior,names,allow_fuzzy=False)
++                previous_fields=field_requests(strip_names(prior,previous,names))
++                if previous_fields and not all_query(prior):
++                    broad=False;method+=':pending_fields:all_choices';break
+         if ids and not requested and not broad and bare_selector(q):
+             for turn in reversed((history or [])[-6:]):
+                 if not isinstance(turn,dict):continue
+@@ -171,9 +192,8 @@
+             if listing:broad=True
+         # Operational live availability remains with the existing live adapter.
+         if live_query(q):return None
+-        field_kinds={records[k]['kind'] for k in ids}
+-        if 'game' in field_kinds:field_kinds.update(('game_service','game_mode','control_set'))
+-        requested=field_requests(q,field_kinds)
++        field_kinds=scope_kinds({records[k]['kind'] for k in ids})
++        requested=discovery_requested or field_requests(q,field_kinds)
+         if not requested and ':pending_fields' in method:
+             for turn in reversed((history or [])[-6:]):
+                 if not isinstance(turn,dict):continue
+@@ -182,12 +202,14 @@
+                 requested=field_requests(strip_names(str(prior or ''),prior_ids,names),field_kinds)
+                 if requested:break
+         rule_request=bool(re.search(r'กฎ|กฏ|กติกา|\brules\b',q,re.I)) and not re.search(r'เรต|\bage\b',q,re.I)
+-        if any(records[k]['kind']=='game' for k in ids) and (rule_request or re.search(r'แข่ง|การแข่งขัน|\b(?:competition|tournament)\b',q,re.I)) and not re.search(r'ไม่.*แข่ง|\bnot\b.*\b(?:competition|tournament)\b',q,re.I):
++        if any(records[k]['kind']=='game' for k in ids) and (rule_request or re.search(r'แข่ง|การแข่งขัน|\b(?:competition|tournament)\b',q,re.I)) and not re.search(r'บัญชี|\baccounts?\b|ไม่.*แข่ง|\bnot\b.*\b(?:competition|tournament)\b',q,re.I):
+             competitions=[k for k,r in records.items() if r['kind']=='competition' and value(r,'game_id') in ids]
+             if competitions:
+                 ids=competitions;field_kinds={'competition','competition_rule'};requested=field_requests(q,field_kinds)
+             else:return None # Legacy rulebooks remain authoritative until migrated.
+         plan={'record_ids':ids,'requested_fields':requested,'all_fields':broad,'method':method,'scope':'common_published','platform':None,'query_without_entity':q,'field_selection':resolve_fields(q,field_kinds)[1],'confidence_calibrated':False,'request_focus':focus}
++        plan['authority']=authority_decision(raw_query,snap,ids)
++        if discovery:plan['discovery']=discovery
+         supported={records[k]['kind'] for k in ids}
+         if 'game' in supported:supported.update(('game_service','game_mode','control_set'))
+         if 'competition' in supported:supported.add('competition_rule')
+@@ -214,7 +236,11 @@
+                 for alias in sorted(names[rid],key=len,reverse=True):remainder=remainder.replace(normal(alias),'')
+             remainder=re.sub(r'รายละเอียด|ข้อมูล|คืออะไร|เกี่ยวกับ|ขอ|หน่อย|ครับ|ค่ะ|นะ|\b(?:details|information|about|please|tell me)\b','',remainder).strip(' ?!.,')
+             if remainder:
+-                msg='ต้องการทราบส่วนใดของรายการนี้ เช่น วิธีเล่น ปุ่ม อุปกรณ์ หรือราคา?' if lang=='th' else 'Which part of this record do you need: instructions, controls, devices, or prices?'
++                options=[]
++                for k in sorted({records[rid]['kind'] for rid in ids}):
++                    options.extend(label(k,f['key'],lang) for f in CATALOG[k]['fields'] if f['publish_core'] and not f['reference_kind'])
++                choices=' / '.join(list(dict.fromkeys(options))[:4])
++                msg=('ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ '+title(records[ids[0]],lang)+' เช่น '+choices+'?' if lang=='th' else 'The requested topic is unclear. Which part of '+title(records[ids[0]],lang)+' do you need: '+choices+'?')
+                 return self.finish(snap,started,msg,[],plan,[],response='clarification')
+         platforms=sorted({str(value(r,'platform')) for r in records.values() if value(r,'platform')},key=len,reverse=True)
+         for p in platforms:
+@@ -227,6 +253,8 @@
+             # "All games and their platforms" asks for all records, not every
+             # field in each record. A plain list still returns all titles.
+             broad=False;plan['all_fields']=False;plan['list_scope']=True
++        plan['read_contract']=build_needs(raw_query,field_kinds,requested,model=plan['semantic_plan_accepted'],unresolved=plan['unresolved_clauses'])
++        plan['response_projection']=[]
+         if kind and broad and kind not in {'rate','rental_package','policy','schedule','competition'}:
+             answer=('Published records in the common catalog' if lang=='en' else 'รายการที่เผยแพร่ในฐานข้อมูลกลาง')+f': {len(ids)}\n'
+             answer+='\n'.join('• '+title(records[k],lang) for k in sorted(ids))
+@@ -241,7 +269,7 @@
+             for key in keys:
+                 f=r['fields'].get(key)
+                 if f is None:continue
+-                label=key.replace('_',' ') if lang=='en' else next(s['meaning_th'] for s in CATALOG[r['kind']]['fields'] if s['key']==key)
++                display_label=label(r['kind'],key,lang)
+                 status=f['status'];v=f['value']
+                 if status=='known':
+                     if key=='amount_minor':out=f'{v//100:,}.{v%100:02d} '+str(value(r,'currency') or 'THB')
+@@ -250,21 +278,22 @@
+                     elif key=='steps':out='\n'.join(str(s['order'])+'. '+text(s['instruction'],lang)+((' — '+title(records[s['contact_id']],lang)) if s['contact_id'] in records else '') for s in sorted(v,key=lambda x:x['order']))
+                     elif key.endswith('_id') or key.endswith('_ids'):
+                         targets=v if isinstance(v,list) else [v];out=', '.join(title(records[x],lang) if x in records else x for x in targets)
++                        if key=='zone_ids' and r['kind'] in {'schedule','closure'} and v==[]:out='All zones' if lang=='en' else 'ทุกโซน'
+                     else:out=text(v,lang)
+                     refs=f['evidence_refs'];labels=[]
+                     for ref in refs:
+                         src=rel['sources'][ref['source_id']];citation='S'+str(len(hits)+1)
+                         hits.append({'id':r['record_id']+':'+key+':'+citation,'title':'ข้อมูลศูนย์ที่ผ่านการอนุมัติ' if lang=='th' else 'Approved center information','source_url':src['public_url'] or '', 'text':text(v,lang),'source_id':src['source_id'],'snapshot_sha256':src['sha256'],'citation_label':citation,'locator':ref['locator']});labels.append(citation)
+-                    rows.append('• '+label+': '+out+' '+''.join('['+s+']' for s in labels))
+-                else:rows.append('• '+label+': '+({'unknown':'Not yet confirmed','not_applicable':'Not applicable','conflicted':'Conflicting sources; needs a decision'}[status] if lang=='en' else {'unknown':'ยังไม่มีข้อมูลยืนยัน','not_applicable':'ไม่เกี่ยวข้องกับรายการนี้','conflicted':'หลักฐานขัดกัน ต้องตัดสินใจก่อน'}[status]))
++                    rows.append('• '+display_label+': '+out+' '+''.join('['+s+']' for s in labels))
++                else:rows.append('• '+display_label+': '+({'unknown':'Not yet confirmed','not_applicable':'Not applicable','conflicted':'Conflicting sources; needs a decision'}[status] if lang=='en' else {'unknown':'ยังไม่มีข้อมูลยืนยัน','not_applicable':'ไม่เกี่ยวข้องกับรายการนี้','conflicted':'หลักฐานขัดกัน ต้องตัดสินใจก่อน'}[status]))
+                 obligations.append({'record_id':r['record_id'],'field':key,'status':status,'evidence_refs':f['evidence_refs']})
+             if rows:blocks.append('**'+title(r,lang)+'**\n'+'\n'.join(rows))
+         for rid,r in selected.items():
+             if not effective(r,at,records):add(r,[]);continue
+             keys=list(r['fields']) if broad else [k for k in requested if k in r['fields']]
+             if not keys and not requested:keys=[s['key'] for s in CATALOG[r['kind']]['fields'] if s['publish_core'] or s['key'] in {'summary','how_to_play'}]
+-            if r['kind']=='policy':keys=list(dict.fromkeys(keys+['decision','conditions_all','exceptions','details','consequence']))
+-            if r['kind'] in {'rate','rental_package'}:keys=list(r['fields'])
++            keys,basis=project(r,keys,full=broad)
++            plan['response_projection'].append({'record_id':rid,'fields':basis})
+             add(r,keys)
+             if r['kind']=='game':
+                 wanted=[]
+@@ -281,6 +310,7 @@
+                     control_fields={f['key'] for f in CATALOG['control_set']['fields']}-shared
+                     wanted.append('control_set' if set(requested)&control_fields else 'game_service')
+                 if 'platform' in requested and not wanted:wanted.append('game_service')
++                if set(requested)&{'decision','conditions_all','exceptions','details','consequence','procedure_id'} and re.search(r'บัญชี|\baccounts?\b',q,re.I):wanted.append('game_service')
+                 for childkind in dict.fromkeys(wanted):
+                     children=[rr for rr in records.values() if rr['kind']==childkind and value(rr,'game_id')==rid and (not plan['platform'] or value(rr,'platform')==plan['platform'] or rr['kind']=='game_service' and value(records.get(value(rr,'service_id'),{'fields':{}}),'platform')==plan['platform'])]
+                     if childkind=='control_set' and len(children)>1 and not plan['platform']:
+@@ -291,26 +321,35 @@
+                         blocks.append(('No confirmed '+childkind+' data for this scope.' if lang=='en' else 'ยังไม่มีข้อมูลยืนยันในส่วน '+CATALOG[childkind]['owner_form']+' สำหรับขอบเขตนี้'))
+                         obligations.append({'record_id':rid,'field':childkind,'status':'unknown'})
+                     for child in children:
+-                        add(child,list(child['fields']))
++                        childkeys,childbasis=project(child,requested,full=broad)
++                        if childkind=='game_service' and 'supported_platforms' in requested:childkeys=list(dict.fromkeys(childkeys+['offered','service_id']))
++                        plan['response_projection'].append({'record_id':child['record_id'],'fields':childbasis})
++                        add(child,childkeys)
++                        for policy,policykeys,edge in linked_policies(records,child,requested):
++                            plan.setdefault('relation_edges',[]).append(edge);add(policy,project(policy,policykeys)[0])
+                         if childkind=='game_service':
+                             srv=records.get(value(child,'service_id'))
+-                            if srv:add(srv,['name','platform','resource_ids','session_minutes','capacity_min','capacity_max'])
++                            if srv and (broad or 'supported_platforms' in requested):add(srv,['name','platform'])
+             # Prices are scoped by service and audience. Never choose an arbitrary group.
+             if 'amount_minor' in requested and r['kind'] not in {'rate','rental_package'}:
+                 audiences=[k for k,rr in selected.items() if rr['kind']=='audience']
+                 related=[rr for rr in records.values() if rr['kind']=='rate' and ((r['kind']=='service' and value(rr,'service_id')==rid and (not audiences or value(rr,'audience_id') in audiences)) or (r['kind']=='audience' and value(rr,'audience_id')==rid))]
+                 if r['kind']=='zone':related=[rr for rr in records.values() if rr['kind']=='rental_package' and rid in (value(rr,'zone_ids') or []) and (not audiences or value(rr,'audience_id') in audiences)]
+-                for rr in related:add(rr,list(rr['fields']))
++                for rr in related:
++                    pricekeys,pricebasis=project(rr,requested,full=broad);add(rr,pricekeys)
++                    plan['response_projection'].append({'record_id':rr['record_id'],'fields':pricebasis})
+                 if not related:blocks.append('No confirmed price in this scope.' if lang=='en' else 'ยังไม่มีราคาที่ได้รับการยืนยันในขอบเขตนี้')
+             if r['kind']=='competition' and (broad or set(requested)&{'text','details','depends_on_ids','completeness'}):
+                 children=[rr for rr in records.values() if rr['kind']=='competition_rule' and value(rr,'competition_id')==rid]
+-                for child in sorted(children,key=lambda x:str(value(x,'section_number'))):add(child,list(child['fields']))
++                for child in sorted(children,key=lambda x:str(value(x,'section_number'))):add(child,project(child,requested,full=broad)[0])
+             if r['kind']=='competition_rule':
+                 seen={rid}
+                 def deps(rr):
+                     for dep in value(rr,'depends_on_ids') or []:
+                         if dep not in seen and dep in records:seen.add(dep);add(records[dep],list(records[dep]['fields']));deps(records[dep])
+                 deps(r)
++            for policy,policykeys,edge in linked_policies(records,r,requested):
++                plan.setdefault('relation_edges',[]).append(edge);add(policy,project(policy,policykeys)[0])
+         for key in requested:
+             if not any(o['field']==key for o in obligations):
+                 # Do not call an unsupported schema request an unknown owner fact.
+@@ -352,6 +391,12 @@
+         audits=[]
+         def traced_planner(q,records,ids):return plan_fields(q,records,ids,diagnostic=audits.append)
+         result=CommonAnswerer(store).answer(question,locale=locale,history=recent_history,planner=traced_planner if allow_llm else None)
++        if result is None and snap['release']:
++            names={**snap['release']['names'],**snap.get('retired_names',{})}
++            _,ids,_=context_query(question,recent_history,names)
++            authority=authority_decision(question,snap,ids)
++            if authority['decision'] in {'common','blocked'}:
++                result=CommonAnswerer(store).finish(snap,time.perf_counter(),'ข้อมูลส่วนนี้ของรายการยังยืนยันไม่ได้ กรุณาระบุหัวข้อเพิ่มเติม / This part of the managed record is not confirmed; please specify the requested detail.',[],{'record_ids':ids,'authority':authority},[],response='clarification')
+         if result is not None and audits:
+             from dataclasses import replace
+             artifact={**(result.decision_artifact or {}),'planner_audits':audits}

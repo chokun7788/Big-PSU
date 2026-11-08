@@ -1,0 +1,3805 @@
+{
+  "total_failures": 1041,
+  "distinct_scenario_keys_with_failures": 27,
+  "distinct_origin_keys_with_failures": 576,
+  "failure_origin_counts": {
+    "competition_rules_rag_ground_truth_v1": 457,
+    "rag_robustness_v1": 216,
+    "model_benchmark_1600": 216,
+    "rule_patterns": 63,
+    "game_control_facts": 26,
+    "game_item_details": 22,
+    "equipment_item_details": 21,
+    "calendar_schedule_contract": 10,
+    "service_game_availability": 10
+  },
+  "top_origin_keys": [
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-261"
+      ],
+      "failed": 16,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03669",
+          "question": "อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-262"
+      ],
+      "failed": 16,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03670",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-263"
+      ],
+      "failed": 15,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03671",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-264"
+      ],
+      "failed": 15,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03672",
+          "question": "อัดวิดีโอในศูนย์ได้มั้ย",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rule_patterns",
+        "rule_booking_cancel_invalid_info"
+      ],
+      "failed": 7,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00402",
+          "question": "ขอข้อมูลเรื่องการจอง ยกเลิก ไม่แจ้ง",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rule_patterns",
+        "rule_refund_policy"
+      ],
+      "failed": 7,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00414",
+          "question": "ขอข้อมูลเรื่องได้เงินคืน",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "calendar_schedule_contract",
+        "schedule-10"
+      ],
+      "failed": 6,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01260",
+          "question": "ตอนนี้ศูนย์เปิดอยู่ไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rule_patterns",
+        "rule_schedule_friday_maintenance_general"
+      ],
+      "failed": 6,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01263",
+          "question": "ขอข้อมูลเรื่องวันศุกร์ ตรวจอุปกรณ์",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด schedule ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-165"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01283",
+          "question": "ตอนนี้ศูนย์เปิดไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-166"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01284",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: ตอนนี้ศูนย์เปิดไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-167"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01285",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ตอนนี้ศูนย์เปิดไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-168"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01286",
+          "question": "ตอนนี้ศูนย์เปิดมั้ย",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-173"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01291",
+          "question": "วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-174"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01292",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-175"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01293",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-176"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01294",
+          "question": "วันหยุดราชการเปิดมั้ย",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "model_benchmark_1600",
+        "MB-1250-PSR-007"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01314",
+          "question": "ของหายต้องทำยังไง",
+          "mode": "pipeline:protected_studio_rule_direct",
+          "failure": [
+            "none of required alternatives found: ['เปิด', 'ปิด', 'จอง', 'ยกเลิก', 'นาที', 'อาหาร']"
+          ],
+          "answer": "กรุณาตรวจสอบทรัพย์สินของท่านทุกครั้งระหว่างการใช้บริการ หากมีการสูญหาย ศูนย์ขอสงวนสิทธิ์ไม่รับผิดชอบในทุกกรณี\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "game_item_details",
+        "game_detail_mario_party"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02250",
+          "question": "Mario Party Superstars เล่นยังไง",
+          "mode": "pipeline:structured_game_controls",
+          "failure": [
+            "none of required alternatives found: ['ทอยลูกเต๋าเดินบนกระดาน เก็บดาว และเล่นมินิเกมเพื่อทำคะแนน']"
+          ],
+          "answer": "Mario Party Superstars มีข้อมูลปุ่มควบคุมดังนี้:\nNintendo Switch\n•    Button controls: เล่นบอร์ดและมินิเกมด้วยปุ่ม - แหล่งทางการยืนยันว่า 100 มินิเกมรองรับ button controls และเล่นได้ด้วย Joy-Con หรือ Nintendo Switch Pro Controller\n•    Single Joy-Con / Joy-Con grip / Pro Controller: รูปแบบคอนโทรลเลอร์ที่รองรับ - สามารถเล่นด้วย Joy-Con เดี่ยว, Joy-Con grip, Nintendo Switch Pro Controller หรือ Nintendo Switch Lite ตามข้อมูล Play Nintendo\nแหล่งข้อมูล: https://play.nintendo.com/news-tips/game-releas"
+        }
+      ]
+    },
+    {
+      "key": [
+        "en",
+        "rule_patterns",
+        "rule_payment_and_late_checkin"
+      ],
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00412",
+          "question": "What is the studio policy for not pay late check",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-141"
+      ],
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00433",
+          "question": "จองวันนี้เลยได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-143"
+      ],
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00435",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า จองวันนี้เลยได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "rag_robustness_v1",
+        "RAG-ROBUST-TH-144"
+      ],
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00436",
+          "question": "จองวันนี้เลยได้มั้ย",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "game_item_details",
+        "game_detail_ea_sports_fc_24"
+      ],
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02214",
+          "question": "EA Sports FC 24 เล่นยังไง",
+          "mode": "pipeline:structured_game_controls",
+          "failure": [
+            "none of required alternatives found: ['เลือกทีม จัดตัว ควบคุมการส่งบอล เลี้ยง ยิง และตั้งรับเพื่อทำประตูให้มากกว่าคู่แข่ง']"
+          ],
+          "answer": "EA Sports FC 24 ปุ่มที่ตรงกับคำถาม:\nPlayStation / PS5\n•    L1: เปลี่ยนตัวผู้เล่น - สลับการควบคุมไปยังนักเตะคนอื่นที่อยู่ใกล้บอล\nแหล่งข้อมูล: https://fifauteam.com/fc-24-controls/"
+        }
+      ]
+    },
+    {
+      "key": [
+        "en",
+        "model_benchmark_1600",
+        "EN-SHADOW-0467"
+      ],
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00495",
+          "question": "How many hours in advance must you book",
+          "mode": "pipeline:protected_booking_window",
+          "failure": [
+            "route expected ['reservation'], got schedule"
+          ],
+          "answer": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "key": [
+        "en",
+        "calendar_schedule_contract",
+        "schedule-08"
+      ],
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-01258",
+          "question": "Is the studio open on public holidays",
+          "mode": "pipeline:calendar_date_clarification_en",
+          "failure": [
+            "route expected ['reservation', 'schedule'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which public holiday or date do you mean? Recorded closures take precedence over regular opening hours.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "game_item_details",
+        "game_detail_switch_sports"
+      ],
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02289",
+          "question": "Nintendo Switch Sports เล่นยังไง",
+          "mode": "pipeline:structured_game_controls",
+          "failure": [
+            "none of required alternatives found: ['ถือ Joy-Con แล้วขยับตามกีฬาที่เลือก เช่น ตี โยน หรือแกว่งตามท่าทางในเกม']"
+          ],
+          "answer": "Nintendo Switch Sports ปุ่มที่ตรงกับคำถาม:\nNintendo Switch\n•    Joy-Con motion: เล่นท่ากีฬาด้วยการขยับ Joy-Con - เกมใช้ Joy-Con หรือ Joy-Con 2 ตามชนิดกีฬาที่เลือก โดยการออกท่าจะขึ้นกับกีฬานั้น ๆ\n•    + Button on controller-holding screen: เลือกโหมดสายรัดขาใน Soccer ตอนเล่น Local/Friends - ในหน้าวิธีถือ Joy-Con ให้กด + เพื่อเปลี่ยนเป็น Leg-Strap Mode\nแหล่งข้อมูล: https://en-americas-support.nintendo.com/app/answers/detail/a_id/58596/~/nintendo-switch-sports-faq"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "model_benchmark_1600",
+        "MB-0847-GD-004"
+      ],
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02319",
+          "question": "Call of Duty เป็นเกมแนวไหน",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Call of Duty มีหลายเกมในรายการปัจจุบันครับ คำถามนี้จึงยังไม่ชัดว่าหมายถึงเกมไหน ถ้าต้องการถามเรื่องข้อมูลเกม ขอเลือกเกมก่อน:\n•    Call of Duty: Modern Warfare III (PlayStation 5 Zone)\n•    Call of Duty: Warzone (PC Zone)"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "model_benchmark_1600",
+        "MB-0848-GD-005"
+      ],
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02320",
+          "question": "Call of Duty เล่นยังไง",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Call of Duty มีหลายเกมในรายการปัจจุบันครับ คำถามนี้จึงยังไม่ชัดว่าหมายถึงเกมไหน ถ้าต้องการถามเรื่องวิธีเล่น ขอเลือกเกมก่อน:\n•    Call of Duty: Modern Warfare III (PlayStation 5 Zone)\n•    Call of Duty: Warzone (PC Zone)\n\nพิมพ์ต่อได้ เช่น `Call of Duty: Modern Warfare III เล่นยังไง`"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "equipment_item_details",
+        "equipment_gaming_headset"
+      ],
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03307",
+          "question": "Gaming Headset คืออุปกรณ์อะไร",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "none of required alternatives found: ['Gaming Headset']"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        }
+      ]
+    },
+    {
+      "key": [
+        "th",
+        "equipment_item_details",
+        "equipment_gaming_keyboard"
+      ],
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03310",
+          "question": "Gaming Keyboard คืออุปกรณ์อะไร",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "none of required alternatives found: ['Gaming Keyboard']"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        }
+      ]
+    }
+  ],
+  "scenario_summary": [
+    {
+      "scenario": "en:",
+      "failed": 542,
+      "mode_counts": {
+        "pipeline:missing_english_localization": 459,
+        "pipeline:english_no_answer": 28,
+        "pipeline:english_clarification": 15,
+        "pipeline:protected_price_missing_service": 8,
+        "pipeline:protected_booking_window": 6,
+        "pipeline:structured_game_controls_en": 5
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00126",
+          "question": "What is the price of VALORANT",
+          "mode": "pipeline:english_clarification",
+          "failure": [
+            "route expected ['service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?"
+        },
+        {
+          "id": "MASTER-GT-EN-00127",
+          "question": "What is the price of Counter-Strike 2",
+          "mode": "pipeline:english_clarification",
+          "failure": [
+            "route expected ['service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?"
+        },
+        {
+          "id": "MASTER-GT-EN-00135",
+          "question": "Horizon Call of the Mountain price",
+          "mode": "pipeline:english_clarification",
+          "failure": [
+            "route expected ['service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?"
+        }
+      ]
+    },
+    {
+      "scenario": "th:",
+      "failed": 283,
+      "mode_counts": {
+        "pipeline:no_answer": 99,
+        "pipeline:ambiguity_clarification": 39,
+        "pipeline:structured_equipment_catalog": 25,
+        "pipeline:candidate_margin_clarification": 16,
+        "pipeline:structured_game_controls": 13,
+        "pipeline:structured_service_game_availability_no_match": 11
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00402",
+          "question": "ขอข้อมูลเรื่องการจอง ยกเลิก ไม่แจ้ง",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00414",
+          "question": "ขอข้อมูลเรื่องได้เงินคืน",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        },
+        {
+          "id": "MASTER-GT-TH-00466",
+          "question": "ขอสอบถามหน่อยครับ ขอข้อมูลเรื่องการจอง ยกเลิก ไม่แจ้ง",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:recording_rules",
+      "failed": 62,
+      "mode_counts": {
+        "pipeline:no_answer": 62
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03669",
+          "question": "อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-03670",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-03671",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:schedule_now",
+      "failed": 20,
+      "mode_counts": {
+        "pipeline:rag_direct_curated": 20
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01283",
+          "question": "ตอนนี้ศูนย์เปิดไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        },
+        {
+          "id": "MASTER-GT-TH-01284",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: ตอนนี้ศูนย์เปิดไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        },
+        {
+          "id": "MASTER-GT-TH-01285",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ตอนนี้ศูนย์เปิดไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:schedule_holiday",
+      "failed": 20,
+      "mode_counts": {
+        "pipeline:calendar_upcoming_holidays_fast_path": 20
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01291",
+          "question": "วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        },
+        {
+          "id": "MASTER-GT-TH-01292",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        },
+        {
+          "id": "MASTER-GT-TH-01293",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        }
+      ]
+    },
+    {
+      "scenario": "th:booking_same_day",
+      "failed": 13,
+      "mode_counts": {
+        "pipeline:no_answer": 13
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00433",
+          "question": "จองวันนี้เลยได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00435",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า จองวันนี้เลยได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00436",
+          "question": "จองวันนี้เลยได้มั้ย",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:equipment_ps5_controller",
+      "failed": 12,
+      "mode_counts": {
+        "pipeline:game_control_missing_game_context": 12
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03358",
+          "question": "PS5 ใช้จอยแบบไหน",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "route expected ['equipment', 'game_controls'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        },
+        {
+          "id": "MASTER-GT-TH-03359",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: PS5 ใช้จอยแบบไหน",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "route expected ['equipment', 'game_controls'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        },
+        {
+          "id": "MASTER-GT-TH-03360",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า PS5 ใช้จอยแบบไหน",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "route expected ['equipment', 'game_controls'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        }
+      ]
+    },
+    {
+      "scenario": "th:equipment_unknown_gpu",
+      "failed": 12,
+      "mode_counts": {
+        "pipeline:structured_equipment_item": 12
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03374",
+          "question": "เครื่อง PC ใช้การ์ดจอรุ่นอะไร",
+          "mode": "pipeline:structured_equipment_item",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "Gaming Monitor: จอภาพสำหรับใช้คู่กับ Gaming PC ใน PC Zone\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    แสดงผลเกมและโปรแกรมบน PC Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        },
+        {
+          "id": "MASTER-GT-TH-03375",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: เครื่อง PC ใช้การ์ดจอรุ่นอะไร",
+          "mode": "pipeline:structured_equipment_item",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "Gaming Monitor: จอภาพสำหรับใช้คู่กับ Gaming PC ใน PC Zone\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    แสดงผลเกมและโปรแกรมบน PC Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        },
+        {
+          "id": "MASTER-GT-TH-03376",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เครื่อง PC ใช้การ์ดจอรุ่นอะไร",
+          "mode": "pipeline:structured_equipment_item",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "Gaming Monitor: จอภาพสำหรับใช้คู่กับ Gaming PC ใน PC Zone\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    แสดงผลเกมและโปรแกรมบน PC Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        }
+      ]
+    },
+    {
+      "scenario": "th:games_hades_unknown",
+      "failed": 8,
+      "mode_counts": {
+        "pipeline:game_target_unknown": 8
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01651",
+          "question": "Hades II มีให้เล่นไหม",
+          "mode": "pipeline:game_target_unknown",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบชื่อเกมที่ตรงกับข้อมูลที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nกรุณาตรวจสอบชื่อเกมหรือพิมพ์ชื่อเกมที่ต้องการถามอีกครั้ง"
+        },
+        {
+          "id": "MASTER-GT-TH-01652",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Hades II มีให้เล่นไหม",
+          "mode": "pipeline:game_target_unknown",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบชื่อเกมที่ตรงกับข้อมูลที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nกรุณาตรวจสอบชื่อเกมหรือพิมพ์ชื่อเกมที่ต้องการถามอีกครั้ง"
+        },
+        {
+          "id": "MASTER-GT-TH-01653",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า Hades II มีให้เล่นไหม",
+          "mode": "pipeline:game_target_unknown",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบชื่อเกมที่ตรงกับข้อมูลที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nกรุณาตรวจสอบชื่อเกมหรือพิมพ์ชื่อเกมที่ต้องการถามอีกครั้ง"
+        }
+      ]
+    },
+    {
+      "scenario": "th:members_role",
+      "failed": 8,
+      "mode_counts": {
+        "pipeline:candidate_margin_clarification": 8
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04561",
+          "question": "ใครดูแลศูนย์",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['members', 'overview'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        },
+        {
+          "id": "MASTER-GT-TH-04562",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: ใครดูแลศูนย์",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['members', 'overview'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        },
+        {
+          "id": "MASTER-GT-TH-04563",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ใครดูแลศูนย์",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['members', 'overview'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        }
+      ]
+    },
+    {
+      "scenario": "th:location",
+      "failed": 8,
+      "mode_counts": {
+        "pipeline:no_answer": 8
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04569",
+          "question": "ศูนย์อยู่ที่ไหน",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด contact ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-04570",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: ศูนย์อยู่ที่ไหน",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด contact ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-04571",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ศูนย์อยู่ที่ไหน",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด contact ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "en:price_game_zone",
+      "failed": 6,
+      "mode_counts": {
+        "pipeline:price_service_clarification_en": 4,
+        "pipeline:protected_price_missing_service": 2
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00062",
+          "question": "How much does TEKKEN 8 cost",
+          "mode": "pipeline:price_service_clarification_en",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "TEKKEN 8 is available on more than one service (PC, PlayStation 5). Which service and duration should I price?\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-00063",
+          "question": "Could you check this using verified information: How much does TEKKEN 8 cost",
+          "mode": "pipeline:price_service_clarification_en",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "TEKKEN 8 is available on more than one service (PC, PlayStation 5). Which service and duration should I price?\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-00064",
+          "question": "I am planning a visit and need to know: How much does TEKKEN 8 cost",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['games', 'service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        }
+      ]
+    },
+    {
+      "scenario": "en:equipment_ps5_controller",
+      "failed": 6,
+      "mode_counts": {
+        "pipeline:equipment_spec_unverified_en": 6
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-03400",
+          "question": "What controller is used for PS5",
+          "mode": "pipeline:equipment_spec_unverified_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "The published equipment record does not specify the PS5 controller model.\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-03401",
+          "question": "Could you check this using verified information: What controller is used for PS5",
+          "mode": "pipeline:equipment_spec_unverified_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "The published equipment record does not specify the PS5 controller model.\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-03402",
+          "question": "I am planning a visit and need to know: What controller is used for PS5",
+          "mode": "pipeline:equipment_spec_unverified_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "The published equipment record does not specify the PS5 controller model.\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "scenario": "th:price_game_zone",
+      "failed": 4,
+      "mode_counts": {
+        "pipeline:no_answer": 2,
+        "pipeline:protected_price_missing_service": 2
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00018",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 ราคาเท่าไหร่",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['games', 'service_fee'], got competition_rules",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด competition_rules ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00019",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า Tekken 8 ราคาเท่าไหร่",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['games', 'service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ต้องการทราบค่าบริการของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? ราคาแตกต่างตามบริการและกลุ่มผู้ใช้ จึงยังระบุราคาเดียวไม่ได้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00299",
+          "question": "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 ราคาเท่าไหร่",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['games', 'service_fee'], got competition_rules",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด competition_rules ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:games_unspecified",
+      "failed": 4,
+      "mode_counts": {
+        "pipeline:structured_games_catalog": 3,
+        "pipeline:structured_service_game_availability": 1
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04770",
+          "question": "เกมนี้เล่นที่ไหน",
+          "mode": "pipeline:structured_games_catalog",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Reside"
+        },
+        {
+          "id": "MASTER-GT-TH-04771",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: เกมนี้เล่นที่ไหน",
+          "mode": "pipeline:structured_games_catalog",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Reside"
+        },
+        {
+          "id": "MASTER-GT-TH-04772",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เกมนี้เล่นที่ไหน",
+          "mode": "pipeline:structured_service_game_availability",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "บริการที่ถาม มีเกมที่ยืนยันได้ดังนี้\n\nPC #01-#02 (60 นาที, 1 คน)\n•    TEKKEN 8\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    VALORANT\nหมายเหตุ: PC #01-#02 มี TEKKEN 8 แต่ไม่มี Call of Duty: Warzone\nหมายเหตุ: PC #01-#02 และ PC #03-#10 มี Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS, VALORANT เหมือนกัน\n\nPC #03-#10 (60 นาที, 1 คน)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    VALORANT\nหมายเหตุ: PC #03-#"
+        }
+      ]
+    },
+    {
+      "scenario": "th:equipment_ambiguous",
+      "failed": 4,
+      "mode_counts": {
+        "pipeline:structured_equipment_catalog": 4
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04774",
+          "question": "อันนั้นใช้อะไรเล่น",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        },
+        {
+          "id": "MASTER-GT-TH-04775",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: อันนั้นใช้อะไรเล่น",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        },
+        {
+          "id": "MASTER-GT-TH-04776",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า อันนั้นใช้อะไรเล่น",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        }
+      ]
+    },
+    {
+      "scenario": "th:booking_unspecified",
+      "failed": 4,
+      "mode_counts": {
+        "pipeline:structured_reservation_fact": 4
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04782",
+          "question": "อันนี้จองได้ไหม",
+          "mode": "pipeline:structured_reservation_fact",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-TH-04783",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: อันนี้จองได้ไหม",
+          "mode": "pipeline:structured_reservation_fact",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-TH-04784",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า อันนี้จองได้ไหม",
+          "mode": "pipeline:structured_reservation_fact",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "scenario": "th:schedule_ambiguous",
+      "failed": 4,
+      "mode_counts": {
+        "pipeline:structured_schedule": 4
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04786",
+          "question": "เปิดปะ",
+          "mode": "pipeline:structured_schedule",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "เวลาบริการตามตารางคือ Morning 09:00-12:00 และ Afternoon 13:00-16:00\n\nรายละเอียดจากตาราง:\n•    วันจันทร์: Morning 09:00-12:00 = maintenance, Afternoon 13:00-16:00 = open\n•    วันอังคาร: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพุธ: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพฤหัสบดี: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันศุกร์: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = maintenance\nแหล่งข้อมูล: https://esports.compu"
+        },
+        {
+          "id": "MASTER-GT-TH-04787",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: เปิดปะ",
+          "mode": "pipeline:structured_schedule",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "เวลาบริการตามตารางคือ Morning 09:00-12:00 และ Afternoon 13:00-16:00\n\nรายละเอียดจากตาราง:\n•    วันจันทร์: Morning 09:00-12:00 = maintenance, Afternoon 13:00-16:00 = open\n•    วันอังคาร: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพุธ: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพฤหัสบดี: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันศุกร์: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = maintenance\nแหล่งข้อมูล: https://esports.compu"
+        },
+        {
+          "id": "MASTER-GT-TH-04788",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เปิดปะ",
+          "mode": "pipeline:structured_schedule",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "เวลาบริการตามตารางคือ Morning 09:00-12:00 และ Afternoon 13:00-16:00\n\nรายละเอียดจากตาราง:\n•    วันจันทร์: Morning 09:00-12:00 = maintenance, Afternoon 13:00-16:00 = open\n•    วันอังคาร: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพุธ: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพฤหัสบดี: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันศุกร์: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = maintenance\nแหล่งข้อมูล: https://esports.compu"
+        }
+      ]
+    },
+    {
+      "scenario": "th:comp_event_ambiguous",
+      "failed": 4,
+      "mode_counts": {
+        "pipeline:competition_facet_not_covered_no_answer": 4
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04794",
+          "question": "กติกา Valorant งานล่าสุดใช้อะไร",
+          "mode": "pipeline:competition_facet_not_covered_no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบหัวข้อกติกาที่ยืนยันได้ตรงกับประเด็นที่ถามในเอกสารของเกมนี้ครับ จึงจะไม่ใช้หัวข้ออื่นมาตอบแทน"
+        },
+        {
+          "id": "MASTER-GT-TH-04795",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: กติกา Valorant งานล่าสุดใช้อะไร",
+          "mode": "pipeline:competition_facet_not_covered_no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบหัวข้อกติกาที่ยืนยันได้ตรงกับประเด็นที่ถามในเอกสารของเกมนี้ครับ จึงจะไม่ใช้หัวข้ออื่นมาตอบแทน"
+        },
+        {
+          "id": "MASTER-GT-TH-04796",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า กติกา Valorant งานล่าสุดใช้อะไร",
+          "mode": "pipeline:competition_facet_not_covered_no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบหัวข้อกติกาที่ยืนยันได้ตรงกับประเด็นที่ถามในเอกสารของเกมนี้ครับ จึงจะไม่ใช้หัวข้ออื่นมาตอบแทน"
+        }
+      ]
+    },
+    {
+      "scenario": "en:games_valorant_detail",
+      "failed": 4,
+      "mode_counts": {
+        "pipeline:missing_english_localization": 4
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-02309",
+          "question": "Could you check this using verified information: What kind of game is VALORANT",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "VALORANT: This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-02310",
+          "question": "I am planning a visit and need to know: What kind of game is VALORANT",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "VALORANT: This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-02531",
+          "question": "Could you please help me with this: Could you check this using verified information: What kind of game is VALORANT",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "VALORANT: This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "scenario": "th:special_request",
+      "failed": 3,
+      "mode_counts": {
+        "pipeline:no_answer": 3
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04798",
+          "question": "ขอทำเรื่องพิเศษได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-04799",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: ขอทำเรื่องพิเศษได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-04800",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ขอทำเรื่องพิเศษได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:price_pc_two_hours",
+      "failed": 2,
+      "mode_counts": {
+        "pipeline:no_answer": 2
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00007",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เล่น PC 2 ชั่วโมง บุคคลทั่วไปคิดยังไง",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['service_fee'], got games",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00288",
+          "question": "ขอสอบถามหน่อยครับ กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เล่น PC 2 ชั่วโมง บุคคลทั่วไปคิดยังไง",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['service_fee'], got games",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:games_minecraft_unknown",
+      "failed": 2,
+      "mode_counts": {
+        "pipeline:games_known_unsupported_fast_path": 2
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01649",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ที่ศูนย์มี Minecraft ไหม",
+          "mode": "pipeline:games_known_unsupported_fast_path",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบ Minecraft ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God "
+        },
+        {
+          "id": "MASTER-GT-TH-01978",
+          "question": "ขอสอบถามหน่อยครับ กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ที่ศูนย์มี Minecraft ไหม",
+          "mode": "pipeline:games_known_unsupported_fast_path",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบ Minecraft ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God "
+        }
+      ]
+    },
+    {
+      "scenario": "th:greeting",
+      "failed": 2,
+      "mode_counts": {
+        "pipeline:candidate_margin_clarification": 2
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04803",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: หวัดดี",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['general', 'knowledge', 'overview'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        },
+        {
+          "id": "MASTER-GT-TH-04804",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า หวัดดี",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['general', 'knowledge', 'overview'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        }
+      ]
+    },
+    {
+      "scenario": "en:greeting",
+      "failed": 2,
+      "mode_counts": {
+        "pipeline:english_no_answer": 2
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04847",
+          "question": "Could you check this using verified information: helllo",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['general', 'knowledge', 'overview'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        },
+        {
+          "id": "MASTER-GT-EN-04848",
+          "question": "I am planning a visit and need to know: helllo",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['general', 'knowledge', 'overview'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        }
+      ]
+    },
+    {
+      "scenario": "th:schedule_tomorrow",
+      "failed": 1,
+      "mode_counts": {
+        "pipeline:no_answer": 1
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01419",
+          "question": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า พรุ่งนี้เปิดไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['reservation', 'schedule'], got games",
+            "status expected live_lookup_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "scenario": "th:comp_broad",
+      "failed": 1,
+      "mode_counts": {
+        "pipeline:studio_rules_overview_fast_path": 1
+      },
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04792",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า กติกาแข่งเป็นยังไง",
+          "mode": "pipeline:studio_rules_overview_fast_path",
+          "failure": [
+            "route expected ['clarification', 'competition_rules', 'general'], got events_news",
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "กติกาการใช้บริการในศูนย์โดยสรุปครับ\n•    ฝากสัมภาระก่อนเข้าใช้บริการ และศูนย์ไม่รับผิดชอบทรัพย์สินสูญหาย\n•    รับประทานอาหารและเครื่องดื่มได้เฉพาะพื้นที่ที่กำหนด\n•    คืนอุปกรณ์และแผ่นเกมหลังใช้งานเสร็จ\n•    งดส่งเสียงดังเกินควร และห้ามพูดจาดูหมิ่นหรือเสียดสีผู้อื่น\n•    ห้ามเคลื่อนย้ายอุปกรณ์/สิ่งของโดยไม่ได้รับอนุญาต และห้ามใช้ปลั๊กไฟส่วนตัวโดยไม่ได้รับอนุญาต\n•    ห้ามสูบบุหรี่ เสพสารเสพติด ดื่มแอลกอฮอล์ พกอาวุธ ทะเลาะวิวาท หรือเล่นการพนัน\n•    หากทำอุปกรณ์เสียหาย อาจมีค่าปรับ/ค่าซ่อมหรือชดเชย"
+        }
+      ]
+    }
+  ],
+  "domain_mode": [
+    {
+      "locale": "en",
+      "domain": "competition_rules",
+      "mode": "pipeline:missing_english_localization",
+      "failed": 428,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04001",
+          "question": "What do the CS2 tournament rules say about the competition format",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-04002",
+          "question": "For Counter-Strike 2, can you verify the rule on the competition format",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:no_answer",
+      "failed": 66,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04752",
+          "question": "ขอข้อมูลเรื่องวันเกิด ส่วนลด",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-04760",
+          "question": "ขอข้อมูลเรื่องคีย์บอร์ดเกมมิ่ง ขาย",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer'], got games"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "studio_rules_penalties",
+      "mode": "pipeline:no_answer",
+      "failed": 63,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03669",
+          "question": "อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-03670",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: อัดวิดีโอในศูนย์ได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['no_answer', 'overview', 'rules'], got general"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "equipment",
+      "mode": "pipeline:missing_english_localization",
+      "failed": 30,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-03424",
+          "question": "What is the MSI MAG Infinite S3 14th generation gaming PC used for",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-03427",
+          "question": "What is a gaming monitor used for",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "reservation_policy",
+      "mode": "pipeline:no_answer",
+      "failed": 27,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00402",
+          "question": "ขอข้อมูลเรื่องการจอง ยกเลิก ไม่แจ้ง",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00433",
+          "question": "จองวันนี้เลยได้ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด reservation ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:rag_direct_curated",
+      "failed": 25,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01260",
+          "question": "ตอนนี้ศูนย์เปิดอยู่ไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        },
+        {
+          "id": "MASTER-GT-TH-01283",
+          "question": "ตอนนี้ศูนย์เปิดไหม",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ศูนย์ปิดให้บริการตามวันหยุดราชการ/วันปิดพิเศษที่ระบุไว้ในระบบ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "equipment",
+      "mode": "pipeline:structured_equipment_catalog",
+      "failed": 21,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03307",
+          "question": "Gaming Headset คืออุปกรณ์อะไร",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "none of required alternatives found: ['Gaming Headset']"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        },
+        {
+          "id": "MASTER-GT-TH-03310",
+          "question": "Gaming Keyboard คืออุปกรณ์อะไร",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "none of required alternatives found: ['Gaming Keyboard']"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+      "failed": 20,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01291",
+          "question": "วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        },
+        {
+          "id": "MASTER-GT-TH-01292",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: วันหยุดราชการเปิดไหม",
+          "mode": "pipeline:calendar_upcoming_holidays_fast_path",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "วันหยุดไทย/เทศกาลถัดไปที่มีในปฏิทิน:\n•    13/10/2026 (วันอังคาร): วันนวมินทรมหาราช (national_holiday)\n•    16/10/2026 (วันศุกร์): วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ (bank_holiday_bangkok)\n•    23/10/2026 (วันศุกร์): วันปิยมหาราช (national_holiday)\n•    31/10/2026 (วันเสาร์): วันฮาโลวีน (observance)\n•    05/12/2026 (วันเสาร์): วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9 (national_holiday)\nหมายเหตุ: รายการนี้เป็นข้อมูลปฏิทินไทยประกอบ ไม่ได้แปลว่าศูนย์ปิดโดยอัตโนมัติ\nแหล่งข้อมูลปฏิท"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_controls",
+      "mode": "pipeline:ambiguity_clarification",
+      "failed": 16,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03059",
+          "question": "ในเกม The Last of Us Part II (Remastered) บน PlayStation / PS5 ปุ่ม L (Left Stick) ใช้ทำอะไร",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "none of required alternatives found: ['L (Left Stick)', 'เคลื่อนที่']",
+            "route expected ['games'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "คำถามนี้ยังไม่ชัดว่าหมายถึงเกมไหนครับ เพราะมีหลายเกมที่ตรงกับคำถาม ถ้าต้องการถามเรื่องปุ่ม/วิธีควบคุม ขอเลือกเกมก่อน:\n•    The Last of Us Part II (Remastered) (PlayStation 5 Zone)\n•    The Last of Us Part I (PlayStation 5 Zone)\n\nพิมพ์ต่อได้ เช่น `The Last of Us Part II (Remastered) ปุ่มอะไร` หรือ `The Last of Us Part I ปุ่มอะไร`"
+        },
+        {
+          "id": "MASTER-GT-TH-03060",
+          "question": "ในเกม The Last of Us Part II (Remastered) บน PlayStation / PS5 ปุ่ม L3 (Click Left Stick) ใช้ทำอะไร",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "none of required alternatives found: ['L3 (Click Left Stick)', 'หันมองจุดสนใจ']",
+            "route expected ['games'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "คำถามนี้ยังไม่ชัดว่าหมายถึงเกมไหนครับ เพราะมีหลายเกมที่ตรงกับคำถาม ถ้าต้องการถามเรื่องปุ่ม/วิธีควบคุม ขอเลือกเกมก่อน:\n•    The Last of Us Part II (Remastered) (PlayStation 5 Zone)\n•    The Last of Us Part I (PlayStation 5 Zone)\n\nพิมพ์ต่อได้ เช่น `The Last of Us Part II (Remastered) ปุ่มอะไร` หรือ `The Last of Us Part I ปุ่มอะไร`"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "service_fee",
+      "mode": "pipeline:english_clarification",
+      "failed": 15,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00126",
+          "question": "What is the price of VALORANT",
+          "mode": "pipeline:english_clarification",
+          "failure": [
+            "route expected ['service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?"
+        },
+        {
+          "id": "MASTER-GT-EN-00127",
+          "question": "What is the price of Counter-Strike 2",
+          "mode": "pipeline:english_clarification",
+          "failure": [
+            "route expected ['service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "members_overview_contact",
+      "mode": "pipeline:candidate_margin_clarification",
+      "failed": 14,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04542",
+          "question": "ขอข้อมูลเรื่องอีเมล",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['contact'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        },
+        {
+          "id": "MASTER-GT-TH-04545",
+          "question": "ขอข้อมูลเรื่องเบอร์",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['contact'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:english_no_answer",
+      "failed": 14,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04847",
+          "question": "Could you check this using verified information: helllo",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['general', 'knowledge', 'overview'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        },
+        {
+          "id": "MASTER-GT-EN-04848",
+          "question": "I am planning a visit and need to know: helllo",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['general', 'knowledge', 'overview'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "equipment",
+      "mode": "pipeline:game_control_missing_game_context",
+      "failed": 12,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03358",
+          "question": "PS5 ใช้จอยแบบไหน",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "route expected ['equipment', 'game_controls'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        },
+        {
+          "id": "MASTER-GT-TH-03359",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: PS5 ใช้จอยแบบไหน",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "route expected ['equipment', 'game_controls'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "equipment",
+      "mode": "pipeline:structured_equipment_item",
+      "failed": 12,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03374",
+          "question": "เครื่อง PC ใช้การ์ดจอรุ่นอะไร",
+          "mode": "pipeline:structured_equipment_item",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "Gaming Monitor: จอภาพสำหรับใช้คู่กับ Gaming PC ใน PC Zone\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    แสดงผลเกมและโปรแกรมบน PC Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        },
+        {
+          "id": "MASTER-GT-TH-03375",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: เครื่อง PC ใช้การ์ดจอรุ่นอะไร",
+          "mode": "pipeline:structured_equipment_item",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "Gaming Monitor: จอภาพสำหรับใช้คู่กับ Gaming PC ใน PC Zone\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    แสดงผลเกมและโปรแกรมบน PC Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "equipment",
+      "mode": "pipeline:ambiguity_clarification",
+      "failed": 12,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03378",
+          "question": "PC Zone มีอะไรให้ใช้บ้าง",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "คำถามนี้ยังตีได้หลายทางครับ หมายถึงเรื่องไหนของ PC Zone?\n\nข้อมูลย่อที่ยืนยันได้ตอนนี้:\n•    เกม: มี 6 เกม เช่น Call of Duty: Warzone, Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS และอื่น ๆ | พิมพ์ `PC มีเกมอะไรบ้าง`\n•    อุปกรณ์: มี 6 รายการ เช่น Gaming PC รุ่น MSI MAG Infinite S3 14th, Gaming Monitor, Gaming Keyboard, Gaming Mouse, Gaming Headset และอื่น ๆ | พิมพ์ `PC มีอุปกรณ์อะไรบ้าง`\n•    ราคา: PC 1 ชั่วโมง (1 คน): PSU 0 บาท, General Student 25 บาท, General Adult 70 บาท | พิมพ์ `"
+        },
+        {
+          "id": "MASTER-GT-TH-03380",
+          "question": "PlayStation 5 Zone มีอะไรให้ใช้บ้าง",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "คำถามนี้ยังตีได้หลายทางครับ หมายถึงเรื่องไหนของ PlayStation 5 Zone?\n\nข้อมูลย่อที่ยืนยันได้ตอนนี้:\n•    เกม: มี 26 เกม เช่น Beat Saber, Call of Duty: Modern Warfare III, Call of Duty: Warzone, Delta Force และอื่น ๆ | พิมพ์ `PS5 มีเกมอะไรบ้าง`\n•    อุปกรณ์: มี 1 รายการ เช่น PlayStation 5 Slim With Ultra HD Blu-Ray Disc Drive | พิมพ์ `PS5 มีอุปกรณ์อะไรบ้าง`\n•    ราคา: PlayStation 5 1 ชั่วโมง (1-2 คน): PSU 0 บาท, General Student 50 บาท, General Adult 150 บาท | พิมพ์ `PS5 ราคาเท่าไหร่`\n•    จอง: ต้อง"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "games_catalog_availability",
+      "mode": "pipeline:no_answer",
+      "failed": 11,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01614",
+          "question": "Nintendo Switch Zone รอบละกี่นาที",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "none of required alternatives found: ['Pokémon Champions', 'Animal Crossing: New Horizons', 'It Takes Two', '60']",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-01754",
+          "question": "มี Counter-Strike 2 ไหม",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "none of required alternatives found: ['Counter-Strike 2', 'PC #01-#02', 'PC']",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_detail",
+      "mode": "pipeline:structured_game_controls",
+      "failed": 11,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02214",
+          "question": "EA Sports FC 24 เล่นยังไง",
+          "mode": "pipeline:structured_game_controls",
+          "failure": [
+            "none of required alternatives found: ['เลือกทีม จัดตัว ควบคุมการส่งบอล เลี้ยง ยิง และตั้งรับเพื่อทำประตูให้มากกว่าคู่แข่ง']"
+          ],
+          "answer": "EA Sports FC 24 ปุ่มที่ตรงกับคำถาม:\nPlayStation / PS5\n•    L1: เปลี่ยนตัวผู้เล่น - สลับการควบคุมไปยังนักเตะคนอื่นที่อยู่ใกล้บอล\nแหล่งข้อมูล: https://fifauteam.com/fc-24-controls/"
+        },
+        {
+          "id": "MASTER-GT-TH-02250",
+          "question": "Mario Party Superstars เล่นยังไง",
+          "mode": "pipeline:structured_game_controls",
+          "failure": [
+            "none of required alternatives found: ['ทอยลูกเต๋าเดินบนกระดาน เก็บดาว และเล่นมินิเกมเพื่อทำคะแนน']"
+          ],
+          "answer": "Mario Party Superstars มีข้อมูลปุ่มควบคุมดังนี้:\nNintendo Switch\n•    Button controls: เล่นบอร์ดและมินิเกมด้วยปุ่ม - แหล่งทางการยืนยันว่า 100 มินิเกมรองรับ button controls และเล่นได้ด้วย Joy-Con หรือ Nintendo Switch Pro Controller\n•    Single Joy-Con / Joy-Con grip / Pro Controller: รูปแบบคอนโทรลเลอร์ที่รองรับ - สามารถเล่นด้วย Joy-Con เดี่ยว, Joy-Con grip, Nintendo Switch Pro Controller หรือ Nintendo Switch Lite ตามข้อมูล Play Nintendo\nแหล่งข้อมูล: https://play.nintendo.com/news-tips/game-releas"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_detail",
+      "mode": "pipeline:structured_service_game_availability_no_match",
+      "failed": 11,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02602",
+          "question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า Animal Crossing: New Horizons เล่นได้ที่โซนไหน",
+          "mode": "pipeline:structured_service_game_availability_no_match",
+          "failure": [
+            "none of required alternatives found: ['Nintendo Switch Zone']"
+          ],
+          "answer": "PlayStation 5 #01-#02 ไม่มี Animal Crossing: New Horizons ครับ\nAnimal Crossing: New Horizons เล่นได้ที่ Nintendo Switch (1-2 Persons), Nintendo Switch (1-4 Persons)\n\nเกมที่มีใน PlayStation 5 #01-#02:\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Villa"
+        },
+        {
+          "id": "MASTER-GT-TH-02605",
+          "question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า Beat Saber เล่นได้ที่โซนไหน",
+          "mode": "pipeline:structured_service_game_availability_no_match",
+          "failure": [
+            "none of required alternatives found: ['VR Zone']"
+          ],
+          "answer": "PlayStation 5 #01-#02 ไม่มี Beat Saber ครับ\nBeat Saber เล่นได้ที่ VR Station 30 นาที, VR Station 1 ชั่วโมง\n\nเกมที่มีใน PlayStation 5 #01-#02:\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part "
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "members_overview_contact",
+      "mode": "pipeline:no_answer",
+      "failed": 10,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04544",
+          "question": "ขอข้อมูลเรื่องอยู่ที่ไหน",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด contact ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-04569",
+          "question": "ศูนย์อยู่ที่ไหน",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด contact ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:english_no_answer",
+      "failed": 9,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-01347",
+          "question": "How many minutes to pay",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['reservation'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        },
+        {
+          "id": "MASTER-GT-EN-01350",
+          "question": "What should I do if I lose something",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['penalty', 'rules'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "games_catalog_availability",
+      "mode": "pipeline:structured_equipment_item",
+      "failed": 8,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01612",
+          "question": "Cockpit Zone รอบละกี่นาที",
+          "mode": "pipeline:structured_equipment_item",
+          "failure": [
+            "route expected ['games', 'reservation'], got equipment"
+          ],
+          "answer": "Racezone Full Cockpit V3: ชุดเบาะและโครงจำลองการขับรถสำหรับเกมแข่งรถ\nจำนวน: 2 Units\nอยู่ที่: Cockpit Zone\nใช้สำหรับ:\n•    เล่น Gran Turismo 7 แบบจำลองการขับจริงมากขึ้น\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        },
+        {
+          "id": "MASTER-GT-TH-01617",
+          "question": "PC Zone รอบละกี่นาที",
+          "mode": "pipeline:structured_equipment_item",
+          "failure": [
+            "route expected ['games', 'reservation'], got equipment"
+          ],
+          "answer": "Gaming PC รุ่น MSI MAG Infinite S3 14th: เครื่องคอมพิวเตอร์เกมมิ่งของ PC Zone สำหรับเล่นเกมบนคอมและฝึกซ้อมอีสปอร์ต\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    เล่น VALORANT\n•    เล่น Counter-Strike 2\n•    เล่น PUBG: BATTLEGROUNDS\n•    เล่น Call of Duty: Warzone\n•    เล่น TEKKEN 8\n•    เล่น League of Legends\nหมายเหตุ: สเปกที่บันทึกไว้ในโปรเจกต์: Intel Core i5-14400, RAM DDR5 32GB, NVIDIA GeForce RTX 5060 8GB\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "games_catalog_availability",
+      "mode": "pipeline:game_target_unknown",
+      "failed": 8,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01651",
+          "question": "Hades II มีให้เล่นไหม",
+          "mode": "pipeline:game_target_unknown",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบชื่อเกมที่ตรงกับข้อมูลที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nกรุณาตรวจสอบชื่อเกมหรือพิมพ์ชื่อเกมที่ต้องการถามอีกครั้ง"
+        },
+        {
+          "id": "MASTER-GT-TH-01652",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Hades II มีให้เล่นไหม",
+          "mode": "pipeline:game_target_unknown",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบชื่อเกมที่ตรงกับข้อมูลที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nกรุณาตรวจสอบชื่อเกมหรือพิมพ์ชื่อเกมที่ต้องการถามอีกครั้ง"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_controls",
+      "mode": "pipeline:game_control_missing_game_context",
+      "failed": 8,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03098",
+          "question": "ปุ่มควบคุมของ Pokémon Champions บน Nintendo Switch มีอะไรบ้าง",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "none of required alternatives found: ['Pokémon Champions', 'Nintendo Switch']",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        },
+        {
+          "id": "MASTER-GT-TH-03287",
+          "question": "เกมนี้มีปุ่มอะไรบ้าง",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "competition_rules",
+      "mode": "pipeline:chatbot_identity_fast_path",
+      "failed": 8,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04019",
+          "question": "กติกา CS2 เรื่องคุณสมบัติ รายชื่อผู้เล่น และการลงทะเบียน ว่าอย่างไร",
+          "mode": "pipeline:chatbot_identity_fast_path",
+          "failure": [
+            "route expected ['competition_rules'], got knowledge"
+          ],
+          "answer": "ผมคือ PSU Esports Assistant แชทบอทผู้ช่วยของ PSU Esports Studio - Phuket ครับ\n\nผมช่วยตอบคำถามเกี่ยวกับ:\n•    เกมที่มีให้เล่นและเกมที่เกี่ยวข้องกับการแข่งขัน\n•    ปุ่มควบคุมและวิธีเล่นของเกมที่มีข้อมูลยืนยัน\n•    อุปกรณ์และโซนบริการ เช่น PC, PS5, Nintendo Switch, VR และ Cockpit\n•    วิธีจอง เช็คอิน ค่าบริการ เวลาเปิด-ปิด และกฎการใช้งาน\n•    สมาชิกทีม ตำแหน่ง และหมวดสมาชิกของ PSU Esports Studio - Phuket\n\nถ้าเป็นข้อมูลของศูนย์ ผมจะตอบจากฐานข้อมูลที่ยืนยันได้ก่อนเสมอ ถ้ายังไม่มีข้อมูลยืนยัน ผมจะบอกต"
+        },
+        {
+          "id": "MASTER-GT-TH-04021",
+          "question": "ขออ้างอิงกติกา เคาน์เตอร์สไตรก์ 2 ในหัวข้อคุณสมบัติ รายชื่อผู้เล่น และการลงทะเบียน หน่อย",
+          "mode": "pipeline:chatbot_identity_fast_path",
+          "failure": [
+            "route expected ['competition_rules'], got knowledge"
+          ],
+          "answer": "ผมคือ PSU Esports Assistant แชทบอทผู้ช่วยของ PSU Esports Studio - Phuket ครับ\n\nผมช่วยตอบคำถามเกี่ยวกับ:\n•    เกมที่มีให้เล่นและเกมที่เกี่ยวข้องกับการแข่งขัน\n•    ปุ่มควบคุมและวิธีเล่นของเกมที่มีข้อมูลยืนยัน\n•    อุปกรณ์และโซนบริการ เช่น PC, PS5, Nintendo Switch, VR และ Cockpit\n•    วิธีจอง เช็คอิน ค่าบริการ เวลาเปิด-ปิด และกฎการใช้งาน\n•    สมาชิกทีม ตำแหน่ง และหมวดสมาชิกของ PSU Esports Studio - Phuket\n\nถ้าเป็นข้อมูลของศูนย์ ผมจะตอบจากฐานข้อมูลที่ยืนยันได้ก่อนเสมอ ถ้ายังไม่มีข้อมูลยืนยัน ผมจะบอกต"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "competition_rules",
+      "mode": "pipeline:game_meta_clarification",
+      "failed": 8,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04329",
+          "question": "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องการตั้งค่าในเกม ว่าอย่างไร",
+          "mode": "pipeline:game_meta_clarification",
+          "failure": [
+            "route expected ['competition_rules'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ถามเรื่องเกมได้ครับ แต่คำถามนี้ยังกว้างเกินไป เลยไม่ขอดึงเกมใดเกมหนึ่งมาตอบแทน\n\nตัวอย่างที่ถามได้:\n•    `มีเกมอะไรบ้าง`\n•    `PS5 มีเกมอะไรบ้าง`\n•    `TEKKEN 8 คือเกมอะไร`\n•    `TEKKEN 8 มีปุ่มอะไรบ้าง`\n•    `Nintendo Switch มีเกมแนวปาร์ตี้ไหม`"
+        },
+        {
+          "id": "MASTER-GT-TH-04332",
+          "question": "ขอสอบถามหน่อยครับ กำลังจะลงแข่ง CS2 อยากรู้เรื่องการตั้งค่าในเกม",
+          "mode": "pipeline:game_meta_clarification",
+          "failure": [
+            "route expected ['competition_rules'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ถามเรื่องเกมได้ครับ แต่คำถามนี้ยังกว้างเกินไป เลยไม่ขอดึงเกมใดเกมหนึ่งมาตอบแทน\n\nตัวอย่างที่ถามได้:\n•    `มีเกมอะไรบ้าง`\n•    `PS5 มีเกมอะไรบ้าง`\n•    `TEKKEN 8 คือเกมอะไร`\n•    `TEKKEN 8 มีปุ่มอะไรบ้าง`\n•    `Nintendo Switch มีเกมแนวปาร์ตี้ไหม`"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:no_answer",
+      "failed": 7,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01263",
+          "question": "ขอข้อมูลเรื่องวันศุกร์ ตรวจอุปกรณ์",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด schedule ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-01328",
+          "question": "ขอสอบถามหน่อยครับ ขอข้อมูลเรื่องวันศุกร์ ตรวจอุปกรณ์",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด schedule ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:candidate_margin_clarification",
+      "failed": 7,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04754",
+          "question": "ขอข้อมูลเรื่องคริปโต",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['no_answer'], got clarification",
+            "status expected no_answer_expected, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        },
+        {
+          "id": "MASTER-GT-TH-04759",
+          "question": "ขอข้อมูลเรื่องผ่อนค่าเล่น",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['no_answer'], got clarification",
+            "status expected no_answer_expected, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:structured_equipment_catalog",
+      "failed": 7,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04763",
+          "question": "ขอข้อมูลเรื่องเอาเครื่อง pc",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "route expected ['no_answer'], got equipment",
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "อุปกรณ์ใน PC Zone:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (10 Units)\n•    Gaming Monitor (10 Units)\n•    Gaming Keyboard\n•    Gaming Mouse\n•    Gaming Headset\n•    Gaming Chair (10 Units)\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        },
+        {
+          "id": "MASTER-GT-TH-04774",
+          "question": "อันนั้นใช้อะไรเล่น",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_detail",
+      "mode": "pipeline:ambiguity_clarification",
+      "failed": 6,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02319",
+          "question": "Call of Duty เป็นเกมแนวไหน",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Call of Duty มีหลายเกมในรายการปัจจุบันครับ คำถามนี้จึงยังไม่ชัดว่าหมายถึงเกมไหน ถ้าต้องการถามเรื่องข้อมูลเกม ขอเลือกเกมก่อน:\n•    Call of Duty: Modern Warfare III (PlayStation 5 Zone)\n•    Call of Duty: Warzone (PC Zone)"
+        },
+        {
+          "id": "MASTER-GT-TH-02320",
+          "question": "Call of Duty เล่นยังไง",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Call of Duty มีหลายเกมในรายการปัจจุบันครับ คำถามนี้จึงยังไม่ชัดว่าหมายถึงเกมไหน ถ้าต้องการถามเรื่องวิธีเล่น ขอเลือกเกมก่อน:\n•    Call of Duty: Modern Warfare III (PlayStation 5 Zone)\n•    Call of Duty: Warzone (PC Zone)\n\nพิมพ์ต่อได้ เช่น `Call of Duty: Modern Warfare III เล่นยังไง`"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "equipment",
+      "mode": "pipeline:equipment_spec_unverified_en",
+      "failed": 6,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-03400",
+          "question": "What controller is used for PS5",
+          "mode": "pipeline:equipment_spec_unverified_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "The published equipment record does not specify the PS5 controller model.\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-03401",
+          "question": "Could you check this using verified information: What controller is used for PS5",
+          "mode": "pipeline:equipment_spec_unverified_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "The published equipment record does not specify the PS5 controller model.\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "reservation_policy",
+      "mode": "pipeline:candidate_margin_clarification",
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00414",
+          "question": "ขอข้อมูลเรื่องได้เงินคืน",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        },
+        {
+          "id": "MASTER-GT-TH-00478",
+          "question": "ขอสอบถามหน่อยครับ ขอข้อมูลเรื่องได้เงินคืน",
+          "mode": "pipeline:candidate_margin_clarification",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:protected_studio_rule_direct",
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01314",
+          "question": "ของหายต้องทำยังไง",
+          "mode": "pipeline:protected_studio_rule_direct",
+          "failure": [
+            "none of required alternatives found: ['เปิด', 'ปิด', 'จอง', 'ยกเลิก', 'นาที', 'อาหาร']"
+          ],
+          "answer": "กรุณาตรวจสอบทรัพย์สินของท่านทุกครั้งระหว่างการใช้บริการ หากมีการสูญหาย ศูนย์ขอสงวนสิทธิ์ไม่รับผิดชอบในทุกกรณี\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-TH-01379",
+          "question": "ขอสอบถามหน่อยครับ ของหายต้องทำยังไง",
+          "mode": "pipeline:protected_studio_rule_direct",
+          "failure": [
+            "none of required alternatives found: ['เปิด', 'ปิด', 'จอง', 'ยกเลิก', 'นาที', 'อาหาร']"
+          ],
+          "answer": "กรุณาตรวจสอบทรัพย์สินของท่านทุกครั้งระหว่างการใช้บริการ หากมีการสูญหาย ศูนย์ขอสงวนสิทธิ์ไม่รับผิดชอบในทุกกรณี\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:structured_games_catalog",
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04765",
+          "question": "ขอข้อมูลเรื่องโปรไฟล์เกมเมอร์",
+          "mode": "pipeline:structured_games_catalog",
+          "failure": [
+            "route expected ['no_answer'], got games",
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Reside"
+        },
+        {
+          "id": "MASTER-GT-TH-04770",
+          "question": "เกมนี้เล่นที่ไหน",
+          "mode": "pipeline:structured_games_catalog",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Reside"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "reservation_policy",
+      "mode": "pipeline:protected_price_missing_service",
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00412",
+          "question": "What is the studio policy for not pay late check",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        },
+        {
+          "id": "MASTER-GT-EN-00519",
+          "question": "Could you please help me with this: What is the studio policy for not pay late check",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "game_controls",
+      "mode": "pipeline:structured_game_controls_en",
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-02690",
+          "question": "What does the Y button do in Mario Kart Live: Home Circuit on Nintendo Switch",
+          "mode": "pipeline:structured_game_controls_en",
+          "failure": [
+            "none of required alternatives found: ['Y', 'Assist']"
+          ],
+          "answer": "Mario Kart 8 Deluxe controls:\n- L (Left Stick): Steer\n- A: Accelerate\n- B: Brake\n- X: Look Backward\n- ZL: Use Item / Horn\n- ZR: Drift\n- + (Plus): Pause\nSource: https://gameinputdatabase.com/game/57"
+        },
+        {
+          "id": "MASTER-GT-EN-02691",
+          "question": "What does the D-Pad button do in Mario Kart Live: Home Circuit on Nintendo Switch",
+          "mode": "pipeline:structured_game_controls_en",
+          "failure": [
+            "none of required alternatives found: ['D-Pad', 'License']"
+          ],
+          "answer": "Mario Kart 8 Deluxe controls:\n- L (Left Stick): Steer\n- A: Accelerate\n- B: Brake\n- X: Look Backward\n- ZL: Use Item / Horn\n- ZR: Drift\n- + (Plus): Pause\nSource: https://gameinputdatabase.com/game/57"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "members_overview_contact",
+      "mode": "pipeline:english_no_answer",
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04546",
+          "question": "What is the studio policy for studio founder operator",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['overview'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        },
+        {
+          "id": "MASTER-GT-EN-04646",
+          "question": "Who is the leader",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['overview'], got no_answer",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "members_overview_contact",
+      "mode": "pipeline:member_role_not_found_en",
+      "failed": 5,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04621",
+          "question": "Who is the main character",
+          "mode": "pipeline:member_role_not_found_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find a verified PSU Esports Studio - Phuket member record for that requested role."
+        },
+        {
+          "id": "MASTER-GT-EN-04627",
+          "question": "Who is the captain",
+          "mode": "pipeline:member_role_not_found_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find a verified PSU Esports Studio - Phuket member record for that requested role."
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "service_fee",
+      "mode": "pipeline:no_answer",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00007",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เล่น PC 2 ชั่วโมง บุคคลทั่วไปคิดยังไง",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['service_fee'], got games",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00018",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 ราคาเท่าไหร่",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['games', 'service_fee'], got competition_rules",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด competition_rules ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "games_catalog_availability",
+      "mode": "pipeline:ambiguity_clarification",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01604",
+          "question": "ขอข้อมูลเรื่องwarzone เครื่อง",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "route expected ['games'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "คำถามนี้มีได้หลายความหมายครับ ขอระบุเพิ่มนิดหนึ่งว่าต้องการถามเรื่องไหน: อุปกรณ์, รายชื่อเกม/ข้อมูลเกม"
+        },
+        {
+          "id": "MASTER-GT-TH-01608",
+          "question": "ขอข้อมูลเรื่องนินเทนโด overcooked",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "route expected ['games'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Overcooked มีหลายเกมในรายการปัจจุบันครับ คำถามนี้จึงยังไม่ชัดว่าหมายถึงเกมไหน ถ้าต้องการถามเรื่องข้อมูลเกม ขอเลือกเกมก่อน:\n•    Overcooked! (Nintendo Switch Zone)\n•    Overcooked! 2 (Nintendo Switch Zone)"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "competition_rules",
+      "mode": "pipeline:protected_booking_window",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04078",
+          "question": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 ตารางบทลงโทษ ต้องทำยังไง",
+          "mode": "pipeline:protected_booking_window",
+          "failure": [
+            "route expected ['competition_rules'], got schedule"
+          ],
+          "answer": "วันและช่วงเวลาให้บริการตามตารางปกติ (ไม่ใช่สถานะเครื่องว่างแบบสด):\n•    วันจันทร์: เปิด 13:00-16:00; Maintenance 09:00-12:00\n•    วันอังคาร-พฤหัสบดี: เปิด 09:00-12:00, 13:00-16:00\n•    วันศุกร์: เปิด 09:00-12:00; Maintenance 13:00-16:00\n•    วันเสาร์-อาทิตย์: ไม่มีรอบให้บริการหรือจองตามตารางปกติ\nวันปิดพิเศษมีผลก่อนตารางปกติ และช่วงที่เปิดไม่ได้ยืนยันว่าเครื่องยังว่างครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation"
+        },
+        {
+          "id": "MASTER-GT-TH-04108",
+          "question": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 ตารางและเวลาแข่งขัน ต้องทำยังไง",
+          "mode": "pipeline:protected_booking_window",
+          "failure": [
+            "route expected ['competition_rules'], got schedule"
+          ],
+          "answer": "วันและช่วงเวลาให้บริการตามตารางปกติ (ไม่ใช่สถานะเครื่องว่างแบบสด):\n•    วันจันทร์: เปิด 13:00-16:00; Maintenance 09:00-12:00\n•    วันอังคาร-พฤหัสบดี: เปิด 09:00-12:00, 13:00-16:00\n•    วันศุกร์: เปิด 09:00-12:00; Maintenance 13:00-16:00\n•    วันเสาร์-อาทิตย์: ไม่มีรอบให้บริการหรือจองตามตารางปกติ\nวันปิดพิเศษมีผลก่อนตารางปกติ และช่วงที่เปิดไม่ได้ยืนยันว่าเครื่องยังว่างครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:structured_reservation_fact",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04782",
+          "question": "อันนี้จองได้ไหม",
+          "mode": "pipeline:structured_reservation_fact",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-TH-04783",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: อันนี้จองได้ไหม",
+          "mode": "pipeline:structured_reservation_fact",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:structured_schedule",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04786",
+          "question": "เปิดปะ",
+          "mode": "pipeline:structured_schedule",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "เวลาบริการตามตารางคือ Morning 09:00-12:00 และ Afternoon 13:00-16:00\n\nรายละเอียดจากตาราง:\n•    วันจันทร์: Morning 09:00-12:00 = maintenance, Afternoon 13:00-16:00 = open\n•    วันอังคาร: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพุธ: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพฤหัสบดี: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันศุกร์: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = maintenance\nแหล่งข้อมูล: https://esports.compu"
+        },
+        {
+          "id": "MASTER-GT-TH-04787",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: เปิดปะ",
+          "mode": "pipeline:structured_schedule",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "เวลาบริการตามตารางคือ Morning 09:00-12:00 และ Afternoon 13:00-16:00\n\nรายละเอียดจากตาราง:\n•    วันจันทร์: Morning 09:00-12:00 = maintenance, Afternoon 13:00-16:00 = open\n•    วันอังคาร: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพุธ: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันพฤหัสบดี: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = open\n•    วันศุกร์: Morning 09:00-12:00 = open, Afternoon 13:00-16:00 = maintenance\nแหล่งข้อมูล: https://esports.compu"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:competition_facet_not_covered_no_answer",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04794",
+          "question": "กติกา Valorant งานล่าสุดใช้อะไร",
+          "mode": "pipeline:competition_facet_not_covered_no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบหัวข้อกติกาที่ยืนยันได้ตรงกับประเด็นที่ถามในเอกสารของเกมนี้ครับ จึงจะไม่ใช้หัวข้ออื่นมาตอบแทน"
+        },
+        {
+          "id": "MASTER-GT-TH-04795",
+          "question": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: กติกา Valorant งานล่าสุดใช้อะไร",
+          "mode": "pipeline:competition_facet_not_covered_no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบหัวข้อกติกาที่ยืนยันได้ตรงกับประเด็นที่ถามในเอกสารของเกมนี้ครับ จึงจะไม่ใช้หัวข้ออื่นมาตอบแทน"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "service_fee",
+      "mode": "pipeline:price_service_clarification_en",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00062",
+          "question": "How much does TEKKEN 8 cost",
+          "mode": "pipeline:price_service_clarification_en",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "TEKKEN 8 is available on more than one service (PC, PlayStation 5). Which service and duration should I price?\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-00063",
+          "question": "Could you check this using verified information: How much does TEKKEN 8 cost",
+          "mode": "pipeline:price_service_clarification_en",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "TEKKEN 8 is available on more than one service (PC, PlayStation 5). Which service and duration should I price?\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "reservation_policy",
+      "mode": "pipeline:protected_booking_window",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00495",
+          "question": "How many hours in advance must you book",
+          "mode": "pipeline:protected_booking_window",
+          "failure": [
+            "route expected ['reservation'], got schedule"
+          ],
+          "answer": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-00602",
+          "question": "Could you please help me with this: How many hours in advance must you book",
+          "mode": "pipeline:protected_booking_window",
+          "failure": [
+            "route expected ['reservation'], got schedule"
+          ],
+          "answer": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:calendar_date_clarification_en",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-01258",
+          "question": "Is the studio open on public holidays",
+          "mode": "pipeline:calendar_date_clarification_en",
+          "failure": [
+            "route expected ['reservation', 'schedule'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which public holiday or date do you mean? Recorded closures take precedence over regular opening hours.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-01359",
+          "question": "Could you please help me with this: Is the studio open on public holidays",
+          "mode": "pipeline:calendar_date_clarification_en",
+          "failure": [
+            "route expected ['reservation', 'schedule'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which public holiday or date do you mean? Recorded closures take precedence over regular opening hours.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "game_detail",
+      "mode": "pipeline:missing_english_localization",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-02309",
+          "question": "Could you check this using verified information: What kind of game is VALORANT",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "VALORANT: This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-02310",
+          "question": "I am planning a visit and need to know: What kind of game is VALORANT",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "VALORANT: This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "game_controls",
+      "mode": "pipeline:game_controls_no_source_en",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-03271",
+          "question": "What are all the buttons in The Last of Us Part II",
+          "mode": "pipeline:game_controls_no_source_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find a verified control mapping for The Last of Us Part I / Part II. I will not reuse controls from a different game.\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-03272",
+          "question": "How do you use the controller in The Last of Us Part II",
+          "mode": "pipeline:game_controls_no_source_en",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find a verified control mapping for The Last of Us Part I / Part II. I will not reuse controls from a different game.\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "competition_rules",
+      "mode": "pipeline:competition_source_localization_pending_en",
+      "failed": 4,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04152",
+          "question": "For Arena of Valor, can you verify the rule on the rulebook scope and tournament identity",
+          "mode": "pipeline:competition_source_localization_pending_en",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "Verified competition-rule evidence was found for Arena of Valor (RoV) and VALORANT in the original Thai sources for this comparison. Approved English wording for every required rule section is not available yet, so I will not translate the rules live.\nOriginal source in Thai: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-EN-04263",
+          "question": "How do CS2 and VALORANT technical pause rules differ",
+          "mode": "pipeline:competition_source_localization_pending_en",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "Verified competition-rule evidence was found for Counter-Strike 2 and VALORANT in the original Thai sources for this comparison. Approved English wording for every required rule section is not available yet, so I will not translate the rules live.\nOriginal source in Thai: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "equipment",
+      "mode": "pipeline:structured_games_genre_list",
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03382",
+          "question": "Nintendo Switch Zone มีอะไรให้ใช้บ้าง",
+          "mode": "pipeline:structured_games_genre_list",
+          "failure": [
+            "route expected ['clarification', 'equipment'], got games"
+          ],
+          "answer": "เกมแนว Sports / เกมกีฬา ที่พบในรายการเกมที่ยืนยันได้:\n\nEA Sports FC 24\n•    แนวเกม: เกมฟุตบอล\n•    เล่นได้ที่: PlayStation 5 Zone\n\nNintendo Switch Sports\n•    แนวเกม: เกมกีฬา Motion Control\n•    เล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+        },
+        {
+          "id": "MASTER-GT-TH-03500",
+          "question": "ขอสอบถามหน่อยครับ Nintendo Switch Zone มีอะไรให้ใช้บ้าง",
+          "mode": "pipeline:structured_games_genre_list",
+          "failure": [
+            "route expected ['clarification', 'equipment'], got games"
+          ],
+          "answer": "เกมแนว Sports / เกมกีฬา ที่พบในรายการเกมที่ยืนยันได้:\n\nEA Sports FC 24\n•    แนวเกม: เกมฟุตบอล\n•    เล่นได้ที่: PlayStation 5 Zone\n\nNintendo Switch Sports\n•    แนวเกม: เกมกีฬา Motion Control\n•    เล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:guard_no_answer",
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04846",
+          "question": "เครื่องไหนดีที่สุด",
+          "mode": "pipeline:guard_no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-04848",
+          "question": "มีอะไรแนะนำไหม",
+          "mode": "pipeline:guard_no_answer",
+          "failure": [
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:protected_price_missing_service",
+      "failed": 3,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04982",
+          "question": "How do frame rate and resolution differ",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['general', 'knowledge'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        },
+        {
+          "id": "MASTER-GT-EN-04991",
+          "question": "How do frame rate and resolution differ briefly",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['general', 'knowledge'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "service_fee",
+      "mode": "pipeline:protected_price_missing_service",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00019",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า Tekken 8 ราคาเท่าไหร่",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['games', 'service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ต้องการทราบค่าบริการของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? ราคาแตกต่างตามบริการและกลุ่มผู้ใช้ จึงยังระบุราคาเดียวไม่ได้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-00300",
+          "question": "ขอสอบถามหน่อยครับ กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า Tekken 8 ราคาเท่าไหร่",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['games', 'service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ต้องการทราบค่าบริการของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? ราคาแตกต่างตามบริการและกลุ่มผู้ใช้ จึงยังระบุราคาเดียวไม่ได้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "games_catalog_availability",
+      "mode": "pipeline:games_known_unsupported_fast_path",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01649",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ที่ศูนย์มี Minecraft ไหม",
+          "mode": "pipeline:games_known_unsupported_fast_path",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบ Minecraft ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God "
+        },
+        {
+          "id": "MASTER-GT-TH-01978",
+          "question": "ขอสอบถามหน่อยครับ กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ที่ศูนย์มี Minecraft ไหม",
+          "mode": "pipeline:games_known_unsupported_fast_path",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบ Minecraft ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God "
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "games_catalog_availability",
+      "mode": "pipeline:structured_booking_game_family_clarification",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01773",
+          "question": "ถ้าจะเล่น Call of Duty ต้องจองอะไร",
+          "mode": "pipeline:structured_booking_game_family_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Call of Duty ในข้อมูลตอนนี้มีมากกว่า 1 เกมครับ ต้องเลือกให้ตรงกับเกมที่จะเล่น\n•    ถ้าหมายถึง Call of Duty: Modern Warfare III ให้จอง PlayStation 5 #01-#02\n•    ถ้าหมายถึง Call of Duty: Warzone ให้จอง PC #03-#10\nพิมพ์ต่อได้เลยว่า Warzone หรือ Modern Warfare III ถ้าต้องการให้ช่วยเจาะจง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-TH-02102",
+          "question": "ขอสอบถามหน่อยครับ ถ้าจะเล่น Call of Duty ต้องจองอะไร",
+          "mode": "pipeline:structured_booking_game_family_clarification",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Call of Duty ในข้อมูลตอนนี้มีมากกว่า 1 เกมครับ ต้องเลือกให้ตรงกับเกมที่จะเล่น\n•    ถ้าหมายถึง Call of Duty: Modern Warfare III ให้จอง PlayStation 5 #01-#02\n•    ถ้าหมายถึง Call of Duty: Warzone ให้จอง PC #03-#10\nพิมพ์ต่อได้เลยว่า Warzone หรือ Modern Warfare III ถ้าต้องการให้ช่วยเจาะจง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_controls",
+      "mode": "pipeline:structured_game_controls_no_current_game",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-02684",
+          "question": "ในเกม Mario Kart Live: Home Circuit บน Nintendo Switch ปุ่ม Left Stick ใช้ทำอะไร",
+          "mode": "pipeline:structured_game_controls_no_current_game",
+          "failure": [
+            "none of required alternatives found: ['Left Stick', 'เลี้ยว']"
+          ],
+          "answer": "ตอนนี้ยังไม่พบ Mario Kart Live: Home Circuit ในรายการเกมปัจจุบันของ PSU Esports Studio - Phuket ครับ\nจึงไม่ดึงปุ่มของเกมอื่น เช่น Mario Kart 8 Deluxe มาตอบแทน\nเกมตระกูล Mario ที่อยู่ในรายการปัจจุบันคือ: Mario Kart 8 Deluxe, Mario Party Superstars, New Super Mario Bros. U Deluxe, Super Mario Odyssey\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-TH-02691",
+          "question": "ในเกม Mario Kart Live: Home Circuit บน Nintendo Switch ปุ่ม D-Pad ใช้ทำอะไร",
+          "mode": "pipeline:structured_game_controls_no_current_game",
+          "failure": [
+            "none of required alternatives found: ['D-Pad', 'ดูใบขับขี่และสถิติ']"
+          ],
+          "answer": "ตอนนี้ยังไม่พบ Mario Kart Live: Home Circuit ในรายการเกมปัจจุบันของ PSU Esports Studio - Phuket ครับ\nจึงไม่ดึงปุ่มของเกมอื่น เช่น Mario Kart 8 Deluxe มาตอบแทน\nเกมตระกูล Mario ที่อยู่ในรายการปัจจุบันคือ: Mario Kart 8 Deluxe, Mario Party Superstars, New Super Mario Bros. U Deluxe, Super Mario Odyssey\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_controls",
+      "mode": "pipeline:structured_game_controls",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03243",
+          "question": "Resident Evil 4 (Remake) ปุ่มทั้งหมดมีอะไรบ้าง",
+          "mode": "pipeline:structured_game_controls",
+          "failure": [
+            "missing required text: ['Resident Evil 4 (Remake)']"
+          ],
+          "answer": "Resident Evil 4 มีข้อมูลปุ่มควบคุมดังนี้:\nPlayStation / PS5\n•    L (Left Stick): เคลื่อนที่\n•    L3: วิ่งสปรินต์\n•    R (Right Stick): มุมกล้อง\n•    L2 (Hold): เล็ง\n•    L1: ปัดป้อง\n•    R1: วิ่ง / กลับหลังหัน\n•    R2: ยิง / โจมตีด้วยมีด\n•    Triangle: คลังไอเทม\n•    Circle: ย่อตัว\n•    Square: รีโหลด\n•    Cross: โต้ตอบ\n•    D-Pad: เปลี่ยนอาวุธ\n•    Options: หยุดเกม\n•    Touch Pad: แผนที่\nแหล่งข้อมูล: https://gameinputdatabase.com/game/45"
+        },
+        {
+          "id": "MASTER-GT-TH-03271",
+          "question": "The Last of Us Part II ปุ่มทั้งหมดมีอะไรบ้าง",
+          "mode": "pipeline:structured_game_controls",
+          "failure": [
+            "missing required text: ['The Last of Us Part II']"
+          ],
+          "answer": "The Last of Us Part I มีข้อมูลปุ่มควบคุมดังนี้:\nPlayStation / PS5\n•    L (Left Stick): เคลื่อนที่ - บังคับทิศทางการเดินและการย่องเคลื่อนที่ของตัวละคร\n•    L3 (Click Left Stick): หันมองจุดสนใจ - กดเพื่อหันมุมกล้องไปยังวัตถุ เหตุการณ์ หรือจุดสำคัญในฉากที่เกมแนะนำทันที\n•    R (Right Stick): มุมกล้อง - หมุนเพื่อกวาดสายตาและควบคุมทิศทางมุมกล้อง\n•    R3 (Click Right Stick): ไฟฉาย - กดคลิกลงไปตรง ๆ เพื่อเปิดหรือปิดไฟฉายในพื้นที่มืด (และใช้เขย่าจอยเมื่อไฟฉายดับ)\n•    L1: วิ่งสปรินต์ (กดค้าง) - กดค้างไว้"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "equipment",
+      "mode": "pipeline:no_answer",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03349",
+          "question": "ขอข้อมูลเรื่องเก้าอี้เกมมิ่ง pc",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['equipment'], got games",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        },
+        {
+          "id": "MASTER-GT-TH-03585",
+          "question": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: ขอข้อมูลเรื่องเก้าอี้เกมมิ่ง pc",
+          "mode": "pipeline:no_answer",
+          "failure": [
+            "route expected ['equipment'], got games",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "members_overview_contact",
+      "mode": "pipeline:rag_direct_curated",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04543",
+          "question": "ขอข้อมูลเรื่องcontact facebook",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "route expected ['contact'], got reservation"
+          ],
+          "answer": "เมื่อกดจองแล้วจะไม่สามารถแก้ไขข้อมูลได้ หากต้องการแก้ไขต้องยกเลิกการจองผ่านทางอีเมลก่อนเวลาใช้งานอย่างน้อย 1 ชั่วโมง แล้วจองใหม่ พร้อมแนบสลิปเดิม\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        },
+        {
+          "id": "MASTER-GT-TH-04678",
+          "question": "ขอสอบถามหน่อยครับ ขอข้อมูลเรื่องcontact facebook",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "route expected ['contact'], got reservation"
+          ],
+          "answer": "เมื่อกดจองแล้วจะไม่สามารถแก้ไขข้อมูลได้ หากต้องการแก้ไขต้องยกเลิกการจองผ่านทางอีเมลก่อนเวลาใช้งานอย่างน้อย 1 ชั่วโมง แล้วจองใหม่ พร้อมแนบสลิปเดิม\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "members_overview_contact",
+      "mode": "pipeline:category_rule_fast_path",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04547",
+          "question": "ขอข้อมูลเรื่องpsu esports คืออะไร",
+          "mode": "pipeline:category_rule_fast_path",
+          "failure": [
+            "route expected ['overview'], got knowledge"
+          ],
+          "answer": "PSU Esports Studio - Phuket คือศูนย์พัฒนาการเรียนรู้ด้านอีสปอร์ตเพื่อความเป็นเลิศและขับเคลื่อนเศรษฐกิจในพื้นที่ภาคใต้ สาขาภูเก็ต ของมหาวิทยาลัยสงขลานครินทร์ และดำเนินการโดยวิทยาลัยการคอมพิวเตอร์\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        },
+        {
+          "id": "MASTER-GT-TH-04682",
+          "question": "ขอสอบถามหน่อยครับ ขอข้อมูลเรื่องpsu esports คืออะไร",
+          "mode": "pipeline:category_rule_fast_path",
+          "failure": [
+            "route expected ['overview'], got knowledge"
+          ],
+          "answer": "PSU Esports Studio - Phuket คือศูนย์พัฒนาการเรียนรู้ด้านอีสปอร์ตเพื่อความเป็นเลิศและขับเคลื่อนเศรษฐกิจในพื้นที่ภาคใต้ สาขาภูเก็ต ของมหาวิทยาลัยสงขลานครินทร์ และดำเนินการโดยวิทยาลัยการคอมพิวเตอร์\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:multi_question_splitter",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04827",
+          "question": "PS5 มีเกมอะไรกับราคาเท่าไหร่",
+          "mode": "pipeline:multi_question_splitter",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: PS5 มีเกมอะไร\nยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ\n\nคำถามที่ 2: PS5 ราคาเท่าไหร่\nPlayStation 5 60 นาที (1 ชั่วโมง, 1-2 คน)\n•    PSU Student and Staff: 0 บาท\n•    PSU Alumni and General Student: 50 บาท\n•    General Adult: 150 บาท\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+        },
+        {
+          "id": "MASTER-GT-TH-04836",
+          "question": "Call of Duty ปุ่มยิงอะไร แล้วเล่นได้ที่ไหน",
+          "mode": "pipeline:multi_question_splitter",
+          "failure": [
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: Call of Duty ปุ่มยิงอะไร\nCall of Duty มีหลายเกมในรายการปัจจุบันครับ คำถามนี้จึงยังไม่ชัดว่าหมายถึงเกมไหน ถ้าต้องการถามเรื่องปุ่ม/วิธีควบคุม ขอเลือกเกมก่อน:\n•    Call of Duty: Modern Warfare III (PlayStation 5 Zone)\n•    Call of Duty: Warzone (PC Zone)\n\nพิมพ์ต่อได้ เช่น `Call of Duty: Modern Warfare III ปุ่มอะไร` หรือ `Call of Duty: Warzone ปุ่มอะไร`\n\nคำถามที่ 2: Call of Duty เล่นได้ที่ไหน\nพบเกมที่เกี่ยวข้องกับ Call of Duty ในรายการที่ยืนยันได้"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:games_known_unsupported_fast_path",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04857",
+          "question": "มี ROV ให้เล่นในศูนย์ไหม",
+          "mode": "pipeline:games_known_unsupported_fast_path",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบ RoV / Arena of Valor ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nในฐานข้อมูลมีข้อมูลกติกาการแข่งขันของเกมนี้ แต่ยังไม่พบว่าอยู่ในรายการเกมให้เล่นของศูนย์\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III"
+        },
+        {
+          "id": "MASTER-GT-TH-04858",
+          "question": "Roblox เล่นได้ไหม",
+          "mode": "pipeline:games_known_unsupported_fast_path",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบ Roblox ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of "
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "service_fee",
+      "mode": "pipeline:protected_price_missing_service",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-00064",
+          "question": "I am planning a visit and need to know: How much does TEKKEN 8 cost",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['games', 'service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        },
+        {
+          "id": "MASTER-GT-EN-00354",
+          "question": "Could you please help me with this: I am planning a visit and need to know: How much does TEKKEN 8 cost",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "route expected ['games', 'service_fee'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "Which service would you like the fee for: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR? The rate depends on the service and user group."
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "equipment",
+      "mode": "pipeline:live_booking_status_unavailable",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-03421",
+          "question": "What facilities are available in the Cockpit Zone",
+          "mode": "pipeline:live_booking_status_unavailable",
+          "failure": [
+            "route expected ['clarification', 'equipment'], got schedule",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "For 2026-09-27 (Asia/Bangkok), I cannot confirm the live opening or booking status because the Booking Dashboard is unavailable. I will not present a saved schedule as live availability. Please check the reservation page or try again shortly.\nSource: https://esports.computing.psu.ac.th/reservation"
+        },
+        {
+          "id": "MASTER-GT-EN-03586",
+          "question": "Could you please help me with this: What facilities are available in the Cockpit Zone",
+          "mode": "pipeline:live_booking_status_unavailable",
+          "failure": [
+            "route expected ['clarification', 'equipment'], got schedule",
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "For 2026-09-27 (Asia/Bangkok), I cannot confirm the live opening or booking status because the Booking Dashboard is unavailable. I will not present a saved schedule as live availability. Please check the reservation page or try again shortly.\nSource: https://esports.computing.psu.ac.th/reservation"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "competition_rules",
+      "mode": "pipeline:protected_booking_window",
+      "failed": 2,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04106",
+          "question": "Please retrieve the official CS2 rulebook evidence for the tournament schedule",
+          "mode": "pipeline:protected_booking_window",
+          "failure": [
+            "route expected ['competition_rules'], got schedule"
+          ],
+          "answer": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        },
+        {
+          "id": "MASTER-GT-EN-04380",
+          "question": "Could you please help me with this: Please retrieve the official CS2 rulebook evidence for the tournament schedule",
+          "mode": "pipeline:protected_booking_window",
+          "failure": [
+            "route expected ['competition_rules'], got schedule"
+          ],
+          "answer": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "reservation_policy",
+      "mode": "pipeline:protected_price_missing_service",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00646",
+          "question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า หลังจองต้องจ่ายภายในกี่นาที",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "none of required alternatives found: ['จอง', 'เช็คอิน', 'ชำระ', 'session', 'ยกเลิก']",
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ต้องการทราบค่าบริการของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? ราคาแตกต่างตามบริการและกลุ่มผู้ใช้ จึงยังระบุราคาเดียวไม่ได้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "reservation_policy",
+      "mode": "pipeline:ambiguity_clarification",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-00766",
+          "question": "สรุปขั้นตอนจองให้หน่อย ขอรายละเอียดแบบสั้น ๆ",
+          "mode": "pipeline:ambiguity_clarification",
+          "failure": [
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "คำถามนี้ยังกว้างเกินไปครับ ยังไม่แน่ใจว่าต้องการถามเรื่องไหนของ PSU Esports Studio - Phuket\nถามให้เจาะจงได้ เช่น `มีเกมอะไรบ้าง`, `มีอุปกรณ์อะไรบ้าง`, `จองยังไง`, `ราคา PS5 เท่าไหร่` หรือ `TEKKEN 8 มีปุ่มอะไรบ้าง`"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:protected_price_missing_service",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01506",
+          "question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ต้องจ่ายภายในกี่นาที",
+          "mode": "pipeline:protected_price_missing_service",
+          "failure": [
+            "none of required alternatives found: ['เปิด', 'ปิด', 'จอง', 'ยกเลิก', 'นาที', 'อาหาร']",
+            "route expected ['reservation'], got clarification",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ต้องการทราบค่าบริการของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? ราคาแตกต่างตามบริการและกลุ่มผู้ใช้ จึงยังระบุราคาเดียวไม่ได้ครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "schedule_calendar",
+      "mode": "pipeline:current_service_slot_fast_path",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-01585",
+          "question": "ตอนนี้ศูนย์เปิดอยู่ไหม ขอรายละเอียดแบบสั้น ๆ",
+          "mode": "pipeline:current_service_slot_fast_path",
+          "failure": [
+            "status expected live_lookup_required, got answer"
+          ],
+          "answer": "ตอนนี้ยังเล่นไม่ได้ครับ วันนี้ศูนย์ปิดให้บริการ (no_regular_service)\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "game_controls",
+      "mode": "pipeline:structured_game_controls_no_data",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03109",
+          "question": "ปุ่มควบคุมของ Delta Force บน PlayStation / PS5 มีอะไรบ้าง",
+          "mode": "pipeline:structured_game_controls_no_data",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "Delta Force มีอยู่ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nเล่นได้ที่: PlayStation 5 Zone\nยังไม่พบข้อมูลปุ่มควบคุมของ Delta Force ที่ยืนยันได้ในฐานข้อมูลตอนนี้ครับ\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "equipment",
+      "mode": "pipeline:game_meta_clarification",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03467",
+          "question": "ขอสอบถามหน่อยครับ ขอข้อมูลเรื่องเก้าอี้เกมมิ่ง pc",
+          "mode": "pipeline:game_meta_clarification",
+          "failure": [
+            "route expected ['equipment'], got games",
+            "status expected answer_available, got clarification"
+          ],
+          "answer": "ถามเรื่องเกมได้ครับ แต่คำถามนี้ยังกว้างเกินไป เลยไม่ขอดึงเกมใดเกมหนึ่งมาตอบแทน\n\nตัวอย่างที่ถามได้:\n•    `มีเกมอะไรบ้าง`\n•    `PS5 มีเกมอะไรบ้าง`\n•    `TEKKEN 8 คือเกมอะไร`\n•    `TEKKEN 8 มีปุ่มอะไรบ้าง`\n•    `Nintendo Switch มีเกมแนวปาร์ตี้ไหม`"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "studio_rules_penalties",
+      "mode": "pipeline:protected_damage_responsibility",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03875",
+          "question": "ถ้าจะไปใช้บริการจริง ขอข้อมูลเรื่องกินข้าว เสียงดัง จอยพัง",
+          "mode": "pipeline:protected_damage_responsibility",
+          "failure": [
+            "route expected ['rules'], got penalty"
+          ],
+          "answer": "ถ้าทำอุปกรณ์เสียหาย ผู้ใช้งานต้องรับผิดชอบค่าปรับหรือค่าชดเชยตามระดับความเสียหาย ตั้งแต่ความเสียหายเล็กน้อย 100–500 บาท ความเสียหายปานกลางตามราคาจริงหรือ 500–2,000 บาท ไปจนถึงความเสียหายร้ายแรงที่ต้องชดเชยราคาทรัพย์สินเต็มจำนวน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "studio_rules_penalties",
+      "mode": "pipeline:structured_equipment_catalog",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-03990",
+          "question": "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องพบปัญหา เครื่อง",
+          "mode": "pipeline:structured_equipment_catalog",
+          "failure": [
+            "route expected ['rules'], got equipment"
+          ],
+          "answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เคร"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "competition_rules",
+      "mode": "pipeline:protected_checkin_required",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04266",
+          "question": "ไปถึงหน้างานแข่ง RoV แล้วต้องเช็กอินหรือรายงานตัวตามขั้นตอนอะไรบ้าง",
+          "mode": "pipeline:protected_checkin_required",
+          "failure": [
+            "route expected ['competition_rules', 'no_answer'], got reservation",
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ต้องเช็กอินครับ ให้เช็กอินก่อนเวลาเริ่มรอบที่จอง โดยเช็กอินล่วงหน้าได้สูงสุด 30 นาที และแสดงบัตรนักศึกษา บัตรบุคลากร หรือบัตรประชาชน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:game_control_missing_game_context",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04753",
+          "question": "ขอข้อมูลเรื่องซ่อม controller",
+          "mode": "pipeline:game_control_missing_game_context",
+          "failure": [
+            "route expected ['no_answer'], got games",
+            "status expected no_answer_expected, got clarification"
+          ],
+          "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:protected_food_consumption",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04756",
+          "question": "ขอข้อมูลเรื่องอาหาร ถึงโต๊ะ",
+          "mode": "pipeline:protected_food_consumption",
+          "failure": [
+            "route expected ['no_answer'], got rules",
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "อนุญาตให้รับประทานอาหารและเครื่องดื่มเฉพาะในพื้นที่ที่กำหนดเท่านั้น\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:rag_direct_curated",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04761",
+          "question": "ขอข้อมูลเรื่องเช่า notebook กลับบ้าน",
+          "mode": "pipeline:rag_direct_curated",
+          "failure": [
+            "route expected ['no_answer'], got reservation",
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ตอนจองต้องกรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล, เบอร์โทรศัพท์ และคอมเมนต์ถ้ามี จากนั้นชำระเงินโดยโอนเข้าบัญชีธนาคารและแนบสลิปการโอนเงิน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:structured_game_detail",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04766",
+          "question": "ขอข้อมูลเรื่องโค้ช valorant",
+          "mode": "pipeline:structured_game_detail",
+          "failure": [
+            "route expected ['no_answer'], got games",
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "VALORANT: VALORANT คือเกมยิงเชิงกลยุทธ์ที่ผู้เล่นเลือก Agent ที่มีสกิลเฉพาะ แล้วเล่นเป็นฝ่ายบุก/รับในแต่ละรอบ\nแนวเกม: เกมยิง Tactical FPS แบบทีม 5v5\nวิธีเล่นโดยสรุป: ฝ่ายบุกต้องวาง Spike ส่วนฝ่ายรับต้องป้องกันพื้นที่หรือกู้ Spike การเล่นเน้นการเล็ง การสื่อสาร การใช้สกิล และการเล่นเป็นทีม\nเล่นได้ที่: PC Zone\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:structured_service_game_availability",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04772",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เกมนี้เล่นที่ไหน",
+          "mode": "pipeline:structured_service_game_availability",
+          "failure": [
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "บริการที่ถาม มีเกมที่ยืนยันได้ดังนี้\n\nPC #01-#02 (60 นาที, 1 คน)\n•    TEKKEN 8\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    VALORANT\nหมายเหตุ: PC #01-#02 มี TEKKEN 8 แต่ไม่มี Call of Duty: Warzone\nหมายเหตุ: PC #01-#02 และ PC #03-#10 มี Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS, VALORANT เหมือนกัน\n\nPC #03-#10 (60 นาที, 1 คน)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    VALORANT\nหมายเหตุ: PC #03-#"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:studio_rules_overview_fast_path",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04792",
+          "question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า กติกาแข่งเป็นยังไง",
+          "mode": "pipeline:studio_rules_overview_fast_path",
+          "failure": [
+            "route expected ['clarification', 'competition_rules', 'general'], got events_news",
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "กติกาการใช้บริการในศูนย์โดยสรุปครับ\n•    ฝากสัมภาระก่อนเข้าใช้บริการ และศูนย์ไม่รับผิดชอบทรัพย์สินสูญหาย\n•    รับประทานอาหารและเครื่องดื่มได้เฉพาะพื้นที่ที่กำหนด\n•    คืนอุปกรณ์และแผ่นเกมหลังใช้งานเสร็จ\n•    งดส่งเสียงดังเกินควร และห้ามพูดจาดูหมิ่นหรือเสียดสีผู้อื่น\n•    ห้ามเคลื่อนย้ายอุปกรณ์/สิ่งของโดยไม่ได้รับอนุญาต และห้ามใช้ปลั๊กไฟส่วนตัวโดยไม่ได้รับอนุญาต\n•    ห้ามสูบบุหรี่ เสพสารเสพติด ดื่มแอลกอฮอล์ พกอาวุธ ทะเลาะวิวาท หรือเล่นการพนัน\n•    หากทำอุปกรณ์เสียหาย อาจมีค่าปรับ/ค่าซ่อมหรือชดเชย"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:game_target_unknown",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04856",
+          "question": "มี GTA V ไหม",
+          "mode": "pipeline:game_target_unknown",
+          "failure": [
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ยังไม่พบชื่อเกมที่ตรงกับข้อมูลที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nกรุณาตรวจสอบชื่อเกมหรือพิมพ์ชื่อเกมที่ต้องการถามอีกครั้ง"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:general_input_clarification",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04864",
+          "question": "ช่วยทำการบ้านคณิตให้หน่อย",
+          "mode": "pipeline:general_input_clarification",
+          "failure": [
+            "status expected no_answer_expected, got clarification"
+          ],
+          "answer": "ตอนนี้ยังไม่มีโจทย์คณิตที่ต้องการให้ช่วยครับ กรุณาส่งโจทย์ ตัวเลข สมการ หรือรูปโจทย์มาเพิ่ม แล้วจะช่วยอธิบายวิธีทำให้ตรงข้อครับ"
+        }
+      ]
+    },
+    {
+      "locale": "th",
+      "domain": "compound_context_boundary",
+      "mode": "pipeline:chatbot_identity_fast_path",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-TH-04973",
+          "question": "ช่วยสรุปวิธีพูดขอบคุณแบบสุภาพ 2 ประโยค ตอบเป็นภาษาไทย",
+          "mode": "pipeline:chatbot_identity_fast_path",
+          "failure": [
+            "none of required alternatives found: ['ขอบคุณ']",
+            "status expected no_answer_expected, got answer"
+          ],
+          "answer": "ผมคือ PSU Esports Assistant แชทบอทผู้ช่วยของ PSU Esports Studio - Phuket ครับ\n\nผมช่วยตอบคำถามเกี่ยวกับ:\n•    เกมที่มีให้เล่นและเกมที่เกี่ยวข้องกับการแข่งขัน\n•    ปุ่มควบคุมและวิธีเล่นของเกมที่มีข้อมูลยืนยัน\n•    อุปกรณ์และโซนบริการ เช่น PC, PS5, Nintendo Switch, VR และ Cockpit\n•    วิธีจอง เช็คอิน ค่าบริการ เวลาเปิด-ปิด และกฎการใช้งาน\n•    สมาชิกทีม ตำแหน่ง และหมวดสมาชิกของ PSU Esports Studio - Phuket\n\nถ้าเป็นข้อมูลของศูนย์ ผมจะตอบจากฐานข้อมูลที่ยืนยันได้ก่อนเสมอ ถ้ายังไม่มีข้อมูลยืนยัน ผมจะบอกต"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "game_controls",
+      "mode": "pipeline:structured_service_fee_en",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-02923",
+          "question": "What does the Cross (กากบาท) button do in It Takes Two on PlayStation / PS5",
+          "mode": "pipeline:structured_service_fee_en",
+          "failure": [
+            "none of required alternatives found: ['Cross (กากบาท)', 'Jump']",
+            "route expected ['games'], got service_fee"
+          ],
+          "answer": "PlayStation 5 - 1 hour (1-2 people)\n- PSU students and staff: 0 THB\n- PSU alumni and students from other institutions: 50 THB\n- General adults: 150 THB\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "game_controls",
+      "mode": "pipeline:missing_english_localization",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-03220",
+          "question": "How do you use the joystick in Moving Out 2",
+          "mode": "pipeline:missing_english_localization",
+          "failure": [
+            "status expected answer_available, got localization_pending"
+          ],
+          "answer": "Moving Out 2: This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)"
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "game_controls",
+      "mode": "pipeline:english_no_answer",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-03289",
+          "question": "How to play",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "status expected answer_available, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "competition_rules",
+      "mode": "pipeline:english_no_answer",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04259",
+          "question": "What are the timeout rules",
+          "mode": "pipeline:english_no_answer",
+          "failure": [
+            "route expected ['clarification', 'competition_rules'], got no_answer",
+            "status expected clarification_required, got no_answer"
+          ],
+          "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+        }
+      ]
+    },
+    {
+      "locale": "en",
+      "domain": "competition_rules",
+      "mode": "pipeline:structured_service_capacity_en",
+      "failed": 1,
+      "examples": [
+        {
+          "id": "MASTER-GT-EN-04260",
+          "question": "How many players can a team have",
+          "mode": "pipeline:structured_service_capacity_en",
+          "failure": [
+            "route expected ['clarification', 'competition_rules'], got reservation",
+            "status expected clarification_required, got answer"
+          ],
+          "answer": "Verified service capacity:\n- PC #01-#02: 1 person\n- PC #03-#10: 1 person\n- PlayStation 5 #01-#02: 1-2 people\n- Nintendo Switch (1-2 Persons): 1-2 people\n- Nintendo Switch (1-4 Persons): 1-4 people\n- Cockpit #01-#02: 1 person\n- VR Station 30 minutes: 1-5 people\n- VR Station 1 hour: 1-5 people\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+        }
+      ]
+    }
+  ],
+  "by_expected_status": [
+    {
+      "locale": "en",
+      "expected_status": "answer_available",
+      "total": 3809,
+      "passed": 3251,
+      "failed": 558,
+      "actual_statuses": {
+        "answer": 3263,
+        "clarification": 33,
+        "no_answer": 46,
+        "localization_pending": 467
+      }
+    },
+    {
+      "locale": "en",
+      "expected_status": "clarification_required",
+      "total": 61,
+      "passed": 59,
+      "failed": 2,
+      "actual_statuses": {
+        "clarification": 59,
+        "no_answer": 1,
+        "answer": 1
+      }
+    },
+    {
+      "locale": "en",
+      "expected_status": "live_lookup_required",
+      "total": 404,
+      "passed": 404,
+      "failed": 0,
+      "actual_statuses": {
+        "no_answer": 382,
+        "answer": 22
+      }
+    },
+    {
+      "locale": "en",
+      "expected_status": "localization_pending",
+      "total": 543,
+      "passed": 543,
+      "failed": 0,
+      "actual_statuses": {
+        "answer": 132,
+        "localization_pending": 411
+      }
+    },
+    {
+      "locale": "en",
+      "expected_status": "no_answer_expected",
+      "total": 157,
+      "passed": 157,
+      "failed": 0,
+      "actual_statuses": {
+        "no_answer": 157
+      }
+    },
+    {
+      "locale": "en",
+      "expected_status": "safe_clarification",
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "actual_statuses": {
+        "clarification": 9
+      }
+    },
+    {
+      "locale": "en",
+      "expected_status": "safe_no_answer",
+      "total": 17,
+      "passed": 17,
+      "failed": 0,
+      "actual_statuses": {
+        "no_answer": 17
+      }
+    },
+    {
+      "locale": "th",
+      "expected_status": "answer_available",
+      "total": 4234,
+      "passed": 3969,
+      "failed": 265,
+      "actual_statuses": {
+        "answer": 4050,
+        "no_answer": 88,
+        "clarification": 96
+      }
+    },
+    {
+      "locale": "th",
+      "expected_status": "clarification_required",
+      "total": 80,
+      "passed": 30,
+      "failed": 50,
+      "actual_statuses": {
+        "answer": 40,
+        "clarification": 30,
+        "no_answer": 10
+      }
+    },
+    {
+      "locale": "th",
+      "expected_status": "live_lookup_required",
+      "total": 458,
+      "passed": 431,
+      "failed": 27,
+      "actual_statuses": {
+        "no_answer": 389,
+        "answer": 69
+      }
+    },
+    {
+      "locale": "th",
+      "expected_status": "no_answer_expected",
+      "total": 228,
+      "passed": 89,
+      "failed": 139,
+      "actual_statuses": {
+        "no_answer": 189,
+        "answer": 32,
+        "clarification": 7
+      }
+    }
+  ],
+  "failure_flag_counts": {
+    "route_only": 97,
+    "status_only": 661,
+    "content_only": 93,
+    "multiple_flags": 190,
+    "latency_any": 0
+  }
+}

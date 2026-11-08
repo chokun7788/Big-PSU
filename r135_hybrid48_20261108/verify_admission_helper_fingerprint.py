@@ -1,0 +1,8 @@
+"""Check admission implementation binding against an isolated helper edit."""
+import json,os,shutil,subprocess,sys,time
+from verification_support import R
+from app.knowledge.common.domain_flow.training_contract import IMPLEMENTATION_SHA256,file_sha
+out=R.parent.parent.parent/('psu_fingerprint_'+str(time.time_ns()));out.mkdir();source=R/'system/app';target=out/'app';shutil.copytree(source,target,ignore=shutil.ignore_patterns('__pycache__','*.pyc'));helper=target/'knowledge/common/domain_flow/semantic_family_plan.py';original=source/'knowledge/common/domain_flow/semantic_family_plan.py';contract=target/'knowledge/common/domain_flow/training_contract.py';before_source=file_sha(original);env=dict(os.environ);env['PYTHONPATH']=str(out)
+def fingerprint():
+ p=subprocess.run([sys.executable,'-c','from app.knowledge.common.domain_flow.training_contract import IMPLEMENTATION_SHA256; print(IMPLEMENTATION_SHA256)'],cwd=out,env=env,capture_output=True,text=True,encoding='utf8',check=True);return p.stdout.strip()
+a=fingerprint();helper.write_text(helper.read_text('utf8')+'\n# isolated mutation control\n','utf8');b=fingerprint();checks={'isolated_copy_matches_current_candidate':a==IMPLEMENTATION_SHA256,'helper_edit_changes_admission_fingerprint':a!=b,'real_candidate_helper_unchanged':file_sha(original)==before_source,'training_contract_copy_unchanged':file_sha(contract)==file_sha(source/'knowledge/common/domain_flow/training_contract.py')};result={'checks':checks,'all_passed':all(checks.values()),'prior_fingerprint':a,'changed_fingerprint':b,'actual_training_or_inference':False,'real_candidate_modified':False};(out/'RESULT.json').write_text(json.dumps(result,indent=2)+'\n','utf8');print(json.dumps({'path':str(out),'checks':checks}));assert result['all_passed']

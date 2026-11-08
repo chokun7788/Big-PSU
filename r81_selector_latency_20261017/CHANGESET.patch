@@ -1,0 +1,126 @@
+--- before/app/knowledge/common/entity_search.py
++++ after/app/knowledge/common/entity_search.py
+@@ -2,7 +2,7 @@
+ 
+ The model selects candidate indices only. Record facts are read separately.
+ """
+-import json,re,os,time,urllib.request,collections
++import json,re,os,time,urllib.request,urllib.error,collections
+ from .query_contract import normalize,live_request,broad_request
+ from .registry import value
+ from app.knowledge.local_models import MODEL_WORK,_local_url
+@@ -86,7 +86,8 @@
+  backstop.sort(key=lambda row:(-row['score'],row['record_id']))
+  selected=backstop[:4]+[x for x in ranked if x['record_id'] not in {b['record_id'] for b in backstop[:4]}]
+  return selected[:8]
+-def select(question,records,names):
++def select(question,records,names,*,prefer_profile_confirmation=False):
++ started=time.perf_counter()
+  from .query_scope import operation
+  from .semantic_profile import profile,extend_schema,validate_bindings,SYSTEM
+  if operation(question)=='price':return None,{'attempted':False,'reason':'price_requires_explicit_or_inherited_target','intent_verified':False}
+@@ -96,18 +97,36 @@
+  # already fails it, a model call cannot produce an acceptable selection.
+  if not any(topic_alignment(question,records[row['record_id']])[0] or profile(records[row['record_id']]) for row in rows):
+   return None,{'attempted':False,'reason':'no_independent_topic_anchor','candidate_ids':[row['record_id'] for row in rows],'intent_verified':False}
+- timeout=timeout_for_call(6)
+- if timeout<=0:return None,{'attempted':False,'reason':'request_deadline','availability_failure':'deadline'}
+- if not MODEL_WORK.acquire(timeout=min(8,timeout_for_call(8))):return None,{'attempted':False,'reason':'model_busy','availability_failure':'busy'}
+- acquired=False;transport_ok=False;start=time.perf_counter();model=os.getenv('PSU_KNOWLEDGE_LLM_MODEL','scb10x/typhoon2.5-qwen3-4b')
+  audit={'candidate_ids':[x['record_id'] for x in rows],'candidate_scores':[x['score'] for x in rows],'intent_verified':False}
++ timing={'retrieval_ms':round((time.perf_counter()-started)*1000,3)}
++ audit['timing_ms']=timing
+  from .profile_confirmation import eligible
+  compatible=eligible(question,records)
+  audit['profile_retrieval_coverage']={'compatible_count':len(compatible),'included_count':sum(rid in audit['candidate_ids'] for rid in compatible),
+      'omitted_ids':[rid for rid in compatible if rid not in audit['candidate_ids']],
+      'all_compatible_topics_available_for_clarification':True,'semantic_recall_verified':False}
++ # The answerer must request explicit topic confirmation even after a valid
++ # semantic profile binding. If every candidate can only take that path,
++ # present the same source-backed menu without first waiting for a model.
++ # This never establishes equivalence or authorizes reading policy facts.
++ if prefer_profile_confirmation and all(profile(records[row['record_id']]) and row['record_id'] in compatible for row in rows):
++  timing['total_ms']=round((time.perf_counter()-started)*1000,3)
++  return None,{**audit,'attempted':False,'reason':'declared_profiles_require_topic_selection',
++      'model_call_avoided':True,'requires_topic_confirmation':True}
++ timeout=timeout_for_call(8)
++ if timeout<=0:return None,{**audit,'attempted':False,'reason':'request_deadline','availability_failure':'deadline'}
++ waiting=time.perf_counter()
++ locked=MODEL_WORK.acquire(timeout=min(8,timeout))
++ timing['model_work_wait_ms']=round((time.perf_counter()-waiting)*1000,3)
++ if not locked:
++  timing['total_ms']=round((time.perf_counter()-started)*1000,3)
++  return None,{**audit,'attempted':False,'reason':'model_busy','availability_failure':'busy'}
++ acquired=False;transport_ok=False;start=time.perf_counter();model=os.getenv('PSU_KNOWLEDGE_LLM_MODEL','scb10x/typhoon2.5-qwen3-4b')
++ http_start=None
+  try:
++  waiting=time.perf_counter()
+   acquired,gate=llm_call_allowed('common_entity_select',model)
++  timing['admission_wait_ms']=round((time.perf_counter()-waiting)*1000,3)
+   if not acquired:return None,{**audit,'attempted':False,'reason':gate.get('llm_health_reason'),'availability_failure':'model_gate'}
+   schema={'type':'object','properties':{'indices':{'type':'array','items':{'type':'integer','enum':list(range(len(rows)))},'maxItems':4},'ambiguous':{'type':'boolean'}},'required':['indices','ambiguous'],'additionalProperties':False}
+   profile_protocol=extend_schema(schema,rows,records,question)
+@@ -120,11 +139,26 @@
+            'query_profile':profile(records[x['record_id']])} for i,x in enumerate(rows)]},ensure_ascii=False)
+    payload['options']['num_predict']=420
+   audit['profile_protocol']=profile_protocol
+-  req=urllib.request.Request(_local_url(os.getenv('OLLAMA_URL','http://127.0.0.1:11434'))+'/api/generate',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
+-  with urllib.request.urlopen(req,timeout=timeout_for_call(6)) as response:
++  data=json.dumps(payload).encode()
++  timeout=timeout_for_call(6)
++  audit['model_request']={'timeout_cap_seconds':6,'effective_timeout_seconds':timeout,
++      'payload_bytes':len(data),'num_ctx':payload['options']['num_ctx'],'num_predict':payload['options']['num_predict']}
++  if timeout<=0:return None,{**audit,'attempted':False,'reason':'request_deadline','availability_failure':'deadline'}
++  req=urllib.request.Request(_local_url(os.getenv('OLLAMA_URL','http://127.0.0.1:11434'))+'/api/generate',data=data,headers={'Content-Type':'application/json'})
++  http_start=time.perf_counter()
++  with urllib.request.urlopen(req,timeout=timeout) as response:
+    raw=response.read(20001);transport_ok=True
++   timing['http_wait_and_read_ms']=round((time.perf_counter()-http_start)*1000,3)
+    if len(raw)>20000:raise ValueError('oversized selector output')
+    envelope=json.loads(raw)
++  # Ollama durations are nanoseconds. Missing metrics are unknown, never zero.
++  if not isinstance(envelope,dict):raise ValueError('invalid selector envelope')
++  metrics={key+'_ms':round(envelope[key]/1_000_000,3) for key in ('total_duration','load_duration','prompt_eval_duration','eval_duration')
++      if type(envelope.get(key)) in (int,float) and envelope[key]>=0}
++  metrics.update({key:envelope[key] for key in ('prompt_eval_count','eval_count') if type(envelope.get(key)) is int and envelope[key]>=0})
++  audit['model_metrics']=metrics
++  audit['generation_done']=envelope.get('done')
++  if envelope.get('done') is False:raise ValueError('incomplete selector generation')
+   selected=json.loads(envelope['response'])
+   expected_keys={'indices','ambiguous','profile_bindings'} if profile_protocol else {'indices','ambiguous'}
+   if not isinstance(selected,dict) or set(selected)!=expected_keys or type(selected['ambiguous']) is not bool:raise ValueError('invalid selector shape')
+@@ -147,10 +181,13 @@
+   audit['semantic_selection_accepted']=bool(indices)
+   return ([rows[i]['record_id'] for i in indices] or None),audit
+  except (OSError,ValueError,KeyError,TypeError) as error:
++  if http_start is not None:timing['http_wait_and_read_ms']=round((time.perf_counter()-http_start)*1000,3)
++  timed_out=isinstance(error,TimeoutError) or (isinstance(error,urllib.error.URLError) and isinstance(error.reason,TimeoutError))
+   if transport_ok:record_llm_success('common_entity_select',model,elapsed_ms=(time.perf_counter()-start)*1000,detail='responsive model; selector output rejected')
+   else:record_llm_failure('common_entity_select',model,error_type=type(error).__name__,error=str(error),elapsed_ms=(time.perf_counter()-start)*1000)
+   return None,{**audit,'attempted':True,'transport_ok':transport_ok,'schema_accepted':False,'error':type(error).__name__,
+-      'availability_failure':'schema' if transport_ok else 'transport'}
++      'availability_failure':'schema' if transport_ok else 'timeout' if timed_out else 'transport'}
+  finally:
++  timing['total_ms']=round((time.perf_counter()-started)*1000,3)
+   if acquired:release_llm_slot()
+   MODEL_WORK.release()
+--- before/app/knowledge/common/answer.py
++++ after/app/knowledge/common/answer.py
+@@ -455,7 +455,7 @@
+             if ids:scope_ids=list(ids);method='common_typed_attribute_scope'
+         if not ids and planner and budget is None and not live_query(q) and not all_query(q) and not re.search(r'อะไรบ้าง|มีเกมอะไร|\blist\b|what games|which games|(?:what|which)\b.*\b(?:prices|fees|rates)\b',q,re.I):
+             from .entity_search import select
+-            choice,entity_audit=select(q,{rid:r for rid,r in records.items() if rid not in self.declined_profile_ids and effective(r,at,records)},names)
++            choice,entity_audit=select(q,{rid:r for rid,r in records.items() if rid not in self.declined_profile_ids and effective(r,at,records)},names,prefer_profile_confirmation=True)
+             if choice is None and (entity_audit.get('availability_failure') or entity_audit.get('reason')=='model_busy' or entity_audit.get('error')):
+                 unresolved=self.unconfirmed(snap,started,question,lang,records,entity_audit)
+                 if unresolved is not None:return unresolved
+@@ -464,6 +464,8 @@
+                 failure=entity_audit.get('availability_failure')
+                 if failure=='transport':
+                     msg=('ขณะนี้ระบบเชื่อมต่อโมเดลเพื่อเลือกข้อมูลไม่ได้ กรุณาลองอีกครั้งครับ' if lang=='th' else 'The system cannot connect to the model to select the relevant data right now. Please try again.')
++                elif failure=='timeout':
++                    msg=('โมเดลใช้เวลาเลือกข้อมูลเกินเวลาที่กำหนด กรุณาระบุหัวข้อให้ชัดขึ้นหรือลองอีกครั้งครับ' if lang=='th' else 'The model exceeded the time limit while selecting the relevant data. Please specify the topic or try again.')
+                 elif failure=='schema':
+                     msg=('ระบบยังตีความคำถามนี้ได้ไม่แน่ชัด กรุณาลองระบุเรื่องที่ต้องการอีกครั้งครับ' if lang=='th' else 'The system could not reliably interpret this question. Please specify the topic and try again.')
+                 else:

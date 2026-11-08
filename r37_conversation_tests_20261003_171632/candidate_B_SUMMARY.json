@@ -1,0 +1,149 @@
+{
+  "requests": 41,
+  "passed": 32,
+  "failed": [
+    {
+      "session": "original",
+      "turn": 1,
+      "expect": {
+        "q": "มีเกมอะไรให้แข่งมั่ง",
+        "kind": "catalog",
+        "game": "valorant"
+      },
+      "errors": [
+        "request_or_empty_answer",
+        "not_competition_catalog",
+        "catalog_missing:Counter-Strike 2",
+        "catalog_missing:RoV",
+        "catalog_missing:Tekken 8",
+        "catalog_missing:VALORANT",
+        "catalog_missing_registration_boundary"
+      ]
+    },
+    {
+      "session": "original",
+      "turn": 2,
+      "expect": {
+        "q": "valorant",
+        "kind": "overview",
+        "game": "valorant"
+      },
+      "errors": [
+        "request_or_empty_answer",
+        "wrong_domain:None",
+        "not_source_overview",
+        "wrong_or_missing_rulebook_sources",
+        "fewer_than_three_sections"
+      ]
+    },
+    {
+      "session": "original",
+      "turn": 3,
+      "expect": {
+        "q": "ขอกฏหนาอย",
+        "kind": "overview",
+        "game": "valorant"
+      },
+      "errors": [
+        "request_or_empty_answer",
+        "wrong_domain:None",
+        "not_source_overview",
+        "wrong_or_missing_rulebook_sources",
+        "fewer_than_three_sections"
+      ]
+    },
+    {
+      "session": "original",
+      "turn": 4,
+      "expect": {
+        "q": "ขอกฏของเกมหน่อย",
+        "kind": "overview",
+        "game": "valorant"
+      },
+      "errors": [
+        "request_or_empty_answer",
+        "wrong_domain:None",
+        "not_source_overview",
+        "wrong_or_missing_rulebook_sources",
+        "fewer_than_three_sections"
+      ]
+    },
+    {
+      "session": "original",
+      "turn": 5,
+      "expect": {
+        "q": "ขอกฏของเกม valo หน่อย",
+        "kind": "overview",
+        "game": "valorant"
+      },
+      "errors": [
+        "request_or_empty_answer",
+        "wrong_domain:None",
+        "not_source_overview",
+        "wrong_or_missing_rulebook_sources",
+        "fewer_than_three_sections"
+      ]
+    },
+    {
+      "session": "original",
+      "turn": 6,
+      "expect": {
+        "q": "มีกฏอื่นไหม",
+        "kind": "more",
+        "game": "valorant"
+      },
+      "errors": [
+        "request_or_empty_answer",
+        "wrong_domain:None",
+        "not_source_overview",
+        "wrong_or_missing_rulebook_sources",
+        "fewer_than_two_new_clauses"
+      ]
+    },
+    {
+      "session": "polite",
+      "turn": 1,
+      "expect": {
+        "q": "ตอนนี้มีเกมไหนให้แข่งบ้างครับ",
+        "kind": "catalog",
+        "game": "valorant"
+      },
+      "errors": [
+        "request_or_empty_answer",
+        "not_competition_catalog",
+        "catalog_missing:Counter-Strike 2",
+        "catalog_missing:RoV",
+        "catalog_missing:Tekken 8",
+        "catalog_missing:VALORANT",
+        "catalog_missing_registration_boundary"
+      ]
+    },
+    {
+      "session": "switch",
+      "turn": 2,
+      "expect": {
+        "q": "แล้ว cs2",
+        "kind": "overview",
+        "game": "cs2"
+      },
+      "errors": [
+        "not_source_overview",
+        "fewer_than_three_sections"
+      ]
+    },
+    {
+      "session": "switch",
+      "turn": 3,
+      "expect": {
+        "q": "มีกฎอื่นไหม",
+        "kind": "more",
+        "game": "cs2"
+      },
+      "errors": [
+        "not_source_overview",
+        "fewer_than_two_new_clauses"
+      ]
+    }
+  ],
+  "scope": "HTTP route + catalogue + same-game sources + overview sections + literal new-clause checks + topic/edition boundaries; not full expert or owner approval"
+}

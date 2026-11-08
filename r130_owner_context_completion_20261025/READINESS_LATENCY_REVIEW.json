@@ -1,0 +1,61 @@
+{
+  "existing_owner_questions": 50,
+  "read_body_and_partial_state_retained": true,
+  "semantic_accuracy_benchmark": false,
+  "median_sec": 0.4743571500002872,
+  "p95_sec": 0.6080720000027213,
+  "max_sec": 41.18719510000665,
+  "over_5_sec": 1,
+  "over_20_sec": 1,
+  "under_1_sec": 49,
+  "slow_cases": [
+    {
+      "number": 6,
+      "question": "อยู่ตึกอะไร ชั้นไหน?",
+      "wall_sec": 41.18719510000665,
+      "answer": "PSU Esports Studio - Phuket — อาคาร: 5 [S1]\nPSU Esports Studio - Phuket — ชั้น: 1 [S2]",
+      "events": [
+        {
+          "id": "a759d2a3e2cf48bb9df6a9579d957777",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": true,
+          "schema_ok": false,
+          "model_provenance": {
+            "serving_protocol": "r129-multi-profile-v2",
+            "effective_profile": "retained",
+            "adapter_active": true,
+            "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+            "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+            "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+            "effective_messages_sha256": "dc8ff65fb523dfe190d84ed5fbe4a160da7f5e7ec61b31ca8568588750565992",
+            "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+            "quantization": "NF4 double quant BF16",
+            "stage": "context_understanding",
+            "effective_max_new_tokens": 900,
+            "hit_token_limit": false
+          },
+          "response_model": "psu-r129:latest",
+          "identity_verified": true,
+          "raw_content": "{\"version\":\"1.0\",\"focus\":\"location\",\"context_quotes\":[],\"tasks\":[{\"id\":\"1\",\"quote\":\"อยู่ตึกอะไร ชั้นไหน\",\"domain\":\"contact\",\"operation\":\"detail\",\"facet\":\"address\",\"target\":\"address\",\"constraints\":[{\"slot\":\"audience\",\"quote\":\"อยู่ตึกอะไร ชั้นไหน\",\"source_record_id\":\"\",\"scope\":\"local\",\"ambiguous\":false}],\"ambiguous\":false}],\"shared_bindings\":[],\"rules\":[],\"news\":[],\"rental\":[],\"reservation\":[],\"rules\":[],\"schedule\":[],\"live\":[],\"competition_rules\":[],\"news\":[],\"general\":[]}",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "r121_root_fields",
+          "elapsed_sec": 40.469,
+          "http_attempted": true,
+          "input_question": "อยู่ตึกอะไร ชั้นไหน?",
+          "legacy_contrast": {
+            "domain": "general",
+            "operation": "unknown",
+            "needs": [],
+            "reason": "domain_terms=2; no clear operation terms"
+          }
+        }
+      ],
+      "source_method": "r114_domain_readers",
+      "cause": "An unnecessary context planner call preceded a successful typed building/floor read. HTTP and model identity verified, but the retained hybrid/version-1.0 JSON violated the wire and triggered fallback. This is not missing source data."
+    }
+  ],
+  "api_output": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r130_owner_context_completion_20261025\\api_1792886879411813100",
+  "frozen_candidate_modified": false
+}

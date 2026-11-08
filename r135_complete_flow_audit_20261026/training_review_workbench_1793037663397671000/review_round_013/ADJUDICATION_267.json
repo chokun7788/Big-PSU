@@ -1,0 +1,145 @@
+{
+  "question_key": "9226ff9f7b760af0bf0c83351a5604026900bb7e9d820b7e95960f8e8b406c50",
+  "example_sha256": "896904b77c36d1aac615efc4447a7158f2e8d3a917dece8e44cf85fe4be6976e",
+  "adjudication_status": "quarantined",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One query asks when play is possible on Monday afternoon.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "unresolved",
+      "reason": "The needed facet is service_periods for play, distinct from physical open_periods and booking availability.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Monday and afternoon are literal local scopes; no calendar date is supplied.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The duplicated Monday top context cannot convert physical opening into play-service periods.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not relabel this as bookable_periods merely because v2 lacks service_periods.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Monday schedule revision4 separates morning maintenance and afternoon open service slot from unknown physical open_periods; native service_periods/v3 can represent the request but the frozen v2 wire cannot.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_0"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Quarantine the original v2 proposal unchanged; individual v3 readmission is required, with no hours or play-permission answer taught.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "V2 lacks the required service_periods facet.",
+      "handling": "Retain original v2 quarantine and require an individual versioned v3 readmission, never bookable substitution."
+    },
+    {
+      "scope": "label_protocol",
+      "reason": "Required play-service period facet is absent from preserved r129-plan-v2; original proposal is not semantically acceptable as open_periods. Explicit individual v3 readmission required.",
+      "handling": "Do not optimize the retained proposal; separately review a correct versioned representation before readmission."
+    }
+  ],
+  "historical_review_row": 267,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Monday"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Monday"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_0": {
+      "revision": 4,
+      "record_sha256": "43877514a17f5ca9e24a3d1036e1746148a1ad002e7096d2d4db073f6ce27d0a"
+    }
+  },
+  "quarantine_reason": "Required play-service period facet is absent from preserved r129-plan-v2; original proposal is not semantically acceptable as open_periods. Explicit individual v3 readmission required."
+}

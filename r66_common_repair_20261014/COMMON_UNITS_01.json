@@ -1,0 +1,22 @@
+{
+  "tests_run": 84,
+  "failures": [
+    {
+      "test": "test_planner_accepts_only_relevant_schema_fields (tests.test_common_content_r58.CommonTests.test_planner_accepts_only_relevant_schema_fields)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\tests\\test_common_content_r58.py\", line 175, in test_planner_accepts_only_relevant_schema_fields\n    for p in ({'requested_fields':['amount_minor'],'all_fields':False,'platform':None},{'requested_fields':['bindings'],'all_fields':False,'platform':'PS4'},{'requested_fields':['bindings'],'all_fields':'true','platform':None}):self.assertIsNone(checked_plan(p,ids,records))\n                                                                                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'requested_fields': ['amount_minor'], 'all_fields': False, 'platform': None, 'method': 'bounded_llm_schema_fields'} is not None\n"
+    },
+    {
+      "test": "test_long_query_two_bounded_batches (tests.test_common_r61.PureTests.test_long_query_two_bounded_batches)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\tests\\test_common_r61.py\", line 59, in test_long_query_two_bounded_batches\n    self.assertIsNotNone(result);self.assertEqual(fetch.call_count,2)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "test_model_gate_excludes_other_process_and_releases (tests.test_common_r61.PureTests.test_model_gate_excludes_other_process_and_releases)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\tests\\test_common_r61.py\", line 68, in test_model_gate_excludes_other_process_and_releases\n    child=subprocess.check_output([sys.executable,'-c',code,str(path)],text=True,timeout=10)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r58_common_content_20261010\\system\\PSU_Esports_Chatbot_Local\\runtime\\python\\Lib\\subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r58_common_content_20261010\\system\\PSU_Esports_Chatbot_Local\\runtime\\python\\Lib\\subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['C:\\\\Users\\\\Chokhun\\\\Documents\\\\Codex\\\\2026-09-25\\\\psu-esports-studio-phuket-chatbot-c-2\\\\r58_common_content_20261010\\\\system\\\\PSU_Esports_Chatbot_Local\\\\runtime\\\\python\\\\python.exe', '-c', 'from app.knowledge.model_gate import SharedModelGate; import sys; g=SharedModelGate(sys.argv[1]); acquired=g.acquire(timeout=.1); print(acquired); g.release() if acquired else None', 'C:\\\\Users\\\\Chokhun\\\\Documents\\\\Codex\\\\2026-09-25\\\\psu-esports-studio-phuket-chatbot-c-2\\\\r66_common_repair_20261014\\\\temp\\\\common_units\\\\tmpizp0e9p6\\\\gate.lock']' returned non-zero exit status 1.\n"
+    }
+  ],
+  "elapsed": 86.47378279990517,
+  "scope": "common_format_only",
+  "model_calls": "mocked where required"
+}

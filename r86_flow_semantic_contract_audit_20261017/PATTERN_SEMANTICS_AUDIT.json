@@ -1,0 +1,681 @@
+{
+  "record_count": 61,
+  "signal_count": 308,
+  "records": [
+    {
+      "record_id": "migrated_faq_rule_booking_advance",
+      "signals": [
+        "reserve.*advance",
+        "booking.*advance",
+        "book.*advance",
+        "จอง.*กี่ชั่วโมง",
+        "book.*ล่วงหน้า",
+        "book.*กี่.*hr",
+        "book.*กี่.*hour",
+        "ล่วงหน้า.*กี่.*hr",
+        "ล่วงหน้า.*กี่.*hour",
+        "walk in.*จองก่อน",
+        "walk-in.*จองก่อน"
+      ],
+      "intent_key": "booking_advance_time"
+    },
+    {
+      "record_id": "migrated_faq_rule_booking_cancel_invalid_info",
+      "signals": [
+        "การจอง.*ยกเลิก.*ไม่แจ้ง"
+      ],
+      "intent_key": "booking_cancel_invalid_info"
+    },
+    {
+      "record_id": "migrated_faq_rule_booking_max_sessions",
+      "signals": [
+        "maximum.*sessions",
+        "จอง 1 ครั้ง.*กี่ session"
+      ],
+      "intent_key": "booking_max_sessions"
+    },
+    {
+      "record_id": "migrated_faq_rule_booking_non_transferable",
+      "signals": [
+        "transfer.*booking",
+        "โอน.*booking",
+        "คนอื่น.*ใช้ booking"
+      ],
+      "intent_key": "booking_non_transferable"
+    },
+    {
+      "record_id": "migrated_faq_rule_booking_session_and_payment",
+      "signals": [
+        "จอง.*กี่ session.*จ่าย",
+        "จอง.*กี่ session.*ชำระ",
+        "กี่ session.*จ่ายภายใน",
+        "กี่ session.*ชำระภายใน"
+      ],
+      "intent_key": "booking_session_and_payment"
+    },
+    {
+      "record_id": "migrated_faq_rule_booking_steps",
+      "signals": [
+        "how.*reservation"
+      ],
+      "intent_key": "booking_steps"
+    },
+    {
+      "record_id": "migrated_faq_rule_cancel_advance",
+      "signals": [
+        "cancel.*advance",
+        "cancellation.*advance",
+        "ยกเลิก.*ล่วงหน้า",
+        "ยกเลิก.*กี่ชั่วโมง"
+      ],
+      "intent_key": "cancel_advance_time"
+    },
+    {
+      "record_id": "migrated_faq_rule_checkin_advance",
+      "signals": [
+        "how early can.*check",
+        "checkin.*minute",
+        "เชคอิน.*กี่นาที"
+      ],
+      "intent_key": "checkin_advance_time"
+    },
+    {
+      "record_id": "migrated_faq_rule_checkin_late",
+      "signals": [
+        "miss.*check",
+        "check.?in.*ไม่ทัน"
+      ],
+      "intent_key": "late_checkin_cancel"
+    },
+    {
+      "record_id": "migrated_faq_rule_edit_booking",
+      "signals": [
+        "edit.*booking",
+        "change.*booking",
+        "แก้เวลา.*จอง",
+        "ข้อมูลผิด.*หลังจอง",
+        "หลังจอง.*ข้อมูลผิด",
+        "สลิปเดิม.*จองใหม่",
+        "จองใหม่.*สลิปเดิม"
+      ],
+      "intent_key": "edit_booking"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_booking_required_information",
+      "signals": [
+        "what\\s+(?:information|details|documents?).*(?:need|required).*(?:book|booking|reservation)",
+        "what\\s+do\\s+i\\s+need\\s+to\\s+book",
+        "booking\\s+(?:information|details|form|requirements)",
+        "what\\s+should\\s+i\\s+fill.*booking"
+      ],
+      "intent_key": "user_info_and_payment_slip"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_booking_steps_natural",
+      "signals": [
+        "how\\s+(?:do|can)\\s+i\\s+(?:make\\s+)?a?\\s*booking",
+        "how\\s+(?:do|can)\\s+i\\s+reserve",
+        "how\\s+to\\s+(?:make\\s+)?a?\\s*(?:booking|reservation|reserve)",
+        "make\\s+(?:a|the)\\s+booking",
+        "book\\s+(?:a|the)\\s+(?:slot|session|zone|service)",
+        "booking\\s+process",
+        "reservation\\s+process"
+      ],
+      "intent_key": "booking_steps"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_cancel_booking",
+      "signals": [
+        "can\\s+i\\s+cancel.*booking",
+        "how\\s+(?:do|can)\\s+i\\s+cancel.*booking",
+        "cancel\\s+(?:my|a|the)\\s+booking"
+      ],
+      "intent_key": "cancel_advance_time"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_checkin_natural",
+      "signals": [
+        "when\\s+should\\s+i\\s+check[ -]?in",
+        "how\\s+early\\s+should\\s+i\\s+check[ -]?in",
+        "when\\s+can\\s+i\\s+check[ -]?in",
+        "check[ -]?in\\s+(?:time|policy|rules?)"
+      ],
+      "intent_key": "checkin_advance_time"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_payment_deadline_natural",
+      "signals": [
+        "how\\s+long.*(?:pay|payment).*(?:after|booking)",
+        "when\\s+(?:do|must|should)\\s+i\\s+pay.*booking",
+        "how\\s+(?:soon|quickly).*pay.*booking",
+        "payment\\s+(?:deadline|time limit)"
+      ],
+      "intent_key": "payment_timeout"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_payment_method_natural",
+      "signals": [
+        "how\\s+(?:do|can)\\s+i\\s+pay",
+        "what\\s+payment\\s+methods?",
+        "where\\s+(?:do|can)\\s+i\\s+(?:pay|transfer)",
+        "payment\\s+(?:method|details|account)",
+        "pay\\s+for\\s+(?:my|the|a)\\s+booking"
+      ],
+      "intent_key": "bank_account"
+    },
+    {
+      "record_id": "migrated_faq_rule_payment_10_minutes",
+      "signals": [
+        "payment.*timeout",
+        "payment.*10",
+        "not.*pay",
+        "หลังจอง.*จ่าย",
+        "หลังจอง.*ชำระ",
+        "หลัง booking.*จ่าย",
+        "หลัง booking.*ชำระ",
+        "ชำระ.*booking.*เร็ว",
+        "ชำระ.*10",
+        "จ่าย.*10"
+      ],
+      "intent_key": "payment_timeout"
+    },
+    {
+      "record_id": "migrated_faq_rule_payment_and_late_checkin",
+      "signals": [
+        "not.*pay.*late.*check",
+        "ไม่จ่าย.*10.*เช็คอินช้า",
+        "ไม่จ่าย.*10.*เชคอินช้า",
+        "ไม่ชำระ.*10.*เช็คอินช้า",
+        "ไม่ชำระ.*10.*เชคอินช้า",
+        "ไม่จ่าย.*10.*check",
+        "ไม่ชำระ.*10.*check"
+      ],
+      "intent_key": "payment_timeout_and_late_checkin"
+    },
+    {
+      "record_id": "migrated_faq_rule_payment_bank",
+      "signals": [
+        "ชื่อบัญชี.*จอง",
+        "บัญชี.*จอง"
+      ],
+      "intent_key": "bank_account"
+    },
+    {
+      "record_id": "migrated_faq_rule_reservation_quick_summary",
+      "signals": [
+        "จองล่วงหน้า.*เช็คอิน.*ยกเลิก",
+        "จองล่วงหน้า.*เชคอิน.*ยกเลิก",
+        "บอกทั้งจองล่วงหน้า.*เช็คอิน.*ยกเลิก",
+        "บอกทั้งจองล่วงหน้า.*เชคอิน.*ยกเลิก"
+      ],
+      "intent_key": "reservation_quick_summary"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_afternoon_time",
+      "signals": [
+        "afternoon.*session.*time",
+        "afternoon.*slot.*time",
+        "afternoon.*time",
+        "รอบบ่าย.*ปิด",
+        "รอบบ่าย.*13",
+        "รอบบ่าย.*16",
+        "ช่วงบ่าย.*เวลา",
+        "ช่วงบ่าย.*กี่โมง"
+      ],
+      "intent_key": "schedule_afternoon_time"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_friday_maintenance",
+      "signals": [
+        "friday.*maintenance",
+        "friday.*open",
+        "friday.*close",
+        "วันศุกร์.*maintenance",
+        "วันศุกร์.*ปิด",
+        "วันศุกร์.*เล่น"
+      ],
+      "intent_key": "schedule_friday_maintenance"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_friday_maintenance_general",
+      "signals": [
+        "maintenance.*hardware inspection",
+        "maintenance.*cleaning",
+        "วันศุกร์.*ตรวจอุปกรณ์",
+        "ศุกร์.*ตรวจอุปกรณ์",
+        "ศุกร์.*ทำความสะอาด",
+        "วันศุกร์.*ทำความสะอาด"
+      ],
+      "intent_key": "schedule_friday_maintenance_general"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_monday_morning",
+      "signals": [
+        "monday.*morning",
+        "วันจันทร์.*ช่วงเช้า"
+      ],
+      "intent_key": "schedule_monday_morning"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_monday_morning_specific",
+      "signals": [
+        "จันทร์.*9\\s*โมง",
+        "วันจันทร์.*9\\s*โมง",
+        "วันจันทร์.*09:00",
+        "วันจันทร์.*09.*12",
+        "จันทร์.*09.*12",
+        "เช้าวันจันทร์.*maintenance"
+      ],
+      "intent_key": "schedule_monday_morning_specific"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_monday_open_close",
+      "signals": [
+        "monday.*open.*close",
+        "monday.*hours",
+        "วันจันทร์.*เปิด.*ปิด",
+        "วันจันทร์.*เปิด.*กีโมง",
+        "วันจันทร์.*เปิด.*กี่โมง",
+        "วันจันทร์.*ปิด.*กีโมง",
+        "วันจันทร์.*ปิด.*กี่โมง",
+        "วันจัน.*เปิด.*ปิด",
+        "วันจัน.*เปิด.*กีโมง",
+        "วันจัน.*เปิด.*กี่โมง",
+        "เปิดปิด.*วันจัน",
+        "เปิดปิด.*จัน",
+        "จัน.*เปิด.*ปิด",
+        "จัน.*เปิด.*กีโมง",
+        "จัน.*เปิด.*กี่โมง",
+        "จันทร์.*เปิด.*ปิด",
+        "จันทร์.*เปิด.*กีโมง",
+        "จันทร์.*เปิด.*กี่โมง",
+        "จันทร์.*ปิด.*กีโมง",
+        "จันทร์.*ปิด.*กี่โมง"
+      ],
+      "intent_key": "schedule_monday_open_close"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_monday_play_window",
+      "signals": [
+        "monday.*play",
+        "วันจันทร์.*เล่น.*ตั้งแต่",
+        "วันจันทร์.*เล่น.*กี่โมง",
+        "วันจันทร์.*เล่น.*ช่วงไหน",
+        "วันจันทร์.*รอบเล่น",
+        "จันทร์.*เล่น.*ตั้งแต่",
+        "จันทร์.*เล่น.*กี่โมง",
+        "จันทร์.*รอบเล่น"
+      ],
+      "intent_key": "schedule_monday_play_window"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_morning_time",
+      "signals": [
+        "morning.*session.*time",
+        "morning.*slot.*time",
+        "morning.*time",
+        "รอบเช้า.*เริ่ม",
+        "รอบเช้า.*09",
+        "รอบเช้า.*ถึง",
+        "ช่วงเช้า.*เวลา",
+        "ช่วงเช้า.*กี่โมง",
+        "ตอนเช้า.*เปิด",
+        "เช้า.*เปิด.*กี่โมง"
+      ],
+      "intent_key": "schedule_morning_time"
+    },
+    {
+      "record_id": "migrated_faq_rule_schedule_not_24_hours",
+      "signals": [
+        "เปิด.*24"
+      ],
+      "intent_key": "schedule_not_24_hours"
+    },
+    {
+      "record_id": "migrated_faq_rule_user_info_and_slip",
+      "signals": [
+        "user info.*slip",
+        "fill.*info.*slip",
+        "กรอกข้อมูล.*สลิป",
+        "ข้อมูล.*แนบสลิป"
+      ],
+      "intent_key": "user_info_and_payment_slip"
+    },
+    {
+      "record_id": "migrated_faq_rule_cockpit_games",
+      "signals": [
+        "cockpit.*เกม",
+        "เกม.*cockpit",
+        "cockpit.*เล่น",
+        "ขับรถ.*เกม",
+        "พวงมาลัย.*เกม"
+      ],
+      "intent_key": "cockpit_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_cockpit_gran_turismo",
+      "signals": [
+        "cockpit.*gran turismo",
+        "พวงมาลัย.*gran turismo",
+        "พวงมาลัย.*เล่น",
+        "ขับรถ.*gran turismo"
+      ],
+      "intent_key": "cockpit_gran_turismo"
+    },
+    {
+      "record_id": "migrated_faq_rule_damage_responsibility",
+      "signals": [
+        "ทำอุปกรณ์เสียหาย.*รับผิดชอบ",
+        "อุปกรณ์เสียหาย.*รับผิดชอบ",
+        "ทำอุปกรณ์เสียหาย.*จ่าย",
+        "อุปกรณ์เสียหาย.*จ่าย",
+        "เสียหาย.*ค่าปรับ",
+        "เสียหาย.*ค่าชดเชย"
+      ],
+      "intent_key": "damage_responsibility"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_contact_location_question",
+      "signals": [
+        "where\\s+(?:is|are).*?(?:psu esports|studio)",
+        "how\\s+do\\s+i\\s+get\\s+to.*studio"
+      ],
+      "intent_key": "contact_location"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_contact_methods",
+      "signals": [
+        "how\\s+(?:do|can)\\s+i\\s+contact.*(?:studio|psu esports)",
+        "contact\\s+(?:details|information|methods?)",
+        "ways?\\s+to\\s+contact.*studio",
+        "how\\s+to\\s+reach.*studio"
+      ],
+      "intent_key": "contact_methods"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_damage_responsibility_natural",
+      "signals": [
+        "what\\s+happens\\s+if\\s+i\\s+(?:damage|break)",
+        "if\\s+i\\s+(?:damage|break).*(?:equipment|device|controller|computer|screen)",
+        "(?:damage|break|broken).*(?:equipment|device).*(?:fine|pay|responsible|compensation)",
+        "equipment\\s+damage\\s+(?:policy|penalty|fine)"
+      ],
+      "intent_key": "damage_responsibility"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_food_drink_natural",
+      "signals": [
+        "can\\s+i\\s+(?:bring|eat|have).*(?:food|snack|drink)",
+        "are\\s+(?:food|drinks|snacks).*(?:allowed|permitted)",
+        "is\\s+(?:food|a drink|water).*(?:allowed|permitted)",
+        "may\\s+i\\s+(?:bring|eat|drink)"
+      ],
+      "intent_key": "food_drink_rule"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_general_damage_penalties",
+      "signals": [
+        "what\\s+are\\s+the\\s+(?:damage\\s+)?(?:penalties|fines)",
+        "damage\\s+(?:penalties|fines|charges)",
+        "how\\s+much\\s+is\\s+the\\s+fine.*damage"
+      ],
+      "intent_key": "damage_penalty_summary"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_general_studio_rules",
+      "signals": [
+        "what\\s+are\\s+the\\s+(?:studio|usage|house)\\s+rules",
+        "rules\\s+(?:for|at|inside)\\s+(?:the\\s+)?studio",
+        "what\\s+is\\s+(?:allowed|not allowed)\\s+(?:at|in)\\s+(?:the\\s+)?studio"
+      ],
+      "intent_key": "studio_rules_summary"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_overview_operator",
+      "signals": [
+        "who\\s+(?:manages|operates|runs).*?(?:studio|psu esports)",
+        "which\\s+(?:organization|department).*?(?:operates|runs|manages).*studio"
+      ],
+      "intent_key": "studio_founder_operator"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_report_problem_natural",
+      "signals": [
+        "what\\s+should\\s+i\\s+do.*(?:problem|issue)",
+        "who\\s+should\\s+i\\s+tell.*(?:problem|issue)",
+        "equipment\\s+(?:has|with)\\s+(?:a\\s+)?problem",
+        "report\\s+(?:an?\\s+)?(?:issue|problem)"
+      ],
+      "intent_key": "report_problem_to_staff"
+    },
+    {
+      "record_id": "migrated_faq_rule_en_smoking_alcohol_natural",
+      "signals": [
+        "can\\s+i\\s+(?:smoke|drink alcohol)",
+        "is\\s+(?:smoking|alcohol).*(?:allowed|permitted)",
+        "are\\s+(?:cigarettes|alcoholic drinks).*(?:allowed|permitted)"
+      ],
+      "intent_key": "smoking_alcohol_rule"
+    },
+    {
+      "record_id": "migrated_faq_rule_equipment_pc_zone",
+      "signals": [
+        "pc zone.*อุปกรณ์",
+        "pc zone.*เก้าอี้",
+        "pc zone.*เมาส์",
+        "pc zone.*หูฟัง",
+        "เก้าอี้เกมมิ่ง.*pc",
+        "เมาส์.*หูฟัง"
+      ],
+      "intent_key": "pc_zone_equipment"
+    },
+    {
+      "record_id": "migrated_faq_rule_food_drink",
+      "signals": [
+        "food.*allowed",
+        "drink.*allowed",
+        "food.*designated",
+        "drink.*designated",
+        "อาหาร.*พื้นที่",
+        "เครื่องดื่ม.*พื้นที่",
+        "ขนม.*โต๊ะ",
+        "ขนม.*กิน",
+        "กิน.*ขนม",
+        "กินข้าว.*ได้ไหม",
+        "กินน้ำ.*ได้ไหม",
+        "นำอาหาร.*เข้า",
+        "นำเครื่องดื่ม.*เข้า"
+      ],
+      "intent_key": "food_drink_rule"
+    },
+    {
+      "record_id": "migrated_faq_rule_lost_personal_items",
+      "signals": [
+        "ทรัพย์สินส่วนตัว.*สูญหาย",
+        "สูญหาย.*รับผิดชอบ"
+      ],
+      "intent_key": "lost_personal_items"
+    },
+    {
+      "record_id": "migrated_faq_rule_mixed_food_noise_damage",
+      "signals": [
+        "กินข้าว.*เสียงดัง.*จอยพัง",
+        "กิน.*เสียงดัง.*พัง",
+        "อาหาร.*เสียงดัง.*เสียหาย",
+        "ขนม.*เสียงดัง.*พัง"
+      ],
+      "intent_key": "food_noise_damage"
+    },
+    {
+      "record_id": "migrated_faq_rule_mixed_lost_and_damage",
+      "signals": [
+        "ของหาย.*อุปกรณ์.*เปียก",
+        "อุปกรณ์.*เปียก.*ของหาย",
+        "ของหาย.*ทำอุปกรณ์",
+        "ทำอุปกรณ์.*ของหาย"
+      ],
+      "intent_key": "lost_items_and_equipment_damage"
+    },
+    {
+      "record_id": "migrated_faq_rule_overview_founder",
+      "signals": [
+        "ใคร.*ก่อตั้ง.*ศูนย์",
+        "ก่อตั้ง.*ศูนย์",
+        "ศูนย์.*ก่อตั้งโดย",
+        "หน่วยงาน.*ดำเนินการ"
+      ],
+      "intent_key": "studio_founder_operator"
+    },
+    {
+      "record_id": "migrated_faq_rule_overview_identity",
+      "signals": [
+        "about.*studio",
+        "psu esports.*คืออะไร",
+        "studio.*คืออะไร",
+        "ศูนย์.*คืออะไร",
+        "ศูนย์.*เกี่ยวกับ",
+        "ศูนย์นี้.*อะไร"
+      ],
+      "intent_key": "studio_identity"
+    },
+    {
+      "record_id": "migrated_faq_rule_pc_games",
+      "signals": [
+        "pc.*เกม",
+        "คอม.*เกม",
+        "เกม.*pc",
+        "เกม.*คอม"
+      ],
+      "intent_key": "pc_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_pc_specific_games",
+      "signals": [
+        "pc.*valorant",
+        "pc.*cs2",
+        "pc.*cs 2",
+        "pc.*pubg",
+        "pc.*warzone",
+        "warzone.*pc",
+        "คอม.*วาโล",
+        "คอม.*valorant",
+        "pc.*วาโล",
+        "คอม.*cs2",
+        "คอม.*cs 2",
+        "คอม.*pubg",
+        "คอม.*warzone",
+        "warzone.*เครื่อง"
+      ],
+      "intent_key": "pc_specific_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_penalty_temp_suspension",
+      "signals": [
+        "ระงับสิทธิ์.*กี่วัน",
+        "ละเมิดกฎ.*กี่วัน"
+      ],
+      "intent_key": "temporary_suspension"
+    },
+    {
+      "record_id": "migrated_faq_rule_ps5_games",
+      "signals": [
+        "ps5.*เกม",
+        "playstation.*เกม",
+        "เกม.*ps5",
+        "เกม.*playstation"
+      ],
+      "intent_key": "ps5_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_ps5_specific_games",
+      "signals": [
+        "ps5.*spider",
+        "playstation.*spider",
+        "ps5.*fortnite",
+        "playstation.*fortnite",
+        "ps5.*god of war",
+        "playstation.*god of war",
+        "ps5.*tekken",
+        "playstation.*tekken",
+        "เพลย์.*tekken",
+        "เพลย์ห้า.*tekken",
+        "เพลย์.*สไปเดอร์",
+        "เพลย์.*ฟอร์ทไนท์"
+      ],
+      "intent_key": "ps5_specific_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_report_problem",
+      "signals": [
+        "report.*problem",
+        "พบปัญหา.*เครื่อง",
+        "เครื่อง.*มีปัญหา",
+        "ปัญหา.*ตอนเล่น"
+      ],
+      "intent_key": "report_problem_to_staff"
+    },
+    {
+      "record_id": "migrated_faq_rule_return_equipment_games",
+      "signals": [
+        "ยืมอุปกรณ์.*แผ่นเกม",
+        "นำอุปกรณ์.*แผ่นเกม.*คืน",
+        "แผ่นเกม.*คืน"
+      ],
+      "intent_key": "return_equipment_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_severe_damage",
+      "signals": [
+        "คอม.*พัง"
+      ],
+      "intent_key": "severe_damage_compensation"
+    },
+    {
+      "record_id": "migrated_faq_rule_switch_games",
+      "signals": [
+        "switch.*เกม",
+        "nintendo.*เกม",
+        "เกม.*switch",
+        "เกม.*nintendo"
+      ],
+      "intent_key": "switch_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_switch_specific_games",
+      "signals": [
+        "switch.*sports",
+        "switch.*smash",
+        "switch.*overcooked",
+        "switch.*mario kart",
+        "nintendo.*sports",
+        "nintendo.*smash",
+        "nintendo.*overcooked",
+        "nintendo.*mario kart",
+        "นินเทนโด.*overcooked",
+        "นินเทนโด.*มาริโอ",
+        "นินเทนโด.*sports"
+      ],
+      "intent_key": "switch_specific_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_vr_games",
+      "signals": [
+        "vr station.*game",
+        "vr.*เกม",
+        "เกม.*vr"
+      ],
+      "intent_key": "vr_games"
+    },
+    {
+      "record_id": "migrated_faq_rule_vr_specific_games",
+      "signals": [
+        "horizon.*vr",
+        "vr.*horizon",
+        "vr.*beat",
+        "แว่น vr.*horizon"
+      ],
+      "intent_key": "vr_specific_games"
+    }
+  ],
+  "detection_is_syntax_heuristic_not_behavior_test": true
+}

@@ -1,0 +1,259 @@
+{
+  "question_key": "1803fb1ea2eb4e22f75b6ddbb27f80ab61a3f36665068e41a86d3d02dd1ee3b2",
+  "example_sha256": "9a321ae1de17783ba1f5b9641741f3905b3b1db74c7a283086a293eb2c46f3f5",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs: PC play price followed by how to book.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Retain service_fee/price_calculate/amount and reservation/detail/owner_policy as independent operations.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "นักศึกษา PSU and 30 นาที belong only to price; PC service/platform and target are explicitly shared to booking through quoted edges.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Add missing shared service/platform edge records so shared constraints have declared ownership; no assistant answer or historical facts are inherited.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Shared service is a semantic binding, not an execution dependency on whether the price succeeds; booking must remain independently readable.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "The two PC student rate pools and booking_steps source have different operations; booking procedure is not a duration or audience price fact.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": [
+        "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+        "rate_recovered_pc_availability_pc_03_10_psu_student_staff",
+        "migrated_faq_rule_booking_steps"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No zero price, booking steps, payment result or reserved slot is taught.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 104,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 นาที",
+      "PC",
+      "นักศึกษา PSU"
+    ],
+    "tasks": [
+      {
+        "quote": "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "แล้วจองยังไง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "PC",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 นาที",
+      "PC",
+      "นักศึกษา PSU"
+    ],
+    "tasks": [
+      {
+        "quote": "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "แล้วจองยังไง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "PC",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "PC",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "platform",
+        "quote": "PC",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "rate_recovered_pc_availability_pc_01_02_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "23a8ea18e26c2c69d5f3a392d169fa6f3a51393ca2c2cd36a4dee07f8f445023"
+    },
+    "rate_recovered_pc_availability_pc_03_10_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "b656e78df1a75814eb90ec820014079410eb1adfcab2413b2d73e48d342bc5bd"
+    },
+    "migrated_faq_rule_booking_steps": {
+      "revision": 4,
+      "record_sha256": "3d46ed93710725b42212be78cc05d7197ba3043e04ade3b26ae2890e897dd846"
+    }
+  }
+}

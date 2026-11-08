@@ -1,0 +1,161 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 259,
+  "question_key": "dcac3d3e21d6b35d8ea26146cf8b5fcefa68d1fd277a8adf3302b37a53624d18",
+  "raw_question": "Is PC #03-#10 available right now Please keep the answer concise",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "right now",
+      "PC",
+      "PC #03-#10"
+    ],
+    "tasks": [
+      {
+        "quote": "Is PC #03-#10 available right now Please keep the answer concise",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "right now",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC #03-#10",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Is PC #03-#10 available right now Please keep the answer concise",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "right now",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC #03-#10",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One English question asks current availability for PC #03-#10; concise is a style request.",
+    "intent_operation_facet": "live/availability/live_status retains an on-demand resource-range query rather than saved opening hours.",
+    "entities_and_slot_roles": "Keep exact right now, PC and PC #03-#10 local quotes; platform/service duplication represents the same range and does not create two needs.",
+    "local_shared_history_scope": "Remove duplicated top-level context; no fixed date, party size, duration or prior session is supplied.",
+    "negation_and_ambiguity": "Current availability cannot be filled by static inventory, service capacities or a cached weekly schedule.",
+    "source_version_alignment": "Pinned live_wordpress_16 through23 revision1 map separate physical PC resources to availability_pc_03_10, with provider status mappings and a ten-second freshness policy; mappings are not actual current readings.",
+    "no_business_answer_target": "No free/busy verdict, count, resource status, timestamp or invented successful transport result is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "live_wordpress_16",
+    "live_wordpress_17",
+    "live_wordpress_18",
+    "live_wordpress_19",
+    "live_wordpress_20",
+    "live_wordpress_21",
+    "live_wordpress_22",
+    "live_wordpress_23"
+  ],
+  "source_answer_issues": [
+    [
+      "Static provider mappings are not live transport receipts.",
+      "Unavailable transport remains unknown; keep physical-resource identities and freshness separate."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 260,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "live_wordpress_16": {
+      "revision": 1,
+      "record_sha256": "c17b2afc6d143fd747cbd0ab6409582dd76a641273d8dc98eefee9c1189411dc"
+    },
+    "live_wordpress_17": {
+      "revision": 1,
+      "record_sha256": "fe672603f62b57ca80f6eb8c817f10d7bf3ddaa722ea3b369d93613bcc0d9bcf"
+    },
+    "live_wordpress_18": {
+      "revision": 1,
+      "record_sha256": "813c128b6757c1cd701db6b3d5eceed8e7549e42274fc2dcbb41cfc6b8cddbc4"
+    },
+    "live_wordpress_19": {
+      "revision": 1,
+      "record_sha256": "c02d5daf2580229dcf37914737ae001c8a5820a2d6dfc1e59773405d807dacb8"
+    },
+    "live_wordpress_20": {
+      "revision": 1,
+      "record_sha256": "d8c198032ed0e3738172405e4dd7ea7c075e93d4195fe7ad50c48f5bb9d4162c"
+    },
+    "live_wordpress_21": {
+      "revision": 1,
+      "record_sha256": "83574f3f88d39bff4cd90292210b50284ed281d3a8183d4202b6cbb2d2c46b9a"
+    },
+    "live_wordpress_22": {
+      "revision": 1,
+      "record_sha256": "227a52fa9e577fec1474b88c087987c1d99e473a24a2da98a621d8709b87b55e"
+    },
+    "live_wordpress_23": {
+      "revision": 1,
+      "record_sha256": "4dc9077372b74b675e49c4e3136f32188bccf822607b0e3844041b714834be4f"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

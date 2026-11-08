@@ -1,0 +1,127 @@
+{
+  "question_key": "fd1d2b8b4bac401397aa5074411e7a97df522fe48d9c650e44c3f3bbf95c7242",
+  "example_sha256": "95d2817c1a843c3545f5b4570301fdec9e14346687c8d7878fa218ffaa28266b",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One competition pause-rule question has no game or edition.",
+      "raw_quotes": [
+        "What is the pause rule during a competition? I need the official answer."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause is retained; official answer is not a second need.",
+      "raw_quotes": [
+        "What is the pause rule during a competition? I need the official answer."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "pause rule is requested scope while target remains empty.",
+      "raw_quotes": [
+        "What is the pause rule during a competition? I need the official answer."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No preceding game, tournament or event year is available.",
+      "raw_quotes": [
+        "What is the pause rule during a competition? I need the official answer."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Keep ambiguous true instead of treating one game pause clause as a universal rule.",
+      "raw_quotes": [
+        "What is the pause rule during a competition? I need the official answer."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "VALORANT technical-pause clauses and RoV heat-related pauses have different conditions/authority, so none can establish a game-free universal answer.",
+      "raw_quotes": [
+        "What is the pause rule during a competition? I need the official answer."
+      ],
+      "source_record_ids": [
+        "r114_valorant_49_rule_clause",
+        "r114_rov_63_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No pause duration, player permission or referee authority is learned.",
+      "raw_quotes": [
+        "What is the pause rule during a competition? I need the official answer."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 92,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What is the pause rule during a competition? I need the official answer.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What is the pause rule during a competition? I need the official answer.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "pause rule",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_valorant_49_rule_clause": {
+      "revision": 1,
+      "record_sha256": "daf56e23a5379fe4efa3b6f9749914e8ad9c088098bcc71e9fa23dc144d7585c"
+    },
+    "r114_rov_63_rule_clause": {
+      "revision": 1,
+      "record_sha256": "a479131b8cb0e05ff9cf179d4828a29196e8ffb15199eb0acb97d5558a66377c"
+    }
+  }
+}

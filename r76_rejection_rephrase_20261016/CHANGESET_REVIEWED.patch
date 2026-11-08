@@ -1,0 +1,222 @@
+--- r75_profile_confirmation_20261016/system/app/knowledge/common/answer.py
++++ r76_rejection_rephrase_20261016/system/app/knowledge/common/answer.py
+@@ -169,13 +169,13 @@
+     return question,ids,method
+ 
+ class CommonAnswerer:
+-    def __init__(self,store):self.store=store;self.diagnostics=[]
++    def __init__(self,store):self.store=store;self.diagnostics=[];self.declined_profile_ids=set()
+     def confirm_profile(self,snap,started,question,lang,records,selection=None,preferred=None):
+         from .profile_confirmation import build,prompt
+-        pending=build(question,records,preferred)
++        pending=build(question,{rid:r for rid,r in records.items() if rid not in self.declined_profile_ids},preferred)
+         if not pending:return None
+         plan={'record_ids':[],'requested_fields':[],'method':'profile_topic_clarification',
+-            'profile_confirmation':pending,'entity_selection':selection or {},'source_answer_confirmed':False}
++            'profile_confirmation':pending,'declined_profile_ids':sorted(self.declined_profile_ids),'entity_selection':selection or {},'source_answer_confirmed':False}
+         return self.finish(snap,started,prompt(pending,records,lang),[],plan,[],response='clarification')
+     def unconfirmed(self,snap,started,question,lang,records,selection=None):
+         from .unconfirmed_request import topic,message
+@@ -201,6 +201,8 @@
+         lang='en' if locale=='en' else 'th';at=at or now_bangkok()
+         if at.tzinfo is None:raise ValueError('Query time needs timezone')
+         records={k:r for k,r in rel['records'].items() if k not in snap['withdrawn']}
++        from .reply_repair import declined_from_history
++        self.declined_profile_ids=declined_from_history(history)
+         from .profile_confirmation import resolve as resolve_confirmation,prompt as confirmation_prompt
+         current={rid:r for rid,r in records.items() if effective(r,at,records)}
+         confirmation=resolve_confirmation(question,history,current);confirmed_id=None
+@@ -211,8 +213,9 @@
+                 plan={'record_ids':[],'requested_fields':[],'method':'profile_topic_clarification','profile_confirmation':confirmation['pending']}
+                 return self.finish(snap,started,confirmation_prompt(confirmation['pending'],current,lang),[],plan,[],response='clarification')
+             else:
++                self.declined_profile_ids.update(confirmation.get('declined_profile_ids',[]))
+                 msg=(('รายการหรือขอบเขตข้อมูลเปลี่ยนไป กรุณาระบุหัวข้อที่ต้องการอีกครั้งครับ' if action=='expired' else 'เข้าใจครับ กรุณาระบุเรื่องหรือสิ่งที่ต้องการแก้เพิ่มเติม ผมจะไม่ใช้หัวข้อที่เสนอเมื่อกี้เป็นคำตอบครับ') if lang=='th' else ('The record or its scope has changed. Please specify the topic again.' if action=='expired' else 'Please specify the issue or item you mean so I can find the right topic.'))
+-                return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'method':'profile_confirmation_'+action,'profile_confirmation_closed':True},[],response='clarification')
++                return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'method':'profile_confirmation_'+action,'profile_confirmation_closed':True,'declined_profile_ids':sorted(self.declined_profile_ids)},[],response='clarification')
+         from .request_roles import analyze as analyze_roles,groups as role_groups
+         request_needs=analyze_roles(question)
+         if not request_needs and history:
+@@ -404,7 +407,7 @@
+             if ids:scope_ids=list(ids);method='common_typed_attribute_scope'
+         if not ids and planner and budget is None and not live_query(q) and not all_query(q) and not re.search(r'อะไรบ้าง|มีเกมอะไร|\blist\b|what games|which games|(?:what|which)\b.*\b(?:prices|fees|rates)\b',q,re.I):
+             from .entity_search import select
+-            choice,entity_audit=select(q,{rid:r for rid,r in records.items() if effective(r,at,records)},names)
++            choice,entity_audit=select(q,{rid:r for rid,r in records.items() if rid not in self.declined_profile_ids and effective(r,at,records)},names)
+             if choice is None and (entity_audit.get('availability_failure') or entity_audit.get('reason')=='model_busy' or entity_audit.get('error')):
+                 unresolved=self.unconfirmed(snap,started,question,lang,records,entity_audit)
+                 if unresolved is not None:return unresolved
+--- r75_profile_confirmation_20261016/system/app/knowledge/common/dialogue.py
++++ r76_rejection_rephrase_20261016/system/app/knowledge/common/dialogue.py
+@@ -3,11 +3,11 @@
+ from .query_contract import normalize,resolve_fields,broad_request,strip_names
+ def state_from_answer(answer):
+     art=answer.decision_artifact or {};plan=art.get('query_plan',{})
+-    if art.get('catalog_scope')!='common_published':return None
++    if art.get('catalog_scope')!='common_published' and not art.get('dialogue_repair') and not plan.get('profile_confirmation_closed'):return None
+     minutes={c['requested_minutes'] for c in plan.get('price_calculations',[]) if type(c.get('requested_minutes')) is int and 0<c['requested_minutes']<=1440}
+     constraints={'duration_minutes':next(iter(minutes))} if len(minutes)==1 else {}
+     comparison=plan.get('price_comparison')
+-    return {'schema_version':1,'record_ids':list(plan.get('record_ids',[])),'requested_fields':list(plan.get('requested_fields',[])),'all_fields':bool(plan.get('all_fields')),'release_id':art.get('release_id'),'pending_selection':plan.get('pending_selection'),'profile_confirmation':plan.get('profile_confirmation'),'profile_confirmation_closed':bool(plan.get('profile_confirmation_closed')),'scope_ids':plan.get('scope_ids',[]),'operation':'price_comparison' if comparison else plan.get('operation'),'platform':plan.get('platform'),'constraints':constraints,'price_comparison':{k:comparison[k] for k in ('scope_ids','audience_ids','missing','axis') if k in comparison} if isinstance(comparison,dict) else None}
++    return {'schema_version':1,'record_ids':list(plan.get('record_ids',[])),'requested_fields':list(plan.get('requested_fields',[])),'all_fields':bool(plan.get('all_fields')),'release_id':art.get('release_id'),'pending_selection':plan.get('pending_selection'),'profile_confirmation':plan.get('profile_confirmation'),'profile_confirmation_closed':bool(plan.get('profile_confirmation_closed')),'declined_profile_ids':list(plan.get('declined_profile_ids',[])),'scope_ids':plan.get('scope_ids',[]),'operation':'price_comparison' if comparison else plan.get('operation'),'platform':plan.get('platform'),'constraints':constraints,'price_comparison':{k:comparison[k] for k in ('scope_ids','audience_ids','missing','axis') if k in comparison} if isinstance(comparison,dict) else None}
+ def previous_state(history,records):
+     for turn in reversed((history or [])[-8:]):
+         s=turn.get('common_read_state') if isinstance(turn,dict) and turn.get('role')=='assistant' else None
+--- r75_profile_confirmation_20261016/system/app/knowledge/common/profile_confirmation.py
++++ r76_rejection_rephrase_20261016/system/app/knowledge/common/profile_confirmation.py
+@@ -65,12 +65,16 @@
+     p=latest(history)
+     if not p:return None
+     q=normalize(question).strip(' ?!.,');opts=p['options']
++    from .reply_repair import rejection
++    rejected=rejection(question)
++    if rejected:
++        visible=opts[p['page']*PAGE_SIZE:(p['page']+1)*PAGE_SIZE]
++        return {'action':'rephrase' if rejected['replacement'] else 'cancel','replacement':rejected['replacement'],
++            'declined_profile_ids':[o['record_id'] for o in visible],'basis':rejected['reason']}
+     yes=bool(re.fullmatch(r'yes|yes please|yep|ใช่|ใช่ครับ|ใช่ค่ะ|ใช่เลย|ถูกต้อง',q))
+-    no=bool(re.fullmatch(r'no|nope|not that|none of these|ไม่ใช่|ไม่ใช่ครับ|ไม่ใช่ค่ะ|ไม่มีในนี้|ไม่เอา',q) or re.match(r'^(?:no|nope|not that)[,!. ]|^ไม่ใช่(?:ครับ|ค่ะ)?(?:[,!. ]|หมายถึง|เป็น)',q))
+     next_page=q in {'next','more','ถัดไป','หน้าถัดไป','ดูเพิ่ม'}
+     index=int(q)-1 if re.fullmatch(r'[0-9]{1,4}',q) else None
+     chosen=opts[0] if yes and len(opts)==1 else None
+-    if no:return {'action':'cancel'}
+     if next_page:
+         # Deleted/changed routing entries must not become selectable via a
+         # stale menu. Caller asks a fresh question rather than silently remaps.
+--- r75_profile_confirmation_20261016/system/app/knowledge/common/reply_repair.py
++++ r76_rejection_rephrase_20261016/system/app/knowledge/common/reply_repair.py
+@@ -0,0 +1,39 @@
++"""Parse a rejected suggestion plus replacement query without inventing context.
++
++Return raw substrings. Negation, quantities, names and dates in the replacement
++are retained; routing/answer facts are never taken from assistant prose.
++"""
++import re
++
++SEPARATORS=' \t\r\n,;:!?…。．.!—–-'
++HEADER=re.compile(r'^\s*(?:(?P<en>none of these|not that|nope|no)(?=$|[,;:!?.—–\-\n]|\s+(?:i\s+mean(?:t)?\b|i[’\x27]m\s+asking\b|i\s+am\s+asking\b|what\s+i\s+mean\b))|(?P<th>ไม่ใช่(?:อันนี้|เรื่องนี้|หัวข้อนี้)?(?:ครับ|ค่ะ)?|ไม่มีในนี้)(?=$|[\s,;:!?.—–\-]|หมายถึง|ผมหมายถึง|ฉันหมายถึง|อยากถาม|ขอถาม)|ไม่เอา(?=$))',re.I)
++FRAMING=re.compile(r'^(?:(?:(?:ผม|ฉัน|เรา)\s*)?หมายถึง|อยาก(?:ถาม|รู้)(?:เรื่อง)?|ขอถาม(?:เรื่อง)?|i\s+mean(?:t)?\b|what\s+i\s+mean\s+is\b|i(?:[’\x27]m|\s+am)\s+asking(?:\s+about)?\b)\s*[,;:—–\-]?\s*',re.I)
++
++def rejection(question):
++    if not isinstance(question,str):return None
++    m=HEADER.match(question)
++    if not m:return None
++    tail=question[m.end():].lstrip(SEPARATORS)
++    wrapper=FRAMING.match(tail)
++    if wrapper:tail=tail[wrapper.end():].lstrip(SEPARATORS)
++    # Keep sentence-ending question marks and all interior characters intact.
++    tail=tail.strip()
++    if not tail.strip(SEPARATORS) or len(tail.strip(SEPARATORS))<3:
++        return {'replacement':None,'reason':'rejection_without_new_query'}
++    return {'replacement':tail,'reason':'explicit_replacement_after_rejection'}
++
++def declined_from_history(history):
++    for turn in reversed((history or [])[-8:]):
++        if not isinstance(turn,dict) or turn.get('role')!='assistant':continue
++        if turn.get('delivery_status') not in {'server_written','client_acknowledged'}:return set()
++        state=turn.get('common_read_state')
++        if not isinstance(state,dict) or state.get('schema_version')!=1:return set()
++        ids=state.get('declined_profile_ids',[])
++        if not isinstance(ids,list) or len(ids)>2000 or any(not isinstance(x,str) for x in ids):return set()
++        return set(ids)
++    return set()
++
++def barrier(record_ids):
++    return [{'role':'assistant','delivery_status':'server_written','common_read_state':{
++        'schema_version':1,'record_ids':[],'requested_fields':[],'profile_confirmation_closed':True,
++        'declined_profile_ids':sorted(record_ids)}}]
+--- r75_profile_confirmation_20261016/system/app/pipeline/migrated_chat.py
++++ r76_rejection_rephrase_20261016/system/app/pipeline/migrated_chat.py
+@@ -6,7 +6,7 @@
+ from __future__ import annotations
+ import os,time,sqlite3
+ from dataclasses import replace
+-from app.knowledge.common.answer import CommonAnswerer,database_path
++from app.knowledge.common.answer import CommonAnswerer,database_path,effective
+ from app.knowledge.common.migrated_view import MigratedView,PROFILE
+ from app.pipeline.schemas import PipelineAnswer,PipelineRoute,PipelineTrace,EntityBundle,ValidationResult
+ 
+@@ -16,7 +16,14 @@
+  def finish(result,kind):
+   status={'profile':PROFILE,'database':'common.sqlite','draft_preview_only':True,'production_publication_verified':False,'knowledge_source':kind,'legacy_fallback_used':False}
+   hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} for h in result.hits]
+-  return replace(result,hits=hits,language=locale,elapsed=time.perf_counter()-started,decision_artifact={**(result.decision_artifact or {}),'migration':status,'planner_audits':audits,'query_resolution':reader.diagnostics if reader is not None else []},trace=[*result.trace,PipelineTrace('migrated_chat','selected',1.0,'isolated copied data; no legacy content fallback',status)])
++  art=dict(result.decision_artifact or {})
++  if reader is not None and reader.declined_profile_ids and kind!='live_booking':
++   plan=dict(art.get('query_plan') or {})
++   if not plan.get('record_ids') or plan.get('profile_confirmation'):
++    plan['declined_profile_ids']=sorted(reader.declined_profile_ids)
++    if not plan.get('profile_confirmation'):plan['profile_confirmation_closed']=True
++    art['query_plan']=plan
++  return replace(result,hits=hits,language=locale,elapsed=time.perf_counter()-started,decision_artifact={**art,'migration':status,'planner_audits':audits if reader is not None else art.get('planner_audits',[]),'query_resolution':reader.diagnostics if reader is not None else art.get('query_resolution',[])},trace=[*result.trace,PipelineTrace('migrated_chat','selected',1.0,'isolated copied data; no legacy content fallback',status)])
+  def message(text,kind='clarification'):
+   return PipelineAnswer(answer=text,hits=[],elapsed=time.perf_counter()-started,mode='pipeline:migrated_'+kind,confidence=0,route=PipelineRoute('knowledge','common_read',0,kind,'medium','migrated common content only'),entities=EntityBundle(),validation=ValidationResult(True))
+  from app.pipeline.chatbot_identity import is_chatbot_greeting_query,is_chatbot_identity_query
+@@ -25,6 +32,35 @@
+   return finish(message(text,'greeting'),'assistant_interface')
+  try:
+   view=MigratedView(database_path())
++  from app.knowledge.common.profile_confirmation import latest,resolve as resolve_confirmation
++  from app.knowledge.common.reply_repair import rejection,barrier,declined_from_history
++  if latest(history) and rejection(question):
++   from app.calendar.service_calendar import now_bangkok
++   snap=view.snapshot();rs=snap['release']['records'];at=now_bangkok()
++   repair=resolve_confirmation(question,history,{rid:r for rid,r in rs.items() if effective(r,at,rs)})
++   if repair and repair['action']=='rephrase':
++    active_query=repair['replacement'];declined=declined_from_history(history)|set(repair['declined_profile_ids'])
++    # Re-enter the dispatcher so booking/live adapters, greeting and normal
++    # source validation see the replacement, not the rejected old question.
++    # Reapply product scope because the outer input began with "no".
++    from app.pipeline.studio_scope import is_explicit_unrelated_task
++    from app.pipeline.query_signals import looks_like_explicit_creation_request
++    from app.pipeline.semantic_quality import translation_request
++    translation=translation_request(active_query)
++    if is_explicit_unrelated_task(active_query) or looks_like_explicit_creation_request(active_query) or (translation and translation['source']):
++     body=('ผมช่วยตอบข้อมูลของ PSU Esports Studio - Phuket เช่น เกม อุปกรณ์ ราคา การจอง เวลาให้บริการ และกฎของศูนย์ครับ' if language=='th' else 'I answer questions about PSU Esports Studio - Phuket: games, equipment, prices, booking, service hours and studio rules.')
++     result=message(body,'scope')
++    else:
++     result=answer(active_query,locale=locale,history=barrier(declined),allow_llm=allow_llm)
++    art=dict(result.decision_artifact or {});plan=dict(art.get('query_plan') or {})
++    unresolved=not plan.get('record_ids') or bool(plan.get('profile_confirmation'))
++    plan['declined_profile_ids']=sorted(declined) if unresolved else []
++    if unresolved and not plan.get('profile_confirmation'):plan['profile_confirmation_closed']=True
++    art['query_plan']=plan
++    art['dialogue_repair']={'method':'rejected_topic_with_replacement','original_input':question,'active_query':active_query,
++        'rejected_profile_ids':sorted(declined),'previous_answer_facts_used':False,'old_context_inherited':False}
++    result=replace(result,decision_artifact=art,trace=[*result.trace,PipelineTrace('dialogue_repair','replacement_query',1.0,'explicit user replacement after topic rejection',art['dialogue_repair'])])
++    return finish(result,art.get('migration',{}).get('knowledge_source','migrated_common'))
+   from app.knowledge.common.planner import plan_fields
+   def planner(q,records,ids):return plan_fields(q,records,ids,diagnostic=audits.append)
+   # Try common first: its schema can distinguish static inventory from live
+--- r75_profile_confirmation_20261016/system/app/web_api/server.py
++++ r76_rejection_rephrase_20261016/system/app/web_api/server.py
+@@ -261,7 +261,7 @@
+     for item in getattr(result, "trace", []) or []:
+         stage = getattr(item, "stage", "")
+         decision = getattr(item, "decision", "")
+-        if stage == "preprocess" or decision in {"selected_query_variant", "kept_original_query"}:
++        if stage in {"preprocess", "dialogue_repair"} or decision in {"selected_query_variant", "kept_original_query"}:
+             traces.append({
+                 "stage": stage,
+                 "decision": decision,
+@@ -276,13 +276,18 @@
+     if normalized_trace:
+         query_variants = list((normalized_trace.get("metadata") or {}).get("query_variants") or [])
+ 
++    artifact = getattr(result, 'decision_artifact', None) or {}
++    repair = artifact.get('dialogue_repair') if isinstance(artifact, dict) else None
++    repaired_query = repair.get('active_query') if isinstance(repair, dict) else None
++    active_query = repaired_query if isinstance(repaired_query, str) and repaired_query else selected_trace['detail'] if selected_trace else resolved_question
+     return {
+         "original_question": question,
+         "resolved_question": resolved_question,
+         "normalized_query": normalized_trace["detail"] if normalized_trace else "",
+         "query_variants": query_variants,
+-        "active_query": selected_trace["detail"] if selected_trace else resolved_question,
+-        "active_query_changed": selected_trace is not None,
++        "active_query": active_query,
++        "active_query_changed": selected_trace is not None or active_query != resolved_question,
++        "dialogue_repair": repair,
+         "trace": traces,
+     }
+ 

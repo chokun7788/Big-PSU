@@ -1,0 +1,121 @@
+{
+  "question_key": "ab2f8972dde3005af36e57e96b899bf9613410ee746623f53888ba3bd47cad2b",
+  "example_sha256": "6800ce887d3295c43df4c2c131a2935e7e31124d3fd447ae4536614b3378695b",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "The Thai typo fragment mentions games and an unclear แข่งนด qualifier.",
+      "raw_quotes": [
+        "มีเกมแข่งนดมั้ยย"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Keep games/list/game_catalog provisionally but mark ambiguity because the requested game type is not established.",
+      "raw_quotes": [
+        "มีเกมแข่งนดมั้ยย"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add literal แข่งนด scope instead of silently normalizing it to racing or competition.",
+      "raw_quotes": [
+        "มีเกมแข่งนดมั้ยย"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No title, platform, tournament, date or prior referent is supplied.",
+      "raw_quotes": [
+        "มีเกมแข่งนดมั้ยย"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The unclear qualifier cannot prove a request for racing games or live tournament news.",
+      "raw_quotes": [
+        "มีเกมแข่งนดมั้ยย"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "No particular source game category is justified until the qualifier is clarified; a source catalog does not resolve the user typo by itself.",
+      "raw_quotes": [
+        "มีเกมแข่งนดมั้ยย"
+      ],
+      "source_record_ids": []
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No racing-game list, event status, source title, platform or invented corrected qualifier is taught.",
+      "raw_quotes": [
+        "มีเกมแข่งนดมั้ยย"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Game-type qualifier is unclear.",
+      "handling": "Keep ambiguity and require clarification instead of supplying a guessed racing-game catalog."
+    }
+  ],
+  "historical_review_row": 287,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_catalog",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "มีเกมแข่งนดมั้ยย",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_catalog",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "มีเกมแข่งนดมั้ยย",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "แข่งนด",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {}
+}

@@ -1,0 +1,1232 @@
+{
+  "cases": [
+    {
+      "question": "How do I cancel my booking?",
+      "answer": "Several recorded policy versions have unresolved scope or conditions. Each source is retained; confirm the applicable version with the studio.\nCancellations must be made at least 1 hour in advance. [S1]\nCancel reservation: Cancellation of reservations must be made at least 1 hour in advance. [S2]\nThe policy validity interval is unconfirmed. The recorded clause does not establish current permission.",
+      "request_plan": {
+        "version": "common_request_plan_v3",
+        "question": "How do I cancel my booking?",
+        "needs": [
+          {
+            "id": "r114_n1",
+            "task": "procedure",
+            "query": "How do I cancel my booking?",
+            "source_span": "How do I cancel my booking?",
+            "record_ids": [
+              "migrated_faq_rule_cancel_advance",
+              "migrated_faq_curated_cancel_1_hour"
+            ],
+            "qualifiers": [],
+            "slot_origin": "current_user",
+            "predicate": "procedure",
+            "slots": {},
+            "required_claims": [],
+            "hard_dependencies": []
+          }
+        ],
+        "scope": {
+          "source": "current_pinned_snapshot",
+          "router": "r114"
+        }
+      },
+      "needs": [
+        {
+          "task": "procedure",
+          "terminal_state": "partial",
+          "reason_codes": [
+            "policy_source_variants_unresolved"
+          ],
+          "execution_contract": {
+            "version": "r135-obligation-verifier-v2",
+            "task_id": "t1",
+            "terminal_state": "partial",
+            "reason_codes": [
+              "policy_source_variants_unresolved"
+            ],
+            "obligations": [
+              {
+                "id": "t1:answer",
+                "kind": "task_completion",
+                "task_id": "t1",
+                "expected": "owner_policy",
+                "fulfilled": true,
+                "reason": null,
+                "claim_refs": [
+                  "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                  "C08:migrated_faq_curated_cancel_1_hour:owner_policy"
+                ]
+              }
+            ],
+            "receipts": [
+              {
+                "fact_id": "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                "record_id": "migrated_faq_rule_cancel_advance",
+                "facet": "owner_policy",
+                "record_revision": 4,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r63_0354143739cc458fb68202e567d8"
+                  },
+                  {
+                    "locator": "/mapped_fields/question",
+                    "source_id": "r66_en_8da67384d86ff673fb873224"
+                  },
+                  {
+                    "locator": "/intent_key",
+                    "source_id": "r67_intent_1ff78931dc896509efd87299"
+                  },
+                  {
+                    "locator": "/mapped_fields/topic",
+                    "source_id": "r63_0354143739cc458fb68202e567d8"
+                  },
+                  {
+                    "locator": "/mapped_fields/legacy_search",
+                    "source_id": "r119_ad3025295448adbd34577087f051"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "exact_source_value",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [],
+                  "basis": [
+                    "actual_question_action_and_source_declared_scope_recomputed"
+                  ],
+                  "target_binding_verified": false,
+                  "semantic_entailment_verified": false,
+                  "policy_action": {
+                    "requested_actions": [
+                      "customer_cancel"
+                    ],
+                    "source_actions": [
+                      "customer_cancel"
+                    ],
+                    "verified": true,
+                    "source_scope_refs": [
+                      {
+                        "locator": "/mapped_fields/question",
+                        "source_id": "r66_en_8da67384d86ff673fb873224"
+                      },
+                      {
+                        "locator": "/intent_key",
+                        "source_id": "r67_intent_1ff78931dc896509efd87299"
+                      },
+                      {
+                        "locator": "/mapped_fields/topic",
+                        "source_id": "r63_0354143739cc458fb68202e567d8"
+                      },
+                      {
+                        "locator": "/mapped_fields/legacy_search",
+                        "source_id": "r119_ad3025295448adbd34577087f051"
+                      }
+                    ],
+                    "basis": "actual_question_action_and_source_declared_scope_recomputed",
+                    "semantic_entailment_verified": false
+                  },
+                  "policy_applicability": {
+                    "fact_id": "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                    "record_id": "migrated_faq_rule_cancel_advance",
+                    "record_revision": 4,
+                    "requested_reference_time": "2026-10-16T12:00:00+07:00",
+                    "recorded_validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "allowed": true,
+                    "state": "validity_interval_unconfirmed",
+                    "error": null
+                  }
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C08:migrated_faq_curated_cancel_1_hour:owner_policy",
+                "record_id": "migrated_faq_curated_cancel_1_hour",
+                "facet": "owner_policy",
+                "record_revision": 3,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r66_en_f816f54a79926f69db6b589a"
+                  },
+                  {
+                    "locator": "/mapped_fields/question",
+                    "source_id": "r66_en_f816f54a79926f69db6b589a"
+                  },
+                  {
+                    "locator": "/mapped_fields/topic",
+                    "source_id": "r63_4a57ec8fbd7905b0d8d08a760460"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "exact_source_value",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [],
+                  "basis": [
+                    "actual_question_action_and_source_declared_scope_recomputed"
+                  ],
+                  "target_binding_verified": false,
+                  "semantic_entailment_verified": false,
+                  "policy_action": {
+                    "requested_actions": [
+                      "customer_cancel"
+                    ],
+                    "source_actions": [
+                      "customer_cancel"
+                    ],
+                    "verified": true,
+                    "source_scope_refs": [
+                      {
+                        "locator": "/mapped_fields/question",
+                        "source_id": "r66_en_f816f54a79926f69db6b589a"
+                      },
+                      {
+                        "locator": "/mapped_fields/topic",
+                        "source_id": "r63_4a57ec8fbd7905b0d8d08a760460"
+                      }
+                    ],
+                    "basis": "actual_question_action_and_source_declared_scope_recomputed",
+                    "semantic_entailment_verified": false
+                  },
+                  "policy_applicability": {
+                    "fact_id": "C08:migrated_faq_curated_cancel_1_hour:owner_policy",
+                    "record_id": "migrated_faq_curated_cancel_1_hour",
+                    "record_revision": 3,
+                    "requested_reference_time": "2026-10-16T12:00:00+07:00",
+                    "recorded_validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "allowed": true,
+                    "state": "validity_interval_unconfirmed",
+                    "error": null
+                  }
+                },
+                "semantic_entailment_verified": false
+              }
+            ],
+            "fatal": [],
+            "source_refs_checked": true,
+            "all_obligations_fulfilled": true,
+            "collection_proof": null,
+            "whole_question_semantics_verified": false,
+            "planned_task_coverage_only": true
+          }
+        }
+      ]
+    },
+    {
+      "question": "วิธียกเลิกการจองทำอย่างไร",
+      "answer": "**วิธียกเลิกการจองทำอย่างไร**\n\nยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ\n\n**วิธียกเลิกการจองทำอย่างไร**\n\nมีข้อความนโยบายหลายฉบับที่ยังยืนยันไม่ได้ว่าใช้ขอบเขตหรือเงื่อนไขเดียวกัน จึงคงข้อมูลแต่ละฉบับไว้ กรุณาตรวจสอบกับศูนย์ก่อนใช้\nการยกเลิกการจองต้องทำล่วงหน้าอย่างน้อย 1 ชั่วโมง [S1]\nยกเลิกการจอง: การยกเลิกการจองต้องทำล่วงหน้าอย่างน้อย 1 ชั่วโมง [S2]\nช่วงที่นโยบายมีผลยังไม่ยืนยัน ข้างต้นเป็นข้อความที่บันทึกไว้ ไม่ยืนยันสิทธิ์ปัจจุบัน",
+      "request_plan": {
+        "version": "common_request_plan_v3",
+        "question": "วิธียกเลิกการจองทำอย่างไร",
+        "needs": [
+          {
+            "id": "r114_n1",
+            "task": "procedure",
+            "query": "วิธียกเลิกการจองทำอย่างไร",
+            "source_span": "วิธียกเลิกการจองทำอย่างไร",
+            "record_ids": [],
+            "qualifiers": [],
+            "slot_origin": "current_user",
+            "predicate": "procedure",
+            "slots": {},
+            "required_claims": [],
+            "hard_dependencies": []
+          },
+          {
+            "id": "r114_n2",
+            "task": "procedure",
+            "query": "วิธียกเลิกการจองทำอย่างไร",
+            "source_span": "วิธียกเลิกการจองทำอย่างไร",
+            "record_ids": [
+              "migrated_faq_rule_cancel_advance",
+              "migrated_faq_curated_cancel_1_hour"
+            ],
+            "qualifiers": [],
+            "slot_origin": "current_user",
+            "predicate": "procedure",
+            "slots": {},
+            "required_claims": [],
+            "hard_dependencies": []
+          }
+        ],
+        "scope": {
+          "source": "current_pinned_snapshot",
+          "router": "r114"
+        }
+      },
+      "needs": [
+        {
+          "task": "procedure",
+          "terminal_state": "missing_source",
+          "reason_codes": [
+            "multiple_policy_actions_need_disambiguation"
+          ],
+          "execution_contract": {
+            "version": "r135-obligation-verifier-v2",
+            "task_id": "t1",
+            "terminal_state": "missing_source",
+            "reason_codes": [
+              "multiple_policy_actions_need_disambiguation"
+            ],
+            "obligations": [
+              {
+                "id": "t1:answer",
+                "kind": "task_completion",
+                "task_id": "t1",
+                "expected": "owner_policy",
+                "fulfilled": false,
+                "reason": "multiple_policy_actions_need_disambiguation",
+                "claim_refs": []
+              }
+            ],
+            "receipts": [],
+            "fatal": [],
+            "source_refs_checked": true,
+            "all_obligations_fulfilled": false,
+            "collection_proof": null,
+            "whole_question_semantics_verified": false,
+            "planned_task_coverage_only": true
+          }
+        },
+        {
+          "task": "procedure",
+          "terminal_state": "partial",
+          "reason_codes": [
+            "policy_source_variants_unresolved"
+          ],
+          "execution_contract": {
+            "version": "r135-obligation-verifier-v2",
+            "task_id": "t2",
+            "terminal_state": "partial",
+            "reason_codes": [
+              "policy_source_variants_unresolved"
+            ],
+            "obligations": [
+              {
+                "id": "t2:answer",
+                "kind": "task_completion",
+                "task_id": "t2",
+                "expected": "owner_policy",
+                "fulfilled": true,
+                "reason": null,
+                "claim_refs": [
+                  "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                  "C08:migrated_faq_curated_cancel_1_hour:owner_policy"
+                ]
+              }
+            ],
+            "receipts": [
+              {
+                "fact_id": "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                "record_id": "migrated_faq_rule_cancel_advance",
+                "facet": "owner_policy",
+                "record_revision": 4,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r63_0354143739cc458fb68202e567d8"
+                  },
+                  {
+                    "locator": "/mapped_fields/question",
+                    "source_id": "r66_en_8da67384d86ff673fb873224"
+                  },
+                  {
+                    "locator": "/intent_key",
+                    "source_id": "r67_intent_1ff78931dc896509efd87299"
+                  },
+                  {
+                    "locator": "/mapped_fields/topic",
+                    "source_id": "r63_0354143739cc458fb68202e567d8"
+                  },
+                  {
+                    "locator": "/mapped_fields/legacy_search",
+                    "source_id": "r119_ad3025295448adbd34577087f051"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "exact_source_value",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [],
+                  "basis": [
+                    "actual_question_action_and_source_declared_scope_recomputed"
+                  ],
+                  "target_binding_verified": false,
+                  "semantic_entailment_verified": false,
+                  "policy_action": {
+                    "requested_actions": [
+                      "customer_cancel"
+                    ],
+                    "source_actions": [
+                      "customer_cancel"
+                    ],
+                    "verified": true,
+                    "source_scope_refs": [
+                      {
+                        "locator": "/mapped_fields/question",
+                        "source_id": "r66_en_8da67384d86ff673fb873224"
+                      },
+                      {
+                        "locator": "/intent_key",
+                        "source_id": "r67_intent_1ff78931dc896509efd87299"
+                      },
+                      {
+                        "locator": "/mapped_fields/topic",
+                        "source_id": "r63_0354143739cc458fb68202e567d8"
+                      },
+                      {
+                        "locator": "/mapped_fields/legacy_search",
+                        "source_id": "r119_ad3025295448adbd34577087f051"
+                      }
+                    ],
+                    "basis": "actual_question_action_and_source_declared_scope_recomputed",
+                    "semantic_entailment_verified": false
+                  },
+                  "policy_applicability": {
+                    "fact_id": "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                    "record_id": "migrated_faq_rule_cancel_advance",
+                    "record_revision": 4,
+                    "requested_reference_time": "2026-10-16T12:00:00+07:00",
+                    "recorded_validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "allowed": true,
+                    "state": "validity_interval_unconfirmed",
+                    "error": null
+                  }
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C08:migrated_faq_curated_cancel_1_hour:owner_policy",
+                "record_id": "migrated_faq_curated_cancel_1_hour",
+                "facet": "owner_policy",
+                "record_revision": 3,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r66_en_f816f54a79926f69db6b589a"
+                  },
+                  {
+                    "locator": "/mapped_fields/question",
+                    "source_id": "r66_en_f816f54a79926f69db6b589a"
+                  },
+                  {
+                    "locator": "/mapped_fields/topic",
+                    "source_id": "r63_4a57ec8fbd7905b0d8d08a760460"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "exact_source_value",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [],
+                  "basis": [
+                    "actual_question_action_and_source_declared_scope_recomputed"
+                  ],
+                  "target_binding_verified": false,
+                  "semantic_entailment_verified": false,
+                  "policy_action": {
+                    "requested_actions": [
+                      "customer_cancel"
+                    ],
+                    "source_actions": [
+                      "customer_cancel"
+                    ],
+                    "verified": true,
+                    "source_scope_refs": [
+                      {
+                        "locator": "/mapped_fields/question",
+                        "source_id": "r66_en_f816f54a79926f69db6b589a"
+                      },
+                      {
+                        "locator": "/mapped_fields/topic",
+                        "source_id": "r63_4a57ec8fbd7905b0d8d08a760460"
+                      }
+                    ],
+                    "basis": "actual_question_action_and_source_declared_scope_recomputed",
+                    "semantic_entailment_verified": false
+                  },
+                  "policy_applicability": {
+                    "fact_id": "C08:migrated_faq_curated_cancel_1_hour:owner_policy",
+                    "record_id": "migrated_faq_curated_cancel_1_hour",
+                    "record_revision": 3,
+                    "requested_reference_time": "2026-10-16T12:00:00+07:00",
+                    "recorded_validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "allowed": true,
+                    "state": "validity_interval_unconfirmed",
+                    "error": null
+                  }
+                },
+                "semantic_entailment_verified": false
+              }
+            ],
+            "fatal": [],
+            "source_refs_checked": true,
+            "all_obligations_fulfilled": true,
+            "collection_proof": null,
+            "whole_question_semantics_verified": false,
+            "planned_task_coverage_only": true
+          }
+        }
+      ]
+    },
+    {
+      "question": "ยกเลิกการจองอย่างไร และราคา PC เท่าไหร่",
+      "answer": "**ยกเลิกการจองอย่างไร และราคา PC เท่าไหร่**\n\nยังยืนยันไม่ได้ว่าอัตราด้านล่างใช้กับวันที่ 2026-10-16 ตัวเลขที่แสดงเป็นอัตราตามแหล่งข้อมูลที่มีครับ\n**PC / PSU Student and Staff**\n0 บาทต่อคน สำหรับ 60 นาที [S1] [S4]\n**PC / PSU Alumni and General Student**\n25 บาทต่อคน สำหรับ 60 นาที [S2] [S5]\n**PC / General Adult**\n70 บาทต่อคน สำหรับ 60 นาที [S3] [S6]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)\n\n**ยกเลิกการจองอย่างไร**\n\nมีข้อความนโยบายหลายฉบับที่ยังยืนยันไม่ได้ว่าใช้ขอบเขตหรือเงื่อนไขเดียวกัน จึงคงข้อมูลแต่ละฉบับไว้ กรุณาตรวจสอบกับศูนย์ก่อนใช้\nการยกเลิกการจองต้องทำล่วงหน้าอย่างน้อย 1 ชั่วโมง [S7]\nยกเลิกการจอง: การยกเลิกการจองต้องทำล่วงหน้าอย่างน้อย 1 ชั่วโมง [S8]\nช่วงที่นโยบายมีผลยังไม่ยืนยัน ข้างต้นเป็นข้อความที่บันทึกไว้ ไม่ยืนยันสิทธิ์ปัจจุบัน",
+      "request_plan": {
+        "version": "common_request_plan_v3",
+        "question": "ยกเลิกการจองอย่างไร และราคา PC เท่าไหร่",
+        "needs": [
+          {
+            "id": "r114_n1",
+            "task": "price",
+            "query": "ยกเลิกการจองอย่างไร และราคา PC เท่าไหร่",
+            "source_span": "ยกเลิกการจองอย่างไร และราคา PC เท่าไหร่",
+            "record_ids": [
+              "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+              "rate_recovered_pc_availability_pc_01_02_general_student",
+              "rate_recovered_pc_availability_pc_01_02_general_adult",
+              "rate_recovered_pc_availability_pc_03_10_psu_student_staff",
+              "rate_recovered_pc_availability_pc_03_10_general_student",
+              "rate_recovered_pc_availability_pc_03_10_general_adult"
+            ],
+            "qualifiers": [],
+            "slot_origin": "current_user",
+            "predicate": "price",
+            "slots": {},
+            "required_claims": [],
+            "hard_dependencies": []
+          },
+          {
+            "id": "r114_n2",
+            "task": "procedure",
+            "query": "ยกเลิกการจองอย่างไร",
+            "source_span": "ยกเลิกการจองอย่างไร",
+            "record_ids": [
+              "migrated_faq_rule_cancel_advance",
+              "migrated_faq_curated_cancel_1_hour"
+            ],
+            "qualifiers": [],
+            "slot_origin": "current_user",
+            "predicate": "procedure",
+            "slots": {},
+            "required_claims": [],
+            "hard_dependencies": []
+          }
+        ],
+        "scope": {
+          "source": "current_pinned_snapshot",
+          "router": "r114"
+        }
+      },
+      "needs": [
+        {
+          "task": "price",
+          "terminal_state": "partial",
+          "reason_codes": [
+            "rate_date_applicability_not_confirmed"
+          ],
+          "execution_contract": {
+            "version": "r135-obligation-verifier-v2",
+            "task_id": "t1",
+            "terminal_state": "partial",
+            "reason_codes": [
+              "rate_date_applicability_not_confirmed"
+            ],
+            "obligations": [
+              {
+                "id": "t1:answer",
+                "kind": "task_completion",
+                "task_id": "t1",
+                "expected": "amount",
+                "fulfilled": true,
+                "reason": null,
+                "claim_refs": [
+                  "C06:rate_recovered_pc_availability_pc_01_02_psu_student_staff:amount",
+                  "C06:rate_recovered_pc_availability_pc_01_02_general_student:amount",
+                  "C06:rate_recovered_pc_availability_pc_01_02_general_adult:amount",
+                  "C06:rate_recovered_pc_availability_pc_03_10_psu_student_staff:amount",
+                  "C06:rate_recovered_pc_availability_pc_03_10_general_student:amount",
+                  "C06:rate_recovered_pc_availability_pc_03_10_general_adult:amount"
+                ]
+              }
+            ],
+            "receipts": [
+              {
+                "fact_id": "C06:rate_recovered_pc_availability_pc_01_02_psu_student_staff:amount",
+                "record_id": "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+                "facet": "amount",
+                "record_revision": 2,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/amount_minor",
+                    "source_id": "r66_pc_4cd8af9a21a7cacef4532b65"
+                  },
+                  {
+                    "locator": "/mapped_fields/currency",
+                    "source_id": "r66_pc_4cd8af9a21a7cacef4532b65"
+                  },
+                  {
+                    "locator": "/mapped_fields/service_id",
+                    "source_id": "r66_pc_4cd8af9a21a7cacef4532b65"
+                  },
+                  {
+                    "locator": "/mapped_fields/audience_id",
+                    "source_id": "r66_pc_4cd8af9a21a7cacef4532b65"
+                  },
+                  {
+                    "locator": "/mapped_fields/duration_minutes",
+                    "source_id": "r66_pc_4cd8af9a21a7cacef4532b65"
+                  },
+                  {
+                    "locator": "/mapped_fields/unit",
+                    "source_id": "r66_pc_billing_68ed2dc9444a7e69ea27700c"
+                  },
+                  {
+                    "locator": "/mapped_fields/calculation_rule",
+                    "source_id": "r66_pc_billing_68ed2dc9444a7e69ea27700c"
+                  },
+                  {
+                    "locator": "/fields/answer",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  },
+                  {
+                    "locator": "/fields/scope_note",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "numeric_recomputed",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [
+                    "rate_recovered_pc_availability_pc_01_02_general_adult",
+                    "rate_recovered_pc_availability_pc_01_02_general_student",
+                    "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+                    "rate_recovered_pc_availability_pc_03_10_general_adult",
+                    "rate_recovered_pc_availability_pc_03_10_general_student",
+                    "rate_recovered_pc_availability_pc_03_10_psu_student_staff"
+                  ],
+                  "basis": [
+                    "source_service_audience_rate_joins"
+                  ],
+                  "target_binding_verified": true,
+                  "semantic_entailment_verified": false
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C06:rate_recovered_pc_availability_pc_01_02_general_student:amount",
+                "record_id": "rate_recovered_pc_availability_pc_01_02_general_student",
+                "facet": "amount",
+                "record_revision": 2,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/amount_minor",
+                    "source_id": "r66_pc_84c88699ada11a14343702a7"
+                  },
+                  {
+                    "locator": "/mapped_fields/currency",
+                    "source_id": "r66_pc_84c88699ada11a14343702a7"
+                  },
+                  {
+                    "locator": "/mapped_fields/service_id",
+                    "source_id": "r66_pc_84c88699ada11a14343702a7"
+                  },
+                  {
+                    "locator": "/mapped_fields/audience_id",
+                    "source_id": "r66_pc_84c88699ada11a14343702a7"
+                  },
+                  {
+                    "locator": "/mapped_fields/duration_minutes",
+                    "source_id": "r66_pc_84c88699ada11a14343702a7"
+                  },
+                  {
+                    "locator": "/mapped_fields/unit",
+                    "source_id": "r66_pc_billing_016b5df0a08d93aa92750b1e"
+                  },
+                  {
+                    "locator": "/mapped_fields/calculation_rule",
+                    "source_id": "r66_pc_billing_016b5df0a08d93aa92750b1e"
+                  },
+                  {
+                    "locator": "/fields/answer",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  },
+                  {
+                    "locator": "/fields/scope_note",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "numeric_recomputed",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [
+                    "rate_recovered_pc_availability_pc_01_02_general_adult",
+                    "rate_recovered_pc_availability_pc_01_02_general_student",
+                    "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+                    "rate_recovered_pc_availability_pc_03_10_general_adult",
+                    "rate_recovered_pc_availability_pc_03_10_general_student",
+                    "rate_recovered_pc_availability_pc_03_10_psu_student_staff"
+                  ],
+                  "basis": [
+                    "source_service_audience_rate_joins"
+                  ],
+                  "target_binding_verified": true,
+                  "semantic_entailment_verified": false
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C06:rate_recovered_pc_availability_pc_01_02_general_adult:amount",
+                "record_id": "rate_recovered_pc_availability_pc_01_02_general_adult",
+                "facet": "amount",
+                "record_revision": 2,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/amount_minor",
+                    "source_id": "r66_pc_97cb854afb6e7b14fc121fbd"
+                  },
+                  {
+                    "locator": "/mapped_fields/currency",
+                    "source_id": "r66_pc_97cb854afb6e7b14fc121fbd"
+                  },
+                  {
+                    "locator": "/mapped_fields/service_id",
+                    "source_id": "r66_pc_97cb854afb6e7b14fc121fbd"
+                  },
+                  {
+                    "locator": "/mapped_fields/audience_id",
+                    "source_id": "r66_pc_97cb854afb6e7b14fc121fbd"
+                  },
+                  {
+                    "locator": "/mapped_fields/duration_minutes",
+                    "source_id": "r66_pc_97cb854afb6e7b14fc121fbd"
+                  },
+                  {
+                    "locator": "/mapped_fields/unit",
+                    "source_id": "r66_pc_billing_a47164a72974db629e9c3c5d"
+                  },
+                  {
+                    "locator": "/mapped_fields/calculation_rule",
+                    "source_id": "r66_pc_billing_a47164a72974db629e9c3c5d"
+                  },
+                  {
+                    "locator": "/fields/answer",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  },
+                  {
+                    "locator": "/fields/scope_note",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "numeric_recomputed",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [
+                    "rate_recovered_pc_availability_pc_01_02_general_adult",
+                    "rate_recovered_pc_availability_pc_01_02_general_student",
+                    "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+                    "rate_recovered_pc_availability_pc_03_10_general_adult",
+                    "rate_recovered_pc_availability_pc_03_10_general_student",
+                    "rate_recovered_pc_availability_pc_03_10_psu_student_staff"
+                  ],
+                  "basis": [
+                    "source_service_audience_rate_joins"
+                  ],
+                  "target_binding_verified": true,
+                  "semantic_entailment_verified": false
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C06:rate_recovered_pc_availability_pc_03_10_psu_student_staff:amount",
+                "record_id": "rate_recovered_pc_availability_pc_03_10_psu_student_staff",
+                "facet": "amount",
+                "record_revision": 2,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/amount_minor",
+                    "source_id": "r66_pc_58034b8509494c7ee96cf734"
+                  },
+                  {
+                    "locator": "/mapped_fields/currency",
+                    "source_id": "r66_pc_58034b8509494c7ee96cf734"
+                  },
+                  {
+                    "locator": "/mapped_fields/service_id",
+                    "source_id": "r66_pc_58034b8509494c7ee96cf734"
+                  },
+                  {
+                    "locator": "/mapped_fields/audience_id",
+                    "source_id": "r66_pc_58034b8509494c7ee96cf734"
+                  },
+                  {
+                    "locator": "/mapped_fields/duration_minutes",
+                    "source_id": "r66_pc_58034b8509494c7ee96cf734"
+                  },
+                  {
+                    "locator": "/mapped_fields/unit",
+                    "source_id": "r66_pc_billing_fa743cf8e92bfceb1844b88c"
+                  },
+                  {
+                    "locator": "/mapped_fields/calculation_rule",
+                    "source_id": "r66_pc_billing_fa743cf8e92bfceb1844b88c"
+                  },
+                  {
+                    "locator": "/fields/answer",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  },
+                  {
+                    "locator": "/fields/scope_note",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "numeric_recomputed",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [
+                    "rate_recovered_pc_availability_pc_01_02_general_adult",
+                    "rate_recovered_pc_availability_pc_01_02_general_student",
+                    "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+                    "rate_recovered_pc_availability_pc_03_10_general_adult",
+                    "rate_recovered_pc_availability_pc_03_10_general_student",
+                    "rate_recovered_pc_availability_pc_03_10_psu_student_staff"
+                  ],
+                  "basis": [
+                    "source_service_audience_rate_joins"
+                  ],
+                  "target_binding_verified": true,
+                  "semantic_entailment_verified": false
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C06:rate_recovered_pc_availability_pc_03_10_general_student:amount",
+                "record_id": "rate_recovered_pc_availability_pc_03_10_general_student",
+                "facet": "amount",
+                "record_revision": 2,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/amount_minor",
+                    "source_id": "r66_pc_b9251e4f325511ac1fc7611d"
+                  },
+                  {
+                    "locator": "/mapped_fields/currency",
+                    "source_id": "r66_pc_b9251e4f325511ac1fc7611d"
+                  },
+                  {
+                    "locator": "/mapped_fields/service_id",
+                    "source_id": "r66_pc_b9251e4f325511ac1fc7611d"
+                  },
+                  {
+                    "locator": "/mapped_fields/audience_id",
+                    "source_id": "r66_pc_b9251e4f325511ac1fc7611d"
+                  },
+                  {
+                    "locator": "/mapped_fields/duration_minutes",
+                    "source_id": "r66_pc_b9251e4f325511ac1fc7611d"
+                  },
+                  {
+                    "locator": "/mapped_fields/unit",
+                    "source_id": "r66_pc_billing_ae1cb00d0d602cd162fb6b37"
+                  },
+                  {
+                    "locator": "/mapped_fields/calculation_rule",
+                    "source_id": "r66_pc_billing_ae1cb00d0d602cd162fb6b37"
+                  },
+                  {
+                    "locator": "/fields/answer",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  },
+                  {
+                    "locator": "/fields/scope_note",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "numeric_recomputed",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [
+                    "rate_recovered_pc_availability_pc_01_02_general_adult",
+                    "rate_recovered_pc_availability_pc_01_02_general_student",
+                    "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+                    "rate_recovered_pc_availability_pc_03_10_general_adult",
+                    "rate_recovered_pc_availability_pc_03_10_general_student",
+                    "rate_recovered_pc_availability_pc_03_10_psu_student_staff"
+                  ],
+                  "basis": [
+                    "source_service_audience_rate_joins"
+                  ],
+                  "target_binding_verified": true,
+                  "semantic_entailment_verified": false
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C06:rate_recovered_pc_availability_pc_03_10_general_adult:amount",
+                "record_id": "rate_recovered_pc_availability_pc_03_10_general_adult",
+                "facet": "amount",
+                "record_revision": 2,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/amount_minor",
+                    "source_id": "r66_pc_dc5b4c42405e267135bbf1f8"
+                  },
+                  {
+                    "locator": "/mapped_fields/currency",
+                    "source_id": "r66_pc_dc5b4c42405e267135bbf1f8"
+                  },
+                  {
+                    "locator": "/mapped_fields/service_id",
+                    "source_id": "r66_pc_dc5b4c42405e267135bbf1f8"
+                  },
+                  {
+                    "locator": "/mapped_fields/audience_id",
+                    "source_id": "r66_pc_dc5b4c42405e267135bbf1f8"
+                  },
+                  {
+                    "locator": "/mapped_fields/duration_minutes",
+                    "source_id": "r66_pc_dc5b4c42405e267135bbf1f8"
+                  },
+                  {
+                    "locator": "/mapped_fields/unit",
+                    "source_id": "r66_pc_billing_b163a45e8cb08113ed5e5665"
+                  },
+                  {
+                    "locator": "/mapped_fields/calculation_rule",
+                    "source_id": "r66_pc_billing_b163a45e8cb08113ed5e5665"
+                  },
+                  {
+                    "locator": "/fields/answer",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  },
+                  {
+                    "locator": "/fields/scope_note",
+                    "source_id": "r114_affirm_rate_0d5e3ccb4a50d3a637cb2118"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "numeric_recomputed",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [
+                    "rate_recovered_pc_availability_pc_01_02_general_adult",
+                    "rate_recovered_pc_availability_pc_01_02_general_student",
+                    "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+                    "rate_recovered_pc_availability_pc_03_10_general_adult",
+                    "rate_recovered_pc_availability_pc_03_10_general_student",
+                    "rate_recovered_pc_availability_pc_03_10_psu_student_staff"
+                  ],
+                  "basis": [
+                    "source_service_audience_rate_joins"
+                  ],
+                  "target_binding_verified": true,
+                  "semantic_entailment_verified": false
+                },
+                "semantic_entailment_verified": false
+              }
+            ],
+            "fatal": [],
+            "source_refs_checked": true,
+            "all_obligations_fulfilled": true,
+            "collection_proof": null,
+            "whole_question_semantics_verified": false,
+            "planned_task_coverage_only": true
+          }
+        },
+        {
+          "task": "procedure",
+          "terminal_state": "partial",
+          "reason_codes": [
+            "policy_source_variants_unresolved"
+          ],
+          "execution_contract": {
+            "version": "r135-obligation-verifier-v2",
+            "task_id": "t2",
+            "terminal_state": "partial",
+            "reason_codes": [
+              "policy_source_variants_unresolved"
+            ],
+            "obligations": [
+              {
+                "id": "t2:answer",
+                "kind": "task_completion",
+                "task_id": "t2",
+                "expected": "owner_policy",
+                "fulfilled": true,
+                "reason": null,
+                "claim_refs": [
+                  "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                  "C08:migrated_faq_curated_cancel_1_hour:owner_policy"
+                ]
+              }
+            ],
+            "receipts": [
+              {
+                "fact_id": "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                "record_id": "migrated_faq_rule_cancel_advance",
+                "facet": "owner_policy",
+                "record_revision": 4,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r63_0354143739cc458fb68202e567d8"
+                  },
+                  {
+                    "locator": "/mapped_fields/question",
+                    "source_id": "r66_en_8da67384d86ff673fb873224"
+                  },
+                  {
+                    "locator": "/intent_key",
+                    "source_id": "r67_intent_1ff78931dc896509efd87299"
+                  },
+                  {
+                    "locator": "/mapped_fields/topic",
+                    "source_id": "r63_0354143739cc458fb68202e567d8"
+                  },
+                  {
+                    "locator": "/mapped_fields/legacy_search",
+                    "source_id": "r119_ad3025295448adbd34577087f051"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "exact_source_value",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [],
+                  "basis": [
+                    "actual_question_action_and_source_declared_scope_recomputed"
+                  ],
+                  "target_binding_verified": false,
+                  "semantic_entailment_verified": false,
+                  "policy_action": {
+                    "requested_actions": [
+                      "customer_cancel"
+                    ],
+                    "source_actions": [
+                      "customer_cancel"
+                    ],
+                    "verified": true,
+                    "source_scope_refs": [
+                      {
+                        "locator": "/mapped_fields/question",
+                        "source_id": "r66_en_8da67384d86ff673fb873224"
+                      },
+                      {
+                        "locator": "/intent_key",
+                        "source_id": "r67_intent_1ff78931dc896509efd87299"
+                      },
+                      {
+                        "locator": "/mapped_fields/topic",
+                        "source_id": "r63_0354143739cc458fb68202e567d8"
+                      },
+                      {
+                        "locator": "/mapped_fields/legacy_search",
+                        "source_id": "r119_ad3025295448adbd34577087f051"
+                      }
+                    ],
+                    "basis": "actual_question_action_and_source_declared_scope_recomputed",
+                    "semantic_entailment_verified": false
+                  },
+                  "policy_applicability": {
+                    "fact_id": "C08:migrated_faq_rule_cancel_advance:owner_policy",
+                    "record_id": "migrated_faq_rule_cancel_advance",
+                    "record_revision": 4,
+                    "requested_reference_time": "2026-10-16T12:00:00+07:00",
+                    "recorded_validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "allowed": true,
+                    "state": "validity_interval_unconfirmed",
+                    "error": null
+                  }
+                },
+                "semantic_entailment_verified": false
+              },
+              {
+                "fact_id": "C08:migrated_faq_curated_cancel_1_hour:owner_policy",
+                "record_id": "migrated_faq_curated_cancel_1_hour",
+                "facet": "owner_policy",
+                "record_revision": 3,
+                "snapshot": {
+                  "release_id": "owner-draft-preview",
+                  "epoch": 2497,
+                  "reference_time": "2026-10-16T12:00:00+07:00"
+                },
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r66_en_f816f54a79926f69db6b589a"
+                  },
+                  {
+                    "locator": "/mapped_fields/question",
+                    "source_id": "r66_en_f816f54a79926f69db6b589a"
+                  },
+                  {
+                    "locator": "/mapped_fields/topic",
+                    "source_id": "r63_4a57ec8fbd7905b0d8d08a760460"
+                  }
+                ],
+                "support_level": "projected_source_refs_checked",
+                "value_validation": "exact_source_value",
+                "requested_scope": {
+                  "verified": true,
+                  "errors": [],
+                  "bound_record_ids": [],
+                  "allowed_record_ids": [],
+                  "basis": [
+                    "actual_question_action_and_source_declared_scope_recomputed"
+                  ],
+                  "target_binding_verified": false,
+                  "semantic_entailment_verified": false,
+                  "policy_action": {
+                    "requested_actions": [
+                      "customer_cancel"
+                    ],
+                    "source_actions": [
+                      "customer_cancel"
+                    ],
+                    "verified": true,
+                    "source_scope_refs": [
+                      {
+                        "locator": "/mapped_fields/question",
+                        "source_id": "r66_en_f816f54a79926f69db6b589a"
+                      },
+                      {
+                        "locator": "/mapped_fields/topic",
+                        "source_id": "r63_4a57ec8fbd7905b0d8d08a760460"
+                      }
+                    ],
+                    "basis": "actual_question_action_and_source_declared_scope_recomputed",
+                    "semantic_entailment_verified": false
+                  },
+                  "policy_applicability": {
+                    "fact_id": "C08:migrated_faq_curated_cancel_1_hour:owner_policy",
+                    "record_id": "migrated_faq_curated_cancel_1_hour",
+                    "record_revision": 3,
+                    "requested_reference_time": "2026-10-16T12:00:00+07:00",
+                    "recorded_validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "allowed": true,
+                    "state": "validity_interval_unconfirmed",
+                    "error": null
+                  }
+                },
+                "semantic_entailment_verified": false
+              }
+            ],
+            "fatal": [],
+            "source_refs_checked": true,
+            "all_obligations_fulfilled": true,
+            "collection_proof": null,
+            "whole_question_semantics_verified": false,
+            "planned_task_coverage_only": true
+          }
+        }
+      ]
+    }
+  ],
+  "finding": "Outer request task procedure already exists; inner task_completion of owner_policy can be fulfilled by deadline-only claims. A renderer-only notice would not correct this mismatch. Thai direct separately produces a generic missing-source message; compound does not.",
+  "status": "implementation_pending"
+}

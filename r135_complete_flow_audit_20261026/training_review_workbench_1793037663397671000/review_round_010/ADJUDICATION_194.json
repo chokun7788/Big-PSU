@@ -1,0 +1,145 @@
+{
+  "question_key": "5411bc431ed46c5edae97358ac493cd9c2a65e1f84143a3310c865f9fd7002ef",
+  "example_sha256": "05f18c6fdb9abe89f5f318c81d7831b3c6cb0ea29cebd0608c8e171ad2648727",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One per-session duration need scoped to Nintendo Switch Zone.",
+      "raw_quotes": [
+        "Nintendo Switch Zone รอบละกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/detail/duration_minutes retains duration,not an audience-dependent price calculation.",
+      "raw_quotes": [
+        "Nintendo Switch Zone รอบละกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Nintendo Switch Zone is the zone target/requested scope; remove a false direct-service slot and duplicate brand-derived platform slot.",
+      "raw_quotes": [
+        "Nintendo Switch Zone รอบละกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No party band,audience,rate or individual Nintendo machine is inherited.",
+      "raw_quotes": [
+        "Nintendo Switch Zone รอบละกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Zone-to-service duration requires source relations; the zone name is not itself a service ID.",
+      "raw_quotes": [
+        "Nintendo Switch Zone รอบละกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Nintendo1-2 and1-4 source services both record session_minutes60 with separate capacity/zone relations.",
+      "raw_quotes": [
+        "Nintendo Switch Zone รอบละกี่นาที"
+      ],
+      "source_record_ids": [
+        "availability_nintendo_1_2",
+        "availability_nintendo_1_4"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No60-minute answer,default party band,price or live slot is taught.",
+      "raw_quotes": [
+        "Nintendo Switch Zone รอบละกี่นาที"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 194,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "service_duration",
+    "context_quotes": [
+      "Nintendo Switch",
+      "Nintendo Switch Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "Nintendo Switch Zone รอบละกี่นาที",
+        "domain": "service_fee",
+        "operation": "detail",
+        "facet": "duration_minutes",
+        "target": "Nintendo Switch Zone",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch Zone",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "service_duration",
+    "context_quotes": [
+      "Nintendo Switch Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "Nintendo Switch Zone รอบละกี่นาที",
+        "domain": "service_fee",
+        "operation": "detail",
+        "facet": "duration_minutes",
+        "target": "Nintendo Switch Zone",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "Nintendo Switch Zone",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_nintendo_1_2": {
+      "revision": 5,
+      "record_sha256": "2cecf1a5c961c46e8daf1a9985fee9d175ee37b55dd0d42e2f0b8c1b6d4d2333"
+    },
+    "availability_nintendo_1_4": {
+      "revision": 5,
+      "record_sha256": "5e32e55688a438dde3190b51badae27ad0653c3bd5c670b50d5596a8ffdf9599"
+    }
+  }
+}

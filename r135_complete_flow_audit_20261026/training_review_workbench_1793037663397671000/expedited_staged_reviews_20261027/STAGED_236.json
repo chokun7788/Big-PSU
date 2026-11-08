@@ -1,0 +1,77 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 236,
+  "question_key": "a473e3736ebadcd542301039a8e13daf5a0a7d9888e225ead86f8dff6157e4a9",
+  "raw_question": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า วันจัดงาน กิจกรรมจำลองทดสอบ 02 คือวันที่เท่าไร",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "news",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า วันจัดงาน กิจกรรมจำลองทดสอบ 02 คือวันที่เท่าไร",
+        "domain": "news",
+        "operation": "detail",
+        "facet": "date",
+        "target": "กิจกรรมจำลองทดสอบ 02",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "news",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า วันจัดงาน กิจกรรมจำลองทดสอบ 02 คือวันที่เท่าไร",
+        "domain": "news",
+        "operation": "detail",
+        "facet": "date",
+        "target": "กิจกรรมจำลองทดสอบ 02",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One question asks the scheduled event day of event02; visit-planning framing is not a booking action.",
+    "intent_operation_facet": "news/detail/date means event occurrence date, not publication date or generic studio opening hours.",
+    "entities_and_slot_roles": "กิจกรรมจำลองทดสอบ 02 is exact target and วันจัดงาน the requested date role.",
+    "local_shared_history_scope": "No literal date, year, weekday or prior conversation may fill the requested value.",
+    "negation_and_ambiguity": "The wording asks a date rather than asserting event02 has been officially scheduled.",
+    "source_version_alignment": "Zero owner news records means no actual event02 date is established; do not map the synthetic title to a tournament or closure record.",
+    "no_business_answer_target": "No date, clock, travel instruction or event fact is taught."
+  },
+  "decision": "accepted",
+  "source_record_ids": [],
+  "source_answer_issues": [
+    [
+      "This literal event name comes from an exposed synthetic corpus family, while the pinned owner snapshot contains no news records.",
+      "Review the language target only; keep business status/date/link unconfirmed and do not treat this as actual C14 source/category acceptance."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 237,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {},
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

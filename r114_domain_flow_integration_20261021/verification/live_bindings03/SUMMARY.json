@@ -1,0 +1,71 @@
+{
+  "count": 12,
+  "passed": 11,
+  "failed": [
+    "compound task ledger preserves both needs"
+  ],
+  "provider": "simulated aggregate only",
+  "real_booking_observed": false,
+  "checks": [
+    {
+      "case": "owner-added external binding is read without hardcoded resource names",
+      "passed": true,
+      "detail": "Demo Mario Kart 8 Deluxe practice service 01: available (2026-10-19T12:00:00+07:00)"
+    },
+    {
+      "case": "freshness and provider scope are recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "case": "same provider/date fetched once for whole request",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "case": "compound live tasks use actual adapter and one provider read",
+      "passed": true,
+      "detail": "1. Is Aurora Live Fixture available now\nDemo Mario Kart 8 Deluxe practice service 01: available (2026-10-19T12:00:00+07:00)\n\n2. Is Aurora Live Fixture available now\nDemo Mario Kart 8 Deluxe practice service 01: available (2026-10-19T12:00:00+07:00)"
+    },
+    {
+      "case": "compound task ledger preserves both needs",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "case": "expired observation is never available",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "case": "unknown status with positive count is not inferred free",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "case": "future point uses its slot, not available_now",
+      "passed": true,
+      "detail": "Demo Mario Kart 8 Deluxe practice service 01: 15:00 — occupied (2026-10-19T12:00:00+07:00)"
+    },
+    {
+      "case": "range with uncovered interval cannot be confirmed free",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "case": "future day without time asks material time slot",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "case": "bare time preserves selected service and future date",
+      "passed": true,
+      "detail": "Demo Mario Kart 8 Deluxe practice service 01: 15:00 — available (2026-10-19T12:00:00+07:00)"
+    },
+    {
+      "case": "missing freshness policy remains unknown",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

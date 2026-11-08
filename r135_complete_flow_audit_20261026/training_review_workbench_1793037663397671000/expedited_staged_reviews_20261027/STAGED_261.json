@@ -1,0 +1,107 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 261,
+  "question_key": "d42ce15f001b4cfd61360f1496c1361fa7880a24f727bc19def9b8bd88c9baa4",
+  "raw_question": "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "TEKKEN 8",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "TEKKEN 8 ถ้าทำผิดกติกาจะโดนปรับแพ้ไหม",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "TEKKEN 8",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้าทำผิดกติกา",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ปรับแพ้",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One TEKKEN8 question asks if breaking rules can cause a loss.",
+    "intent_operation_facet": "Keep competition_rules/rule_lookup/rule_clause, not general studio damage policy.",
+    "entities_and_slot_roles": "Add ถ้าทำผิดกติกา as condition and ปรับแพ้ as requested penalty scope.",
+    "local_shared_history_scope": "No actual breach, player, sanction unit or referee decision is supplied.",
+    "negation_and_ambiguity": "A general violation is not proof every breach loses an entire match.",
+    "source_version_alignment": "TEKKEN sections003/005/007 distinguish deliberate-pause round loss, conduct loss and unauthorized exit; their conditions and apparent pause differences need separate source treatment.",
+    "no_business_answer_target": "No automatic match-loss verdict or sanction unit is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "competition_competition_rules_tekken8_psu_esports_section_003",
+    "competition_competition_rules_tekken8_psu_esports_section_005",
+    "competition_competition_rules_tekken8_psu_esports_section_007"
+  ],
+  "source_answer_issues": [
+    [
+      "Sanctions vary by breach and pause clauses differ.",
+      "Do not equate every breach with full-match forfeit."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 262,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "competition_competition_rules_tekken8_psu_esports_section_003": {
+      "revision": 5,
+      "record_sha256": "652ca66a8af5c1bba7b5b54711008f9129d06c783c1bb933bea76faf7d81a2dd"
+    },
+    "competition_competition_rules_tekken8_psu_esports_section_005": {
+      "revision": 5,
+      "record_sha256": "b92946a7aa09bba17291302db62c23d77fcac622c51096bbab87cd04e48c0dab"
+    },
+    "competition_competition_rules_tekken8_psu_esports_section_007": {
+      "revision": 5,
+      "record_sha256": "a10ef7cd5e9b5c51ba2764b25b8086f0bd6b2287a6a20cf9f52222010d37357b"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

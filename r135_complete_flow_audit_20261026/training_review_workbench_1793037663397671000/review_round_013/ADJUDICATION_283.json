@@ -1,0 +1,156 @@
+{
+  "question_key": "7dc976a448677ceb0b0642a5446263d7c2c9a53043e5fad402054797cfd82016",
+  "example_sha256": "8541b52973667993c01f31d5e73e5b7bd33df86d67fb7e23d78306698a2031e6",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One availability question asks a free slot in the14:00–15:00 interval.",
+      "raw_quotes": [
+        "is there any free slot from 14:00 to 15:00 ?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "live/availability/live_status with ambiguity retains a live interval query.",
+      "raw_quotes": [
+        "is there any free slot from 14:00 to 15:00 ?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Keep both clock fragments and add the whole from 14:00 to 15:00 interval scope.",
+      "raw_quotes": [
+        "is there any free slot from 14:00 to 15:00 ?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove duplicated top context; date, timezone and service/resource are missing.",
+      "raw_quotes": [
+        "is there any free slot from 14:00 to 15:00 ?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not choose today, any machine or a weekly booking period as if it were an actual live slot.",
+      "raw_quotes": [
+        "is there any free slot from 14:00 to 15:00 ?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned provider mappings define freshness and physical-resource keys but are not successful live reads for the unspecified requested service/date.",
+      "raw_quotes": [
+        "is there any free slot from 14:00 to 15:00 ?"
+      ],
+      "source_record_ids": [
+        "live_wordpress_16"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No invented date, slot, count, transport success or free/busy answer is taught.",
+      "raw_quotes": [
+        "is there any free slot from 14:00 to 15:00 ?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Service and date are absent from the live interval query.",
+      "handling": "Ask for missing inputs rather than inventing a live result."
+    }
+  ],
+  "historical_review_row": 283,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "14:00",
+      "15:00"
+    ],
+    "tasks": [
+      {
+        "quote": "is there any free slot from 14:00 to 15:00 ?",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "14:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "15:00",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "is there any free slot from 14:00 to 15:00 ?",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "14:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "15:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "from 14:00 to 15:00",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "live_wordpress_16": {
+      "revision": 1,
+      "record_sha256": "c17b2afc6d143fd747cbd0ab6409582dd76a641273d8dc98eefee9c1189411dc"
+    }
+  }
+}

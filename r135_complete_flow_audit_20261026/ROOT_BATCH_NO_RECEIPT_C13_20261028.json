@@ -1,0 +1,3343 @@
+{
+  "batch_id": 1,
+  "description": "No source receipt is not a shared cause; read all 18 questions and both saved answers; classification is observational only.",
+  "input_sha256": {
+    "r135_complete_flow_audit_20261026\\changed_answer_source_batches_1793167120954709200\\BATCHES.json": "38cdea3bcba3b317f36a175536c1518d374d6fbe86ce9a404e92a4b99877278f",
+    "r135_complete_flow_audit_20261026\\changed_answer_group_queue_1793166229784847000\\ITEMS.jsonl": "109726be6be64aa380c9521308d3ea5aacf58b5b416c026be0345be37ea07416"
+  },
+  "counts": {
+    "service_unavailable_to_source_unconfirmed": 13,
+    "old_answer_not_responsive_new_service_unavailable": 2,
+    "source_unconfirmed_to_service_unavailable": 1,
+    "service_unavailable_to_related_not_direct": 1,
+    "service_unavailable_to_target_clarification": 1
+  },
+  "cases": [
+    {
+      "key": "786bc742c422194fd23aa42c18a56e583d517fe90caff7a5117380bdd7c8d434",
+      "question": "การทำผิดใน CS2 มีโทษระดับไหน",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 29.615117799985455,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 29.615117799985455
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "การทำผิดใน cs2 มีโทษระดับไหน",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "การทำผิดใน cs2 มีโทษระดับไหน",
+              "source_span": "การทำผิดใน cs2 มีโทษระดับไหน",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "การทำผิดใน CS2 มีโทษระดับไหน"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "การทำผิดใน cs2 มีโทษระดับไหน",
+            "execution_query": "การทำผิดใน cs2 มีโทษระดับไหน",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "5fc4cf4e82a14f619982d8db315c697c",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 15.031,
+          "http_attempted": false,
+          "input_question": "การทำผิดใน cs2 มีโทษระดับไหน",
+          "legacy_contrast": {
+            "domain": "general",
+            "operation": "unknown",
+            "needs": [],
+            "reason": "domain_terms=2; no clear operation terms"
+          }
+        }
+      }
+    },
+    {
+      "key": "bc6a3d945722cf0460f7971f704b77b59e234d3451cb49a5520854e9593e02ae",
+      "question": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ต่อเวลา: หากรอบถัดไปยังว่างและอยู่ในเวลาบริการปกติ สามารถจองต่อผ่านขั้นตอนปกติได้ [S1]",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 71.98153129999992,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "old_answer_not_responsive_new_service_unavailable",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 71.98153129999992
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+              "source_span": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+            "execution_query": "ตาม rulebook เคาน์เตอร์สไตรก์ 2 จำนวนผู้เล่นต่อทีม ต้องทำยังไง ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "bc83588be82b4768649f4a47e7794575c2e4da5cc8a69106777cdefad4b8d93f",
+      "question": "กติกา VALORANT กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 55.88151489998563,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 55.88151489998563
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกา valorant กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "กติกา valorant กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร",
+              "source_span": "กติกา valorant กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "กติกา VALORANT กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "กติกา valorant กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร",
+            "execution_query": "กติกา valorant กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "779b0b74ebe34c8bb4e33fea38c3d9e3",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": true,
+          "schema_ok": false,
+          "model_provenance": {
+            "serving_protocol": "r129-multi-profile-v2",
+            "effective_profile": "retained",
+            "adapter_active": true,
+            "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+            "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+            "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+            "effective_messages_sha256": "d4de14652a9b873ab87b8cd1f9135cdb2841ff4ae2aa40f002f686c3064fd67e",
+            "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+            "quantization": "NF4 double quant BF16",
+            "stage": "context_understanding",
+            "effective_max_new_tokens": 900,
+            "hit_token_limit": false
+          },
+          "response_model": "psu-r129:latest",
+          "identity_verified": true,
+          "raw_content": "{\"version\":\"r129-plan-v2\",\"focus\":\"competition_rules\",\"context_quotes\":[],\"tasks\":[{\"id\":\"t1\",\"quote\":\"กติกา valorant กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร\",\"domain\":\"news\",\"operation\":\"detail\",\"facet\":\"description\",\"target\":\"น้ำใจนักกีฬา\",\"constraints\":[],\"ambiguous\":false}],\"shared_bindings\":[],\"rules\":[],\"constraints\":[]}",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "invalid_task_graph",
+          "elapsed_sec": 47.469,
+          "http_attempted": true,
+          "input_question": "กติกา valorant กำหนดเรื่องน้ำใจนักกีฬาไว้อย่างไร",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "rule_lookup",
+            "needs": [
+              "lookup_rule"
+            ],
+            "reason": "known game alias found; rule terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "cd92e5e830123b12553426c2b685cacec2fe1d5dcfe1921a758e8d7e10e1a287",
+      "question": "Do regulation Tactical Timeout quotas carry into VALORANT tournamment overtime?",
+      "requested_locale": "en",
+      "categories": [
+        "C13"
+      ],
+      "old": "No confirmed source is available for the requested detail.",
+      "new": "The checking service is unavailable; this detail cannot be confirmed.",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 15.72417959998711,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "source_unconfirmed_to_service_unavailable",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.72417959998711
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "do regulation tactical timeout quotas carry into valorant tournamment overtime?",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "do regulation tactical timeout quotas carry into valorant tournamment overtime?",
+              "source_span": "do regulation tactical timeout quotas carry into valorant tournamment overtime?",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "Do regulation Tactical Timeout quotas carry into VALORANT tournamment overtime?"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "do regulation tactical timeout quotas carry into valorant tournamment overtime?",
+            "execution_query": "do regulation tactical timeout quotas carry into valorant tournamment overtime? ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "fb01270ce22475d441f3f8afa26ffc9682c504da7d5c76899ad7aedeacc7f0f0",
+      "question": "TEKKEN 8 pause ได้ไหม",
+      "requested_locale": "auto",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 23.310604400001466,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 23.310604400001466
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "tekken 8 pause ได้ไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "tekken 8 pause ได้ไหม",
+              "source_span": "tekken 8 pause ได้ไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "TEKKEN 8 pause ได้ไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "tekken 8 pause ได้ไหม",
+            "execution_query": "tekken 8 pause ได้ไหม",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "6137461209174ee786c5e151897b3bed",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 15.016,
+          "http_attempted": false,
+          "input_question": "tekken 8 pause ได้ไหม",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "availability",
+            "needs": [
+              "check_availability"
+            ],
+            "reason": "known game alias found; named game availability terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "dddaea86b19a3cbb1a695a7cae51bfb23187a1621ec329cab812c9121afebdec",
+      "question": "I would like to know: What do the VALORANT tournamet rules say about fair play and prohibited conduct? please.",
+      "requested_locale": "en",
+      "categories": [
+        "C13"
+      ],
+      "old": "**VALORANT**\n**game overview**: VALORANT is a tactical shooter game in which players select Agents with unique skills and play as either attackers or defenders in each round. [S1]",
+      "new": "The checking service is unavailable; this detail cannot be confirmed.",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 15.660085400013486,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "old_answer_not_responsive_new_service_unavailable",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.660085400013486
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "what do the valorant tournamet rules say about fair play and prohibited conduct? please.",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "what do the valorant tournamet rules say about fair play and prohibited conduct? please.",
+              "source_span": "what do the valorant tournamet rules say about fair play and prohibited conduct? please.",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "I would like to know: What do the VALORANT tournamet rules say about fair play and prohibited conduct? please."
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "what do the valorant tournamet rules say about fair play and prohibited conduct? please.",
+            "execution_query": "what do the valorant tournamet rules say about fair play and prohibited conduct? please. ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "57c16b17c393213436ecdb9aa5f1a2897b9f291b4ea5a259aaf781bed1a839dc",
+      "question": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที",
+      "requested_locale": "auto",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 31.69640590000199,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 31.69640590000199
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที",
+              "source_span": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที",
+            "execution_query": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "eb4c88a4255d45fc86f03280bd541ff5",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 15.015,
+          "http_attempted": false,
+          "input_question": "วาโลหยุดเกมฉุกเฉินรวมกี่นาที",
+          "legacy_contrast": {
+            "domain": "general",
+            "operation": "count",
+            "needs": [
+              "count_items"
+            ],
+            "reason": "domain_terms=2; count terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "971c8f74c4b4a23c89de712b887067067d09066027f5b6415863fcb564eeadff",
+      "question": "Counter-Strike 2 มีข้อห้ามอะไรบ้าง",
+      "requested_locale": "auto",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 59.15339999998105,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 59.15339999998105
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "counter-strike 2 มีข้อห้ามอะไรบ้าง",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "counter-strike 2 มีข้อห้ามอะไรบ้าง",
+              "source_span": "counter-strike 2 มีข้อห้ามอะไรบ้าง",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "Counter-Strike 2 มีข้อห้ามอะไรบ้าง"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "counter-strike 2 มีข้อห้ามอะไรบ้าง",
+            "execution_query": "counter-strike 2 มีข้อห้ามอะไรบ้าง",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "53d82850005e4377a8a38be04c2cf9f5",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": true,
+          "schema_ok": false,
+          "model_provenance": {
+            "serving_protocol": "r129-multi-profile-v2",
+            "effective_profile": "retained",
+            "adapter_active": true,
+            "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+            "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+            "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+            "effective_messages_sha256": "73dcf17cbde0ad42a2e9b4b836591552f091920870146293c3b6d142e78e314a",
+            "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+            "quantization": "NF4 double quant BF16",
+            "stage": "context_understanding",
+            "effective_max_new_tokens": 900,
+            "hit_token_limit": false
+          },
+          "response_model": "psu-r129:latest",
+          "identity_verified": true,
+          "raw_content": "{\"version\":\"r129-plan-v2\",\"focus\":\"rules\",\"context_quotes\":[],\"tasks\":[{\"id\":\"t1\",\"quote\":\"counter-strike 2 มีข้อห้ามอะไรบ้าง\",\"domain\":\"news\",\"operation\":\"list\",\"facet\":\"rule_clause\",\"target\":\"counter-strike 2\",\"constraints\":[],\"ambiguous\":false}],\"shared_bindings\":[],\"rules\":[{\"source_task_id\":\"t1\",\"target_task_id\":\"t1\",\"slot\":\"news\",\"quote\":\"counter-strike 2\",\"basis\":\"explicit_anaphor\",\"scope\":\"shared\"}]}",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "invalid_task_graph",
+          "elapsed_sec": 51.266,
+          "http_attempted": true,
+          "input_question": "counter-strike 2 มีข้อห้ามอะไรบ้าง",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "rule_lookup",
+            "needs": [
+              "lookup_rule"
+            ],
+            "reason": "known game alias found; rule terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "1a0a1611e4bf84af6ba95a192bada6b078fc10d86f5d9d98bdfa15073172cb0d",
+      "question": "Counter-Strike 2 มีข้อกำหนดเรื่องการ pause และ timeout ไหม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 6.937405200005742,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 6.937405200005742
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "counter-strike 2 มีข้อกำหนดเรื่องการ pause และ timeout ไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "equipment",
+              "query": "counter-strike 2 มีข้อกำหนดเรื่องการ pause และ timeout ไหม",
+              "source_span": "counter-strike 2 มีข้อกำหนดเรื่องการ pause และ timeout ไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "equipment",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "Counter-Strike 2 มีข้อกำหนดเรื่องการ pause และ timeout ไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "equipment",
+            "category": "C03",
+            "source_span": "counter-strike 2 มีข้อกำหนดเรื่องการ pause และ timeout ไหม",
+            "execution_query": "counter-strike 2 มีข้อกำหนดเรื่องการ pause และ timeout ไหม ",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "missing_source",
+              "reason_codes": [
+                "bounded_model_selection"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "usage",
+                  "fulfilled": false,
+                  "reason": "bounded_model_selection",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "native_inventory_presence_record",
+            "model_plan_accepted": false,
+            "model_reason": "native_source_frame_before_model",
+            "prior_tasks": [],
+            "business_facts_added": false
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "fc61c1dde5be1c0f19d0dee77ab51df8e715670b068b439e3a9e947b418cd9b8",
+      "question": "Tekken 8 มี setting ที่ผู้เล่นต้องใช้เหมือนกันไหม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "พบข้อมูลที่เกี่ยวข้อง แต่ยังไม่พบคำตอบตรงส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 11.45649169999524,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_related_not_direct",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 11.45649169999524
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "tekken 8 มี setting ที่ผู้เล่นต้องใช้เหมือนกันไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "equipment",
+              "query": "tekken 8 มี setting ที่ผู้เล่นต้องใช้เหมือนกันไหม",
+              "source_span": "tekken 8 มี setting ที่ผู้เล่นต้องใช้เหมือนกันไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "equipment",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "Tekken 8 มี setting ที่ผู้เล่นต้องใช้เหมือนกันไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "equipment",
+            "category": "C03",
+            "source_span": "tekken 8 มี setting ที่ผู้เล่นต้องใช้เหมือนกันไหม",
+            "execution_query": "tekken 8 มี setting ที่ผู้เล่นต้องใช้เหมือนกันไหม ",
+            "status": "missing_source",
+            "reason_codes": [
+              "requested_operation_not_satisfied"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "partial",
+              "reason_codes": [
+                "bounded_model_selection",
+                "requested_field_not_delivered"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "usage",
+                  "fulfilled": false,
+                  "reason": "requested_field_not_delivered",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [
+                {
+                  "fact_id": "C03:availability_pc_01_02:service_capacity",
+                  "record_id": "availability_pc_01_02",
+                  "facet": "service_capacity",
+                  "record_revision": 5,
+                  "snapshot": {
+                    "release_id": "migration-preview-r69",
+                    "epoch": 2497,
+                    "reference_time": "2026-10-16T12:00:00+07:00"
+                  },
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/capacity_min",
+                      "source_id": "r63_65331c20f193ef240c5184e70cf0"
+                    },
+                    {
+                      "locator": "/mapped_fields/capacity_max",
+                      "source_id": "r63_65331c20f193ef240c5184e70cf0"
+                    }
+                  ],
+                  "support_level": "projected_source_refs_checked",
+                  "value_validation": "exact_source_value",
+                  "semantic_entailment_verified": false
+                },
+                {
+                  "fact_id": "C03:availability_ps5_01_02:service_capacity",
+                  "record_id": "availability_ps5_01_02",
+                  "facet": "service_capacity",
+                  "record_revision": 5,
+                  "snapshot": {
+                    "release_id": "migration-preview-r69",
+                    "epoch": 2497,
+                    "reference_time": "2026-10-16T12:00:00+07:00"
+                  },
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/capacity_min",
+                      "source_id": "r63_5c4c2946432a8b89ef45c675486d"
+                    },
+                    {
+                      "locator": "/mapped_fields/capacity_max",
+                      "source_id": "r63_5c4c2946432a8b89ef45c675486d"
+                    }
+                  ],
+                  "support_level": "projected_source_refs_checked",
+                  "value_validation": "exact_source_value",
+                  "semantic_entailment_verified": false
+                }
+              ],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "native_inventory_presence_record",
+            "model_plan_accepted": false,
+            "model_reason": "native_source_frame_before_model",
+            "prior_tasks": [],
+            "business_facts_added": false
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "923128b68ecec96cfb0336ff2bc3651ff42503e320b66235e0fb9179f2245888",
+      "question": "Counter-Strike 2 ถ้าใช้ bug จะโดนอะไร",
+      "requested_locale": "auto",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 37.547733699990204,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 37.547733699990204
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "counter-strike 2 ถ้าใช้ bug จะโดนอะไร",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "counter-strike 2 ถ้าใช้ bug จะโดนอะไร",
+              "source_span": "counter-strike 2 ถ้าใช้ bug จะโดนอะไร",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "Counter-Strike 2 ถ้าใช้ bug จะโดนอะไร"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "counter-strike 2 ถ้าใช้ bug จะโดนอะไร",
+            "execution_query": "counter-strike 2 ถ้าใช้ bug จะโดนอะไร",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "91e26325ddb04209adc73196e01668c7",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": true,
+          "schema_ok": false,
+          "model_provenance": {
+            "serving_protocol": "r129-multi-profile-v2",
+            "effective_profile": "retained",
+            "adapter_active": true,
+            "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+            "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+            "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+            "effective_messages_sha256": "afe07f94e42ec347f69ebff3b7a41f7692d4966829d480ed00cd0034c1e43734",
+            "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+            "quantization": "NF4 double quant BF16",
+            "stage": "context_understanding",
+            "effective_max_new_tokens": 900,
+            "hit_token_limit": false
+          },
+          "response_model": "psu-r129:latest",
+          "identity_verified": true,
+          "raw_content": "{\"version\":\"r129-plan-v2\",\"focus\":\"news\",\"context_quotes\":[],\"tasks\":[{\"id\":\"t1\",\"quote\":\"counter-strike 2 ถ้าใช้ bug จะโดนอะไร\",\"domain\":\"news\",\"operation\":\"detail\",\"facet\":\"description\",\"target\":\"counter-strike 2\",\"constraints\":[],\"ambiguous\":false}],\"shared_bindings\":[],\"rules\":[],\"constraints\":[]}",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "invalid_task_graph",
+          "elapsed_sec": 29.187,
+          "http_attempted": true,
+          "input_question": "counter-strike 2 ถ้าใช้ bug จะโดนอะไร",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "count",
+            "needs": [
+              "count_items"
+            ],
+            "reason": "known game alias found; count terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "54d06925778cd81fc5364ca170003dd1f30308110c641fe6f34fedda2a9a6db7",
+      "question": "กติกกา VALORANT emergency pause ได้กี่ครั้งกี่นาที",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 30.063574500003597,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 30.063574500003597
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกกา valorant emergency pause ได้กี่ครั้งกี่นาที",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "กติกกา valorant emergency pause ได้กี่ครั้งกี่นาที",
+              "source_span": "กติกกา valorant emergency pause ได้กี่ครั้งกี่นาที",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "กติกกา VALORANT emergency pause ได้กี่ครั้งกี่นาที"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "กติกกา valorant emergency pause ได้กี่ครั้งกี่นาที",
+            "execution_query": "กติกกา valorant emergency pause ได้กี่ครั้งกี่นาที",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "f0f52a0503db42dfbbacd21738a3c175",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 15.0,
+          "http_attempted": false,
+          "input_question": "กติกกา valorant emergency pause ได้กี่ครั้งกี่นาที",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "count",
+            "needs": [
+              "count_items"
+            ],
+            "reason": "known game alias found; count terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "172d58f7599403164a3b7df4b74ab7a54a7302e147187017d61e3cb60439c247",
+      "question": "RoV กับ Tekken 8 ถ้ากด pause ผิดมีผลยังไง",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 25.670227599999635,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 25.670227599999635
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "rov กับ tekken 8 ถ้ากด pause ผิดมีผลยังไง",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "rov กับ tekken 8 ถ้ากด pause ผิดมีผลยังไง",
+              "source_span": "rov กับ tekken 8 ถ้ากด pause ผิดมีผลยังไง",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "RoV กับ Tekken 8 ถ้ากด pause ผิดมีผลยังไง"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "rov กับ tekken 8 ถ้ากด pause ผิดมีผลยังไง",
+            "execution_query": "rov กับ tekken 8 ถ้ากด pause ผิดมีผลยังไง",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "da4b1d8027f3438280038b296473a811",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 15.016,
+          "http_attempted": false,
+          "input_question": "rov กับ tekken 8 ถ้ากด pause ผิดมีผลยังไง",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "how_to",
+            "needs": [
+              "steps",
+              "controls_if_game"
+            ],
+            "reason": "known game alias found; how-to terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "48c49234dc42f889bf7d61c350ecf3768c6be95b32e7cf901da12105c6f1c586",
+      "question": "กติกกา VALORANT มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 27.401065599988215,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 27.401065599988215
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกกา valorant มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "กติกกา valorant มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม",
+              "source_span": "กติกกา valorant มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "กติกกา VALORANT มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "กติกกา valorant มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม",
+            "execution_query": "กติกกา valorant มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "d987576d7fa2492d9fbbbe2d6b947b71",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 15.015,
+          "http_attempted": false,
+          "input_question": "กติกกา valorant มาโครทั้งซอฟต์แวร์และฮาร์ดแวร์ใช้ได้ไหม",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "availability",
+            "needs": [
+              "check_availability"
+            ],
+            "reason": "known game alias found; named game availability terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "0e8051af8001a1d01f205f520943ad899edc293b8dd00bc425495592f96ed64d",
+      "question": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่",
+      "requested_locale": "auto",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 39.76886129999184,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 39.76886129999184
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่",
+              "source_span": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่",
+            "execution_query": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "26b3b0031f1b41de9149d6c348fb13d1",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": true,
+          "schema_ok": false,
+          "model_provenance": {
+            "serving_protocol": "r129-multi-profile-v2",
+            "effective_profile": "retained",
+            "adapter_active": true,
+            "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+            "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+            "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+            "effective_messages_sha256": "a8bff2d5421ffec3d661150f86c427aae3de55ebfb73b345c42bb674e516fcd8",
+            "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+            "quantization": "NF4 double quant BF16",
+            "stage": "context_understanding",
+            "effective_max_new_tokens": 900,
+            "hit_token_limit": false
+          },
+          "response_model": "psu-r129:latest",
+          "identity_verified": true,
+          "raw_content": "{\"version\":\"r129-plan-v2\",\"focus\":\"news\",\"context_quotes\":[],\"tasks\":[{\"id\":\"t1\",\"quote\":\"วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่\",\"domain\":\"news\",\"operation\":\"detail\",\"facet\":\"description\",\"target\":\"\",\"constraints\":[],\"ambiguous\":false}],\"shared_bindings\":[],\"rules\":[],\"constraints\":[]}",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "invalid_task_graph",
+          "elapsed_sec": 31.906,
+          "http_attempted": true,
+          "input_question": "วาโลหลุดเกมขอ emergency pause ได้เท่าไหร่",
+          "legacy_contrast": {
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "needs": [
+              "calculate_price",
+              "show_price_breakdown"
+            ],
+            "reason": "domain_terms=2; price operation overrides entity/game domain; price terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "34852276dfaf78b6c7796da54427fe94883d3a68e7db48550b6407a72f72eec3",
+      "question": "CS2 สรุปกติกาสั้นๆ",
+      "requested_locale": "auto",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังระบุเกม เครื่อง หรือหัวข้อที่ต้องการอ่านไม่ชัดเจนครับ กรุณาระบุเป้าหมายเพิ่มเติม",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 25.135797599999933,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_target_clarification",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 25.135797599999933
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "cs2 สรุปกติกาสั้นๆ",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "news",
+              "query": "cs2 สรุปกติกาสั้นๆ",
+              "source_span": "cs2 สรุปกติกาสั้นๆ",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "news",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "CS2 สรุปกติกาสั้นๆ"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "news",
+            "category": "C14",
+            "source_span": "cs2 สรุปกติกาสั้นๆ",
+            "execution_query": "cs2 สรุปกติกาสั้นๆ ",
+            "status": "missing_source",
+            "reason_codes": [
+              "entity_not_bound"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "missing_source",
+              "reason_codes": [
+                "entity_not_bound"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "description",
+                  "fulfilled": false,
+                  "reason": "entity_not_bound",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "4bd7dccb6f974a3c91c05396655418a2",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": true,
+          "schema_ok": true,
+          "model_provenance": {
+            "serving_protocol": "r129-multi-profile-v2",
+            "effective_profile": "retained",
+            "adapter_active": true,
+            "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+            "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+            "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+            "effective_messages_sha256": "c2f1f613e2ed0411ab9435e1674678742c6bc11e571a60a7039d04116312f4d7",
+            "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+            "quantization": "NF4 double quant BF16",
+            "stage": "context_understanding",
+            "effective_max_new_tokens": 900,
+            "hit_token_limit": false
+          },
+          "response_model": "psu-r129:latest",
+          "identity_verified": true,
+          "raw_content": "{\"version\":\"r129-plan-v2\",\"focus\":\"news\",\"context_quotes\":[],\"tasks\":[{\"id\":\"t1\",\"quote\":\"cs2 สรุปกติกาสั้นๆ\",\"domain\":\"news\",\"operation\":\"detail\",\"facet\":\"description\",\"target\":\"cs2\",\"constraints\":[],\"ambiguous\":false}],\"shared_bindings\":[],\"constraints\":[]}",
+          "wire_version": "r129-plan-v2",
+          "adapter": "validated_graph_wire",
+          "proposed_shared_bindings": [],
+          "wire_surface_adapter": "r132-lossless-surface-v1",
+          "surface_actions": [
+            "removed_redundant_empty_root_list"
+          ],
+          "raw_graph_surface_conformant": false,
+          "original_graph_sha256": "e0ad89b50ecac20e39a5131f072ce105359913963f56e44762eb31dd98736e73",
+          "effective_graph_sha256": "0467b101a6526734e1d5add3c890584395ee463c76b9d25d584bb1823de04ac0",
+          "semantic_fields_changed": false,
+          "model_semantic_correctness_claimed": false,
+          "context_focus": "news",
+          "context_quotes": [],
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "validated_interpretation_proposal",
+          "elapsed_sec": 24.516,
+          "http_attempted": true,
+          "input_question": "cs2 สรุปกติกาสั้นๆ",
+          "legacy_contrast": {
+            "domain": "general",
+            "operation": "rule_lookup",
+            "needs": [
+              "lookup_rule"
+            ],
+            "reason": "domain_terms=2; rule terms found"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "11187dc6517d47dcfcdb71f9843365a6bb9853ceeca5e6a6482b30cea87911ba",
+      "question": "กติกา Tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 26.196180300001288,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 26.196180300001288
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกา tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "game_detail",
+              "query": "กติกา tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม",
+              "source_span": "กติกา tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "game_detail",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "กติกา Tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "game_detail",
+            "category": "C04",
+            "source_span": "กติกา tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม",
+            "execution_query": "กติกา tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {},
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "id": "0b40a1e00b764b9881fd35ae3ef811de",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 15.015,
+          "http_attempted": false,
+          "input_question": "กติกา tekken 8 กรรมการเปลี่ยนคำตัดสินได้ไหม",
+          "legacy_contrast": {
+            "domain": "games",
+            "operation": "availability",
+            "needs": [
+              "check_availability"
+            ],
+            "reason": "known game alias found; named game availability terms found"
+          }
+        }
+      }
+    },
+    {
+      "key": "262036ed8a51bca33f3a91daf9a346254ebfbb709164e76322016c427f9a9945",
+      "question": "ขอสอบถามหน่อยครับ Counter-Strike 2 มีข้อกำหนดเรื่องมารยาทและพฤติกรรมผู้เล่น ไหม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 8.469543399987742,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "service_unavailable_to_source_unconfirmed",
+      "source_and_transport_diagnosis": "No R132 delivered source references in indexed result; absence does not establish source absence or cause. Inspect original execution receipts and source independently.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unconfirmed",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 8.469543399987742
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "counter-strike 2 มีข้อกำหนดเรื่องมารยาทและพฤติกรรมผู้เล่น ไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "equipment",
+              "query": "counter-strike 2 มีข้อกำหนดเรื่องมารยาทและพฤติกรรมผู้เล่น ไหม",
+              "source_span": "counter-strike 2 มีข้อกำหนดเรื่องมารยาทและพฤติกรรมผู้เล่น ไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "equipment",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "ขอสอบถามหน่อยครับ Counter-Strike 2 มีข้อกำหนดเรื่องมารยาทและพฤติกรรมผู้เล่น ไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "equipment",
+            "category": "C03",
+            "source_span": "counter-strike 2 มีข้อกำหนดเรื่องมารยาทและพฤติกรรมผู้เล่น ไหม",
+            "execution_query": "counter-strike 2 มีข้อกำหนดเรื่องมารยาทและพฤติกรรมผู้เล่น ไหม ",
+            "status": "missing_source",
+            "reason_codes": [
+              "bounded_model_selection"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "missing_source",
+              "reason_codes": [
+                "bounded_model_selection"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "usage",
+                  "fulfilled": false,
+                  "reason": "bounded_model_selection",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "native_inventory_presence_record",
+            "model_plan_accepted": false,
+            "model_reason": "native_source_frame_before_model",
+            "prior_tasks": [],
+            "business_facts_added": false
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    }
+  ],
+  "review_required": true,
+  "no_http_model_or_regrade": true,
+  "execution_trace_review_note": "Compatibility projection has empty ledger, but separately recorded request_plan and need_results may contain tasks and reasons. Reason codes are runtime classification, not independently verified transport root cause or source absence.",
+  "saved_trace_summary": {
+    "observed_groups": [
+      {
+        "record_ids_count": 0,
+        "ledger_needs": 0,
+        "task_flow_reason": "no_accepted_replacement_task",
+        "count": 18
+      }
+    ],
+    "interpretation": "Recorded R114 compatibility projection, not evidence that no source exists or transport failed; inspect individual execution and source."
+  },
+  "task_result_summary": [
+    {
+      "status": "missing_source",
+      "reason_codes": [
+        "bounded_model_selection"
+      ],
+      "count": 13
+    },
+    {
+      "status": "temporary_failure",
+      "reason_codes": [
+        "model_transport_failure"
+      ],
+      "count": 3
+    },
+    {
+      "status": "missing_source",
+      "reason_codes": [
+        "requested_operation_not_satisfied"
+      ],
+      "count": 1
+    },
+    {
+      "status": "missing_source",
+      "reason_codes": [
+        "entity_not_bound"
+      ],
+      "count": 1
+    }
+  ]
+}

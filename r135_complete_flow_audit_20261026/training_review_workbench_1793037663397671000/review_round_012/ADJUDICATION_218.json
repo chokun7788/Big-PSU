@@ -1,0 +1,170 @@
+{
+  "question_key": "c328c68f3ecc270bd712c6d75026e7aa743c87b9f87e69d1dacecc7d4726cfa7",
+  "example_sha256": "820c2b1b0293c38636c76ffa3cec55bc623d999a79abefc7594ad49c353376df",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inclusion question selects the external/half-day PlayStation5 Zone package.",
+      "raw_quotes": [
+        "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/equipment_included is retained.",
+      "raw_quotes": [
+        "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full literal package name is target; remove PlayStation5 platform and zone-as-service roles inferred from that name.",
+      "raw_quotes": [
+        "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "External organization/half-day are package dimensions; no individual PS5 service or game is inherited.",
+      "raw_quotes": [
+        "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "This does not ask which games use a PS5 controller or actual vacant-console status.",
+      "raw_quotes": [
+        "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_17 supplies the package inclusion field and external organization/half_day scope.",
+      "raw_quotes": [
+        "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": [
+        "package_17",
+        "audience_external_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No console count, controller compatibility, game list or price is taught.",
+      "raw_quotes": [
+        "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 218,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PlayStation 5",
+      "ภายนอก",
+      "PlayStation 5 Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PlayStation 5 Zone",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PlayStation 5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PlayStation 5 Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "อยากรู้ว่า PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน รวมเครื่องอะไรให้ใช้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PSU Esports Studio - Phuket - PlayStation 5 Zone / ภายนอก / ครึ่งวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_17": {
+      "revision": 1,
+      "record_sha256": "e47059779f8c840310c2b211687ad09703891ef7040c035572fae46272b61469"
+    },
+    "audience_external_org": {
+      "revision": 2,
+      "record_sha256": "15fc64bde64d0d5dad8a7470d59bccdf56f5ba932185ff4cfee6618ffea8a463"
+    }
+  }
+}

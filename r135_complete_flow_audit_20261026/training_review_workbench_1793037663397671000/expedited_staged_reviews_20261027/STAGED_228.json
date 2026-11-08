@@ -1,0 +1,102 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 228,
+  "question_key": "eba19ca0001b2212b8142a5766d2d60b53df05a1bffc96f950352513037e5dab",
+  "raw_question": "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ยอดที่โอนขาดไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ส่งหลักฐานเพิ่ม",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One underpayment follow-up asks how additional proof is supplied; the summary modifier is not another need.",
+    "intent_operation_facet": "payment/detail/owner_policy retains additional-proof procedure rather than a live payment-status operation.",
+    "entities_and_slot_roles": "ยอดที่โอนขาดไป is the local condition and ส่งหลักฐานเพิ่ม the requested action.",
+    "local_shared_history_scope": "No shortfall amount, completed top-up, deadline, overpayment or new reservation is inherited.",
+    "negation_and_ambiguity": "The request for instructions does not authorize the assistant to transfer money or send documents.",
+    "source_version_alignment": "r114_q015 contains additional-proof instructions without establishing the deadline mentioned in its source question; actual attested owner42 also explicitly scopes โอนขาด.",
+    "no_business_answer_target": "No Facebook destination, proof list, amount, deadline or business outcome enters labels."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "r114_q015_owner_policy",
+    "r130_owner_42_scoped"
+  ],
+  "source_answer_issues": [
+    [
+      "The additional-payment source question mentions a deadline not established by its answer.",
+      "Do not invent a deadline; actual source owner42 has an explicit underpayment actor/purpose."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 229,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "r114_q015_owner_policy": {
+      "revision": 1,
+      "record_sha256": "e11e8001f94a8a984d5793caf7a8bf05835d908132e26a040069ec4da2380d3e"
+    },
+    "r130_owner_42_scoped": {
+      "revision": 2,
+      "record_sha256": "be4fc53eb9ecb1ad757181cf7bf9ecf0bf9a38a0861440d21f36e5ea25c10be4"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

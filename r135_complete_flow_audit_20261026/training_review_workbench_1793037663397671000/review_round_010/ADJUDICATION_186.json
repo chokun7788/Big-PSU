@@ -1,0 +1,232 @@
+{
+  "question_key": "51b1bf0667aee428b95b3a5c021d247359cc0e220ae22856a27bd190f4c04f78",
+  "example_sha256": "852e1d7b4735678e2678e022cbcb85b69558b4d7f238d8ed6c499a9128982e03",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Three rule-evidence needs request eligibility,roster and registration under one official-CS2 prefix.",
+      "raw_quotes": [
+        "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Split three competition_rules/rule_lookup/rule_clause tasks so each requested scope is represented.",
+      "raw_quotes": [
+        "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "CS2 target and official source qualifier are shared; eligibility,roster,registration belong to their individual tasks.",
+      "raw_quotes": [
+        "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Share only raw CS2/official prefix; do not copy each local rule scope into the other tasks.",
+      "raw_quotes": [
+        "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Official is requested authority, not proof of current publication or a selected tournament edition.",
+      "raw_quotes": [
+        "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Native CS2 rule sections and parent competition separate participation/roster/registration; actual edition/authority/coverage must be checked at execution.",
+      "raw_quotes": [
+        "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_cs2_psu_phuket_2026",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_010",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_011",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_012",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_013"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No qualification, team-size, registration deadline or official-source endorsement enters labels.",
+      "raw_quotes": [
+        "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "No edition or current official publication status is specified/proven by the question.",
+      "handling": "Check authority/edition/coverage separately for all three requested rule scopes."
+    }
+  ],
+  "historical_review_row": 186,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "CS2",
+      "official"
+    ],
+    "tasks": [
+      {
+        "id": "t1",
+        "quote": "Please retrieve the official CS2 rulebook evidence for eligibility",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "eligibility",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "official",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      },
+      {
+        "id": "t2",
+        "quote": "roster",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "roster",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "official",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false
+      },
+      {
+        "id": "t3",
+        "quote": "registration",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "registration",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "official",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "CS2",
+        "basis": "shared_prefix"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "requested_scope",
+        "quote": "official",
+        "basis": "shared_prefix"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t3",
+        "slot": "target",
+        "quote": "CS2",
+        "basis": "shared_prefix"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t3",
+        "slot": "requested_scope",
+        "quote": "official",
+        "basis": "shared_prefix"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_cs2_psu_phuket_2026": {
+      "revision": 5,
+      "record_sha256": "039d6a458fa0cc4ca5075be5e50babdfc4266bf733f9ff79ae7f3f62760d68ef"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_010": {
+      "revision": 4,
+      "record_sha256": "4601b6892903181438df088c5a1b70b018ad809d44ba4fe6300cedfab8a3121a"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_011": {
+      "revision": 4,
+      "record_sha256": "f65e21029916494799144404e5ca0ee09fad5f4b3d239ff17f7b9debd0f38629"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_012": {
+      "revision": 4,
+      "record_sha256": "9e6a4c2527789a17b9bf7bf43228c4f9959b81a0539aa336fd7bcd06ccbf837f"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_013": {
+      "revision": 4,
+      "record_sha256": "9a6095fea1aa250a96a088c9b4a3e67510751ad1802ffd0b21e6807302702b15"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+--- before/app/pipeline/engine.py
++++ r60/app/pipeline/engine.py
+@@ -879,7 +879,7 @@
+                     EntityBundle(), ValidationResult(ok=True), [*entry_timings, result.trace])
+             from app.knowledge.common.answer import try_common_answer
+             common = try_common_answer(question, locale=resolved_locale.effective,
+-                recent_history=recent_history, allow_llm=bool(experimental_allow_llm))
++                recent_history=recent_history, allow_llm=env_experimental_llm_default() if experimental_allow_llm is None else bool(experimental_allow_llm))
+             if common is not None:
+                 return common
+             from app.pipeline.request_focus import explicit_request_focus

@@ -1,0 +1,666 @@
+--- before/app/knowledge/common/answer.py
++++ after/app/knowledge/common/answer.py
+@@ -197,8 +197,8 @@
+                 obs=[{'record_id':rid,'field':'value','status':'known','evidence_refs':field['evidence_refs']}]
+         plan={'record_ids':[],'requested_fields':[],'method':'specific_unconfirmed_request','unconfirmed_topic':need,'source_answer_confirmed':False,'entity_selection':selection or {}}
+         return self.finish(snap,started,body,hits,plan,obs,response='unconfirmed')
+-    def answer(self,question,*,locale='th',history=None,at=None,planner=None,_composing=False):
+-        started=time.perf_counter();snap=self.store.snapshot();rel=snap['release']
++    def answer(self,question,*,locale='th',history=None,at=None,planner=None,_composing=False,_snapshot=None):
++        started=time.perf_counter();snap=_snapshot if _snapshot is not None else self.store.snapshot();rel=snap['release']
+         if not rel:return None
+         from app.calendar.service_calendar import now_bangkok
+         lang='en' if locale=='en' else 'th';at=at or now_bangkok()
+@@ -266,6 +266,15 @@
+         price_resume=price_selection(question,history,records,names)
+         if price_resume:q,ids,method=price_resume['query'],price_resume['record_ids'],price_resume['method']
+         else:q,ids,method=context_query(question,history,names,records)
++        if not ids and history:
++            from .dialogue import previous_state
++            from .task_interpretation import interpret as interpret_pending_task
++            prior=previous_state(history,records)
++            pending_ids=list(prior.get('record_ids',[])) if prior else []
++            pending_task=interpret_pending_task(question,pending_ids,records,names)
++            if pending_task:
++                ids=pending_ids;q=question;method='typed_common_task_state'
++                self.diagnostics.append({'stage':'pending_task','task_contract':pending_task,'previous_answer_facts_used':False})
+         self.diagnostics.append({'stage':'named_scope','record_ids':list(ids),'method':method})
+         from .identity_links import resolve as resolve_identity
+         ids,names,identity_audit=resolve_identity(question,ids,records,names)
+@@ -290,7 +299,7 @@
+             from .composition import parts,compose
+             from .question_profiles import composed_parts
+             entity_ids=[rid for rid in ids if records[rid]['kind'] not in {'faq','policy','procedure'}]
+-            clauses=composed_parts(question,records) or parts(strip_names(question,entity_ids,names))
++            clauses=composed_parts(question,records) or parts(strip_names(question,entity_ids,names),entity_ids,records)
+             if not clauses and request_needs:
+                 from .request_roles import uncovered_parts
+                 clauses=uncovered_parts(question)
+@@ -312,11 +321,19 @@
+         if profile_audit.get('rejected') and not profile_id:
+             msg='คำถามมีหลายสิ่งที่ต้องตรวจ ข้อมูลที่ตรงครอบคลุมเพียงบางสิ่ง กรุณาแยกถามแต่ละอุปกรณ์หรือหัวข้อเพื่อยืนยันให้ครบ' if lang=='th' else 'This question covers several items, but the matching information covers only some of them. Please ask about each item or topic separately so I can confirm each one.'
+             return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'question_profile':profile_audit},[],response='clarification')
++        from .task_interpretation import interpret as interpret_task
++        game_ids=[rid for rid in ids if records[rid]['kind']=='game']
++        game_task=interpret_task(question,game_ids,records,names)
+         ids,query_operation=primary_ids(question,ids,records)
++        if game_task:
++            ids=game_ids;query_operation=game_task['operation']
++        task_contract=game_task or interpret_task(q,ids,records,names)
++        if task_contract and task_contract['operation']:
++            query_operation=task_contract['operation']
+         if query_operation=='equipment':
+             from .equipment_bridge import answer as equipment_catalog_answer
+             named_zones=[rid for rid in matched_ids if records[rid]['kind']=='zone']
+-            equipment_result=equipment_catalog_answer(self,snap,started,question,lang,records,named_zones or ids,at)
++            equipment_result=equipment_catalog_answer(self,snap,started,question,lang,records,named_zones or ids,at,task_contract=task_contract)
+             if equipment_result is not None:return equipment_result
+         legacy_intent=None
+         if not profile_id and not request_needs:
+@@ -548,6 +565,10 @@
+             q,schema_recoveries=recover_schema_language(q,scope_kinds(current_kinds))
+         else:schema_recoveries=[]
+         q,focus=focus_request(q,current_kinds or None)
++        task_contract=interpret_task(q,ids,records,names)
++        if task_contract:
++            self.diagnostics.append({'stage':'task_interpretation','contract':task_contract})
++            if task_contract['operation']:query_operation=task_contract['operation']
+         broad=all_query(q);requested=field_requests(q);kind=None
+         if method in {'state_audience_selection','state_service_selection','typed_common_state'} and (not requested or broad):
+             from .dialogue import previous_state
+@@ -625,6 +646,8 @@
+                 prior_ids,_=named(str(prior or ''),names,allow_fuzzy=False)
+                 requested=field_requests(strip_names(str(prior or ''),prior_ids,names),field_kinds)
+                 if requested:break
++        if task_contract:
++            requested=list(task_contract['requested_fields']);broad=False
+         rule_request=bool(re.search(r'กฎ|กฏ|กติกา|\brules\b',q,re.I)) and not re.search(r'เรต|\bage\b',q,re.I)
+         if any(records[k]['kind']=='game' for k in ids) and (rule_request or re.search(r'แข่ง|การแข่งขัน|\b(?:competition|tournament)\b',q,re.I)) and not re.search(r'บัญชี|\baccounts?\b|ไม่.*แข่ง|\bnot\b.*\b(?:competition|tournament)\b',q,re.I):
+             competitions=[k for k,r in records.items() if r['kind']=='competition' and value(r,'game_id') in ids]
+@@ -632,6 +655,7 @@
+                 ids=competitions;field_kinds={'competition','competition_rule'};requested=field_requests(q,field_kinds)
+             else:return None # Legacy rulebooks remain authoritative until migrated.
+         plan={'record_ids':ids,'requested_fields':requested,'all_fields':broad,'method':method,'scope':'common_published','platform':None,'query_without_entity':q,'operation':query_operation,'scope_ids':scope_ids,'field_selection':resolve_fields(q,field_kinds)[1],'confidence_calibrated':False,'request_focus':focus,'schema_language_recoveries':schema_recoveries}
++        if task_contract:plan['task_contract']=task_contract
+         if request_needs:plan['request_needs']=request_needs;plan['role_selection']=role_audit
+         if identity_audit:plan['identity_links']=identity_audit
+         if profile_id:plan['question_profile']=profile_audit
+@@ -675,6 +699,8 @@
+         overview=overview_request(q)
+         gaps=unresolved_clauses(q,field_kinds)
+         review=resolution_uncertain(q,field_kinds)
++        if task_contract and task_contract['record_ids']==ids:
++            review=False;gaps=[]
+         if method=='common_legacy_intent_bridge' and legacy_intent.get('whole_query_pattern_coverage'):
+             review=False;gaps=[];plan['legacy_interpretation']=legacy_intent
+         if query_operation=='rules' and plan.get('rule_content_all') is not None:
+@@ -701,9 +727,12 @@
+                 for alias in sorted(names[rid],key=len,reverse=True):remainder=remainder.replace(normal(alias),'')
+             remainder=re.sub(r'รายละเอียด|ข้อมูล|คืออะไร|เกี่ยวกับ|ขอ|หน่อย|ครับ|ค่ะ|นะ|\b(?:details|information|about|please|tell me)\b','',remainder).strip(' ?!.,')
+             if remainder:
+-                options=[]
+-                for k in sorted({records[rid]['kind'] for rid in ids}):
+-                    options.extend(label(k,f['key'],lang) for f in CATALOG[k]['fields'] if f['publish_core'] and not f['reference_kind'])
++                from .task_registry import clarification_options
++                selected_kinds={records[rid]['kind'] for rid in ids}
++                options=clarification_options(selected_kinds,lang)
++                if not options:
++                    for k in sorted(selected_kinds):
++                        options.extend(label(k,f['key'],lang) for f in CATALOG[k]['fields'] if f['publish_core'] and not f['reference_kind'])
+                 choices=' / '.join(list(dict.fromkeys(options))[:4])
+                 msg=('ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ '+title(records[ids[0]],lang)+' เช่น '+choices+'?' if lang=='th' else 'The requested topic is unclear. Which part of '+title(records[ids[0]],lang)+' do you need: '+choices+'?')
+                 return self.finish(snap,started,msg,[],plan,[],response='clarification')
+@@ -987,6 +1016,9 @@
+             hit['metadata']={**hit.get('metadata',{}),'common_approved':view=='published','content_view':view,'title':hit['title'],'release_id':snap['active']}
+         confidence=.8 if response in {'answer','list'} else 0.0
+         artifact={'response_type':response,'release_id':snap['active'],'query_plan':plan,'obligations':obligations,'catalog_scope':'common_published','coverage_errors':errors,'confidence_calibrated':False,'validation_scope':'selected fields and evidence, not human intent correctness','content_view':view,'production_publication_verified':view=='published'}
++        from .need_ledger import build as build_need_ledger
++        artifact['need_ledger']=build_need_ledger(plan,obligations,response,hits)
++        artifact['knowledge_snapshot']={'release_id':snap['active'],'epoch':snap['epoch'],'content_view':view}
+         if plan.get('role_selection'):
+             artifact['task_coverage']=[{'role':r['role'],'scope':r['scope'],'status':'source_answer_rendered' if r['selected_ids'] and all(any(o.get('record_id')==rid and o.get('field')=='answer' and o.get('status')=='known' for o in obligations) for rid in r['selected_ids']) else 'not_answered','selected_ids':r['selected_ids'],'scope_confirmed':not r['unconfirmed_qualifiers'] and r['scope']!='per_day','human_intent_correctness_verified':False} for r in plan['role_selection']]
+         trace=PipelineTrace('common_content',response,confidence,'typed fields and source-backed joins; uncalibrated confidence',artifact)
+--- before/app/knowledge/common/build_info.py
++++ after/app/knowledge/common/build_info.py
+@@ -9,5 +9,5 @@
+  files.extend(root.glob('*.ps1'))
+  for p in sorted(files):
+   digest.update(p.relative_to(root).as_posix().encode());digest.update(p.read_bytes())
+- return {'build_id':'common-r73-question-scope','loaded_source_sha256':digest.hexdigest(),'fingerprint_scope':'application, web UI and launchers at module import'}
++ return {'build_id':'common-r92-task-contracts','loaded_source_sha256':digest.hexdigest(),'fingerprint_scope':'application, web UI and launchers at module import'}
+ LOADED_BUILD=_capture()
+--- before/app/knowledge/common/composition.py
++++ after/app/knowledge/common/composition.py
+@@ -3,11 +3,17 @@
+ from .query_contract import semantic_clauses,live_request
+ from .query_scope import operation
+ 
+-def parts(question):
++def parts(question,record_ids=None,records=None):
+     if live_request(question):return []
+     clauses=semantic_clauses(question)
+     if not 2<=len(clauses)<=4:return []
+     ops=[operation(q) for q in clauses]
++    if record_ids and records:
++        from .task_interpretation import interpret
++        game_ids=[rid for rid in record_ids if records[rid]['kind']=='game']
++        for i,clause in enumerate(clauses):
++            task=interpret(clause,game_ids,records)
++            if task:ops[i]=task['operation']
+     # Noun coordinations (minimum and maximum, keyboard and mouse) are not tasks.
+     concrete={op for op in ops if op}
+     if len(concrete)<2 or concrete&{'rules'}:return []
+@@ -19,10 +25,19 @@
+     context={'role':'assistant','common_read_state':{'schema_version':1,'record_ids':roots,'requested_fields':[],'all_fields':False,'release_id':snap['active']}}
+     blocks=[];hits=[];obligations=[];children=[];incomplete=[]
+     for i,clause in enumerate(clauses,1):
+-        result=reader.answer(clause,locale=lang,history=[*(history or []),context],at=at,planner=planner,_composing=True)
++        result=reader.answer(clause,locale=lang,history=[*(history or []),context],at=at,planner=planner,_composing=True,_snapshot=snap)
+         if result is None:
++            children.append({'clause':clause,'response_type':'unconfirmed','need_status':'missing_fact','query_plan':None,'need_ledger':{}})
+             blocks.append(str(i)+'. '+clause+'\n'+('ยังไม่มีคำตอบที่ยืนยันได้สำหรับส่วนนี้' if lang=='th' else 'No verified answer is available for this part.'));incomplete.append(i);continue
+-        art=result.decision_artifact or {};children.append({'clause':clause,'response_type':art.get('response_type'),'query_plan':art.get('query_plan'),'coverage_errors':art.get('coverage_errors',[])})
++        art=result.decision_artifact or {}
++        if not result.validation.ok:
++            children.append({'clause':clause,'response_type':'clarification','need_status':'ambiguous','query_plan':art.get('query_plan'),'coverage_errors':art.get('coverage_errors',[]),'need_ledger':art.get('need_ledger',{})})
++            blocks.append(str(i)+'. '+clause+'\n'+('ยังยืนยันคำตอบสำหรับเงื่อนไขส่วนนี้ไม่ได้ กรุณาระบุเพิ่ม' if lang=='th' else 'I cannot confirm an answer under these conditions. Please clarify this part.'));incomplete.append(i);continue
++        response=art.get('response_type')
++        status='answered' if response in {'answer','list'} else 'partial' if response=='partial_answer' else {'not_current':'not_current','unconfirmed':'missing_fact','clarification':'ambiguous','retry':'retry'}.get(response,'unknown')
++        nested_statuses={n['status'] for n in art.get('need_ledger',{}).get('needs',[]) if n.get('status')!='answered'}
++        if response=='clarification' and len(nested_statuses)==1:status=next(iter(nested_statuses))
++        children.append({'clause':clause,'response_type':response,'need_status':status,'query_plan':art.get('query_plan'),'coverage_errors':art.get('coverage_errors',[]),'need_ledger':art.get('need_ledger',{})})
+         if art.get('response_type') not in {'answer','list'} or not result.validation.ok:incomplete.append(i)
+         rename={}
+         for hit in result.hits:
+--- before/app/knowledge/common/equipment_bridge.py
++++ after/app/knowledge/common/equipment_bridge.py
+@@ -3,9 +3,10 @@
+ from .registry import value
+ from .query_contract import normalize
+ 
+-def answer(reader,snap,started,question,lang,records,roots,at):
++def answer(reader,snap,started,question,lang,records,roots,at,*,task_contract=None):
+     q=normalize(question)
+-    if not re.search(r'อุปกรณ์อะไร|อุปกรณ์.{0,12}บ้าง|\b(?:what|which|list)\b.{0,35}\b(?:equipment|hardware)\b',q):return None
++    contracted=bool(task_contract and task_contract.get('task')=='equipment_list' and task_contract.get('whole_task_covered'))
++    if not contracted and not re.search(r'อุปกรณ์อะไร|อุปกรณ์.{0,12}บ้าง|\b(?:what|which|list)\b.{0,35}\b(?:equipment|hardware)\b',q):return None
+     if not roots or any(records[rid]['kind'] not in {'zone','service','resource'} for rid in roots):return None
+     from .relations import related_attributes
+     from .answer import title,text,effective
+@@ -28,5 +29,6 @@
+                 hits.append({'id':rid+':'+key+':'+label,'record_id':rid,'field':key,'title':name,'text':text(f['value'],lang),'source_id':ref['source_id'],'snapshot_sha256':src['sha256'],'locator':ref['locator'],'source_url':src.get('public_url') or '', 'citation_label':label})
+         lines.append('• '+display+' '+' '.join(labels));projection.append({'record_id':rid,'fields':fields})
+     plan={'record_ids':list(selected),'scope_ids':roots,'operation':'equipment','method':'common_equipment_catalog_bridge','requested_fields':['name'],'response_projection':projection,'related_edges':edges,'legacy_fact_fallback_used':False}
++    if contracted:plan['task_contract']=task_contract
+     caption=('อุปกรณ์ตามโซนที่ถาม' if lang=='th' else 'Equipment in the selected zone(s)')
+     return reader.finish(snap,started,caption+'\n'+'\n'.join(lines),hits,plan,obs,response='list')
+--- before/app/knowledge/common/need_ledger.py
++++ after/app/knowledge/common/need_ledger.py
+@@ -0,0 +1,37 @@
++"""Describe delivered evidence coverage without claiming human intent accuracy."""
++
++def build(plan,obligations,response,hits):
++ needs=[]
++ if plan.get('operation')=='compound':
++  for index,child in enumerate(plan.get('clauses',[]),1):
++   nested=child.get('need_ledger') or {}
++   status=child.get('need_status','unknown')
++   needs.append({'id':'clause_'+str(index),'source_span':child.get('clause',''),
++    'status':status,'children':nested.get('needs',[]),'response_type':child.get('response_type')})
++ else:
++  fields=list(dict.fromkeys(plan.get('requested_fields',[])))
++  for field in fields:
++   rows=[o for o in obligations if o.get('field')==field]
++   known=[o for o in rows if o.get('status')=='known' and o.get('evidence_refs')]
++   unsupported=[o for o in rows if o.get('status')!='known' or not o.get('evidence_refs')]
++   states={o.get('status') for o in unsupported}
++   if known:status='partial' if unsupported else 'answered'
++   elif 'conflicted' in states:status='conflicted'
++   elif 'not_current' in states or any(o.get('field')=='validity' and o.get('status')=='not_current' for o in obligations):status='not_current'
++   elif 'needs_clarification' in states:status='missing_slot'
++   elif 'unsupported_scope' in states:status='unsupported'
++   else:status='missing_fact'
++   needs.append({'id':'field_'+field,'field':field,'status':status,
++    'evidence_refs':[{'record_id':o.get('record_id'),'field':field,'sources':o.get('evidence_refs',[])} for o in known],
++    'unanswered_records':[{'record_id':o.get('record_id'),'status':o.get('status')} for o in unsupported]})
++  for i,span in enumerate(plan.get('unresolved_clauses',[]),1):
++   needs.append({'id':'unresolved_'+str(i),'source_span':span,'status':'ambiguous'})
++ limits=list(plan.get('scope_limits',[]))
++ if any(o.get('field')=='validity' and o.get('status')=='unknown' for o in obligations):limits.append({'reason':'unconfirmed_effective_dates'})
++ if response=='retry':
++  for need in needs:need['status']='retry';need.pop('evidence_refs',None)
++ return {'version':'common_need_ledger_v1','needs':needs,'total_needs':len(needs),
++  'answered_needs':sum(n['status']=='answered' for n in needs),'scope_limits':limits,
++  'snapshot_consistent':response!='retry','semantic_correctness_verified':False,
++  'coverage_basis':'selected typed fields and explicit clauses; not all possible user intents',
++  'evidence_hits':len(hits),'response_type':response}
+--- before/app/knowledge/common/owner_server.py
++++ after/app/knowledge/common/owner_server.py
+@@ -15,36 +15,19 @@
+ MAX_BODY=2*1024*1024
+ 
+ def preview_answer(store,question,*,locale='th',history=None,draft=False):
+-    """Use the chat's optional local field planner against published facts only."""
+-    from .planner import plan_fields
++    """Use the chat dispatcher with an explicit, read-only snapshot provider."""
+     from app.pipeline.request_deadline import request_deadline
+     from dataclasses import replace
++    from app.core.locale import LocaleDecision
++    from app.pipeline.migrated_chat import answer as dispatch
++    from .snapshot_provider import DraftSnapshotView
+     enabled=os.getenv('PSU_LOCAL_LLM_ASSIST_ENABLED','1').strip().lower() in {'1','true','yes','on'}
+-    audits=[]
+-    original_store=store
+-    if draft:
+-        class DraftView:
+-            path=original_store.path
+-            def connect(self,*,write=False):
+-                if write:raise ValueError('Draft preview exposes read-only evidence access')
+-                return original_store.connect()
+-            @staticmethod
+-            def sources(connection):return CommonStore.sources(connection)
+-            def snapshot(self):
+-                s=original_store.snapshot()
+-                with original_store.connect() as c:
+-                    records=original_store.heads(c);sources={sid:pair[0] for sid,pair in original_store.sources(c).items()}
+-                from .answer import title
+-                names={rid:list(dict.fromkeys(r['aliases']['th']+r['aliases']['en']+[title(r,'th'),title(r,'en')])) for rid,r in records.items()}
+-                s={**s,'release':{'records':records,'sources':sources,'names':names},'active':'draft-preview','withdrawn':[],'evaluation_draft_only':True}
+-                return s
+-            def still_current(self,s):return original_store.snapshot()['epoch']==s['epoch']
+-        store=DraftView()
+-    def traced_plan(q,records,ids):return plan_fields(q,records,ids,diagnostic=audits.append)
+     with request_deadline(10):
+-        result=CommonAnswerer(store).answer(question,locale=locale,history=history or [],planner=traced_plan if enabled else None)
++        result=dispatch(question,locale=LocaleDecision(locale,locale,locale,1,'owner_preview'),history=history or [],allow_llm=enabled,
++            store=DraftSnapshotView(store) if draft else store,allow_live=False)
+     if result is not None:
+-        updates={'decision_artifact':{**(result.decision_artifact or {}),'draft_preview_only':draft,'preview_llm_enabled':enabled,'planner_audits':audits}}
++        updates={'decision_artifact':{**(result.decision_artifact or {}),'draft_preview_only':draft,'preview_llm_enabled':enabled,
++            'preview_dispatcher':'shared_common_chat','preview_live_enabled':False}}
+         if draft:updates['answer']='ทดสอบร่าง — ยังไม่เผยแพร่ / DRAFT PREVIEW — NOT PUBLISHED\n\n'+result.answer
+         result=replace(result,**updates)
+     return result
+@@ -129,6 +112,10 @@
+                     answer=preview_answer(store,body['question'],locale=body.get('locale','th'),history=body.get('history',[]),draft=body.get('draft') is True)
+                     from .dialogue import state_from_answer
+                     return self.reply(200,{'answer':answer.answer if answer else 'ยังไม่มีรายการที่เผยแพร่ตรงคำถามนี้ / No matching published record','trace':answer.decision_artifact if answer else None,'common_read_state':state_from_answer(answer) if answer else None})
++                if path=='/api/readiness':
++                    from .task_registry import readiness
++                    with store.connect() as c:records=store.heads(c)
++                    return self.reply(200,readiness(body['record'],records,locale=body.get('locale','th')))
+                 return self.reply(404,{'error':'Unknown endpoint'})
+             except Conflict as e:return self.reply(409,{'error':str(e)})
+             except (ValueError,KeyError,TypeError) as e:return self.reply(400,{'error':str(e)})
+--- before/app/knowledge/common/snapshot_provider.py
++++ after/app/knowledge/common/snapshot_provider.py
+@@ -0,0 +1,48 @@
++"""Read-only owner draft snapshots for the same dispatcher as public chat."""
++import json
++from .store import CommonStore
++from .registry import CATALOG,value
++
++class DraftSnapshotView:
++ def __init__(self,store):self.store=store;self.path=store.path
++ def connect(self,*,write=False):
++  if write:raise ValueError('Draft preview exposes read-only evidence access')
++  return self.store.connect()
++ @staticmethod
++ def sources(connection):return CommonStore.sources(connection)
++ def snapshot(self):
++  with self.store.connect() as c:
++   meta=dict(c.execute('SELECT key,value FROM cc_meta'))
++   records=CommonStore.heads(c);sources={sid:pair[0] for sid,pair in CommonStore.sources(c).items()}
++   withdrawn=[r[0] for r in c.execute('SELECT record_id FROM cc_heads WHERE withdrawn=1')]
++   historical=dict(c.execute('SELECT record_id,kind FROM cc_heads'))
++  from .answer import title
++  names={rid:list(dict.fromkeys(r['aliases']['th']+r['aliases']['en']+[title(r,'th'),title(r,'en')])) for rid,r in records.items()}
++  refs={};index=[]
++  for rid,r in records.items():
++   for f in CATALOG[r['kind']]['fields']:
++    v=value(r,f['key'])
++    if v is None:continue
++    index.append({'id':rid+':'+f['key'],'record_id':rid,'field':f['key'],'text':json.dumps(v,ensure_ascii=False)})
++    if f['reference_kind']:
++     for target in v if isinstance(v,list) else [v]:refs.setdefault(target,[]).append(rid)
++  return {'active':'owner-draft-preview','epoch':int(meta['epoch']),
++   'release':{'records':records,'sources':sources,'names':names,'reverse_refs':refs,'text_index':index},
++   'withdrawn':withdrawn,'historical_names':{},'retired_names':{},'historical_kinds':historical,
++   'allow_demo':meta.get('demo')=='1','evaluation_draft_only':True,'owner_draft_preview':True,
++   'actual_active_release':meta.get('active','')}
++ def still_current(self,snap):
++  with self.store.connect() as c:row=c.execute("SELECT value FROM cc_meta WHERE key='epoch'").fetchone()
++  return row is not None and int(row[0])==snap['epoch']
++
++class PinnedSnapshotView:
++ """One coherent revision set across compound parts and dialogue repair."""
++ def __init__(self,store):
++  self.store=store;self.path=store.path;self._snapshot=store.snapshot()
++  self.migration_preview_only=bool(self._snapshot.get('migration_preview_only'))
++ def snapshot(self):return self._snapshot
++ def connect(self,*,write=False):
++  if write:raise ValueError('Question snapshots are read only')
++  return self.store.connect()
++ def sources(self,connection):return self.store.sources(connection)
++ def still_current(self,snap):return self.store.still_current(snap)
+--- before/app/knowledge/common/task_interpretation.py
++++ after/app/knowledge/common/task_interpretation.py
+@@ -0,0 +1,111 @@
++"""Whole-task contracts over resolved common records; no business facts.
++
++Names come from the current snapshot. Bounded recovery covers the complete
++remaining task, never just a keyword inside an unhandled condition. This is
++language interpretation, not an assertion that the record's facts are current.
++"""
++import re
++from app.core.typo_similarity import osa_distance
++from .query_contract import normalize
++
++VERSION='common-task-contract-v2'
++PROFILES=(
++ {'task':'game_overview','kinds':{'game'},'operation':'game_overview','fields':['summary'],'optional_fields':['genre'],
++  'phrases':('คือเกมอะไร','เป็นเกมอะไร','เกมนี้คืออะไร','what is','what is this game','what kind of game is this','what type of game is this','tell me about this game','game overview')},
++ {'task':'game_how_to_play','kinds':{'game'},'operation':'game_how_to_play','fields':['how_to_play'],
++  'phrases':('เล่นยังไง','เล่นอย่างไร','วิธีเล่น','how to play','how do i play','how do you play','how does this game work')},
++ {'task':'equipment_list','kinds':{'zone','service','resource'},'operation':'equipment','fields':['name'],
++  'phrases':('อุปกรณ์','รายการอุปกรณ์','มีอุปกรณ์อะไรบ้าง','มีอุปกรณ์อะไรมั่ง','อุปกรณ์มีอะไรบ้าง','equipment','hardware','equipment list','what equipment is there','what equipment do you have','what equipment is available','list the equipment','which equipment is available')},
++ {'task':'faq_content','kinds':{'faq'},'operation':None,'fields':['answer'],
++  'phrases':('นโยบายคืออะไร','นโยบายว่าอย่างไร','มีนโยบายอย่างไร','มีรายละเอียดอย่างไร','คำตอบ','what is the policy','what is the studio policy','what is the studio policy for','what is the policy for','tell me about','what is','what does the policy say','answer')},
++)
++def _plain(value):
++ return re.sub(r'\s+',' ',re.sub(r'[—–:?!.,]+',' ',normalize(value))).strip()
++
++def _framing(q):
++ # Remove only polite framing at edges; substantive words remain visible.
++ for _ in range(3):
++  updated=re.sub(r'^(?:please\s+|could you\s+|can you\s+|ช่วย|ขอ)(?=\S)', '',q)
++  if updated==q:break
++  q=updated
++ q=re.sub(r'(?:\s+please|ครับ|ค่ะ|คะ|หน่อย|นะครับ|นะคะ)+$','',q)
++ return q.strip()
++
++def _structured_task(q,kinds):
++ # Shared sentence grammar: match the entire task after current record labels
++ # have been removed. Style adjectives do not add game facts or age claims.
++ if kinds=={'game'}:
++  intro=(r'(?:(?:could|can|would) you (?:please )?)?'
++         r'(?:(?:give|provide|show|offer|tell) (?:me |us )?|(?:explain|describe) )?'
++         r'(?:a |an |the )?(?:(?:brief|short|simple|basic|general|beginner friendly) )?'
++         r'(?:overview|introduction|summary|description|explanation)'
++         r'(?: (?:of|to|about))?(?: (?:this |the )?game)?(?: please)?')
++  if re.fullmatch(intro,q):return 'game_overview'
++  if re.fullmatch(r'(?:tell|explain|describe)(?: (?:me|us))?(?: about)?(?: (?:this|the) game)?',q):return 'game_overview'
++  if re.fullmatch(r'what (?:kind|type) of game is(?: this)?',q):return 'game_overview'
++  if re.fullmatch(r'(?:please )?(?:explain|describe|show me) (?:the )?(?:gameplay|how to play)(?: this game)?',q):return 'game_how_to_play'
++  if re.fullmatch(r'(?:ช่วย|ขอ)?(?:แนะนำ|อธิบาย|เล่า)(?:ข้อมูล|รายละเอียด)?(?:เกมนี้|เกม)?(?:เบื้องต้น|แบบสั้นๆ|แบบเข้าใจง่าย)?(?:ให้ฟัง|ให้หน่อย|หน่อย)?',q.replace(' ','')):return 'game_overview'
++ return None
++
++def _safe_english_edit(observed,target):
++ # Valid words such as "name", "time" and "price" cannot be spelling errors
++ # merely because a known task is close. Keep English error channels concrete.
++ if not re.search('[a-z]',observed):return True
++ from .schema_language import PROTECTED,GRAMMAR
++ a=re.findall('[a-z]+',observed);b=re.findall('[a-z]+',target)
++ if len(a)!=len(b):return False
++ for before,after in zip(a,b):
++  if before==after:continue
++  if before in PROTECTED or before in GRAMMAR:return False
++  if abs(len(before)-len(after))==1 and osa_distance(before,after)==1:continue
++  if len(before)==len(after):
++   diff=[i for i,(x,y) in enumerate(zip(before,after)) if x!=y]
++   if len(diff)==2 and diff[1]==diff[0]+1 and before[diff[0]]==after[diff[1]] and before[diff[1]]==after[diff[0]]:continue
++  return False
++ return True
++
++def interpret(question,record_ids,records,names=None):
++ ids=list(dict.fromkeys(record_ids))
++ if not ids or any(rid not in records for rid in ids):return None
++ kinds={records[rid]['kind'] for rid in ids}
++ original=normalize(question);q=_plain(original).replace('-',' ');subjects=[]
++ # Strip only literal current labels after punctuation normalization. Never
++ # rewrite a new name to an existing record or copy facts from history.
++ if names:
++  labels=sorted({_plain(a) for rid in ids for a in names.get(rid,[]) if isinstance(a,str)},key=len,reverse=True)
++  for label in labels:
++   if len(label)<3:continue
++   pattern=(r'(?<![a-z0-9])'+re.escape(label)+r'(?![a-z0-9])') if re.search('[a-z]',label) else re.escape(label)
++   if re.search(pattern,q):subjects.append(label);q=re.sub(pattern,' ',q)
++ q=_framing(re.sub(r'\s+',' ',q).strip())
++ # Preserve numbers, negation, qualification and multiple tasks. These use
++ # the normal typed/LLM path; a near-match must not erase their conditions.
++ if not q or re.search(r'\d|ไม่|ห้าม|ยกเว้น|เฉพาะ|ถ้า|และ|แล้ว|หรือ|\b(?:not|no|never|without|except|only|if|unless|and|or|but|before|after)\b',q):return None
++ candidates=[]
++ structured=_structured_task(q,kinds)
++ for profile in PROFILES:
++  if not kinds<=profile['kinds']:continue
++  # Multiple FAQ scopes cannot silently turn into one policy answer.
++  if profile['task']=='faq_content' and len(ids)!=1:continue
++  if structured==profile['task']:candidates.append((0,profile,q))
++  for phrase in profile['phrases']:
++   target=_plain(phrase);distance=osa_distance(q,target)
++   if distance:
++    if min(len(q),len(target))<6 or abs(len(q)-len(target))>2 or distance>2:continue
++    if 1-distance/max(len(q),len(target))<.72:continue
++    if not _safe_english_edit(q,target):continue
++   candidates.append((distance,profile,target))
++ if not candidates:return None
++ best=min(x[0] for x in candidates);best_rows=[x for x in candidates if x[0]==best]
++ if len({x[1]['task'] for x in best_rows})!=1:return None
++ _,profile,target=best_rows[0]
++ # A different task within one edit of the winner remains ambiguous.
++ if best and any(x[1]['task']!=profile['task'] and x[0]<=best+1 for x in candidates):return None
++ fields=[f for f in profile['fields'] if profile['task']=='equipment_list' or any(f in records[rid]['fields'] for rid in ids)]
++ fields.extend(f for f in profile.get('optional_fields',[]) if any(records[rid]['fields'].get(f,{}).get('status')=='known' for rid in ids))
++ if not fields:return None
++ return {'version':VERSION,'task':profile['task'],'operation':profile['operation'],
++  'record_ids':ids,'requested_fields':fields,'original_task':original,'task_span':q,
++  'matched_current_labels':subjects,'canonical_task':target,'edit_distance':best,
++  'whole_task_covered':True,'method':'whole_task_grammar' if structured else 'whole_task_exact' if best==0 else 'bounded_whole_task_recovery',
++  'confidence_calibrated':False,'facts_source':'current_common_snapshot'}
+--- before/app/knowledge/common/task_registry.py
++++ after/app/knowledge/common/task_registry.py
+@@ -0,0 +1,95 @@
++"""Data readiness per reusable task. Contains no studio facts or record IDs.
++
++This reports supplied fields/relationships, not intent accuracy or publication
++approval. The store's schema/evidence/approval checks remain authoritative.
++"""
++from .registry import CATALOG,value,aware
++
++VERSION='common_task_readiness_v1'
++
++def clarification_options(kinds,locale):
++ """User tasks, rather than raw database field captions."""
++ if kinds & {'zone','service','resource','equipment_model'}:
++  return ['รายการเกม','อุปกรณ์และสเปก','ราคา','สถานะจอง'] if locale=='th' else ['games','equipment and specifications','prices','booking availability']
++ if kinds & {'game','game_service','game_mode','control_set'}:
++  return ['เกมเกี่ยวกับอะไร','วิธีเล่น','ปุ่มควบคุม','บริการที่มีเกมนี้'] if locale=='th' else ['game overview','how to play','controls','services offering this game']
++ if kinds & {'competition','competition_rule'}:
++  return ['ภาพรวมกติกา','กติกาทั้งหมด','กฎเฉพาะเรื่อง'] if locale=='th' else ['rules overview','all rules','a specific rule topic']
++ return []
++# task key, owner-facing caption, required local fields, optional related kind
++TASKS={
++ 'center':[('center_identity','ชื่อและหน่วยงานผู้ดูแล',['name','operator'],None),('directions','ที่ตั้งและแผนที่',['address','map_url'],None)],
++ 'contact':[('contact','ช่องทางติดต่อและเรื่องที่ติดต่อได้',['channel','value','purpose'],None)],
++ 'facility':[('facility_location','ตำแหน่งสิ่งอำนวยความสะดวก',['name','location'],None),('facility_conditions','เงื่อนไขใช้สิ่งอำนวยความสะดวก',['usage_conditions'],None)],
++ 'zone':[('zone_overview','ภาพรวมโซน',['name','description'],None),('zone_equipment','รายการอุปกรณ์ในโซน',['name'],'zone_equipment')],
++ 'equipment_model':[('equipment_name','รายการอุปกรณ์',['name','device_type'],None),('equipment_specs','สเปกอุปกรณ์',['specifications'],None)],
++ 'resource':[('resource_details','ข้อมูลเครื่องและสถานะพร้อมใช้งาน',['name','zone_id','operational_status'],None),('resource_equipment','อุปกรณ์ของเครื่อง',['equipment_model_ids'],None)],
++ 'service':[('service_session','เวลาเล่นและเวลาที่กันเครื่อง',['name','resource_ids','session_minutes','occupancy_minutes'],None),('service_capacity','จำนวนคนของบริการ',['capacity_min','capacity_max'],None)],
++ 'game':[('game_overview','เกมเกี่ยวกับอะไร',['title','summary'],None),('game_genre','แนวเกม',['title','genre'],None),('game_how_to_play','วิธีเล่น',['title','how_to_play'],None),('game_controls','ปุ่มควบคุม',['title'],'control_set'),('game_offerings','บริการที่มีเกมนี้',['title'],'game_service')],
++ 'game_service':[('game_service','เกมที่ให้บริการและบริการที่เกี่ยวข้อง',['game_id','service_id','offered'],None),('installed_resources','เครื่องที่ติดตั้งเกม',['installed_resource_ids'],None)],
++ 'game_mode':[('game_players','จำนวนคนเล่นในโหมด',['game_id','mode_name','platform','players_min','players_max'],None),('game_network','การเล่นออนไลน์และโหมดที่ศูนย์รองรับ',['network_requirement','studio_supported'],None)],
++ 'control_set':[('game_controls','ปุ่มควบคุมตามชุดที่ระบุ',['game_id','platform','input_device','preset','bindings'],None)],
++ 'audience':[('audience_eligibility','คุณสมบัติกลุ่มผู้ใช้',['name','eligibility'],None),('audience_proofs','หลักฐานของกลุ่มผู้ใช้',['required_proofs'],None)],
++ 'rate':[('fee_quote','ราคาตามกลุ่มและหน่วย',['service_id','audience_id','amount_minor','currency','unit','duration_minutes','calculation_rule'],None)],
++ 'rental_package':[('rental_quote','ราคาเหมาตามโซน กลุ่ม และแพ็กเกจ',['zone_ids','audience_id','period_label','amount_minor','currency'],None),('rental_duration','จำนวนชั่วโมงของแพ็กเกจ',['duration_minutes'],None),('rental_terms','เงื่อนไขราคาเหมา',['terms'],None)],
++ 'schedule':[('opening_hours','ช่วงเปิดบริการ',['timezone','zone_ids','weekday','open_periods'],None),('bookable_hours','ช่วงที่จองได้',['timezone','zone_ids','weekday','bookable_periods'],None),('maintenance','ช่วงบำรุงรักษา',['maintenance_periods'],None)],
++ 'closure':[('special_closure','วันปิดหรือเปลี่ยนเวลาเฉพาะวัน',['local_date','zone_ids','state','reason'],None),('closure_booking_resolution','จัดการรายการจองเมื่อปิดพิเศษ',['resolution_policy_id'],None)],
++ 'policy':[('policy_decision','ข้อกำหนดและเงื่อนไข',['topic','subject','decision','conditions_all','details'],None),('policy_exceptions','ข้อยกเว้น',['exceptions'],None),('policy_consequence','ผลเมื่อฝ่าฝืน',['consequence'],None)],
++ 'procedure':[('procedure_steps','ขั้นตอนและเงื่อนไขก่อนเริ่ม',['topic','preconditions','steps'],None),('procedure_documents','เอกสารที่ใช้',['required_documents'],None),('procedure_deadline','กำหนดเวลา',['deadline_minutes'],None)],
++ 'competition':[('competition_identity','รายการและฉบับกติกา',['game_id','event_name','rulebook_release','coverage'],None),('competition_rules','ข้อกติกาในเล่ม',['event_name'],'competition_rule')],
++ 'competition_rule':[('competition_clause','ข้อกติกาและขอบเขต',['competition_id','section_number','facet','heading','text','completeness'],None)],
++ 'news':[('news_content','ข่าวและรายละเอียด',['title','body'],None),('event_dates','วันจัดกิจกรรม',['event_start','event_end'],None)],
++ 'person':[('person_public_details','ชื่อและบทบาทที่อนุญาตให้เผยแพร่',['display_name','role','public_scope'],None)],
++ 'faq':[('faq_content','คำตอบของหัวข้อ',['question','answer','topic'],None)],
++ 'live_binding':[('live_mapping','การผูกบริการกับระบบสถานะสด',['service_id','provider','external_resource_key','physical_pool_key','status_mapping','timezone','freshness_policy'],None)]
++}
++
++def _field(record,key,lang):
++ field=record.get('fields',{}).get(key,{})
++ if field.get('status')!='known' or field.get('value') is None:return field.get('status','unknown')
++ v=field['value']
++ if isinstance(v,dict) and set(v)=={'th','en'} and not v.get(lang):return 'missing_language'
++ return None
++
++def readiness(record,records,*,locale='th',at=None):
++ if not isinstance(record,dict) or record.get('kind') not in CATALOG or not isinstance(record.get('fields'),dict):raise ValueError('A record with a registered kind and fields is required')
++ from app.calendar.service_calendar import now_bangkok
++ at=at or now_bangkok();lang='en' if locale=='en' else 'th';kind=record['kind'];rid=record.get('record_id')
++ scope={**records,rid:record} if rid else records
++ results=[]
++ for task,label,required,related in TASKS[kind]:
++  missing=[{'field':key,'reason':reason} for key in required if (reason:=_field(record,key,lang))]
++  # Check actual reference existence; do not resolve business relationships
++  # from similar display names or invent a new related record.
++  for key in required:
++   spec=next(f for f in CATALOG[kind]['fields'] if f['key']==key)
++   if not spec['reference_kind'] or _field(record,key,lang):continue
++   refs=value(record,key);refs=refs if isinstance(refs,list) else [refs]
++   for target in refs:
++    if target not in scope or scope[target].get('lifecycle')=='withdrawn':missing.append({'field':key,'reason':'missing_reference','record_id':target})
++  related_ids=[]
++  if related=='zone_equipment':
++   for r in records.values():
++    if r['kind']=='resource' and value(r,'zone_id')==rid:
++     related_ids.extend(x for x in value(r,'equipment_model_ids') or [] if x in records)
++   if not related_ids:missing.append({'relation':related,'reason':'no_explicit_resource_equipment_relation'})
++  elif related:
++   foreign={'control_set':'game_id','game_service':'game_id','competition_rule':'competition_id'}[related]
++   related_ids=[key for key,r in records.items() if r['kind']==related and value(r,foreign)==rid]
++   if not related_ids:missing.append({'relation':related,'reason':'missing_related_records'})
++   elif related=='control_set' and not any(all(_field(records[key],f,lang) is None for f in ['platform','input_device','preset','bindings']) for key in related_ids):missing.append({'relation':related,'reason':'related_records_incomplete'})
++  warnings=[];state='needs_data' if missing else 'data_ready'
++  if task in {'fee_quote','rental_quote'}:
++   validity=record.get('validity',{})
++   if validity.get('state')!='known':
++    warnings.append('current_price_effective_dates_not_confirmed')
++    if not missing:state='needs_effective_dates'
++   else:
++    start=validity.get('effective_from');end=validity.get('effective_until')
++    if start and at<aware(start) or end and at>=aware(end):state='not_current';warnings.append('outside_effective_interval')
++  results.append({'task':task,'label_th':label,'status':state,'missing':missing,'warnings':warnings,'related_ids':list(dict.fromkeys(related_ids))})
++ core=[f['key'] for f in CATALOG[kind]['fields'] if f['publish_core']]
++ return {'version':VERSION,'kind':kind,'record_id':rid,'tasks':results,
++  'publish_core_missing':[key for key in core if _field(record,key,lang)],
++  'scope':'data readiness only; store validation and runtime interpretation still required',
++  'publication_approval_created':False,'runtime_answer_correctness_verified':False}
+--- before/app/knowledge/common/ui/index.html
++++ after/app/knowledge/common/ui/index.html
+@@ -9,4 +9,4 @@
+ <details><summary>จะให้ตอบภาษาอังกฤษด้วยไหม?</summary><label>ภาษาต้นทาง<select id="source_lang"><option value="th">ไทย</option><option value="en">อังกฤษ</option><option value="mixed">ทั้งสองภาษา</option></select></label><label>คำแปลอังกฤษ<select id="en_status"><option value="missing">ยังไม่มีคำแปล</option><option value="draft">คำแปลร่าง</option><option value="agent_translated">แปลโดยระบบ ยังไม่ได้ตรวจโดยคน</option><option value="reviewed">เจ้าของตรวจความหมายแล้ว</option><option value="stale">ต้นทางเปลี่ยน ต้องตรวจคำแปลใหม่</option></select></label><p>กรอกไทยอย่างเดียวได้ถ้ายังไม่มีคำแปล หากมีอังกฤษด้วยให้เลือกสถานะตามจริง: “แปลโดยระบบ” หรือ “เจ้าของตรวจความหมายแล้ว”; สถานะตรวจแล้วต้องติ๊กยืนยันการตรวจคำแปลด้านล่างด้วย</p></details>
+ <div class="actions"><button id="translate_draft" class="secondary">ช่วยแปลไทยเป็นอังกฤษ (ร่าง)</button><label class="check"><input type="checkbox" id="translate_replace">แปลทับอังกฤษเดิมในร่างนี้ด้วย</label></div><p>ปุ่มแปลยังไม่บันทึกและไม่เผยแพร่ กรุณาตรวจความหมาย โดยเฉพาะคำว่า ห้าม/อนุญาต และเงื่อนไข ร่างที่แปลยาวมากให้แบ่งตามส่วนของข้อมูลหรือกรอกอังกฤษเอง</p><div id="fields"></div><label class="check"><input type="checkbox" id="attest">ข้อมูลที่กรอกเป็นข้อมูลศูนย์ที่ตรวจจากแหล่งจริงแล้ว ช่องไม่ทราบยังคงไม่ทราบ</label><label class="check"><input type="checkbox" id="translation_reviewed">ตรวจคำแปลอังกฤษในฉบับนี้แล้ว (จำเป็นเมื่อเลือกสถานะ “เจ้าของตรวจความหมายแล้ว”)</label>
+ <div class="actions"><button id="save">บันทึกฉบับร่าง</button><button id="approve">ตรวจทานและอนุมัติร่างนี้</button><button id="publish">เผยแพร่รายการนี้</button><button id="withdraw" class="danger">ถอนรายการ</button><button id="export">ดาวน์โหลดสำเนาข้อมูล (สำหรับผู้ดูแล)</button></div><p id="state"></p></div>
+-<hr><h2>ทดลองคำตอบก่อนและหลังเผยแพร่</h2><p>ส่วนนี้อ่านฐานกลางโดยตรง ไม่เรียกสถานะจองสด ใช้หน้าแชทสำหรับทดสอบระบบรวม ข้อมูลร่างจะไม่เปลี่ยนคำตอบของผู้ใช้จริง</p><label class="check"><input type="checkbox" id="preview_draft">ทดสอบร่างล่าสุดที่บันทึกแล้ว (ยังไม่เผยแพร่)</label><select id="preview_lang"><option value="th">ไทย</option><option value="en">English</option></select><input id="question" placeholder="เช่น เกมชื่อใหม่เล่นยังไงและปุ่มอะไรบ้าง"><button id="preview">ถาม</button><pre id="answer"></pre><details><summary>เหตุผลการเลือกข้อมูล</summary><pre id="trace"></pre></details></section></main><div role="status" id="message"></div><script src="/owner.js"></script></body></html>
++<hr><h2>ทดลองคำตอบก่อนและหลังเผยแพร่</h2><p>เลือกทดลองด้วยฉบับเผยแพร่หรือร่างที่บันทึกแล้วด้านล่างได้ สถานะจองสดให้ตรวจในหน้าแชท ข้อมูลร่างจะยังไม่ถูกเผยแพร่ให้ผู้ใช้จริง</p><label class="check"><input type="checkbox" id="preview_draft">ทดสอบร่างล่าสุดที่บันทึกแล้ว (ยังไม่เผยแพร่)</label><select id="preview_lang"><option value="th">ไทย</option><option value="en">English</option></select><input id="question" placeholder="เช่น เกมชื่อใหม่เล่นยังไงและปุ่มอะไรบ้าง"><button id="preview">ถาม</button><pre id="answer"></pre><details><summary>เหตุผลการเลือกข้อมูล</summary><pre id="trace"></pre></details></section></main><div role="status" id="message"></div><script src="/owner.js"></script></body></html>
+--- before/app/knowledge/common/ui/owner.js
++++ after/app/knowledge/common/ui/owner.js
+@@ -70,7 +70,27 @@
+ 
+ function exampleView(v){let root=node('div');root.className='example-values';if(Array.isArray(v)){if(!v.length)root.append(node('p','ไม่เพิ่มรายการ (ใช้ได้เฉพาะเมื่อยืนยันว่าเป็นรายการว่างจริง)'));v.forEach((x,i)=>{let item=node('div');item.append(node('strong','รายการที่ '+(i+1)),exampleView(x));root.append(item);});}else if(v&&typeof v==='object'){for(let [k,x] of Object.entries(v)){let l=node('div');l.append(node('strong',(SUB_LABELS[k]||k)+': '),exampleView(x));root.append(l);}}else root.append(node('span',v===null?'เว้นว่าง':typeof v==='boolean'?(v?'ใช่ / มี / รองรับ':'ไม่ใช่ / ไม่มี / ไม่รองรับ'):OPTION_LABELS[v]||String(v)));return root;}
+ function showGuide(kind){let h=OWNER_HELP[kind],c=catalog[kind];$('guide').replaceChildren();$('guide').append(node('h2','เลือกหมวดนี้เมื่อไหร่?'),node('h3',h.label),node('p',h.when),node('p','ช่วยตอบคำถาม เช่น “'+h.question+'”'));let box=node('div');box.className='guide-tip';box.append(node('strong','จำง่าย ๆ: '),node('span',h.tip));$('guide').append(box);let before=h.before.filter(k=>k!==kind).map(k=>OWNER_HELP[k].label);$('guide').append(node('p','ต้องมีข้อมูลไหนก่อน: '+(before.length?before.join(' / ')+' (เฉพาะช่องที่ใช้เชื่อม)':'เริ่มกรอกหมวดนี้ได้เลย ไม่ต้องสร้างหมวดอื่นก่อน')));let core=node('ul');for(let f of c.fields.filter(f=>f.publish_core))core.append(node('li',fieldLabel(f,kind)));let det=node('details');det.append(node('summary','ก่อนเผยแพร่ ต้องมีอะไรบ้าง ('+c.fields.filter(f=>f.publish_core).length+' ช่อง)'),core);$('guide').append(det);$('new').textContent='＋ เพิ่ม'+h.label;$('rid').placeholder=kind+'_example';$('form_intro').textContent='เริ่มจากช่อง ★ เลือก “มีข้อมูลยืนยัน” แล้วกรอกตามข้อมูลจริง ช่องที่ยังไม่ทราบเก็บเป็นร่างได้';}
+-function updateReadiness(){if(!record)return;let needed=catalog[record.kind].fields.filter(f=>f.publish_core);let missing=needed.filter(f=>editors[f.key]?.s.value!=='known');$('readiness').textContent=missing.length?'ยังต้องยืนยัน '+missing.length+' ช่องก่อนเผยแพร่: '+missing.map(f=>fieldLabel(f,record.kind)).join(' / '):'เลือกยืนยันช่องหลักครบแล้ว กรุณาตรวจค่าที่กรอก แหล่งข้อมูล รายการที่เชื่อม และช่วงวันที่ก่อนอนุมัติ';}
++let readinessSequence=0,readinessTimer;
++function updateReadiness(){
++ if(!record)return;
++ let needed=catalog[record.kind].fields.filter(f=>f.publish_core),missing=needed.filter(f=>editors[f.key]?.s.value!=='known');
++ $('readiness').textContent=missing.length?'ยังต้องยืนยัน '+missing.length+' ช่องก่อนเผยแพร่: '+missing.map(f=>fieldLabel(f,record.kind)).join(' / '):'เลือกยืนยันช่องหลักครบแล้ว กรุณาตรวจค่าที่กรอก แหล่งข้อมูล รายการที่เชื่อม และช่วงวันที่ก่อนอนุมัติ';
++ let panel=$('task_readiness');if(!panel){panel=node('div');panel.id='task_readiness';$('readiness').after(panel);}
++ panel.replaceChildren();clearTimeout(readinessTimer);let seq=++readinessSequence;
++ readinessTimer=setTimeout(async()=>{
++  let draft;try{draft=collect();}catch(e){panel.append(node('small','กรอกค่าของช่องที่เลือกให้ครบ เพื่อดูความพร้อมแยกตามหัวข้อ'));return;}
++  try{
++   let report=await api('/api/readiness',{record:draft});if(seq!==readinessSequence)return;
++   panel.replaceChildren(node('strong','ข้อมูลพร้อมสำหรับคำถามใดบ้าง'));
++   let list=node('ul');for(let task of report.tasks){let state={data_ready:'มีข้อมูลที่ต้องใช้แล้ว',needs_data:'ยังขาดข้อมูล',needs_effective_dates:'ยังไม่ยืนยันวันที่มีผล',not_current:'อยู่นอกช่วงวันที่มีผล'}[task.status]||task.status;
++    let item=node('li',task.label_th+' — '+state);
++    if(task.missing.length)item.append(node('small',' ('+task.missing.map(m=>m.field?fieldLabel(catalog[record.kind].fields.find(f=>f.key===m.field)||{key:m.field},record.kind):'รายการที่เชื่อมโยง').join(' / ')+')'));
++    list.append(item);}
++   panel.append(list,node('small','เป็นการตรวจข้อมูลที่กรอก ยังต้องผ่านการตรวจแหล่งข้อมูล เงื่อนไข และการเผยแพร่ก่อนใช้ตอบจริง'));
++  }catch(e){if(seq===readinessSequence)panel.replaceChildren(node('small','ยังตรวจความพร้อมแยกหัวข้อไม่ได้ กรุณาลองอีกครั้ง'));}
++ },250);
++}
++
+ $('fields').addEventListener('change',updateReadiness);
+ 
+ 
+--- before/app/pipeline/migrated_chat.py
++++ after/app/pipeline/migrated_chat.py
+@@ -10,13 +10,21 @@
+ from app.knowledge.common.migrated_view import MigratedView,PROFILE
+ from app.pipeline.schemas import PipelineAnswer,PipelineRoute,PipelineTrace,EntityBundle,ValidationResult
+ 
+-def answer(question,*,locale,history=None,allow_llm=True):
++def answer(question,*,locale,history=None,allow_llm=True,store=None,allow_live=True):
+  started=time.perf_counter();language=locale.effective
+- audits=[];reader=None
++ audits=[];reader=None;view=store;focus=None;preview_mode=False
++ migrated_mode=store is None or isinstance(store,MigratedView) or bool(getattr(store,'migration_preview_only',False))
++ from app.pipeline.request_focus import explicit_request_focus
++ question,focus=explicit_request_focus(question)
+  def finish(result,kind):
+-  status={'profile':PROFILE,'database':'common.sqlite','draft_preview_only':True,'production_publication_verified':False,'knowledge_source':kind,'legacy_fallback_used':False}
+-  hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} for h in result.hits]
+   art=dict(result.decision_artifact or {})
++  draft=art.get('content_view')=='evaluation_draft' or migrated_mode or preview_mode
++  published=art.get('content_view')=='published' and not draft
++  status={'profile':PROFILE if migrated_mode else 'owner-draft-preview' if draft else 'common-published',
++   'database':view.path.name if view is not None else 'common.sqlite','draft_preview_only':draft,
++   'production_publication_verified':published,'knowledge_source':kind,'legacy_fallback_used':False}
++  hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} if migrated_mode else h for h in result.hits]
++  if focus:art['request_focus']=focus
+   if reader is not None and reader.declined_profile_ids and kind!='live_booking':
+    plan=dict(art.get('query_plan') or {})
+    if not plan.get('record_ids') or plan.get('profile_confirmation'):
+@@ -31,7 +39,10 @@
+   text=('สวัสดีครับ ผมคือผู้ช่วยของ PSU Esports Studio - Phuket ถามเรื่องเกม อุปกรณ์ ราคา วิธีจอง เวลาให้บริการ กฎศูนย์ หรือกติกาการแข่งขันได้ครับ' if language=='th' else 'Hello. I am the PSU Esports Studio - Phuket assistant. Ask about games, equipment, prices, booking, service hours, studio rules or competition rules.')
+   return finish(message(text,'greeting'),'assistant_interface')
+  try:
+-  view=MigratedView(database_path())
++  from app.knowledge.common.snapshot_provider import PinnedSnapshotView
++  view=view or MigratedView(database_path())
++  if not isinstance(view,PinnedSnapshotView):view=PinnedSnapshotView(view)
++  preview_mode=bool(view.snapshot().get('evaluation_draft_only'))
+   from app.knowledge.common.followup_scope import competition_question,delivered_state
+   resume=None
+   if (delivered_state(history) or {}).get('pending_competition_scope'):
+@@ -41,7 +52,7 @@
+   if resume:
+    if resume.get('expired'):
+     return finish(message('ข้อมูลหัวข้อเปลี่ยนไป กรุณาระบุเรื่องที่ต้องการอีกครั้งครับ' if language=='th' else 'The topic scope has changed. Please specify your question again.'),'migrated_common')
+-   result=answer(resume['question'],locale=locale,history=[],allow_llm=allow_llm)
++   result=answer(resume['question'],locale=locale,history=[],allow_llm=allow_llm,store=view,allow_live=allow_live)
+    art=dict(result.decision_artifact or {});art['dialogue_repair']={'method':'qualified_competition_game_selection','original_input':question,'active_query':resume['question'],'inherited_scope':resume['inherited_scope'],'candidate_competition_ids':resume['competition_ids'],'previous_answer_facts_used':False}
+    return finish(replace(result,decision_artifact=art),'migrated_common')
+   from app.knowledge.common.profile_confirmation import latest,resolve as resolve_confirmation
+@@ -64,7 +75,7 @@
+      body=('ผมช่วยตอบข้อมูลของ PSU Esports Studio - Phuket เช่น เกม อุปกรณ์ ราคา การจอง เวลาให้บริการ และกฎของศูนย์ครับ' if language=='th' else 'I answer questions about PSU Esports Studio - Phuket: games, equipment, prices, booking, service hours and studio rules.')
+      result=message(body,'scope')
+     else:
+-     result=answer(active_query,locale=locale,history=barrier(declined),allow_llm=allow_llm)
++     result=answer(active_query,locale=locale,history=barrier(declined),allow_llm=allow_llm,store=view,allow_live=allow_live)
+     art=dict(result.decision_artifact or {});plan=dict(art.get('query_plan') or {})
+     unresolved=not plan.get('record_ids') or bool(plan.get('profile_confirmation'))
+     plan['declined_profile_ids']=sorted(declined) if unresolved else []
+@@ -105,6 +116,11 @@
+     return finish(clarification,'migrated_common')
+    return finish(result,'migrated_common')
+   from app.booking.live_status import is_live_booking_question
++  if is_live_booking_question(question) and not allow_live:
++   text=('หน้านี้ตรวจเฉพาะข้อมูลที่เลือก ยังไม่ได้อ่านสถานะจองสด กรุณาตรวจสถานะเครื่องในหน้าแชทที่เชื่อมระบบจอง' if language=='th' else 'This preview checks the selected content only. Live booking availability is not read here; check it in the booking-connected chat.')
++   result=message(text,'live_unavailable')
++   result=replace(result,decision_artifact={'response_type':'live_unavailable','live_booking':{'attempted':False,'reason':'content_preview_no_live_provider'}})
++   return finish(result,'live_booking_not_read')
+   if is_live_booking_question(question):
+    from app.runtime.fast_answer import answer_live_booking_status
+    live=answer_live_booking_status(question,started)

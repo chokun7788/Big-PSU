@@ -1,0 +1,145 @@
+{
+  "question_key": "b32fb6babd0a86f30c5a9863fdc4e6cab54abe142a07ed3b5e3308a9034fb741",
+  "example_sha256": "944b562e45b0a01220e1f1467740fa71e83b3fa7ae8a86d1dadcae1a44155634",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Friday-afternoon open/closed question; polite checking preface is style.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/availability/open_periods checks the qualified window.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ศุกร์ is the weekday and บ่าย is the separate time qualifier previously lost.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Both qualifiers belong to this task, without an invented absolute date.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "An interrogative does not assert open status or request live machine occupancy.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_schedule_4 explicitly separates morning opening and afternoon maintenance; open_periods is conflicted and must not be silently chosen.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_4"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No maintenance interval or open/closed business answer is supervised.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Friday open_periods is conflicted while service_slots/bookable/maintenance are separately recorded.",
+      "handling": "Retain calendar authority/conflict obligations; no selected opening interval is taught."
+    }
+  ],
+  "historical_review_row": 66,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "ศุกร์"
+    ],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "ศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "ศุกร์"
+    ],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "ศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "บ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    }
+  }
+}

@@ -1,0 +1,499 @@
+{
+  "action": "startup",
+  "url": "http://127.0.0.1:18091/",
+  "checked_at": "2026-10-12T19:36:15.3420312Z",
+  "result": {
+    "Ready": false,
+    "Stage": "answer",
+    "Reasons": [
+      "answer_oracle"
+    ],
+    "Health": {
+      "ok": true,
+      "service": "psu-esports-chat-web",
+      "time": "2026-10-13T02:36:13.487638+07:00",
+      "warmup": {
+        "ok": true,
+        "elapsed_sec": 13.9764,
+        "warmed": [
+          "game_title_aliases",
+          "structured_tools",
+          "game_resolver",
+          "routing_data",
+          "retrieval_data",
+          "probe_queries",
+          "semantic_embedding"
+        ],
+        "errors": [],
+        "timings": {
+          "game_title_aliases": 0.9556,
+          "structured_tools": 1.738,
+          "game_resolver": 0.4547,
+          "routing_data": 0.4089,
+          "retrieval_data": 4.7789,
+          "probe_queries": 5.3557,
+          "semantic_embedding": 0.2842
+        }
+      },
+      "llm_preflight": {
+        "ok": true,
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "kind": "preflight",
+        "elapsed_ms": 365.09,
+        "response_chars": 2,
+        "done_reason": "length",
+        "num_ctx": 3072,
+        "load_duration": 41159600,
+        "prompt_eval_duration": 306174000,
+        "eval_duration": 1000,
+        "health": {
+          "llm_health_enabled": true,
+          "llm_health_status": "ok",
+          "llm_health_failures": 0,
+          "llm_health_failure_scope": "model_and_kind"
+        }
+      },
+      "input_quality_guard": {
+        "enabled": true,
+        "mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "layout_threshold": 0.39,
+        "repeat_threshold": 0.55,
+        "corpus_size": 4023,
+        "profile_version": "keyboard-profile-v1:2a863a4176572043"
+      },
+      "llm_health": {
+        "enabled": true,
+        "failure_threshold": 2,
+        "failure_window_sec": 30.0,
+        "cooldown_sec": 90.0,
+        "states": [
+          {
+            "kind": "model",
+            "model": "scb10x/typhoon2.5-qwen3-4b",
+            "status": "ok",
+            "failures": 0,
+            "successes": 1,
+            "cooldown_remaining_sec": 0.0,
+            "last_error_type": "",
+            "last_error": "",
+            "last_elapsed_ms": 365.09,
+            "last_checked_at": 1791833772.4063287,
+            "last_success_at": 1791833772.4063287,
+            "half_open_probe_in_flight": false,
+            "events": [
+              {
+                "event": "success",
+                "kind": "preflight",
+                "elapsed_ms": 365.09,
+                "detail": "preflight_ok",
+                "at": 1791833772.406
+              }
+            ]
+          },
+          {
+            "kind": "preflight",
+            "model": "scb10x/typhoon2.5-qwen3-4b",
+            "status": "ok",
+            "failures": 0,
+            "successes": 1,
+            "cooldown_remaining_sec": 0.0,
+            "last_error_type": "",
+            "last_error": "",
+            "last_elapsed_ms": 365.09,
+            "last_checked_at": 1791833772.4063287,
+            "last_success_at": 1791833772.4063287,
+            "half_open_probe_in_flight": false,
+            "events": [
+              {
+                "event": "success",
+                "kind": "preflight",
+                "elapsed_ms": 365.09,
+                "detail": "preflight_ok",
+                "at": 1791833772.406
+              }
+            ]
+          }
+        ]
+      },
+      "common_loaded_build": {
+        "build_id": "common-r62",
+        "loaded_source_sha256": "c9c8f768a5144e2c94547b9fa85ac7d52a6fc6260d1376bc033a563098131715",
+        "fingerprint_scope": "application, web UI and launchers at module import"
+      },
+      "pipeline_workers": {
+        "enabled": true,
+        "started": true,
+        "worker_count": 2,
+        "workers": [
+          {
+            "worker_id": 0,
+            "pid": 53240,
+            "alive": true,
+            "ready": true,
+            "completed_requests": 0,
+            "busy": false,
+            "replacement_warming": false
+          },
+          {
+            "worker_id": 1,
+            "pid": 20944,
+            "alive": true,
+            "ready": true,
+            "completed_requests": 0,
+            "busy": false,
+            "replacement_warming": false
+          }
+        ],
+        "performance": {
+          "run_id": "20261012T193511Z",
+          "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r62_completion_20261013\\delivery\\PSU_Chatbot_With_Models\\data\\logs\\performance\\pipeline_20261012T193511Z.jsonl",
+          "events_written": 0,
+          "events_dropped": 0
+        },
+        "model_admission": {
+          "limit": 1,
+          "active": 0,
+          "waiting": 0,
+          "peak_active": 0,
+          "scope": "all_pipeline_workers",
+          "durable": false
+        }
+      },
+      "runtime": {
+        "profile": "owner-local-rag-assist",
+        "version": "2026.10.13-common-r62",
+        "installation_id": "cb931de3a0428e1d",
+        "started_at": "2026-10-13T02:35:10.309108+07:00",
+        "system_memory": {
+          "available": true,
+          "physical_load_percent": 94,
+          "available_physical_mb": 940.0,
+          "available_commit_mb": 7451.5
+        },
+        "python": {
+          "executable_id": "9ce540771aa871c5",
+          "version": [
+            3,
+            12,
+            14
+          ],
+          "bits": 64,
+          "pid": 36512
+        },
+        "answer_timeout_sec": 20.0,
+        "pipeline_timeout_sec": 19.0,
+        "intent_timeout_sec": 14.0,
+        "local_llm": {
+          "enabled": true,
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "intent_timeout_sec": 14.0,
+          "planner_timeout_sec": 1.2,
+          "general_timeout_sec": 15.0,
+          "high_assist_profile": true
+        },
+        "semantic_rag": {
+          "enabled": true,
+          "embedding_model": "psu-bge-m3:q8_0"
+        },
+        "english": {
+          "enabled": true,
+          "draft_preview": false
+        },
+        "booking": {
+          "enabled": true,
+          "fetch_mode": "wordpress",
+          "cache_seconds": 0.0,
+          "dashboard_required": false,
+          "read_only": true
+        },
+        "input_quality": {
+          "mode": "enforce",
+          "keyboard_layout": "request_retype",
+          "repeated_characters": "warn_and_continue"
+        },
+        "queue_ttl_sec": 90.0
+      },
+      "features": {
+        "bilingual_english": true,
+        "local_llm_assist": true,
+        "semantic_rag": true,
+        "embedding_model": "psu-bge-m3:q8_0",
+        "live_booking_status": true,
+        "chat_jobs": true
+      },
+      "chat_jobs": {
+        "enabled": true,
+        "capacity": 32,
+        "dispatch_workers": 2,
+        "ttl_sec": 90.0,
+        "counts": {},
+        "durable": true
+      }
+    },
+    "Response": {
+      "ok": true,
+      "request_id": "34bd6b65b1e048229a008b4508586593",
+      "session_id": "startup-probe-dbce81725967408cad35fad422f08163",
+      "answer": "ฐานข้อมูลกลางยังยืนยันไม่ได้ กรุณาลองใหม่ / Common content is unavailable; please retry.",
+      "mode": "pipeline:common_unavailable",
+      "route_category": "knowledge",
+      "route_intent": "common_read",
+      "universal_intent": null,
+      "confidence": 0,
+      "latency_sec": 0,
+      "wall_sec": 1.5968,
+      "deadline": {
+        "global_timeout_enabled": true,
+        "global_timeout_sec": 20.0,
+        "global_elapsed_sec": 1.5968,
+        "global_remaining_sec": 18.4032,
+        "finalizer_reserve_sec": 1.0,
+        "work_remaining_sec": 17.4032,
+        "timing_status": "running"
+      },
+      "timing_status": "completed",
+      "timed_out": false,
+      "timeout_stage": "",
+      "retryable": false,
+      "worker_id": 0,
+      "sources": [],
+      "validation_ok": true,
+      "language": {
+        "requested": "en",
+        "detected": "en",
+        "effective": "en",
+        "confidence": 1.0,
+        "reason": "toggle_override_en;english_sentence_structure"
+      },
+      "experimental_rag_fallback": false,
+      "experimental_allow_llm": true,
+      "input_recovery": {
+        "score": 0.4225,
+        "language": "en",
+        "language_quality": 0.5775,
+        "should_review_intent": false,
+        "reason": "English character n-gram quality=0.578",
+        "action": "continue"
+      },
+      "server_date": {
+        "iso": "2026-10-13",
+        "label": "13/10/2026 (วันอังคาร)",
+        "time": "02:36",
+        "datetime_iso": "2026-10-13T02:36:15.157034+07:00",
+        "timezone": "Asia/Bangkok",
+        "service_slot": {
+          "date": "2026-10-13",
+          "time": "02:36",
+          "weekday": "วันอังคาร",
+          "timezone": "Asia/Bangkok",
+          "status": "outside_hours",
+          "playable": false,
+          "slot": null,
+          "next_open_slot": {
+            "code": "morning",
+            "label": "Morning",
+            "start": "09:00",
+            "end": "12:00",
+            "time_range": "09:00-12:00",
+            "state": "open",
+            "note": "เปิดให้บริการ"
+          },
+          "reason": "outside_regular_service_hours",
+          "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+          "source": "reservation_schedule"
+        },
+        "thai_holidays": [
+          {
+            "date": "2026-10-13",
+            "title": "วันนวมินทรมหาราช",
+            "type": "national_holiday",
+            "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          }
+        ],
+        "upcoming_thai_holidays": [
+          {
+            "date": "2026-10-13",
+            "title": "วันนวมินทรมหาราช",
+            "type": "national_holiday",
+            "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          },
+          {
+            "date": "2026-10-16",
+            "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+            "type": "bank_holiday_bangkok",
+            "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+            "source": "Bank of Thailand Financial Institutions Holidays 2026",
+            "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+          },
+          {
+            "date": "2026-10-23",
+            "title": "วันปิยมหาราช",
+            "type": "national_holiday",
+            "note": "วันหยุดประจำปีของไทย",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          },
+          {
+            "date": "2026-10-31",
+            "title": "วันฮาโลวีน",
+            "type": "observance",
+            "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          },
+          {
+            "date": "2026-12-05",
+            "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+            "type": "national_holiday",
+            "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          }
+        ]
+      },
+      "calendar": {
+        "date": "2026-10-13",
+        "label": "13/10/2026 (วันอังคาร)",
+        "weekday": "วันอังคาร",
+        "time": "02:36",
+        "datetime_iso": "2026-10-13T02:36:15.157034+07:00",
+        "timezone": "Asia/Bangkok",
+        "service_slot": {
+          "date": "2026-10-13",
+          "time": "02:36",
+          "weekday": "วันอังคาร",
+          "timezone": "Asia/Bangkok",
+          "status": "outside_hours",
+          "playable": false,
+          "slot": null,
+          "next_open_slot": {
+            "code": "morning",
+            "label": "Morning",
+            "start": "09:00",
+            "end": "12:00",
+            "time_range": "09:00-12:00",
+            "state": "open",
+            "note": "เปิดให้บริการ"
+          },
+          "reason": "outside_regular_service_hours",
+          "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+          "source": "reservation_schedule"
+        },
+        "service_closure": null,
+        "thai_holidays": [
+          {
+            "date": "2026-10-13",
+            "title": "วันนวมินทรมหาราช",
+            "type": "national_holiday",
+            "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          }
+        ],
+        "upcoming_thai_holidays": [
+          {
+            "date": "2026-10-13",
+            "title": "วันนวมินทรมหาราช",
+            "type": "national_holiday",
+            "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          },
+          {
+            "date": "2026-10-16",
+            "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+            "type": "bank_holiday_bangkok",
+            "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+            "source": "Bank of Thailand Financial Institutions Holidays 2026",
+            "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+          },
+          {
+            "date": "2026-10-23",
+            "title": "วันปิยมหาราช",
+            "type": "national_holiday",
+            "note": "วันหยุดประจำปีของไทย",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          },
+          {
+            "date": "2026-10-31",
+            "title": "วันฮาโลวีน",
+            "type": "observance",
+            "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          },
+          {
+            "date": "2026-12-05",
+            "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+            "type": "national_holiday",
+            "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+            "source": "Time and Date Thailand holidays 2026",
+            "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+          }
+        ]
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.002069,
+        "repeat_score": 0.04,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 4.259
+      },
+      "resolved_question": "How far ahead must I book?",
+      "rule_coverage": null,
+      "client_turn_id": "turn-df398dda-fd49-4bf4-8d41-81bf6b00a4a2",
+      "request_plan": null,
+      "task_contract": {},
+      "conversation_outcome": "delegated_existing_pipeline",
+      "coverage": {},
+      "conversation_state": {
+        "schema_version": 1,
+        "revision": 1,
+        "active_task": null,
+        "task_memory_schema_version": 1,
+        "requested_tasks": [],
+        "current_task_keys": [],
+        "delivery": {
+          "turn-df398dda-fd49-4bf4-8d41-81bf6b00a4a2": "prepared"
+        },
+        "storage": "sqlite_parent_state",
+        "survives_server_restart": true,
+        "persistence": {
+          "enabled": true,
+          "ready": true,
+          "last_error": "",
+          "writes": 2,
+          "restores": 0
+        }
+      }
+    },
+    "ElapsedMs": 1853
+  },
+  "python": {
+    "Path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r62_completion_20261013\\delivery\\PSU_Chatbot_With_Models\\runtime\\python\\python.exe",
+    "Identity": {
+      "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r62_completion_20261013\\delivery\\PSU_Chatbot_With_Models\\runtime\\python\\python.exe",
+      "version": [
+        3,
+        12,
+        14
+      ],
+      "bits": 64,
+      "executable_id": "9ce540771aa871c5"
+    },
+    "Origin": "bundled"
+  }
+}

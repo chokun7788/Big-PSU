@@ -1,0 +1,139 @@
+{
+  "question_key": "2bba8d5b6a5c6b5106567699fc995edd6ffc6b499fb75e2969225197991fe8e1",
+  "example_sha256": "8a69117b9f5d4a3991c7eedc57bd5b56a48616d85b5027d24d73f44c79da84e4",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One reverse button-to-action request for Touch Pad.",
+      "raw_quotes": [
+        "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings is a source mapping lookup, not generic game controls list.",
+      "raw_quotes": [
+        "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Resident Evil Village is game target, PlayStation / PS5 is platform, and ปุ่ม Touch Pad is requested button scope.",
+      "raw_quotes": [
+        "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "All scope quotes occur locally; do not leak the PS5 platform into unrelated tasks.",
+      "raw_quotes": [
+        "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "ใช้ทำอะไร asks meaning, not a guessed action or unsupported physical button count.",
+      "raw_quotes": [
+        "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "controls_ps5_resident_evil_village is the pinned PS5 binding record for this game.",
+      "raw_quotes": [
+        "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร"
+      ],
+      "source_record_ids": [
+        "controls_ps5_resident_evil_village"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "The label names Touch Pad from the question but never supplies its source action.",
+      "raw_quotes": [
+        "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 19,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "PlayStation / PS5"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Resident Evil Village",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PlayStation / PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "PlayStation / PS5"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Resident Evil Village บน PlayStation / PS5 ปุ่ม Touch Pad ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Resident Evil Village",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PlayStation / PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ปุ่ม Touch Pad",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_ps5_resident_evil_village": {
+      "revision": 6,
+      "record_sha256": "388d19ec09b048d7eb8a0cf9c46099e4c5117efd760568b53a10fd891c338376"
+    }
+  }
+}

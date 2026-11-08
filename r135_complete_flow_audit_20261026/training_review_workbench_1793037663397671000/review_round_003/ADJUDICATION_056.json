@@ -1,0 +1,144 @@
+{
+  "question_key": "83ff647fde496d6bf0fae1997991043856653dbb8db4f253c79c209ee335dce5",
+  "example_sha256": "264be360812a164dd69cf9b7907b424feb79e3ba34ce14e4c5281d68923f63e1",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One check-in prerequisite question for playing a named game.",
+      "raw_quotes": [
+        "Do I need to check in before playing VALORANT?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy is check-in policy, not game availability or price.",
+      "raw_quotes": [
+        "Do I need to check in before playing VALORANT?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "check in is action; before playing VALORANT is condition. VALORANT stays game context, not an asserted service ID.",
+      "raw_quotes": [
+        "Do I need to check in before playing VALORANT?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The game qualifier is local and no prior booking or audience is assumed.",
+      "raw_quotes": [
+        "Do I need to check in before playing VALORANT?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do I need asks an obligation; no reservation, check-in completion or rule violation is asserted.",
+      "raw_quotes": [
+        "Do I need to check in before playing VALORANT?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_policy_text_checkin_required_general and migrated_faq_rule_checkin_advance address service check-in; game-to-service applicability stays an executor check.",
+      "raw_quotes": [
+        "Do I need to check in before playing VALORANT?"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_checkin_required_general",
+        "migrated_faq_rule_checkin_advance"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes, thirty-minute allowance or document list is a training answer.",
+      "raw_quotes": [
+        "Do I need to check in before playing VALORANT?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 56,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [
+      "VALORANT"
+    ],
+    "tasks": [
+      {
+        "quote": "Do I need to check in before playing VALORANT?",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VALORANT",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [
+      "VALORANT"
+    ],
+    "tasks": [
+      {
+        "quote": "Do I need to check in before playing VALORANT?",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "check in",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "before playing VALORANT",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_checkin_required_general": {
+      "revision": 2,
+      "record_sha256": "1a62cce04679fc3476d3762849aaf1068c14ac5594af8171a76689c15593100e"
+    },
+    "migrated_faq_rule_checkin_advance": {
+      "revision": 4,
+      "record_sha256": "bc6f0d3d20d52d43d8c3eae55091e65cab2da5626ca4bb1c3937003419401773"
+    }
+  }
+}

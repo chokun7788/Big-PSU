@@ -1,0 +1,103 @@
+--- before/app/pipeline/competition_overview.py
++++ final/app/pipeline/competition_overview.py
+@@ -64,7 +64,17 @@
+             return None
+         row = candidates[0]
+         selected.append(row)
+-        tournament = (approved_localization(row, 'tournament') or str(row['tournament'])) if english else str(row['tournament'])
++        tournament = str(row['tournament'])
++        if english:
++            localized = approved_localization(row, 'tournament')
++            if localized:
++                tournament = localized
++            elif re.search(r'[\u0e00-\u0e7f]', tournament):
++                # Reuse the source-backed game/year identity when no English
++                # event-title field exists. Never pass untranslated Thai prose
++                # through an English-only answer or invent an approved title.
++                years = re.findall(r'\b20\d{2}\b', tournament)
++                tournament = target.label + (' / ' + ', '.join(dict.fromkeys(years)) if years else '')
+         lines.append(f'• {target.label}: {tournament}')
+     lines.extend(['', 'These are stored rulebooks; this does not confirm current registration or an upcoming event. Name a game to see its recorded rules.' if english else 'รายการนี้อ้างอิงเอกสารที่มี ไม่ได้ยืนยันว่ากำลังเปิดรับสมัครหรือเป็นรายการที่จะจัดครั้งถัดไปครับ พิมพ์ชื่อเกมเพื่อดูกติกาจากเอกสารได้'])
+     return CompetitionOverview('\n'.join(lines), [hit_from_curated(row) for row in selected], tuple(row['id'] for row in selected))
+@@ -75,7 +85,18 @@
+         line = raw.strip().lstrip('*-•· ').strip()
+         if len(line) < 12 or not is_rule_clause(line):
+             continue
++        # A tournament year alone cannot turn an event title into a rule.
++        body = re.sub(r'^\d+(?:\.\d+)*[.)]?\s+', '', line)
++        if re.fullmatch(r'(?:การย้อนรอบ(?:\s*\(Round Rollback\))?|Round Rollback)', body, re.I):
++            continue
++        if not is_rule_clause(re.sub(r'\b20\d{2}\b', '', body)):
++            continue
+         if re.match(r'(?i)^(?:update:|english below|กฎระเบียบและรูปแบบการแข่งขัน)', line):
++            continue
++        # A number inside a game name (CS2/Tekken 8) is not a rule quantity.
++        if re.search(r'\b(?:tournament|championship|division)\s*$', line, re.I) and not re.search(
++            r'\b(?:must|shall|may|cannot|allowed|permitted|prohibited|required|not)\b', line, re.I
++        ):
+             continue
+         if line not in lines:
+             lines.append(line)
+@@ -113,7 +134,16 @@
+         and str(row.get('id', '')).startswith(target.rulebook_id + '_s')
+         and target.rulebook_id in row.get('source_ids', [])
+     ]
++    # Bilingual documents may include a second set of English source sections
++    # after the Thai rulebook. Use one primary set for both locales, translating
++    # it through the existing localization registry for English. Parallel source
++    # versions are not new rules when the user asks for additional clauses.
++    primary_rows = [row for row in rows if any(re.search(r'[\u0e00-\u0e7f]', line)
++                    for line in substantive_lines(str(row.get('text') or '')))]
++    if primary_rows:
++        rows = primary_rows
+     clauses = {}
++    primary_pause_clauses = {}
+     excluded_count = 0
+     for row in rows:
+         # Alternating violation/penalty cells are not independent prose rules.
+@@ -123,6 +153,36 @@
+         text = approved_localization(row, 'text') if locale == 'en' else str(row.get('text', ''))
+         if text:
+             lines = substantive_lines(text)
++            if locale != 'en' and primary_rows:
++                lines = tuple(line for line in lines if re.search(r'[\u0e00-\u0e7f]', line))
++            identities = {comparison_text(str(value)) for value in (
++                row.get('section_title'), row.get('tournament'),
++                approved_localization(row, 'section_title') if locale == 'en' else '',
++                approved_localization(row, 'tournament') if locale == 'en' else '',
++            ) if value}
++            # Some source sections consist of a complete numbered rule in
++            # their title field. Retain a title that contains an actual rule;
++            # remove only heading labels without substantive policy evidence.
++            lines = tuple(line for line in lines if comparison_text(line) not in identities
++                          or is_rule_clause(re.sub(r'^\d+(?:\.\d+)*[.)]?\s+', '', line)))
++            section_title = str(row.get('section_title') or '')
++            if requested_pause_kind(section_title):
++                # Chunks can contain a second heading after the pause rules.
++                # Bind the primary pause label only to clauses before that
++                # heading; remaining bug/rollback rules may appear as extras.
++                scoped = []
++                raw_lines = source_clause_lines(text)
++                # A one-line source section may itself be the complete rule.
++                # Do not drop its first line merely because it has a title.
++                first_is_heading = bool(raw_lines and comparison_text(raw_lines[0]) in identities
++                                        and not is_rule_clause(re.sub(r'^\d+(?:\.\d+)*[.)]?\s+', '', raw_lines[0])))
++                for line in raw_lines[1:] if first_is_heading else raw_lines:
++                    if not is_rule_clause(line):
++                        if scoped:
++                            break
++                        continue
++                    scoped.append(line)
++                primary_pause_clauses[str(row['id'])] = substantive_lines('\n'.join(scoped))
+             if more:
+                 previous_count = len(lines)
+                 lines = tuple(line for line in lines if not any(comparison_text(line) in answer for answer in seen_answers))
+@@ -140,7 +200,7 @@
+             if pause_section and facet != 'pause_timeout':
+                 return ()
+             if facet == 'pause_timeout' and pause_section:
+-                return clauses[row['id']]
++                return tuple(line for line in clauses[row['id']] if line in primary_pause_clauses.get(row['id'], clauses[row['id']]))
+             return tuple(line for line in clauses[row['id']] if clause_supports_facet(line, facet))
+         candidates = [row for row in rows if row['id'] in clauses and row['id'] not in seen and display_clauses(row)]
+         candidates.sort(key=lambda row: (

@@ -1,0 +1,139 @@
+{
+  "question_key": "79c8c3ed2cd524900e841140dce8782b8f46e905991382103a6ecd8d36301a78",
+  "example_sha256": "3fd12b046745adf9366fbd43bb8b5207227652841fef134cee76477d125d8a08",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One damage-responsibility need; Please answer briefly is a style modifier.",
+      "raw_quotes": [
+        "What happens if I damage equipment? Please answer briefly."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy keeps damage consequences separate from prices for play.",
+      "raw_quotes": [
+        "What happens if I damage equipment? Please answer briefly."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "if I damage equipment is a user-caused condition, not a spontaneous equipment fault.",
+      "raw_quotes": [
+        "What happens if I damage equipment? Please answer briefly."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The condition remains local to this current policy task.",
+      "raw_quotes": [
+        "What happens if I damage equipment? Please answer briefly."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Preserve if and I; do not assign the user another cause or infer liability from a broken device alone.",
+      "raw_quotes": [
+        "What happens if I damage equipment? Please answer briefly."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned damage-responsibility FAQ is user-caused; its English text has numeric fine bands absent from Thai, retained as an answer-source review issue.",
+      "raw_quotes": [
+        "What happens if I damage equipment? Please answer briefly."
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_en_damage_responsibility_natural"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No fine bands, compensation amount or permission is a planner target.",
+      "raw_quotes": [
+        "What happens if I damage equipment? Please answer briefly."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "English damage-responsibility text includes numeric fine bands absent in its Thai text.",
+      "handling": "Planner label contains no fines; keep bilingual answer-source review pending without editing owner data."
+    }
+  ],
+  "historical_review_row": 6,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [
+      "if I damage equipment"
+    ],
+    "tasks": [
+      {
+        "quote": "What happens if I damage equipment? Please answer briefly.",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "if I damage equipment",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [
+      "if I damage equipment"
+    ],
+    "tasks": [
+      {
+        "quote": "What happens if I damage equipment? Please answer briefly.",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "if I damage equipment",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_en_damage_responsibility_natural": {
+      "revision": 4,
+      "record_sha256": "952faf17a0dd782d448f03e9ba685a6c93cc58c229b38931df5a4e23d24f66b8"
+    }
+  }
+}

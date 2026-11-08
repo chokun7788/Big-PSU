@@ -1,0 +1,435 @@
+{
+  "summary": {
+    "final_off04": {
+      "requests": 23,
+      "contract_passed": 23,
+      "contract_failed": 0,
+      "median_seconds": 0.6894695999944815,
+      "max_seconds": 4.238211799995042
+    },
+    "final_on04": {
+      "requests": 23,
+      "contract_passed": 23,
+      "contract_failed": 0,
+      "median_seconds": 0.6873818000021856,
+      "max_seconds": 4.186420700003509
+    }
+  },
+  "checks": [
+    {
+      "tag": "final_off04",
+      "question": "I am planning a visit and would like to know: Please tell me: Can I get a refund",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "refund source and exception retained",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: ตอนเย็นเปิดถึงกี่โมง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "sourced regular timetable, not live hours",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "VALORANT ใช้ผู้เล่นกี่คน",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "missing game-mode data stated explicitly",
+      "mode": "pipeline:common_unconfirmed"
+    },
+    {
+      "tag": "final_off04",
+      "question": "ROV ถ้าเกมหลุดทำยังไง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "normal/competition context asked",
+      "mode": "pipeline:common_clarification"
+    },
+    {
+      "tag": "final_off04",
+      "question": "ศูนย์อยู่ที่ไหน แล้วราคาเท่าไร",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "location answered, service selection retained",
+      "mode": "pipeline:common_partial_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "ต้องการทราบราคาบุคคลภายนอกทั้งหมด",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    },
+    {
+      "tag": "final_off04",
+      "question": "What are all the prices for external visitors?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    },
+    {
+      "tag": "final_off04",
+      "question": "Animal Crossing: New Horizons กับ FINAL FANTASY XVI คือเกมอะไร",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "both requested game summaries sourced",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "What is Animal Crossing: New Horizons and what is FINAL FANTASY XVI?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "both requested game summaries sourced",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "PC มีอุปกรณ์อะไรบ้าง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "PC equipment list sources retained",
+      "mode": "pipeline:common_list"
+    },
+    {
+      "tag": "final_off04",
+      "question": "What equipment is available in the PC Zone?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "PC equipment list sources retained",
+      "mode": "pipeline:common_list"
+    },
+    {
+      "tag": "final_off04",
+      "question": "วันนี้เปิดไหม",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "compact answer with test reference date",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "PC ว่างไหม แล้วจองยังไง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "live unavailable separated from booking procedure",
+      "mode": "pipeline:common_partial_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "Can I bring my own food into the studio?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "food origin permission not inferred from consumption area",
+      "mode": "pipeline:common_partial_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "booking time predicate read as schedule, not booking steps",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "A question about the studio: Can I book Monday morning, or only the afternoon?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "booking time predicate read as schedule, not booking steps",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "Before visiting, I need to know: On which days can I book morning and afternoon slots?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "booking time predicate read as schedule, not booking steps",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_off04",
+      "question": "ต้องการทราบราคาบุคคลภายนอก",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "service selection prompt",
+      "mode": "pipeline:common_clarification"
+    },
+    {
+      "tag": "final_off04",
+      "question": "PC",
+      "locale": "th",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_unconfirmed"
+    },
+    {
+      "tag": "final_off04",
+      "question": "ทั้งหมด",
+      "locale": "th",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    },
+    {
+      "tag": "final_off04",
+      "question": "I want prices for external visitors",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "service selection prompt",
+      "mode": "pipeline:common_clarification"
+    },
+    {
+      "tag": "final_off04",
+      "question": "PC",
+      "locale": "en",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_unconfirmed"
+    },
+    {
+      "tag": "final_off04",
+      "question": "all",
+      "locale": "en",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    },
+    {
+      "tag": "final_on04",
+      "question": "I am planning a visit and would like to know: Please tell me: Can I get a refund",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "refund source and exception retained",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: ตอนเย็นเปิดถึงกี่โมง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "sourced regular timetable, not live hours",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "VALORANT ใช้ผู้เล่นกี่คน",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "missing game-mode data stated explicitly",
+      "mode": "pipeline:common_unconfirmed"
+    },
+    {
+      "tag": "final_on04",
+      "question": "ROV ถ้าเกมหลุดทำยังไง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "normal/competition context asked",
+      "mode": "pipeline:common_clarification"
+    },
+    {
+      "tag": "final_on04",
+      "question": "ศูนย์อยู่ที่ไหน แล้วราคาเท่าไร",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "location answered, service selection retained",
+      "mode": "pipeline:common_partial_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "ต้องการทราบราคาบุคคลภายนอกทั้งหมด",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    },
+    {
+      "tag": "final_on04",
+      "question": "What are all the prices for external visitors?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    },
+    {
+      "tag": "final_on04",
+      "question": "Animal Crossing: New Horizons กับ FINAL FANTASY XVI คือเกมอะไร",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "both requested game summaries sourced",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "What is Animal Crossing: New Horizons and what is FINAL FANTASY XVI?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "both requested game summaries sourced",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "PC มีอุปกรณ์อะไรบ้าง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "PC equipment list sources retained",
+      "mode": "pipeline:common_list"
+    },
+    {
+      "tag": "final_on04",
+      "question": "What equipment is available in the PC Zone?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "PC equipment list sources retained",
+      "mode": "pipeline:common_list"
+    },
+    {
+      "tag": "final_on04",
+      "question": "วันนี้เปิดไหม",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "compact answer with test reference date",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "PC ว่างไหม แล้วจองยังไง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "live unavailable separated from booking procedure",
+      "mode": "pipeline:common_partial_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "Can I bring my own food into the studio?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "food origin permission not inferred from consumption area",
+      "mode": "pipeline:common_partial_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "booking time predicate read as schedule, not booking steps",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "A question about the studio: Can I book Monday morning, or only the afternoon?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "booking time predicate read as schedule, not booking steps",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "Before visiting, I need to know: On which days can I book morning and afternoon slots?",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "booking time predicate read as schedule, not booking steps",
+      "mode": "pipeline:common_answer"
+    },
+    {
+      "tag": "final_on04",
+      "question": "ต้องการทราบราคาบุคคลภายนอก",
+      "locale": "th",
+      "has_history": false,
+      "passed": true,
+      "contract": "service selection prompt",
+      "mode": "pipeline:common_clarification"
+    },
+    {
+      "tag": "final_on04",
+      "question": "PC",
+      "locale": "th",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_unconfirmed"
+    },
+    {
+      "tag": "final_on04",
+      "question": "ทั้งหมด",
+      "locale": "th",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    },
+    {
+      "tag": "final_on04",
+      "question": "I want prices for external visitors",
+      "locale": "en",
+      "has_history": false,
+      "passed": true,
+      "contract": "service selection prompt",
+      "mode": "pipeline:common_clarification"
+    },
+    {
+      "tag": "final_on04",
+      "question": "PC",
+      "locale": "en",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_unconfirmed"
+    },
+    {
+      "tag": "final_on04",
+      "question": "all",
+      "locale": "en",
+      "has_history": true,
+      "passed": true,
+      "contract": "complete declared-service set; unresolved eligibility not assumed",
+      "mode": "pipeline:common_not_current"
+    }
+  ],
+  "limits": "Targeted development source/scope checks, not a universal semantic accuracy score or controlled latency benchmark."
+}

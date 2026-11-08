@@ -1,0 +1,71 @@
+--- before/app/knowledge/common/owner_server.py
++++ r62/app/knowledge/common/owner_server.py
+@@ -14,18 +14,33 @@
+ HOME=Path(__file__).resolve().parent
+ MAX_BODY=2*1024*1024
+ 
+-def preview_answer(store,question,*,locale='th',history=None):
++def preview_answer(store,question,*,locale='th',history=None,draft=False):
+     """Use the chat's optional local field planner against published facts only."""
+     from .planner import plan_fields
+     from app.pipeline.request_deadline import request_deadline
+     from dataclasses import replace
+     enabled=os.getenv('PSU_LOCAL_LLM_ASSIST_ENABLED','1').strip().lower() in {'1','true','yes','on'}
+     audits=[]
++    original_store=store
++    if draft:
++        class DraftView:
++            def snapshot(self):
++                s=original_store.snapshot()
++                with original_store.connect() as c:
++                    records=original_store.heads(c);sources={sid:pair[0] for sid,pair in original_store.sources(c).items()}
++                from .answer import title
++                names={rid:list(dict.fromkeys(r['aliases']['th']+r['aliases']['en']+[title(r,'th'),title(r,'en')])) for rid,r in records.items()}
++                s={**s,'release':{'records':records,'sources':sources,'names':names},'active':'draft-preview','withdrawn':[],'allow_demo':True}
++                return s
++            def still_current(self,s):return original_store.snapshot()['epoch']==s['epoch']
++        store=DraftView()
+     def traced_plan(q,records,ids):return plan_fields(q,records,ids,diagnostic=audits.append)
+     with request_deadline(10):
+         result=CommonAnswerer(store).answer(question,locale=locale,history=history or [],planner=traced_plan if enabled else None)
+     if result is not None:
+-        result=replace(result,decision_artifact={**(result.decision_artifact or {}),'preview_llm_enabled':enabled,'planner_audits':audits})
++        updates={'decision_artifact':{**(result.decision_artifact or {}),'draft_preview_only':draft,'preview_llm_enabled':enabled,'planner_audits':audits}}
++        if draft:updates['answer']='ทดสอบร่าง — ยังไม่เผยแพร่ / DRAFT PREVIEW — NOT PUBLISHED\n\n'+result.answer
++        result=replace(result,**updates)
+     return result
+ 
+ def save_owner_record(store,record,expected_version,actor,source_title='ข้อมูลที่เจ้าของกรอกผ่านฟอร์ม',translation_reviewed=False,change_note=None):
+@@ -72,7 +87,10 @@
+                 if path=='/api/registry':return self.reply(200,{'version':VERSION,'catalog':list(CATALOG.values()),'actor':actor,'scope':'local operator','db':str(store.path),'kinds':24})
+                 if path=='/api/status':
+                     snap=store.snapshot();return self.reply(200,{'build':LOADED_BUILD,'active':snap['active'],'epoch':snap['epoch'],'records':store.list_heads(),'published_ids':list((snap['release'] or {}).get('records',{})),'demo':snap['allow_demo']})
+-                if path=='/api/template':return self.reply(200,template(parse_qs(parsed.query).get('kind',[''])[0]))
++                if path=='/api/template':
++                    kind=parse_qs(parsed.query).get('kind',[''])[0];draft=template(kind)
++                    draft['record_id']=kind+'_'+secrets.token_hex(6)
++                    return self.reply(200,draft)
+                 if path=='/api/edit-context':return self.reply(200,store.edit_context(parse_qs(parsed.query).get('id',[''])[0]))
+                 if path=='/api/revision':return self.reply(200,store.revision(parse_qs(parsed.query).get('id',[''])[0],int(parse_qs(parsed.query).get('version',['0'])[0])))
+                 if path=='/api/record':return self.reply(200,store.get(parse_qs(parsed.query).get('id',[''])[0]))
+@@ -89,6 +107,11 @@
+                 if path=='/api/save':
+                     if body.get('attest') is not True:raise ValueError('Confirm that these values come from center information')
+                     return self.reply(200,save_owner_record(store,body['record'],body['expected_version'],actor,translation_reviewed=body.get('translation_reviewed') is True,change_note=body.get('change_note')))
++                if path=='/api/translate':
++                    from .translation import translate_draft
++                    from app.pipeline.request_deadline import request_deadline
++                    with request_deadline(35):result=translate_draft(body['record'],replace_existing=body.get('replace_existing') is True)
++                    return self.reply(200,result)
+                 if path=='/api/approve':
+                     if body.get('confirm') is not True:raise ValueError('Explicit factual review required')
+                     store.approve(body['id'],body['version'],body['hash'],actor=actor);return self.reply(200,{'approved':True})
+@@ -97,7 +120,7 @@
+                 if path=='/api/withdraw':store.withdraw(body['id'],actor=actor);return self.reply(200,{'withdrawn':True})
+                 if path=='/api/rollback':store.rollback(body['release_id'],actor=actor,expected_active=body['expected_active']);return self.reply(200,{'rolled_back':True})
+                 if path=='/api/preview':
+-                    answer=preview_answer(store,body['question'],locale=body.get('locale','th'),history=body.get('history',[]))
++                    answer=preview_answer(store,body['question'],locale=body.get('locale','th'),history=body.get('history',[]),draft=body.get('draft') is True)
+                     return self.reply(200,{'answer':answer.answer if answer else 'ยังไม่มีรายการที่เผยแพร่ตรงคำถามนี้ / No matching published record','trace':answer.decision_artifact if answer else None})
+                 return self.reply(404,{'error':'Unknown endpoint'})
+             except Conflict as e:return self.reply(409,{'error':str(e)})

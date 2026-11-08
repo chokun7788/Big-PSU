@@ -1,0 +1,133 @@
+--- before/app/pipeline/competition_overview.py
++++ after/app/pipeline/competition_overview.py
+@@ -6,6 +6,7 @@
+ 
+ from app.knowledge.localization import approved_localization
+ from app.pipeline.competition_targets import resolve_competition_targets
++from app.pipeline.competition_conversation_signals import is_more_rule_request, is_rulebook_catalog_request
+ from app.pipeline.competition_source_facets import source_row_supports_facet
+ from app.pipeline.competition_presentation import clause_supports_facet, is_rule_clause, requested_pause_kind, source_clause_lines
+ 
+@@ -15,6 +16,9 @@
+     answer: str
+     hits: list[dict]
+     section_ids: tuple[str, ...]
++    history_answer_count: int = 0
++    excluded_clause_count: int = 0
++    no_further_clauses: bool = False
+ 
+ 
+ _FACETS = (
+@@ -40,20 +44,11 @@
+ 
+ def build_rulebook_catalog(query: str, locale: str) -> CompetitionOverview | None:
+     """List recorded rulebooks; this is not a claim about open registration."""
+-    import unicodedata
+     from app.pipeline.competition_targets import target_for_game_id
+     from app.pipeline.competition_taxonomy import COMPETITION_GAME_IDS
+     from app.pipeline.retrieval import hit_from_curated, load_curated_rows
+ 
+-    q = unicodedata.normalize('NFC', query).casefold().strip(' ?!.,')
+-    # The legacy prose normalizer can expand แข่ง inside รายการแข่ง.
+-    # Accept that preprocessing artefact only at this catalogue boundary.
+-    q = re.sub(r'(?:รายการ)+(?=แข่ง)', 'รายการ', q)
+-    if not re.fullmatch(
+-        r'(?:ตอนนี้)?(?:มี)?(?:รายการแข่ง|รายการแข่งขัน|เกมแข่ง|เกมแข่งขัน)(?:มี)?(?:อะไรบ้าง|อะไรมั่ง|ไหนบ้าง)(?:ครับ|ค่ะ)?'
+-        r'|(?:what|which) (?:tournaments|competitions|competition games)(?: are (?:there|available|recorded))?'
+-        r'|list (?:the )?(?:tournaments|competitions|competition games)', q,
+-    ):
++    if not is_rulebook_catalog_request(query):
+         return None
+     rows = load_curated_rows()
+     selected = []
+@@ -87,7 +82,7 @@
+     return tuple(lines)
+ 
+ 
+-def build_competition_overview(query: str, locale: str) -> CompetitionOverview | None:
++def build_competition_overview(query: str, locale: str, *, recent_history=None) -> CompetitionOverview | None:
+     # Import lazily: retrieval itself uses competition target resolution.
+     from app.pipeline.retrieval import hit_from_curated, load_curated_rows
+ 
+@@ -95,6 +90,22 @@
+     if resolution.status != 'exact':
+         return None
+     target = resolution.targets[0]
++    more = is_more_rule_request(query)
++    def comparison_text(text):
++        import unicodedata
++        return re.sub(r"\s+", "", unicodedata.normalize("NFC", text).casefold())
++    seen_answers = []
++    if more and isinstance(recent_history, list):
++        for item in recent_history[-10:]:
++            if not isinstance(item, dict) or item.get('role') != 'assistant' or item.get('route_category') != 'competition_rules':
++                continue
++            if item.get('contextEligible') is False or item.get('context_eligible') is False:
++                continue
++            previous = resolve_competition_targets(str(item.get('resolved_text') or ''))
++            if previous.status == 'exact' and previous.targets[0].game_id == target.game_id:
++                # History only excludes already displayed clauses. It is not
++                # a source of facts and cannot add a new policy or target.
++                seen_answers.append(comparison_text(str(item.get('text') or '')))
+     rows = [
+         row for row in load_curated_rows()
+         if row.get('category') == 'competition_rules'
+@@ -103,6 +114,7 @@
+         and target.rulebook_id in row.get('source_ids', [])
+     ]
+     clauses = {}
++    excluded_count = 0
+     for row in rows:
+         # Alternating violation/penalty cells are not independent prose rules.
+         # The dedicated table renderer keeps their relationship intact.
+@@ -111,6 +123,10 @@
+         text = approved_localization(row, 'text') if locale == 'en' else str(row.get('text', ''))
+         if text:
+             lines = substantive_lines(text)
++            if more:
++                previous_count = len(lines)
++                lines = tuple(line for line in lines if not any(comparison_text(line) in answer for answer in seen_answers))
++                excluded_count += previous_count - len(lines)
+             if lines:
+                 clauses[str(row['id'])] = lines
+     selected = []
+@@ -154,7 +170,23 @@
+             seen.add(candidate['id'])
+         if len(selected) >= 8:
+             break
+-    if len(selected) < 3:
++    if more:
++        # Include remaining source sections that do not map to a broad facet.
++        for row in rows:
++            if len(selected) >= 8:
++                break
++            if row['id'] in clauses and row['id'] not in seen:
++                selected.append(row)
++                selected_facets[row['id']] = 'other'
++                selected_clauses[row['id']] = clauses[row['id']]
++                seen.add(row['id'])
++        if not selected:
++            english = locale == 'en'
++            answer = (f"I could not find further {target.label} clauses to show from the source sections this summary can read. This does not mean the rulebook contains no other rules. Ask about a specific topic for details."
++                      if english else f"ยังไม่พบข้อกติกา {target.label} เพิ่มเติมจากส่วนเอกสารที่สรุปนี้อ่านได้ครับ ไม่ได้หมายความว่าเอกสารไม่มีกฎอื่น หากต้องการรายละเอียด ระบุหัวข้อ เช่น บทลงโทษ อุปกรณ์ หรือการหยุดเกมได้ครับ")
++            hits = [hit_from_curated(rows[0])] if rows else []
++            return CompetitionOverview(answer, hits, (), len(seen_answers), excluded_count, True)
++    elif len(selected) < 3:
+         return None
+     english = locale == 'en'
+     tournament = str(selected[0].get('tournament', ''))
+@@ -163,6 +195,8 @@
+         years = re.findall(r'\b20\d{2}\b', tournament)
+         tournament = localized_tournament or (target.label + (' / ' + years[0] if years else ''))
+     title = f'Selected {target.label} competition rules from the recorded rulebook:' if english else f'สรุปกติกา {target.label} บางประเด็นจากเอกสารที่มี:'
++    if more:
++        title = f'Additional {target.label} competition rules from the recorded rulebook:' if english else f'กติกา {target.label} เพิ่มเติมจากเอกสารที่มี:'
+     lines = [title, f'Tournament: {tournament}' if english else f'รายการ: {tournament}', '']
+     emitted = set()
+     used = []
+@@ -189,4 +223,4 @@
+     if target.game_id == 'tekken8' and 'pause_timeout' in shown_groups:
+         lines.extend(['', 'The recorded rulebook contains both a no-pause clause and an emergency/agreement exception. Ask the organizer to confirm which conditions and penalties apply.' if english else 'เอกสารมีทั้งข้อห้ามหยุดเกมและข้อยกเว้นกรณีฉุกเฉิน/ผู้เล่นเห็นพ้อง ต้องให้ผู้จัดยืนยันขอบเขตและบทลงโทษที่ใช้ครับ'])
+     lines.extend(['', 'This is a summary of selected clauses. Ask about a specific topic for details.' if english else 'นี่เป็นสรุปบางข้อในเอกสาร หากต้องการรายละเอียด ถามหัวข้อ เช่น อุปกรณ์ การหยุดเกม หรือบทลงโทษได้ครับ', f'Source: {selected[0].get("source_url", "")}' if english else f'แหล่งข้อมูล: {selected[0].get("source_url", "")}'])
+-    return CompetitionOverview('\n'.join(lines), [hit_from_curated(row) for row in used], tuple(row['id'] for row in used))
++    return CompetitionOverview('\n'.join(lines), [hit_from_curated(row) for row in used], tuple(row['id'] for row in used), len(seen_answers), excluded_count)

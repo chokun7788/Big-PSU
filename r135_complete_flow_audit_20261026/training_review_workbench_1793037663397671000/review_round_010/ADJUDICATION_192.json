@@ -1,0 +1,128 @@
+{
+  "question_key": "846ae48aab6e69797de36249cf6d23b1c0b06eeeda03b4e262ae1ba944d78a09",
+  "example_sha256": "f53ced23285317227190fa5c2284b439e8199e87a9171980f6667496d389d4c1",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One AoV rulebook team-size need; polite procedure wording does not change it to booking.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause is retained.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Keep raw อารีน่าออฟเวเลอร์ target and จำนวนผู้เล่นต่อทีม requested scope.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No event year, five-player answer, substitute limit or previous roster is inherited.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Team players can differ from roster/substitutes; a5v5 format mention alone is not a complete roster rule.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "RoV native section006 contains recorded5v5 format while event identity is separate; requested team/roster scope needs exact rule evidence.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_rov_blueket_2025_men_section_006"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No five-person count, substitute allowance or selected event edition is taught.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Recorded5v5 format does not establish every roster/substitute bound.",
+      "handling": "Require the exact requested team-size rule and event edition before a numeric answer."
+    }
+  ],
+  "historical_review_row": 192,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "อารีน่าออฟเวเลอร์",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "อารีน่าออฟเวเลอร์",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "จำนวนผู้เล่นต่อทีม",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_rov_blueket_2025_men_section_006": {
+      "revision": 5,
+      "record_sha256": "848c6a318245d99ab4a7d5d4f6b330f028363d34efe30698e7cbe5ec28181987"
+    }
+  }
+}

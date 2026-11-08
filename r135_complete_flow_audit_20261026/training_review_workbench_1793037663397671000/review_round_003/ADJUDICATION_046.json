@@ -1,0 +1,126 @@
+{
+  "question_key": "3a769b080c6e4d2fac6862c843d20940c534c0633656de70c192903617523146",
+  "example_sha256": "43d9d38c1f3caa70c7850679c715e796983765b6245bd1ada7c7bd156c88e613",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One definition request for VALORANT; visit planning does not imply booking.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/detail/summary answers the requested game definition.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "VALORANT is a game target, not a service slot; remove that incorrect role.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "All game scope is local and no tournament context is present.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The title alone must not trigger competition_rules or infer an edition.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_valorant supplies the game summary and PC-zone relation; definition is separate from event rules.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร"
+      ],
+      "source_record_ids": [
+        "game_detail_valorant"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No shooter description, Agent list or venue fact enters labels.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 46,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_description",
+    "context_quotes": [
+      "VALORANT"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "summary",
+        "target": "VALORANT",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VALORANT",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_description",
+    "context_quotes": [
+      "VALORANT"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า VALORANT คือเกมอะไร",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "summary",
+        "target": "VALORANT",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_valorant": {
+      "revision": 6,
+      "record_sha256": "6f9a3421b98b4e515c8fa719390fb6170f4bacca522d60471e955ad8a26fa3c5"
+    }
+  }
+}

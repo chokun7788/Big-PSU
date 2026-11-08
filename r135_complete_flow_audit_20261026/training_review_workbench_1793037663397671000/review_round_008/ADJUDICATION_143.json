@@ -1,0 +1,240 @@
+{
+  "question_key": "831a618e86ca1735d5b64a3241c951ef3ca5dc5b7ada0bb6d7cdeceac7c824df",
+  "example_sha256": "186ab1d40609451dfac9dc03a7632315a818119fba3c2a9adcdba462a2417632",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs compare VR30-minute and one-hour offers and ask how to book.",
+      "raw_quotes": [
+        "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/compare/duration_minutes retains both stated session alternatives; reservation/detail/owner_policy preserves the procedure.",
+      "raw_quotes": [
+        "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "30 minutes and1 hour are alternative durations, VR service, different the requested comparative scope.",
+      "raw_quotes": [
+        "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Add the service edge using explicit_anaphor to it; do not copy either duration into booking as a chosen option.",
+      "raw_quotes": [
+        "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "This is not90 minutes of combined play, a selected package, or a source-output condition.",
+      "raw_quotes": [
+        "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "VR30 andVR60 service records differ in recorded session_minutes and each records capacity1-5; other performance/entitlement differences are not established.",
+      "raw_quotes": [
+        "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?"
+      ],
+      "source_record_ids": [
+        "availability_vr_30",
+        "availability_vr_60",
+        "migrated_faq_rule_booking_steps"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No superiority, price difference, capacity answer or selected booking option is taught.",
+      "raw_quotes": [
+        "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Recorded duration/capacity fields do not establish every possible performance or entitlement difference.",
+      "handling": "Keep comparison bounded to supported source fields and do not claim duration is the only possible difference."
+    }
+  ],
+  "historical_review_row": 143,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 minutes",
+      "1 hour",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How is VR for 30 minutes different from VR for 1 hour",
+        "domain": "service_fee",
+        "operation": "compare",
+        "facet": "duration_minutes",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "how do I book it",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "VR",
+        "basis": "explicit_anaphor"
+      }
+    ]
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 minutes",
+      "1 hour",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How is VR for 30 minutes different from VR for 1 hour",
+        "domain": "service_fee",
+        "operation": "compare",
+        "facet": "duration_minutes",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "different",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "how do I book it",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "VR",
+        "basis": "explicit_anaphor"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "VR",
+        "basis": "explicit_anaphor"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_vr_30": {
+      "revision": 5,
+      "record_sha256": "684ca350ae5809737f1975682978283eca4dc308d432f694333d8261cec15d60"
+    },
+    "availability_vr_60": {
+      "revision": 5,
+      "record_sha256": "c3384985c72b8fa25a4bb9ec3ae5fd292dff804a0e93cb02ac5f82fe246f9913"
+    },
+    "migrated_faq_rule_booking_steps": {
+      "revision": 4,
+      "record_sha256": "3d46ed93710725b42212be78cc05d7197ba3043e04ade3b26ae2890e897dd846"
+    }
+  }
+}

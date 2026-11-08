@@ -1,0 +1,32 @@
+--- before/app/knowledge/common/owner_server.py
++++ r60/app/knowledge/common/owner_server.py
+@@ -12,6 +12,20 @@
+ from app.knowledge.records import canonical_json
+ HOME=Path(__file__).resolve().parent
+ MAX_BODY=2*1024*1024
++
++def preview_answer(store,question,*,locale='th',history=None):
++    """Use the chat's optional local field planner against published facts only."""
++    from .planner import plan_fields
++    from app.pipeline.request_deadline import request_deadline
++    from dataclasses import replace
++    enabled=os.getenv('PSU_LOCAL_LLM_ASSIST_ENABLED','1').strip().lower() in {'1','true','yes','on'}
++    audits=[]
++    def traced_plan(q,records,ids):return plan_fields(q,records,ids,diagnostic=audits.append)
++    with request_deadline(10):
++        result=CommonAnswerer(store).answer(question,locale=locale,history=history or [],planner=traced_plan if enabled else None)
++    if result is not None:
++        result=replace(result,decision_artifact={**(result.decision_artifact or {}),'preview_llm_enabled':enabled,'planner_audits':audits})
++    return result
+ 
+ def save_owner_record(store,record,expected_version,actor,source_title='ข้อมูลที่เจ้าของกรอกผ่านฟอร์ม',translation_reviewed=False,change_note=None):
+     if change_note is not None and (not isinstance(change_note,str) or len(change_note)>1000):raise ValueError('Change note must be text of at most 1000 characters')
+@@ -82,7 +96,7 @@
+                 if path=='/api/withdraw':store.withdraw(body['id'],actor=actor);return self.reply(200,{'withdrawn':True})
+                 if path=='/api/rollback':store.rollback(body['release_id'],actor=actor,expected_active=body['expected_active']);return self.reply(200,{'rolled_back':True})
+                 if path=='/api/preview':
+-                    answer=CommonAnswerer(store).answer(body['question'],locale=body.get('locale','th'),history=body.get('history',[]))
++                    answer=preview_answer(store,body['question'],locale=body.get('locale','th'),history=body.get('history',[]))
+                     return self.reply(200,{'answer':answer.answer if answer else 'ยังไม่มีรายการที่เผยแพร่ตรงคำถามนี้ / No matching published record','trace':answer.decision_artifact if answer else None})
+                 return self.reply(404,{'error':'Unknown endpoint'})
+             except Conflict as e:return self.reply(409,{'error':str(e)})

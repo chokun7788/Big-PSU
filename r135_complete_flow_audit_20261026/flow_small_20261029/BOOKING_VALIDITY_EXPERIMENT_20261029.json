@@ -1,0 +1,13 @@
+{
+  "candidate": "experimental isolated only, not installed",
+  "issue": "procedure_steps replaces all rendered blocks after policy validity disclosure; actual booking receipt says validity_interval_unconfirmed but prior customer output omitted notice",
+  "change": "after rendering ordered booking steps, append validity notice when source policy applicability is unconfirmed",
+  "hashes": {
+    "engine_before": "8696b47e01512f00a78ab4894ba3e7f2f9a150762950263b6a61da0a14943702",
+    "engine_candidate": "b5ee6628282302ac62e0b950c7444fbfedac4e1866488fc02a82593b790e2852",
+    "baseline_1793281053576947300/DETAILS.json": "5fb9e39b30c5457710d1f40867007697aa838e3fafd1a75306732c8c45f7c1e4",
+    "booking_payment_matrix_1793281054321614100/RESULT.json": "3bde49bcf2cbc7a7befdfad9981072fe0ab6e9a9e5796f8ba561297daaf4352c"
+  },
+  "observations": "direct and compound booking now show notice and compound retains PC price; booking matrix 53 synthetic checks passed",
+  "remaining": "actual isolated source edit to confirmed interval, wrong/out-of-range/unknown/forged snapshot, English, preservation of other notices and affected regression; withdraw if fails. Source authority and current correctness not proven."
+}

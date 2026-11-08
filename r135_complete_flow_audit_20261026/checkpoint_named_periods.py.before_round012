@@ -1,0 +1,142 @@
+"""Persist the native period repair without granting model/training acceptance."""
+import ast,hashlib,json,subprocess,time,urllib.request
+from pathlib import Path
+from verification_support import R
+from app.knowledge.common.domain_flow.context_contract import DOMAIN_FACETS
+from app.knowledge.common.domain_flow.understanding import WIRE_FACETS
+
+def read(p):return json.loads(p.read_text('utf8'))
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def write(p,v):p.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n','utf8')
+def report(prefix):
+ p=sorted(R.glob(prefix+'*/RESULT.json'))[-1];d=read(p);cs=d['checks']
+ ok=all(cs.values()) if isinstance(cs,dict) else all(c['passed'] for c in cs) if isinstance(cs,list) else not d.get('failed')
+ assert ok and d.get('all_passed',True) and not d.get('failed'),p
+ return {'path':str(p.relative_to(R)),'sha256':sha(p),'checks':len(cs) if isinstance(cs,(dict,list)) else cs,'passed':True}
+reports={name:report(prefix) for name,prefix in [('named_period','named_periods_'),('period_wire_v3','period_wire_v3_'),('model_environment','model_environment_'),('control_predicate','control_predicate_scope_'),('current_consumer','training_consumer_current_'),('wire','wire_compatibility_'),('weekly','weekly_calendar_'),('calendar_windows','calendar_windows_'),('auto_locale','auto_locale_boundaries_'),('core','core_verification_'),('native_contract','native_contract_verification_'),('graph','graph_verification_'),('request_context','request_context_'),('followup','followup_verification_'),('training_import','saved_training_import_'),('training_history','training_history_input_')]}
+assert reports['named_period']['checks']>=47 and 'service_periods' not in DOMAIN_FACETS['schedule'].split() and 'service_periods' not in WIRE_FACETS['C11']
+W=R/'training_review_workbench_1793037663397671000';A=sorted(W.glob('current_admission_*'))[-1];s=read(A/'SUMMARY.json');M=W/s['manual_round'];m=read(M/'SUMMARY.json')
+assert s['individually_reviewed']==205 and s['eligible_reviewed_rows']==204 and s['quarantined']==1 and s['unreviewed']==84 and not s['training_ready'] and m['prior_adjudications_unchanged']
+adjudication=W/'review_round_010/ADJUDICATION_191.json';old_sha=sha(adjudication);ad=read(adjudication)
+assert ad['adjudication_status']=='quarantined' and ad['reviewed_label']==ad['prior_label'] and ad['criteria']['intent_operation_facet']['status']=='unresolved'
+proof_dir=R/Path(reports['named_period']['path']).parent;details=read(proof_dir/'DETAILS.json');actual=next(x['result'] for x in details if x.get('case')=='actual_retained_row191')
+assert all(c['facet']=='service_periods' for c in actual['claims']) and len(actual['claims'])==7
+supplement=R/('NATIVE_PERIOD_REVIEW_191_'+str(time.time_ns())+'.json')
+write(supplement,{'question_key':ad['question_key'],'raw_question':ad['prior_label']['tasks'][0]['quote'],
+ 'prior_adjudication':{'path':str(adjudication.relative_to(R)),'sha256':old_sha,'status':'quarantined'},
+ 'native_semantic_review':{'requested_need':'start/end times of the named afternoon play-service period',
+  'operation':'list','domain':'schedule','facet':'service_periods','canonical_operation':'calendar.named_play_period',
+  'period_quote':'afternoon','day_scope':'No weekday/date stated: retain all current recorded weekdays and source applicability caveats.',
+  'why_not_bookable':'Friday retains the afternoon play-service slot as maintenance while the afternoon booking window is absent. These source fields are not equivalent.',
+  'why_not_live':'No machine vacancy, booking occupancy or live availability is asked.',
+  'source_identity':'Current retained source-only typed execution, seven schedule record revisions; no FAQ-only result used as operation proof.',
+  'native_task':actual['understanding']['tasks'][0],'source_claims':actual['claims'],
+  'receipt':actual['needs'][0]['plan']['metadata']['named_period_receipt']},
+ 'evidence':reports['named_period'],'experimental_v3_codec_evidence':reports['period_wire_v3'],'model_wire_acceptance':False,'old_v2_training_label_readmitted':False,
+ 'reason_quarantine_remains':'The trained v2 wire has no service_periods facet. This artifact describes retained-v2 quarantine only. Any separately admitted v3 cohort needs its own migration/adjudication artifacts and must not be inferred from native registration or codec validation. Neither native registration nor dataset admission is actual model learning or teacher provenance.',
+ 'actual_training_or_generation':False})
+assert sha(adjudication)==old_sha
+
+gapfile=R/'AUDIT_GAPS.json';gaps=read(gapfile);g=next(x for x in gaps['gaps'] if x['id']=='G115')
+g.update(state='identified_pending_model_wire_and_dated_exception_mapping_native_component_implemented',evidence=reports['named_period'],
+ candidate_code='system/app/knowledge/common/domain_flow/period_scope.py;native_intents.py;understanding.py;capabilities.py;calendar_sets.py;engine.py;integration.py;obligation_verifier.py;collection_contract.py;request_verifier.py',
+ native_representation_review=str(supplement.relative_to(R)),
+ remaining='Native named play-period operation/source/day/locale/receipt controls now pass. Explicit r135-plan-v3 codec/prompt/schema/parser and actual source-execution22 controls exist separately; no retained gateway/training consumer switch or model-learning claim. The v2 saved label191 remains quarantined. Artifact-bound v3 training migration/admission/readmission, actual model provenance/three-arm freeze/evaluation and dated closure/changed-hours-to-service mapping remain pending. Final category/source/model/API/freeze/activation acceptance remains pending.',
+ versioned_codec_evidence=reports['period_wire_v3'],protocol_boundary_document='WIRE_V3_SERVICE_PERIODS_TH.md')
+if 'CONTRACT-14' not in g['requirements']:g['requirements'].append('CONTRACT-14')
+bootstrap={'id':'G116','requirements':['FLOW-28','CONTRACT-13','PHASE-11','PHASE-20'],
+ 'finding':'Normal installed R134 startup selected bundled Python with no torch, so the model process exited before serving and chat startup failed. Existing selected training venv has the required compatible local packages. Recovery through process-local PYTHONPATH restored identical selected weight/precision identities; the normal launcher dependency selection needed a durable candidate fix.',
+ 'baseline':'SOURCE_PRESERVATION_OBSERVATION_1793092913804508200.json',
+ 'candidate_code':'Start-Model.ps1;system/app/knowledge/common/domain_flow/model_environment.py;system/tools/check_selected_model_environment.py',
+ 'state':'implemented_component_verification_final_audit_pending','evidence':reports['model_environment'],
+ 'remaining':'Candidate launcher uses the existing selected venv and verifies exact dependency versions/module roots/Python ABI/CUDA before launch.7 actual environment/reuse controls pass; installed files are untouched. Final package/normal-entrypoint/API acceptance remains. No protected endpoint was stopped to force a cold-start test; current serving PID and weight identities remain identical.'}
+gaps['gaps']=[x for x in gaps['gaps'] if x['id']!='G116']+[bootstrap]
+control_gap={'id':'G117','requirements':['C05','C03','FLOW-13','FLOW-10'],
+ 'finding':'Actual saved single button-function questions198/201/204 acquired an extra equipment/usage task from the platform and uses-for wording. Nintendo answers included an unrequested OLED gaming/family/booking description; PS5 added a source-gap paragraph. This was native interpretation/need-scope overgeneration, not a source binding answer error or HTTP failure.',
+ 'baseline':'saved_clause_discovery_1793094590542315200/DETAILS.json','actual_source_followup':'saved_clause_discovery_1793094821397701600/DETAILS.json',
+ 'candidate_code':'system/app/knowledge/common/domain_flow/control_intent.py;native_intents.py;request_verifier.py',
+ 'state':'implemented_component_verification_final_audit_pending','evidence':reports['control_predicate'],
+ 'remaining':'Source-bound named-game control predicate is classified before generic platform equipment usage, including an independent observer override.23 retained source/positive/negative controls cover actual three questions, English, genuine equipment and compound requests, missing controls, wrong platform and source edit. General compound/model/per-platform/layout/edition/currentness and final category/API acceptance remain pending.'}
+gaps['gaps']=[x for x in gaps['gaps'] if x['id']!='G117']+[control_gap]
+gaps.update(last_recorded_at=time.time(),complete=False,not_an_exhaustive_gap_list=True);write(gapfile,gaps)
+criteria={
+ 'C11':('named play-service periods bind actual owner slots, day sets, maintenance, source edits and locale without booking-window or live inference',['friday_maintenance_and_weekend_closed_distinct','dated_scope_exact','relative_uses_reference_clock','actual_source_edit_changes_next_answer','missing_weekday_not_closed_or_complete','new_owner_named_period_without_retraining','valid_unnamed_slot_not_inferred_from_clock','dated_exception_never_silently_overridden_by_weekly_source']),
+ 'CONTRACT-03':('native-only service-period vocabulary stays separate from frozen model wire; wrong v2 label stays quarantined',['native_task_uses_service_not_bookable','wire_v2_unchanged_native_field_not_model_vocabulary','model_cannot_claim_native_only_facet','actual_row191_typed_source_not_faq']),
+ 'CONTRACT-08':('named-period capability executes current source rows and independently rejects forged projection identity, time, state, day and rendered values',['typed_source_receipts_and_complete_recorded_set','forged_time_rejected','forged_state_rejected','forged_day_rejected','forged_revision_rejected','forged_render_rejected','forged_missing_rejected','public_common_skips_wrong_faq_facet']),
+ 'CONTRACT-13':('selected local model dependency environment is checked before launch; missing torch cannot pass and healthy protected endpoint is reused',['existing_selected_runtime_dependencies_match','bundled_runtime_missing_torch_cannot_pass','candidate_normal_launcher_dependency_and_accelerator_check','healthy_selected_endpoint_reused_without_restart','actual_serving_pid_and_weight_identity_preserved']),
+ 'C05':('named-game button-function requests retain one controls task and actual requested source binding, including source absence/platform/source-edit boundaries',['plus_one_requested_controls_task','plus_actual_binding_and_scope_caveat','a_one_requested_controls_task','triangle_one_requested_controls_task','missing_control_source_does_not_invent_binding','wrong_platform_not_equipment_or_switch_binding','actual_owner_source_edit_changes_binding_answer']),
+ 'FLOW-13':('platform context and uses-for wording do not manufacture an equipment need; genuine usage and independent compound needs survive',['plus_independent_observer_no_console_need','a_independent_observer_no_console_need','triangle_independent_observer_no_console_need','plus_no_unrequested_equipment_usage','real_equipment_usage_preserved','genuine_independent_controls_and_usage_both_retained']),
+ 'CONTRACT-14':('experimental play-period v3 is explicitly versioned and source-executable while retained v2 messages/schema/parser and quarantined teaching cohort remain separate',['explicit_v3_field_and_focus_accepted','no_semantic_facet_disguised_as_bookable','v3_proposal_dispatches_same_actual_service_source','retained_v2_parser_does_not_silently_accept_v3','v3_does_not_silently_accept_old_version','native_schema_extension_not_global_v2_mutation','old_row191_quarantine_not_readmitted_by_codec','retained_training_consumer_wire_not_silently_switched'])}
+for p in R.glob('*_REQUIREMENT_REVIEWS.json'):
+ doc=read(p);changed=False
+ for row in doc['requirements']:
+  if row['requirement_id'] not in criteria:continue
+  criterion,checks=criteria[row['requirement_id']];evidence=reports['period_wire_v3' if row['requirement_id']=='CONTRACT-14' else 'control_predicate' if row['requirement_id'] in {'C05','FLOW-13'} else 'model_environment' if row['requirement_id']=='CONTRACT-13' else 'named_period'];entry={'criterion':criterion,'state':'passed_controlled_acceptance','evidence':evidence['path'],'evidence_sha256':evidence['sha256'],'checks':checks,'iteration':'named_service_period_native_boundary','semantic_accuracy_claimed':False}
+  row['criteria']=[c for c in row['criteria'] if c.get('iteration')!='named_service_period_native_boundary']+[entry];row['final_revision_api_and_installation_reaudit_pending']=True;changed=True
+ if changed:write(p,doc)
+ledger=read(R/'COMPLETION_LEDGER.json');identity=[(r['id'],r['text'],r['text_sha256']) for r in ledger['requirements']]
+for row in ledger['requirements']:
+ if row['id'] in g['requirements']:
+  row.update(implementation_state='implementation_gap_open',behavior_acceptance_state='not_closed_open_gap')
+  row['acceptance_evidence']=[e for e in row['acceptance_evidence'] if not (isinstance(e,dict) and e.get('iteration')=='named_service_period_native_boundary')]+[{**reports['named_period'],'iteration':'named_service_period_native_boundary','scope':'native period component; model-wire, dated exceptions and final requirement acceptance remain open'}]
+ if row['id'] in bootstrap['requirements']:
+  if 'G116' not in row['gaps']:row['gaps'].append('G116')
+  row['acceptance_evidence']=[e for e in row['acceptance_evidence'] if not (isinstance(e,dict) and e.get('iteration')=='selected_model_environment')]+[{**reports['model_environment'],'iteration':'selected_model_environment','scope':'local serving dependency preflight and protected healthy endpoint reuse; final package/API acceptance remains open'}]
+ if row['id'] in control_gap['requirements']:
+  if 'G117' not in row['gaps']:row['gaps'].append('G117')
+  row['acceptance_evidence']=[e for e in row['acceptance_evidence'] if not (isinstance(e,dict) and e.get('iteration')=='control_predicate_scope')]+[{**reports['control_predicate'],'iteration':'control_predicate_scope','scope':'requested named-game control predicate versus platform equipment context; final requirement acceptance remains open'}]
+assert identity==[(r['id'],r['text'],r['text_sha256']) for r in ledger['requirements']] and len(identity)==76
+write(R/'COMPLETION_LEDGER.json',ledger)
+for name in ['FLOW_MAIN_TH.md','DATA_CONTRACTS_TH.md','IMPLEMENTATION_EVALUATION_TH.md']:assert (R/'spec'/name).read_bytes()==(R.parent/'r123_plan_distillation_architecture_20261023'/name).read_bytes()
+reviews=[r for p in R.glob('*_REQUIREMENT_REVIEWS.json') for r in read(p)['requirements']];assert len(reviews)==len({r['requirement_id'] for r in reviews})==48
+count=sum(c['state']=='passed_controlled_acceptance' for r in reviews for c in r['criteria'])
+paths=sorted((R/'system').rglob('*.py'))
+for p in paths:ast.parse(p.read_text('utf-8-sig'),filename=str(p))
+code=R/('COMPONENT_CODE_OBSERVATION_'+str(time.time_ns())+'.json');write(code,{'checked_at':time.time(),'python_files_ast_checked':len(paths),'current_candidate_python_sha256':{str(p.relative_to(R)):sha(p) for p in paths},'unfrozen_candidate_only':True,'final_acceptance_claimed':False})
+preservation=sorted(R.glob('SOURCE_PRESERVATION_OBSERVATION_*.json'))[-1];pres=read(preservation);assert not pres['candidate_vs_live_differences'] and not pres['candidate_vs_frozen_parent_differences'] and pres['installed_health_observation']['ok']
+with urllib.request.urlopen('http://127.0.0.1:12921/health',timeout=5) as response:model=json.load(response)
+assert model['base_revision']=='ce0a7416fe82d4404b2b4a253ce3ac095ab1252c' and model['profiles']['retained']=='e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8' and model['quantization']=='NF4 double quant BF16' and model['other_stages']=='base'
+cmd="Get-NetTCPConnection -State Listen -LocalPort 8115,8116,12921 | ForEach-Object { Get-CimInstance Win32_Process -Filter ('ProcessId='+$_.OwningProcess) | Select-Object ProcessId,CommandLine } | ConvertTo-Json -Depth 3"
+processes=json.loads(subprocess.run(['powershell','-NoProfile','-Command',cmd],capture_output=True,text=True,check=True).stdout)
+recovery=R/('RUNTIME_RECOVERY_OBSERVATION_'+str(time.time_ns())+'.json')
+logs=sorted((R.parent/'PSU_Esports_Chat_Current_R134/runtime/model-start').glob('*.err.log'),key=lambda p:p.stat().st_mtime)[-3:]
+write(recovery,{'checked_at':time.time(),'installed_bundle':'R134','initial_observation':'SOURCE_PRESERVATION_OBSERVATION_1793092913804508200.json',
+ 'initial_ports_listening':[],'old_recorded_process_ids_no_longer_existed':[37660,45088,42136],
+ 'normal_entrypoint_first_failure':'Bundled Python cannot import torch; no existing process stopped. Failure reproduced by normal Start-New-Chat invoking Start-Model and one explicit Start-Model retry.',
+ 'error_logs':[{'path':str(p.relative_to(R.parent)),'sha256':sha(p),'tail':p.read_text('utf8',errors='replace')[-1400:]} for p in logs],
+ 'recovery':'Existing selected D:/CodexTraining/psu-r121-20261022/venv/Lib/site-packages supplied to the normal Start-New-Chat process through process-local PYTHONPATH; normal editor entrypoint NoBrowser. No installed/frozen launcher or model source edited.',
+ 'existing_environment_probe':{'python':'3.12.14','torch':'2.7.1+cu128','cuda':'12.8','cuda_available':True,'transformers':'4.56.2','peft':'0.17.1'},
+ 'current_processes':processes,'current_model_health':model,'source_preservation':preservation.name,
+ 'actual_customer_or_benchmark_questions_restarted':0,'actual_new_inferences_or_training':0,'process_stop_or_kill':False,
+ 'candidate_bootstrap_fix':{'launcher':'Start-Model.ps1','sha256':sha(R/'Start-Model.ps1'),'evidence':reports['model_environment']},
+ 'remaining_bootstrap_issue':'Candidate explicitly selects and validates the existing local venv; final package/normal-entrypoint/API acceptance remains. Installed R134 launcher unchanged; current model is kept running.'})
+status=read(R/'STATUS.json');status.update(phase='complete_flow_audit_native_named_period_repaired_wire_and_exception_mapping_pending',complete=False,whole_flow_complete=False,candidate_frozen=False,candidate_installed=False,active_installed_revision='R134',last_recorded_at=time.time(),latest_component_code_observation=code.name,last_source_preservation_observation=preservation.name,requirement_specific_controlled_criteria_passed=count)
+status.update(latest_named_period_reports=reports,native_period_row191_review=str(supplement.relative_to(R)),runtime_recovery_observation=recovery.name,last_component_repairs=['G115_native_component_only','G116_bootstrap_preflight_only','G117'])
+status['latest_training_review']={'workbench':str(W.relative_to(R)),'manual_round':str(M.relative_to(R)),'summary':str((M/'SUMMARY.json').relative_to(R)),'current_admission':str(A.relative_to(R)),**s,'accepted':m['accepted'],'corrected_or_enriched':m['corrected_or_enriched'],'source_answer_issues_remain':m['source_answer_issues_remain'],'semantic_error_rate_claimed':False}
+status['latest_training_gate_reports'].update({k:v for k,v in reports.items() if k in ['training_import','current_consumer','graph','wire']})
+status['experimental_period_protocol_v3']={'version':'r135-plan-v3','gateway_selected':False,'training_consumer_selected':False,'actual_model_generation_or_optimization':False,'old_row191_readmitted':False,'evidence':reports['period_wire_v3'],'document':'WIRE_V3_SERVICE_PERIODS_TH.md'}
+status['next_work']='Finish G115: explicit r135-plan-v3 codec/prompt/schema/parser/source execution22 controls now exist separately. Implement artifact-bound v3 training admission/migration and individual row191 readmission without claiming a model learned the codec; freeze identical protocol/parser/compiler across all three future arms and report protocol adaptation jointly with supervision. Retained v2 gateway/consumer/messages/schema stay unchanged. Implement/review dated closure and changed-hours service-period mapping without physical/live inference. Native period component has47 source controls, not whole C11 acceptance. Continue original label rows205-288 (205 reviewed,204eligible,1quarantined,84unreviewed); semantic-family/eight-strata/metric freeze, other context transforms, real optimization/GPU proof/three arms pending. G117 controls versus console-usage native scope repaired with23 actual source controls; further predicates/model/platform/edition acceptance remains. G116 candidate dependency environment preflight repaired with7 actual controls; final normal-entrypoint package/API acceptance pending, keep protected model running. Original28 requirement reviews/all14 category final acceptance/G01-G08/G40 and additional gaps remain. Root/source750/R133459/R134delta or explicit supersession; final330 exact successful same-request messages/schema/profile/adapter/stage/precision/cap raw/source/model/assets/freeze/API and fresh actual-live all-table SQLite backup/normal activation/re-audit still pending. R132/analyzer alreadycomplete: do not rerun questions/baselines; no subagents; keep heartbeat; never bypass model-stop rejection.'
+write(R/'STATUS.json',status)
+header=f'''## Latest checkpoint — G115 native period component repaired; model wire/dated exceptions still OPEN
+
+R135 candidate remains unfrozen/uninstalled. R134 is installed and running again: chat34236/8115, editor42420/8116, model46356/12921. Earlier37660/45088/42136 no longer existed. Normal startup exposed missing torch in bundled Python; existing training venv supplied the same proven local packages through process-local PYTHONPATH. G116 candidate Start-Model.ps1 now explicitly selects the existing venv with exact versions/module roots/Python ABI/CUDA preflight. {reports['model_environment']['path']}7 actual positive/negative/reuse controls pass. Final candidate normal-entrypoint package/API acceptance remains; installed/frozen launchers untouched. No stop/kill, no new inference/training or R132 questions. {recovery.name} pins processes, failures/logs, environment and health. Source {preservation.name}: all candidate/frozen-parent/live logical SQLite tables inclWAL equal, same R134 build/SHA.
+
+G115 native typed service_periods/list/calendar.named_play_period now reads owner service_slots, with raw named period spans, requested weekday/date/reference-clock scope and source revision receipts. Explicit Friday maintenance is distinct from absent Friday afternoon booking windows; physical hours and live occupancy are not inferred. New owner code/label works without training, optional code/label identity is handled without guessing from clock, missing/expired/duplicate weekdays and unknown validity are explicit. Selected times/states/day/revision/rendered projections are recomputed independently; forged metadata is rejected. {reports['named_period']['path']}47 positive/negative controls pass, including actual retained row191 typed source and Common path. Known dated exceptions currently withhold confirmation and name the limitation; mapping is still an implementation gap.
+
+Model wire remains byte compatible: schema SHA88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0. WIRE_FACETS copied before native-only extension; neither v2 model parser nor training wire accepts service_periods. {supplement.name} individually reviews native meaning/source counterexample; original round010 ADJUDICATION_191 bytes and quarantine unchanged. Native capability is not a model teaching target. G115 stays OPEN for explicit versioned teaching-wire/readmission and dated exception mapping. Do not force bookable_periods, silently expand cached model wire or claim closure.
+
+Experimental graph_protocol_v3.py now explicitly declares r135-plan-v3 with service_periods focus/facet, separate prompt/schema and strict source-quoted graph parser. {reports['period_wire_v3']['path']}22 controls include actual row191 proposal→typed source execution, forbidden business fields/foreign IDs/invented spans/invalid edges/version mismatches/duplicate keys and unchanged v2 messages/schema/parser/training cohort. No gateway or training-consumer switch, no model generation/learning proof, no row191 readmission. WIRE_V3_SERVICE_PERIODS_TH.md specifies artifact-bound migration/admission still needed and identical protocol freeze across three arms; changed protocol plus training must be reported as a joint effect. G115 remains open; codec/schema proof does not close source, model, training or whole requirement acceptance.
+
+G117 discovered on actual saved rows198/201/204: one button function question became controls plus unrequested console equipment usage. Source-bound control_intent/native proposal and independent observation now retain the controls predicate; genuine equipment and compound requests survive. {reports['control_predicate']['path']}23 positive/negative source controls pass; baseline saved_clause_discovery_1793094590542315200/DETAILS.json and followup saved_clause_discovery_1793094821397701600/DETAILS.json preserved. Missing bindings/wrong platforms do not become console usage or invented control values.
+
+205 original labels individually reviewed in round011 =65accepted+139corrected/enriched+1quarantined;204eligible,84unreviewed, next205. Current {A.relative_to(R)} train132/development72; noREADY/nooptimizer. Original195/prior rounds immutable. Rows195-204 correct zone/product versus platform roles, exact Plus/A/Triangle button scope and movement action; retain Monday physical-hours conflict, historical-person-role period, controller preset/version and cross-platform/RE4-Remake source caveats. No business answers taught and no semantic error rate. Importer24checks retains all289 keys/281 actual historical memberships and195 earlier adjudications; consumer4blocks205 before frameworks. Repacker defaults011. Original76 IDs/text/hashes/14categories/spec3files preserved;48 requirement-specific reviews/{count} bounded criteria, NONE finally closed. All{len(paths)} candidate Python AST/hashes in {code.name}. Latest reports: {', '.join(k+str(v['checks']) for k,v in reports.items())}. Updated auto-locale test follows the new typed period path; historical FAQ-only locale evidence remains preserved. No whole-Flow/semantic percentage.
+
+Use **checkpoint_named_periods.py** now. Older checkpoint scripts will overwrite current state. Keep heartbeat until all76/all14 and final re-audit are actually complete.
+
+Next: {status['next_work']}
+
+## Historical checkpoint before native named-period repair
+
+'''
+p=R/'CURRENT_HANDOFF_TH.md';old=p.read_text('utf8');marker='## Historical checkpoint before native named-period repair\n\n';old=old.split(marker,1)[1] if marker in old else old;p.write_text(header+old,'utf8')
+print(json.dumps({'native_period_controls':reports['named_period']['checks'],'requirements':76,'individual_requirement_reviews':48,'bounded_criteria':count,'candidate_python_ast':len(paths),'row191_still_quarantined':True,'installed':'R134','complete':False,'runtime_recovery':recovery.name}))

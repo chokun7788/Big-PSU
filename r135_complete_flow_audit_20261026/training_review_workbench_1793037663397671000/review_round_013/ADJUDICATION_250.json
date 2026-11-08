@@ -1,0 +1,143 @@
+{
+  "question_key": "205d336855a25305286468bdb5ab5006e36e9018147df1945d083a47b78e5b93",
+  "example_sha256": "92cce1cb59d0ff42a50d34954e69fbd5a5cd3947c312f0b96846f870b394c7a3",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Thai question asks the function of the explicitly named L (Left Stick) in Super Mario Odyssey on Nintendo Switch.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings is one game-specific control lookup; the named controller part does not add equipment usage.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Retain the supplied platform and add the full exact L (Left Stick) scope rather than collapsing it to L.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove the duplicated top-level platform context; no second task, game edition, controller preset or history is supplied.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not confuse stick movement with L shoulder, stick click, R or R3; the wording does not supply a click gesture.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned controls_nintendo_super_mario_odyssey revision6 has an explicit L (Left Stick) binding separate from R and R3; game version, input_device and preset remain unknown and coverage needs manual verification.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร"
+      ],
+      "source_record_ids": [
+        "controls_nintendo_super_mario_odyssey"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No movement answer, fabricated click gesture, preset, edition or source-verification verdict enters the language label.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Controller labels are specific and recorded source coverage needs manual verification.",
+      "handling": "Match full stick label; do not add click or current-version certainty."
+    }
+  ],
+  "historical_review_row": 250,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Mario Odyssey",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Mario Odyssey",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "L (Left Stick)",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_nintendo_super_mario_odyssey": {
+      "revision": 6,
+      "record_sha256": "6c8492ed6930de946f02864afb1106cd745c297ee045e2370b409d8ddc645a43"
+    }
+  }
+}

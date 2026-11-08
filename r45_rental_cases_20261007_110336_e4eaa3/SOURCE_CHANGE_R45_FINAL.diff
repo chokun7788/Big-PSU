@@ -1,0 +1,280 @@
+--- before/app/pipeline/zone_rental.py
++++ after/app/pipeline/zone_rental.py
+@@ -15,7 +15,25 @@
+ PRICE=re.compile(r'ราคา|ค่าบริการ|กี่บาท|เท่าไหร่|เท่าไร|\b(?:price|prices|fees?|rates?|cost|how much)\b',re.I)
+ HOURLY=re.compile(r'รายชั่วโมง|ต่อชั่วโมง|\bhourly\b|\bper hour\b',re.I)
+ RETURN=re.compile(r'^(?:กลับ(?:ไป|มา)(?:เรื่อง|ที่)?|(?:go )?back to|return to)',re.I)
+-ASKS={'rates','capacity','equipment','duration_definition','effective_date','booking','live_availability','overtime','per_unit','eligibility','hourly_rental','multi_day'}
++ASKS={'rates','capacity','equipment','duration_definition','effective_date','booking','live_availability','overtime','per_unit','eligibility','hourly_rental','multi_day','custom_package','scope_clarification'}
++
++NEGATIVE=re.compile(r'(?:ไม่เอา|ไม่ใช่|ไม่ต้องการ|ยกเว้น|เว้น|\b(?:excluding|exclude|except|not|without)\b)\s*(?:ราคา|ราคาของ|แบบ|the|prices? for)?\s*$',re.I)
++
++def _selection(q, patterns, universe):
++    positive=[];negative=[]
++    for key,pattern in patterns:
++        for match in re.finditer(pattern,q,re.I):
++            (negative if NEGATIVE.search(q[:match.start()]) else positive).append(key)
++    selected=positive if positive else list(universe) if negative else []
++    return list(dict.fromkeys(k for k in selected if k not in negative))
++
++def _periods(q):
++    return _selection(q,[('half_day',HALF.pattern),('full_day',FULL.pattern)],PERIODS)
++
++def _mask_unknown_codes(q):
++    def mask(match):
++        return match[0] if re.sub(r'\s+','',match[0]) in ('ps5','playstation5') else ' '
++    return re.sub(r'\b(?:ps\s*\d+|playstation\s+\d+)\b',mask,q,flags=re.I)
+ 
+ def load_zone_rental_data():
+     data=json.loads(DATA_PATH.read_text(encoding='utf-8'))
+@@ -31,31 +49,41 @@
+     return data
+ 
+ def valid_zone_rental_plan(p):
+-    return (isinstance(p,dict) and p.get('schema_type')=='zone_rental_v1' and p.get('schema_version')==1
++    valid=(isinstance(p,dict) and p.get('schema_type')=='zone_rental_v1' and p.get('schema_version')==1
+         and all(isinstance(p.get(k),list) and len(p[k])<=limit and all(isinstance(v,str) and v in allowed for v in p[k])
+             for k,allowed,limit in [('targets',TARGETS,6),('groups',GROUPS,2),('periods',PERIODS,2),('asks',ASKS,12)])
+         and bool(p['groups']) and bool(p['periods']) and bool(p['asks'])
+         and isinstance(p.get('unresolved_targets'),list) and len(p['unresolved_targets'])<=6
+         and all(isinstance(v,str) and 0<len(v)<=100 for v in p['unresolved_targets'])
+         and all(len(p[k])==len(set(p[k])) for k in ('targets','groups','periods','asks'))
+-        and bool(p['targets'] or p['unresolved_targets'])
++        and bool(p['targets'] or p['unresolved_targets'] or {'custom_package','scope_clarification'} & set(p['asks']))
+         and isinstance(p.get('resolved_query'),str) and 0<len(p['resolved_query'])<=2000)
++    if not valid:return False
++    scoped=p.get('scoped_requests')
++    if scoped is None:return True
++    if not isinstance(scoped,list) or not 1<=len(scoped)<=6:return False
++    for child in scoped:
++        if not isinstance(child,dict):return False
++        for key in ('targets','groups','periods'):
++            values=child.get(key)
++            if not isinstance(values,list) or not values or not all(isinstance(v,str) for v in values) or len(values)!=len(set(values)) or any(v not in p[key] for v in values):return False
++    return True
+ 
+ def _targets(q):
+     from app.session.conversation_plan import service_mentions, excluded_services
+-    selected=service_mentions(q,fuzzy=True)
++    selected=service_mentions(_mask_unknown_codes(q),fuzzy=True)
+     bundle=bool(re.search(r'ทุกโซน|ทั้งศูนย์|ทั้งห้อง|\ball zones\b|\b(?:entire|whole)\s+(?:studio|venue|room)\b',q,re.I))
+-    catalog=bool(re.search(r'แต่ละโซน|แยก.{0,8}โซน|ทุกแพ็กเกจ|ราคาทั้งหมด|ทุกแบบ|\b(?:all (?:rental )?(?:prices|rates|packages)|each zone)\b',q,re.I))
++    catalog=bool(re.search(r'แต่ละโซน|แยก.{0,8}โซน|ทุกแพ็กเกจ|ราคาทั้งหมด|ทุกแบบ|ทั้งหมด|\b(?:all (?:rental )?(?:prices|rates|packages)|all of them|each zone)\b',q,re.I))
+     selected=list(TARGETS) if catalog else (['all_zones'] if bundle else [])+selected
+     excluded=excluded_services(q)
+     return list(dict.fromkeys(t for t in selected if t not in excluded))
+ 
+ def _groups(q):
+-    internal=bool(re.search(r'หน่วยงานภายใน|หน่วยงานในมหาวิทยาลัย|\binternal\b|\bpsu (?:department|unit|organization)\b',q,re.I))
+-    external=bool(re.search(r'หน่วยงานภายนอก|หน่วยงานนอก|\bexternal\b',q,re.I))
++    groups=_selection(q,[('internal',r'หน่วยงานภายใน|หน่วยงานในมหาวิทยาลัย|\binternal\b|\bpsu (?:department|unit|organization)\b'),('external',r'หน่วยงานภายนอก|หน่วยงานนอก|\bexternal\b')],GROUPS)
++    internal=False;external=False
+     if re.fullmatch(r'(?:ภายใน|ในมหาวิทยาลัย)[.!?\s]*',q):internal=True
+     if re.fullmatch(r'(?:ภายนอก|นอกมหาวิทยาลัย)[.!?\s]*',q):external=True
+-    return [g for g,found in [('external',external),('internal',internal)] if found]
++    return [g for g in GROUPS if g in groups or (g=='internal' and internal) or (g=='external' and external)]
+ 
+ def _asks(q):
+     asks=[]
+@@ -95,15 +123,18 @@
+         span=re.sub(r'\bpc\s*#?\s*\d+\b','pc',span,flags=re.I)
+         for alias in sorted({a for aa in SERVICE_ALIASES.values() for a in aa},key=len,reverse=True):
+             normalized=normalize_text(alias)
+-            pattern=r'(?<![a-z0-9])'+re.escape(normalized)+r'(?![a-z])' if normalized.isascii() else re.escape(normalized)
++            pattern=r'(?<![a-z0-9])'+re.escape(normalized)+r'(?![a-z0-9])' if normalized.isascii() else re.escape(normalized)
+             span=re.sub(pattern,' ',span,flags=re.I)
+         span=re.sub(r'ทุกแพ็กเกจ|ทั้งศูนย์|ทั้งห้อง|ทุกแบบ|แต่ละโซน|ยกเว้น|ไม่เอา|อุปกรณ์|ห้อง|โซน|เครื่อง|ทั้งหมด|ทุกโซน|หน่วยงานภายใน|หน่วยงานภายนอก|ราคา|กี่บาท|เท่าไหร่|เท่าไร|\b(?:what|is|are|how|much|show|when|do|i|book|hourly|full|half|whole|day|entire|seating|capacity|included|for|a|an|the|zone|studio|all|zones|and|of|equipment|prices?|rates?|fees?|external|internal|organizations?|please|except)\b|และ|กับ|ครับ|ค่ะ|หน่อย|[^\w\u0e00-\u0e7f]+',' ',span,flags=re.I).strip()
+-        span=' '.join(token for token in span.split() if not service_mentions(token,fuzzy=True))
++        span=re.sub(r'สำหรับ|แบบ|ล่ะ|\b(?:excluding|exclude|not|instead|cost|to)\b',' ',span,flags=re.I).strip()
++        span=' '.join(token for token in span.split() if not service_mentions(_mask_unknown_codes(token),fuzzy=True))
+         if span and len(span)<=100:found.append(span)
+     return list(dict.fromkeys(found))[:6]
+ 
+ def resolve_zone_rental_plan(question,history=None,*,locale='th'):
+     q=normalize_text(question).strip();previous=None
++    from app.session.conversation_plan import CANCEL
++    if CANCEL.search(q) and not _targets(q) and not _groups(q) and not _periods(q):return None
+     explicit=bool(RENTAL.search(q) or ((HALF.search(q) or FULL.search(q)) and PRICE.search(q)))
+     if HOURLY.search(q) and not RENTAL.search(q):return None
+     if isinstance(history,list):
+@@ -111,14 +142,17 @@
+         for row in reversed(candidates):
+             if row.get('role')=='assistant' and row.get('delivery_status')=='client_acknowledged' and valid_zone_rental_plan(row.get('request_plan')):
+                 previous=copy.deepcopy(row['request_plan']);break
+-    targets=_targets(q);groups=_groups(q);periods=[p for p,found in [('half_day',HALF.search(q)),('full_day',FULL.search(q))] if found]
++    targets=_targets(q);groups=_groups(q);periods=_periods(q)
+     bare=re.fullmatch(r'(?:ทั้งหมด(?:เลย)?|ทุกแบบ|all(?: of them)?|both|both periods|ภายใน|ภายนอก|internal|external)[.!?\s]*',q,re.I)
+     short_selection=bool(targets or groups or periods or re.search(r'ทั้งสองกลุ่ม|\bboth groups\b',q,re.I)) and len(q)<=90 and not re.search(r'เกม|ปุ่ม|ว่าง|กฎ|แข่งขัน|\b(?:games?|controls?|rules?|availability|available)\b',q,re.I)
+-    information_followup=bool(previous and re.search(r'กี่ชั่วโมง|กี่โมง|ที่นั่ง|อุปกรณ์|รวมอะไร|มีอะไรให้|เจ้าหน้าที่|นอกเวลา|เริ่มใช้|\b(?:how many hours|seats|equipment|what is included|overtime|effective date)\b',q,re.I))
+-    if not explicit and not (previous and (bare or short_selection or information_followup)):return None
++    information_followup=bool(previous and re.search(r'กี่ชั่วโมง|กี่โมง|ที่นั่ง|อุปกรณ์|รวมอะไร|มีอะไรให้|เจ้าหน้าที่|นอกเวลา|เริ่มใช้|^จอง(?:ยังไง|อย่างไร)|\b(?:how many hours|seats|equipment|what is included|overtime|effective date|how do i book it)\b',q,re.I))
++    generic_price=bool(previous and PRICE.search(q) and not targets and len(q)<=50 and not re.search(r'เกม|ปุ่ม|ว่าง|\b(?:game|control|available)\b',q,re.I))
++    unknown_selection=bool(previous and not explicit and not targets and not groups and not periods and not bare and not short_selection and not information_followup and not generic_price and re.fullmatch(r'[a-z0-9][a-z0-9 _#-]{0,35}',q) and not re.search(r'\b(?:what|where|when|how|why|hi|hello|thanks|help|yes|no)\b',q))
++    if not explicit and not (previous and (bare or short_selection or information_followup or generic_price or unknown_selection)):return None
+     # A complete unrelated question containing a service name is a topic shift.
+-    if not explicit and previous and PRICE.search(q) and not groups and not periods:return None
+-    inherited=bool(previous and (not explicit or RETURN.search(q)))
++    if not explicit and previous and PRICE.search(q) and not groups and not periods and not generic_price:return None
++    linked=bool(re.search(r'^(?:แล้ว|และ|\band\b|what about)|ทั้งหมด|ทุกแพ็กเกจ|\ball (?:rental )?(?:rates|prices|packages)\b',q,re.I))
++    inherited=bool(previous and (not explicit or RETURN.search(q) or linked))
+     p=copy.deepcopy(previous) if inherited else dict(schema_type='zone_rental_v1',schema_version=1,targets=list(TARGETS),groups=list(GROUPS),periods=list(PERIODS),asks=['rates'],unresolved_targets=[])
+     if targets:p['targets']=targets
+     elif bare and re.search(r'ทั้งหมด|ทุกแบบ|\ball\b',q,re.I):p['targets']=list(TARGETS)
+@@ -126,13 +160,38 @@
+     if re.search(r'ทั้งสองกลุ่ม|ทั้งภายในและภายนอก|\bboth (?:groups|organization types)\b',q,re.I):p['groups']=list(GROUPS)
+     if periods:p['periods']=periods
+     if bare and re.search(r'\bboth(?: periods)?\b',q,re.I):p['periods']=list(PERIODS)
+-    if explicit or information_followup:p['asks']=_asks(q)
+-    unknown=_unknown_targets(q) if explicit else []
++    if explicit or information_followup or generic_price:p['asks']=_asks(q)
++    unknown=[question.strip()] if unknown_selection else _unknown_targets(q) if explicit else []
+     # A fuzzy matched known service should not become a leftover unknown noun.
+     if unknown and not targets:p['targets']=[]
+     p['unresolved_targets']=unknown
++    # Preserve conditions per clause rather than combining unrelated dimensions.
++    pieces=re.split(r'\s*(?:และ|;|\band\b)\s*',q,flags=re.I)
++    scoped=[piece for piece in pieces if _targets(piece)]
++    if len(scoped)>1:
++        requests=[]
++        for piece in scoped:
++            requests.append(dict(targets=_targets(piece),groups=_groups(piece) or p['groups'],periods=_periods(piece) or p['periods']))
++        p['scoped_requests']=requests
++    elif inherited and previous.get('scoped_requests') and not re.search(r'ทั้งหมด|ทุกแพ็กเกจ|\ball\b',q,re.I):
++        requests=copy.deepcopy(previous['scoped_requests'])
++        if targets:requests=[{**child,'targets':[t for t in child['targets'] if t in targets]} for child in requests if any(t in targets for t in child['targets'])]
++        if groups:
++            for child in requests:child['groups']=groups
++        if periods:
++            for child in requests:child['periods']=periods
++        if requests:
++            p['scoped_requests']=requests
++            for key in ('targets','groups','periods'):p[key]=list(dict.fromkeys(v for child in requests for v in child[key]))
++        else:p.pop('scoped_requests',None)
++    else:p.pop('scoped_requests',None)
++    if 'all_zones' in p['targets'] and re.search(r'ทั้งศูนย์|ทั้งห้อง|\b(?:whole|entire) (?:studio|room|venue)\b',q,re.I) and re.search(r'ยกเว้น|ไม่เอา|\b(?:except|excluding|without)\b',q,re.I):
++        p.update(targets=[],asks=['custom_package'],unresolved_targets=[]);p.pop('scoped_requests',None)
++    if (bool(HALF.search(q) or FULL.search(q)) and not periods and re.search(r'ไม่เอา|ยกเว้น|\b(?:not|except|excluding)\b',q,re.I)) or (re.search(r'หน่วยงานภายใน|หน่วยงานภายนอก|\binternal\b|\bexternal\b',q,re.I) and not groups and re.search(r'ไม่เอา|ยกเว้น|\b(?:not|except|excluding)\b',q,re.I)):
++        p.update(targets=[],asks=['scope_clarification'],unresolved_targets=[]);p.pop('scoped_requests',None)
+     p.update(original_query=question,context_used=inherited,act='fill_rental_scope' if inherited else 'new_rental_request')
+     p['resolved_query']='Zone rental request: '+', '.join(p['targets'])+'; organizations '+', '.join(p['groups'])+'; periods '+', '.join(p['periods'])+'; facts '+', '.join(p['asks'])
++    if p.get('scoped_requests'):p['resolved_query']+='; scoped requests '+json.dumps(p['scoped_requests'],ensure_ascii=False)
+     return p
+ 
+ def build_zone_rental_answer(plan,locale='th'):
+@@ -140,6 +199,7 @@
+     data=load_zone_rental_data();en=locale=='en';rows=[r for r in data['rows'] if r['id'] in plan['targets']]
+     lines=['Zone rental fees for organizations' if en else 'ราคาเช่าเหมาโซนสำหรับหน่วยงาน'];returned=[];missing=[]
+     prices='rates' in plan['asks'];groups={'external':'External organizations' if en else 'หน่วยงานภายนอก','internal':'Internal organizations' if en else 'หน่วยงานภายใน'}
++    allowed={(t,g,p) for child in plan.get('scoped_requests',[plan]) for t in child['targets'] for g in child['groups'] for p in child['periods']}
+     periods={'half_day':'half day' if en else 'ครึ่งวัน','full_day':'full day' if en else 'เต็มวัน'}
+     if prices or {'capacity','equipment'} & set(plan['asks']):
+         for row in rows:
+@@ -148,11 +208,14 @@
+                 for group in plan['groups']:
+                     parts=[]
+                     for period in plan['periods']:
++                        if (row['id'],group,period) not in allowed:continue
+                         value=row['prices_thb'][group][period];parts.append(f"{periods[period]} {value:,} {'THB' if en else 'บาท'}")
+                         returned.append(dict(id=f"{row['id']}:{group}:{period}",value=value,cell=row['source_cells'][f'{group}_{period}']))
+-                    lines.append(f"• {groups[group]}: "+' / '.join(parts))
++                    if parts:lines.append(f"• {groups[group]}: "+' / '.join(parts))
+             lines.append(f"• {'Seating capacity' if en else 'รองรับ'}: {row['seats']} {'seats' if en else 'ที่นั่ง'}; {'equipment' if en else 'อุปกรณ์'}: {row['equipment_en' if en else 'equipment_th']}")
+     messages={
++      'custom_package':('The workbook gives the complete All Zones package rate, not a rate for a modified package excluding a zone. Please confirm the custom package price with the studio.','ไฟล์ให้ราคาแพ็กเกจ All Zones ครบทุกโซน แต่ไม่มีราคาแพ็กเกจที่ตัดบางโซนออก ต้องยืนยันราคาแพ็กเกจที่ปรับกับศูนย์ครับ'),
++      'scope_clarification':('Please specify which zone, organization type, and half/full-day period belong together.','กรุณาระบุว่าแต่ละโซนต้องการกลุ่มหน่วยงานใดและช่วงครึ่งวันหรือเต็มวันครับ'),
+       'duration_definition':('The workbook does not define the number of hours or clock windows for half-day/full-day rental. Please confirm the rental hours with the studio.','ไฟล์ไม่ได้ระบุว่าครึ่งวัน/เต็มวันนับกี่ชั่วโมงหรือเริ่ม–สิ้นสุดกี่โมง ต้องยืนยันช่วงเวลาเช่าเหมาจากศูนย์ครับ'),
+       'effective_date':('The workbook does not state an effective or expiry date for these rental rates.','ไฟล์ไม่ได้ระบุวันเริ่มใช้หรือวันสิ้นสุดของอัตราเช่าเหมานี้ครับ'),
+       'booking':('The workbook lists rental fees but does not specify the rental booking procedure. Please confirm it with the studio.','ไฟล์ระบุราคาเช่าเหมา แต่ไม่ได้ระบุขั้นตอนหรือช่องทางจองเหมา ต้องสอบถามศูนย์เพื่อยืนยันครับ'),
+--- before/tests/test_rental_scope_r45.py
++++ after/tests/test_rental_scope_r45.py
+@@ -0,0 +1,90 @@
++"""Scoped rental requests must not apply one child's conditions to another."""
++import copy,unittest
++from app.pipeline.zone_rental import resolve_zone_rental_plan as resolve,build_zone_rental_answer as build,valid_zone_rental_plan as valid
++
++def history(q):
++    p=resolve(q)
++    return [{'role':'assistant','delivery_status':'client_acknowledged','request_plan':p}]
++
++class RentalScopeTests(unittest.TestCase):
++    def rates(self,p):return {r['id']:r['value'] for r in build(p)['metadata']['returned_rates']}
++
++    def test_separate_children_different_periods_and_groups(self):
++        p=resolve('ราคาเหมา PC เต็มวันหน่วยงานภายนอก และ VR ครึ่งวันหน่วยงานภายใน')
++        self.assertEqual(self.rates(p),{'pc:external:full_day':4000,'vr:internal:half_day':1500})
++        answer=build(p)['answer']
++        pc=answer.split('**PC Zone**')[1]
++        self.assertIn('หน่วยงานภายนอก: เต็มวัน 4,000',pc)
++        self.assertNotIn('หน่วยงานภายใน:',pc)
++
++    def test_shared_tail_group_and_different_periods(self):
++        p=resolve('PC rental full day and VR rental half day for external organizations')
++        self.assertEqual(self.rates(p),{'pc:external:full_day':4000,'vr:external:half_day':3000})
++
++    def test_same_zone_can_have_two_scopes(self):
++        p=resolve('PC rental full day external organizations and PC rental half day internal organizations')
++        self.assertEqual(self.rates(p),{'pc:external:full_day':4000,'pc:internal:half_day':1000})
++
++    def test_group_and_period_negations(self):
++        self.assertEqual(resolve('PC rental price excluding internal organizations')['groups'],['external'])
++        self.assertEqual(resolve('ราคาเหมา VR ไม่เอาครึ่งวัน เอาเต็มวัน')['periods'],['full_day'])
++
++    def test_filtered_all_followup_retains_dimensions(self):
++        p=resolve('ทั้งหมด ยกเว้น VR',history('ราคาเหมา PC หน่วยงานภายนอกครึ่งวัน'))
++        self.assertNotIn('vr',p['targets']);self.assertEqual(len(p['targets']),5)
++        self.assertEqual(p['groups'],['external']);self.assertEqual(p['periods'],['half_day'])
++
++    def test_select_child_keeps_its_own_dimensions(self):
++        p=resolve('PC',history('ราคาเหมา PC เต็มวันหน่วยงานภายนอก และ VR ครึ่งวันหน่วยงานภายใน'))
++        self.assertEqual(self.rates(p),{'pc:external:full_day':4000})
++
++    def test_field_then_price_restores_price_intent(self):
++        p=resolve('รวมอะไรบ้าง',history('ราคาเหมา PC หน่วยงานภายนอกครึ่งวัน'))
++        h=[{'role':'assistant','delivery_status':'client_acknowledged','request_plan':p}]
++        r=resolve('ราคาเท่าไหร่',h)
++        self.assertEqual(r['asks'],['rates']);self.assertEqual(self.rates(r),{'pc:external:half_day':2000})
++
++    def test_unknown_menu_selection_and_numbered_product(self):
++        for q,h in [('Xbox',history('ขอราคาเหมา')),('ราคาเหมา PS55 เต็มวัน',[])]:
++            p=resolve(q,h);self.assertEqual(p['targets'],[])
++            self.assertEqual(self.rates(p),{});self.assertIn('unresolved_targets',build(p)['metadata']['missing_fields'])
++
++    def test_custom_all_zones_is_not_full_bundle_price(self):
++        p=resolve('Whole studio rental price except PC')
++        self.assertEqual(self.rates(p),{})
++        self.assertEqual(build(p)['metadata']['missing_fields'],['custom_package'])
++
++    def test_booking_followup_does_not_apply_play_booking_cap(self):
++        p=resolve('จองยังไง',history('ราคาเหมา PC หน่วยงานภายนอกครึ่งวัน'))
++        r=build(p);self.assertEqual(r['metadata']['missing_fields'],['booking'])
++        self.assertNotIn('3 sessions',r['answer']);self.assertNotIn('3 เซส',r['answer'])
++
++    def test_unknown_dimensions_in_child_rejected(self):
++        p=resolve('PC rental full day and VR rental half day external')
++        p['scoped_requests'][0]['groups']=['student']
++        self.assertFalse(valid(p));self.assertIsNone(build(p))
++
++    def test_overlarge_or_malformed_child_list_rejected(self):
++        p=resolve('PC rental full day and VR rental half day external')
++        for children in ([None],[{'targets':[],'groups':['external'],'periods':['full_day']}],[{'targets':[['pc']],'groups':['external'],'periods':['full_day']}],p['scoped_requests']*4):
++            other=copy.deepcopy(p);other['scoped_requests']=children;self.assertFalse(valid(other))
++
++    def test_all_prices_expands_compound_to_catalog(self):
++        p=resolve('all rental rates',history('PC rental full day external organizations and VR rental half day internal organizations'))
++        self.assertEqual(len(self.rates(p)),24)
++        self.assertNotIn('scoped_requests',p)
++
++    def test_excluding_every_period_requests_clarification(self):
++        p=resolve('PC rental price not half day and not full day')
++        self.assertEqual(self.rates(p),{})
++        self.assertIn('scope_clarification',build(p)['metadata']['missing_fields'])
++
++    def test_cancelled_price_task_is_not_resent(self):
++        self.assertIsNone(resolve('ไม่เอาราคาเหมาแล้ว',history('ราคาเหมา PC')))
++
++    def test_both_groups_is_not_an_unknown_equipment_name(self):
++        p=resolve('both groups',history('PC rental price external half day'))
++        self.assertEqual(p['unresolved_targets'],[])
++        self.assertEqual(self.rates(p),{'pc:external:half_day':2000,'pc:internal:half_day':1000})
++
++if __name__=='__main__':unittest.main()

@@ -1,0 +1,34 @@
+[
+  {
+    "question": "How far ahead must I book?",
+    "locale": "en",
+    "mode": "pipeline:rule_en",
+    "category": "reservation",
+    "intent": "booking_steps",
+    "answer": "Booking steps:\n• Select a service.\n• Choose a date and time.\n• Fill in your user information.\n• Review the details.\n• Pay by bank transfer.\n• Upload the payment slip.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+  },
+  {
+    "question": "How many days in advance can I cancel my booking?",
+    "locale": "en",
+    "mode": "pipeline:protected_booking_window",
+    "category": "schedule",
+    "intent": "booking_window",
+    "answer": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+  },
+  {
+    "question": "จองได้สูงสุดกี่เครื่อง",
+    "locale": "th",
+    "mode": "pipeline:structured_reservation_fact",
+    "category": "reservation",
+    "intent": "booking_policy",
+    "answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+  },
+  {
+    "question": "ต้องจองล่วงหน้ากี่วัน",
+    "locale": "th",
+    "mode": "pipeline:structured_reservation_fact",
+    "category": "reservation",
+    "intent": "booking_policy",
+    "answer": "ต้องจองล่วงหน้าผ่านระบบออนไลน์ก่อนเวลาใช้งานอย่างน้อย 1 ชั่วโมง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+  }
+]

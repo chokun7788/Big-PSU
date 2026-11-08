@@ -1,0 +1,10 @@
+--- before/app/knowledge/common/query_contract.py
++++ r61/app/knowledge/common/query_contract.py
+@@ -45,6 +45,7 @@
+ def scope_kinds(kinds):
+     result=set(kinds or CATALOG)
+     if 'game' in result:result.update(('game_mode','game_service','control_set'))
++    if result&{'game_service','closure'}:result.add('policy')
+     if 'competition' in result:result.add('competition_rule')
+     return result
+ 

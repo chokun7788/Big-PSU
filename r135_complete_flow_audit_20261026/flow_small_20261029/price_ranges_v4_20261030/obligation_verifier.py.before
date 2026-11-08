@@ -1,0 +1,331 @@
+"""Source/operation receipts, not an assertion of whole-question semantics."""
+import json,re
+from dataclasses import asdict
+from .projection import value
+
+VERSION='r135-obligation-verifier-v2'
+
+def numeric_text_supported(fact,claim,calc):
+    text=claim['value'];amount=claim['numeric']
+    if text in fact['value'].values() and abs(float(amount)-float(fact['numeric']))<0.000001:return True
+    if fact['category']!='C06' or fact['facet']!='amount':return False
+    pattern=r'(?P<amount>\d+(?:\.\d+)?)\s+(?:THB(?:\s+(?:per person|per group|for the stated billing unit))?\s+for\s+(?P<count>\d+(?:\.\d+)?)\s+(?P<unit>minutes|sessions))'
+    match=re.fullmatch(pattern,text,re.I)
+    if match is None:
+        pattern=r'(?P<amount>\d+(?:\.\d+)?)\s+บาท(?:ต่อคน|ต่อกลุ่ม|ตามหน่วยที่ระบุ)?\s+สำหรับ\s+(?P<count>\d+(?:\.\d+)?)\s+(?P<unit>นาที|รอบ)'
+        match=re.fullmatch(pattern,text)
+    if match is None or abs(float(match['amount'])-float(amount))>0.000001 or calc is None:return False
+    if re.search(r'per person|ต่อคน',text,re.I) and not (fact.get('confirmed_per_person') or fact.get('billing_unit')=='per_person' or fact.get('calculation')=='integer_sessions_per_person'):return False
+    if re.search(r'per group|ต่อกลุ่ม',text,re.I) and fact.get('billing_unit')!='per_group':return False
+    expected=calc['requested_minutes'] if match['unit'] in {'minutes','นาที'} else calc['billed_units']
+    return expected is not None and abs(float(match['count'])-float(expected))<0.000001
+
+def terminal(result):
+    from .terminal_states import from_result
+    return from_result(result)
+
+def withhold_delivery(ledger,reason,state):
+    """Rejected or withheld claims are forensic data, never delivered proof."""
+    import copy
+    safe=copy.deepcopy(ledger)
+    safe['withheld_evidence']={'receipts':safe.get('receipts',[]),'reason_codes':safe.get('reason_codes',[]),'fatal':safe.get('fatal',[])}
+    safe.update(terminal_state=state,receipts=[],all_obligations_fulfilled=False,collection_proof=None)
+    safe['reason_codes']=sorted(set([*safe.get('reason_codes',[]),reason]))
+    for obligation in safe.get('obligations',[]):obligation.update(fulfilled=False,reason=reason,claim_refs=[])
+    return safe
+
+def assess(index,task,result,snapshot,question=''):
+    claims=result['claims'];issues=[];receipts=[];fatal=[]
+    metadata=result['plan']['metadata']
+    from .controller_catalog import request as controller_request,claim_errors as controller_errors,FACET as CONTROLLER_FACET
+    controller=controller_request(index,question) if task.category=='C04' else None
+    if claims and controller:
+        fatal.extend(controller_errors(index,question,claims,snapshot['reference_time'],metadata.get('controller_catalog_scope')))
+        if 'controller_catalog_scope' not in metadata:fatal.append('controller_catalog_scope_receipt_missing')
+    if task.category=='C13' and claims:
+        from .rule_dependencies import proof,scope_refs
+        closure=proof(index,question,task.operation,snapshot['reference_time'],[c['fact_id'] for c in claims])
+        if closure['errors'] or closure['missing_fact_ids'] or metadata.get('rule_dependency_proof')!=closure:fatal.append('source_receipt_required_rule_dependency_closure_mismatch')
+        if closure['limits'] and result['status']!='partial':fatal.append('source_receipt_rule_dependency_completeness_unproven')
+        for c in claims:
+            f=index.byid.get(c.get('fact_id'))
+            if f and any(ref not in c.get('evidence_refs',[]) for ref in scope_refs(index,f)):fatal.append('source_receipt_rule_scope_locator_missing')
+    if claims:
+        from .context_bindings import service_game_relation
+        for binding in task.bindings:
+            if binding.basis!='source_related_service_game_ellipsis':continue
+            proof=service_game_relation(index,binding.source_span.text)
+            if proof['validation_outcome']!='validated' or any(getattr(binding,key)!=proof[key] for key in ['entity_refs','relation_refs','validation_outcome']):fatal.append('source_receipt_shared_relation_unproven')
+    if claims and task.facet=='service_periods' and task.category=='C11':
+        from .period_scope import verify as verify_period
+        if not verify_period(index,task,claims,metadata,question,snapshot['reference_time']):fatal.append('source_receipt_named_period_projection_mismatch')
+    if metadata.get('calendar_collection_basis'):
+        from .calendar_sets import verify_metadata
+        if not verify_metadata(index,task,claims,metadata,question,snapshot['reference_time']):fatal.append('source_receipt_calendar_set_projection_mismatch')
+    if task.category=='C02' and claims:
+        from .precision import ambiguous_people
+        if ambiguous_people(index,question):fatal.append('source_receipt_ambiguous_person_identity')
+    if metadata.get('person_scope_proofs') is not None:
+        people={c.get('record_id') for c in claims if index.records.get(c.get('record_id'),{}).get('kind')=='person'}
+        if set(metadata['person_scope_proofs'])!=people:fatal.append('source_receipt_person_projection_mismatch')
+    if metadata.get('calendar_service_answer') or metadata.get('customer_calendar_answer'):
+        from .projection_receipt import check as check_projection
+        projected=next((c for c in claims if c.get('fact_id')==metadata.get('calendar_service_fact_id')),None)
+        fact=index.byid.get(projected.get('fact_id')) if projected else None
+        if not fact or not check_projection(index,fact,projected,metadata,snapshot,question):fatal.append('source_receipt_projection_mismatch')
+    for c in claims:
+        f=index.byid.get(c.get('fact_id'))
+        if not f or f['category']!=task.category or f['record_id']!=c.get('record_id'):
+            fatal.append('source_receipt_identity_mismatch');continue
+        if c.get('facet')!=f['facet']:fatal.append('source_receipt_facet_identity_mismatch');continue
+        if task.category=='C06' and f['facet'] in {'amount','amount_thb'}:
+            record=index.records.get(f['record_id'],{})
+            if record.get('kind')=='rate':
+                lower=value(record,'persons_min');upper=value(record,'persons_max');unit=value(record,'unit')
+                if (lower,upper)!=(1,1) and not (lower is None and upper is None and unit in {'per_person','per_session'}):
+                    fatal.append('source_receipt_person_rate_scope_unproven');continue
+        if task.category=='C05':
+            from .control_scope import binding_projection
+            record=index.records[f['record_id']]
+            try:binding=value(record,'bindings')[int(f['facet'].removeprefix('binding_'))]
+            except (TypeError,ValueError,IndexError):binding=None
+            if not binding or f.get('control_binding')!=binding or f['value']!=binding_projection(binding)[1] or f.get('game_id')!=value(record,'game_id'):fatal.append('source_receipt_control_projection_mismatch');continue
+            game=index.records.get(value(record,'game_id'),{})
+            required=[ref for key in ['bindings','game_id','platform','input_device','preset','game_version'] for ref in record['fields'].get(key,{}).get('evidence_refs',[])]+game.get('fields',{}).get('title',{}).get('evidence_refs',[])
+            if game.get('kind')!='game' or not all(ref in c.get('evidence_refs',[]) for ref in required):fatal.append('source_receipt_control_scope_locator_missing');continue
+        if task.category=='C03' and f['facet']=='equipment_definition':
+            # A labelled scalar and matching source refs do not prove definition semantics.
+            # Fail closed independently of reader selection until reviewed proof exists.
+            fatal.append('source_receipt_equipment_definition_semantics_unproven');continue
+        if task.category=='C03' and index.records[f['record_id']]['kind']=='equipment_model' and f['facet'] in {'quantity','controllers','location'}:
+            key={'quantity':'quantity','controllers':'controllers','location':'zone'}[f['facet']]
+            rows=[x for x in value(index.records[f['record_id']],'specifications') or [] if isinstance(x,dict) and x.get('key')==key]
+            if not rows or len({json.dumps(x,sort_keys=True) for x in rows})!=1 or f.get('specification_entry')!=rows[0]:fatal.append('source_receipt_equipment_dimension_unproven');continue
+            from .equipment_dimensions import allows
+            if not allows(f,question):fatal.append('source_receipt_equipment_count_basis_mismatch');continue
+        from .receipt_scope import check as scope_check
+        scope_proof=scope_check(index,task,f,question)
+        if scope_proof['errors']:
+            fatal.extend(scope_proof['errors']);continue
+        if task.category in {'C08','C09','C10'}:
+            if task.category=='C10' and f.get('policy_complete') is False:fatal.append('source_receipt_policy_conditions_or_exceptions_unknown');continue
+            from .policy_scope import check as policy_check
+            policy=policy_check(index,task,f,question)
+            if any(ref not in c.get('evidence_refs',[]) for ref in policy['source_scope_refs']):fatal.append('source_receipt_policy_scope_locator_missing');continue
+            scope_proof['policy_action']=policy
+            from .policy_scope import applicability
+            current=applicability(index,f,question,snapshot['reference_time'])
+            if not current['allowed'] or metadata.get('policy_applicability',{}).get(f['id'])!=current:fatal.append('source_receipt_policy_applicability_mismatch');continue
+            scope_proof['policy_applicability']=current
+            from .policy_scope import procedure_limits
+            limits=procedure_limits(index.records[f['record_id']])
+            if limits and (metadata.get('procedure_source_limits',{}).get(f['id'])!=limits or result['status']!='partial'):fatal.append('source_receipt_procedure_completeness_unproven');continue
+        if task.category=='C04' and f['facet']=='players_max':
+            from .player_scope import selection
+            player=selection(index,question);proof=player['proofs'].get(f['id'])
+            if not proof or metadata.get('player_filter_proofs',{}).get(f['id'])!=proof or f.get('numeric')!=proof['players_max'] or any(ref not in c.get('evidence_refs',[]) for ref in proof['evidence_refs']):fatal.append('source_receipt_game_player_range_mismatch');continue
+            scope_proof['game_player_range']=proof
+        if task.category=='C01' and index.records[f['record_id']]['kind']=='contact':
+            from .contact_scope import CHANNELS
+            if any(re.search(p,question,re.I) for p in CHANNELS.values()):
+                r=index.records[f['record_id']];channel_refs=r['fields'].get('channel',{}).get('evidence_refs',[])
+                if not channel_refs or not all(ref in c.get('evidence_refs',[]) for ref in channel_refs):fatal.append('source_receipt_contact_channel_locator_missing');continue
+        if task.category=='C02' and index.records.get(f['record_id'],{}).get('kind')=='person':
+            from .person_scope import check as person_scope
+            from .scope import reference_time
+            period_only=all(c['facet']=='period' for c in claims if c.get('record_id')==f['record_id'])
+            profile=person_scope(index.records[f['record_id']],question,reference_time(snapshot['reference_time']),period_only=period_only)
+            if not profile['allowed']:fatal.append('source_receipt_person_scope_mismatch');continue
+            declared=metadata.get('person_scope_proofs')
+            if declared is not None and declared.get(f['record_id'])!=profile:fatal.append('source_receipt_person_projection_mismatch');continue
+            scope_proof['person_profile_scope']=profile
+            from .precision import inverse_people
+            inverse=inverse_people(index,question)
+            if inverse and f['record_id'] not in {index.byid[fid]['record_id'] for fid in inverse.ids}:fatal.append('source_receipt_requested_role_mismatch');continue
+        if task.category=='C14':
+            from .news_scope import publication
+            proof=publication(index,f,question,snapshot['reference_time'])
+            if not proof['allowed']:fatal.append('source_receipt_news_publication_not_effective');continue
+            if metadata.get('news_publication_scope',{}).get(f['id'])!=proof:fatal.append('source_receipt_news_publication_projection_mismatch');continue
+            if proof['state']=='publication_period_unconfirmed':issues.append('news_publication_period_unconfirmed')
+        if task.category=='C14' and f['facet']=='status':
+            from .news_scope import status_date_observed
+            if not status_date_observed(question,snapshot['reference_time']):fatal.append('source_receipt_registration_date_not_observed');continue
+            from ..registry import aware
+            try:
+                age=(aware(snapshot['reference_time'])-aware(f['status_observed_at'])).total_seconds()
+                status_record=index.records[f['record_id']]
+                fresh=0<=age<=f['freshness_max_age_seconds'] and value(status_record,'registration_status_as_of')==f['status_observed_at'] and value(status_record,'registration_status_max_age_seconds')==f['freshness_max_age_seconds']
+            except (KeyError,ValueError,TypeError):fresh=False
+            if not fresh:fatal.append('source_receipt_registration_freshness_mismatch');continue
+        allowed={json.dumps(r,sort_keys=True,ensure_ascii=False) for r in f.get('evidence_refs',[])+f.get('confirmation_evidence_refs',[])}
+        if controller and f['facet']==CONTROLLER_FACET:
+            from .controller_catalog import selection
+            proof=selection(index,question,snapshot['reference_time'])['proofs'].get(f['id'],{})
+            allowed.update(json.dumps(ref,sort_keys=True,ensure_ascii=False) for ref in proof.get('evidence_refs',[]))
+            scope_proof['controller_game_scope']=proof
+        if f['category']=='C04' and f['facet'] in {'studio_services','zone'}:
+            from .game_scope import relation_projection
+            scoped_relation=relation_projection(index,f,question)
+            if scoped_relation:allowed.update(json.dumps(r,sort_keys=True,ensure_ascii=False) for r in scoped_relation['evidence_refs'])
+        refs=c.get('evidence_refs',[])
+        if not refs or any(json.dumps(r,sort_keys=True,ensure_ascii=False) not in allowed for r in refs):
+            fatal.append('source_receipt_reference_mismatch');continue
+        mode='exact_source_value'
+        metadata=result['plan']['metadata']
+        if f.get('numeric') is None and c.get('numeric') is not None:
+            fatal.append('source_receipt_numeric_mismatch');continue
+        if f.get('numeric') is not None and c.get('numeric') is None:
+            fatal.append('source_receipt_numeric_missing');continue
+        if f.get('numeric') is not None and c.get('numeric') is not None:
+            expected=f['numeric']
+            calc=None
+            if f['category']=='C06' and f['facet']=='amount':
+                from .financial import unit_calculation
+                query=metadata.get('comparison_options',{}).get(f['id'],question)
+                calc=unit_calculation(index,f,query)
+                if not calc.get('error'):expected=calc['amount_thb']
+                elif f['id'] not in metadata.get('arithmetic_unconfirmed',[]):
+                    fatal.append('source_receipt_arithmetic_unproven');continue
+            if abs(float(c['numeric'])-float(expected))>0.000001:
+                fatal.append('source_receipt_numeric_mismatch');continue
+            if not numeric_text_supported(f,c,calc):
+                fatal.append('source_receipt_value_mismatch');continue
+            mode='numeric_recomputed'
+        elif f['category']=='C04' and f['facet'] in {'studio_services','zone'}:
+            from .game_scope import relation_projection
+            projection=relation_projection(index,f,question)
+            if projection is not None:
+                if not projection['target_ids'] or metadata.get('game_relation_projections',{}).get(f['id'])!=projection or c['value'] not in projection['value'].values() or any(ref not in refs for ref in projection['evidence_refs']):fatal.append('source_receipt_game_relation_projection_mismatch');continue
+                mode='registered_game_relation_projection_recomputed'
+            elif c.get('value') not in f['value'].values():fatal.append('source_receipt_value_mismatch');continue
+        elif (f['facet']=='specifications' and metadata.get('specification_keys')) or f['id']==metadata.get('calendar_service_fact_id'):
+            from .projection_receipt import check as check_projection
+            mode=check_projection(index,f,c,metadata,snapshot,question)
+            if not mode:fatal.append('source_receipt_projection_mismatch');continue
+        elif c.get('value') not in f['value'].values():
+            fatal.append('source_receipt_value_mismatch');continue
+        record=index.records.get(f['record_id'],{})
+        if f['facet'] in {'amount','amount_thb'} and record.get('kind') in {'rate','rental_package'}:
+            currency_refs=record.get('fields',{}).get('currency',{}).get('evidence_refs',[])
+            if value(record,'currency')!='THB' or not currency_refs or any(ref not in refs for ref in currency_refs):
+                fatal.append('source_receipt_price_currency_unconfirmed');continue
+        receipts.append({'fact_id':f['id'],'record_id':f['record_id'],'facet':f['facet'],'record_revision':record.get('revision'),
+            'snapshot':snapshot,'evidence_refs':refs,'support_level':'projected_source_refs_checked','value_validation':mode,'requested_scope':scope_proof,'semantic_entailment_verified':False})
+    facets={c['facet'] for c in claims};metadata=result['plan']['metadata'];obligations=[]
+    if task.category=='C05' and claims:
+        from .control_scope import requested_button_count,physical_subset
+        if requested_button_count(index,question) is not None:
+            subset=physical_subset(index,question,[index.byid[c['fact_id']] for c in claims if c.get('fact_id') in index.byid])
+            if not subset['verified']:issues.append('requested_physical_button_subset_unconfirmed')
+    collection=None
+    for obligation in task.obligations:
+        fulfilled=False;reason=None;proof=[]
+        if obligation.kind=='task_completion':
+            acceptable={obligation.expected}
+            if controller and obligation.expected in {'game_catalog','zone'} and not controller_errors(index,question,claims,snapshot['reference_time'],metadata.get('controller_catalog_scope')):acceptable.add(CONTROLLER_FACET)
+            if task.category=='C14':acceptable.add({'description':'body','date':'event_start','registration':'registration_url'}.get(obligation.expected,obligation.expected))
+            if task.category=='C11' and obligation.expected=='open_periods' and metadata.get('calendar_semantics')=='play_service_only_not_physical_building_hours_or_live_occupancy':acceptable.add('service_periods')
+            if task.category=='C05' and obligation.expected=='input_bindings':
+                from .precision import controls
+                source_projection=controls(index,question)
+                if source_projection and set(c['fact_id'] for c in claims)<=set(source_projection.ids):
+                    acceptable.update(c['facet'] for c in claims if c['facet'].startswith('binding_'))
+                elif metadata.get('operator')=='action_to_button':
+                    from .source_operations import control_action
+                    source_projection=control_action(index,question,index.bind('C05',question))
+                    if source_projection and {c['fact_id'] for c in claims}<={*source_projection.ids}:acceptable.update(c['facet'] for c in claims)
+                elif metadata.get('operator')=='list':
+                    # A list has no single requested button, so reverse lookup
+                    # intentionally returns None. Prove the delivered set from
+                    # the whole bound control record instead of rejecting its
+                    # binding_0..N facets as a different requested field.
+                    record_ids={c['record_id'] for c in claims}
+                    bound={f['record_id'] for f in index.bind('C05',question)}
+                    if len(record_ids)==1 and record_ids<=bound:
+                        full={f['id'] for rid in record_ids for f in index.byrecord[rid] if f['category']=='C05'}
+                        if full=={c['fact_id'] for c in claims}:
+                            acceptable.update(c['facet'] for c in claims if c['facet'].startswith('binding_'))
+            if task.category=='C01' and obligation.expected=='value' and metadata.get('matched_profile_fact_ids'):
+                from .legacy_profile import plan as source_profile
+                matched=source_profile(index,task.category,question)
+                if matched and set(c['fact_id'] for c in claims)<=set(matched.ids):acceptable.add('owner_policy')
+
+            fulfilled=bool(claims and (not obligation.expected or facets&acceptable))
+            proof=[c['fact_id'] for c in claims if not obligation.expected or c['facet'] in acceptable]
+            if not fulfilled:reason='requested_field_not_delivered' if claims else result['reason']
+        elif obligation.kind=='duration_option':
+            option=obligation.expected
+            # The source period itself must exist; a 30-minute rate scaled to
+            # 60 minutes cannot impersonate a separate 60-minute source option.
+            relevant=[c for c in claims if c['facet'] in {'amount','duration_minutes'} and value(index.records.get(c['record_id'],{}),'duration_minutes')==option]
+            fulfilled=bool(relevant and any(c['facet']=='duration_minutes' for c in relevant))
+            proof=[c['fact_id'] for c in relevant]
+            if not fulfilled:reason='comparison_option_not_delivered'
+        elif obligation.kind=='collection_scope':
+            from .collection_contract import verify as verify_collection
+            collection=verify_collection(index,task,result,question=question,at=snapshot['reference_time'])
+            fulfilled=collection['verified']
+            if fulfilled:proof=[c['fact_id'] for c in claims]
+            else:reason='collection_completeness_not_proven'
+        elif obligation.kind=='compatibility_operation_scope':reason='bounded_compatibility_requested_operation_unverified'
+        obligations.append({**asdict(obligation),'fulfilled':fulfilled,'reason':reason,'claim_refs':proof})
+    from .dialogue_task import platforms
+    expected_platforms=platforms(index,question) if task.category in {'C04','C06'} else []
+    if len(expected_platforms)>1:
+        for platform in expected_platforms:
+            expected={f['record_id'] for f in index.bind(task.category,platform)}
+            delivered={c['record_id'] for c in claims}
+            if task.category=='C06':
+                from .financial import rate_pool
+                expected={f['record_id'] for f in rate_pool(index,platform)}
+            fulfilled=bool(expected&delivered)
+            obligations.append({'id':task.id+':target:'+platform,'kind':'explicit_target','expected':platform,'fulfilled':fulfilled,'reason':None if fulfilled else 'explicit_target_not_delivered','claim_refs':[c['fact_id'] for c in claims if c['record_id'] in expected]})
+    if task.category=='C13' and task.operation=='compare':
+        from .comparison_executor import rule_options
+        options=rule_options(index,question)
+        if len(options)<2:issues.append('comparison_event_options_not_explicit')
+        for eid in options:
+            proof=[c['fact_id'] for c in claims if index.byid.get(c['fact_id'],{}).get('event_id')==eid]
+            obligations.append({'id':task.id+':event:'+eid,'kind':'comparison_event_option','expected':eid,'fulfilled':bool(proof),'reason':None if proof else 'comparison_event_option_not_delivered','claim_refs':proof})
+    if task.category=='C07' and task.operation=='compare':
+        from .comparison_executor import package_scope
+        from .scope import reference_time
+        scoped=package_scope(index,question,task.facet,reference_time(snapshot['reference_time']))
+        if claims and (metadata.get('comparison_option_ids')!=scoped['options'] or metadata.get('package_comparison_fields')!=scoped['fields'] or metadata.get('package_comparison_missing_fields')!=scoped['missing']):fatal.append('source_receipt_package_comparison_projection_mismatch')
+        if len(scoped['options'])<2:issues.append('comparison_package_options_not_explicit')
+        delivered={c['fact_id'] for c in claims}
+        for rid in scoped['options']:
+            for field in scoped['fields']:
+                expected={f['id'] for f in scoped['facts'] if f['record_id']==rid and f['facet']==field};refs=sorted(expected&delivered);complete=bool(expected and expected<=delivered)
+                obligations.append({'id':task.id+':package:'+rid+':'+field,'kind':'comparison_package_option' if field==task.facet else 'comparison_package_condition','expected':{'record_id':rid,'facet':field},'fulfilled':complete,'reason':None if complete else 'package_comparison_field_not_source_confirmed' if not expected else 'package_comparison_field_not_delivered','claim_refs':refs})
+    if task.category=='C05' and claims and metadata.get('action_pattern'):
+        pattern=metadata['action_pattern']
+        fulfilled=all(re.search(pattern,' '.join([*index.byid[c['fact_id']]['label'].values(),*index.byid[c['fact_id']]['value'].values()]),re.I) for c in claims)
+        obligations.append({'id':task.id+':action','kind':'requested_action','fulfilled':fulfilled,'reason':None if fulfilled else 'requested_action_not_delivered','claim_refs':[c['fact_id'] for c in claims]})
+    if task.category=='C13' and claims and re.search(r'can|may|where|allowed|permitted|ได้ไหม|อนุญาต|ที่ไหน',question,re.I):
+        from .rule_semantics import substantive as substantive_rule
+        substantive=any(substantive_rule(c['value'],index.byid[c['fact_id']]['label'].values()) for c in claims)
+        obligations.append({'id':task.id+':substantive','kind':'substantive_clause','fulfilled':substantive,'reason':None if substantive else 'substantive_clause_not_delivered','claim_refs':[c['fact_id'] for c in claims] if substantive else []})
+    if task.capability['operation']=='compare_durations' and claims:
+        options={o.expected for o in task.obligations if o.kind=='duration_option'}
+        groups={}
+        for c in claims:
+            if c['facet']!='amount':continue
+            r=index.records.get(c['record_id'],{});audience=value(r,'audience_id')
+            groups.setdefault(audience,set()).add(value(r,'duration_minutes'))
+            calc=metadata.get('unit_calculations',{}).get(c['fact_id'])
+            if calc and calc.get('requested_minutes')!=value(r,'duration_minutes'):issues.append('comparison_option_arithmetic_scope_mismatch')
+        if any(values!=options for values in groups.values()):issues.append('comparison_audience_options_incomplete')
+        if not metadata.get('comparison_options'):issues.append('comparison_executor_proof_missing')
+    if fatal:issues+=fatal
+    if claims:
+        issues+=sorted({o['reason'] for o in obligations if not o['fulfilled'] and o['reason']})
+    state=terminal(result)
+    if fatal:state='invalid_plan'
+    elif issues and state=='supported':state='partial'
+    return {'version':VERSION,'task_id':task.id,'terminal_state':state,'reason_codes':sorted(set([result['reason'],*issues])),
+        'obligations':obligations,'receipts':receipts,'fatal':sorted(set(fatal)),
+        'source_refs_checked':not fatal,'all_obligations_fulfilled':all(o['fulfilled'] for o in obligations),
+        'collection_proof':collection,
+        'whole_question_semantics_verified':False,'planned_task_coverage_only':True}

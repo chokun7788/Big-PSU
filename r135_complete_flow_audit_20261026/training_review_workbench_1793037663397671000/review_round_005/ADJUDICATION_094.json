@@ -1,0 +1,128 @@
+{
+  "question_key": "9f2a7381272db47963c34abcc12f185377b7cab91156934e453aae543111cde3",
+  "example_sha256": "e21aa8d1945895ebff2c5a38c6425592cbb0bd4bfe52956094741c2d2a8a5775",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One CS2 tournament-format question.",
+      "raw_quotes": [
+        "CS2 แข่งรูปแบบอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause retains format rather than equipment, map pool or game definition.",
+      "raw_quotes": [
+        "CS2 แข่งรูปแบบอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "CS2 is the quoted game target and รูปแบบ is the requested rule scope.",
+      "raw_quotes": [
+        "CS2 แข่งรูปแบบอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No year, round or tournament edition is inherited.",
+      "raw_quotes": [
+        "CS2 แข่งรูปแบบอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The topic is clear without choosing a semifinal/final format as the entire tournament format.",
+      "raw_quotes": [
+        "CS2 แข่งรูปแบบอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_cs2_21_rule_clause is a recorded Single Elimination heading with a BO3 semifinal/final body; heading/body and round scope must stay separate in execution.",
+      "raw_quotes": [
+        "CS2 แข่งรูปแบบอะไร"
+      ],
+      "source_record_ids": [
+        "r114_cs2_21_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No elimination structure, BO3 value, match count or selected event title is taught.",
+      "raw_quotes": [
+        "CS2 แข่งรูปแบบอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The format heading and semifinal/final-only BO3 body carry different scopes.",
+      "handling": "Do not supply the partial round-format body as a complete tournament-format explanation."
+    }
+  ],
+  "historical_review_row": 94,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "CS2 แข่งรูปแบบอะไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "CS2 แข่งรูปแบบอะไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "รูปแบบ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_cs2_21_rule_clause": {
+      "revision": 1,
+      "record_sha256": "71cd0822e27f160373215f5b6a09874cecac7b2e241e177ad57538a66db63d94"
+    }
+  }
+}

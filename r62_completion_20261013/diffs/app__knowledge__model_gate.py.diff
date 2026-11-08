@@ -1,0 +1,17 @@
+--- before/app/knowledge/model_gate.py
++++ r62/app/knowledge/model_gate.py
+@@ -5,10 +5,13 @@
+ """
+ import os,tempfile,time,threading,hashlib
+ from pathlib import Path
++from urllib.parse import urlparse
+ class SharedModelGate:
+  def __init__(self,path=None):
+   self.local=threading.BoundedSemaphore(1);self.held=threading.local()
+-  namespace=hashlib.sha256(os.getenv('OLLAMA_URL','http://127.0.0.1:11434').encode()).hexdigest()[:16]
++  endpoint=urlparse(os.getenv('OLLAMA_URL','http://127.0.0.1:11434'))
++  host='loopback' if endpoint.hostname in {'localhost','127.0.0.1','::1'} else endpoint.hostname
++  namespace=hashlib.sha256((str(host)+':'+str(endpoint.port or 80)).encode()).hexdigest()[:16]
+   self.path=Path(path) if path else Path(tempfile.gettempdir())/'psu_esports_model_gate'/('ollama_'+namespace+'.lock')
+  def acquire(self,blocking=True,timeout=None):
+   start=time.monotonic();limit=float('inf') if timeout is None or timeout<0 else max(0,timeout)

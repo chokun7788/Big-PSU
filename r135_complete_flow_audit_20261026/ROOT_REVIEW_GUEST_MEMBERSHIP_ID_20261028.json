@@ -1,0 +1,99 @@
+{
+  "key": "1fdba5810e96cb911523329c96643ea54e19d2879107fd826b460eb808ec66a8",
+  "question": "Does a non-PSU guest need a membership or national ID?",
+  "requested_locale": "en",
+  "r132_raw_result": {
+    "path": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+    "sha256": "a59516630be4763c141ad9c85ae58a1629d85156403b80b3f8194b44ff809a91"
+  },
+  "r132_answer": "external visitors: External visitors may use all general studio services. Tournament eligibility is separate. [S1]",
+  "r132_sources": {
+    "r114_q037_owner_policy": {
+      "revision": 1,
+      "record_payload_sha256": "8e44cbcfcc536f9cd579694998bacfbf169920807581f24c25c3695e4c2874de",
+      "answer_field": {
+        "evidence_refs": [
+          {
+            "locator": "/fields/answer",
+            "source_id": "r114_import_a11924b4cb9036660d34c1cc"
+          }
+        ],
+        "note": "Imported source-backed candidate draft; not published",
+        "status": "known",
+        "value": {
+          "en": "External visitors may use all general studio services. Tournament eligibility is separate.",
+          "th": "บุคคลภายนอกใช้บริการทั่วไปได้ทั้งหมด; ไม่ขยายไปเป็นคุณสมบัติแข่ง CS2 ซึ่งเอกสารกำหนดนักศึกษา PSU ภูเก็ต"
+        }
+      }
+    },
+    "migrated_owner_claim_membership": {
+      "revision": 3,
+      "record_payload_sha256": "aca98063fcebe8853a6c701da0ce580ff7f67111183c095bbd84b805dcc116a3",
+      "answer_field": {
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/answer",
+            "source_id": "r63_d053ea452d89361690ef4a7bff9e"
+          }
+        ],
+        "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: complete curated owner answer; retain original translation status",
+        "status": "known",
+        "value": {
+          "en": "Membership is not required to use the studio.",
+          "th": "ไม่ต้องเป็นสมาชิกก็สามารถใช้บริการได้ครับ"
+        }
+      }
+    },
+    "migrated_faq_curated_checkin_id_required": {
+      "revision": 3,
+      "record_payload_sha256": "ce9e1239cf155fc71afe7cef50373878833dcaa07156b86ea06f2fafcbd2d4c0",
+      "answer_field": {
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/answer",
+            "source_id": "r66_en_b216cc19bb337dab0f282048"
+          }
+        ],
+        "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: copy complete answer; preserve English status",
+        "status": "known",
+        "value": {
+          "en": "When checking in to use the service, you must present your student ID card, staff ID card, or national identification card.",
+          "th": "เมื่อเช็คอินเข้าใช้บริการ ต้องนำบัตรประจำตัวนักศึกษา บัตรประจำตัวบุคลากร หรือบัตรประชาชนมาแสดง"
+        }
+      }
+    },
+    "migrated_owner_claim_checkin_documents": {
+      "revision": 2,
+      "record_payload_sha256": "80fca9d2e709e9a26e597d03dd35d9624633d9894125fea3b85eafb222ff6830",
+      "answer_field": {
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/answer",
+            "source_id": "r63_e0f9418c9afaeca01d9fb8ab20d4"
+          }
+        ],
+        "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: complete curated owner answer; retain original translation status",
+        "status": "known",
+        "value": {
+          "en": "At arrival, present a national ID card, university student card, school student card, or passport.",
+          "th": "เมื่อมาถึงให้แสดงบัตรประชาชน บัตรนักศึกษา บัตรนักเรียน หรือ Passport อย่างใดอย่างหนึ่งครับ"
+        }
+      }
+    }
+  },
+  "classification": {
+    "content": "R132 gives a general external visitor rule but omits requested membership and check-in identification predicates. Recorded sources contain membership and identification clauses, with different acceptable ID examples and unknown validity.",
+    "cause": "General visitor access was routed before independently resolving membership and identification. The separate requested predicates and source scopes were not preserved.",
+    "protocol": "Route and benchmark evidence requirements remain separate from semantic omission; review actual event/clock and source authority before final acceptance."
+  },
+  "candidate_source_only_reaudit": {
+    "path": "r135_complete_flow_audit_20261026\\guest_membership_documents_1793143243511898800\\DETAILS.json",
+    "sha256": "dfe53c8c7d849b23bd3fb93648f0aba7e6ca343f3df66d3443f3075e6c824e7e",
+    "answer": "**Does a non-PSU guest need a membership or national ID?**\n\nSeveral recorded policy versions have unresolved scope or conditions. Each source is retained; confirm the applicable version with the studio.\nDo I need to become a member first?: Membership is not required to use the studio. [S1]\nYou do not need to be a PSU student. The published booking steps do not specify a separate membership sign-up. Visitors use the National ID field and present a national ID card at check-in; fees depend on the user group and service. [S2]\nThe policy validity interval is unconfirmed. The recorded clause does not establish current permission.\n\n**Does a non-PSU guest need a membership or national ID?**\n\nSeveral recorded policy versions have unresolved scope or conditions. Each source is retained; confirm the applicable version with the studio.\nCheck-in document: When checking in to use the service, you must present your student ID card, staff ID card, or national identification card. [S3]\nWhat documents must I present upon arrival?: At arrival, present a national ID card, university student card, school student card, or passport. [S4]\nThe policy validity interval is unconfirmed. The recorded clause does not establish current permission.",
+    "inference_or_http": false,
+    "limitations": "Isolated source replay only; validity, source applicability and broader ID scope remain unresolved; no actual model wire or full Flow closure."
+  },
+  "controls": "guest_membership_documents_1793143243511898800/RESULT.json",
+  "semantic_status": "individual_source_and_candidate_control_observed_not_final_acceptance",
+  "created_at": 1793143295.1780796
+}

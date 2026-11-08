@@ -1,0 +1,2262 @@
+{
+  "health": {
+    "ok": true,
+    "service": "psu-esports-chat-web",
+    "time": "2026-10-10T10:08:06.389744+00:00",
+    "warmup": {
+      "ok": true,
+      "elapsed_sec": 60.7919,
+      "warmed": [
+        "game_title_aliases",
+        "structured_tools",
+        "game_resolver",
+        "routing_data",
+        "retrieval_data",
+        "probe_queries",
+        "semantic_embedding"
+      ],
+      "errors": [],
+      "timings": {
+        "game_title_aliases": 1.8297,
+        "structured_tools": 1.9127,
+        "game_resolver": 0.3677,
+        "routing_data": 0.4578,
+        "retrieval_data": 4.5587,
+        "probe_queries": 43.8999,
+        "semantic_embedding": 7.7652
+      }
+    },
+    "llm_preflight": {
+      "ok": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "kind": "preflight",
+      "elapsed_ms": 221.39,
+      "response_chars": 2,
+      "done_reason": "length",
+      "num_ctx": 3072,
+      "load_duration": 31903100,
+      "prompt_eval_duration": 151243000,
+      "eval_duration": 1000,
+      "health": {
+        "llm_health_enabled": true,
+        "llm_health_status": "ok",
+        "llm_health_failures": 0,
+        "llm_health_failure_scope": "model_and_kind"
+      }
+    },
+    "input_quality_guard": {
+      "enabled": true,
+      "mode": "enforce",
+      "repeat_policy": "warn_and_continue",
+      "layout_threshold": 0.39,
+      "repeat_threshold": 0.55,
+      "corpus_size": 4023,
+      "profile_version": "keyboard-profile-v1:2a863a4176572043"
+    },
+    "llm_health": {
+      "enabled": true,
+      "failure_threshold": 2,
+      "failure_window_sec": 30.0,
+      "cooldown_sec": 90.0,
+      "states": [
+        {
+          "kind": "model",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 221.39,
+          "last_checked_at": 1791626850.1289146,
+          "last_success_at": 1791626850.1289146,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 221.39,
+              "detail": "preflight_ok",
+              "at": 1791626850.129
+            }
+          ]
+        },
+        {
+          "kind": "preflight",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 221.39,
+          "last_checked_at": 1791626850.1289146,
+          "last_success_at": 1791626850.1289146,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 221.39,
+              "detail": "preflight_ok",
+              "at": 1791626850.129
+            }
+          ]
+        }
+      ]
+    },
+    "pipeline_workers": {
+      "enabled": true,
+      "started": true,
+      "worker_count": 1,
+      "workers": [
+        {
+          "worker_id": 0,
+          "pid": 52564,
+          "alive": true,
+          "ready": true,
+          "completed_requests": 0,
+          "busy": false,
+          "replacement_warming": false
+        }
+      ],
+      "performance": {
+        "run_id": "20261010T100555Z",
+        "path": "C:\\Users\\Chokhun\\Documents\\Codex\\PSU_Esports_Share_R56_20261010\\02_With_Models\\system\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261010T100555Z.jsonl",
+        "events_written": 0,
+        "events_dropped": 0
+      },
+      "model_admission": {
+        "limit": 1,
+        "active": 0,
+        "waiting": 0,
+        "peak_active": 0,
+        "scope": "all_pipeline_workers",
+        "durable": false
+      }
+    },
+    "runtime": {
+      "profile": "owner-local-rag-assist",
+      "version": "2026.10.10-service-r56.7",
+      "installation_id": "54f89c178c8ef4b0",
+      "started_at": "2026-10-10T10:05:53.758288+00:00",
+      "system_memory": {
+        "available": true,
+        "physical_load_percent": 95,
+        "available_physical_mb": 772.3,
+        "available_commit_mb": 821.3
+      },
+      "python": {
+        "executable_id": "8983bdd55d9a0557",
+        "version": [
+          3,
+          12,
+          14
+        ],
+        "bits": 64,
+        "pid": 43372
+      },
+      "answer_timeout_sec": 20.0,
+      "pipeline_timeout_sec": 19.0,
+      "intent_timeout_sec": 14.0,
+      "local_llm": {
+        "enabled": true,
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "intent_timeout_sec": 14.0,
+        "planner_timeout_sec": 1.2,
+        "general_timeout_sec": 15.0,
+        "high_assist_profile": true
+      },
+      "semantic_rag": {
+        "enabled": true,
+        "embedding_model": "psu-bge-m3:q8_0"
+      },
+      "english": {
+        "enabled": true,
+        "draft_preview": false
+      },
+      "booking": {
+        "enabled": true,
+        "fetch_mode": "wordpress",
+        "cache_seconds": 0.0,
+        "dashboard_required": false,
+        "read_only": true
+      },
+      "input_quality": {
+        "mode": "enforce",
+        "keyboard_layout": "request_retype",
+        "repeated_characters": "warn_and_continue"
+      },
+      "queue_ttl_sec": 90.0
+    },
+    "features": {
+      "bilingual_english": true,
+      "local_llm_assist": true,
+      "semantic_rag": true,
+      "embedding_model": "psu-bge-m3:q8_0",
+      "live_booking_status": true,
+      "chat_jobs": true
+    },
+    "chat_jobs": {
+      "enabled": true,
+      "capacity": 32,
+      "dispatch_workers": 2,
+      "ttl_sec": 90.0,
+      "counts": {},
+      "durable": true
+    }
+  },
+  "rows": [
+    {
+      "question": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+      "locale": "th",
+      "job": {
+        "ok": true,
+        "job_id": "9489a48191134752ab38e0e083152e31",
+        "session_id": "r56-portable-63d4118ae27049329e6ee47157aa6ed9",
+        "turn_id": "369f10f85f2e43aebd8030925fa6d3c4",
+        "status": "completed",
+        "created_at": 1791626886.408414,
+        "deadline_at": 1791626976.408414,
+        "started_at": 1791626886.4361944,
+        "finished_at": 1791626887.9441552,
+        "error": null,
+        "result": {
+          "ok": true,
+          "request_id": "36c1e41c1f59453c8f0185b1b746ed26",
+          "session_id": "r56-portable-63d4118ae27049329e6ee47157aa6ed9",
+          "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\nระยะเวลาที่ถาม 120 นาที (2 ชั่วโมง) คิดเป็น 2 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ × 2 = 140 บาท\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+          "mode": "pipeline:structured_service_fee_conversation",
+          "route_category": "service_fee",
+          "route_intent": "conversation_price_lookup",
+          "universal_intent": {
+            "domain": "service_fee",
+            "operation": "price_lookup",
+            "target": "pc",
+            "filters": {
+              "customer_scope": "general_adult",
+              "customer_group_ids": [
+                "general_adult"
+              ],
+              "duration_minutes": 120,
+              "people_count": null
+            },
+            "needs": [],
+            "answer_style": "direct",
+            "confidence": 0.98,
+            "method": "conversation_plan",
+            "reason": "typed dialogue request"
+          },
+          "confidence": 0.98,
+          "latency_sec": 0.9567,
+          "wall_sec": 1.3979,
+          "deadline": {
+            "global_timeout_enabled": true,
+            "global_timeout_sec": 20.0,
+            "global_elapsed_sec": 1.3978,
+            "global_remaining_sec": 18.6022,
+            "finalizer_reserve_sec": 1.0,
+            "work_remaining_sec": 17.6022,
+            "timing_status": "running"
+          },
+          "timing_status": "completed",
+          "timed_out": false,
+          "timeout_stage": "",
+          "retryable": false,
+          "worker_id": 0,
+          "sources": [
+            {
+              "id": "pc_service_fee_local_update_20260727",
+              "url": "local://service_fee/pc_price_update_20260727"
+            }
+          ],
+          "validation_ok": true,
+          "language": {
+            "requested": "th",
+            "detected": "th",
+            "effective": "th",
+            "confidence": 1.0,
+            "reason": "toggle_override_th;thai_script"
+          },
+          "experimental_rag_fallback": false,
+          "experimental_allow_llm": true,
+          "input_recovery": {
+            "score": 0.209,
+            "language": "mixed",
+            "language_quality": 0.791,
+            "should_review_intent": false,
+            "reason": "Thai character n-gram quality=0.791",
+            "action": "continue"
+          },
+          "server_date": {
+            "iso": "2026-10-10",
+            "label": "10/10/2026 (วันเสาร์)",
+            "time": "17:08",
+            "datetime_iso": "2026-10-10T17:08:07.828471+07:00",
+            "timezone": "Asia/Bangkok",
+            "service_slot": {
+              "date": "2026-10-10",
+              "time": "17:08",
+              "weekday": "วันเสาร์",
+              "timezone": "Asia/Bangkok",
+              "status": "closed",
+              "playable": false,
+              "slot": null,
+              "next_open_slot": null,
+              "reason": "no_regular_service",
+              "note": "ยังไม่พบช่วงให้บริการในตารางประจำของวันนี้",
+              "source": "reservation_schedule"
+            },
+            "thai_holidays": [],
+            "upcoming_thai_holidays": [
+              {
+                "date": "2026-10-13",
+                "title": "วันนวมินทรมหาราช",
+                "type": "national_holiday",
+                "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-16",
+                "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                "type": "bank_holiday_bangkok",
+                "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+              },
+              {
+                "date": "2026-10-23",
+                "title": "วันปิยมหาราช",
+                "type": "national_holiday",
+                "note": "วันหยุดประจำปีของไทย",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-31",
+                "title": "วันฮาโลวีน",
+                "type": "observance",
+                "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-12-05",
+                "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                "type": "national_holiday",
+                "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              }
+            ]
+          },
+          "calendar": {
+            "date": "2026-10-10",
+            "label": "10/10/2026 (วันเสาร์)",
+            "weekday": "วันเสาร์",
+            "time": "17:08",
+            "datetime_iso": "2026-10-10T17:08:07.828471+07:00",
+            "timezone": "Asia/Bangkok",
+            "service_slot": {
+              "date": "2026-10-10",
+              "time": "17:08",
+              "weekday": "วันเสาร์",
+              "timezone": "Asia/Bangkok",
+              "status": "closed",
+              "playable": false,
+              "slot": null,
+              "next_open_slot": null,
+              "reason": "no_regular_service",
+              "note": "ยังไม่พบช่วงให้บริการในตารางประจำของวันนี้",
+              "source": "reservation_schedule"
+            },
+            "service_closure": null,
+            "thai_holidays": [],
+            "upcoming_thai_holidays": [
+              {
+                "date": "2026-10-13",
+                "title": "วันนวมินทรมหาราช",
+                "type": "national_holiday",
+                "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-16",
+                "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                "type": "bank_holiday_bangkok",
+                "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+              },
+              {
+                "date": "2026-10-23",
+                "title": "วันปิยมหาราช",
+                "type": "national_holiday",
+                "note": "วันหยุดประจำปีของไทย",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-31",
+                "title": "วันฮาโลวีน",
+                "type": "observance",
+                "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-12-05",
+                "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                "type": "national_holiday",
+                "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              }
+            ]
+          },
+          "input_quality": {
+            "action": "continue",
+            "detected_action": "continue",
+            "applied_action": "continue",
+            "should_retype": false,
+            "flags": [],
+            "layout_score": 0.001785,
+            "repeat_score": 0.447794,
+            "guard_status": "passed",
+            "guard_mode": "enforce",
+            "repeat_policy": "warn_and_continue",
+            "profile_version": "keyboard-profile-v1:2a863a4176572043",
+            "guard_elapsed_ms": 11.289
+          },
+          "context_resolution": {
+            "original_question": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+            "resolved_question": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": "service_fee",
+            "context_operation": "price_lookup",
+            "context_topic": null,
+            "reason": "validated_typed_request_plan",
+            "selected_requests": [],
+            "selection_errors": []
+          },
+          "query_debug": {
+            "original_question": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+            "resolved_question": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+            "normalized_query": "",
+            "query_variants": [],
+            "active_query": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+            "active_query_changed": false,
+            "trace": []
+          },
+          "decision_artifact": {
+            "intent": {
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "target": "pc",
+              "confidence": 0.98,
+              "method": "conversation_plan"
+            },
+            "route": {
+              "category": "service_fee",
+              "intent": "conversation_price_lookup",
+              "confidence": 0.98,
+              "answer_type": "fact",
+              "risk": "medium",
+              "reason": "typed service and customer filters with source-bound coverage"
+            },
+            "tool_router": null,
+            "selected_candidate": {
+              "capability_id": "structured.service_fee",
+              "score": null,
+              "reason": "explicit typed dialogue contract; no candidate scoring required"
+            },
+            "candidates": [],
+            "rejected": [],
+            "policy": {},
+            "execution_plan": [
+              "normalize_and_extract_entities",
+              "route_and_resolve_universal_intent",
+              "generate_capability_candidates",
+              "apply_policy_and_rank",
+              "apply_tool_preconditions",
+              "execute_structured_tool",
+              "format_validate_and_record"
+            ],
+            "final": {
+              "mode": "pipeline:structured_service_fee_conversation",
+              "confidence": 0.98,
+              "execution_step": "execute_structured_tool",
+              "executed_capability": "structured.service_fee",
+              "selected_matches_execution": true,
+              "validation_ok": true,
+              "validation_errors": [],
+              "validation_warnings": [
+                "price_question_should_start_with_price_or_number"
+              ],
+              "evidence_count": 1,
+              "source_ids": [
+                "pc_service_fee_local_update_20260727"
+              ]
+            },
+            "production_metrics": {
+              "policy_version": "correctness_control_flow_v2",
+              "outcome": "answered",
+              "semantic_outcome": "answered_complete",
+              "temporal_validity": "recorded_rates",
+              "adequacy_status": "complete_for_recorded_scope",
+              "quality_gate_status": "pass",
+              "candidate_margin": null,
+              "selection_status": "",
+              "ambiguity_decision": "",
+              "repair_attempted": false,
+              "repair_recovered": false,
+              "llm_call_count": 0,
+              "requires_shadow_review": true,
+              "shadow_review_reasons": [
+                "validation_warning"
+              ]
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": "pc",
+              "user_group": null,
+              "duration": null,
+              "price_intent": true
+            },
+            "structured_tool": null,
+            "tool_preconditions": [],
+            "candidate_execution": [],
+            "validation": null,
+            "llm_calls": [],
+            "conversation_contract": {
+              "request_plan": {
+                "schema_version": 1,
+                "original_query": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+                "resolved_query": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+                "act": "new_task",
+                "tasks": [
+                  {
+                    "task_id": "fee-1",
+                    "domain": "service_fee",
+                    "operation": "price_lookup",
+                    "targets": [
+                      "pc"
+                    ],
+                    "scope": {
+                      "entity_selection": "explicit",
+                      "detail_level": "package_rates"
+                    },
+                    "filters": {
+                      "customer_scope": "general_adult",
+                      "customer_group_ids": [
+                        "general_adult"
+                      ],
+                      "duration_minutes": 120,
+                      "people_count": null
+                    },
+                    "per_target_filters": {},
+                    "excluded_targets": [],
+                    "pending_slots": [],
+                    "offered_option_ids": [
+                      "pc",
+                      "ps5",
+                      "nintendo_switch",
+                      "cockpit",
+                      "vr"
+                    ],
+                    "provenance": {
+                      "operation": "explicit_user",
+                      "targets": "explicit_user",
+                      "filters": "explicit_user"
+                    }
+                  }
+                ],
+                "context_used": false,
+                "needs_review": false
+              },
+              "source_release": "ad08219f3ba1bd36",
+              "expected_ids": [
+                "pc:general_adult"
+              ],
+              "returned_ids": [
+                "pc:general_adult"
+              ],
+              "missing_ids": [],
+              "missing_targets": [],
+              "rows": [
+                {
+                  "id": "pc:general_adult",
+                  "package_id": "pc",
+                  "group_id": "general_adult",
+                  "unit_price": 70,
+                  "sessions": 2,
+                  "total": 140
+                }
+              ],
+              "temporal_validity": "recorded_rates",
+              "recorded_expiry": null,
+              "task_outcomes": [
+                {
+                  "task_id": "fee-1",
+                  "outcome": "answered_complete"
+                }
+              ],
+              "outcome": "answered_complete"
+            },
+            "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+            "task_answer_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "service_fee",
+              "intent": "conversation_price_lookup",
+              "source_count": 1,
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            }
+          },
+          "entities": {
+            "day": null,
+            "time_slots": [],
+            "service": "pc",
+            "user_group": null,
+            "duration": null,
+            "price_intent": true,
+            "short_answer": false,
+            "comparison_intent": false,
+            "raw": {}
+          },
+          "validation": {
+            "ok": true,
+            "errors": [],
+            "warnings": [
+              "price_question_should_start_with_price_or_number"
+            ]
+          },
+          "trace": [
+            {
+              "stage": "timing",
+              "decision": "locale_resolution",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 1.34,
+                "elapsed_sec": 0.0013,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3494,
+                "global_elapsed_sec": 0.0033,
+                "global_remaining_sec": 18.3461,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.346,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "intent_cue_preflight",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 591.55,
+                "elapsed_sec": 0.5915,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3494,
+                "global_elapsed_sec": 0.7342,
+                "global_remaining_sec": 17.6152,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 16.6152,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "conversation_request",
+              "decision": "new_task",
+              "confidence": 1.0,
+              "detail": "typed slots preserve user filters; assistant options are not selections",
+              "metadata": {
+                "request_plan": {
+                  "schema_version": 1,
+                  "original_query": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+                  "resolved_query": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+                  "act": "new_task",
+                  "tasks": [
+                    {
+                      "task_id": "fee-1",
+                      "domain": "service_fee",
+                      "operation": "price_lookup",
+                      "targets": [
+                        "pc"
+                      ],
+                      "scope": {
+                        "entity_selection": "explicit",
+                        "detail_level": "package_rates"
+                      },
+                      "filters": {
+                        "customer_scope": "general_adult",
+                        "customer_group_ids": [
+                          "general_adult"
+                        ],
+                        "duration_minutes": 120,
+                        "people_count": null
+                      },
+                      "per_target_filters": {},
+                      "excluded_targets": [],
+                      "pending_slots": [],
+                      "offered_option_ids": [
+                        "pc",
+                        "ps5",
+                        "nintendo_switch",
+                        "cockpit",
+                        "vr"
+                      ],
+                      "provenance": {
+                        "operation": "explicit_user",
+                        "targets": "explicit_user",
+                        "filters": "explicit_user"
+                      }
+                    }
+                  ],
+                  "context_used": false,
+                  "needs_review": false
+                },
+                "outcome": "answered_complete"
+              }
+            },
+            {
+              "stage": "universal_intent",
+              "decision": "service_fee/price_lookup",
+              "confidence": 0.98,
+              "detail": "typed dialogue request",
+              "metadata": {
+                "filters": {
+                  "customer_scope": "general_adult",
+                  "customer_group_ids": [
+                    "general_adult"
+                  ],
+                  "duration_minutes": 120,
+                  "people_count": null
+                },
+                "target": "pc",
+                "method": "conversation_plan"
+              }
+            },
+            {
+              "stage": "conversation_contract",
+              "decision": "answered_complete",
+              "confidence": 1.0,
+              "detail": "coverage and source validity are separate",
+              "metadata": {
+                "request_plan": {
+                  "schema_version": 1,
+                  "original_query": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+                  "resolved_query": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+                  "act": "new_task",
+                  "tasks": [
+                    {
+                      "task_id": "fee-1",
+                      "domain": "service_fee",
+                      "operation": "price_lookup",
+                      "targets": [
+                        "pc"
+                      ],
+                      "scope": {
+                        "entity_selection": "explicit",
+                        "detail_level": "package_rates"
+                      },
+                      "filters": {
+                        "customer_scope": "general_adult",
+                        "customer_group_ids": [
+                          "general_adult"
+                        ],
+                        "duration_minutes": 120,
+                        "people_count": null
+                      },
+                      "per_target_filters": {},
+                      "excluded_targets": [],
+                      "pending_slots": [],
+                      "offered_option_ids": [
+                        "pc",
+                        "ps5",
+                        "nintendo_switch",
+                        "cockpit",
+                        "vr"
+                      ],
+                      "provenance": {
+                        "operation": "explicit_user",
+                        "targets": "explicit_user",
+                        "filters": "explicit_user"
+                      }
+                    }
+                  ],
+                  "context_used": false,
+                  "needs_review": false
+                },
+                "source_release": "ad08219f3ba1bd36",
+                "expected_ids": [
+                  "pc:general_adult"
+                ],
+                "returned_ids": [
+                  "pc:general_adult"
+                ],
+                "missing_ids": [],
+                "missing_targets": [],
+                "rows": [
+                  {
+                    "id": "pc:general_adult",
+                    "package_id": "pc",
+                    "group_id": "general_adult",
+                    "unit_price": 70,
+                    "sessions": 2,
+                    "total": 140
+                  }
+                ],
+                "temporal_validity": "recorded_rates",
+                "recorded_expiry": null,
+                "task_outcomes": [
+                  {
+                    "task_id": "fee-1",
+                    "outcome": "answered_complete"
+                  }
+                ],
+                "outcome": "answered_complete"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "validation_final",
+              "confidence": 1.0,
+              "detail": "ok",
+              "metadata": {
+                "elapsed_ms": 176.21,
+                "elapsed_sec": 0.1762,
+                "added_error_count": 0,
+                "added_warning_count": 1,
+                "added_errors": [],
+                "added_warnings": [
+                  "price_question_should_start_with_price_or_number"
+                ],
+                "merged_error_count": 0,
+                "merged_warning_count": 1
+              }
+            },
+            {
+              "stage": "task_answer_contract",
+              "decision": "answered_complete",
+              "confidence": 1.0,
+              "detail": "execution coverage does not certify source facts or semantic accuracy",
+              "metadata": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "service_fee",
+                "intent": "conversation_price_lookup",
+                "source_count": 1,
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "build_result",
+              "confidence": 1.0,
+              "detail": "pipeline:structured_service_fee_conversation",
+              "metadata": {
+                "elapsed_ms": 191.04,
+                "elapsed_sec": 0.191,
+                "format_response_style_ms": 9.9,
+                "answer_language": "th",
+                "total_elapsed_ms": 956.63,
+                "total_elapsed_sec": 0.9566
+              }
+            }
+          ],
+          "resolved_question": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+          "rule_coverage": null,
+          "client_turn_id": "369f10f85f2e43aebd8030925fa6d3c4",
+          "request_plan": {
+            "schema_version": 1,
+            "original_query": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+            "resolved_query": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+            "act": "new_task",
+            "tasks": [
+              {
+                "task_id": "fee-1",
+                "domain": "service_fee",
+                "operation": "price_lookup",
+                "targets": [
+                  "pc"
+                ],
+                "scope": {
+                  "entity_selection": "explicit",
+                  "detail_level": "package_rates"
+                },
+                "filters": {
+                  "customer_scope": "general_adult",
+                  "customer_group_ids": [
+                    "general_adult"
+                  ],
+                  "duration_minutes": 120,
+                  "people_count": null
+                },
+                "per_target_filters": {},
+                "excluded_targets": [],
+                "pending_slots": [],
+                "offered_option_ids": [
+                  "pc",
+                  "ps5",
+                  "nintendo_switch",
+                  "cockpit",
+                  "vr"
+                ],
+                "provenance": {
+                  "operation": "explicit_user",
+                  "targets": "explicit_user",
+                  "filters": "explicit_user"
+                }
+              }
+            ],
+            "context_used": false,
+            "needs_review": false
+          },
+          "task_contract": {
+            "schema_version": 1,
+            "kind": "single",
+            "status": "answered",
+            "outcome": "answered_complete",
+            "category": "service_fee",
+            "intent": "conversation_price_lookup",
+            "source_count": 1,
+            "coverage_meaning": "execution_status_not_factual_accuracy"
+          },
+          "conversation_outcome": "answered_complete",
+          "coverage": {
+            "expected_ids": [
+              "pc:general_adult"
+            ],
+            "returned_ids": [
+              "pc:general_adult"
+            ],
+            "missing_ids": [],
+            "temporal_validity": "recorded_rates",
+            "task_outcomes": [
+              {
+                "task_id": "fee-1",
+                "outcome": "answered_complete"
+              }
+            ]
+          },
+          "conversation_state": {
+            "schema_version": 1,
+            "revision": 1,
+            "active_task": {
+              "task_id": "fee-1",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [
+                "pc"
+              ],
+              "scope": {
+                "entity_selection": "explicit",
+                "detail_level": "package_rates"
+              },
+              "filters": {
+                "customer_scope": "general_adult",
+                "customer_group_ids": [
+                  "general_adult"
+                ],
+                "duration_minutes": 120,
+                "people_count": null
+              },
+              "per_target_filters": {},
+              "excluded_targets": [],
+              "pending_slots": [],
+              "offered_option_ids": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "provenance": {
+                "operation": "explicit_user",
+                "targets": "explicit_user",
+                "filters": "explicit_user"
+              }
+            },
+            "task_memory_schema_version": 1,
+            "requested_tasks": [
+              {
+                "schema_version": 1,
+                "key": "service_fee/price_lookup",
+                "domain": "service_fee",
+                "operation": "price_lookup",
+                "targets": [
+                  "pc"
+                ],
+                "offered_options": [],
+                "query": "ค่าบริการ PC บุคคลทั่วไป 120 นาที",
+                "price_task": {
+                  "task_id": "fee-1",
+                  "domain": "service_fee",
+                  "operation": "price_lookup",
+                  "targets": [
+                    "pc"
+                  ],
+                  "scope": {
+                    "entity_selection": "explicit",
+                    "detail_level": "package_rates"
+                  },
+                  "filters": {
+                    "customer_scope": "general_adult",
+                    "customer_group_ids": [
+                      "general_adult"
+                    ],
+                    "duration_minutes": 120,
+                    "people_count": null
+                  },
+                  "per_target_filters": {},
+                  "excluded_targets": [],
+                  "pending_slots": [],
+                  "offered_option_ids": [
+                    "pc",
+                    "ps5",
+                    "nintendo_switch",
+                    "cockpit",
+                    "vr"
+                  ],
+                  "provenance": {
+                    "operation": "explicit_user",
+                    "targets": "explicit_user",
+                    "filters": "explicit_user"
+                  }
+                },
+                "rental_plan": null,
+                "seed_question": "บุคคลทั่วไปเล่น PC สองชั่วโมงราคาเท่าไหร่",
+                "mode": "pipeline:structured_service_fee_conversation",
+                "route_category": "service_fee",
+                "route_intent": "conversation_price_lookup",
+                "response_id": "36c1e41c1f59453c8f0185b1b746ed26",
+                "status": "answered",
+                "provenance": "server_completed_user_request",
+                "acknowledged": false
+              }
+            ],
+            "current_task_keys": [
+              "service_fee/price_lookup"
+            ],
+            "delivery": {
+              "369f10f85f2e43aebd8030925fa6d3c4": "prepared"
+            },
+            "storage": "sqlite_parent_state",
+            "survives_server_restart": true,
+            "persistence": {
+              "enabled": true,
+              "ready": true,
+              "last_error": "",
+              "writes": 2,
+              "restores": 0
+            }
+          },
+          "log_sinks": {
+            "status": "queued"
+          }
+        },
+        "dispatch_attempts": 1,
+        "last_admission_error": null,
+        "timing": {
+          "elapsed_sec": 1.536,
+          "admission_wait_sec": 0.028,
+          "active_dispatch_sec": 1.508,
+          "remaining_sec": 0.0,
+          "meaning": "wall_time_last_dispatch_not_model_inference"
+        },
+        "poll_after_ms": 400,
+        "storage": "local_sqlite"
+      },
+      "elapsed_sec": 1.5760634001344442,
+      "errors": []
+    },
+    {
+      "question": "Do I need membership to play?",
+      "locale": "en",
+      "job": {
+        "ok": true,
+        "job_id": "68b7851435804f44ad9d86cf8f4700b1",
+        "session_id": "r56-portable-7f37f0edd20c469492ab896778a20573",
+        "turn_id": "67461ac1ed6b49d898857b92de2bfbca",
+        "status": "completed",
+        "created_at": 1791626887.9820247,
+        "deadline_at": 1791626977.9820247,
+        "started_at": 1791626888.0378819,
+        "finished_at": 1791626888.7667627,
+        "error": null,
+        "result": {
+          "ok": true,
+          "request_id": "41e00dcb208c493fbf8b9da7ab9886fd",
+          "session_id": "r56-portable-7f37f0edd20c469492ab896778a20573",
+          "answer": "Membership is not required to use the studio.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+          "mode": "pipeline:user_service_facts",
+          "route_category": "reservation",
+          "route_intent": "user_service_facts",
+          "universal_intent": null,
+          "confidence": 0.98,
+          "latency_sec": 0.4768,
+          "wall_sec": 0.6942,
+          "deadline": {
+            "global_timeout_enabled": true,
+            "global_timeout_sec": 20.0,
+            "global_elapsed_sec": 0.6942,
+            "global_remaining_sec": 19.3058,
+            "finalizer_reserve_sec": 1.0,
+            "work_remaining_sec": 18.3058,
+            "timing_status": "running"
+          },
+          "timing_status": "completed",
+          "timed_out": false,
+          "timeout_stage": "",
+          "retryable": false,
+          "worker_id": 0,
+          "sources": [
+            {
+              "id": "user_service_answers_20261008",
+              "url": "local://service_policy/user_answers_20261008"
+            }
+          ],
+          "validation_ok": true,
+          "language": {
+            "requested": "en",
+            "detected": "en",
+            "effective": "en",
+            "confidence": 1.0,
+            "reason": "toggle_override_en;english_sentence_structure"
+          },
+          "experimental_rag_fallback": false,
+          "experimental_allow_llm": true,
+          "input_recovery": {
+            "score": 0.2803,
+            "language": "en",
+            "language_quality": 0.7197,
+            "should_review_intent": false,
+            "reason": "English character n-gram quality=0.720",
+            "action": "continue"
+          },
+          "server_date": {
+            "iso": "2026-10-10",
+            "label": "10/10/2026 (วันเสาร์)",
+            "time": "17:08",
+            "datetime_iso": "2026-10-10T17:08:08.728861+07:00",
+            "timezone": "Asia/Bangkok",
+            "service_slot": {
+              "date": "2026-10-10",
+              "time": "17:08",
+              "weekday": "วันเสาร์",
+              "timezone": "Asia/Bangkok",
+              "status": "closed",
+              "playable": false,
+              "slot": null,
+              "next_open_slot": null,
+              "reason": "no_regular_service",
+              "note": "ยังไม่พบช่วงให้บริการในตารางประจำของวันนี้",
+              "source": "reservation_schedule"
+            },
+            "thai_holidays": [],
+            "upcoming_thai_holidays": [
+              {
+                "date": "2026-10-13",
+                "title": "วันนวมินทรมหาราช",
+                "type": "national_holiday",
+                "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-16",
+                "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                "type": "bank_holiday_bangkok",
+                "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+              },
+              {
+                "date": "2026-10-23",
+                "title": "วันปิยมหาราช",
+                "type": "national_holiday",
+                "note": "วันหยุดประจำปีของไทย",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-31",
+                "title": "วันฮาโลวีน",
+                "type": "observance",
+                "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-12-05",
+                "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                "type": "national_holiday",
+                "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              }
+            ]
+          },
+          "calendar": {
+            "date": "2026-10-10",
+            "label": "10/10/2026 (วันเสาร์)",
+            "weekday": "วันเสาร์",
+            "time": "17:08",
+            "datetime_iso": "2026-10-10T17:08:08.728861+07:00",
+            "timezone": "Asia/Bangkok",
+            "service_slot": {
+              "date": "2026-10-10",
+              "time": "17:08",
+              "weekday": "วันเสาร์",
+              "timezone": "Asia/Bangkok",
+              "status": "closed",
+              "playable": false,
+              "slot": null,
+              "next_open_slot": null,
+              "reason": "no_regular_service",
+              "note": "ยังไม่พบช่วงให้บริการในตารางประจำของวันนี้",
+              "source": "reservation_schedule"
+            },
+            "service_closure": null,
+            "thai_holidays": [],
+            "upcoming_thai_holidays": [
+              {
+                "date": "2026-10-13",
+                "title": "วันนวมินทรมหาราช",
+                "type": "national_holiday",
+                "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-16",
+                "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                "type": "bank_holiday_bangkok",
+                "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+              },
+              {
+                "date": "2026-10-23",
+                "title": "วันปิยมหาราช",
+                "type": "national_holiday",
+                "note": "วันหยุดประจำปีของไทย",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-31",
+                "title": "วันฮาโลวีน",
+                "type": "observance",
+                "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-12-05",
+                "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                "type": "national_holiday",
+                "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              }
+            ]
+          },
+          "input_quality": {
+            "action": "continue",
+            "detected_action": "continue",
+            "applied_action": "continue",
+            "should_retype": false,
+            "flags": [],
+            "layout_score": 0.001451,
+            "repeat_score": 0.04,
+            "guard_status": "passed",
+            "guard_mode": "enforce",
+            "repeat_policy": "warn_and_continue",
+            "profile_version": "keyboard-profile-v1:2a863a4176572043",
+            "guard_elapsed_ms": 4.634
+          },
+          "context_resolution": {
+            "original_question": "Do I need membership to play?",
+            "resolved_question": "Do I need membership to play?",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          },
+          "query_debug": {
+            "original_question": "Do I need membership to play?",
+            "resolved_question": "Do I need membership to play?",
+            "normalized_query": "",
+            "query_variants": [],
+            "active_query": "Do I need membership to play?",
+            "active_query_changed": false,
+            "trace": []
+          },
+          "decision_artifact": {
+            "intent": {
+              "domain": "reservation",
+              "operation": "user_service_facts",
+              "target": "",
+              "confidence": 0.98,
+              "method": "route"
+            },
+            "route": {
+              "category": "reservation",
+              "intent": "user_service_facts",
+              "confidence": 0.98,
+              "answer_type": "fact",
+              "risk": "low",
+              "reason": "explicit user-supplied facts with bounded policy scope"
+            },
+            "tool_router": null,
+            "selected_candidate": null,
+            "candidates": [],
+            "rejected": [],
+            "policy": {},
+            "execution_plan": [
+              "normalize_and_extract_entities",
+              "route_and_resolve_universal_intent",
+              "generate_capability_candidates",
+              "apply_policy_and_rank",
+              "apply_tool_preconditions",
+              "execute_pipeline_fallback",
+              "format_validate_and_record"
+            ],
+            "final": {
+              "mode": "pipeline:user_service_facts",
+              "confidence": 0.98,
+              "execution_step": "execute_pipeline_fallback",
+              "executed_capability": "pipeline.unknown",
+              "selected_matches_execution": false,
+              "validation_ok": true,
+              "validation_errors": [],
+              "validation_warnings": [],
+              "evidence_count": 1,
+              "source_ids": [
+                "user_service_answers_20261008"
+              ]
+            },
+            "production_metrics": {
+              "policy_version": "correctness_control_flow_v2",
+              "outcome": "answered",
+              "semantic_outcome": null,
+              "temporal_validity": null,
+              "adequacy_status": null,
+              "quality_gate_status": "pass",
+              "candidate_margin": null,
+              "selection_status": "",
+              "ambiguity_decision": "",
+              "repair_attempted": false,
+              "repair_recovered": false,
+              "llm_call_count": 0,
+              "requires_shadow_review": true,
+              "shadow_review_reasons": [
+                "selected_execution_mismatch"
+              ]
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": null,
+              "user_group": null,
+              "duration": null,
+              "price_intent": false
+            },
+            "structured_tool": null,
+            "tool_preconditions": [],
+            "candidate_execution": [],
+            "validation": null,
+            "llm_calls": [],
+            "conversation_contract": {},
+            "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+            "task_answer_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "reservation",
+              "intent": "user_service_facts",
+              "source_count": 1,
+              "coverage_meaning": "user_confirmed_fields_not_live_status"
+            }
+          },
+          "entities": {
+            "day": null,
+            "time_slots": [],
+            "service": null,
+            "user_group": null,
+            "duration": null,
+            "price_intent": false,
+            "short_answer": false,
+            "comparison_intent": false,
+            "raw": {}
+          },
+          "validation": {
+            "ok": true,
+            "errors": [],
+            "warnings": []
+          },
+          "trace": [
+            {
+              "stage": "timing",
+              "decision": "locale_resolution",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 0.05,
+                "elapsed_sec": 0.0,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.0001,
+                "global_remaining_sec": 18.3498,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.3498,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "intent_cue_preflight",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 17.79,
+                "elapsed_sec": 0.0178,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.1497,
+                "global_remaining_sec": 18.2002,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.2002,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "canonical_preflight",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 0.05,
+                "elapsed_sec": 0.0,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.3218,
+                "global_remaining_sec": 18.0281,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.0281,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "locale_resolution",
+              "decision": "en",
+              "confidence": 1.0,
+              "detail": "toggle_override_en;english_sentence_structure",
+              "metadata": {
+                "requested": "en",
+                "detected": "en",
+                "effective": "en",
+                "confidence": 1.0,
+                "reason": "toggle_override_en;english_sentence_structure"
+              }
+            },
+            {
+              "stage": "intent_cue_preflight",
+              "decision": "unchanged",
+              "confidence": 1.0,
+              "detail": "bounded task cues; offsets refer to each intermediate input",
+              "metadata": {
+                "raw": "Do I need membership to play?",
+                "candidate": "Do I need membership to play?",
+                "recoveries": [],
+                "span_budget": 3,
+                "edit_budget": 4
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "split_multi_question",
+              "confidence": 1.0,
+              "detail": "parts=1",
+              "metadata": {
+                "elapsed_ms": 38.14,
+                "elapsed_sec": 0.0381,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.36,
+                "global_remaining_sec": 17.9899,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 16.9899,
+                "timing_status": "running",
+                "entry_to_split_ms": 321.75,
+                "parts": [
+                  "Do I need membership to play?"
+                ],
+                "competition_rule_query": false
+              }
+            },
+            {
+              "stage": "compound_complexity",
+              "decision": "simple",
+              "confidence": 0.0,
+              "detail": "single question",
+              "metadata": {
+                "level": "simple",
+                "score": 0.0,
+                "signals": [],
+                "can_parallelize": false,
+                "requires_planner": false,
+                "max_workers": 1,
+                "reason": "single question"
+              }
+            },
+            {
+              "stage": "query_planner",
+              "decision": "skipped",
+              "confidence": 0.0,
+              "detail": "single clear operation does not need planner",
+              "metadata": {
+                "method": "gated",
+                "llm_attempted": false,
+                "allow_llm": true
+              }
+            },
+            {
+              "stage": "user_service_facts",
+              "decision": "answered",
+              "confidence": 0.98,
+              "detail": "do not infer unanswered policies",
+              "metadata": {
+                "claim_ids": [
+                  "membership"
+                ],
+                "source_items": [
+                  2
+                ],
+                "missing_fields": [],
+                "basis": "user_provided_in_this_chat",
+                "english_status": "agent_translation_from_user_confirmed_thai",
+                "outcome": "answered_complete",
+                "recorded_rule_ids": [],
+                "lexical_recoveries": [],
+                "normalized_service_question": "do i need membership to play?"
+              }
+            },
+            {
+              "stage": "task_answer_contract",
+              "decision": "answered_complete",
+              "confidence": 1.0,
+              "detail": "known versus missing user-confirmed fields",
+              "metadata": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "reservation",
+                "intent": "user_service_facts",
+                "source_count": 1,
+                "coverage_meaning": "user_confirmed_fields_not_live_status"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "build_result",
+              "confidence": 1.0,
+              "detail": "pipeline:user_service_facts",
+              "metadata": {
+                "elapsed_ms": 19.67,
+                "elapsed_sec": 0.0197,
+                "format_response_style_ms": 0.01,
+                "answer_language": "en",
+                "total_elapsed_ms": 476.73,
+                "total_elapsed_sec": 0.4767
+              }
+            }
+          ],
+          "resolved_question": "Do I need membership to play?",
+          "rule_coverage": null,
+          "client_turn_id": "67461ac1ed6b49d898857b92de2bfbca",
+          "request_plan": null,
+          "task_contract": {
+            "schema_version": 1,
+            "kind": "single",
+            "status": "answered",
+            "outcome": "answered_complete",
+            "category": "reservation",
+            "intent": "user_service_facts",
+            "source_count": 1,
+            "coverage_meaning": "user_confirmed_fields_not_live_status"
+          },
+          "conversation_outcome": "answered_complete",
+          "coverage": {},
+          "conversation_state": {
+            "schema_version": 1,
+            "revision": 1,
+            "active_task": null,
+            "task_memory_schema_version": 1,
+            "requested_tasks": [
+              {
+                "schema_version": 1,
+                "key": "reservation/booking_policy",
+                "domain": "reservation",
+                "operation": "booking_policy",
+                "targets": [],
+                "offered_options": [],
+                "query": "Do I need membership to play?",
+                "price_task": null,
+                "rental_plan": null,
+                "seed_question": "Do I need membership to play?",
+                "mode": "pipeline:user_service_facts",
+                "route_category": "reservation",
+                "route_intent": "user_service_facts",
+                "response_id": "41e00dcb208c493fbf8b9da7ab9886fd",
+                "status": "answered",
+                "provenance": "server_completed_user_request",
+                "acknowledged": false
+              }
+            ],
+            "current_task_keys": [
+              "reservation/booking_policy"
+            ],
+            "delivery": {
+              "67461ac1ed6b49d898857b92de2bfbca": "prepared"
+            },
+            "storage": "sqlite_parent_state",
+            "survives_server_restart": true,
+            "persistence": {
+              "enabled": true,
+              "ready": true,
+              "last_error": "",
+              "writes": 5,
+              "restores": 0
+            }
+          },
+          "log_sinks": {
+            "status": "queued"
+          }
+        },
+        "dispatch_attempts": 1,
+        "last_admission_error": null,
+        "timing": {
+          "elapsed_sec": 0.785,
+          "admission_wait_sec": 0.056,
+          "active_dispatch_sec": 0.729,
+          "remaining_sec": 0.0,
+          "meaning": "wall_time_last_dispatch_not_model_inference"
+        },
+        "poll_after_ms": 400,
+        "storage": "local_sqlite"
+      },
+      "elapsed_sec": 0.9278164999559522,
+      "errors": []
+    },
+    {
+      "question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+      "locale": "th",
+      "job": {
+        "ok": true,
+        "job_id": "c55bdecf4076458fad721af45ce31c02",
+        "session_id": "r56-portable-1121660ed0334e0898b55f584c45bffc",
+        "turn_id": "06f20cca6f6e4ff193c8572fcc979a4c",
+        "status": "completed",
+        "created_at": 1791626888.9096172,
+        "deadline_at": 1791626978.9096172,
+        "started_at": 1791626888.957218,
+        "finished_at": 1791626889.528506,
+        "error": null,
+        "result": {
+          "ok": true,
+          "request_id": "844c8fd29e1c44bda0a8e9f4958e2b2e",
+          "session_id": "r56-portable-1121660ed0334e0898b55f584c45bffc",
+          "answer": "มีที่จอดรถหน้าตึก 5 สำหรับรถยนต์และมอเตอร์ไซค์ครับ\n\nศูนย์อยู่ที่อาคาร 5 ชั้น 1 มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต 80 หมู่ 1 ถ.วิชิตสงคราม อ.กะทู้ จ.ภูเก็ต 83120 ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+          "mode": "pipeline:user_service_facts",
+          "route_category": "contact",
+          "route_intent": "user_service_facts",
+          "universal_intent": null,
+          "confidence": 0.98,
+          "latency_sec": 0.3092,
+          "wall_sec": 0.5389,
+          "deadline": {
+            "global_timeout_enabled": true,
+            "global_timeout_sec": 20.0,
+            "global_elapsed_sec": 0.5389,
+            "global_remaining_sec": 19.4611,
+            "finalizer_reserve_sec": 1.0,
+            "work_remaining_sec": 18.4611,
+            "timing_status": "running"
+          },
+          "timing_status": "completed",
+          "timed_out": false,
+          "timeout_stage": "",
+          "retryable": false,
+          "worker_id": 0,
+          "sources": [
+            {
+              "id": "user_service_answers_20261008",
+              "url": "local://service_policy/user_answers_20261008"
+            }
+          ],
+          "validation_ok": true,
+          "language": {
+            "requested": "th",
+            "detected": "th",
+            "effective": "th",
+            "confidence": 1.0,
+            "reason": "toggle_override_th;thai_script"
+          },
+          "experimental_rag_fallback": false,
+          "experimental_allow_llm": true,
+          "input_recovery": {
+            "score": 0.3675,
+            "language": "th",
+            "language_quality": 0.6325,
+            "should_review_intent": false,
+            "reason": "Thai character n-gram quality=0.632",
+            "action": "continue"
+          },
+          "server_date": {
+            "iso": "2026-10-10",
+            "label": "10/10/2026 (วันเสาร์)",
+            "time": "17:08",
+            "datetime_iso": "2026-10-10T17:08:09.493609+07:00",
+            "timezone": "Asia/Bangkok",
+            "service_slot": {
+              "date": "2026-10-10",
+              "time": "17:08",
+              "weekday": "วันเสาร์",
+              "timezone": "Asia/Bangkok",
+              "status": "closed",
+              "playable": false,
+              "slot": null,
+              "next_open_slot": null,
+              "reason": "no_regular_service",
+              "note": "ยังไม่พบช่วงให้บริการในตารางประจำของวันนี้",
+              "source": "reservation_schedule"
+            },
+            "thai_holidays": [],
+            "upcoming_thai_holidays": [
+              {
+                "date": "2026-10-13",
+                "title": "วันนวมินทรมหาราช",
+                "type": "national_holiday",
+                "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-16",
+                "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                "type": "bank_holiday_bangkok",
+                "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+              },
+              {
+                "date": "2026-10-23",
+                "title": "วันปิยมหาราช",
+                "type": "national_holiday",
+                "note": "วันหยุดประจำปีของไทย",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-31",
+                "title": "วันฮาโลวีน",
+                "type": "observance",
+                "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-12-05",
+                "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                "type": "national_holiday",
+                "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              }
+            ]
+          },
+          "calendar": {
+            "date": "2026-10-10",
+            "label": "10/10/2026 (วันเสาร์)",
+            "weekday": "วันเสาร์",
+            "time": "17:08",
+            "datetime_iso": "2026-10-10T17:08:09.493609+07:00",
+            "timezone": "Asia/Bangkok",
+            "service_slot": {
+              "date": "2026-10-10",
+              "time": "17:08",
+              "weekday": "วันเสาร์",
+              "timezone": "Asia/Bangkok",
+              "status": "closed",
+              "playable": false,
+              "slot": null,
+              "next_open_slot": null,
+              "reason": "no_regular_service",
+              "note": "ยังไม่พบช่วงให้บริการในตารางประจำของวันนี้",
+              "source": "reservation_schedule"
+            },
+            "service_closure": null,
+            "thai_holidays": [],
+            "upcoming_thai_holidays": [
+              {
+                "date": "2026-10-13",
+                "title": "วันนวมินทรมหาราช",
+                "type": "national_holiday",
+                "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-16",
+                "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                "type": "bank_holiday_bangkok",
+                "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+              },
+              {
+                "date": "2026-10-23",
+                "title": "วันปิยมหาราช",
+                "type": "national_holiday",
+                "note": "วันหยุดประจำปีของไทย",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-10-31",
+                "title": "วันฮาโลวีน",
+                "type": "observance",
+                "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              },
+              {
+                "date": "2026-12-05",
+                "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                "type": "national_holiday",
+                "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                "source": "Time and Date Thailand holidays 2026",
+                "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+              }
+            ]
+          },
+          "input_quality": {
+            "action": "continue",
+            "detected_action": "continue",
+            "applied_action": "continue",
+            "should_retype": false,
+            "flags": [],
+            "layout_score": 0.005853,
+            "repeat_score": 0.0,
+            "guard_status": "passed",
+            "guard_mode": "enforce",
+            "repeat_policy": "warn_and_continue",
+            "profile_version": "keyboard-profile-v1:2a863a4176572043",
+            "guard_elapsed_ms": 1.148
+          },
+          "context_resolution": {
+            "original_question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+            "resolved_question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "no_matching_context_resolution",
+            "selected_requests": [],
+            "selection_errors": []
+          },
+          "query_debug": {
+            "original_question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+            "resolved_question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+            "normalized_query": "",
+            "query_variants": [],
+            "active_query": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+            "active_query_changed": false,
+            "trace": []
+          },
+          "decision_artifact": {
+            "intent": {
+              "domain": "contact",
+              "operation": "user_service_facts",
+              "target": "",
+              "confidence": 0.98,
+              "method": "route"
+            },
+            "route": {
+              "category": "contact",
+              "intent": "user_service_facts",
+              "confidence": 0.98,
+              "answer_type": "fact",
+              "risk": "low",
+              "reason": "explicit user-supplied facts with bounded policy scope"
+            },
+            "tool_router": null,
+            "selected_candidate": null,
+            "candidates": [],
+            "rejected": [],
+            "policy": {},
+            "execution_plan": [
+              "normalize_and_extract_entities",
+              "route_and_resolve_universal_intent",
+              "generate_capability_candidates",
+              "apply_policy_and_rank",
+              "apply_tool_preconditions",
+              "execute_pipeline_fallback",
+              "format_validate_and_record"
+            ],
+            "final": {
+              "mode": "pipeline:user_service_facts",
+              "confidence": 0.98,
+              "execution_step": "execute_pipeline_fallback",
+              "executed_capability": "pipeline.unknown",
+              "selected_matches_execution": false,
+              "validation_ok": true,
+              "validation_errors": [],
+              "validation_warnings": [],
+              "evidence_count": 1,
+              "source_ids": [
+                "user_service_answers_20261008"
+              ]
+            },
+            "production_metrics": {
+              "policy_version": "correctness_control_flow_v2",
+              "outcome": "answered",
+              "semantic_outcome": null,
+              "temporal_validity": null,
+              "adequacy_status": null,
+              "quality_gate_status": "pass",
+              "candidate_margin": null,
+              "selection_status": "",
+              "ambiguity_decision": "",
+              "repair_attempted": false,
+              "repair_recovered": false,
+              "llm_call_count": 0,
+              "requires_shadow_review": true,
+              "shadow_review_reasons": [
+                "selected_execution_mismatch"
+              ]
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": null,
+              "user_group": null,
+              "duration": null,
+              "price_intent": false
+            },
+            "structured_tool": null,
+            "tool_preconditions": [],
+            "candidate_execution": [],
+            "validation": null,
+            "llm_calls": [],
+            "conversation_contract": {},
+            "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+            "task_answer_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "contact",
+              "intent": "user_service_facts",
+              "source_count": 1,
+              "coverage_meaning": "user_confirmed_fields_not_live_status"
+            }
+          },
+          "entities": {
+            "day": null,
+            "time_slots": [],
+            "service": null,
+            "user_group": null,
+            "duration": null,
+            "price_intent": false,
+            "short_answer": false,
+            "comparison_intent": false,
+            "raw": {}
+          },
+          "validation": {
+            "ok": true,
+            "errors": [],
+            "warnings": []
+          },
+          "trace": [
+            {
+              "stage": "timing",
+              "decision": "locale_resolution",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 0.04,
+                "elapsed_sec": 0.0,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.0001,
+                "global_remaining_sec": 18.3498,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.3498,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "intent_cue_preflight",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 58.6,
+                "elapsed_sec": 0.0586,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.1509,
+                "global_remaining_sec": 18.199,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.199,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "canonical_preflight",
+              "confidence": 1.0,
+              "detail": "",
+              "metadata": {
+                "elapsed_ms": 0.05,
+                "elapsed_sec": 0.0001,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.2507,
+                "global_remaining_sec": 18.0992,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.0992,
+                "timing_status": "running"
+              }
+            },
+            {
+              "stage": "locale_resolution",
+              "decision": "th",
+              "confidence": 1.0,
+              "detail": "toggle_override_th;thai_script",
+              "metadata": {
+                "requested": "th",
+                "detected": "th",
+                "effective": "th",
+                "confidence": 1.0,
+                "reason": "toggle_override_th;thai_script"
+              }
+            },
+            {
+              "stage": "intent_cue_preflight",
+              "decision": "unchanged",
+              "confidence": 1.0,
+              "detail": "bounded task cues; offsets refer to each intermediate input",
+              "metadata": {
+                "raw": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+                "candidate": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+                "recoveries": [],
+                "span_budget": 3,
+                "edit_budget": 4
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "split_multi_question",
+              "confidence": 1.0,
+              "detail": "parts=1",
+              "metadata": {
+                "elapsed_ms": 43.08,
+                "elapsed_sec": 0.0431,
+                "global_timeout_enabled": true,
+                "global_timeout_sec": 18.3499,
+                "global_elapsed_sec": 0.2938,
+                "global_remaining_sec": 18.0561,
+                "finalizer_reserve_sec": 1.0,
+                "work_remaining_sec": 17.0561,
+                "timing_status": "running",
+                "entry_to_split_ms": 250.7,
+                "parts": [
+                  "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม"
+                ],
+                "competition_rule_query": false
+              }
+            },
+            {
+              "stage": "compound_complexity",
+              "decision": "simple",
+              "confidence": 0.0,
+              "detail": "single question",
+              "metadata": {
+                "level": "simple",
+                "score": 0.0,
+                "signals": [],
+                "can_parallelize": false,
+                "requires_planner": false,
+                "max_workers": 1,
+                "reason": "single question"
+              }
+            },
+            {
+              "stage": "query_planner",
+              "decision": "skipped",
+              "confidence": 0.0,
+              "detail": "single clear operation does not need planner",
+              "metadata": {
+                "method": "gated",
+                "llm_attempted": false,
+                "allow_llm": true
+              }
+            },
+            {
+              "stage": "user_service_facts",
+              "decision": "answered",
+              "confidence": 0.98,
+              "detail": "do not infer unanswered policies",
+              "metadata": {
+                "claim_ids": [
+                  "parking",
+                  "location"
+                ],
+                "source_items": [
+                  5,
+                  6,
+                  9
+                ],
+                "missing_fields": [],
+                "basis": "user_provided_in_this_chat",
+                "english_status": "agent_translation_from_user_confirmed_thai",
+                "outcome": "answered_complete",
+                "recorded_rule_ids": [],
+                "lexical_recoveries": [],
+                "normalized_service_question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม"
+              }
+            },
+            {
+              "stage": "task_answer_contract",
+              "decision": "answered_complete",
+              "confidence": 1.0,
+              "detail": "known versus missing user-confirmed fields",
+              "metadata": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "contact",
+                "intent": "user_service_facts",
+                "source_count": 1,
+                "coverage_meaning": "user_confirmed_fields_not_live_status"
+              }
+            },
+            {
+              "stage": "timing",
+              "decision": "build_result",
+              "confidence": 1.0,
+              "detail": "pipeline:user_service_facts",
+              "metadata": {
+                "elapsed_ms": 5.4,
+                "elapsed_sec": 0.0054,
+                "format_response_style_ms": 2.11,
+                "answer_language": "th",
+                "total_elapsed_ms": 309.18,
+                "total_elapsed_sec": 0.3092
+              }
+            }
+          ],
+          "resolved_question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+          "rule_coverage": null,
+          "client_turn_id": "06f20cca6f6e4ff193c8572fcc979a4c",
+          "request_plan": null,
+          "task_contract": {
+            "schema_version": 1,
+            "kind": "single",
+            "status": "answered",
+            "outcome": "answered_complete",
+            "category": "contact",
+            "intent": "user_service_facts",
+            "source_count": 1,
+            "coverage_meaning": "user_confirmed_fields_not_live_status"
+          },
+          "conversation_outcome": "answered_complete",
+          "coverage": {},
+          "conversation_state": {
+            "schema_version": 1,
+            "revision": 1,
+            "active_task": null,
+            "task_memory_schema_version": 1,
+            "requested_tasks": [
+              {
+                "schema_version": 1,
+                "key": "contact/contact_lookup",
+                "domain": "contact",
+                "operation": "contact_lookup",
+                "targets": [],
+                "offered_options": [],
+                "query": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+                "price_task": null,
+                "rental_plan": null,
+                "seed_question": "ศูนย์อยู่ตึกไหน แล้วมีที่จอดรถไหม",
+                "mode": "pipeline:user_service_facts",
+                "route_category": "contact",
+                "route_intent": "user_service_facts",
+                "response_id": "844c8fd29e1c44bda0a8e9f4958e2b2e",
+                "status": "answered",
+                "provenance": "server_completed_user_request",
+                "acknowledged": false
+              }
+            ],
+            "current_task_keys": [
+              "contact/contact_lookup"
+            ],
+            "delivery": {
+              "06f20cca6f6e4ff193c8572fcc979a4c": "prepared"
+            },
+            "storage": "sqlite_parent_state",
+            "survives_server_restart": true,
+            "persistence": {
+              "enabled": true,
+              "ready": true,
+              "last_error": "",
+              "writes": 8,
+              "restores": 0
+            }
+          },
+          "log_sinks": {
+            "status": "queued"
+          }
+        },
+        "dispatch_attempts": 1,
+        "last_admission_error": null,
+        "timing": {
+          "elapsed_sec": 0.619,
+          "admission_wait_sec": 0.048,
+          "active_dispatch_sec": 0.571,
+          "remaining_sec": 0.0,
+          "meaning": "wall_time_last_dispatch_not_model_inference"
+        },
+        "poll_after_ms": 400,
+        "storage": "local_sqlite"
+      },
+      "elapsed_sec": 0.7252253000624478,
+      "errors": []
+    }
+  ],
+  "meaning": "portable bundled runtime same-machine smoke, not full capacity or clean-machine proof"
+}

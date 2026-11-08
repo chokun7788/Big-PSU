@@ -1,0 +1,128 @@
+{
+  "question_key": "87aa69e37cd5b550f86d95d41525033d6510a1fb1e0ca3adcdbfc65483bbcd1c",
+  "example_sha256": "74840c689b749afc9fa83251b5aa52f9d50f2bc78cdee65deaa40dc9207f64e4",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "The Thai fragment asks who occupies a role, but the role word ends at ผู้จัดกา.",
+      "raw_quotes": [
+        "ใครเป็นผู้จัดกา"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "members/role_lookup must request display_name rather than return the role itself.",
+      "raw_quotes": [
+        "ใครเป็นผู้จัดกา"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Preserve ผู้จัดกา as an exact requested_scope quote; no completed role word or person name is supplied by the user.",
+      "raw_quotes": [
+        "ใครเป็นผู้จัดกา"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "There is no prior person, team, date or dialogue context to fill in the truncated role.",
+      "raw_quotes": [
+        "ใครเป็นผู้จัดกา"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Mark the incomplete role ambiguous rather than silently completing it to an authoritative person identification.",
+      "raw_quotes": [
+        "ใครเป็นผู้จัดกา"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned member_17d23bd43ffdcfb0 revision5 has separately sourced display_name and ผู้จัดการ/Manager role fields; this is a possible source match, not proof of the intended completion.",
+      "raw_quotes": [
+        "ใครเป็นผู้จัดกา"
+      ],
+      "source_record_ids": [
+        "member_17d23bd43ffdcfb0"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No employee name, completed role literal, tenure, authority or business answer is taught.",
+      "raw_quotes": [
+        "ใครเป็นผู้จัดกา"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Truncated role does not establish a unique intended role or employee.",
+      "handling": "Preserve literal scope and ambiguity before identifying a person."
+    }
+  ],
+  "historical_review_row": 247,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ใครเป็นผู้จัดกา",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "role",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ใครเป็นผู้จัดกา",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "display_name",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ผู้จัดกา",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "member_17d23bd43ffdcfb0": {
+      "revision": 5,
+      "record_sha256": "c137b6fdf69bd1ac0e611f1b96babfd40914ecc72733202ac1eb3ac8dc3158a1"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "question_key": "d7b8a8791766e441fa8973994a5c9b4e5a951ac8f4a3fdfd49c6a6656e71bc7b",
+  "example_sha256": "f1f203cc32e002e6fec79b77e01976b4e58cbec4e002b8eb558560b31fc2f932",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One underpayment follow-up question asks how to supply additional evidence.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy retains the requested additional-proof procedure.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ยอดที่โอนขาดไป is the literal condition and ส่งหลักฐานเพิ่ม the action.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No shortfall amount, deadline, completed top-up, overpayment or new booking is inherited.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Sending proof is requested information, not authorization for the assistant to send it or charge money.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_q015 contains additional-payment contact/slip/booking-evidence instructions; its question mentions a deadline not established by its answer.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร"
+      ],
+      "source_record_ids": [
+        "r114_q015_owner_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Facebook instruction, evidence list, amount or deadline is taught.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The source question mentions a top-up deadline that its answer does not establish.",
+      "handling": "Keep proof instructions source-bound and leave unspecified deadlines unknown."
+    }
+  ],
+  "historical_review_row": 221,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ยอดที่โอนขาดไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ส่งหลักฐานเพิ่ม",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q015_owner_policy": {
+      "revision": 1,
+      "record_sha256": "e11e8001f94a8a984d5793caf7a8bf05835d908132e26a040069ec4da2380d3e"
+    }
+  }
+}

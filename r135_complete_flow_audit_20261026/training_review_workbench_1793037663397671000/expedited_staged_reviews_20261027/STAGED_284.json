@@ -1,0 +1,84 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 284,
+  "question_key": "27541a305e44698636412bf6556e3a545bf91e52357a068b098c96e449f31157",
+  "raw_question": "Where can I play it? Please use verified information.",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Where can I play it? Please use verified information.",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Where can I play it? Please use verified information.",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "it",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One game-location question uses unresolved it; verified information is framing.",
+    "intent_operation_facet": "games/detail/zone with empty target and ambiguity preserves missing game identity.",
+    "entities_and_slot_roles": "Add it as the explicit unresolved requested scope, not an entity value.",
+    "local_shared_history_scope": "Allowed history is empty; do not import the preceding corpus question as dialogue context.",
+    "negation_and_ambiguity": "No title, platform or studio zone can be resolved from wording alone.",
+    "source_version_alignment": "No specific owner game record is applicable until the missing referent is supplied; selecting any saved game would fabricate context.",
+    "no_business_answer_target": "No game name, zone answer, platform default or invented history enters targets."
+  },
+  "decision": "corrected",
+  "source_record_ids": [],
+  "source_answer_issues": [
+    [
+      "No dialogue context exists for it.",
+      "Preserve unresolved reference rather than borrow a neighboring dataset row."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 285,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {},
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

@@ -1,0 +1,148 @@
+{
+  "question_key": "9226ff9f7b760af0bf0c83351a5604026900bb7e9d820b7e95960f8e8b406c50",
+  "example_sha256": "2279441ccf1439667f8ae2631402dee7fc8daadea7396b797edc072db52f4d2a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks when play is possible on Monday afternoon; repeated verified/polite introductions are framing, not separate tasks.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Explicit v3 schedule/list/service_periods represents play-service timing. open_periods asks physical opening and bookable_periods asks reservation windows, so neither is an equivalent v2 substitute.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Monday and afternoon are exact local date/time quotes. No clock times, calendar date, service identifier or live state is invented.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The question supplies a weekday but no specific date or dialogue history. Both constraints belong to this one task; no shared context or fictional history is added.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "There is no negation or competing period. Unknown owner applicability and dated exceptions remain source limitations, not permission to assert current play access.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Individually read migrated_schedule_0 revision4 has morning maintenance, afternoon open service_slots, a distinct afternoon bookable window and unknown physical open_periods. This explicitly supports the service-period facet distinction, not a present-day access guarantee.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_0"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "The target contains only raw Monday/afternoon quotes and the language operation. It teaches no13:00/16:00 answer, permission, maintenance verdict, booking result or authority assertion.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Service-period effective intervals/resource applicability and physical opening conflicts remain independent source limitations.",
+      "handling": "Keep per-day states, source revision/field and applicability caveats; do not infer live availability, physical access or booking windows."
+    }
+  ],
+  "historical_review_row": 267,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Monday"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r135-plan-v3",
+    "focus": "service_periods",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "id": "t1",
+        "quote": "Please answer from verified studio information: Please tell me: When can I play on Monday afternoon",
+        "domain": "schedule",
+        "operation": "list",
+        "facet": "service_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Monday",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "afternoon",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      }
+    ],
+    "shared_bindings": []
+  },
+  "prior_quarantined_review_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_013\\REVIEWS.jsonl",
+    "sha256": "47981d486ce220899d2f3f942c9f2f3ffb3c1dcaf3cc4774670fc1c527cd61b1",
+    "line": 268
+  },
+  "source_field_evidence": {
+    "migrated_schedule_0": {
+      "revision": 4,
+      "record_sha256": "43877514a17f5ca9e24a3d1036e1746148a1ad002e7096d2d4db073f6ce27d0a"
+    }
+  },
+  "review_scope": "Individual v3 language-target readmission only; no actual model learning or business-answer acceptance."
+}

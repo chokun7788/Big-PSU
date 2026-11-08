@@ -1,0 +1,97 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 226,
+  "question_key": "e6cc3a843838b1c5ec229aca442fe188357dbc4344acecbcc151098adad4850d",
+  "raw_question": "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ โอนเงินเกินยอดต้องทำอย่างไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "โอนเงินเกินยอด",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ต้องทำอย่างไร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One question asks the procedure for an overpayment; source-verification framing is style.",
+    "intent_operation_facet": "payment/detail/owner_policy retains overpayment, not underpayment, ordinary service pricing or a general refund.",
+    "entities_and_slot_roles": "โอนเงินเกินยอด is the local payment case and ต้องทำอย่างไร is the requested procedure scope.",
+    "local_shared_history_scope": "No excess amount, person, session, receipt date or prior history is supplied.",
+    "negation_and_ambiguity": "The question does not assert eligibility for cash refund or authorize a transfer, credit or booking change.",
+    "source_version_alignment": "r114_q014 distinguishes overpayment handling and recorded future-session credit from cash refund; expiry and current applicability remain source limitations.",
+    "no_business_answer_target": "No credit balance, expiry, contact address or yes/no refund verdict is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "r114_q014_owner_policy"
+  ],
+  "source_answer_issues": [
+    [
+      "Future-session credit has no recorded expiry or full application procedure here.",
+      "Do not infer cash refund, deadline or a usable balance for this user."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 227,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "r114_q014_owner_policy": {
+      "revision": 1,
+      "record_sha256": "9e1c7d8e585ac439d2f7cef2dcb775b8452832d6c5d28c8f54acccdce359c85b"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

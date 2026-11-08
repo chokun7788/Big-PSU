@@ -1,0 +1,129 @@
+"""Check requested source scope independently of the delivered claim/metadata.
+
+Relations are followed from source fields, never from model-supplied IDs or
+rendered text. This proves scope membership, not natural-language entailment.
+"""
+from .projection import value,title
+from .scope import contains,event_years
+from .executor_registry import SOURCE_KINDS
+
+def check(index,task,fact,question):
+    record=index.records.get(fact['record_id'],{})
+    errors=[];basis=[]
+    if record.get('kind') not in SOURCE_KINDS.get(task.category,[]):errors.append('source_receipt_kind_outside_executor_contract')
+    target=getattr(task,'target_span',None)
+    bound=index.bind(task.category,target.text) if target is not None else []
+    if task.category=='C03' and getattr(task,'operation',None) in {'detail','count'}:
+        # The current question remains an independent subject binding when a
+        # planner omits its target. Inventory sets have a separate set verifier.
+        actual=index.bind('C03',question)
+        from .precision import equipment
+        component=equipment(index,question)
+        if component is not None:actual=[index.byid[fid] for fid in component.ids]
+        if actual:bound=actual
+    bound_ids={f['record_id'] for f in bound}
+    allowed=set(bound_ids)
+    if task.category=='C01':
+        from .contact_scope import candidates
+        allowed={f['record_id'] for f in candidates(index,question,task.facet)}
+        basis.append('independent_institution_and_contact_channel_binding')
+        if fact['record_id'] not in allowed:errors.append('source_receipt_contact_subject_channel_mismatch')
+    elif task.category=='C05':
+        from .control_scope import candidates
+        from .precision import controls
+        pool=candidates(index,question);allowed={f['record_id'] for f in pool}
+        basis.append('independent_control_game_platform_scope')
+        if fact['id'] not in {f['id'] for f in pool}:errors.append('source_receipt_control_platform_or_game_mismatch')
+        expected=controls(index,question)
+        if expected is not None and fact['id'] not in expected.ids:errors.append('source_receipt_requested_control_mismatch')
+    elif task.category=='C03' and getattr(task,'operation',None)=='list' and task.facet=='name':
+        from .collection_scopes import inventory
+        allowed={f['record_id'] for f in inventory(index,question)}
+        basis.append('independent_requested_inventory_source_set')
+        if fact['record_id'] not in allowed:errors.append('source_receipt_inventory_scope_mismatch')
+    elif task.category=='C06':
+        from .financial import rate_pool,audience_mentions
+        candidates=rate_pool(index,question)
+        if candidates:
+            allowed={f['record_id'] for f in candidates};basis.append('source_service_audience_rate_joins')
+        positive,negative=audience_mentions(index,question)
+        audience=value(record,'audience_id')
+        if record.get('kind')=='rate' and (audience in negative or positive and audience not in positive):errors.append('source_receipt_audience_scope_mismatch')
+    elif task.category=='C07':
+        from .financial import rental_pool,rental_audiences
+        candidates=rental_pool(index,question)
+        if candidates:allowed={f['record_id'] for f in candidates};basis.append('source_package_zone_audience_period_joins')
+        if getattr(task,'operation',None)=='compare':
+            from .comparison_executor import package_options
+            options=package_options(index,question);allowed=set(options);basis.append('independent_explicit_package_comparison_options')
+            if len(options)<2 or fact['record_id'] not in allowed:errors.append('source_receipt_package_comparison_scope_mismatch')
+        positive,negative=rental_audiences(index,question);audience=value(record,'audience_id')
+        if record.get('kind')=='rental_package' and (audience in negative or positive and audience not in positive):errors.append('source_receipt_organization_scope_mismatch')
+    elif task.category in {'C08','C09','C10'}:
+        from .policy_scope import check as policy_check
+        policy=policy_check(index,task,fact,question)
+        basis.append(policy['basis'])
+        if not policy['verified']:errors.append('source_receipt_policy_action_or_actor_mismatch')
+    elif task.category=='C04':
+        if getattr(task,'operation',None) in {'detail','availability'} and task.facet!='game_catalog':
+            actual=index.bind('C04',question)
+            if actual:bound=actual;bound_ids={f['record_id'] for f in actual};allowed=set(bound_ids)
+        # A game mode/service fact can answer a game-root relation, but only
+        # with an explicit typed game_id, not a shared word in its body.
+        games={rid for rid in bound_ids if index.records.get(rid,{}).get('kind')=='game'}
+        if games:
+            allowed.update(f['record_id'] for f in index.bycat['C04'] if f.get('game_id') in games)
+            basis.append('typed_game_relation')
+    elif task.category=='C14':
+        from .news_scope import candidates
+        allowed={f['record_id'] for f in candidates(index,question)}
+        basis.append('independent_question_event_and_edition_binding')
+        if len(allowed)>1:errors.append('source_receipt_news_event_ambiguous')
+        if fact['record_id'] not in allowed:errors.append('source_receipt_news_event_scope_mismatch')
+    elif task.category=='C13':
+        games={rid for rid,r in index.records.items() if r.get('kind')=='game' and any(contains(question,s) for s in [*title(r).values(),*sum(r.get('aliases',{}).values(),[])])}
+        if games and fact.get('game_id') not in games:errors.append('source_receipt_game_scope_mismatch')
+        # A full event title explicitly present in the question is an
+        # independent source binding; a game name or sole matching event is not.
+        events={rid for rid,r in index.records.items() if r.get('kind')=='competition' and any(s and contains(question,s) for s in title(r).values())}
+        if len(events)==1 and getattr(task,'operation',None)!='compare':
+            event_id=next(iter(events));event=index.records[event_id]
+            event_game=value(event,'game_id')
+            allowed={f['record_id'] for f in index.bycat['C13'] if f.get('event_id')==event_id and (not event_game or f.get('game_id')==event_game)}
+            basis.append('explicit_full_source_event_title_and_typed_game_relation')
+            if fact.get('event_id')!=event_id or (event_game and fact.get('game_id')!=event_game):errors.append('source_receipt_named_event_mismatch')
+        asked=event_years(index,question)
+        from .scope import rule_source_years
+        if getattr(task,'operation',None)=='compare':
+            from .comparison_executor import rule_options
+            options=rule_options(index,question)
+            if len(options)<2 or fact.get('event_id') not in options:errors.append('source_receipt_comparison_event_mismatch')
+            if asked and not asked&rule_source_years(index,fact):errors.append('source_receipt_event_edition_mismatch')
+        elif asked and not asked<=rule_source_years(index,fact):errors.append('source_receipt_event_edition_mismatch')
+        from .scope import rule_edition_events
+        editions=rule_edition_events(index,question,bound or index.bycat['C13'])
+        if editions is not None and fact.get('event_id') not in editions:errors.append('source_receipt_event_edition_mismatch')
+        # Declared dependency edges may refer to another clause in the same
+        # event. They do not authorize a different event/game.
+        dependency_ids=set();queue=list(bound)
+        for f in queue:
+            for rid in f.get('depends_on_ids',[]):
+                if rid in dependency_ids:continue
+                linked=[d for d in index.byrecord[rid] if d['category']=='C13' and d.get('event_id')==f.get('event_id') and d.get('game_id')==f.get('game_id')]
+                dependency_ids.add(rid);queue.extend(linked);allowed.update(d['record_id'] for d in linked)
+        if dependency_ids:basis.append('same_event_declared_clause_dependencies')
+    if allowed and fact['record_id'] not in allowed:errors.append('source_receipt_bound_target_mismatch')
+    if bound_ids:basis.append('independent_source_alias_binding')
+    target_bound=bool(bound_ids or allowed)
+    # Game/category agreement alone cannot verify that an event-specific rule
+    # applies to the event the user meant. Retain the scoped claim and its
+    # caveat, but do not label its requested event scope as verified.
+    verified=not errors and (task.category!='C13' or target_bound)
+    # For a staff-access request, a generic category and empty policy actions
+    # do not establish the audience or service scope of the source.
+    import re
+    staff_access=(task.category=='C10' and bool(re.search(r'\b(?:psu\s+staff|staff\s+member)\b',question,re.I)) and bool(re.search(r'\b(?:access|enter|use|play)\b',question,re.I)))
+    if staff_access and not target_bound and not policy.get('requested_actions'):
+        verified=False
+        basis.append('staff_access_scope_unverified_no_audience_service_binding')
+    return {'verified':verified,'errors':errors,'bound_record_ids':sorted(bound_ids),'allowed_record_ids':sorted(allowed),'basis':basis or ['category_only_no_source_target_bound'],'target_binding_verified':target_bound,'semantic_entailment_verified':False}

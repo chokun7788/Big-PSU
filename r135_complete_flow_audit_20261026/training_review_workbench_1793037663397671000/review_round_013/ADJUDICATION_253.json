@@ -1,0 +1,154 @@
+{
+  "question_key": "1e48171bc6215d3060026dcf5d0bdb6a9911a8239a468693d9594452553e7fb0",
+  "example_sha256": "f2115f023bf0b9ba6dd8a325307caf78402a083a121dafafab5c1b889f3e0343",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One CS2 rule lookup asks for before-match and on-site requirements; polite introduction is not another task.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause retains CS2 and the combined preparation/on-site purpose.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add exact ข้อกำหนดก่อนแข่ง and หน้างาน scopes rather than a generic whole-rulebook retrieval.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No player count, arrival time, team roster, device, document or competition date is supplied by the user.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The question does not authorize entry, certify registration or establish a breach.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual CS2 sections049-053 distinguish venue heading, prep personnel, prohibited electronics, document exception and refreshments; source facets are mixed, so matching only primary eligibility_registration or only pre_match_on_site cannot prove complete coverage.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_cs2_psu_phuket_2026_section_049",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_050",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_051",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_052",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_053"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No six-player limit, exception, device prohibition, drink permission, arrival deadline or source answer is taught.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Related on-site clauses have mixed source facet mappings.",
+      "handling": "Read source section ordering and completeness independently of primary facet tags."
+    }
+  ],
+  "historical_review_row": 253,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ข้อกำหนดก่อนแข่ง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "หน้างาน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_cs2_psu_phuket_2026_section_049": {
+      "revision": 4,
+      "record_sha256": "80230e5496a4b8eeee6f14c08023dc80f151006bd4aaf3a542b68eb18bbfc4be"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_050": {
+      "revision": 4,
+      "record_sha256": "1a4de1910127eb1eab4b0d30d53fc81c0635076638d724ff802a013215bbaf24"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_051": {
+      "revision": 4,
+      "record_sha256": "b1e3c15f05994ce9c9fa4c9c578506a1b6490bffdb0ff984bdccbe86d79bb48f"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_052": {
+      "revision": 4,
+      "record_sha256": "efa6b18e2e534014f20a14a6ba615e3d8014fc7956a08d5b86fccc0e7c055b0d"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_053": {
+      "revision": 5,
+      "record_sha256": "6c9c2cae6f7a9a2f34286e278ca6dac6d948d8dde9f426cc074ab6df263719b8"
+    }
+  }
+}

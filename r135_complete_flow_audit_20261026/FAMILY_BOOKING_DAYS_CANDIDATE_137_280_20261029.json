@@ -1,0 +1,129 @@
+{
+  "version": "r135-conservative-family-candidate-v1",
+  "created_at": "2026-10-29T16:18:37.913056+07:00",
+  "members": [
+    {
+      "row": 137,
+      "question_key": "3e3bf5f32c49dea818052e61126c5c81524eb250d8ca81721a73117110aaa59a",
+      "question": "How to book VR and what days are available",
+      "current_split": "train",
+      "family": "union_132",
+      "tasks": [
+        {
+          "quote": "How to book VR",
+          "domain": "reservation",
+          "operation": "detail",
+          "facet": "owner_policy",
+          "target": "VR",
+          "constraints": [
+            {
+              "slot": "service",
+              "quote": "VR",
+              "source_record_id": "",
+              "scope": "local"
+            }
+          ],
+          "ambiguous": false,
+          "id": "t1"
+        },
+        {
+          "quote": "what days are available",
+          "domain": "schedule",
+          "operation": "detail",
+          "facet": "bookable_periods",
+          "target": "VR",
+          "constraints": [
+            {
+              "slot": "service",
+              "quote": "VR",
+              "source_record_id": "",
+              "scope": "shared"
+            }
+          ],
+          "ambiguous": false,
+          "id": "t2"
+        }
+      ],
+      "shared_bindings": [
+        {
+          "source_task_id": "t1",
+          "target_task_id": "t2",
+          "slot": "target",
+          "quote": "VR",
+          "basis": "source_related_ellipsis"
+        },
+        {
+          "source_task_id": "t1",
+          "target_task_id": "t2",
+          "slot": "service",
+          "quote": "VR",
+          "basis": "source_related_ellipsis"
+        }
+      ],
+      "source_example_line": 138
+    },
+    {
+      "row": 280,
+      "question_key": "a603ab1aed328e10dbf5ac72b6a752be2fb77658ea0365896a1776cd04806370",
+      "question": "How to book Cockpit and what days is it open?",
+      "current_split": "development",
+      "family": "union_272",
+      "tasks": [
+        {
+          "quote": "How to book Cockpit",
+          "domain": "reservation",
+          "operation": "detail",
+          "facet": "owner_policy",
+          "target": "",
+          "constraints": [
+            {
+              "slot": "service",
+              "quote": "Cockpit",
+              "source_record_id": "",
+              "scope": "local"
+            }
+          ],
+          "ambiguous": false,
+          "id": "t1"
+        },
+        {
+          "quote": "what days is it open",
+          "domain": "schedule",
+          "operation": "detail",
+          "facet": "open_periods",
+          "target": "",
+          "constraints": [
+            {
+              "slot": "service",
+              "quote": "Cockpit",
+              "source_record_id": "",
+              "scope": "shared"
+            }
+          ],
+          "ambiguous": false,
+          "id": "t2"
+        }
+      ],
+      "shared_bindings": [
+        {
+          "source_task_id": "t1",
+          "target_task_id": "t2",
+          "slot": "service",
+          "quote": "Cockpit",
+          "basis": "explicit_anaphor"
+        }
+      ],
+      "source_example_line": 281
+    }
+  ],
+  "example_file": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\family_cohort_candidate_1793167167952209900\\EXAMPLES.jsonl",
+  "example_sha256": "5bb5d1ea001c2cde9588e42669665012677abdc20677f761c09c571871be2636",
+  "observation": "Both ask how to book a named service and which days are available or open, with a shared service reference; one uses ellipsis and one an explicit pronoun. Their service and schedule facets differ (bookable_periods vs open_periods), so they are not factual duplicates.",
+  "risk": "Related wording and task template span train and development; this may inflate generalization to unseen forms.",
+  "proposed_next_step": "Review source and labels for both before deciding whether to move row 137 from train to development; preserve historical split and do not move exposed test or validation into train.",
+  "decision": "review_required_no_move",
+  "current_cohorts_modified": false,
+  "new_reviews": 0,
+  "family_audit_complete": false,
+  "optimizer_authorized": false
+}

@@ -1,0 +1,148 @@
+{
+  "question_key": "ad28947d610ba429ff05e73c28cf5c3a6b1bbfc7afa9df226af42dffc29a9ed7",
+  "example_sha256": "352268981c63476a3c5e7a1e5e6e2658cd05d53b5b54318aa24e24965d52b29a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One stage-selection procedure question includes source-verification framing, but no explicit tournament or rulebook noun.",
+      "raw_quotes": [
+        "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Existing C13/rule_lookup injects a competition context not stated by the user. General/unknown with ambiguity preserves the need until ordinary gameplay versus tournament rule scope is clarified.",
+      "raw_quotes": [
+        "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Tekken 8 and เลือกด่าน are literal input substrings. No platform, tournament identity, stage name, action binding or source-derived operation is invented.",
+      "raw_quotes": [
+        "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Allowed dialogue history is empty. A competition source found during review cannot supply a missing user context or turn this corpus row into a continuation of another question.",
+      "raw_quotes": [
+        "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "There is no negation. The missing procedure-versus-rule context is a genuine ambiguity; asking for verified information does not remove it.",
+      "raw_quotes": [
+        "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual TEKKEN section004 revision5 records Random stage as a competition setting. The PS5 controls revision6 lists gameplay bindings without a stage-selection procedure. Neither establishes which question the user intended.",
+      "raw_quotes": [
+        "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_tekken8_psu_esports_section_004",
+        "controls_ps5_tekken_8"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Random answer, control button, platform default, rule permission or fabricated tournament context enters the corrected label.",
+      "raw_quotes": [
+        "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Competition and ordinary gameplay procedure are not distinguished by the question; the source does not establish the intended scope.",
+      "handling": "Clarify intended ordinary gameplay versus tournament rule scope; do not assert a source-derived game procedure."
+    }
+  ],
+  "historical_review_row": 266,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Tekken 8",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "เลือกด่าน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "unclear",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "id": "t1",
+        "quote": "ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 เลือกด่านยังไง",
+        "domain": "general",
+        "operation": "unknown",
+        "facet": "",
+        "target": "Tekken 8",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "เลือกด่าน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true
+      }
+    ],
+    "shared_bindings": []
+  },
+  "source_field_evidence": {
+    "competition_competition_rules_tekken8_psu_esports_section_004": {
+      "revision": 5,
+      "record_sha256": "690a488fcfcd9105241763a1a260c54d7ddfd6fedcec7a650448b3e6f7b57771"
+    },
+    "controls_ps5_tekken_8": {
+      "revision": 6,
+      "record_sha256": "3d5d2b9c6def2678428d6863dd0abc5b10e3af1449e611e99ee0d3a81c454e76"
+    }
+  },
+  "prior_adjudication_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_013\\ADJUDICATION_266.json",
+    "sha256": "167114f86f9bf2832963aa60cb02f9836adae3b4ad1620fe3dcb3454c534ee0f"
+  },
+  "amendment_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\semantic_amendments_round014\\AMENDMENT_266.json",
+    "sha256": "2d921820330fc4178ed8f34abbdf3731df441c3e97e791f9be012968bb135426"
+  },
+  "review_scope": "Supersedes only row 266 language target; this is not a new unique question or source answer."
+}

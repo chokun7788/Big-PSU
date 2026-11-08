@@ -1,0 +1,132 @@
+{
+  "question_key": "384025a9055ec09d142e4543371ce71cf5a8a9ac56a4f7279e1a08e83b617dc9",
+  "example_sha256": "47f0c88b686d2c054386314383f1c2e053e6367175e70bd3d7f90548eed505ca",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One incomplete advance-time information request; short detail is presentation style.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy retains the apparent booking-related topic with ambiguity.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ล่วงหน้า กี่ hour is literal requested scope, not a numeric duration value.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No action such as book, cancel or check in is inherited from prior context.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Keep ambiguous true because the advance-time action is missing, not because an hour unit is unknown.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Booking advance, cancellation advance and check-in advance are separately recorded clauses with different triggers and deadlines.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_booking_advance",
+        "migrated_faq_rule_cancel_advance",
+        "migrated_faq_rule_checkin_advance"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No one-hour or thirty-minute deadline, completed booking or action is taught.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 91,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "unclear",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "unclear",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลเรื่องล่วงหน้า กี่ hour ขอรายละเอียดแบบสั้น ๆ",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ล่วงหน้า กี่ hour",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_booking_advance": {
+      "revision": 4,
+      "record_sha256": "5ecb9bc129ebc58720385d870640cd7bba7125c8f36c344389f7abec232adc84"
+    },
+    "migrated_faq_rule_cancel_advance": {
+      "revision": 4,
+      "record_sha256": "46f051151519951185ff9d1a739a703d01a32145372923c101c7ebf2261b8487"
+    },
+    "migrated_faq_rule_checkin_advance": {
+      "revision": 4,
+      "record_sha256": "bc6f0d3d20d52d43d8c3eae55091e65cab2da5626ca4bb1c3937003419401773"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "question_key": "2e97ef121e977a741a379bfd045b04155d8407579ed7f02d14f1b76358fb4310",
+  "example_sha256": "ed0ad1b310f79218ebc4bbdf5b1e82dca3cc84e469283e6a6f45bec371eb07dd",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Valorant rule query coordinates player conduct and sportsmanship; please/explain are style.",
+      "raw_quotes": [
+        "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Keep competition_rules/rule_lookup/rule_clause targeted to Valorant rather than general studio conduct or CS2.",
+      "raw_quotes": [
+        "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add player conduct and sportsmanship as literal requested scopes under one rule purpose.",
+      "raw_quotes": [
+        "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No player, incident, penalty, tournament date or prior rulebook context is supplied.",
+      "raw_quotes": [
+        "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Verify asks for evidence and does not assert that a conduct rule or sportsmanship definition exists.",
+      "raw_quotes": [
+        "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual Valorant section014 revision4 records serious misconduct as a map-forfeit condition; that is not a complete sportsmanship definition. The explicit sportsmanship clause found in CS2 section036 belongs to another competition and cannot fill this gap.",
+      "raw_quotes": [
+        "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please."
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_valorant_psu_phuket_2026_section_014",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_036"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No CS2 conduct content, Valorant permission, definition, penalty amount or source-completeness claim enters the label.",
+      "raw_quotes": [
+        "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Misconduct penalty is not a full sportsmanship rule; explicit CS2 conduct is cross-competition evidence.",
+      "handling": "Keep Valorant source gaps and reject cross-title substitution."
+    }
+  ],
+  "historical_review_row": 244,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Valorant",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Valorant",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "player conduct",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "sportsmanship",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_valorant_psu_phuket_2026_section_014": {
+      "revision": 4,
+      "record_sha256": "c9ce862ebf1c05ab5fdba1e9e8e852bb26ff9fa07cf27b4cf6a09caa0a83615f"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_036": {
+      "revision": 4,
+      "record_sha256": "74321abf4a72dd6911620777ede475e8a02c0adda6b57bd0c0ade6edd01b35f0"
+    }
+  }
+}

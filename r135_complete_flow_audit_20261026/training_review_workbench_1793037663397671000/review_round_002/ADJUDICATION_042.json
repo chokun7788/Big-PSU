@@ -1,0 +1,133 @@
+{
+  "question_key": "2c110689509d6996841eec18c40041b694e32f32454d3bb7453a15507e5c4ba7",
+  "example_sha256": "4d77e1279c952064c2cc434ce7ae441378b6cba0b7608e19655fb14ceb5ed59a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One current resource-availability request at a quoted time; verified-information text is style.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "live/availability/live_status is retained rather than general opening hours.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "pc2 is the explicit resource target omitted by the old label; 3pm remains the exact time quote.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Resource and time belong to one availability task; no date is inherited.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Availability is a question; a future time without date does not establish a real booking or free machine.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "resource_pc_02 establishes the named resource identity only; its operational_status is unknown and no live reservation evidence is fabricated.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม"
+      ],
+      "source_record_ids": [
+        "resource_pc_02"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No free/busy status, calendar date or slot availability enters the plan.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 42,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "3pm"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "3pm",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "3pm"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ขอข้อมูลที่ยืนยันได้หน่อยครับ: pc2 available ตอน 3pm ไหม",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "pc2",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "3pm",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "resource_pc_02": {
+      "revision": 2,
+      "record_sha256": "54aaa72f4409c042847029eb26a6fca9f168e8f976b32c5b395782a322f776b6"
+    }
+  }
+}

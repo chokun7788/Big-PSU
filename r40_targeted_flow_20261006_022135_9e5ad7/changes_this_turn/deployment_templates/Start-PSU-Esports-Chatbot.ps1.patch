@@ -1,0 +1,15 @@
+--- before/deployment_templates/Start-PSU-Esports-Chatbot.ps1
++++ after/deployment_templates/Start-PSU-Esports-Chatbot.ps1
+@@ -38,7 +38,11 @@
+ }
+ 
+ $env:PSU_RUNTIME_PROFILE = "owner-local-rag-assist"
+-$env:PSU_RUNTIME_VERSION = "2026.09.29-multi-error-recovery-r15"
++$manifestPath = Join-Path $projectRoot 'package_manifest.json'
++$env:PSU_RUNTIME_VERSION = if (Test-Path -LiteralPath $manifestPath) {
++    (Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json).runtime_version
++} else { "2026.10.06-targeted-flow-r40.3" }
++if (-not $env:PSU_RUNTIME_VERSION) { throw 'Missing runtime_version in package_manifest.json.' }
+ $env:PSU_BILINGUAL_EN_ENABLED = "1"
+ $env:PSU_LOCAL_LLM_ASSIST_ENABLED = "1"
+ $env:PSU_PRODUCT_BACKEND_TIMEOUT_SEC = "20"

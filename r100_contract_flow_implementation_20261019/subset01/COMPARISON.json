@@ -1,0 +1,1478 @@
+{
+  "same_key_requests": 91,
+  "r98_retained": {
+    "totals": {
+      "requests": 91,
+      "exceptions": 0,
+      "empty_answers": 0,
+      "model_attempts": 43,
+      "model_response_opened": 43,
+      "grades": 162,
+      "strict_passed": 19,
+      "positive_grades": 72,
+      "positive_literal_passed": 61
+    },
+    "locales": {
+      "en": {
+        "total": 26,
+        "passed": 20
+      },
+      "th": {
+        "total": 29,
+        "passed": 25
+      },
+      "auto": {
+        "total": 17,
+        "passed": 16
+      }
+    },
+    "failure_reasons": {
+      "protocol": 150,
+      "outcome": 21,
+      "evidence": 0,
+      "content": 13,
+      "validation": 0,
+      "performance": 0,
+      "grader": 0
+    },
+    "need_status_counts": {
+      "supported": 55,
+      "live_unavailable": 4,
+      "needs_user_slot": 9,
+      "missing_source": 3,
+      "partial_supported": 1,
+      "not_current": 2
+    }
+  },
+  "r100_candidate": {
+    "totals": {
+      "requests": 91,
+      "exceptions": 0,
+      "empty_answers": 0,
+      "model_attempts": 41,
+      "model_response_opened": 41,
+      "grades": 162,
+      "strict_passed": 19,
+      "positive_grades": 72,
+      "positive_literal_passed": 61
+    },
+    "locales": {
+      "en": {
+        "total": 26,
+        "passed": 21
+      },
+      "th": {
+        "total": 29,
+        "passed": 25
+      },
+      "auto": {
+        "total": 17,
+        "passed": 15
+      }
+    },
+    "failure_reasons": {
+      "protocol": 150,
+      "outcome": 24,
+      "evidence": 0,
+      "content": 12,
+      "validation": 0,
+      "performance": 0,
+      "grader": 0
+    },
+    "need_status_counts": {
+      "ambiguous_interpretation": 29,
+      "supported": 9,
+      "scope_unverified": 37,
+      "partial_supported": 4,
+      "live_unavailable": 5,
+      "missing_source": 5,
+      "needs_user_slot": 1,
+      "not_current": 2
+    }
+  },
+  "changes": [
+    {
+      "question": "ถ้าจะเล่น Beat Saber ต้องจองอะไร",
+      "locale": "auto",
+      "improved": [],
+      "regressed": [
+        [
+          "data/eval/model_benchmark_1500.json",
+          830,
+          "question"
+        ]
+      ],
+      "old_answer": "เกมที่เกี่ยวข้อง: Beat Saber\n\nบริการที่ถาม: Beat Saber\n\n**ข้อมูลที่เกี่ยวข้อง**\n• ข้อมูลที่ยืนยันได้: Walk-in ได้ แต่ยังต้องจองผ่านระบบก่อนใช้บริการครับ [S1]",
+      "new_answer": "ข้อมูลที่เลือกยังไม่ยืนยันส่วนที่ถามโดยตรงครับ",
+      "artifact": {
+        "response_type": "unconfirmed",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [
+            "migrated_owner_claim_walk_in"
+          ],
+          "requested_fields": [
+            "answer"
+          ],
+          "all_fields": false,
+          "method": "common_procedure_topic",
+          "scope": "common_published",
+          "platform": null,
+          "query_without_entity": "ถ้าจะเล่น ต้องจองอะไร",
+          "operation": "booking",
+          "scope_ids": [
+            "game_detail_beat_saber"
+          ],
+          "field_selection": [],
+          "confidence_calibrated": false,
+          "request_focus": null,
+          "schema_language_recoveries": [],
+          "authority": {
+            "decision": "common",
+            "reason": "published_target_owned",
+            "record_ids": [
+              "migrated_owner_claim_walk_in"
+            ],
+            "release_id": "migration-preview-r69",
+            "epoch": 1840
+          },
+          "field_authority": [
+            {
+              "record_id": "migrated_owner_claim_walk_in",
+              "field": "answer",
+              "authority": "common",
+              "status": "known",
+              "revision": 2
+            }
+          ],
+          "unresolved_clauses": [],
+          "semantic_review_needed": false,
+          "semantic_plan_accepted": false,
+          "read_contract": {
+            "schema_version": "common_read_plan_v1",
+            "needs": [
+              {
+                "id": "n1",
+                "field_refs": [
+                  {
+                    "kind": "faq",
+                    "key": "answer"
+                  }
+                ],
+                "source_span": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+                "resolution": "typed_supported",
+                "ambiguous_kind": false
+              }
+            ],
+            "unresolved_spans": [],
+            "semantic_correctness_verified": false
+          },
+          "response_projection": [
+            {
+              "record_id": "migrated_owner_claim_walk_in",
+              "fields": {
+                "answer": "explicit"
+              }
+            }
+          ]
+        },
+        "obligations": [],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [
+            {
+              "id": "field_answer",
+              "field": "answer",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "migrated_owner_claim_walk_in",
+                  "field": "answer",
+                  "sources": [
+                    {
+                      "locator": "/mapped_fields/answer",
+                      "source_id": "r63_5fa702d6c7bb14f5ca45d20c3d7b"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            }
+          ],
+          "total_needs": 1,
+          "answered_needs": 1,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 1,
+          "response_type": "answer"
+        },
+        "task_flow": {
+          "version": "r95",
+          "path": "compatibility_common_domain",
+          "reason": "no_accepted_replacement_task"
+        },
+        "interpretation_diagnostics": [
+          {
+            "stage": "shared_normalization",
+            "raw": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+            "text": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+            "offsets": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31
+            ],
+            "edits": [],
+            "protected": []
+          },
+          {
+            "stage": "task_dispatch",
+            "path": "compat_typed_qualifiers",
+            "reason": "reuse_existing_sensitive_task_parser_without_extra_model_call"
+          },
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [
+              "game_detail_beat_saber",
+              "availability_vr_30",
+              "availability_vr_60",
+              "controls_vr_beat_saber",
+              "migrated_faq_rule_vr_specific_games"
+            ],
+            "method": "exact"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "reason": "no_supported_task",
+              "candidate_ids": []
+            }
+          }
+        ],
+        "knowledge_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840,
+          "content_view": "evaluation_draft"
+        },
+        "predicate_rejection": {
+          "reason_codes": [
+            "booking_steps_require_procedure_source"
+          ],
+          "original_mode": "pipeline:common_answer"
+        },
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+          "needs": [
+            {
+              "id": "n1",
+              "task": "procedure",
+              "query": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+              "source_span": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+              "record_ids": [
+                "game_detail_beat_saber",
+                "availability_vr_30",
+                "availability_vr_60",
+                "controls_vr_beat_saber"
+              ],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "booking_steps",
+              "slots": {},
+              "required_claims": [
+                "booking_steps"
+              ]
+            }
+          ],
+          "scope": {
+            "release_bound_at_read": true,
+            "history_has_trusted_state": false,
+            "candidate_source": "common_snapshot",
+            "all_requested": false
+          },
+          "raw_question": "ถ้าจะเล่น Beat Saber ต้องจองอะไร"
+        },
+        "need_results": [
+          {
+            "need_id": "n1",
+            "task": "procedure",
+            "predicate": "booking_steps",
+            "source_span": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+            "status": "ambiguous_interpretation",
+            "reason_codes": [
+              "booking_steps_require_procedure_source"
+            ],
+            "slots": {},
+            "record_ids": [
+              "migrated_owner_claim_walk_in"
+            ],
+            "receipts": [],
+            "coverage": {
+              "version": 1,
+              "predicate": "booking_steps",
+              "task": "procedure",
+              "decision": "predicate_mismatch",
+              "reason_codes": [
+                "booking_steps_require_procedure_source"
+              ],
+              "receipts": [],
+              "semantic_correctness_verified": false
+            },
+            "coverage_basis": "typed predicate contract where available; unmigrated scope remains unverified"
+          }
+        ],
+        "request_plan_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840
+        },
+        "input_normalization": {
+          "raw": "ถ้าจะเล่น Beat Saber ต้องจองอะไร",
+          "text": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "edits": [],
+          "protected": []
+        },
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": [
+          {
+            "stage": "shared_normalization",
+            "raw": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+            "text": "ถ้าจะเล่น beat saber ต้องจองอะไร",
+            "offsets": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31
+            ],
+            "edits": [],
+            "protected": []
+          },
+          {
+            "stage": "task_dispatch",
+            "path": "compat_typed_qualifiers",
+            "reason": "reuse_existing_sensitive_task_parser_without_extra_model_call"
+          },
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [
+              "game_detail_beat_saber",
+              "availability_vr_30",
+              "availability_vr_60",
+              "controls_vr_beat_saber",
+              "migrated_faq_rule_vr_specific_games"
+            ],
+            "method": "exact"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "reason": "no_supported_task",
+              "candidate_ids": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "question": "Call of Duty เล่นได้ที่ไหน",
+      "locale": "auto",
+      "improved": [
+        [
+          "data/eval/model_benchmark_1500.json",
+          848,
+          "question"
+        ]
+      ],
+      "regressed": [],
+      "old_answer": "ยังระบุข้อมูลจากชุดที่ย้ายมาให้ตรงคำถามนี้ไม่ได้ครับ กรุณาระบุชื่อเกม อุปกรณ์ หรือหัวข้อที่ต้องการทราบเพิ่มอีกนิด",
+      "new_answer": "หมายถึงเกมฉบับใดครับ: Call of Duty: Modern Warfare III / Call of Duty: Warzone",
+      "artifact": {
+        "response_type": "clarification",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [],
+          "requested_fields": [],
+          "operation": "context",
+          "method": "catalog_target_ambiguity",
+          "pending_target": {
+            "version": 1,
+            "task": "game_at_studio",
+            "candidate_ids": [
+              "game_detail_call_of_duty_mw3",
+              "game_detail_warzone"
+            ],
+            "source_mention": "call of",
+            "original_query": "call of duty เล่นได้ที่ไหน"
+          },
+          "source_answer_confirmed": false
+        },
+        "obligations": [],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [],
+          "total_needs": 0,
+          "answered_needs": 0,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 0,
+          "response_type": "clarification"
+        },
+        "task_flow": {
+          "version": "r95",
+          "path": "compatibility_common_domain",
+          "reason": "no_accepted_replacement_task"
+        },
+        "interpretation_diagnostics": [],
+        "knowledge_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840,
+          "content_view": "evaluation_draft"
+        },
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "call of duty เล่นได้ที่ไหน",
+          "needs": [
+            {
+              "id": "n1",
+              "task": "game_at_studio",
+              "query": "call of duty เล่นได้ที่ไหน",
+              "source_span": "call of duty เล่นได้ที่ไหน",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "offered_game_location",
+              "slots": {},
+              "required_claims": [
+                "offered_game_location"
+              ]
+            }
+          ],
+          "scope": {
+            "release_bound_at_read": true,
+            "history_has_trusted_state": false,
+            "candidate_source": "common_snapshot",
+            "all_requested": false
+          },
+          "raw_question": "Call of Duty เล่นได้ที่ไหน"
+        },
+        "need_results": [
+          {
+            "need_id": "n1",
+            "task": "game_at_studio",
+            "predicate": "offered_game_location",
+            "source_span": "call of duty เล่นได้ที่ไหน",
+            "status": "needs_user_slot",
+            "reason_codes": [
+              "explicit_pending_selection"
+            ],
+            "slots": {},
+            "record_ids": [],
+            "receipts": [],
+            "coverage": {
+              "version": 1,
+              "predicate": "offered_game_location",
+              "task": "game_at_studio",
+              "decision": "scope_unverified",
+              "reason_codes": [
+                "compatibility_scope_not_migrated"
+              ],
+              "receipts": [],
+              "semantic_correctness_verified": false
+            },
+            "coverage_basis": "typed predicate contract where available; unmigrated scope remains unverified"
+          }
+        ],
+        "request_plan_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840
+        },
+        "input_normalization": {
+          "raw": "Call of Duty เล่นได้ที่ไหน",
+          "text": "call of duty เล่นได้ที่ไหน",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "edits": [],
+          "protected": []
+        },
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": []
+      }
+    },
+    {
+      "question": "ถ้าจะเล่น New Super Mario Bros. U Deluxe ต้องจองอะไร",
+      "locale": "auto",
+      "improved": [],
+      "regressed": [
+        [
+          "data/eval/model_benchmark_1500.json",
+          786,
+          "question"
+        ]
+      ],
+      "old_answer": "เกมที่เกี่ยวข้อง: New Super Mario Bros. U Deluxe\n\nบริการที่ถาม: New Super Mario Bros. U Deluxe\n\n**ข้อมูลที่เกี่ยวข้อง**\n• ข้อมูลที่ยืนยันได้: Walk-in ได้ แต่ยังต้องจองผ่านระบบก่อนใช้บริการครับ [S1]",
+      "new_answer": "ข้อมูลที่เลือกยังไม่ยืนยันส่วนที่ถามโดยตรงครับ",
+      "artifact": {
+        "response_type": "unconfirmed",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [
+            "migrated_owner_claim_walk_in"
+          ],
+          "requested_fields": [
+            "answer"
+          ],
+          "all_fields": false,
+          "method": "common_procedure_topic",
+          "scope": "common_published",
+          "platform": null,
+          "query_without_entity": "ถ้าจะเล่น ต้องจองอะไร",
+          "operation": "booking",
+          "scope_ids": [
+            "game_detail_new_super_mario_bros"
+          ],
+          "field_selection": [],
+          "confidence_calibrated": false,
+          "request_focus": null,
+          "schema_language_recoveries": [],
+          "authority": {
+            "decision": "common",
+            "reason": "published_target_owned",
+            "record_ids": [
+              "migrated_owner_claim_walk_in"
+            ],
+            "release_id": "migration-preview-r69",
+            "epoch": 1840
+          },
+          "field_authority": [
+            {
+              "record_id": "migrated_owner_claim_walk_in",
+              "field": "answer",
+              "authority": "common",
+              "status": "known",
+              "revision": 2
+            }
+          ],
+          "unresolved_clauses": [],
+          "semantic_review_needed": false,
+          "semantic_plan_accepted": false,
+          "read_contract": {
+            "schema_version": "common_read_plan_v1",
+            "needs": [
+              {
+                "id": "n1",
+                "field_refs": [
+                  {
+                    "kind": "faq",
+                    "key": "answer"
+                  }
+                ],
+                "source_span": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+                "resolution": "typed_supported",
+                "ambiguous_kind": false
+              }
+            ],
+            "unresolved_spans": [],
+            "semantic_correctness_verified": false
+          },
+          "response_projection": [
+            {
+              "record_id": "migrated_owner_claim_walk_in",
+              "fields": {
+                "answer": "explicit"
+              }
+            }
+          ]
+        },
+        "obligations": [],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [
+            {
+              "id": "field_answer",
+              "field": "answer",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "migrated_owner_claim_walk_in",
+                  "field": "answer",
+                  "sources": [
+                    {
+                      "locator": "/mapped_fields/answer",
+                      "source_id": "r63_5fa702d6c7bb14f5ca45d20c3d7b"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            }
+          ],
+          "total_needs": 1,
+          "answered_needs": 1,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 1,
+          "response_type": "answer"
+        },
+        "task_flow": {
+          "version": "r95",
+          "path": "compatibility_common_domain",
+          "reason": "no_accepted_replacement_task"
+        },
+        "interpretation_diagnostics": [
+          {
+            "stage": "shared_normalization",
+            "raw": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+            "text": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+            "offsets": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51
+            ],
+            "edits": [],
+            "protected": []
+          },
+          {
+            "stage": "task_dispatch",
+            "path": "compat_typed_qualifiers",
+            "reason": "reuse_existing_sensitive_task_parser_without_extra_model_call"
+          },
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [
+              "game_detail_new_super_mario_bros",
+              "availability_nintendo_1_2",
+              "availability_nintendo_1_4",
+              "controls_nintendo_new_super_mario_bros_u_deluxe"
+            ],
+            "method": "exact"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "reason": "no_supported_task",
+              "candidate_ids": []
+            }
+          }
+        ],
+        "knowledge_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840,
+          "content_view": "evaluation_draft"
+        },
+        "predicate_rejection": {
+          "reason_codes": [
+            "booking_steps_require_procedure_source"
+          ],
+          "original_mode": "pipeline:common_answer"
+        },
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+          "needs": [
+            {
+              "id": "n1",
+              "task": "procedure",
+              "query": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+              "source_span": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+              "record_ids": [
+                "game_detail_new_super_mario_bros",
+                "availability_nintendo_1_2",
+                "availability_nintendo_1_4",
+                "controls_nintendo_new_super_mario_bros_u_deluxe"
+              ],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "booking_steps",
+              "slots": {},
+              "required_claims": [
+                "booking_steps"
+              ]
+            }
+          ],
+          "scope": {
+            "release_bound_at_read": true,
+            "history_has_trusted_state": false,
+            "candidate_source": "common_snapshot",
+            "all_requested": false
+          },
+          "raw_question": "ถ้าจะเล่น New Super Mario Bros. U Deluxe ต้องจองอะไร"
+        },
+        "need_results": [
+          {
+            "need_id": "n1",
+            "task": "procedure",
+            "predicate": "booking_steps",
+            "source_span": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+            "status": "ambiguous_interpretation",
+            "reason_codes": [
+              "booking_steps_require_procedure_source"
+            ],
+            "slots": {},
+            "record_ids": [
+              "migrated_owner_claim_walk_in"
+            ],
+            "receipts": [],
+            "coverage": {
+              "version": 1,
+              "predicate": "booking_steps",
+              "task": "procedure",
+              "decision": "predicate_mismatch",
+              "reason_codes": [
+                "booking_steps_require_procedure_source"
+              ],
+              "receipts": [],
+              "semantic_correctness_verified": false
+            },
+            "coverage_basis": "typed predicate contract where available; unmigrated scope remains unverified"
+          }
+        ],
+        "request_plan_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840
+        },
+        "input_normalization": {
+          "raw": "ถ้าจะเล่น New Super Mario Bros. U Deluxe ต้องจองอะไร",
+          "text": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51
+          ],
+          "edits": [],
+          "protected": []
+        },
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": [
+          {
+            "stage": "shared_normalization",
+            "raw": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+            "text": "ถ้าจะเล่น new super mario bros. u deluxe ต้องจองอะไร",
+            "offsets": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51
+            ],
+            "edits": [],
+            "protected": []
+          },
+          {
+            "stage": "task_dispatch",
+            "path": "compat_typed_qualifiers",
+            "reason": "reuse_existing_sensitive_task_parser_without_extra_model_call"
+          },
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [
+              "game_detail_new_super_mario_bros",
+              "availability_nintendo_1_2",
+              "availability_nintendo_1_4",
+              "controls_nintendo_new_super_mario_bros_u_deluxe"
+            ],
+            "method": "exact"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "reason": "no_supported_task",
+              "candidate_ids": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "question": "Can I use an unkown game called Example Quest? Please amswer briefly",
+      "locale": "en",
+      "improved": [
+        [
+          "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+          1964,
+          "noisy"
+        ]
+      ],
+      "regressed": [],
+      "old_answer": "I could not match this question to the migrated information. Please specify the game, device or topic you want to know about.",
+      "new_answer": "No game record matching “Example Quest” was found in this data set, so its studio offering is not confirmed.",
+      "artifact": {
+        "response_type": "unconfirmed",
+        "unmatched_target": {
+          "mention": "Example Quest",
+          "reason": "no_catalog_match",
+          "scope": "current_common_release"
+        },
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "Can I use an unkown game called Example Quest? Please amswer briefly",
+          "needs": [
+            {
+              "id": "n1",
+              "task": "unresolved",
+              "query": "Can I use an unkown game called Example Quest? Please amswer briefly",
+              "source_span": "Can I use an unkown game called Example Quest? Please amswer briefly",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "unresolved",
+              "slots": {},
+              "required_claims": []
+            }
+          ],
+          "scope": {
+            "release_bound_at_read": true,
+            "history_has_trusted_state": false,
+            "candidate_source": "common_snapshot",
+            "all_requested": false
+          }
+        },
+        "need_results": [
+          {
+            "need_id": "n1",
+            "task": "unresolved",
+            "predicate": "unresolved",
+            "source_span": "Can I use an unkown game called Example Quest? Please amswer briefly",
+            "status": "missing_source",
+            "reason_codes": [
+              "unconfirmed_source"
+            ],
+            "slots": {},
+            "record_ids": [],
+            "receipts": [],
+            "coverage": {
+              "version": 1,
+              "predicate": "unresolved",
+              "task": "unresolved",
+              "decision": "scope_unverified",
+              "reason_codes": [
+                "compatibility_scope_not_migrated"
+              ],
+              "receipts": [],
+              "semantic_correctness_verified": false
+            },
+            "coverage_basis": "typed predicate contract where available; unmigrated scope remains unverified"
+          }
+        ],
+        "request_plan_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840
+        },
+        "result_contract": {
+          "version": 1,
+          "path": "dispatcher_finalizer",
+          "semantic_correctness_verified": false
+        },
+        "input_normalization": {
+          "raw": "Can I use an unkown game called Example Quest? Please amswer briefly",
+          "text": "can i use an unkown game called example quest? please amswer briefly",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67
+          ],
+          "edits": [],
+          "protected": []
+        },
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": [
+          {
+            "stage": "shared_normalization",
+            "raw": "can i use an unkown game called example quest? please amswer briefly",
+            "text": "can i use an unkown game called example quest? please amswer briefly",
+            "offsets": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66,
+              67
+            ],
+            "edits": [],
+            "protected": []
+          },
+          {
+            "stage": "common_task_proposal",
+            "attempted": true,
+            "acceptance_path": "semantic_proposal",
+            "semantic_correctness_verified": false,
+            "proposal": {
+              "task": "policy",
+              "record_index": 0,
+              "task_quote": "Can I use my own keyboard or mouse?",
+              "subject_quote": "",
+              "unresolved": [
+                "unknown game called example quest"
+              ]
+            },
+            "reason": "unresolved_request",
+            "elapsed_ms": 1766.0497999895597,
+            "body_received": true
+          },
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [],
+            "method": "none"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "candidate_ids": [],
+              "matches": [],
+              "rejected": [],
+              "human_intent_correctness_verified": false,
+              "reason": "no_matching_profile"
+            }
+          },
+          {
+            "stage": "unresolved_scope",
+            "operation": null,
+            "entity_selection": {
+              "candidate_ids": [
+                "migrated_owner_claim_personal_keyboard_mouse",
+                "migrated_faq_curated_rule_return_equipment"
+              ],
+              "candidate_scores": [
+                0.2353,
+                0.1791
+              ],
+              "intent_verified": false,
+              "retrieved_candidate_ids": [
+                "migrated_owner_claim_personal_keyboard_mouse",
+                "migrated_faq_rule_en_general_studio_rules",
+                "migrated_faq_curated_rule_return_equipment",
+                "source_listing_our_games_scraped_gran_turismo_7_standard_edition"
+              ],
+              "rejected_correction_subject_ids": [],
+              "candidate_pruning": {
+                "before_count": 4,
+                "after_count": 2,
+                "rejected_ids": [
+                  "migrated_faq_rule_en_general_studio_rules",
+                  "source_listing_our_games_scraped_gran_turismo_7_standard_edition"
+                ],
+                "reason": "fails_existing_independent_topic_guard"
+              },
+              "timing_ms": {
+                "retrieval_ms": 141.549,
+                "model_work_wait_ms": 1.248,
+                "admission_wait_ms": 0.631,
+                "http_wait_and_read_ms": 463.568,
+                "total_ms": 608.661
+              },
+              "profile_retrieval_coverage": {
+                "compatible_count": 0,
+                "included_count": 0,
+                "omitted_ids": [],
+                "all_compatible_topics_available_for_clarification": true,
+                "semantic_recall_verified": false
+              },
+              "profile_protocol": true,
+              "model_request": {
+                "timeout_cap_seconds": 6,
+                "effective_timeout_seconds": 6,
+                "payload_bytes": 4026,
+                "num_ctx": 3072,
+                "num_predict": 420
+              },
+              "model_metrics": {
+                "total_duration_ms": 453.764,
+                "load_duration_ms": 34.553,
+                "prompt_eval_duration_ms": 138.485,
+                "eval_duration_ms": 245.098,
+                "prompt_eval_count": 509,
+                "eval_count": 13
+              },
+              "generation_done": true,
+              "attempted": true,
+              "transport_ok": true,
+              "schema_accepted": true,
+              "selected_indices": [],
+              "ambiguous": false,
+              "profile_bindings": [],
+              "profile_projections": {},
+              "profile_binding_accepted": false,
+              "independent_topic_alignment": {},
+              "semantic_selection_accepted": false
+            },
+            "requested_fields": [],
+            "request_needs": []
+          }
+        ]
+      }
+    }
+  ],
+  "limits": [
+    "Development regression subset, not untouched holdout or full-corpus accuracy.",
+    "Literal/content mismatch is not independent semantic adjudication.",
+    "Booking controlled unavailable.",
+    "Baseline retained, not rerun."
+  ]
+}

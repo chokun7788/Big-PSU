@@ -1,0 +1,173 @@
+{
+  "question_key": "c7ef53bc74bbcf79c04acf7ca763a1907f7b2b0d48e7e7301b920e7236044502",
+  "example_sha256": "2e0545cd3b78623aa751a20923699cdeed0a9be4c80a19c9cf2539b907ef0460",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One ordinary-play price calculation, without a style task.",
+      "raw_quotes": [
+        "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount keeps requested total play cost.",
+      "raw_quotes": [
+        "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PSU Staff is audience, PS5 is service/platform, and 2 ชั่วโมง is the requested play duration, not a rate session length.",
+      "raw_quotes": [
+        "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Every constraint is local to the same price task; no booking task receives these slots.",
+      "raw_quotes": [
+        "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A single duration is explicit; do not invent persons, sessions, a fee, or a default audience.",
+      "raw_quotes": [
+        "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Current PS5 PSU Student and Staff rate records distinguish amount from sixty-minute source billing periods.",
+      "raw_quotes": [
+        "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": [
+        "migrated_rate_playstation_5_60_1_2_psu_student_staff"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No current zero-price value or multiplied total is placed in the training label.",
+      "raw_quotes": [
+        "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 1,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "PS5",
+      "PSU Staff"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU Staff",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "PS5",
+      "PSU Staff"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Staff เล่น PS5 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU Staff",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_playstation_5_60_1_2_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "a4fd1ee7f9503eb3063f2d861420240714726fb4210012b7d1bb6f71bee0a23a"
+    }
+  }
+}

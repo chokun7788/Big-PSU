@@ -1,0 +1,133 @@
+{
+  "question_key": "2204b0a8c1dcc11cbd923870f71f83a322743817cf363f87ab147b4a1ed481c8",
+  "example_sha256": "cd212193cd85c2993a94d3006082010424f64c1332d3a74ad3d9410bb1e43f14",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Friday maintenance-information request.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องวันศุกร์ maintenance"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/detail/maintenance_periods keeps maintenance distinct from opening periods.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องวันศุกร์ maintenance"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "วันศุกร์ is an exact weekday constraint; maintenance is the requested facet.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องวันศุกร์ maintenance"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The weekday scopes this current task only and does not borrow a calendar date.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องวันศุกร์ maintenance"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "No all-day closure is asserted by the user phrase.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องวันศุกร์ maintenance"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_schedule_4 records afternoon maintenance separately from its morning bookable period.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องวันศุกร์ maintenance"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_4"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No 13:00-16:00 interval or closed/open conclusion is supervised.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องวันศุกร์ maintenance"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 41,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "maintenance",
+    "context_quotes": [
+      "วันศุกร์"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลเรื่องวันศุกร์ maintenance",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "maintenance_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "maintenance",
+    "context_quotes": [
+      "วันศุกร์"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลเรื่องวันศุกร์ maintenance",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "maintenance_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    }
+  }
+}

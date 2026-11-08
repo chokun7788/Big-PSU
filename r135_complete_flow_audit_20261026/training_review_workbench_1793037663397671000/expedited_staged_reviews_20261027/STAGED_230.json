@@ -1,0 +1,109 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 230,
+  "question_key": "62909e018f53fb40078ce3d47f5ba5b3729b75729853b53c3574e3450206356b",
+  "raw_question": "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร ขอสรุปให้เข้าใจง่าย",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "มีปัญหาเรื่องเงินที่จ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ติดต่อ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ติดต่อที่ไหน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "หลักฐานอะไร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One purpose-specific payment-problem contact procedure asks both contact location and accompanying evidence; summarizing is style.",
+    "intent_operation_facet": "payment/detail/owner_policy keeps both attributes rather than an unrelated generic studio-contact task.",
+    "entities_and_slot_roles": "มีปัญหาเรื่องเงินที่จ่าย is the case, ติดต่อ the action, ติดต่อที่ไหน and หลักฐานอะไร the required scopes.",
+    "local_shared_history_scope": "No refund entitlement, breakdown/closure cause, processing deadline or earlier message is supplied.",
+    "negation_and_ambiguity": "Contact instructions do not authorize sending a message and evidence does not establish a refund result.",
+    "source_version_alignment": "r114_q019 gives contact and slip/booking evidence but explicitly leaves refund entitlement and processing time unestablished.",
+    "no_business_answer_target": "No address, proof list, refund verdict or outgoing communication is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "r114_q019_owner_policy"
+  ],
+  "source_answer_issues": [
+    [
+      "Contact/evidence does not prove refund entitlement or processing time.",
+      "Preserve both procedure attributes and independent missing outcome/time."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 231,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "r114_q019_owner_policy": {
+      "revision": 1,
+      "record_sha256": "f2d8d738026b11424cff5dc4fff8acbb1d7b01e160f8d1042d39e0f4cc4b13a6"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

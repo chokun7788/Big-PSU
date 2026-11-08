@@ -1,0 +1,11 @@
+--- before/app/knowledge/common/planner.py
++++ r62/app/knowledge/common/planner.py
+@@ -20,7 +20,7 @@
+     kinds={records[k]['kind'] for k in record_ids}
+     kinds=scope_kinds(kinds)
+     keys={f['key'] for k in kinds for f in CATALOG[k]['fields']}
+-    if kinds&{'service','audience','zone'}:keys.add('amount_minor')
++    if kinds&{'resource','service','game','audience','zone'}:keys.add('amount_minor')
+     platforms=set()
+     for rid in record_ids:
+         r=records[rid];v=r['fields'].get('platform',{})

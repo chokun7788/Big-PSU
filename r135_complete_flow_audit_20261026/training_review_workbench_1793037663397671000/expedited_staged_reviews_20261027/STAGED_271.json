@@ -1,0 +1,149 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 271,
+  "question_key": "4ab178afba5082b6f01b75408daa8f3456a0aacb9e7f00da08b95aa9fcbd763d",
+  "raw_question": "General Adult เล่น VR 30 นาที 3 ชั่วโมง เสียกี่บาท",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "30 นาที",
+      "3 ชั่วโมง",
+      "General Adult",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "General Adult เล่น VR 30 นาที 3 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "3 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "General Adult",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "General Adult เล่น VR 30 นาที 3 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "3 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "General Adult",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One price question supplies General Adult, VR30 minutes and three hours without an alternative connector.",
+    "intent_operation_facet": "Keep one service_fee/price_calculate need with ambiguity.",
+    "entities_and_slot_roles": "Retain both exact duration phrases and audience/service literals.",
+    "local_shared_history_scope": "Remove duplicate top context; do not silently sum, choose or turn30 minutes into a product ID.",
+    "negation_and_ambiguity": "The wording could mix a session label and total duration; clarification is required before calculation.",
+    "source_version_alignment": "VR30 adult rate revision2 uses session_ceil; VR60 is a different product and does not resolve what the user meant.",
+    "no_business_answer_target": "No 525THB rate, session count, chosen duration, party default or total is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_rate_vr_30_1_5_general_adult",
+    "availability_vr_30",
+    "availability_vr_60"
+  ],
+  "source_answer_issues": [
+    [
+      "Two unexplained duration phrases have no proven intended relation.",
+      "Keep ambiguous and clarify before calculation."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 272,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_rate_vr_30_1_5_general_adult": {
+      "revision": 2,
+      "record_sha256": "0c4932ab3c4e1402029854ce4714d9d15bea21959c67943006c9a71b2a1812de"
+    },
+    "availability_vr_30": {
+      "revision": 5,
+      "record_sha256": "684ca350ae5809737f1975682978283eca4dc308d432f694333d8261cec15d60"
+    },
+    "availability_vr_60": {
+      "revision": 5,
+      "record_sha256": "c3384985c72b8fa25a4bb9ec3ae5fd292dff804a0e93cb02ac5f82fe246f9913"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

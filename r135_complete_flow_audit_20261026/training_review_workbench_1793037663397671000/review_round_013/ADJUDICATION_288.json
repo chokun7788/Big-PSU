@@ -1,0 +1,128 @@
+{
+  "question_key": "1cf7db3858a13e4841f441117b1a23c40c3e46cf26be6bc9d0b7bb64314f0993",
+  "example_sha256": "36b57c689012a90ed7df635c58cfa071d28b05b870a7749e0ff97a1ca8486f5c",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks what identity document an external visitor needs for studio use.",
+      "raw_quotes": [
+        "Please use verified studio information: What ID does an external visitor need to use the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy with booking_policy focus retains document requirement rather than general eligibility.",
+      "raw_quotes": [
+        "Please use verified studio information: What ID does an external visitor need to use the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add ID and external visitor scopes explicitly.",
+      "raw_quotes": [
+        "Please use verified studio information: What ID does an external visitor need to use the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual identity number, nationality, booking, age or prior applicant is supplied.",
+      "raw_quotes": [
+        "Please use verified studio information: What ID does an external visitor need to use the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A document requirement query does not authorize collecting personal data or certify the visitor already qualifies.",
+      "raw_quotes": [
+        "Please use verified studio information: What ID does an external visitor need to use the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned public_access_booking_required revision2 distinguishes reservation National ID input and presenting the card at check-in; source purpose/effective interval still need independent review.",
+      "raw_quotes": [
+        "Please use verified studio information: What ID does an external visitor need to use the studio?"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_public_access_booking_required"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No personal number, document answer, completed verification, access permission or data-collection action is taught.",
+      "raw_quotes": [
+        "Please use verified studio information: What ID does an external visitor need to use the studio?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 288,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: What ID does an external visitor need to use the studio?",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: What ID does an external visitor need to use the studio?",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ID",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "external visitor",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    }
+  }
+}

@@ -1,0 +1,725 @@
+{
+  "status": "design_not_runtime_implementation",
+  "client_date": "2026-10-21",
+  "business_category_count": 14,
+  "answer_method_count": 7,
+  "schema_kind_count": 24,
+  "prior_r111_adapter_groups": 10,
+  "reason_for_refinement": "แยกบุคลากรออกจากข้อมูลทั่วไป; แยกชำระเงินและกฎใช้ศูนย์ออกจาก booking; แยก news/activity เป็นหมวดชัดเจน",
+  "categories": [
+    {
+      "id": "C01",
+      "name": "ข้อมูลศูนย์ สถานที่ และช่องทางติดต่อ",
+      "subtasks": [
+        "ศูนย์คืออะไร/ใครดำเนินการ",
+        "ที่อยู่/อาคาร/ชั้น",
+        "แผนที่และการเดินทาง",
+        "ที่จอดรถ/จุดรอ/สิ่งอำนวยความสะดวก",
+        "ช่องทางติดต่อสาธารณะ"
+      ],
+      "schema_kinds": [
+        "center",
+        "zone",
+        "facility",
+        "contact",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2",
+        "M6"
+      ],
+      "example": "ศูนย์อยู่ตึกไหน มีลิงก์แผนที่ไหม",
+      "boundary": "ถามเวลาเปิดส่ง C11; ถามชื่อผู้จัดการส่ง C02; การเปิดเผยข้อมูลใช้ขอบเขตที่ยืนยัน",
+      "reuse_direction": "ใช้ direct field + ตัวจัดสถานที่เดิมกับข้อมูลกลาง ไม่ใช้ keyword Phuket เลือก record ใดก็ได้"
+    },
+    {
+      "id": "C02",
+      "name": "บุคลากรและหน้าที่",
+      "subtasks": [
+        "รายชื่อที่เปิดเผยได้",
+        "ตำแหน่ง/หน้าที่",
+        "ทีม/กลุ่มงาน",
+        "ข้อมูลติดต่อในหน้าที่ที่ยืนยันให้เผยแพร่"
+      ],
+      "schema_kinds": [
+        "person",
+        "contact",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2"
+      ],
+      "example": "คนนี้มีหน้าที่อะไร",
+      "boundary": "สิทธิ์แสดงชื่อ/ตำแหน่งไม่ขยายไปถึงเบอร์ส่วนตัว; public scope เป็นราย field",
+      "reuse_direction": "คง directory renderer ที่ตอบสั้นตรง role และ map คำยืนยันเจ้าของเข้า public fields ของ common"
+    },
+    {
+      "id": "C03",
+      "name": "อุปกรณ์ เครื่อง และความจุ",
+      "subtasks": [
+        "รายการอุปกรณ์",
+        "รุ่น/สเปก",
+        "จำนวนเครื่องจริง",
+        "ที่ตั้ง/โซน",
+        "จำนวนจอยต่อเครื่อง",
+        "จำนวนผู้เล่นพร้อมกันของบริการ",
+        "ที่นั่งห้อง"
+      ],
+      "schema_kinds": [
+        "equipment_model",
+        "resource",
+        "service",
+        "zone",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2"
+      ],
+      "example": "PS5 หนึ่งเครื่องมีกี่จอย",
+      "boundary": "เกมที่ติดตั้งส่ง C04; นำอุปกรณ์ส่วนตัวได้ไหมส่ง C10; ห้อง 37 ที่นั่งไม่ใช่ PS5 เล่น 37 คน",
+      "reuse_direction": "ยืมการแยก device/zone/unit ของ Legacy; ใช้ common graph และ typed values เป็น facts"
+    },
+    {
+      "id": "C04",
+      "name": "เกมที่มี ข้อมูลเกม และรูปแบบเล่น",
+      "subtasks": [
+        "เกมที่ศูนย์มีทั้งหมด",
+        "เกมตามโซน/แพลตฟอร์ม",
+        "เกมหนึ่งมีให้เล่นที่ไหน",
+        "คำอธิบาย/แนวเกม",
+        "วิธีเล่น",
+        "เกมเล่นสองคน/สี่คนและโหมดที่ศูนย์รองรับ",
+        "แพลตฟอร์ม/ฉบับ",
+        "เวอร์ชันที่ติดตั้งเมื่อมีหลักฐาน"
+      ],
+      "schema_kinds": [
+        "game",
+        "game_service",
+        "game_mode",
+        "service",
+        "resource",
+        "zone",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2",
+        "M6"
+      ],
+      "example": "มีเกม Nintendo ที่เล่นด้วยกันสี่คนได้อะไรบ้าง",
+      "boundary": "ปุ่มส่ง C05; ราคาเกมที่ศูนย์ให้เล่นส่ง C06; ไม่เอาเกมที่รองรับแพลตฟอร์มทั่วโลกมาอ้างว่าศูนย์ติดตั้งแล้ว",
+      "reuse_direction": "รักษา R106 game detail ที่ดีขึ้น; catalog ต้อง enumerate offerings ตาม scope ไม่ใช่ retrieval top-K"
+    },
+    {
+      "id": "C05",
+      "name": "ปุ่มควบคุมและการใช้อินพุต",
+      "subtasks": [
+        "ปุ่มของ action ที่ถาม",
+        "ผังปุ่มของเกม",
+        "platform/preset/mode ที่ตรงกัน",
+        "ข้อจำกัดหรือปุ่มที่ยังไม่ทราบ"
+      ],
+      "schema_kinds": [
+        "control_set",
+        "game",
+        "game_service",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2"
+      ],
+      "example": "เกมนี้บน PS5 กดปุ่มไหนเพื่อกระโดด",
+      "boundary": "ต้องแยกภาค/แพลตฟอร์ม; limitations ไม่เป็นหลักฐานปุ่มทุกปุ่ม; hardware compatibility ไม่เท่ากับปุ่มในเกม",
+      "reuse_direction": "ใช้ action parser เดิมและ exact binding lookup จาก common; ไม่ให้ LLM สร้างผัง"
+    },
+    {
+      "id": "C06",
+      "name": "ราคาใช้บริการรายคนและการคำนวณ",
+      "subtasks": [
+        "ตารางราคาแต่ละกลุ่ม",
+        "หน่วยราคา/ช่วงเวลาต่อรอบ",
+        "ยอดรวมตามบริการและจำนวนคน",
+        "ผู้เล่นต่างกลุ่มราคา",
+        "งบประมาณ/ตัวเลือกที่คำนวณได้"
+      ],
+      "schema_kinds": [
+        "rate",
+        "audience",
+        "service",
+        "resource",
+        "game_service",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2",
+        "M3",
+        "M5"
+      ],
+      "example": "นักศึกษา PSU กับคนนอกมาเล่นด้วยกันเสียเท่าไร",
+      "boundary": "เงินที่ต้องจ่ายใช้ C06; ช่องทางจ่าย/สลิปส่ง C09; ราคาต่อคนไม่ใช้คูณราคาเหมาโซน",
+      "reuse_direction": "ย้ายตรรกะ tuple/slots/calculator ที่ Legacy ทำดีมารับ rate จาก common พร้อม current confirmation"
+    },
+    {
+      "id": "C07",
+      "name": "เช่าเหมาโซน ห้อง และกิจกรรมส่วนตัว",
+      "subtasks": [
+        "ราคาเหมาภายใน/ภายนอก",
+        "ครึ่งวัน/เต็มวันและช่วงเวลา",
+        "สิ่งที่รวม/อุปกรณ์/ที่นั่ง",
+        "ช่องทางประสานเช่า",
+        "เงื่อนไขแพ็กเกจเฉพาะ",
+        "การเช่านอกเวลาที่ต้องประสาน"
+      ],
+      "schema_kinds": [
+        "rental_package",
+        "audience",
+        "zone",
+        "resource",
+        "equipment_model",
+        "policy",
+        "procedure",
+        "contact",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ],
+      "example": "เหมา PC เต็มวันของหน่วยงานภายนอกราคาเท่าไร รวมอะไร",
+      "boundary": "ใช้แพ็กเกจ ไม่ extrapolate hourly; เงื่อนไขจองทั่วไปไม่ครอบคลุมเหมาโดยอัตโนมัติ",
+      "reuse_direction": "คง common rental bridge ที่ใช้ภาษาของ Legacy; เติมชั่วโมง 180/420 นาทีจาก owner โดยไม่บล็อกราคาเพราะ terms อื่นยังขาด"
+    },
+    {
+      "id": "C08",
+      "name": "การจอง การมาถึง และการเปลี่ยนรายการ",
+      "subtasks": [
+        "ต้องจองก่อนหรือไม่",
+        "ขั้นตอนจอง",
+        "ชื่อและรายชื่อผู้เล่น",
+        "ยกเลิก/เปลี่ยนวัน/เปลี่ยนเครื่อง",
+        "มาสาย/มาถึงก่อนเวลา",
+        "เช็กอิน/เอกสาร",
+        "ต่อเวลา"
+      ],
+      "schema_kinds": [
+        "procedure",
+        "policy",
+        "audience",
+        "service",
+        "contact",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M4",
+        "M6"
+      ],
+      "example": "จองผิดเครื่องแก้อย่างไร",
+      "boundary": "การจองเชิงนโยบายไม่ใช่สถานะว่าง; เวลาไหนจองได้ส่ง C11; ยอดเงิน/สลิปส่ง C09; ไม่เพิ่ม write action ในระบบจริง",
+      "reuse_direction": "ใช้ action/scenario resolver ตามจุดแข็งเดิม แล้วอ่าน conditions/steps ของ common ไม่หยิบ FAQ booking รวมทุกเรื่อง"
+    },
+    {
+      "id": "C09",
+      "name": "การชำระเงิน สลิป เอกสาร และเงินคืน",
+      "subtasks": [
+        "ช่องทาง/ผู้มีสิทธิ์โอน",
+        "เต็มจำนวน/มัดจำ/กำหนดจ่าย",
+        "ตรวจยอดและเวลาปกติ",
+        "โอนขาด/เกิน",
+        "สลิปผิด/หลักฐานชำระ",
+        "คืนเงิน/เครดิตคงเหลือ",
+        "ใบเสร็จ/ใบเสนอราคา/ใบกำกับภาษี"
+      ],
+      "schema_kinds": [
+        "policy",
+        "procedure",
+        "contact",
+        "faq",
+        "audience"
+      ],
+      "methods": [
+        "M1",
+        "M4",
+        "M6"
+      ],
+      "example": "โอนเกินไปต้องทำอย่างไร",
+      "boundary": "ไม่อนุมานสิทธิ์คืนเงินจากข้อความให้ติดต่อเพจ; ตรวจยอดประมาณ 30 นาทีไม่เท่ากับสถานะรายการอนุมัติแล้ว; ถ้าขอสถานะจริงใช้ C12",
+      "reuse_direction": "แยก action ชำระออกจาก booking_steps และ pricing; รักษาคำปฏิเสธและหลักฐานที่เจ้าของให้"
+    },
+    {
+      "id": "C10",
+      "name": "สิทธิ์ใช้บริการ กฎศูนย์ และปัญหาระหว่างใช้",
+      "subtasks": [
+        "คนนอก/สมาชิก/เด็ก/ผู้ปกครอง",
+        "อุปกรณ์ส่วนตัว",
+        "ติดตั้งเกม/โปรแกรม/mod",
+        "บัญชีเกมและการออกจากบัญชี",
+        "capture/ถ่ายภาพ/สตรีมตาม scope ที่ให้มา",
+        "อาหาร/เครื่องดื่ม/พฤติกรรมตามข้อมูลที่ยืนยัน",
+        "เครื่องเสีย/อัปเดต/ชดเชยเวลา",
+        "ความเสียหายและความรับผิด"
+      ],
+      "schema_kinds": [
+        "policy",
+        "procedure",
+        "audience",
+        "game_service",
+        "game",
+        "service",
+        "resource",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M4",
+        "M6"
+      ],
+      "example": "เอาคีย์บอร์ดตัวเองมาได้ไหม ต้องแจ้งใคร",
+      "boundary": "กฎการแข่งขันไป C13; Steam ไม่ยืนยัน console; อัปเดตกับ crash แยกบริบท; คำถามกำกวมที่เจ้าของให้เอาออกไม่ใช้เป็นเหตุแต่งนโยบายที่ไม่มี",
+      "reuse_direction": "ใช้ scoped policy/decision+conditions แทน keyword permission ทั่วไป และไม่ให้ policy คล้ายกันข้ามสถานการณ์"
+    },
+    {
+      "id": "C11",
+      "name": "ตารางเปิด ช่วงจอง และวันปิดพิเศษ",
+      "subtasks": [
+        "เปิดวันไหน",
+        "เปิด ณ วัน/เวลาที่ถาม",
+        "เวลาปิด",
+        "ช่วงที่อนุญาตจอง",
+        "maintenance",
+        "วันหยุด/วันปิดเฉพาะ"
+      ],
+      "schema_kinds": [
+        "schedule",
+        "closure",
+        "service",
+        "zone",
+        "news",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M5"
+      ],
+      "example": "วันนี้เปิดไหม",
+      "boundary": "ตารางไม่ยืนยัน occupancy; เหมาเต็มวันรวมเที่ยงไม่เปิด hourly slot เที่ยง; ประกาศต้องตรงวันและ scope",
+      "reuse_direction": "ใช้ calendar semantics แบบเดิมพร้อม closure priority; แยก physical opening/bookability/maintenance ตาม typed predicate"
+    },
+    {
+      "id": "C12",
+      "name": "สถานะเครื่องหรือรายการจองจากระบบสด",
+      "subtasks": [
+        "เครื่องที่ถามว่างหรือไม่",
+        "ช่วงว่างตามวันเวลา",
+        "หลายเครื่อง/หลายโซน",
+        "สถานะรายการจอง/ตรวจชำระเมื่อ provider อนุญาตให้อ่าน"
+      ],
+      "schema_kinds": [
+        "live_binding",
+        "service",
+        "resource",
+        "zone"
+      ],
+      "methods": [
+        "M2",
+        "M5",
+        "M7"
+      ],
+      "example": "พรุ่งนี้บ่ายสอง PC2 ว่างไหม",
+      "boundary": "ต้องมีวัน/ช่วงเวลา/resource และข้อมูลสด; provider ไม่พร้อมไม่ตอบว่าง/เต็ม; ตรวจสิทธิ์ข้อมูลรายการเฉพาะบุคคล",
+      "reuse_direction": "ใช้ live provider และ freshness mapping; คงการแยก transport จากเนื้อหา ไม่ใช้ static FAQ แทนผลสด"
+    },
+    {
+      "id": "C13",
+      "name": "รายการแข่งขันและข้อกติกา",
+      "subtasks": [
+        "เกม/งาน/ปี/ฉบับ",
+        "รูปแบบแมตช์และคุณสมบัติ",
+        "ข้อกติกาเฉพาะเรื่อง",
+        "เงื่อนไข/ข้อยกเว้น/dependencies",
+        "บทลงโทษที่ยืนยันได้",
+        "ประท้วง/ผู้ตัดสิน",
+        "ขอเอกสารหรือกติกาทั้งหมด"
+      ],
+      "schema_kinds": [
+        "competition",
+        "competition_rule",
+        "game",
+        "contact",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M2",
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "example": "กติกา CS2 ผู้จัดเตรียมอุปกรณ์อะไรให้",
+      "boundary": "ล็อก event; ข้อเดียวครบตอบได้แม้ทั้งเล่ม unknown; Tekken penalty unit ที่ให้ข้ามยัง unknown; ไม่เอากฎแข่งเป็นกฎศูนย์ทั่วไป",
+      "reuse_direction": "ใช้ common clause reader กับ proposition vocabulary เดิม ตรวจเฉพาะ completeness ที่จำเป็น ไม่ยกคำตอบ Legacy เป็น truth ทุกข้อ"
+    },
+    {
+      "id": "C14",
+      "name": "ข่าว กิจกรรม ประกาศ และโปรโมชัน",
+      "subtasks": [
+        "ข่าวหรือกิจกรรมที่มีข้อมูล",
+        "วันจัด/ช่วงสมัคร",
+        "ช่องทางสมัครหรือรายละเอียด",
+        "ประกาศเปลี่ยนแปลง",
+        "โปรโมชันและช่วงมีผล"
+      ],
+      "schema_kinds": [
+        "news",
+        "contact",
+        "competition",
+        "policy",
+        "faq"
+      ],
+      "methods": [
+        "M1",
+        "M4",
+        "M5",
+        "M6"
+      ],
+      "example": "มีกิจกรรมอะไรที่ยังสมัครได้อยู่",
+      "boundary": "ต้องมี source และช่วงเวลา; ข่าวเก่าไม่ใช่เปิดรับสมัครปัจจุบัน; ราคาโปรโมชันต้องเชื่อม rate/conditions ที่ยืนยัน ไม่อ่าน headline แล้วลดราคาเอง",
+      "reuse_direction": "ใช้ event/date reader จาก common; เพิ่มหมวดเพื่อไม่ให้ข่าวไปแข่งกับคำตอบกฎหรือเวลาปกติ"
+    }
+  ],
+  "methods": [
+    {
+      "id": "M1",
+      "name": "อ่านค่าที่ระบุตรง",
+      "description": "หา entity/field ที่ตรงแล้วอ่านค่าพร้อม source เช่นจอย 2 จอย ที่อยู่ หรือบทบาทบุคลากร",
+      "limits": "ค่าที่ไม่มีหรือไม่อยู่ใน scope ต้องไม่เติมจากความรู้ทั่วไป"
+    },
+    {
+      "id": "M2",
+      "name": "เชื่อมรายการ กรอง และนับ",
+      "description": "เดิน relation ตามงาน เลือกชุดที่ตรง filter นับ distinct และแสดงให้ครบ เช่นเกมใน PS5 หรืออุปกรณ์ในโซน",
+      "limits": "scope ที่ระบุแต่ไม่พบ relation ไม่ใช่ไม่มี scope; ห้าม fallback เป็นทุกโซน"
+    },
+    {
+      "id": "M3",
+      "name": "คำนวณจากกฎและหน่วย",
+      "description": "คำนวณยอด ระยะ/รอบ จำนวน และกลุ่มราคาจากข้อมูลที่ยืนยันแล้ว",
+      "limits": "ไม่ให้ LLM เดาราคา สูตรปัดเศษ หรือแปลงราคาเหมาห้องเป็นราคาต่อคน"
+    },
+    {
+      "id": "M4",
+      "name": "พิจารณาเงื่อนไขและขั้นตอน",
+      "description": "เลือก action/scenario ตรวจเงื่อนไขและข้อยกเว้น แล้วตอบอนุญาต/ห้าม/วิธีทำตาม source",
+      "limits": "รักษาคำปฏิเสธ ลำดับขั้น และเงื่อนไข; ไม่เปลี่ยน unknown เป็นอนุญาต"
+    },
+    {
+      "id": "M5",
+      "name": "ประเมินวัน เวลา และช่วงมีผล",
+      "description": "คำนวณวันจริง Asia/Bangkok ตารางสัปดาห์ วันปิดพิเศษ และ applicability ของข้อมูล",
+      "limits": "แยกวันเปิด ช่วงจอง maintenance และสถานะว่าง; ไม่เดาจากไม่มีรายการจอง"
+    },
+    {
+      "id": "M6",
+      "name": "ค้นและประกอบข้อความเฉพาะเรื่อง",
+      "description": "เลือก summary/how-to/clause ที่ตอบ predicate พร้อมเงื่อนไข แหล่งข้อมูล และขอบเขต ใช้ LLM ช่วยเมื่อจำเป็น",
+      "limits": "ไม่ให้ความคล้ายข้อความชนะ subject/edition/negation; ไม่สรุปข้ามข้อยกเว้นหรือเติม facts"
+    },
+    {
+      "id": "M7",
+      "name": "อ่านสถานะจากระบบสด",
+      "description": "เรียก provider แบบอ่านอย่างเดียวตาม resource/date/time ตรวจ freshness แล้วแปลสถานะตาม mapping",
+      "limits": "provider ใช้ไม่ได้แปลว่าตรวจไม่ได้ ไม่ใช่ว่างหรือเต็ม; ไม่เพิ่มสิทธิ์จอง/ยกเลิกแทนผู้ใช้"
+    }
+  ],
+  "routing_examples": [
+    {
+      "question": "วันนี้เปิดไหม",
+      "categories": [
+        "C11"
+      ],
+      "methods": [
+        "M5"
+      ],
+      "reason": "ประเมินวันเปิด ไม่เรียกข้อมูลจองสดเพื่อเดาว่าเปิด"
+    },
+    {
+      "question": "วันนี้ PC2 บ่ายสองว่างไหม",
+      "categories": [
+        "C12"
+      ],
+      "methods": [
+        "M2",
+        "M5",
+        "M7"
+      ],
+      "reason": "ต้องอ่าน provider ตาม resource และช่วงเวลา"
+    },
+    {
+      "question": "ต้องจองก่อนไหม",
+      "categories": [
+        "C08"
+      ],
+      "methods": [
+        "M4"
+      ],
+      "reason": "ตอบกฎ walk-in/booking-required ไม่ตอบรายชื่อ slot"
+    },
+    {
+      "question": "วันศุกร์จองช่วงไหนได้บ้าง",
+      "categories": [
+        "C11"
+      ],
+      "methods": [
+        "M5"
+      ],
+      "reason": "อ่าน bookable/maintenance ไม่พ่นขั้นตอนจอง"
+    },
+    {
+      "question": "มีเกมอะไรบ้าง",
+      "categories": [
+        "C04"
+      ],
+      "methods": [
+        "M2"
+      ],
+      "reason": "enumerate offerings ใน snapshot ตาม scope"
+    },
+    {
+      "question": "เกมนี้คืออะไร เล่นยังไง",
+      "categories": [
+        "C04"
+      ],
+      "methods": [
+        "M1",
+        "M6"
+      ],
+      "reason": "สอง needs ภายในหมวดเดียว: summary กับ how_to_play"
+    },
+    {
+      "question": "PS5 มีกี่จอย เล่น Overcooked ได้กี่คน",
+      "categories": [
+        "C03",
+        "C04"
+      ],
+      "methods": [
+        "M1",
+        "M2"
+      ],
+      "reason": "จอยต่อเครื่องกับโหมดผู้เล่นคนละ claim"
+    },
+    {
+      "question": "เอาจอยตัวเองมาได้ไหม",
+      "categories": [
+        "C10"
+      ],
+      "methods": [
+        "M4"
+      ],
+      "reason": "ถาม permission ไม่ใช่จำนวนจอย"
+    },
+    {
+      "question": "แข่ง CS2 นำคีย์บอร์ดมาเองได้ไหม",
+      "categories": [
+        "C13"
+      ],
+      "methods": [
+        "M4",
+        "M6"
+      ],
+      "reason": "event-specific policy มี scope แคบกว่ากฎใช้ศูนย์ทั่วไป"
+    },
+    {
+      "question": "ค่าใช้ PC สองคนกลุ่มต่างกันเท่าไร",
+      "categories": [
+        "C06"
+      ],
+      "methods": [
+        "M2",
+        "M3"
+      ],
+      "reason": "คิดตาม audience รายคน ถ้า slot ที่มีผลต่อยอดขาดให้ถามเฉพาะนั้น"
+    },
+    {
+      "question": "โอนขาดไปทำยังไง",
+      "categories": [
+        "C09"
+      ],
+      "methods": [
+        "M4"
+      ],
+      "reason": "เป็น payment-resolution ไม่ใช่เครื่องคิดราคา"
+    },
+    {
+      "question": "เหมาเต็มวันรวมพักเที่ยงไหม",
+      "categories": [
+        "C07"
+      ],
+      "methods": [
+        "M1",
+        "M5"
+      ],
+      "reason": "duration package 7 ชั่วโมงไม่เปลี่ยนกฎจองทั่วไป"
+    },
+    {
+      "question": "PS5 มีเกมอะไร ราคาเท่าไร แล้วจองยังไง",
+      "categories": [
+        "C04",
+        "C06",
+        "C08"
+      ],
+      "methods": [
+        "M2",
+        "M3",
+        "M4"
+      ],
+      "reason": "สร้างสาม needs ใช้ adapters ที่ตรงแล้วรวมคำตอบ"
+    }
+  ],
+  "schema_to_categories": {
+    "audience": [
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10"
+    ],
+    "center": [
+      "C01"
+    ],
+    "closure": [
+      "C11"
+    ],
+    "competition": [
+      "C13",
+      "C14"
+    ],
+    "competition_rule": [
+      "C13"
+    ],
+    "contact": [
+      "C01",
+      "C02",
+      "C07",
+      "C08",
+      "C09",
+      "C13",
+      "C14"
+    ],
+    "control_set": [
+      "C05"
+    ],
+    "equipment_model": [
+      "C03",
+      "C07"
+    ],
+    "facility": [
+      "C01"
+    ],
+    "faq": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C13",
+      "C14"
+    ],
+    "game": [
+      "C04",
+      "C05",
+      "C10",
+      "C13"
+    ],
+    "game_mode": [
+      "C04"
+    ],
+    "game_service": [
+      "C04",
+      "C05",
+      "C06",
+      "C10"
+    ],
+    "live_binding": [
+      "C12"
+    ],
+    "news": [
+      "C11",
+      "C14"
+    ],
+    "person": [
+      "C02"
+    ],
+    "policy": [
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C14"
+    ],
+    "procedure": [
+      "C07",
+      "C08",
+      "C09",
+      "C10"
+    ],
+    "rate": [
+      "C06"
+    ],
+    "rental_package": [
+      "C07"
+    ],
+    "resource": [
+      "C03",
+      "C04",
+      "C06",
+      "C07",
+      "C10",
+      "C12"
+    ],
+    "schedule": [
+      "C11"
+    ],
+    "service": [
+      "C03",
+      "C04",
+      "C06",
+      "C08",
+      "C10",
+      "C11",
+      "C12"
+    ],
+    "zone": [
+      "C01",
+      "C03",
+      "C04",
+      "C07",
+      "C11",
+      "C12"
+    ]
+  },
+  "source_catalog": "r106_complete_flow_20261020/system/app/knowledge/common/catalog.json",
+  "constraints": [
+    "one common factual snapshot",
+    "need-level dispatch; one question can have multiple needs",
+    "category and method are separate dimensions",
+    "no hard-coded names/prices per record",
+    "FAQ is evidence content, not a catch-all domain",
+    "unknown is not false",
+    "one shared request/model budget",
+    "no new customer tests or production changes in this design turn"
+  ]
+}

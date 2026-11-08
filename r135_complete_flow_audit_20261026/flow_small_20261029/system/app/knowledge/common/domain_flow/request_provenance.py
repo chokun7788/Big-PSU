@@ -1,0 +1,87 @@
+"""Keep current input, derived execution text and delivered state distinct.
+
+Offset receipts describe literal normalization only, never intent correctness.
+The native history gate requires server-sanitized history at its caller boundary.
+"""
+import copy,hashlib,json
+from ..flow_context import CURRENT
+from ..normalized_query import normalize_query
+from ..followup_scope import delivered_state,delivered_reference
+
+VERSION='r123-request-provenance-v1'
+
+def digest(value):
+    return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+
+def derived_input(question,kind,segments,index=None,history=None,**detail):
+    ctx=CURRENT.get()
+    if ctx is not None:
+        from .input_derivation import register
+        proof=register(question,kind,segments,index=index,history=history,**detail)
+        ctx.event('R123_derived_input',execution_question=question,kind=kind,segments=copy.deepcopy(segments),input_derivation_validation=proof,**detail)
+
+def capture(question,history=None):
+    ctx=CURRENT.get();data=ctx.input if ctx is not None else {}
+    raw=data.get('raw_question')
+    if not isinstance(raw,str):raw=question;origin='direct_engine_or_domain_call'
+    else:origin='native_request_context'
+    normalized=normalize_query(raw)
+    basis='current_raw' if question==raw else 'current_normalized' if question==normalized.text else 'derived_or_unmapped_execution'
+    derivation=next((copy.deepcopy(e) for e in reversed(ctx.events) if e.get('stage')=='R123_derived_input' and e.get('execution_question')==question),None) if ctx else None
+    if derivation:basis=derivation['kind']
+    state=delivered_state(history)
+    dialogue=data.get('dialogue_resolution') or {}
+    from app.pipeline.request_deadline import current_budget
+    deadline=current_budget()
+    identity=ctx.identity() if ctx is not None else {}
+    from .input_derivation import check
+    return {'version':'r129-request-provenance-v2','request_id':ctx.request_id if ctx else None,'raw_question':raw,'normalized_question':normalized.text,
+        'input_derivation_validation':check(question) if ctx is not None else {'verified':False,'reason':'request_context_missing'},
+        **identity,'snapshot':copy.deepcopy(ctx.snapshot) if ctx else None,'budget':{'deadline':deadline.metadata() if deadline else {'global_timeout_enabled':False},'max_model_calls':ctx.max_model_calls if ctx else None,'reserved_model_calls':ctx.model_calls_reserved if ctx else None},
+        'engine_question':question,'input_origin':origin,'input_basis':basis,'normalization':normalized.public(),
+        'derivation':derivation,'trusted_slot_provenance':dialogue.get('task',{}).get('slot_provenance',{}),'superseded_slots':dialogue.get('task',{}).get('superseded_slots',[]),'history':{'present':bool(history),'native_delivered_state_accepted':state is not None,
+            'state_sha256':digest(state) if state is not None else None,'facts_inherited':False,
+            'delivered_reference':delivered_reference(history),
+            'trust_basis':'native_delivered_state_gate_requires_server_sanitized_history','arbitrary_assistant_prose_used':False},
+        'whole_question_semantics_verified':False}
+
+def map_span(context,span):
+    """Bound a compiled span to current raw text only when offsets are proved.
+
+    Replacements use an enclosing raw range, explicitly not an exact quote.
+    Synthetic history/shared queries remain in their original source basis.
+    """
+    start,end,text=span['start'],span['end'],span['text'];q=context['engine_question']
+    if not 0<=start<end<=len(q) or q[start:end]!=text:return {'status':'invalid_execution_span'}
+    basis=context['input_basis'];raw=context['raw_question'];norm=context['normalization']
+    if basis=='current_raw':return {'status':'exact_current_raw','start':start,'end':end,'text':raw[start:end]}
+    if basis!='current_normalized':
+        from .span_provenance import alignment,resolve_span
+        mapped=resolve_span(alignment(raw,q,context.get('derivation'),context.get('trusted_slot_provenance')),start,end)
+        return {**mapped,'input_basis':basis,'current_raw_span_asserted':False}
+    offsets=norm['offsets'][start:end]
+    if len(offsets)!=end-start or any(not isinstance(x,int) or not 0<=x<len(raw) for x in offsets):return {'status':'unmapped_normalization'}
+    lo,hi=min(offsets),max(offsets)+1
+    # Include the complete source range for a replacement (offsets alone only
+    # identify the replacement's first character).
+    for edit in norm['edits']:
+        if edit['replacement'] and any(edit['raw_start']<=x<edit['raw_end'] for x in offsets):
+            lo=min(lo,edit['raw_start']);hi=max(hi,edit['raw_end'])
+    raw_text=raw[lo:hi]
+    status='exact_current_raw' if raw_text==text else 'normalized_raw_range'
+    return {'status':status,'start':lo,'end':hi,'text':raw_text,'exact_quote':raw_text==text,'semantic_equivalence_verified':False}
+
+def attach_compiled(contract,context):
+    from .span_provenance import alignment
+    context['span_map']=alignment(context['raw_question'],context['engine_question'],context.get('derivation'),context.get('trusted_slot_provenance'))
+    contract['request_context']=context
+    plan=contract.get('request_plan') or {}
+    if not plan.get('tasks'):return contract
+    mapped=[]
+    for task in plan['tasks']:
+        spans=[('task',task['source_span'])]
+        if task.get('target_span'):spans.append(('target',task['target_span']))
+        spans.extend((s['id'],s['source_span']) for s in task.get('slots',[]))
+        mapped.append({'task_id':task['id'],'spans':[{'kind':kind,'execution_span':s,'raw_mapping':map_span(context,s)} for kind,s in spans]})
+    contract['input_span_receipts']=mapped
+    return contract

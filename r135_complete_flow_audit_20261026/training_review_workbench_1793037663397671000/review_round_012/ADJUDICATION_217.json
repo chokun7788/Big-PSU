@@ -1,0 +1,163 @@
+{
+  "question_key": "63ecdf0102f9545585a4935bfeda570ed67a7b526aac1ac20c5b120210df0d1d",
+  "example_sha256": "51f3975fb30fbe16dbd53ac89926294199a2f0d98b7f83a28004be83f6032f3c",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inclusion question selects the internal/half-day All Zones rental package.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/equipment_included remains a package field lookup.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full package name is target; internal and half-day are its literal dimensions rather than inferred user status or play service.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Answer-briefly is style; no existing reservation, persons or additional package is inherited.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "All Zones does not authorize enumerating unrelated current-stock records or changing half-day to full-day.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_3 holds the requested inclusion text, distinct from duration and seats.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง"
+      ],
+      "source_record_ids": [
+        "package_3",
+        "audience_internal_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No inclusion list, room capacity or price is taught.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 217,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "ภายใน",
+      "All Zones"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "All Zones",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "All Zones",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า เหมา PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ได้อุปกรณ์อะไรรวมมาบ้าง",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_3": {
+      "revision": 1,
+      "record_sha256": "925ea8fb131287ff891b122d5137aa3a1a7a84658f6228ba728f8d79c7fb0d6f"
+    },
+    "audience_internal_org": {
+      "revision": 2,
+      "record_sha256": "d098dad7f2532de4774513d2ef2b572977cd3987fc5229333ccfa5b5af36f84f"
+    }
+  }
+}

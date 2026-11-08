@@ -1,0 +1,137 @@
+{
+  "question_key": "e57f02961055c3c0a53d1c221408cad728f8813afb52ce12e3b8da79576b2b37",
+  "example_sha256": "088b4978da11b67f83af7af10e9c883f5d75e27920d7edee1b5c5dabf7bb3ee9",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks permission to carry a water bottle, explicitly excluding consumption.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy with food_bring focus retains carrying, not food_consume.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add ถือขวดน้ำ action and keep ไม่ได้ถามเรื่องกิน as local negation.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove duplicate top context; no drinking act, gaming desk or named event is supplied.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not broaden permission to consuming everywhere or apply a tournament-specific sealed-container rule.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned general food_bring clause revision2 separates bringing inside from eating/drinking only in designated areas.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_food_bring_general"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No permission answer, allowed area, water-container condition or consumption entitlement is taught.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 272,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [
+      "ไม่ได้ถามเรื่องกิน"
+    ],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ได้ถามเรื่องกิน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ได้ถามเรื่องกิน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ถือขวดน้ำ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    }
+  }
+}

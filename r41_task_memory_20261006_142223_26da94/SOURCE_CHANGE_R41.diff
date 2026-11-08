@@ -1,0 +1,657 @@
+--- before/app/pipeline/engine.py
++++ after/app/pipeline/engine.py
+@@ -854,6 +854,22 @@
+             )
+             set_current_locale_decision(resolved_locale)
+             entry_timings = [_timing_trace("locale_resolution", locale_started, metadata=deadline_metadata())]
++            if request_plan and request_plan.get('schema_type') == 'dialogue_state_clarification_v1':
++                english = resolved_locale.effective == 'en'
++                messages = {
++                    'scope': ('Which topic or selection does "all" refer to: controls, prices, game lists, or zones?', 'คำว่า “ทั้งหมด” หมายถึงเรื่องหรือตัวเลือกใดครับ เช่น ปุ่มควบคุม ราคา รายชื่อเกม หรือโซน'),
++                    'no_previous_task': ('I cannot identify a previously delivered request for that topic. Please specify the game or device and what you want to know.', 'ยังระบุคำถามก่อนหน้าที่ได้รับคำตอบแล้วของเรื่องนี้ไม่ได้ครับ กรุณาระบุเกมหรืออุปกรณ์และเรื่องที่ต้องการทราบ'),
++                    'game': ('Which game do you want all the controls for?', 'ต้องการปุ่มควบคุมทั้งหมดของเกมใดครับ'),
++                    'ordinal_axis': ('Which game or zone do you mean? Please provide its name; the displayed list contains more than one level of choices.', 'หมายถึงเกมหรือโซนใดครับ กรุณาพิมพ์ชื่อ เพราะรายการที่แสดงมีตัวเลือกหลายระดับ'),
++                }
++                key = request_plan.get('message_key')
++                if request_plan.get('schema_version') == 1 and key in messages:
++                    return self._build_result(messages[key][0 if english else 1], [], started,
++                        'pipeline:dialogue_state_clarification', .99,
++                        PipelineRoute('clarification', 'dialogue_scope', .99, 'clarification', 'low', request_plan.get('reason', 'unresolved dialogue scope')),
++                        EntityBundle(), ValidationResult(ok=True), [*entry_timings,
++                        PipelineTrace('task_memory_resolution', 'clarification', .99, request_plan.get('reason',''),
++                                      {'message_key': key, 'model_calls': 0})])
+             from app.pipeline.control_request import is_booking_button_request
+             navigation = self._booking_navigation_result(question, started, entry_timings)
+             if navigation is not None:
+@@ -1148,6 +1164,11 @@
+             previous_results: list[PipelineAnswer] = []
+             for index, part in enumerate(parts, 1):
+                 if self._deadline_is_exceeded(trace, f"before_multi_child_{index}"):
++                    from app.pipeline.task_contract import compound_contract
++                    coverage = compound_contract(display_parts, results)
++                    coverage.update(outcome='unavailable', output_withheld=True)
++                    trace.append(PipelineTrace('task_answer_contract', 'unavailable', 1.0,
++                        'timeout withholds the answer; preserve executed and pending child evidence', coverage))
+                     return self._timeout_result(
+                         started=started,
+                         trace=trace,
+@@ -1201,6 +1222,11 @@
+                 },
+             ))
+         if self._deadline_is_exceeded(trace, "after_multi_children"):
++            from app.pipeline.task_contract import compound_contract
++            coverage = compound_contract(display_parts, results)
++            coverage.update(outcome='unavailable', output_withheld=True)
++            trace.append(PipelineTrace('task_answer_contract', 'unavailable', 1.0,
++                'timeout withholds the answer; preserve child execution evidence', coverage))
+             return self._timeout_result(
+                 started=started,
+                 trace=trace,
+@@ -1269,6 +1295,10 @@
+                 },
+             ))
+ 
++        from app.pipeline.task_contract import compound_contract
++        contract = compound_contract(display_parts, results)
++        trace.append(PipelineTrace('task_answer_contract', contract['outcome'], 1.0,
++            'record each requested child execution separately from factual correctness', contract))
+         return self._build_result(
+             "\n\n".join(answer_blocks),
+             hits,
+@@ -4445,7 +4475,7 @@
+                 },
+             ))
+             for item in trace:
+-                if item.stage in {'conversation_contract', 'competition_full_coverage'}:
++                if item.stage in {'conversation_contract', 'competition_full_coverage', 'task_answer_contract'}:
+                     item.metadata['outcome'] = 'schema_rejected'
+                     item.metadata['rejected_errors'] = rejected_errors
+                     item.metadata['returned_ids'] = []
+@@ -4470,6 +4500,11 @@
+                     *final_validation.warnings,
+                 ))),
+             )
++        if not any(item.stage == 'task_answer_contract' for item in trace):
++            from app.pipeline.task_contract import single_contract
++            contract = single_contract(mode, route, validation, hits, trace)
++            trace.append(PipelineTrace('task_answer_contract', contract['outcome'], 1.0,
++                'execution coverage does not certify source facts or semantic accuracy', contract))
+         universal_intent = AnswerQualityPipeline._universal_intent_from_trace(trace)
+         decision_artifact = build_decision_artifact(
+             mode=mode,
+@@ -4481,6 +4516,8 @@
+             hits=hits,
+             universal_intent=universal_intent,
+         )
++        decision_artifact['task_answer_contract'] = next(
++            item.metadata for item in reversed(trace) if item.stage == 'task_answer_contract')
+         style_started = time.perf_counter()
+         styled_answer = format_response_style(answer, locale.effective)
+         style_elapsed = time.perf_counter() - style_started
+--- before/app/session/context_resolver.py
++++ after/app/session/context_resolver.py
+@@ -887,6 +887,12 @@
+             return ResolvedQuestion(original, remainder, False, detect_game(remainder),
+                                     reason='explicitly_declined_previous_operation_and_started_complete_request')
+ 
++    # A supplied unsupported title is a new target, even if Thai control
++    # wording also resembles a follow-up. Never prepend the previous game.
++    from app.runtime.fast_answer import is_known_unsupported_game_query
++    if is_known_unsupported_game_query(original) and re.search(r'ปุ่ม|ควบคุม|\b(?:controls?|buttons?)\b',original,re.I):
++        return ResolvedQuestion(original, original, False, reason='explicit_unsupported_game_preserved')
++
+     from app.session.conversation_plan import resolve_request_plan
+     price_plan = resolve_request_plan(original, recent_history, locale=locale)
+     if price_plan and price_plan.get('context_used'):
+--- before/app/session/conversation_store.py
++++ after/app/session/conversation_store.py
+@@ -31,7 +31,8 @@
+         if session_id not in self._sessions:
+             while len(self._sessions) >= self.max_sessions:
+                 self._sessions.popitem(last=False)
+-            self._sessions[session_id]={'revision':0,'active':None,'history':[],'turns':OrderedDict(),'expires':now+self.ttl}
++            self._sessions[session_id]={'revision':0,'active':None,'history':[],'turns':OrderedDict(),'expires':now+self.ttl,
++                                       'task_memory':OrderedDict(),'current_task_keys':[]}
+         r=self._sessions[session_id]
+         r['expires']=now+self.ttl
+         self._sessions.move_to_end(session_id)
+@@ -65,14 +66,17 @@
+                 if old['response'] is None and old['revision'] != r['revision']:
+                     raise TurnConflict('pending turn is older than the active state revision')
+                 return copy.deepcopy(old)
+-            plan=resolve_request_plan(question,history,active_task=r['active'],locale=locale)
++            from app.session.task_memory import resolve_memory
++            context_resolution, memory_plan = resolve_memory(question,r,locale=locale)
++            plan=memory_plan if context_resolution is not None else resolve_request_plan(question,history,active_task=r['active'],locale=locale)
+             r['revision']+=1
+             if plan and plan.get('tasks') and valid_price_task(plan['tasks'][0]):
+                 r['active']=copy.deepcopy(plan['tasks'][0])
+             else:
+                 # An explicit topic shift is committed even when its tool fails.
+                 r['active']=None
+-            turn={'fingerprint':fingerprint,'revision':r['revision'],'question':question,'plan':plan,'response':None,'delivery':'prepared'}
++            turn={'fingerprint':fingerprint,'revision':r['revision'],'question':question,'plan':plan,'response':None,'delivery':'prepared',
++                  'context_resolution':context_resolution}
+             r['turns'][turn_id]=turn
+             while len(r['turns'])>8:
+                 r['turns'].popitem(last=False)
+@@ -89,6 +93,17 @@
+                 turn['plan']=copy.deepcopy(plan)
+             if response.get('ok'):
+                 turn['response']=copy.deepcopy(response)
++                from app.session.task_memory import harvest_tasks, MAX_TASKS
++                tasks=harvest_tasks(turn['question'],response,plan or turn['plan'])
++                if tasks:
++                    r['current_task_keys']=[]
++                    for task in tasks:
++                        task['acknowledged']=False
++                        r['task_memory'][task['key']]=task;r['task_memory'].move_to_end(task['key'])
++                        if task['key'] not in r['current_task_keys']:r['current_task_keys'].append(task['key'])
++                    while len(r['task_memory'])>MAX_TASKS:r['task_memory'].popitem(last=False)
++                elif response.get('mode')!='pipeline:dialogue_state_clarification':
++                    r['current_task_keys']=[]
+                 intent=response.get('universal_intent')
+                 if is_dataclass(intent):
+                     intent=asdict(intent)
+@@ -116,6 +131,8 @@
+             for turn in self._record(session_id)['turns'].values():
+                 if turn['response'] and turn['response'].get('request_id')==response_id:
+                     turn['delivery']='client_acknowledged'
++                    for task in self._record(session_id)['task_memory'].values():
++                        if task.get('response_id')==response_id:task['acknowledged']=True
+                     return True
+         return False
+ 
+@@ -123,6 +140,8 @@
+         with self._guard:
+             r=self._record(session_id)
+             return {'schema_version':1,'revision':r['revision'],'active_task':copy.deepcopy(r['active']),
++                    'task_memory_schema_version':1,'requested_tasks':copy.deepcopy(list(r['task_memory'].values())),
++                    'current_task_keys':list(r['current_task_keys']),
+                     'delivery':{k:t['delivery'] for k,t in r['turns'].items()},'storage':'parent_memory','survives_server_restart':False}
+ 
+ 
+--- before/app/web_api/server.py
++++ after/app/web_api/server.py
+@@ -549,7 +549,9 @@
+                         'client_turn_id':client_turn_id,'state_revision':turn['revision']})
+                     return
+                 request_plan = turn['plan']
+-                if request_plan:
++                if turn.get('context_resolution'):
++                    resolved = ResolvedQuestion(**turn['context_resolution'])
++                elif request_plan:
+                     resolved = ResolvedQuestion(question, request_plan['resolved_query'], request_plan.get('context_used', False),
+                         context_domain='service_fee', context_operation='price_lookup', reason='parent_typed_request_plan')
+                 else:
+@@ -705,8 +707,9 @@
+                     response["trace"] = result.trace
+ 
+                 contract = next((t.metadata for t in reversed(result.trace) if t.stage == 'conversation_contract'), {})
++                task_contract = next((t.metadata for t in reversed(result.trace) if t.stage == 'task_answer_contract'), {})
+                 actual_plan = contract.get('request_plan') or request_plan
+-                if actual_plan and actual_plan.get('resolved_query') and actual_plan.get('schema_type') != 'dialogue_selection_v1':
++                if actual_plan and actual_plan.get('resolved_query') and actual_plan.get('schema_type') not in {'dialogue_selection_v1','dialogue_state_clarification_v1'}:
+                     resolved = ResolvedQuestion(question, actual_plan['resolved_query'], actual_plan.get('context_used',False),
+                         context_domain='service_fee', context_operation='price_lookup', reason='validated_typed_request_plan')
+                     if debug:
+@@ -715,7 +718,8 @@
+                 response['rule_coverage'] = next((t.metadata for t in reversed(result.trace) if t.stage == 'competition_full_coverage'), None)
+                 response['client_turn_id'] = client_turn_id
+                 response['request_plan'] = actual_plan
+-                response['conversation_outcome'] = contract.get('outcome', 'delegated_existing_pipeline')
++                response['task_contract'] = task_contract
++                response['conversation_outcome'] = contract.get('outcome', task_contract.get('outcome','delegated_existing_pipeline'))
+                 response['coverage'] = {k: contract.get(k) for k in ('expected_ids', 'returned_ids', 'missing_ids', 'temporal_validity', 'task_outcomes') if k in contract}
+                 if not response['timed_out']:
+                     STORE.complete(client_session_id, client_turn_id, turn['revision'], response, plan=actual_plan)
+@@ -730,6 +734,7 @@
+                     "conversation_state": response['conversation_state'],
+                     "request_plan": actual_plan,
+                     "conversation_contract": contract,
++                    "task_contract": task_contract,
+                     "question": question,
+                     "resolved_question": resolved.resolved_question,
+                     "context_resolution": resolved.to_dict(),
+--- /dev/null
++++ after/app/pipeline/task_contract.py
+@@ -0,0 +1,51 @@
++"""Execution coverage for requested tasks; this is not a factual accuracy score."""
++
++def task_status(mode, route, validation, trace=()):
++    if not validation.ok or 'answer_contract_no_answer' in mode:
++        return 'rejected'
++    if any(word in mode for word in ('timeout', 'unavailable', 'backend_error')):
++        return 'unavailable'
++    if route.answer_type == 'clarification' or any(word in mode for word in ('clarification', 'missing_game_context')):
++        return 'clarification'
++    if route.answer_type == 'no_answer' or any(word in mode for word in ('no_answer', 'unconfirmed', 'unverified', 'source_gap')):
++        return 'missing'
++    for item in trace:
++        if item.stage == 'competition_full_coverage' and (item.metadata.get('remaining_ids') or item.metadata.get('missing_ids')):
++            return 'partial'
++    return 'answered'
++
++def outcome(statuses):
++    if statuses and all(s == 'answered' for s in statuses):
++        return 'answered_complete'
++    if any(s in ('answered', 'partial') for s in statuses):
++        return 'answered_partial'
++    if statuses and all(s == 'clarification' for s in statuses):
++        return 'needs_clarification'
++    if 'rejected' in statuses:
++        return 'schema_rejected'
++    if 'unavailable' in statuses:
++        return 'unavailable'
++    return 'no_answer'
++
++def single_contract(mode, route, validation, hits, trace):
++    status = task_status(mode, route, validation, trace)
++    return dict(schema_version=1, kind='single', status=status, outcome=outcome([status]),
++                category=route.category, intent=route.intent, source_count=len(hits),
++                coverage_meaning='execution_status_not_factual_accuracy')
++
++def compound_contract(questions, results):
++    tasks = []
++    for index, (question, result) in enumerate(zip(questions, results), 1):
++        tasks.append(dict(task_id=f'task-{index}', question=question,
++            category=result.route.category, intent=result.route.intent, mode=result.mode,
++            status=task_status(result.mode, result.route, result.validation, result.trace),
++            validation_ok=result.validation.ok, source_count=len(result.hits)))
++    statuses = [t['status'] for t in tasks]
++    return dict(schema_version=1, kind='compound', tasks=tasks,
++        expected_task_ids=[f'task-{i}' for i in range(1, len(questions)+1)],
++        executed_task_ids=[t['task_id'] for t in tasks],
++        answered_task_ids=[t['task_id'] for t in tasks if t['status'] == 'answered'],
++        pending_task_ids=[f'task-{i}' for i in range(len(results)+1, len(questions)+1)],
++        missing_task_ids=[t['task_id'] for t in tasks if t['status'] == 'missing'],
++        outcome=outcome(statuses) if len(results)==len(questions) else 'answered_partial' if any(s in ('answered','partial') for s in statuses) else 'unavailable',
++        coverage_meaning='execution_status_not_factual_accuracy')
+--- /dev/null
++++ after/app/session/task_memory.py
+@@ -0,0 +1,183 @@
++"""Session-bound requested tasks, not cached facts or implicit personal memory."""
++import copy
++import re
++from app.core.normalization import normalize_text
++from app.session.conversation_plan import resolve_request_plan, service_mentions, valid_price_task
++
++MAX_TASKS = 8
++ALL_REPLY = re.compile(r'^(?:ทั้งหมด|ทั้งหมดเลย|ขอทั้งหมด|เอาทั้งหมด|ทุกอัน|ทุกโซน|all\s+zones|all(?:\s+of\s+them)?|everything|both(?:\s+of\s+them)?)(?:\s*(?:ครับ|ค่ะ|please))?[.!?\s]*$',re.I)
++RETURN = re.compile(r'^(?:กลับ(?:ไป|มา)(?:ที่|เรื่อง|ดู)?|ย้อนกลับ(?:ไป)?|\b(?:back\s+to|return\s+to|go\s+back\s+to)\b)\s*(.+)$',re.I)
++ORDINAL = re.compile(r'^(?:อัน|ข้อ|ตัวเลือก)(?:ที่)?\s*(แรก|หนึ่ง|สอง|สาม|สี่|สุดท้าย)|^(?:(?:the|choose|select)\s+)?(first|second|third|fourth|last)(?:\s+one)?[.!?\s]*$',re.I)
++
++def task_from_response(question, response, plan=None):
++    """Targets come from user/resolved queries; never from answer examples."""
++    category=response.get('route_category','');intent=response.get('route_intent','');mode=response.get('mode','')
++    query=response.get('resolved_question') or question
++    if not isinstance(query,str) or not query.strip() or len(query)>2000:
++        return None
++    domain,operation=None,None
++    from app.session.context_resolver import detect_games
++    named_games=list(detect_games(query))
++    # Family prompts have several historically used mode/category names.
++    # Only actual game choices grounded in the query can form this menu;
++    # generic assistant examples cannot supply the user's missing target.
++    family_offer=[]
++    if category=='clarification' and re.search(r'ปุ่ม|ควบคุม|\bcontrols?\b',query,re.I):
++        from app.pipeline.entity_resolver import resolve_game_entity
++        resolution=resolve_game_entity(query,operation='controls')
++        text=response.get('answer','')
++        family_offer=[c.title for c in resolution.candidates if c.title.casefold() in text.casefold()] if resolution.is_ambiguous else []
++        family_offer.sort(key=lambda g:text.casefold().find(g.casefold()))
++        if len(family_offer)>1:domain,operation='game_controls','control_lookup'
++    if category=='service_fee':domain,operation='service_fee','price_lookup'
++    elif category=='competition_rules':domain,operation='competition_rules','rule_lookup'
++    elif category=='games':
++        if 'control' in mode or 'control' in intent:domain,operation='game_controls','control_lookup'
++        elif 'catalog' in mode or 'availability' in mode or intent in ('games_lookup','list'):domain,operation='games','list'
++        elif 'game_detail' in mode:domain,operation='games','game_detail'
++        elif 'family' in mode:domain,operation='games','game_detail'
++    elif category=='equipment':domain,operation='equipment','equipment_lookup'
++    elif category=='reservation':domain,operation='reservation',intent
++    elif category=='schedule':domain,operation='schedule','schedule_lookup'
++    if domain is None:return None
++    targets=list(detect_games(query)) if domain in ('game_controls','competition_rules') or operation=='game_detail' else service_mentions(query)
++    price_task=None
++    if domain=='service_fee':
++        p=plan or resolve_request_plan(query,[],locale='en' if query.isascii() else 'th')
++        if p and p.get('tasks') and valid_price_task(p['tasks'][0]):
++            price_task=copy.deepcopy(p['tasks'][0]);targets=price_task['targets']
++    offered=family_offer
++    if 'family' in mode:
++        text=response.get('answer','')
++        offered=[g for g in detect_games(text) if g.casefold() in text.casefold()]
++        offered.sort(key=lambda g:text.casefold().find(g.casefold()))
++    if len(offered)>1 and domain=='game_controls':targets=[]
++    return dict(schema_version=1,key=domain+'/'+operation,domain=domain,operation=operation,targets=targets,offered_options=offered,
++                query=query,price_task=price_task,seed_question=question,mode=mode,route_category=category,route_intent=intent,
++                response_id=response.get('request_id'),status=response.get('task_status','recorded'),
++                provenance='server_completed_user_request')
++
++def harvest_tasks(question,response,plan=None):
++    contract=response.get('task_contract') or {}
++    if not contract:
++        contract=next((t.get('metadata',{}) for t in response.get('trace',[]) if isinstance(t,dict) and t.get('stage')=='task_answer_contract'),{})
++    children=contract.get('tasks',[]) if contract.get('kind')=='compound' else []
++    tasks=[]
++    if children:
++        for child in children:
++            b=dict(route_category=child['category'],route_intent=child['intent'],mode=child['mode'],
++                   resolved_question=child['question'],request_id=response.get('request_id'),task_status=child['status'])
++            task=task_from_response(child['question'],b)
++            if task:tasks.append(task)
++    else:
++        task=task_from_response(question,response,plan)
++        if task:tasks.append(task)
++    grouped={}
++    for task in tasks:
++        old=grouped.get(task['key'])
++        if old and task['domain'] in ('game_controls','games'):
++            old['queries']=old.get('queries',[old['query']])+[task['query']]
++            old['request_targets']=old.get('request_targets',[old['targets'][0] if len(old['targets'])==1 else old['query']])+[task['targets'][0] if len(task['targets'])==1 else task['query']]
++            old['query']='; '.join(old['queries'])
++            old['targets']=list(dict.fromkeys(old['targets']+task['targets']))
++            old['offered_options']=[]  # Separate child displays are not one ordinal menu.
++        elif old:
++            # Conflicting requests with one operation cannot be resumed by a
++            # single topic marker without silently dropping a child.
++            old['resume_ambiguous']=True
++        else:grouped[task['key']]=task
++    return list(grouped.values())
++
++def _resolved(question, query, task, reason, *, error=None):
++    from app.session.context_resolver import ResolvedQuestion
++    if error:
++        return ResolvedQuestion(question,question,True,context_domain=task.get('domain'),context_operation=task.get('operation'),
++                                reason=reason).to_dict(), {'schema_type':'dialogue_state_clarification_v1','schema_version':1,
++                                'resolved_query':question,'context_used':True,'reason':reason,'message_key':error}
++    targets=task.get('targets',[])
++    return ResolvedQuestion(question,query,True,context_game=targets[0] if len(targets)==1 and task['domain'] in ('game_controls','competition_rules') else None,
++             context_domain=task['domain'],context_operation=task['operation'],context_topic=', '.join(targets),reason=reason).to_dict(),None
++
++def resolve_memory(question,record,*,locale='th'):
++    """Only explicit resume or bounded scope commands may access older tasks."""
++    q=normalize_text(question).strip();archive=record.get('task_memory',{})
++    def eligible(t):
++        return bool(t.get('acknowledged'))
++    resume=RETURN.fullmatch(q)
++    if resume:
++        tail=resume[1]
++        # A return marker with a complete new target/filter is left to the
++        # ordinary resolver rather than silently dropping those words.
++        from app.session.context_resolver import detect_games
++        if service_mentions(tail) or detect_games(tail) or re.search(r'\d|ไม่|\b(?:not|except|without)\b',tail):return None,None
++        selector=None; matched_pattern=None
++        for key,pattern in [('service_fee/price_lookup',r'ราคา|ค่าบริการ|\b(?:prices?|fees?)\b'),
++                            ('game_controls/control_lookup',r'ปุ่ม|ควบคุม|\bcontrols?\b'),
++                            ('competition_rules/rule_lookup',r'กฎ|กฏ|กติกา|\b(?:rules?|rulebook)\b'),
++                            ('games/list',r'รายชื่อเกม|รายการเกม|\b(?:game\s+list|games\s+list|catalog)\b'),
++                            ('equipment/equipment_lookup',r'อุปกรณ์|\bequipment\b')]:
++            if re.search(pattern,tail,re.I):
++                if selector is not None:return _resolved(question,question,{},'ambiguous_return_domains',error='scope')
++                selector=key;matched_pattern=pattern
++        if matched_pattern:
++            remainder=re.sub(matched_pattern,'',tail,flags=re.I)
++            remainder=re.sub(r'competition|the|previous|earlier|เดิม|เมื่อกี้|การแข่งขัน|เรื่อง|ครับ|ค่ะ|please', '', remainder, flags=re.I).strip(' .!?')
++            if remainder:return _resolved(question,question,{},'resume_contains_unresolved_new_conditions',error='scope')
++        task=archive.get(selector) if selector else None
++        if not task or not eligible(task):return _resolved(question,question,{},'no_acknowledged_archived_task',error='no_previous_task')
++        if task.get('resume_ambiguous'):return _resolved(question,question,task,'archived_operation_has_multiple_requests',error='scope')
++        query=task['query'];price_plan=None
++        if task.get('price_task'):
++            price_plan=resolve_request_plan('retry',[],active_task=task['price_task'],locale=locale)
++            query=price_plan['resolved_query'];price_plan['original_query']=question;price_plan['context_used']=True;price_plan['act']='resume_task'
++        resolved,unused=_resolved(question,query,task,'explicitly_resumed_archived_task')
++        if task.get('queries') and task['domain'] in ('game_controls','games'):
++            from app.session.context_resolver import ResolvedQuestion
++            if len(task['queries'])>4:return _resolved(question,question,task,'archived_selection_exceeds_bound',error='scope')
++            resolved=ResolvedQuestion(**{**resolved,'selected_requests':tuple(task['queries']),
++                'context_topic':', '.join(task['request_targets'])}).to_dict()
++            return resolved,ResolvedQuestion(**resolved).to_selection_plan()
++        return resolved,price_plan
++    current=[archive[k] for k in record.get('current_task_keys',[]) if k in archive and eligible(archive[k])]
++    if ALL_REPLY.fullmatch(q):
++        if len(current)>1:return _resolved(question,question,{},'all_has_multiple_operations',error='scope')
++        if len(current)==1:
++            task=copy.deepcopy(current[0])
++            if task['domain']=='games' and task['operation']=='list':
++                if q in ('all zones','ทุกโซน'):
++                    return _resolved(question,'What games can I play?' if locale=='en' else 'มีเกมอะไรให้เล่นบ้าง',task,'explicit_all_catalog_zones')
++                return _resolved(question,question,task,'all_catalog_axis_ambiguous',error='scope')
++            if task['domain']=='game_controls':
++                if task.get('queries') and len(task['queries']) != len(task['targets']):
++                    # Unresolved children still belong to the user's scope.
++                    # Re-execute them rather than reporting only known games.
++                    from app.session.context_resolver import ResolvedQuestion
++                    if len(task['queries'])>4:return _resolved(question,question,task,'all_selection_exceeds_bound',error='scope')
++                    resolved,unused=_resolved(question,'; '.join(task['queries']),task,'all_preserves_unresolved_children')
++                    resolved=ResolvedQuestion(**{**resolved,'selected_requests':tuple(task['queries']),
++                        'context_topic':', '.join(task['request_targets'])}).to_dict()
++                    return resolved,ResolvedQuestion(**resolved).to_selection_plan()
++                if not task['targets'] and task.get('offered_options'):
++                    task['targets']=task['offered_options']
++                if not task['targets']:return _resolved(question,question,task,'all_controls_without_game',error='game')
++                if len(task['targets'])>4:return _resolved(question,question,task,'all_selection_exceeds_bound',error='scope')
++                queries=[f'What are all the controls for {t}?' if locale=='en' else f'{t} มีปุ่มควบคุมทั้งหมดอะไรบ้าง' for t in task['targets']]
++                resolved,unused=_resolved(question,'; '.join(queries),task,'all_controls_for_selected_targets')
++                if len(queries)>1:
++                    from app.session.context_resolver import ResolvedQuestion
++                    resolved=ResolvedQuestion(**{**resolved,'selected_requests':tuple(queries)}).to_dict()
++                    return resolved,ResolvedQuestion(**resolved).to_selection_plan()
++                return resolved,None
++    if ORDINAL.fullmatch(q) and len(current)==1:
++        task=current[0];offered=task.get('offered_options',[])
++        if offered:
++            selector=next(g for g in ORDINAL.fullmatch(q).groups() if g)
++            index={'แรก':0,'หนึ่ง':0,'first':0,'สอง':1,'second':1,'สาม':2,'third':2,'สี่':3,'fourth':3,'สุดท้าย':-1,'last':-1}[selector]
++            if index>=len(offered):return _resolved(question,question,task,'ordinal_outside_offered_options',error='ordinal_axis')
++            chosen=copy.deepcopy(task);chosen['targets']=[offered[index]]
++            query=(f'What are the controls for {offered[index]}?' if locale=='en' else f'{offered[index]} มีปุ่มควบคุมอะไรบ้าง') if task['operation']=='control_lookup' else (f'What is {offered[index]}?' if locale=='en' else f'{offered[index]} คืออะไร')
++            return _resolved(question,query,chosen,'explicit_ordinal_of_offered_family_options')
++        # An ordinary catalog shows both zones and games, so its ordinal axis
++        # is ambiguous. Do not pick the first source alias as a selection.
++        if current[0]['operation']=='list':return _resolved(question,question,current[0],'ordinal_catalog_axis_ambiguous',error='ordinal_axis')
++    return None,None
+--- /dev/null
++++ after/tests/test_task_memory_r41.py
+@@ -0,0 +1,199 @@
++"""Cross-topic request memory and per-task execution coverage contracts."""
++import os
++import sys
++import time
++import unittest
++from pathlib import Path
++from types import SimpleNamespace
++from unittest.mock import patch
++sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
++os.environ.update(PSU_BILINGUAL_EN_ENABLED='1',PSU_SEMANTIC_RETRIEVAL='0',PSU_CANONICAL_KNOWLEDGE='0')
++from app.session.conversation_store import ConversationStore,TurnConflict
++from app.session.task_memory import task_from_response,resolve_memory
++from app.pipeline.task_contract import compound_contract,single_contract
++from app.pipeline.schemas import PipelineRoute,PipelineTrace,EntityBundle,ValidationResult
++from app.pipeline.engine import AnswerQualityPipeline,answer_question_pipeline_debug as answer
++
++def response(question,category='games',mode='pipeline:structured_game_controls',intent='game_control_lookup',rid='reply'):
++    return dict(ok=True,request_id=rid,answer='Recorded source response',resolved_question=question,
++                route_category=category,route_intent=intent,mode=mode)
++
++def commit(store,q,**kwargs):
++    turn=str(store.snapshot('s')['revision']+1)
++    prepared=store.begin('s',turn,q,locale='en',history=store.history('s'))
++    body=response(q,rid=turn,**kwargs)
++    store.complete('s',turn,prepared['revision'],body,plan=prepared['plan'])
++    store.acknowledge('s',turn)
++    return prepared
++
++def child(mode='pipeline:structured_game_controls',typ='fact',ok=True,trace=()):
++    return SimpleNamespace(mode=mode,route=PipelineRoute('games','game_control_lookup',1,typ,'low','fixture'),
++        validation=ValidationResult(ok),hits=[{}],trace=trace)
++
++class TaskMemoryR41Tests(unittest.TestCase):
++    def test_resume_price_retains_external_groups_across_rules(self):
++        s=ConversationStore();commit(s,'PC prices for external users',category='service_fee',mode='pipeline:structured_service_fee_conversation',intent='service_fee_query')
++        commit(s,'Competition rules for CS2',category='competition_rules',mode='pipeline:competition_rule_overview_source',intent='competition_rule_lookup')
++        p=s.begin('s','resume','back to the prices',locale='en')
++        self.assertEqual(p['plan']['tasks'][0]['filters']['customer_group_ids'],['general_student','general_adult'])
++        self.assertIn('PC',p['context_resolution']['resolved_question'])
++
++    def test_no_context_or_unacknowledged_resume_clarifies(self):
++        s=ConversationStore();p=s.begin('s','1','VALORANT controls',locale='en')
++        s.complete('s','1',p['revision'],response('VALORANT controls'))
++        s.delivery('s','1','server_written')
++        for sid in ('s','other'):
++            r=s.begin(sid,'resume','back to the controls',locale='en')
++            self.assertEqual(r['plan']['message_key'],'no_previous_task')
++
++    def test_acknowledged_resume_survives_turn_eviction(self):
++        s=ConversationStore();commit(s,'VALORANT controls')
++        for i in range(10):commit(s,'unrelated '+str(i),category='general',mode='pipeline:no_answer',intent='unknown')
++        r=s.begin('s','resume','back to the controls',locale='en')
++        self.assertEqual(r['context_resolution']['resolved_question'],'VALORANT controls')
++
++    def test_ttl_expiry_cannot_resurrect_old_task(self):
++        now=[0];s=ConversationStore(ttl=10,clock=lambda:now[0]);commit(s,'VALORANT controls')
++        now[0]=11
++        self.assertEqual(s.begin('s','resume','back to the controls',locale='en')['plan']['message_key'],'no_previous_task')
++
++    def test_stale_completion_cannot_replace_memory(self):
++        s=ConversationStore();p=s.begin('s','old','VALORANT controls',locale='en');commit(s,'Beat Saber controls')
++        self.assertFalse(s.complete('s','old',p['revision'],response('VALORANT controls')))
++        self.assertEqual(s.snapshot('s')['requested_tasks'][0]['targets'],['Beat Saber'])
++
++    def test_duplicate_turn_has_no_new_revision_and_replay_is_identical(self):
++        s=ConversationStore();commit(s,'VALORANT controls');before=s.snapshot('s')
++        duplicate=s.begin('s','1','VALORANT controls',locale='en')
++        self.assertEqual(s.snapshot('s'),before)
++        self.assertEqual(duplicate['response']['request_id'],'1')
++        with self.assertRaises(TurnConflict):s.begin('s','1','Beat Saber controls',locale='en')
++
++    def test_client_fallback_history_cannot_create_archive(self):
++        s=ConversationStore();h=s.history('s',[{'role':'assistant','text':'VALORANT controls','route_category':'games','mode':'pipeline:structured_game_controls','delivery_status':'client_acknowledged'}])
++        self.assertEqual(h[0]['delivery_status'],'uncertain')
++        self.assertEqual(s.begin('s','1','back to the controls',locale='en',history=h)['plan']['message_key'],'no_previous_task')
++
++    def test_new_target_number_negation_are_not_replaced_with_old_query(self):
++        s=ConversationStore();commit(s,'VALORANT controls');record=s._sessions['s']
++        for q in ('back to controls for Beat Saber','back to prices for PC','back to rules 2027','back to controls not VALORANT'):
++            self.assertEqual(resolve_memory(q,record,locale='en'),(None,None),q)
++        r,p=resolve_memory('back to controls for tomorrow',record,locale='en')
++        self.assertEqual(p['message_key'],'scope')
++
++    def test_compound_memory_keeps_both_selected_games(self):
++        s=ConversationStore();p=s.begin('s','1','VALORANT and Beat Saber controls',locale='en')
++        b=response('VALORANT and Beat Saber controls',category='multi_question',mode='pipeline:multi_question_splitter',rid='1')
++        b['task_contract']=compound_contract(['VALORANT controls','Beat Saber controls'],[child(),child()])
++        s.complete('s','1',p['revision'],b);s.acknowledge('s','1')
++        self.assertEqual(s.snapshot('s')['requested_tasks'][0]['targets'],['VALORANT','Beat Saber'])
++        for q in ('all of them','back to the controls'):
++            p=s.begin('s',q,q,locale='en')
++            self.assertEqual(p['plan']['targets'],['VALORANT','Beat Saber'])
++            self.assertEqual(len(p['plan']['requests']),2)
++
++    def test_compound_different_operations_all_needs_scope(self):
++        s=ConversationStore();p=s.begin('s','1','controls and prices',locale='en')
++        c=compound_contract(['VALORANT controls','PC prices'],[child(),child()]);c['tasks'][1].update(category='service_fee',intent='service_fee_query',mode='pipeline:structured_service_fee_conversation')
++        b=response('controls and prices',category='multi_question',mode='pipeline:multi_question_splitter',rid='1');b['task_contract']=c
++        s.complete('s','1',p['revision'],b);s.acknowledge('s','1')
++        self.assertEqual(s.begin('s','2','all of them',locale='en')['plan']['message_key'],'scope')
++
++    def test_partial_compound_all_does_not_drop_the_unknown_child(self):
++        s=ConversationStore();p=s.begin('s','1','VALORANT and Minecraft controls',locale='en')
++        b=response('VALORANT and Minecraft controls',category='multi_question',mode='pipeline:multi_question_splitter',rid='1')
++        b['task_contract']=compound_contract(['VALORANT controls','Minecraft controls'],[child(),child('pipeline:game_controls_target_unconfirmed',typ='no_answer')])
++        s.complete('s','1',p['revision'],b);s.acknowledge('s','1')
++        for q in ('all of them','back to the controls'):
++            p=s.begin('s',q,q,locale='en')
++            self.assertEqual(len(p['plan']['requests']),2)
++            self.assertIn('Minecraft',p['plan']['requests'][1])
++
++    def test_generic_game_examples_are_not_selected_targets(self):
++        b=response('Show game controls',mode='pipeline:game_control_missing_game_context');b['answer']='For example VALORANT or Beat Saber'
++        t=task_from_response('Show game controls',b)
++        self.assertEqual(t['targets'],[]);self.assertEqual(t['offered_options'],[])
++
++    def test_family_ordinals_follow_display_order_not_alias_order(self):
++        b=response('Call of Duty controls',mode='pipeline:game_family_clarification_en');b['answer']='1. Call of Duty: Warzone\n2. Call of Duty: Modern Warfare III'
++        t=task_from_response('Call of Duty controls',b);t['acknowledged']=True
++        self.assertEqual(t['offered_options'],['Call of Duty: Warzone','Call of Duty: Modern Warfare III'])
++        record={'task_memory':{t['key']:t},'current_task_keys':[t['key']]}
++        for q in ('the first one','อันแรก'):
++            r,p=resolve_memory(q,record,locale='en');self.assertIn('Warzone',r['resolved_question']);self.assertNotIn('Modern Warfare',r['resolved_question'])
++        r,p=resolve_memory('the fourth one',record,locale='en');self.assertEqual(p['message_key'],'ordinal_axis')
++
++    def test_actual_family_prompts_in_both_languages_offer_ordinals(self):
++        for q,lang in [('Call of Duty controls','en'),('Call of Duty มีปุ่มอะไรบ้าง','th')]:
++            result=answer(q,locale=lang,experimental_allow_llm=False)
++            b=response(q,category=result.route.category,mode=result.mode,intent=result.route.intent);b['answer']=result.answer
++            t=task_from_response(q,b);self.assertIsNotNone(t)
++            self.assertEqual(t['targets'],[]);self.assertEqual(len(t['offered_options']),2)
++            t['acknowledged']=True;record={'task_memory':{t['key']:t},'current_task_keys':[t['key']]}
++            r,p=resolve_memory('the second one',record,locale=lang)
++            self.assertIn(t['offered_options'][1],r['resolved_question'])
++            r,p=resolve_memory('all of them',record,locale=lang)
++            self.assertEqual(len(p['requests']),2)
++
++    def test_unknown_title_after_known_controls_never_inherits_game(self):
++        from app.session.context_resolver import resolve_question_with_context
++        history=[{'role':'user','text':'VALORANT มีปุ่มอะไรบ้าง'}, {'role':'assistant','text':'VALORANT controls',
++            'route_category':'games','route_intent':'game_control_lookup','mode':'pipeline:structured_game_controls','resolved_text':'VALORANT มีปุ่มอะไรบ้าง'}]
++        for q in ('Minecraft มีปุ่มอะไรบ้าง','มายคราฟต์มีปุ่มอะไรบ้าง'):
++            r=resolve_question_with_context(q,history,locale='th')
++            self.assertEqual(r.resolved_question,q);self.assertFalse(r.used_context)
++
++    def test_timeout_retains_executed_and_pending_child_evidence(self):
++        pipeline=AnswerQualityPipeline();calls=[0]
++        def exceeded(*args):
++            calls[0]+=1
++            return calls[0]==2
++        sample=answer('VALORANT controls',locale='en',experimental_allow_llm=False)
++        with patch.object(pipeline,'_compound_children_are_deterministic',return_value=False), patch.object(pipeline,'_deadline_is_exceeded',side_effect=exceeded), patch.object(pipeline,'_answer_single',return_value=sample):
++            result=pipeline._answer_multi('two requests',['VALORANT controls','Beat Saber controls'],experimental_allow_llm=False,experimental_rag_fallback=False)
++        c=next(t.metadata for t in result.trace if t.stage=='task_answer_contract')
++        self.assertEqual(c['executed_task_ids'],['task-1']);self.assertEqual(c['pending_task_ids'],['task-2'])
++        self.assertEqual(c['outcome'],'unavailable');self.assertTrue(c['output_withheld'])
++
++    def test_catalog_all_and_ordinal_ask_for_axis_but_all_zones_is_explicit(self):
++        s=ConversationStore();commit(s,'What games are available in PC?',mode='pipeline:structured_games_catalog_en',intent='games_lookup')
++        for q in ('all of them','the first one'):
++            p=s.begin('s',q,q,locale='en');self.assertIn(p['plan']['message_key'],('scope','ordinal_axis'))
++        p=s.begin('s','zones','all zones',locale='en');self.assertEqual(p['context_resolution']['reason'],'explicit_all_catalog_zones')
++
++    def test_all_over_four_targets_does_not_drop_remainder(self):
++        t=task_from_response('VALORANT controls',response('VALORANT controls'));t.update(acknowledged=True,targets=['a','b','c','d','e'])
++        r,p=resolve_memory('all of them',{'task_memory':{t['key']:t},'current_task_keys':[t['key']]},locale='en')
++        self.assertEqual(p['message_key'],'scope')
++
++    def test_task_memory_is_bounded_and_snapshot_has_no_cached_answer(self):
++        s=ConversationStore(max_sessions=1);commit(s,'VALORANT controls')
++        snap=s.snapshot('s');self.assertFalse(snap['survives_server_restart']);self.assertNotIn('answer',snap['requested_tasks'][0])
++        s.begin('other','1','anything',locale='en');self.assertNotIn('s',s._sessions)
++
++    def test_contract_distinguishes_answer_missing_clarification_and_backend_failure(self):
++        results=[child(),child('pipeline:game_controls_target_unconfirmed',typ='no_answer'),child('pipeline:game_control_missing_game_context',typ='clarification'),child('pipeline:backend_timeout',typ='no_answer')]
++        c=compound_contract(['one','two','three','four'],results)
++        self.assertEqual([t['status'] for t in c['tasks']],['answered','missing','clarification','unavailable'])
++        self.assertEqual(c['outcome'],'answered_partial');self.assertEqual(c['expected_task_ids'],c['executed_task_ids'])
++
++    def test_unexecuted_children_are_pending_not_answered(self):
++        c=compound_contract(['one','two'],[child()])
++        self.assertEqual(c['pending_task_ids'],['task-2']);self.assertEqual(c['outcome'],'answered_partial')
++
++    def test_full_rule_first_page_is_partial_when_clauses_remain(self):
++        r=child(trace=[PipelineTrace('competition_full_coverage','page',1,metadata={'remaining_ids':['rule-9']})])
++        c=single_contract(r.mode,r.route,r.validation,r.hits,r.trace)
++        self.assertEqual(c['status'],'partial');self.assertEqual(c['outcome'],'answered_partial')
++
++    def test_final_language_veto_cannot_claim_complete_coverage(self):
++        answer('VALORANT controls',locale='en',experimental_allow_llm=False)
++        trace=[PipelineTrace('task_answer_contract','answered_complete',1,metadata={'kind':'compound','outcome':'answered_complete'})]
++        from app.core.locale import resolve_locale
++        with patch('app.pipeline.engine.current_locale_decision',return_value=resolve_locale('',requested='en')):
++            result=AnswerQualityPipeline._build_result('ภาษาไทยที่ผิดภาษา',[],time.perf_counter(),'pipeline:multi_question_splitter',1,
++                PipelineRoute('multi_question','multi_question_split',1,'summary','low','fixture'),EntityBundle(),ValidationResult(True),trace)
++        self.assertEqual(result.mode,'pipeline:answer_contract_no_answer')
++        self.assertEqual(next(t.metadata for t in result.trace if t.stage=='task_answer_contract')['outcome'],'schema_rejected')
++
++if __name__=='__main__':unittest.main()

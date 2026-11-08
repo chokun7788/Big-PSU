@@ -1,0 +1,3341 @@
+{
+  "method": "isolated read-only component calls; no local LLM, semantic route refinement, tool-router or HTTP chat replay; scores are reconstructed, not screenshot trace",
+  "initial": {
+    "question": "ต้องการรู้ราคาของการใช้บริการของบุคคลภายนอก",
+    "entities": {
+      "day": null,
+      "time_slots": [],
+      "service": null,
+      "user_group": null,
+      "duration": null,
+      "price_intent": true,
+      "short_answer": false,
+      "comparison_intent": false,
+      "raw": {
+        "normalized_query": "ต้องการรู้ราคาของการใช้บริการของบุคคลภายนอก",
+        "language_hint": "th"
+      }
+    },
+    "protected": {
+      "operation": "price_missing_service",
+      "category": "clarification",
+      "status": "clarification",
+      "answer": "ต้องการทราบค่าบริการของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? ราคาแตกต่างตามบริการและกลุ่มผู้ใช้ จึงยังระบุราคาเดียวไม่ได้ครับ",
+      "source_id": "",
+      "source_url": "",
+      "basis": ""
+    }
+  },
+  "cases": [
+    {
+      "question": "ทั้งหมด",
+      "locale": "th",
+      "history_variant": "screenshot_text",
+      "history_count": 2,
+      "context_state": {
+        "zone": "PlayStation 5"
+      },
+      "resolved": {
+        "original_question": "ทั้งหมด",
+        "resolved_question": "ทั้งหมด",
+        "used_context": false,
+        "context_game": null,
+        "context_domain": null,
+        "context_operation": null,
+        "context_topic": null,
+        "reason": "not_followup"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": null,
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {
+          "normalized_query": "ทั้งหมด",
+          "language_hint": "th"
+        }
+      },
+      "route": {
+        "category": "general",
+        "intent": "unknown_domain_query",
+        "confidence": 0.55,
+        "answer_type": "fact",
+        "risk": "medium",
+        "reason": "domain query but no strong category"
+      },
+      "intent": {
+        "domain": "general",
+        "operation": "list",
+        "target": "",
+        "filters": {},
+        "needs": [
+          "list_items"
+        ],
+        "answer_style": "summary_bullets",
+        "confidence": 0.74,
+        "method": "heuristic",
+        "reason": "domain_terms=2; list terms found"
+      },
+      "frame": {
+        "operation": "list",
+        "domain": "general",
+        "expected_answer_types": [
+          "fact",
+          "summary"
+        ],
+        "targets": [],
+        "target_status": "unknown",
+        "target_margin": 0.0,
+        "target_required": false,
+        "allows_multiple_targets": false,
+        "needs_clarification": false,
+        "confidence": 0.74,
+        "method": "operation_first",
+        "route_category": "general",
+        "route_intent": "unknown_domain_query",
+        "intent_operation": "list",
+        "target_reason": "no_target_candidate",
+        "target_candidate_count": 0,
+        "game_family": ""
+      },
+      "candidate_selection": {
+        "selected": {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        "selection": {
+          "status": "abstain_low_score",
+          "execution_allowed": false,
+          "margin": 0.111,
+          "same_action_as_second": false,
+          "second": {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        },
+        "question_frame": {
+          "operation": "list",
+          "domain": "general",
+          "expected_answer_types": [
+            "fact",
+            "summary"
+          ],
+          "targets": [],
+          "target_status": "unknown",
+          "target_margin": 0.0,
+          "target_required": false,
+          "allows_multiple_targets": false,
+          "needs_clarification": false,
+          "confidence": 0.74,
+          "method": "operation_first",
+          "route_category": "general",
+          "route_intent": "unknown_domain_query",
+          "intent_operation": "list",
+          "target_reason": "no_target_candidate",
+          "target_candidate_count": 0,
+          "game_family": ""
+        },
+        "candidates": [
+          {
+            "capability_id": "retrieval.hybrid_guarded",
+            "action": "retrieval",
+            "domain": "multi",
+            "score": 0.433,
+            "status": "accepted",
+            "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          },
+          {
+            "capability_id": "fallback.no_answer",
+            "action": "no_answer",
+            "domain": "no_answer",
+            "score": 0.278,
+            "status": "accepted",
+            "reason": "base=0.50; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        ],
+        "rejected": [
+          {
+            "capability_id": "structured.members",
+            "action": "structured",
+            "domain": "members",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.games",
+            "action": "structured",
+            "domain": "games",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.game_controls",
+            "action": "structured",
+            "domain": "game_controls",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.equipment",
+            "action": "structured",
+            "domain": "equipment",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.reservation",
+            "action": "structured",
+            "domain": "reservation",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.schedule",
+            "action": "structured",
+            "domain": "schedule",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.service_fee",
+            "action": "structured",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "fast.price_calculator",
+            "action": "fast_path",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          }
+        ],
+        "policy": {
+          "psu_specific": true,
+          "route_risk": "medium",
+          "general_llm_requires_non_psu": true
+        }
+      },
+      "accepted": [
+        {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "clarification.ask_user",
+          "action": "clarification",
+          "domain": "clarification",
+          "score": 0.322,
+          "status": "accepted",
+          "reason": "base=0.58; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        },
+        {
+          "capability_id": "fallback.no_answer",
+          "action": "no_answer",
+          "domain": "no_answer",
+          "score": 0.278,
+          "status": "accepted",
+          "reason": "base=0.50; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ],
+      "rejected": [
+        {
+          "capability_id": "structured.members",
+          "action": "structured",
+          "domain": "members",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.games",
+          "action": "structured",
+          "domain": "games",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.game_controls",
+          "action": "structured",
+          "domain": "game_controls",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.equipment",
+          "action": "structured",
+          "domain": "equipment",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.reservation",
+          "action": "structured",
+          "domain": "reservation",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.schedule",
+          "action": "structured",
+          "domain": "schedule",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.service_fee",
+          "action": "structured",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.price_calculator",
+          "action": "fast_path",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.domain_handlers",
+          "action": "fast_path",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "rulebase.category_rules",
+          "action": "rulebase",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.vector_guarded",
+          "action": "vector",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.facts_composer",
+          "action": "rag_llm",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.competition_fact_cards",
+          "action": "retrieval",
+          "domain": "competition_rules",
+          "score": 0.156,
+          "status": "rejected",
+          "reason": "precondition_veto: not_a_competition_rule_query",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.general_answer",
+          "action": "general_llm",
+          "domain": "general",
+          "score": 0.139,
+          "status": "rejected",
+          "reason": "policy_veto: PSU-specific or medium/high-risk route cannot use general LLM",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ]
+    },
+    {
+      "question": "PC",
+      "locale": "th",
+      "history_variant": "screenshot_text",
+      "history_count": 2,
+      "context_state": {
+        "zone": "PlayStation 5"
+      },
+      "resolved": {
+        "original_question": "PC",
+        "resolved_question": "PC",
+        "used_context": false,
+        "context_game": null,
+        "context_domain": null,
+        "context_operation": null,
+        "context_topic": null,
+        "reason": "not_followup"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": "pc",
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {
+          "normalized_query": "pc",
+          "language_hint": "en"
+        }
+      },
+      "route": {
+        "category": "general",
+        "intent": "unknown_domain_query",
+        "confidence": 0.55,
+        "answer_type": "fact",
+        "risk": "medium",
+        "reason": "domain query but no strong category"
+      },
+      "intent": {
+        "domain": "general",
+        "operation": "unknown",
+        "target": "",
+        "filters": {},
+        "needs": [],
+        "answer_style": "direct",
+        "confidence": 0.45,
+        "method": "heuristic",
+        "reason": "domain_terms=2; no clear operation terms"
+      },
+      "frame": {
+        "operation": "unknown",
+        "domain": "general",
+        "expected_answer_types": [
+          "fact",
+          "summary"
+        ],
+        "targets": [
+          {
+            "target_id": "availability_pc_01_02",
+            "target_type": "service",
+            "domain": "service_fee",
+            "label": "PC #01-#02",
+            "score": 1.0
+          }
+        ],
+        "target_status": "ambiguous",
+        "target_margin": 0.0,
+        "target_required": false,
+        "allows_multiple_targets": false,
+        "needs_clarification": false,
+        "confidence": 0.35,
+        "method": "operation_first",
+        "route_category": "general",
+        "route_intent": "unknown_domain_query",
+        "intent_operation": "unknown",
+        "target_reason": "top_targets_low_margin",
+        "target_candidate_count": 2,
+        "game_family": ""
+      },
+      "candidate_selection": {
+        "selected": {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        "selection": {
+          "status": "abstain_low_score",
+          "execution_allowed": false,
+          "margin": 0.111,
+          "same_action_as_second": false,
+          "second": {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        },
+        "question_frame": {
+          "operation": "unknown",
+          "domain": "general",
+          "expected_answer_types": [
+            "fact",
+            "summary"
+          ],
+          "targets": [
+            {
+              "target_id": "availability_pc_01_02",
+              "target_type": "service",
+              "domain": "service_fee",
+              "label": "PC #01-#02",
+              "score": 1.0
+            }
+          ],
+          "target_status": "ambiguous",
+          "target_margin": 0.0,
+          "target_required": false,
+          "allows_multiple_targets": false,
+          "needs_clarification": false,
+          "confidence": 0.35,
+          "method": "operation_first",
+          "route_category": "general",
+          "route_intent": "unknown_domain_query",
+          "intent_operation": "unknown",
+          "target_reason": "top_targets_low_margin",
+          "target_candidate_count": 2,
+          "game_family": ""
+        },
+        "candidates": [
+          {
+            "capability_id": "retrieval.hybrid_guarded",
+            "action": "retrieval",
+            "domain": "multi",
+            "score": 0.433,
+            "status": "accepted",
+            "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          },
+          {
+            "capability_id": "fallback.no_answer",
+            "action": "no_answer",
+            "domain": "no_answer",
+            "score": 0.278,
+            "status": "accepted",
+            "reason": "base=0.50; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        ],
+        "rejected": [
+          {
+            "capability_id": "structured.members",
+            "action": "structured",
+            "domain": "members",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.games",
+            "action": "structured",
+            "domain": "games",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.game_controls",
+            "action": "structured",
+            "domain": "game_controls",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.equipment",
+            "action": "structured",
+            "domain": "equipment",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.reservation",
+            "action": "structured",
+            "domain": "reservation",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.schedule",
+            "action": "structured",
+            "domain": "schedule",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.service_fee",
+            "action": "structured",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "fast.price_calculator",
+            "action": "fast_path",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          }
+        ],
+        "policy": {
+          "psu_specific": true,
+          "route_risk": "medium",
+          "general_llm_requires_non_psu": true
+        }
+      },
+      "accepted": [
+        {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "clarification.ask_user",
+          "action": "clarification",
+          "domain": "clarification",
+          "score": 0.322,
+          "status": "accepted",
+          "reason": "base=0.58; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        },
+        {
+          "capability_id": "fallback.no_answer",
+          "action": "no_answer",
+          "domain": "no_answer",
+          "score": 0.278,
+          "status": "accepted",
+          "reason": "base=0.50; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ],
+      "rejected": [
+        {
+          "capability_id": "structured.members",
+          "action": "structured",
+          "domain": "members",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.games",
+          "action": "structured",
+          "domain": "games",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.game_controls",
+          "action": "structured",
+          "domain": "game_controls",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.equipment",
+          "action": "structured",
+          "domain": "equipment",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.reservation",
+          "action": "structured",
+          "domain": "reservation",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.schedule",
+          "action": "structured",
+          "domain": "schedule",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.service_fee",
+          "action": "structured",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.price_calculator",
+          "action": "fast_path",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.domain_handlers",
+          "action": "fast_path",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "rulebase.category_rules",
+          "action": "rulebase",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.vector_guarded",
+          "action": "vector",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.facts_composer",
+          "action": "rag_llm",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.competition_fact_cards",
+          "action": "retrieval",
+          "domain": "competition_rules",
+          "score": 0.156,
+          "status": "rejected",
+          "reason": "precondition_veto: not_a_competition_rule_query",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.general_answer",
+          "action": "general_llm",
+          "domain": "general",
+          "score": 0.139,
+          "status": "rejected",
+          "reason": "policy_veto: PSU-specific or medium/high-risk route cannot use general LLM",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ]
+    },
+    {
+      "question": "ทั้งหมด",
+      "locale": "th",
+      "history_variant": "strong_price_metadata",
+      "history_count": 2,
+      "context_state": {
+        "domain": "service_fee",
+        "operation": "price_lookup",
+        "target": "",
+        "filters": {
+          "user_group": "external"
+        },
+        "source": "universal_intent",
+        "zone": "PlayStation 5"
+      },
+      "resolved": {
+        "original_question": "ทั้งหมด",
+        "resolved_question": "ทั้งหมด",
+        "used_context": false,
+        "context_game": null,
+        "context_domain": null,
+        "context_operation": null,
+        "context_topic": null,
+        "reason": "not_followup"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": null,
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {
+          "normalized_query": "ทั้งหมด",
+          "language_hint": "th"
+        }
+      },
+      "route": {
+        "category": "general",
+        "intent": "unknown_domain_query",
+        "confidence": 0.55,
+        "answer_type": "fact",
+        "risk": "medium",
+        "reason": "domain query but no strong category"
+      },
+      "intent": {
+        "domain": "general",
+        "operation": "list",
+        "target": "",
+        "filters": {},
+        "needs": [
+          "list_items"
+        ],
+        "answer_style": "summary_bullets",
+        "confidence": 0.74,
+        "method": "heuristic",
+        "reason": "domain_terms=2; list terms found"
+      },
+      "frame": {
+        "operation": "list",
+        "domain": "general",
+        "expected_answer_types": [
+          "fact",
+          "summary"
+        ],
+        "targets": [],
+        "target_status": "unknown",
+        "target_margin": 0.0,
+        "target_required": false,
+        "allows_multiple_targets": false,
+        "needs_clarification": false,
+        "confidence": 0.74,
+        "method": "operation_first",
+        "route_category": "general",
+        "route_intent": "unknown_domain_query",
+        "intent_operation": "list",
+        "target_reason": "no_target_candidate",
+        "target_candidate_count": 0,
+        "game_family": ""
+      },
+      "candidate_selection": {
+        "selected": {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        "selection": {
+          "status": "abstain_low_score",
+          "execution_allowed": false,
+          "margin": 0.111,
+          "same_action_as_second": false,
+          "second": {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        },
+        "question_frame": {
+          "operation": "list",
+          "domain": "general",
+          "expected_answer_types": [
+            "fact",
+            "summary"
+          ],
+          "targets": [],
+          "target_status": "unknown",
+          "target_margin": 0.0,
+          "target_required": false,
+          "allows_multiple_targets": false,
+          "needs_clarification": false,
+          "confidence": 0.74,
+          "method": "operation_first",
+          "route_category": "general",
+          "route_intent": "unknown_domain_query",
+          "intent_operation": "list",
+          "target_reason": "no_target_candidate",
+          "target_candidate_count": 0,
+          "game_family": ""
+        },
+        "candidates": [
+          {
+            "capability_id": "retrieval.hybrid_guarded",
+            "action": "retrieval",
+            "domain": "multi",
+            "score": 0.433,
+            "status": "accepted",
+            "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          },
+          {
+            "capability_id": "fallback.no_answer",
+            "action": "no_answer",
+            "domain": "no_answer",
+            "score": 0.278,
+            "status": "accepted",
+            "reason": "base=0.50; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        ],
+        "rejected": [
+          {
+            "capability_id": "structured.members",
+            "action": "structured",
+            "domain": "members",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.games",
+            "action": "structured",
+            "domain": "games",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.game_controls",
+            "action": "structured",
+            "domain": "game_controls",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.equipment",
+            "action": "structured",
+            "domain": "equipment",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.reservation",
+            "action": "structured",
+            "domain": "reservation",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.schedule",
+            "action": "structured",
+            "domain": "schedule",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.service_fee",
+            "action": "structured",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "fast.price_calculator",
+            "action": "fast_path",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          }
+        ],
+        "policy": {
+          "psu_specific": true,
+          "route_risk": "medium",
+          "general_llm_requires_non_psu": true
+        }
+      },
+      "accepted": [
+        {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "clarification.ask_user",
+          "action": "clarification",
+          "domain": "clarification",
+          "score": 0.322,
+          "status": "accepted",
+          "reason": "base=0.58; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        },
+        {
+          "capability_id": "fallback.no_answer",
+          "action": "no_answer",
+          "domain": "no_answer",
+          "score": 0.278,
+          "status": "accepted",
+          "reason": "base=0.50; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ],
+      "rejected": [
+        {
+          "capability_id": "structured.members",
+          "action": "structured",
+          "domain": "members",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.games",
+          "action": "structured",
+          "domain": "games",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.game_controls",
+          "action": "structured",
+          "domain": "game_controls",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.equipment",
+          "action": "structured",
+          "domain": "equipment",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.reservation",
+          "action": "structured",
+          "domain": "reservation",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.schedule",
+          "action": "structured",
+          "domain": "schedule",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.service_fee",
+          "action": "structured",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.price_calculator",
+          "action": "fast_path",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.domain_handlers",
+          "action": "fast_path",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "rulebase.category_rules",
+          "action": "rulebase",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.vector_guarded",
+          "action": "vector",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.facts_composer",
+          "action": "rag_llm",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.competition_fact_cards",
+          "action": "retrieval",
+          "domain": "competition_rules",
+          "score": 0.156,
+          "status": "rejected",
+          "reason": "precondition_veto: not_a_competition_rule_query",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.general_answer",
+          "action": "general_llm",
+          "domain": "general",
+          "score": 0.139,
+          "status": "rejected",
+          "reason": "policy_veto: PSU-specific or medium/high-risk route cannot use general LLM",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ]
+    },
+    {
+      "question": "PC",
+      "locale": "th",
+      "history_variant": "strong_price_metadata",
+      "history_count": 2,
+      "context_state": {
+        "domain": "service_fee",
+        "operation": "price_lookup",
+        "target": "",
+        "filters": {
+          "user_group": "external"
+        },
+        "source": "universal_intent",
+        "zone": "PlayStation 5"
+      },
+      "resolved": {
+        "original_question": "PC",
+        "resolved_question": "PC",
+        "used_context": false,
+        "context_game": null,
+        "context_domain": null,
+        "context_operation": null,
+        "context_topic": null,
+        "reason": "not_followup"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": "pc",
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {
+          "normalized_query": "pc",
+          "language_hint": "en"
+        }
+      },
+      "route": {
+        "category": "general",
+        "intent": "unknown_domain_query",
+        "confidence": 0.55,
+        "answer_type": "fact",
+        "risk": "medium",
+        "reason": "domain query but no strong category"
+      },
+      "intent": {
+        "domain": "general",
+        "operation": "unknown",
+        "target": "",
+        "filters": {},
+        "needs": [],
+        "answer_style": "direct",
+        "confidence": 0.45,
+        "method": "heuristic",
+        "reason": "domain_terms=2; no clear operation terms"
+      },
+      "frame": {
+        "operation": "unknown",
+        "domain": "general",
+        "expected_answer_types": [
+          "fact",
+          "summary"
+        ],
+        "targets": [
+          {
+            "target_id": "availability_pc_01_02",
+            "target_type": "service",
+            "domain": "service_fee",
+            "label": "PC #01-#02",
+            "score": 1.0
+          }
+        ],
+        "target_status": "ambiguous",
+        "target_margin": 0.0,
+        "target_required": false,
+        "allows_multiple_targets": false,
+        "needs_clarification": false,
+        "confidence": 0.35,
+        "method": "operation_first",
+        "route_category": "general",
+        "route_intent": "unknown_domain_query",
+        "intent_operation": "unknown",
+        "target_reason": "top_targets_low_margin",
+        "target_candidate_count": 2,
+        "game_family": ""
+      },
+      "candidate_selection": {
+        "selected": {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        "selection": {
+          "status": "abstain_low_score",
+          "execution_allowed": false,
+          "margin": 0.111,
+          "same_action_as_second": false,
+          "second": {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        },
+        "question_frame": {
+          "operation": "unknown",
+          "domain": "general",
+          "expected_answer_types": [
+            "fact",
+            "summary"
+          ],
+          "targets": [
+            {
+              "target_id": "availability_pc_01_02",
+              "target_type": "service",
+              "domain": "service_fee",
+              "label": "PC #01-#02",
+              "score": 1.0
+            }
+          ],
+          "target_status": "ambiguous",
+          "target_margin": 0.0,
+          "target_required": false,
+          "allows_multiple_targets": false,
+          "needs_clarification": false,
+          "confidence": 0.35,
+          "method": "operation_first",
+          "route_category": "general",
+          "route_intent": "unknown_domain_query",
+          "intent_operation": "unknown",
+          "target_reason": "top_targets_low_margin",
+          "target_candidate_count": 2,
+          "game_family": ""
+        },
+        "candidates": [
+          {
+            "capability_id": "retrieval.hybrid_guarded",
+            "action": "retrieval",
+            "domain": "multi",
+            "score": 0.433,
+            "status": "accepted",
+            "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          },
+          {
+            "capability_id": "fallback.no_answer",
+            "action": "no_answer",
+            "domain": "no_answer",
+            "score": 0.278,
+            "status": "accepted",
+            "reason": "base=0.50; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        ],
+        "rejected": [
+          {
+            "capability_id": "structured.members",
+            "action": "structured",
+            "domain": "members",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.games",
+            "action": "structured",
+            "domain": "games",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.game_controls",
+            "action": "structured",
+            "domain": "game_controls",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.equipment",
+            "action": "structured",
+            "domain": "equipment",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.reservation",
+            "action": "structured",
+            "domain": "reservation",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.schedule",
+            "action": "structured",
+            "domain": "schedule",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.service_fee",
+            "action": "structured",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "fast.price_calculator",
+            "action": "fast_path",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          }
+        ],
+        "policy": {
+          "psu_specific": true,
+          "route_risk": "medium",
+          "general_llm_requires_non_psu": true
+        }
+      },
+      "accepted": [
+        {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "clarification.ask_user",
+          "action": "clarification",
+          "domain": "clarification",
+          "score": 0.322,
+          "status": "accepted",
+          "reason": "base=0.58; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        },
+        {
+          "capability_id": "fallback.no_answer",
+          "action": "no_answer",
+          "domain": "no_answer",
+          "score": 0.278,
+          "status": "accepted",
+          "reason": "base=0.50; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ],
+      "rejected": [
+        {
+          "capability_id": "structured.members",
+          "action": "structured",
+          "domain": "members",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.games",
+          "action": "structured",
+          "domain": "games",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.game_controls",
+          "action": "structured",
+          "domain": "game_controls",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.equipment",
+          "action": "structured",
+          "domain": "equipment",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.reservation",
+          "action": "structured",
+          "domain": "reservation",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.schedule",
+          "action": "structured",
+          "domain": "schedule",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.service_fee",
+          "action": "structured",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.price_calculator",
+          "action": "fast_path",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.domain_handlers",
+          "action": "fast_path",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "rulebase.category_rules",
+          "action": "rulebase",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.vector_guarded",
+          "action": "vector",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.facts_composer",
+          "action": "rag_llm",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.competition_fact_cards",
+          "action": "retrieval",
+          "domain": "competition_rules",
+          "score": 0.156,
+          "status": "rejected",
+          "reason": "precondition_veto: not_a_competition_rule_query",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.general_answer",
+          "action": "general_llm",
+          "domain": "general",
+          "score": 0.139,
+          "status": "rejected",
+          "reason": "policy_veto: PSU-specific or medium/high-risk route cannot use general LLM",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ]
+    },
+    {
+      "question": "ไก่กับไข่อะไรเกิดก่อนกัน",
+      "locale": "th",
+      "history_variant": "other",
+      "history_count": 0,
+      "context_state": {},
+      "resolved": {
+        "original_question": "ไก่กับไข่อะไรเกิดก่อนกัน",
+        "resolved_question": "ไก่กับไข่อะไรเกิดก่อนกัน",
+        "used_context": false,
+        "context_game": null,
+        "context_domain": null,
+        "context_operation": null,
+        "context_topic": null,
+        "reason": "not_followup"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": null,
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {
+          "normalized_query": "ไก่กับไข่อะไรเกิดก่อนกัน",
+          "language_hint": "th"
+        }
+      },
+      "route": {
+        "category": "general",
+        "intent": "unknown_domain_query",
+        "confidence": 0.55,
+        "answer_type": "fact",
+        "risk": "medium",
+        "reason": "domain query but no strong category"
+      },
+      "intent": {
+        "domain": "general",
+        "operation": "unknown",
+        "target": "",
+        "filters": {},
+        "needs": [],
+        "answer_style": "direct",
+        "confidence": 0.45,
+        "method": "heuristic",
+        "reason": "domain_terms=2; no clear operation terms"
+      },
+      "frame": {
+        "operation": "unknown",
+        "domain": "general",
+        "expected_answer_types": [
+          "fact",
+          "summary"
+        ],
+        "targets": [],
+        "target_status": "unknown",
+        "target_margin": 0.0,
+        "target_required": false,
+        "allows_multiple_targets": false,
+        "needs_clarification": false,
+        "confidence": 0.35,
+        "method": "operation_first",
+        "route_category": "general",
+        "route_intent": "unknown_domain_query",
+        "intent_operation": "unknown",
+        "target_reason": "no_target_candidate",
+        "target_candidate_count": 0,
+        "game_family": ""
+      },
+      "candidate_selection": {
+        "selected": {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        "selection": {
+          "status": "abstain_low_score",
+          "execution_allowed": false,
+          "margin": 0.111,
+          "same_action_as_second": false,
+          "second": {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        },
+        "question_frame": {
+          "operation": "unknown",
+          "domain": "general",
+          "expected_answer_types": [
+            "fact",
+            "summary"
+          ],
+          "targets": [],
+          "target_status": "unknown",
+          "target_margin": 0.0,
+          "target_required": false,
+          "allows_multiple_targets": false,
+          "needs_clarification": false,
+          "confidence": 0.35,
+          "method": "operation_first",
+          "route_category": "general",
+          "route_intent": "unknown_domain_query",
+          "intent_operation": "unknown",
+          "target_reason": "no_target_candidate",
+          "target_candidate_count": 0,
+          "game_family": ""
+        },
+        "candidates": [
+          {
+            "capability_id": "retrieval.hybrid_guarded",
+            "action": "retrieval",
+            "domain": "multi",
+            "score": 0.433,
+            "status": "accepted",
+            "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          },
+          {
+            "capability_id": "fallback.no_answer",
+            "action": "no_answer",
+            "domain": "no_answer",
+            "score": 0.278,
+            "status": "accepted",
+            "reason": "base=0.50; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        ],
+        "rejected": [
+          {
+            "capability_id": "structured.members",
+            "action": "structured",
+            "domain": "members",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.games",
+            "action": "structured",
+            "domain": "games",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.game_controls",
+            "action": "structured",
+            "domain": "game_controls",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.equipment",
+            "action": "structured",
+            "domain": "equipment",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.reservation",
+            "action": "structured",
+            "domain": "reservation",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.schedule",
+            "action": "structured",
+            "domain": "schedule",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.service_fee",
+            "action": "structured",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "fast.price_calculator",
+            "action": "fast_path",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          }
+        ],
+        "policy": {
+          "psu_specific": true,
+          "route_risk": "medium",
+          "general_llm_requires_non_psu": true
+        }
+      },
+      "accepted": [
+        {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "clarification.ask_user",
+          "action": "clarification",
+          "domain": "clarification",
+          "score": 0.322,
+          "status": "accepted",
+          "reason": "base=0.58; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        },
+        {
+          "capability_id": "fallback.no_answer",
+          "action": "no_answer",
+          "domain": "no_answer",
+          "score": 0.278,
+          "status": "accepted",
+          "reason": "base=0.50; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ],
+      "rejected": [
+        {
+          "capability_id": "structured.members",
+          "action": "structured",
+          "domain": "members",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.games",
+          "action": "structured",
+          "domain": "games",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.game_controls",
+          "action": "structured",
+          "domain": "game_controls",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.equipment",
+          "action": "structured",
+          "domain": "equipment",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.reservation",
+          "action": "structured",
+          "domain": "reservation",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.schedule",
+          "action": "structured",
+          "domain": "schedule",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.service_fee",
+          "action": "structured",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.price_calculator",
+          "action": "fast_path",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.domain_handlers",
+          "action": "fast_path",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "rulebase.category_rules",
+          "action": "rulebase",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.vector_guarded",
+          "action": "vector",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.facts_composer",
+          "action": "rag_llm",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.competition_fact_cards",
+          "action": "retrieval",
+          "domain": "competition_rules",
+          "score": 0.156,
+          "status": "rejected",
+          "reason": "precondition_veto: not_a_competition_rule_query",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.general_answer",
+          "action": "general_llm",
+          "domain": "general",
+          "score": 0.139,
+          "status": "rejected",
+          "reason": "policy_veto: PSU-specific or medium/high-risk route cannot use general LLM",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ]
+    },
+    {
+      "question": "all",
+      "locale": "en",
+      "history_variant": "other",
+      "history_count": 2,
+      "context_state": {
+        "zone": "PlayStation 5"
+      },
+      "resolved": {
+        "original_question": "all",
+        "resolved_question": "all",
+        "used_context": false,
+        "context_game": null,
+        "context_domain": null,
+        "context_operation": null,
+        "context_topic": null,
+        "reason": "english_context_preserved_without_rewrite"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": null,
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {
+          "normalized_query": "all",
+          "language_hint": "en"
+        }
+      },
+      "route": {
+        "category": "general",
+        "intent": "unknown_domain_query",
+        "confidence": 0.55,
+        "answer_type": "fact",
+        "risk": "medium",
+        "reason": "domain query but no strong category"
+      },
+      "intent": {
+        "domain": "general",
+        "operation": "unknown",
+        "target": "",
+        "filters": {},
+        "needs": [],
+        "answer_style": "direct",
+        "confidence": 0.45,
+        "method": "heuristic",
+        "reason": "domain_terms=2; no clear operation terms"
+      },
+      "frame": {
+        "operation": "unknown",
+        "domain": "general",
+        "expected_answer_types": [
+          "fact",
+          "summary"
+        ],
+        "targets": [],
+        "target_status": "unknown",
+        "target_margin": 0.0,
+        "target_required": false,
+        "allows_multiple_targets": false,
+        "needs_clarification": false,
+        "confidence": 0.35,
+        "method": "operation_first",
+        "route_category": "general",
+        "route_intent": "unknown_domain_query",
+        "intent_operation": "unknown",
+        "target_reason": "no_target_candidate",
+        "target_candidate_count": 0,
+        "game_family": ""
+      },
+      "candidate_selection": {
+        "selected": {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        "selection": {
+          "status": "abstain_low_score",
+          "execution_allowed": false,
+          "margin": 0.111,
+          "same_action_as_second": false,
+          "second": {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        },
+        "question_frame": {
+          "operation": "unknown",
+          "domain": "general",
+          "expected_answer_types": [
+            "fact",
+            "summary"
+          ],
+          "targets": [],
+          "target_status": "unknown",
+          "target_margin": 0.0,
+          "target_required": false,
+          "allows_multiple_targets": false,
+          "needs_clarification": false,
+          "confidence": 0.35,
+          "method": "operation_first",
+          "route_category": "general",
+          "route_intent": "unknown_domain_query",
+          "intent_operation": "unknown",
+          "target_reason": "no_target_candidate",
+          "target_candidate_count": 0,
+          "game_family": ""
+        },
+        "candidates": [
+          {
+            "capability_id": "retrieval.hybrid_guarded",
+            "action": "retrieval",
+            "domain": "multi",
+            "score": 0.433,
+            "status": "accepted",
+            "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          },
+          {
+            "capability_id": "fallback.no_answer",
+            "action": "no_answer",
+            "domain": "no_answer",
+            "score": 0.278,
+            "status": "accepted",
+            "reason": "base=0.50; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        ],
+        "rejected": [
+          {
+            "capability_id": "structured.members",
+            "action": "structured",
+            "domain": "members",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.games",
+            "action": "structured",
+            "domain": "games",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.game_controls",
+            "action": "structured",
+            "domain": "game_controls",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.equipment",
+            "action": "structured",
+            "domain": "equipment",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.reservation",
+            "action": "structured",
+            "domain": "reservation",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.schedule",
+            "action": "structured",
+            "domain": "schedule",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.service_fee",
+            "action": "structured",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "fast.price_calculator",
+            "action": "fast_path",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          }
+        ],
+        "policy": {
+          "psu_specific": true,
+          "route_risk": "medium",
+          "general_llm_requires_non_psu": true
+        }
+      },
+      "accepted": [
+        {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "clarification.ask_user",
+          "action": "clarification",
+          "domain": "clarification",
+          "score": 0.322,
+          "status": "accepted",
+          "reason": "base=0.58; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        },
+        {
+          "capability_id": "fallback.no_answer",
+          "action": "no_answer",
+          "domain": "no_answer",
+          "score": 0.278,
+          "status": "accepted",
+          "reason": "base=0.50; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ],
+      "rejected": [
+        {
+          "capability_id": "structured.members",
+          "action": "structured",
+          "domain": "members",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.games",
+          "action": "structured",
+          "domain": "games",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.game_controls",
+          "action": "structured",
+          "domain": "game_controls",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.equipment",
+          "action": "structured",
+          "domain": "equipment",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.reservation",
+          "action": "structured",
+          "domain": "reservation",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.schedule",
+          "action": "structured",
+          "domain": "schedule",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.service_fee",
+          "action": "structured",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.price_calculator",
+          "action": "fast_path",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.domain_handlers",
+          "action": "fast_path",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "rulebase.category_rules",
+          "action": "rulebase",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.vector_guarded",
+          "action": "vector",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.facts_composer",
+          "action": "rag_llm",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.competition_fact_cards",
+          "action": "retrieval",
+          "domain": "competition_rules",
+          "score": 0.156,
+          "status": "rejected",
+          "reason": "precondition_veto: not_a_competition_rule_query",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.general_answer",
+          "action": "general_llm",
+          "domain": "general",
+          "score": 0.139,
+          "status": "rejected",
+          "reason": "policy_veto: PSU-specific or medium/high-risk route cannot use general LLM",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ]
+    },
+    {
+      "question": "PC",
+      "locale": "en",
+      "history_variant": "other",
+      "history_count": 2,
+      "context_state": {
+        "zone": "PlayStation 5"
+      },
+      "resolved": {
+        "original_question": "PC",
+        "resolved_question": "PC",
+        "used_context": false,
+        "context_game": null,
+        "context_domain": null,
+        "context_operation": null,
+        "context_topic": null,
+        "reason": "english_context_preserved_without_rewrite"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": "pc",
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {
+          "normalized_query": "pc",
+          "language_hint": "en"
+        }
+      },
+      "route": {
+        "category": "general",
+        "intent": "unknown_domain_query",
+        "confidence": 0.55,
+        "answer_type": "fact",
+        "risk": "medium",
+        "reason": "domain query but no strong category"
+      },
+      "intent": {
+        "domain": "general",
+        "operation": "unknown",
+        "target": "",
+        "filters": {},
+        "needs": [],
+        "answer_style": "direct",
+        "confidence": 0.45,
+        "method": "heuristic",
+        "reason": "domain_terms=2; no clear operation terms"
+      },
+      "frame": {
+        "operation": "unknown",
+        "domain": "general",
+        "expected_answer_types": [
+          "fact",
+          "summary"
+        ],
+        "targets": [
+          {
+            "target_id": "availability_pc_01_02",
+            "target_type": "service",
+            "domain": "service_fee",
+            "label": "PC #01-#02",
+            "score": 1.0
+          }
+        ],
+        "target_status": "ambiguous",
+        "target_margin": 0.0,
+        "target_required": false,
+        "allows_multiple_targets": false,
+        "needs_clarification": false,
+        "confidence": 0.35,
+        "method": "operation_first",
+        "route_category": "general",
+        "route_intent": "unknown_domain_query",
+        "intent_operation": "unknown",
+        "target_reason": "top_targets_low_margin",
+        "target_candidate_count": 2,
+        "game_family": ""
+      },
+      "candidate_selection": {
+        "selected": {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        "selection": {
+          "status": "abstain_low_score",
+          "execution_allowed": false,
+          "margin": 0.111,
+          "same_action_as_second": false,
+          "second": {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        },
+        "question_frame": {
+          "operation": "unknown",
+          "domain": "general",
+          "expected_answer_types": [
+            "fact",
+            "summary"
+          ],
+          "targets": [
+            {
+              "target_id": "availability_pc_01_02",
+              "target_type": "service",
+              "domain": "service_fee",
+              "label": "PC #01-#02",
+              "score": 1.0
+            }
+          ],
+          "target_status": "ambiguous",
+          "target_margin": 0.0,
+          "target_required": false,
+          "allows_multiple_targets": false,
+          "needs_clarification": false,
+          "confidence": 0.35,
+          "method": "operation_first",
+          "route_category": "general",
+          "route_intent": "unknown_domain_query",
+          "intent_operation": "unknown",
+          "target_reason": "top_targets_low_margin",
+          "target_candidate_count": 2,
+          "game_family": ""
+        },
+        "candidates": [
+          {
+            "capability_id": "retrieval.hybrid_guarded",
+            "action": "retrieval",
+            "domain": "multi",
+            "score": 0.433,
+            "status": "accepted",
+            "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "clarification.ask_user",
+            "action": "clarification",
+            "domain": "clarification",
+            "score": 0.322,
+            "status": "accepted",
+            "reason": "base=0.58; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          },
+          {
+            "capability_id": "fallback.no_answer",
+            "action": "no_answer",
+            "domain": "no_answer",
+            "score": 0.278,
+            "status": "accepted",
+            "reason": "base=0.50; precondition=no_specific_precondition",
+            "requires_evidence": false,
+            "risk": "low"
+          }
+        ],
+        "rejected": [
+          {
+            "capability_id": "structured.members",
+            "action": "structured",
+            "domain": "members",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.games",
+            "action": "structured",
+            "domain": "games",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.game_controls",
+            "action": "structured",
+            "domain": "game_controls",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.equipment",
+            "action": "structured",
+            "domain": "equipment",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "low"
+          },
+          {
+            "capability_id": "structured.reservation",
+            "action": "structured",
+            "domain": "reservation",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.schedule",
+            "action": "structured",
+            "domain": "schedule",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "structured.service_fee",
+            "action": "structured",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          },
+          {
+            "capability_id": "fast.price_calculator",
+            "action": "fast_path",
+            "domain": "service_fee",
+            "score": 0.194,
+            "status": "rejected",
+            "reason": "policy_veto: general route has no verified PSU evidence target",
+            "requires_evidence": true,
+            "risk": "medium"
+          }
+        ],
+        "policy": {
+          "psu_specific": true,
+          "route_risk": "medium",
+          "general_llm_requires_non_psu": true
+        }
+      },
+      "accepted": [
+        {
+          "capability_id": "retrieval.hybrid_guarded",
+          "action": "retrieval",
+          "domain": "multi",
+          "score": 0.433,
+          "status": "accepted",
+          "reason": "base=0.72; answer_type_match; precondition=no_specific_precondition",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "clarification.ask_user",
+          "action": "clarification",
+          "domain": "clarification",
+          "score": 0.322,
+          "status": "accepted",
+          "reason": "base=0.58; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        },
+        {
+          "capability_id": "fallback.no_answer",
+          "action": "no_answer",
+          "domain": "no_answer",
+          "score": 0.278,
+          "status": "accepted",
+          "reason": "base=0.50; precondition=no_specific_precondition",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ],
+      "rejected": [
+        {
+          "capability_id": "structured.members",
+          "action": "structured",
+          "domain": "members",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.games",
+          "action": "structured",
+          "domain": "games",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.game_controls",
+          "action": "structured",
+          "domain": "game_controls",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.equipment",
+          "action": "structured",
+          "domain": "equipment",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "low"
+        },
+        {
+          "capability_id": "structured.reservation",
+          "action": "structured",
+          "domain": "reservation",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.schedule",
+          "action": "structured",
+          "domain": "schedule",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "structured.service_fee",
+          "action": "structured",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.price_calculator",
+          "action": "fast_path",
+          "domain": "service_fee",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "fast.domain_handlers",
+          "action": "fast_path",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "rulebase.category_rules",
+          "action": "rulebase",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.vector_guarded",
+          "action": "vector",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.facts_composer",
+          "action": "rag_llm",
+          "domain": "multi",
+          "score": 0.194,
+          "status": "rejected",
+          "reason": "policy_veto: general route has no verified PSU evidence target",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "retrieval.competition_fact_cards",
+          "action": "retrieval",
+          "domain": "competition_rules",
+          "score": 0.156,
+          "status": "rejected",
+          "reason": "precondition_veto: not_a_competition_rule_query",
+          "requires_evidence": true,
+          "risk": "medium"
+        },
+        {
+          "capability_id": "llm.general_answer",
+          "action": "general_llm",
+          "domain": "general",
+          "score": 0.139,
+          "status": "rejected",
+          "reason": "policy_veto: PSU-specific or medium/high-risk route cannot use general LLM",
+          "requires_evidence": false,
+          "risk": "low"
+        }
+      ]
+    }
+  ],
+  "catalogs": [
+    {
+      "question": "ตารางราคาทั้งหมดของบุคคลภายนอก",
+      "matched": true,
+      "mode": "structured_service_fee_catalog",
+      "answer": "ตาราง Service Fee สำหรับทุกบริการ (ราคาต่อแพ็กเกจ):\n\nPC (1 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท\n•    บุคคลทั่วไป (General Adult): 70 บาท\n\nPlayStation 5 (1-2 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท\n•    บุคคลทั่วไป (General Adult): 150 บาท\n\nNintendo Switch (1-2 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท\n•    บุคคลทั่วไป (General Adult): 140 บาท\n\nNintendo Switch (3-4 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท\n•    บุคคลทั่วไป (General Adult): 280 บาท\n\nCockpit (1 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท\n•    บุคคลทั่วไป (General Adult): 200 บาท\n\nVR (1-5 คน), 30 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท\n•    บุคคลทั่วไป (General Adult): 525 บาท\n\nVR (1-5 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท\n•    บุคคลทั่วไป (General Adult): 1,050 บาท\nราคา PC อ้างอิง local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+    },
+    {
+      "question": "ตารางราคาทั้งหมดสำหรับบุคคลทั่วไป",
+      "matched": true,
+      "mode": "structured_service_fee_catalog",
+      "answer": "ตาราง Service Fee สำหรับทุกบริการ (ราคาต่อแพ็กเกจ):\n\nPC (1 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท\n•    บุคคลทั่วไป (General Adult): 70 บาท\n\nPlayStation 5 (1-2 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท\n•    บุคคลทั่วไป (General Adult): 150 บาท\n\nNintendo Switch (1-2 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท\n•    บุคคลทั่วไป (General Adult): 140 บาท\n\nNintendo Switch (3-4 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท\n•    บุคคลทั่วไป (General Adult): 280 บาท\n\nCockpit (1 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท\n•    บุคคลทั่วไป (General Adult): 200 บาท\n\nVR (1-5 คน), 30 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท\n•    บุคคลทั่วไป (General Adult): 525 บาท\n\nVR (1-5 คน), 60 นาที/รอบ\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท\n•    บุคคลทั่วไป (General Adult): 1,050 บาท\nราคา PC อ้างอิง local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+    },
+    {
+      "question": "All service prices for general adults",
+      "matched": true,
+      "mode": "structured_service_fee_catalog",
+      "answer": "Service Fee table (recorded package rates):\n\nPC (1 person), 60 minutes/session\n•    PSU students and staff: 0 THB\n•    PSU alumni and students from other institutions: 25 THB\n•    General adults: 70 THB\n\nPlayStation 5 (1-2 people), 60 minutes/session\n•    PSU students and staff: 0 THB\n•    PSU alumni and students from other institutions: 50 THB\n•    General adults: 150 THB\n\nNintendo Switch (1-2 people), 60 minutes/session\n•    PSU students and staff: 0 THB\n•    PSU alumni and students from other institutions: 50 THB\n•    General adults: 140 THB\n\nNintendo Switch (3-4 people), 60 minutes/session\n•    PSU students and staff: 0 THB\n•    PSU alumni and students from other institutions: 100 THB\n•    General adults: 280 THB\n\nCockpit (1 person), 60 minutes/session\n•    PSU students and staff: 0 THB\n•    PSU alumni and students from other institutions: 65 THB\n•    General adults: 200 THB\n\nVR (1-5 people), 30 minutes/session\n•    PSU students and staff: 0 THB\n•    PSU alumni and students from other institutions: 190 THB\n•    General adults: 525 THB\n\nVR (1-5 people), 60 minutes/session\n•    PSU students and staff: 0 THB\n•    PSU alumni and students from other institutions: 375 THB\n•    General adults: 1,050 THB\nPC rates include the local service fee update 2026-07-27.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nSource: local://service_fee/pc_price_update_20260727"
+    }
+  ],
+  "calculators": [
+    {
+      "question": "ราคา PC สำหรับบุคคลภายนอก",
+      "group_detection": [
+        null,
+        false,
+        "ไม่พบกลุ่มผู้ใช้"
+      ],
+      "calculator": {
+        "matched": true,
+        "confidence": 0.86,
+        "answer_type": "fact",
+        "reason": "พบบริการ PC; ไม่พบกลุ่มผู้ใช้",
+        "service_key": "pc",
+        "group_key": null,
+        "requested_minutes": null,
+        "sessions": 1,
+        "answer": "ยังไม่ทราบกลุ่มผู้ใช้ จึงแสดงราคาทุกกลุ่มให้เทียบก่อน\nPC 1 ชั่วโมง (1 คน)\n•    นักศึกษา/นักเรียน/บุคลากร PSU: 0 บาท/1 ชั่วโมง\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/1 ชั่วโมง\n•    บุคคลทั่วไป (General Adult): 70 บาท/1 ชั่วโมง\nหมายเหตุข้อมูล PC: ราคา PC เพิ่มจาก local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+        "source_url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+        "source_ids": [
+          "service_fee_image_2026",
+          "pc_service_fee_local_update_20260727"
+        ]
+      }
+    },
+    {
+      "question": "ราคา PC สำหรับบุคคลทั่วไป",
+      "group_detection": [
+        "general_adult",
+        false,
+        "พบกลุ่มผู้ใช้ General Adult"
+      ],
+      "calculator": {
+        "matched": true,
+        "confidence": 0.95,
+        "answer_type": "fact",
+        "reason": "พบบริการ PC; พบกลุ่มผู้ใช้ General Adult",
+        "service_key": "pc",
+        "group_key": "general_adult",
+        "requested_minutes": null,
+        "sessions": 1,
+        "answer": "ราคา PC 1 ชั่วโมง (1 คน) สำหรับ บุคคลทั่วไป (General Adult)\n•    70 บาท\nหมายเหตุข้อมูล PC: ราคา PC เพิ่มจาก local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+        "source_url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+        "source_ids": [
+          "service_fee_image_2026",
+          "pc_service_fee_local_update_20260727"
+        ]
+      }
+    },
+    {
+      "question": "ราคา PC สำหรับนักศึกษาต่างสถาบัน",
+      "group_detection": [
+        "general_student",
+        false,
+        "พบกลุ่มผู้ใช้ General Student / นักศึกษาต่างสถาบัน"
+      ],
+      "calculator": {
+        "matched": true,
+        "confidence": 0.95,
+        "answer_type": "fact",
+        "reason": "พบบริการ PC; พบกลุ่มผู้ใช้ General Student / นักศึกษาต่างสถาบัน",
+        "service_key": "pc",
+        "group_key": "general_student",
+        "requested_minutes": null,
+        "sessions": 1,
+        "answer": "ราคา PC 1 ชั่วโมง (1 คน) สำหรับ ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student)\n•    25 บาท\nหมายเหตุข้อมูล PC: ราคา PC เพิ่มจาก local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+        "source_url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+        "source_ids": [
+          "service_fee_image_2026",
+          "pc_service_fee_local_update_20260727"
+        ]
+      }
+    }
+  ],
+  "recorded_rates": {
+    "pc": {
+      "label": "PC",
+      "unit_label": "1 ชั่วโมง",
+      "minutes_per_session": 60,
+      "capacity": "1 คน",
+      "prices": {
+        "psu_student_staff": 0,
+        "general_student": 25,
+        "general_adult": 70
+      }
+    },
+    "ps5": {
+      "label": "PlayStation 5",
+      "unit_label": "1 ชั่วโมง",
+      "minutes_per_session": 60,
+      "capacity": "1-2 คน",
+      "prices": {
+        "psu_student_staff": 0,
+        "general_student": 50,
+        "general_adult": 150
+      }
+    },
+    "nintendo_switch_1_2": {
+      "label": "Nintendo Switch",
+      "unit_label": "1 ชั่วโมง",
+      "minutes_per_session": 60,
+      "capacity": "1-2 คน",
+      "prices": {
+        "psu_student_staff": 0,
+        "general_student": 50,
+        "general_adult": 140
+      }
+    },
+    "nintendo_switch_3_4": {
+      "label": "Nintendo Switch",
+      "unit_label": "1 ชั่วโมง",
+      "minutes_per_session": 60,
+      "capacity": "3-4 คน",
+      "prices": {
+        "psu_student_staff": 0,
+        "general_student": 100,
+        "general_adult": 280
+      }
+    },
+    "cockpit": {
+      "label": "Cockpit",
+      "unit_label": "1 ชั่วโมง",
+      "minutes_per_session": 60,
+      "capacity": "1 คน",
+      "prices": {
+        "psu_student_staff": 0,
+        "general_student": 65,
+        "general_adult": 200
+      }
+    },
+    "vr_30": {
+      "label": "VR",
+      "unit_label": "30 นาที",
+      "minutes_per_session": 30,
+      "capacity": "1-5 คน",
+      "prices": {
+        "psu_student_staff": 0,
+        "general_student": 190,
+        "general_adult": 525
+      }
+    },
+    "vr_60": {
+      "label": "VR",
+      "unit_label": "1 ชั่วโมง",
+      "minutes_per_session": 60,
+      "capacity": "1-5 คน",
+      "prices": {
+        "psu_student_staff": 0,
+        "general_student": 375,
+        "general_adult": 1050
+      }
+    }
+  },
+  "source_hashes": {
+    "source": {
+      "app/session/context_resolver.py": "425202de8d691f232720671dd40c64120cdcd6fb9c3152adbe3ac4ecae446932",
+      "app/pipeline/capability_registry.py": "7e93cd5844c74a2864ff32a2398c74ecc8b2ff241d2ff342ca56c80ba586f99a",
+      "app/pipeline/protected_intents.py": "6df813d2b46c29d7a906ce64a51962c38783fd8367ad8eac1965aa6070a474e9",
+      "app/pipeline/closed_query_improvements.py": "eba9e3b620c6cdaf1bb0b0f196c1821b5c5ad9df338e4b6554de2d513f380901",
+      "app/calculator/service_fee.py": "a98b5b8ad8c3272ee8845f91a40df0b6dfc66d80e3d0d18a56852e31a94df742",
+      "web_chat/app.js": "d95765c229708c85495b1ddb8a45bcb5ce7076e6de89f77669e2500c71a96e7e"
+    },
+    "8090": {
+      "app/session/context_resolver.py": "425202de8d691f232720671dd40c64120cdcd6fb9c3152adbe3ac4ecae446932",
+      "app/pipeline/capability_registry.py": "7e93cd5844c74a2864ff32a2398c74ecc8b2ff241d2ff342ca56c80ba586f99a",
+      "app/pipeline/protected_intents.py": "6df813d2b46c29d7a906ce64a51962c38783fd8367ad8eac1965aa6070a474e9",
+      "app/pipeline/closed_query_improvements.py": "eba9e3b620c6cdaf1bb0b0f196c1821b5c5ad9df338e4b6554de2d513f380901",
+      "app/calculator/service_fee.py": "a98b5b8ad8c3272ee8845f91a40df0b6dfc66d80e3d0d18a56852e31a94df742",
+      "web_chat/app.js": "d95765c229708c85495b1ddb8a45bcb5ce7076e6de89f77669e2500c71a96e7e"
+    },
+    "with_models": {
+      "app/session/context_resolver.py": "425202de8d691f232720671dd40c64120cdcd6fb9c3152adbe3ac4ecae446932",
+      "app/pipeline/capability_registry.py": "7e93cd5844c74a2864ff32a2398c74ecc8b2ff241d2ff342ca56c80ba586f99a",
+      "app/pipeline/protected_intents.py": "6df813d2b46c29d7a906ce64a51962c38783fd8367ad8eac1965aa6070a474e9",
+      "app/pipeline/closed_query_improvements.py": "eba9e3b620c6cdaf1bb0b0f196c1821b5c5ad9df338e4b6554de2d513f380901",
+      "app/calculator/service_fee.py": "a98b5b8ad8c3272ee8845f91a40df0b6dfc66d80e3d0d18a56852e31a94df742",
+      "web_chat/app.js": "d95765c229708c85495b1ddb8a45bcb5ce7076e6de89f77669e2500c71a96e7e"
+    }
+  },
+  "health": [
+    {
+      "port": 8090,
+      "ok": true,
+      "time": "2026-10-05T09:12:13.421312+00:00",
+      "runtime": {
+        "profile": "owner-local-rag-assist",
+        "version": "2026.10.03-competition-conversation-r37.2",
+        "started_at": "2026-10-03T10:58:40.969822+00:00",
+        "answer_timeout_sec": 20.0,
+        "pipeline_timeout_sec": 19.0,
+        "intent_timeout_sec": 14.0,
+        "local_llm": {
+          "enabled": true,
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "intent_timeout_sec": 14.0,
+          "planner_timeout_sec": 1.2,
+          "general_timeout_sec": 4.0,
+          "high_assist_profile": true
+        },
+        "semantic_rag": {
+          "enabled": true,
+          "embedding_model": "psu-bge-m3:q8_0"
+        },
+        "english": {
+          "enabled": true,
+          "draft_preview": false
+        },
+        "booking": {
+          "enabled": true,
+          "fetch_mode": "wordpress",
+          "cache_seconds": 0.0,
+          "dashboard_required": false,
+          "read_only": true
+        },
+        "input_quality": {
+          "mode": "enforce",
+          "keyboard_layout": "request_retype",
+          "repeated_characters": "warn_and_continue"
+        }
+      },
+      "performance_log": "C:\\Users\\Chokhun\\Downloads\\Learn-LLM\\18_PSU_Esports_Update_Route_Data\\owner_local_delivery_20261003_competition_conversation_r37_final3\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261003T105841Z.jsonl"
+    },
+    {
+      "port": 8091,
+      "ok": true,
+      "time": "2026-10-05T09:12:13.430168+00:00",
+      "runtime": {
+        "profile": "owner-local-rag-assist",
+        "version": "2026.10.03-ready-folder-r37.2",
+        "started_at": "2026-10-03T11:29:33.432230+00:00",
+        "answer_timeout_sec": 20.0,
+        "pipeline_timeout_sec": 19.0,
+        "intent_timeout_sec": 14.0,
+        "local_llm": {
+          "enabled": true,
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "intent_timeout_sec": 14.0,
+          "planner_timeout_sec": 1.2,
+          "general_timeout_sec": 4.0,
+          "high_assist_profile": true
+        },
+        "semantic_rag": {
+          "enabled": true,
+          "embedding_model": "psu-bge-m3:q8_0"
+        },
+        "english": {
+          "enabled": true,
+          "draft_preview": false
+        },
+        "booking": {
+          "enabled": true,
+          "fetch_mode": "wordpress",
+          "cache_seconds": 0.0,
+          "dashboard_required": false,
+          "read_only": true
+        },
+        "input_quality": {
+          "mode": "enforce",
+          "keyboard_layout": "request_retype",
+          "repeated_characters": "warn_and_continue"
+        }
+      },
+      "performance_log": "C:\\Users\\Chokhun\\Documents\\Codex\\PSU Esports Chatbot Ready 20261003\\system\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261003T112934Z.jsonl"
+    },
+    {
+      "port": 8092,
+      "ok": true,
+      "time": "2026-10-05T09:12:13.439784+00:00",
+      "runtime": {
+        "profile": "owner-local-rag-assist",
+        "version": "2026.10.03-share-r37.2-with_models",
+        "started_at": "2026-10-03T14:11:21.492671+00:00",
+        "answer_timeout_sec": 20.0,
+        "pipeline_timeout_sec": 19.0,
+        "intent_timeout_sec": 14.0,
+        "local_llm": {
+          "enabled": true,
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "intent_timeout_sec": 14.0,
+          "planner_timeout_sec": 1.2,
+          "general_timeout_sec": 4.0,
+          "high_assist_profile": true
+        },
+        "semantic_rag": {
+          "enabled": true,
+          "embedding_model": "psu-bge-m3:q8_0"
+        },
+        "english": {
+          "enabled": true,
+          "draft_preview": false
+        },
+        "booking": {
+          "enabled": true,
+          "fetch_mode": "wordpress",
+          "cache_seconds": 0.0,
+          "dashboard_required": false,
+          "read_only": true
+        },
+        "input_quality": {
+          "mode": "enforce",
+          "keyboard_layout": "request_retype",
+          "repeated_characters": "warn_and_continue"
+        }
+      },
+      "performance_log": "C:\\Users\\Chokhun\\Documents\\Codex\\PSU_Esports_Share_20261003\\02_With_Models\\system\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261003T141122Z.jsonl"
+    }
+  ]
+}

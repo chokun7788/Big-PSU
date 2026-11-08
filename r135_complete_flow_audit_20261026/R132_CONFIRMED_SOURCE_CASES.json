@@ -1,0 +1,99 @@
+{
+  "revision": "R132_frozen_measurement_reviewed_from_R135_work",
+  "created_at": 1792973512.386333,
+  "cases": [
+    {
+      "key": "430a8b817d4ac5e5ac97e01eec7054e55b4437d6e056b966f094998e9e53a860",
+      "requested_locale": "en",
+      "question": "How many games are played in a Tekken 8 match?",
+      "raw_locator": {
+        "path": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "jsonl_line": 1,
+        "compressed_sha256": "156042af40fc5dd43249717d72a4fc87ee4525f598d2192d2f4fc9509cd14308"
+      },
+      "measured_answer": "A confirmed English translation is unavailable for some clauses; their Thai source text is retained below.\n**PSU Esports Tekken 8 event**\nในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ) [S1]",
+      "measured_claims": [
+        {
+          "fact_id": "C13:r114_tekken_8_rule_clause:rule_clause",
+          "record_id": "r114_tekken_8_rule_clause",
+          "facet": "rule_clause",
+          "value": "ในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ)",
+          "numeric": null,
+          "evidence_refs": [
+            {
+              "locator": "/fields/answer",
+              "source_id": "r114_import_791786f71fb0d0461eea9a0e"
+            }
+          ],
+          "fixture": false,
+          "status": "answer"
+        }
+      ],
+      "measured_understanding": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "canonical_competition_scope",
+        "tasks": [
+          {
+            "quote": "how many games are played in a tekken 8 match?",
+            "domain": "competition_rules",
+            "category": "C13",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": "competition.source_clause"
+          }
+        ],
+        "event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "semantic_judgment": "source_confirmed_actual_answer_incomplete",
+      "source_evidence": {
+        "record_id": "competition_competition_rules_tekken8_psu_esports_section_002",
+        "revision": 5,
+        "validity": {
+          "effective_from": null,
+          "effective_until": null,
+          "state": "unknown"
+        },
+        "field": "text",
+        "value": {
+          "en": "Competition rules\n* Offline competition.\n* PlayStation 5 is used.\n* Singles (1v1).\n* Competition format:\n* FT2: the winner is the first to win 2 games.\n* Each game uses R3 (3 rounds per game) and 60S (60 seconds per round).\n* At a 1-1 tie, a deciding game must be played.",
+          "th": "กติกาการแข่งขัน\n* แข่งขันแบบ ออฟไลน์ (Offline)\n* ใช้เครื่องเกม PlayStation 5\n* แข่งขันแบบ เดี่ยว (1v1)\n* รูปแบบการแข่งขัน:\n* FT2: ผู้ชนะคือผู้ที่ชนะครบ 2 เกมก่อน\n* ในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ)\n* หากเสมอกันที่ 1-1 จะต้องแข่งขัน เกมตัดสิน"
+        },
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/text",
+            "source_id": "r66_en_935aabc19087fc3216f81b22"
+          }
+        ],
+        "frozen_R132_and_candidate_record_identical": true
+      },
+      "reason_th": "คำถามถามจำนวนเกมต่อแมตช์ แต่คำตอบให้จำนวนรอบต่อเกม (R3) และเวลา 60S โดยไม่ตอบจำนวนเกม แม้ source ฉบับเดียวกันมี FT2 และ deciding game จึงเป็นความไม่ครบของเนื้อหาที่ตรวจจาก source ได้ ไม่ใช่สรุปจาก keyword หรือ route fail",
+      "root_cause_scope": "Observed topic/unit mismatch and incomplete fragment; exact upstream planner contribution remains review_required. R135 pre-fix typed probe also could not select the known complete clause.",
+      "candidate_followup": "verify_format_quantity.py / format_quantity_1792973448463088300/RESULT.json",
+      "followup_scope": "typed engine source controls only; no new planner inference, no changed frozen grade, R135 not installed",
+      "next": "Include in final ROOT_CAUSE_REVIEW_TH.md after all categories/source/paired review; do not infer global semantic accuracy."
+    }
+  ],
+  "other_requests_semantic_review_required": true,
+  "sample_semantic_accuracy": null,
+  "baseline_inferences": 0,
+  "baseline_regrades": 0,
+  "raw_modified": false
+}

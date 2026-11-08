@@ -1,0 +1,133 @@
+{
+  "question_key": "e36ba15da9c5cc0a1c70f5cd99dcaa809392a7c16dde57dff0570691f644469a",
+  "example_sha256": "2283e04ed855474279e24ea8730845ebecd809c96a5873f99f4ccaa20523e79d",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One permission question asks about drinking in the gaming zone.",
+      "raw_quotes": [
+        "Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy and food_consume focus retain consumption.",
+      "raw_quotes": [
+        "Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "drink is action and in the gaming zone the requested local location condition.",
+      "raw_quotes": [
+        "Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No named console zone, outside food or prior permission is inherited.",
+      "raw_quotes": [
+        "Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A gaming zone is not automatically the designated consumption area.",
+      "raw_quotes": [
+        "Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "food_drink restricts consumption to designated areas; food_bring_general distinguishes carrying permission.",
+      "raw_quotes": [
+        "Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_food_drink",
+        "migrated_policy_text_food_bring_general"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no verdict, arbitrary mapped zone or carrying rule is taught.",
+      "raw_quotes": [
+        "Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 147,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I drink in the gaming zone?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I drink in the gaming zone?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "drink",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "in the gaming zone",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    },
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    }
+  }
+}

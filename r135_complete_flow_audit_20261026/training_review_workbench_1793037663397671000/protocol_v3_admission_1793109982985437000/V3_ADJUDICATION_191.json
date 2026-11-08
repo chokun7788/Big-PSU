@@ -1,0 +1,163 @@
+{
+  "question_key": "703523faaabe601a65578894f204ea56f4c7d676501fa35c8e5b6b3ab13441cd",
+  "example_sha256": "cd815095deaeb5a5f1ed1d4becfaa5ff9e99fed27b56d2d4f0ed9ac6440d4d73",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One named afternoon play-session time need; Please tell me is style. No booking operation or live occupancy is requested.",
+      "raw_quotes": [
+        "Please tell me: What time is the afternoon session"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Explicit v3 schedule/list/service_periods represents the recorded play-period source field. Friday afternoon maintenance exists while its booking window is absent, so bookable_periods was a different semantic target.",
+      "raw_quotes": [
+        "Please tell me: What time is the afternoon session"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "afternoon is the exact local period/time quote. No person, amount, service identifier, weekday, date, clock or authority is invented.",
+      "raw_quotes": [
+        "Please tell me: What time is the afternoon session"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No history or weekday/date is supplied. The native source executor retains every recorded weekday and its applicability caveats; no fictional date or broadcast binding enters the target.",
+      "raw_quotes": [
+        "Please tell me: What time is the afternoon session"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "There is no negation or contradictory period in the raw request. Unknown source validity and weekday states are source limitations, not linguistic ambiguity.",
+      "raw_quotes": [
+        "Please tell me: What time is the afternoon session"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned seven migrated_schedule records distinguish service_slots from physical opening and bookable fields; actual v3/native source execution binds current record revisions and preserves Friday maintenance and empty weekend schedules.",
+      "raw_quotes": [
+        "Please tell me: What time is the afternoon session"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_0",
+        "migrated_schedule_1",
+        "migrated_schedule_2",
+        "migrated_schedule_3",
+        "migrated_schedule_4",
+        "migrated_schedule_5",
+        "migrated_schedule_6"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Target contains language operations and raw afternoon quote only. No13:00/16:00 clock, weekday answer, maintenance verdict, booking guarantee or business permission is taught.",
+      "raw_quotes": [
+        "Please tell me: What time is the afternoon session"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Service-period effective intervals/resource applicability and physical opening conflicts remain independent source limitations.",
+      "handling": "Keep per-day states, source revision/field and applicability caveats; do not infer live availability, physical access or booking windows."
+    }
+  ],
+  "historical_review_row": 191,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "bookable_periods",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please tell me: What time is the afternoon session",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "bookable_periods",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r135-plan-v3",
+    "focus": "service_periods",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "id": "t1",
+        "quote": "Please tell me: What time is the afternoon session",
+        "domain": "schedule",
+        "operation": "list",
+        "facet": "service_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "afternoon",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      }
+    ],
+    "shared_bindings": []
+  },
+  "prior_quarantined_review_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_013\\REVIEWS.jsonl",
+    "sha256": "47981d486ce220899d2f3f942c9f2f3ffb3c1dcaf3cc4774670fc1c527cd61b1",
+    "line": 192
+  },
+  "source_field_evidence": {
+    "migrated_schedule_0": {
+      "revision": 4,
+      "record_sha256": "43877514a17f5ca9e24a3d1036e1746148a1ad002e7096d2d4db073f6ce27d0a"
+    },
+    "migrated_schedule_1": {
+      "revision": 3,
+      "record_sha256": "a30b631c4777569af4196a5537dfb7ef5e38727adc9201eee6ca5a1d689e397c"
+    },
+    "migrated_schedule_2": {
+      "revision": 3,
+      "record_sha256": "54f567b0a429b84ed238f9f73ecf0a3aa19e5f16cd4a3f876eb991506ce704a7"
+    },
+    "migrated_schedule_3": {
+      "revision": 3,
+      "record_sha256": "9c34b6adae2e230074b10139043344b06136d0427dcc11b1e061cd5e8ba35aad"
+    },
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    },
+    "migrated_schedule_5": {
+      "revision": 4,
+      "record_sha256": "4a62a2d3da96f4f392888a63fd7d5b96c13210fa5db1bab0d6b0193609894733"
+    },
+    "migrated_schedule_6": {
+      "revision": 4,
+      "record_sha256": "4619ab2ac36c59d3b782383119b445c81bf7b6c52f4d8348cec3433c8b94b5f3"
+    }
+  },
+  "review_scope": "Individual v3 language-target readmission only; no actual model learning or business-answer acceptance."
+}

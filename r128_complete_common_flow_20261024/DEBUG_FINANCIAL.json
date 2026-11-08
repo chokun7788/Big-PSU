@@ -1,0 +1,599 @@
+{
+  "context": {
+    "original_question": "แล้วสามชั่วโมงล่ะ",
+    "execution_question": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที",
+    "used_context": true,
+    "inherited_slots": [
+      "platforms",
+      "audience_ids",
+      "person_counts"
+    ],
+    "task": {
+      "version": 1,
+      "release_id": "migration-preview-r69",
+      "game_ids": [],
+      "entity_ids": [],
+      "platforms": [
+        "PC"
+      ],
+      "audience_ids": [
+        "audience_general_adult",
+        "audience_psu_student_staff"
+      ],
+      "duration_minutes": 180.0,
+      "focus": "price",
+      "facts_in_state": false,
+      "person_counts": {
+        "audience_general_adult": 2,
+        "audience_psu_student_staff": 1
+      },
+      "excluded_audience_ids": [],
+      "excluded_platforms": [],
+      "resource_queries": []
+    },
+    "normalization_applied": true
+  },
+  "rates": [
+    {
+      "id": "rate_recovered_pc_availability_pc_01_02_psu_student_staff",
+      "subject": {
+        "th": "PC #01-#02 / PSU Student and Staff",
+        "en": "PC #01-#02 / PSU Student and Staff"
+      },
+      "period": 60,
+      "rule": "session_ceil",
+      "billing": "per_session",
+      "validity": {
+        "effective_from": null,
+        "effective_until": null,
+        "state": "unknown"
+      },
+      "unit": {
+        "amount_thb": 0.0,
+        "billed_units": 3.0,
+        "requested_minutes": 180.0,
+        "period_minutes": 60,
+        "rule": "session_ceil"
+      }
+    },
+    {
+      "id": "rate_recovered_pc_availability_pc_01_02_general_adult",
+      "subject": {
+        "th": "PC #01-#02 / General Adult",
+        "en": "PC #01-#02 / General Adult"
+      },
+      "period": 60,
+      "rule": "session_ceil",
+      "billing": "per_session",
+      "validity": {
+        "effective_from": null,
+        "effective_until": null,
+        "state": "unknown"
+      },
+      "unit": {
+        "amount_thb": 210.0,
+        "billed_units": 3.0,
+        "requested_minutes": 180.0,
+        "period_minutes": 60,
+        "rule": "session_ceil"
+      }
+    },
+    {
+      "id": "rate_recovered_pc_availability_pc_03_10_psu_student_staff",
+      "subject": {
+        "th": "PC #03-#10 / PSU Student and Staff",
+        "en": "PC #03-#10 / PSU Student and Staff"
+      },
+      "period": 60,
+      "rule": "session_ceil",
+      "billing": "per_session",
+      "validity": {
+        "effective_from": null,
+        "effective_until": null,
+        "state": "unknown"
+      },
+      "unit": {
+        "amount_thb": 0.0,
+        "billed_units": 3.0,
+        "requested_minutes": 180.0,
+        "period_minutes": 60,
+        "rule": "session_ceil"
+      }
+    },
+    {
+      "id": "rate_recovered_pc_availability_pc_03_10_general_adult",
+      "subject": {
+        "th": "PC #03-#10 / General Adult",
+        "en": "PC #03-#10 / General Adult"
+      },
+      "period": 60,
+      "rule": "session_ceil",
+      "billing": "per_session",
+      "validity": {
+        "effective_from": null,
+        "effective_until": null,
+        "state": "unknown"
+      },
+      "unit": {
+        "amount_thb": 210.0,
+        "billed_units": 3.0,
+        "requested_minutes": 180.0,
+        "period_minutes": 60,
+        "rule": "session_ceil"
+      }
+    }
+  ],
+  "billing": "Plan(ids=[], status='missing_input', reason='per_audience_counts_or_service_required', category='C06', facets=[], candidates=[], ambiguous=False, locked=True, metadata={'missing_slots': ['persons_per_audience'], 'choices': [{'th': 'PSU Student and Staff', 'en': 'PSU Student and Staff'}]})",
+  "answer": {
+    "answer": "แต่ละกลุ่มมีผู้เล่นกี่คน และเลือกบริการใดครับ?\nกลุ่มตามตารางราคา: PSU Student and Staff",
+    "status": "missing_input",
+    "claims": [],
+    "needs": [
+      {
+        "answer": "แต่ละกลุ่มมีผู้เล่นกี่คน และเลือกบริการใดครับ?\nกลุ่มตามตารางราคา: PSU Student and Staff",
+        "status": "missing_input",
+        "claims": [],
+        "category": "C06",
+        "reason": "per_audience_counts_or_service_required",
+        "fixture": false,
+        "english_translation_missing": false,
+        "selection_basis": "per_audience_counts_or_service_required",
+        "computations": [],
+        "plan": {
+          "facets": [],
+          "locked": true,
+          "metadata": {
+            "missing_slots": [
+              "persons_per_audience"
+            ],
+            "choices": [
+              {
+                "th": "PSU Student and Staff",
+                "en": "PSU Student and Staff"
+              }
+            ],
+            "evidence_identity_checked": true
+          }
+        },
+        "question": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที",
+        "execution_query": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที ",
+        "execution_contract": {
+          "version": "r123-obligation-verifier-v1",
+          "task_id": "t1",
+          "terminal_state": "missing_input",
+          "reason_codes": [
+            "per_audience_counts_or_service_required"
+          ],
+          "obligations": [
+            {
+              "id": "t1:answer",
+              "kind": "task_completion",
+              "task_id": "t1",
+              "expected": "amount",
+              "fulfilled": false,
+              "reason": "per_audience_counts_or_service_required",
+              "claim_refs": []
+            }
+          ],
+          "receipts": [],
+          "fatal": [],
+          "source_refs_checked": true,
+          "all_obligations_fulfilled": false,
+          "whole_question_semantics_verified": false,
+          "planned_task_coverage_only": true
+        }
+      }
+    ],
+    "model_events": [],
+    "understanding": {
+      "version": "r117",
+      "accepted": true,
+      "reason": "canonical_financial_operation",
+      "tasks": [
+        {
+          "quote": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที",
+          "domain": "service_fee",
+          "category": "C06",
+          "operation": "price_calculate",
+          "facet": "amount",
+          "target": "",
+          "constraints": [
+            {
+              "slot": "duration",
+              "quote": "180.0 นาที",
+              "source_record_id": ""
+            },
+            {
+              "slot": "persons",
+              "quote": "2 คน",
+              "source_record_id": ""
+            },
+            {
+              "slot": "persons",
+              "quote": "1 คน",
+              "source_record_id": ""
+            },
+            {
+              "slot": "platform",
+              "quote": "PC",
+              "source_record_id": ""
+            }
+          ],
+          "ambiguous": false,
+          "canonical_operation": ""
+        }
+      ],
+      "event": {
+        "http_attempted": false,
+        "model_called": false,
+        "meaning_review": {
+          "basis": "canonical_source_operation"
+        },
+        "context_scope_version": "r122"
+      },
+      "factual_correctness_verified": false,
+      "legacy_answer_read": false
+    },
+    "elapsed_sec": 0.031000000002677552,
+    "fixture": false,
+    "english_translation_missing": false,
+    "selection_basis": "r123_typed_first_adapters",
+    "effective_locale": "th",
+    "release_id": "migration-preview-r69",
+    "epoch": 2449,
+    "execution_contract": {
+      "version": "r123",
+      "path": "compiled_legacy_wire",
+      "request_plan": {
+        "question": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที",
+        "snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 2449,
+          "reference_time": "2026-10-24T12:00:00+07:00"
+        },
+        "tasks": [
+          {
+            "id": "t1",
+            "source_span": {
+              "start": 0,
+              "end": 65,
+              "text": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที"
+            },
+            "category": "C06",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "capability": {
+              "version": "r123-capabilities-v1",
+              "category": "C06",
+              "legacy_operation": "price_calculate",
+              "operation": "calculate_total",
+              "field": "amount",
+              "status": "adapter_available",
+              "executor": "native_domain_reader",
+              "verification_level": "source_and_obligation_checks_required",
+              "complete_semantics_verified": false
+            },
+            "target_span": null,
+            "target_scope": "none",
+            "bound_record_ids": [],
+            "slots": [
+              {
+                "id": "t1s1",
+                "kind": "duration",
+                "role": "requested_duration",
+                "source_span": {
+                  "start": 55,
+                  "end": 65,
+                  "text": "180.0 นาที"
+                },
+                "owner_task_id": "t1",
+                "normalized_value": 180.0,
+                "normalized_unit": "minute",
+                "origin": "current_user",
+                "scope": "local",
+                "source_record_id": ""
+              },
+              {
+                "id": "t1s2",
+                "kind": "persons",
+                "role": "persons",
+                "source_span": {
+                  "start": 22,
+                  "end": 26,
+                  "text": "2 คน"
+                },
+                "owner_task_id": "t1",
+                "normalized_value": null,
+                "normalized_unit": null,
+                "origin": "current_user",
+                "scope": "local",
+                "source_record_id": ""
+              },
+              {
+                "id": "t1s3",
+                "kind": "persons",
+                "role": "persons",
+                "source_span": {
+                  "start": 49,
+                  "end": 53,
+                  "text": "1 คน"
+                },
+                "owner_task_id": "t1",
+                "normalized_value": null,
+                "normalized_unit": null,
+                "origin": "current_user",
+                "scope": "local",
+                "source_record_id": ""
+              },
+              {
+                "id": "t1s4",
+                "kind": "platform",
+                "role": "platform",
+                "source_span": {
+                  "start": 5,
+                  "end": 7,
+                  "text": "PC"
+                },
+                "owner_task_id": "t1",
+                "normalized_value": null,
+                "normalized_unit": null,
+                "origin": "current_user",
+                "scope": "local",
+                "source_record_id": ""
+              }
+            ],
+            "bindings": [],
+            "obligations": [
+              {
+                "id": "t1:answer",
+                "kind": "task_completion",
+                "task_id": "t1",
+                "expected": "amount"
+              }
+            ],
+            "ambiguities": [],
+            "errors": [],
+            "canonical_operation": "C06.amount"
+          }
+        ],
+        "compiler_events": [],
+        "version": "r123-plan-ir-v1",
+        "wire_version": "r121-meaning-wire",
+        "wire_adapter": "validated_meaning_task_adapter",
+        "whole_question_semantics_verified": false,
+        "input_basis": "engine_question_after_native_normalization",
+        "raw_request_offset_mapping_implemented": false
+      },
+      "tasks": [
+        {
+          "version": "r123-obligation-verifier-v1",
+          "task_id": "t1",
+          "terminal_state": "missing_input",
+          "reason_codes": [
+            "per_audience_counts_or_service_required"
+          ],
+          "obligations": [
+            {
+              "id": "t1:answer",
+              "kind": "task_completion",
+              "task_id": "t1",
+              "expected": "amount",
+              "fulfilled": false,
+              "reason": "per_audience_counts_or_service_required",
+              "claim_refs": []
+            }
+          ],
+          "receipts": [],
+          "fatal": [],
+          "source_refs_checked": true,
+          "all_obligations_fulfilled": false,
+          "whole_question_semantics_verified": false,
+          "planned_task_coverage_only": true
+        }
+      ],
+      "schedule": [
+        {
+          "phase": "typed_read_complete",
+          "task_id": "t1",
+          "reason": "per_audience_counts_or_service_required",
+          "model_calls_used": 0
+        }
+      ],
+      "typed_reads_before_fallback": true,
+      "whole_question_semantics_verified": false,
+      "full_r123_architecture_implemented": false,
+      "request_context": {
+        "version": "r123-request-provenance-v1",
+        "request_id": null,
+        "raw_question": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที",
+        "normalized_question": "ราคา pc general adult 2 คน psu student and staff 1 คน 180.0 นาที",
+        "engine_question": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที",
+        "input_origin": "direct_engine_or_domain_call",
+        "input_basis": "current_raw",
+        "normalization": {
+          "raw": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที",
+          "text": "ราคา pc general adult 2 คน psu student and staff 1 คน 180.0 นาที",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64
+          ],
+          "edits": [
+            {
+              "reason": "whitespace",
+              "raw_start": 53,
+              "raw_end": 55,
+              "observed": "  ",
+              "replacement": " "
+            }
+          ],
+          "protected": [
+            {
+              "text": "2",
+              "start": 22,
+              "end": 23
+            },
+            {
+              "text": "1",
+              "start": 49,
+              "end": 50
+            },
+            {
+              "text": "180.0",
+              "start": 55,
+              "end": 60
+            }
+          ]
+        },
+        "derivation": null,
+        "history": {
+          "present": false,
+          "native_delivered_state_accepted": false,
+          "state_sha256": null,
+          "facts_inherited": false,
+          "trust_basis": "native_delivered_state_gate_requires_server_sanitized_history",
+          "arbitrary_assistant_prose_used": false
+        },
+        "whole_question_semantics_verified": false
+      },
+      "input_span_receipts": [
+        {
+          "task_id": "t1",
+          "spans": [
+            {
+              "kind": "task",
+              "execution_span": {
+                "start": 0,
+                "end": 65,
+                "text": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที"
+              },
+              "raw_mapping": {
+                "status": "exact_current_raw",
+                "start": 0,
+                "end": 65,
+                "text": "ราคา PC General Adult 2 คน PSU Student and Staff 1 คน  180.0 นาที"
+              }
+            },
+            {
+              "kind": "t1s1",
+              "execution_span": {
+                "start": 55,
+                "end": 65,
+                "text": "180.0 นาที"
+              },
+              "raw_mapping": {
+                "status": "exact_current_raw",
+                "start": 55,
+                "end": 65,
+                "text": "180.0 นาที"
+              }
+            },
+            {
+              "kind": "t1s2",
+              "execution_span": {
+                "start": 22,
+                "end": 26,
+                "text": "2 คน"
+              },
+              "raw_mapping": {
+                "status": "exact_current_raw",
+                "start": 22,
+                "end": 26,
+                "text": "2 คน"
+              }
+            },
+            {
+              "kind": "t1s3",
+              "execution_span": {
+                "start": 49,
+                "end": 53,
+                "text": "1 คน"
+              },
+              "raw_mapping": {
+                "status": "exact_current_raw",
+                "start": 49,
+                "end": 53,
+                "text": "1 คน"
+              }
+            },
+            {
+              "kind": "t1s4",
+              "execution_span": {
+                "start": 5,
+                "end": 7,
+                "text": "PC"
+              },
+              "raw_mapping": {
+                "status": "exact_current_raw",
+                "start": 5,
+                "end": 7,
+                "text": "PC"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,95 @@
+--- before/app/session/context_resolver.py
++++ after/app/session/context_resolver.py
+@@ -581,6 +581,23 @@
+         looks_like_competition_rule_query, resolve_competition_targets, replace_competition_target_mentions,
+     )
+ 
++    from app.pipeline.competition_conversation_signals import (
++        is_broad_rule_request, is_more_rule_request, is_rulebook_catalog_request,
++    )
++
++    current_target = resolve_competition_targets(original)
++    generic = is_broad_rule_request(original)
++    more = is_more_rule_request(original)
++    english = original.isascii()
++    prefix = ("Additional competition rules for" if more else "Competition rules for") if english else ("กติกาการแข่งขันเพิ่มเติม" if more else "กติกาการแข่งขัน")
++    if current_target.status == "exact" and generic:
++        target = current_target.targets[0]
++        return ResolvedQuestion(
++            original, f"{prefix} {target.label}", False, target.label,
++            context_domain="competition_rules", context_operation="rule_more" if more else "rule_lookup",
++            context_topic=target.label, reason="canonicalized_explicit_generic_competition_rules",
++        )
++
+     items = _history_dict_items(recent_history)
+     if len(items) < 2:
+         return None
+@@ -612,7 +629,7 @@
+     if bare_target and (pending or is_competition):
+         target = choice_target.targets[0]
+         prior_target = resolve_competition_targets(prior)
+-        if catalog_choice and prior_target.status == "absent":
++        if (catalog_choice or is_rulebook_catalog_request(prior)) and prior_target.status == "absent":
+             resolved = f"{'Competition rules for' if prior.isascii() else 'กติกาการแข่งขัน'} {target.label}"
+         elif pending and prior_target.status == "absent":
+             resolved = f"{prior} {target.label}"
+@@ -629,32 +646,33 @@
+             context_topic=target.label, reason="resolved_latest_competition_target_reply",
+         )
+ 
+-    current_target = resolve_competition_targets(original)
+-    if current_target.status != "absent" or detect_game(original) or not looks_like_competition_rule_query(original):
+-        return None
+-    # A generic request with a missing title can inherit a target. An unknown
+-    # title/edition, a studio policy or another entity must remain explicit.
+-    q = normalize_text(original)
+-    generic_request = re.fullmatch(
+-        r"(?:ขอ|ดู|เอา|แล้ว|อยากรู้|อยากดู|บอก|มี|เรื่อง|เกมนี้|ของเกมนี้|กฎ|กฏ|กติกา|ระเบียบ|การ|ตอน|แข่งขัน|แข่ง|ทัวร์นาเมนต์|อะไร|บ้าง|มั่ง|หน่อย|ครับ|ค่ะ|คับ|\s|[?!.,])+",
+-        q,
+-    ) or re.fullmatch(
+-        r"(?:can|could|i|you|see|show|me|please|what|are|is|the|a|an|and|about|it|its|this|game|of|for|tournament|competition|rules|rule|regulations|\s|[?!.,])+",
+-        q,
+-    )
+-    if not generic_request:
+-        return None
+-    # The user's last explicit single target is authoritative. The resolved
+-    # question is needed after a previous clarification reply such as "cs2".
+-    prior_target = resolve_competition_targets(prior)
+-    if prior_target.status != "exact" or len(detect_games(prior)) > 1:
+-        return None
+-    target = prior_target.targets[0]
+-    return ResolvedQuestion(
+-        original, f"{original} {target.label}", True, target.label,
+-        context_domain="competition_rules", context_operation="rule_lookup",
+-        context_topic=target.label, reason="inherited_latest_explicit_competition_game",
+-    )
++    if current_target.status != "absent" or detect_game(original) or not generic:
++        return None
++    # Generic rule follow-ups may survive an intervening failed rule reply.
++    # A user change of topic ends the search, regardless of assistant output.
++    for index in range(len(items) - 2, -1, -2):
++        user, reply = items[index:index + 2]
++        if user.get("role") != "user" or reply.get("role") != "assistant":
++            break
++        if any(item.get("contextEligible") is False or item.get("context_eligible") is False for item in (user, reply)):
++            break
++        user_text = str(user.get("text") or "")
++        user_target = resolve_competition_targets(user_text)
++        resolved_text = str(reply.get("resolved_text") or user_text)
++        prior_target = resolve_competition_targets(resolved_text)
++        if reply.get("route_category") == "competition_rules" and prior_target.status == "exact":
++            # An explicit target or a resolved rule follow-up anchors context;
++            # assistant example lists never provide a target.
++            if user_target.status == "exact" or is_broad_rule_request(user_text):
++                target = prior_target.targets[0]
++                return ResolvedQuestion(
++                    original, f"{prefix} {target.label}", True, target.label,
++                    context_domain="competition_rules", context_operation="rule_more" if more else "rule_lookup",
++                    context_topic=target.label, reason="inherited_active_competition_game_for_rule_followup",
++                )
++        if user_target.status != "absent" or not is_broad_rule_request(user_text):
++            break
++    return None
+ 
+ 
+ def resolve_question_with_context(question: str, recent_history: Any, *, locale: str = "th") -> ResolvedQuestion:

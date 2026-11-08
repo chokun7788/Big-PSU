@@ -1,0 +1,10 @@
+--- before/app/web_api/server.py
++++ after/app/web_api/server.py
+@@ -531,6 +531,7 @@
+                         request_id=request_id,
+                         locale=requested_locale,
+                         locale_decision=locale_decision.to_dict(),
++                        recent_history=recent_history,
+                     )
+                     worker_id = supervised.worker_id
+                     if supervised.status == "timeout":

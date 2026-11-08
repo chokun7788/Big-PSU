@@ -1,0 +1,133 @@
+{
+  "question_key": "910ae4ae09dd57e01a87e86e7b2ae2bbc22dcf3d50be06c9a8443c31253d00a4",
+  "example_sha256": "1996516f282cfd33ee7de2f739c1ac2e5934ea7da8332992ddbd2771b33fac59",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One drinking permission question; before-visiting is context.",
+      "raw_quotes": [
+        "Before visiting, I need to know: Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy and food_consume retain drinking rather than bringing.",
+      "raw_quotes": [
+        "Before visiting, I need to know: Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "drink is action and in the gaming zone the local place condition.",
+      "raw_quotes": [
+        "Before visiting, I need to know: Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No named equipment zone, prior permission or food-carrying rule is inherited.",
+      "raw_quotes": [
+        "Before visiting, I need to know: Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Gaming zone must not silently be treated as the designated consumption area.",
+      "raw_quotes": [
+        "Before visiting, I need to know: Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "food_drink source clauses restrict consumption to designated areas and food_bring_general separately permits carrying.",
+      "raw_quotes": [
+        "Before visiting, I need to know: Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_food_drink",
+        "migrated_policy_text_food_bring_general"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No permission verdict, area mapping or fine is taught.",
+      "raw_quotes": [
+        "Before visiting, I need to know: Can I drink in the gaming zone?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 176,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Before visiting, I need to know: Can I drink in the gaming zone?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Before visiting, I need to know: Can I drink in the gaming zone?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "drink",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "in the gaming zone",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    },
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    }
+  }
+}

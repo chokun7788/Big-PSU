@@ -1,0 +1,3 @@
+from pathlib import Path
+source=Path('r31_build_analysis.py').read_text(encoding='utf-8').replace("'complete_A_all_summary.json'","'final_B_all_summary.json'").replace('R31_','R31_B_').replace('All inputs executed on r31 final_A freeze in preserved initial + resumed parts.','All input keys retained; 4370 competition/CS2/pause inputs replayed on B and other rows retained from complete A. B is not a new full execution.').replace("same_inputs_and_grade_count=True,","same_inputs_and_grade_count=True,execution_provenance=dict(reexecuted_B=summary['reexecuted_requests'],retained_A=summary['retained_A_requests']),")
+with Path('r31_build_analysis_B.py').open('x',encoding='utf-8') as out:out.write(source)

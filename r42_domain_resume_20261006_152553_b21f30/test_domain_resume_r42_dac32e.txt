@@ -1,0 +1,37 @@
+test_booking_return_requires_scope_when_two_operations_exist (test_domain_resume_r42.DomainResumeR42Tests.test_booking_return_requires_scope_when_two_operations_exist) ... ok
+test_completed_turn_is_immutable_and_history_not_duplicated (test_domain_resume_r42.DomainResumeR42Tests.test_completed_turn_is_immutable_and_history_not_duplicated) ... ok
+test_concurrent_callbacks_only_one_commit_wins (test_domain_resume_r42.DomainResumeR42Tests.test_concurrent_callbacks_only_one_commit_wins) ... ok
+test_correct_thai_open_close_cues_are_not_corrupted_by_fuzzy_rewrite (test_domain_resume_r42.DomainResumeR42Tests.test_correct_thai_open_close_cues_are_not_corrupted_by_fuzzy_rewrite) ... ok
+test_invalid_or_excess_resume_plan_cannot_fall_through_to_unrelated_answer (test_domain_resume_r42.DomainResumeR42Tests.test_invalid_or_excess_resume_plan_cannot_fall_through_to_unrelated_answer) ... ok
+test_iso_dates_are_not_hour_ranges_in_either_language (test_domain_resume_r42.DomainResumeR42Tests.test_iso_dates_are_not_hour_ranges_in_either_language) ... FAIL
+test_live_booking_resume_fetches_again_instead_of_replaying_old_status (test_domain_resume_r42.DomainResumeR42Tests.test_live_booking_resume_fetches_again_instead_of_replaying_old_status) ... FAIL
+test_maximum_days_and_minimum_hour_are_different_facets (test_domain_resume_r42.DomainResumeR42Tests.test_maximum_days_and_minimum_hour_are_different_facets) ... ok
+test_member_group_count_is_not_person_count (test_domain_resume_r42.DomainResumeR42Tests.test_member_group_count_is_not_person_count) ... ok
+test_members_and_contact_have_archives_without_aliasing_to_price (test_domain_resume_r42.DomainResumeR42Tests.test_members_and_contact_have_archives_without_aliasing_to_price) ... ok
+test_mixed_return_domains_clarify_instead_of_choosing_first (test_domain_resume_r42.DomainResumeR42Tests.test_mixed_return_domains_clarify_instead_of_choosing_first) ... ok
+test_new_conditions_do_not_disappear_on_resume (test_domain_resume_r42.DomainResumeR42Tests.test_new_conditions_do_not_disappear_on_resume) ... ok
+test_raw_labels_with_comma_cannot_split_into_phantom_targets (test_domain_resume_r42.DomainResumeR42Tests.test_raw_labels_with_comma_cannot_split_into_phantom_targets) ... ok
+test_same_operation_compound_resume_reexecutes_every_child (test_domain_resume_r42.DomainResumeR42Tests.test_same_operation_compound_resume_reexecutes_every_child) ... ok
+test_unacknowledged_and_cross_session_new_domains_cannot_resume (test_domain_resume_r42.DomainResumeR42Tests.test_unacknowledged_and_cross_session_new_domains_cannot_resume) ... ok
+
+======================================================================
+FAIL: test_iso_dates_are_not_hour_ranges_in_either_language (test_domain_resume_r42.DomainResumeR42Tests.test_iso_dates_are_not_hour_ranges_in_either_language)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data\tests\test_domain_resume_r42.py", line 164, in test_iso_dates_are_not_hour_ranges_in_either_language
+    self.assertIsNone(requested_time_window('PC1 free on 2026-09-17?',snapshot))
+AssertionError: TimeWindow(start='14:30', end=None, explicit=False) is not None
+
+======================================================================
+FAIL: test_live_booking_resume_fetches_again_instead_of_replaying_old_status (test_domain_resume_r42.DomainResumeR42Tests.test_live_booking_resume_fetches_again_instead_of_replaying_old_status)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data\tests\test_domain_resume_r42.py", line 151, in test_live_booking_resume_fetches_again_instead_of_replaying_old_status
+    self.assertIn('available',first.answer);self.assertIn('booked',last.answer)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'booked' not found in 'Date: 2026-09-17 (Asia/Bangkok)\nPC #01 is not available for the full period 14:00-15:00 (Asia/Bangkok).\nUpdated: 2026-09-17 14:30:01\nSource: https://esports.computing.psu.ac.th/reservation'
+
+----------------------------------------------------------------------
+Ran 15 tests in 9.413s
+
+FAILED (failures=2)

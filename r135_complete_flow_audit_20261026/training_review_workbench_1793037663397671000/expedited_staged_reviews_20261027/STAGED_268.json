@@ -1,0 +1,153 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 268,
+  "question_key": "d91ee50a1f6c21f141226b55bb86aaea2935e3a4b5e73b339ff4d83b81a1deaa",
+  "raw_question": "What are the 8 buttons in Tekken 8, ans what is the PC price",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "PC",
+      "8 buttons",
+      "Tekken 8"
+    ],
+    "tasks": [
+      {
+        "quote": "What are the 8 buttons in Tekken 8",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Tekken 8",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "8 buttons",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "what is the PC price",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What are the 8 buttons in Tekken 8",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Tekken 8",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "8 buttons",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "what is the PC price",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PC",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "Two independent needs ask eight Tekken8 buttons and PC pricing; ans is a typo connector.",
+    "intent_operation_facet": "Keep controls/list and service_fee/price_calculate as two tasks.",
+    "entities_and_slot_roles": "Eight buttons is a requested physical subset/count, not eight binding rows or a source-certified complete layout.",
+    "local_shared_history_scope": "Remove top context; do not broadcast PC to Tekken controls or eight to PC price. No audience/duration is supplied.",
+    "negation_and_ambiguity": "Independent price and controls needs do not establish a shared platform or authorize purchase.",
+    "source_version_alignment": "Actual Tekken8 PS5 control source revision6 has contextual/repeated labels and more than eight entries; source PC price families require audience/duration/resource scope separately.",
+    "no_business_answer_target": "No fabricated eight-key list, default platform, audience, duration or numeric price enters labels."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "controls_ps5_tekken_8",
+    "equipment_gaming_pc"
+  ],
+  "source_answer_issues": [
+    [
+      "Binding rows are not physical button counts; PC price has missing scope.",
+      "Keep independent needs and verify physical subset/price inputs separately."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 269,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "controls_ps5_tekken_8": {
+      "revision": 6,
+      "record_sha256": "3d5d2b9c6def2678428d6863dd0abc5b10e3af1449e611e99ee0d3a81c454e76"
+    },
+    "equipment_gaming_pc": {
+      "revision": 11,
+      "record_sha256": "75d28be7ff6714faff153e6aac7de920ecccccad8bb428b1188f8f70e5c38044"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

@@ -1,0 +1,750 @@
+{
+  "type": "object",
+  "properties": {
+    "binding_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_:-]{1,79}$",
+      "x-label": "รหัสข้อเท็จจริง (ตั้งครั้งเดียว)"
+    },
+    "predicate": {
+      "type": "string",
+      "minLength": 1,
+      "x-label": "ใช้ตอบเรื่องใด"
+    },
+    "subject_ref": {
+      "type": "string",
+      "minLength": 1,
+      "x-label": "รายการที่ข้อเท็จจริงนี้กล่าวถึง",
+      "x-reference-kind": "*"
+    },
+    "unit": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-label": "หน่วยมาตรฐาน (เลือกให้ตรงกับตารางราคา)",
+      "enum": [
+        null,
+        "per_hour",
+        "per_session",
+        "per_person",
+        "per_day",
+        "half_day",
+        "full_day",
+        "fixed"
+      ]
+    },
+    "actor_scope": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "known",
+            "unknown"
+          ],
+          "x-label": "สถานะการยืนยัน"
+        },
+        "value": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "x-label": "กลุ่มผู้ใช้ (ไม่เลือกรายการเมื่อยืนยันว่าใช้กับทุกกลุ่ม)"
+          },
+          "uniqueItems": true,
+          "x-label": "กลุ่มผู้ใช้ (ไม่เลือกรายการเมื่อยืนยันว่าใช้กับทุกกลุ่ม)",
+          "x-reference-kind": "audience"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "additionalProperties": false,
+      "x-label": "กลุ่มผู้ใช้ที่ใช้ข้อมูลนี้"
+    },
+    "value_ref": {
+      "type": "object",
+      "properties": {
+        "record_id": {
+          "type": "string",
+          "minLength": 1,
+          "x-label": "เลือกรายการต้นทาง",
+          "x-reference-kind": "*"
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1,
+          "x-label": "เลือกช่องข้อมูล",
+          "enum": [
+            "accessibility",
+            "account_policy_id",
+            "address",
+            "affiliation",
+            "age_rating",
+            "amount_minor",
+            "answer",
+            "audience_id",
+            "audience_ids",
+            "bindings",
+            "body",
+            "bookable_periods",
+            "booking_product_key",
+            "building",
+            "calculation_rule",
+            "capacity_max",
+            "capacity_min",
+            "capacity_persons",
+            "channel",
+            "competition_dates",
+            "competition_id",
+            "completeness",
+            "conditions_all",
+            "consequence",
+            "contact_id",
+            "coverage",
+            "currency",
+            "deadline_minutes",
+            "decision",
+            "depends_on_ids",
+            "description",
+            "description_captured_at",
+            "description_scope_note",
+            "details",
+            "device_type",
+            "display_name",
+            "division",
+            "duration_minutes",
+            "edition",
+            "eligibility",
+            "equipment_included",
+            "equipment_model_ids",
+            "event_end",
+            "event_name",
+            "event_start",
+            "exceptions",
+            "external_resource_key",
+            "facet",
+            "facets",
+            "floor",
+            "freshness_max_age_seconds",
+            "freshness_policy",
+            "game_id",
+            "game_version",
+            "genre",
+            "heading",
+            "how_to_play",
+            "input_device",
+            "installed_resource_ids",
+            "intent_key",
+            "inventory_basis",
+            "inventory_verified_on",
+            "limitations",
+            "local_date",
+            "location",
+            "maintenance_periods",
+            "map_url",
+            "mode_name",
+            "name",
+            "network_requirement",
+            "notes",
+            "occupancy_minutes",
+            "offered",
+            "office_hours",
+            "official_description",
+            "open_periods",
+            "operational_status",
+            "operator",
+            "outcome",
+            "period",
+            "period_label",
+            "persons_max",
+            "persons_min",
+            "physical_pool_key",
+            "platform",
+            "players_max",
+            "players_min",
+            "preconditions",
+            "preset",
+            "procedure_id",
+            "profile_role",
+            "provider",
+            "public_contact_id",
+            "public_scope",
+            "publisher_url",
+            "purpose",
+            "query_profile",
+            "question",
+            "reason",
+            "registration_url",
+            "related_ids",
+            "required_documents",
+            "required_proofs",
+            "resolution_policy_id",
+            "resource_ids",
+            "role",
+            "room_seats",
+            "rulebook_release",
+            "scope_note",
+            "section_number",
+            "service_id",
+            "session_minutes",
+            "source_coverage",
+            "source_listing_sections",
+            "source_order",
+            "source_summary",
+            "source_title",
+            "source_variants",
+            "specifications",
+            "state",
+            "status_mapping",
+            "steps",
+            "studio_supported",
+            "subject",
+            "summary",
+            "supersedes_id",
+            "supported_platforms",
+            "tax_note",
+            "team",
+            "terms",
+            "text",
+            "timezone",
+            "title",
+            "topic",
+            "unit",
+            "usage",
+            "usage_conditions",
+            "value",
+            "venue_zone_ids",
+            "verification_note",
+            "weekday",
+            "zone_id",
+            "zone_ids"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "x-label": "เลือกภาษา: /th หรือ /en; เว้นว่างสำหรับค่าตัวเลข"
+        },
+        "projection": {
+          "enum": [
+            "identity",
+            "currency_literal"
+          ],
+          "x-label": "อ่านเป็นข้อความ/ค่าตรงต้นฉบับ หรือจำนวนเงินที่ระบุชัด"
+        },
+        "quote": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-label": "ข้อความอ้างตรงต้นฉบับ (ถ้าต้องการเฉพาะส่วน)"
+        }
+      },
+      "required": [
+        "record_id",
+        "field"
+      ],
+      "additionalProperties": false,
+      "x-label": "เลือกช่องที่เป็นหลักฐานคำตอบ"
+    },
+    "condition_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "minLength": 1,
+            "x-label": "เลือกรายการต้นทาง",
+            "x-reference-kind": "*"
+          },
+          "field": {
+            "type": "string",
+            "minLength": 1,
+            "x-label": "เลือกช่องข้อมูล",
+            "enum": [
+              "accessibility",
+              "account_policy_id",
+              "address",
+              "affiliation",
+              "age_rating",
+              "amount_minor",
+              "answer",
+              "audience_id",
+              "audience_ids",
+              "bindings",
+              "body",
+              "bookable_periods",
+              "booking_product_key",
+              "building",
+              "calculation_rule",
+              "capacity_max",
+              "capacity_min",
+              "capacity_persons",
+              "channel",
+              "competition_dates",
+              "competition_id",
+              "completeness",
+              "conditions_all",
+              "consequence",
+              "contact_id",
+              "coverage",
+              "currency",
+              "deadline_minutes",
+              "decision",
+              "depends_on_ids",
+              "description",
+              "description_captured_at",
+              "description_scope_note",
+              "details",
+              "device_type",
+              "display_name",
+              "division",
+              "duration_minutes",
+              "edition",
+              "eligibility",
+              "equipment_included",
+              "equipment_model_ids",
+              "event_end",
+              "event_name",
+              "event_start",
+              "exceptions",
+              "external_resource_key",
+              "facet",
+              "facets",
+              "floor",
+              "freshness_max_age_seconds",
+              "freshness_policy",
+              "game_id",
+              "game_version",
+              "genre",
+              "heading",
+              "how_to_play",
+              "input_device",
+              "installed_resource_ids",
+              "intent_key",
+              "inventory_basis",
+              "inventory_verified_on",
+              "limitations",
+              "local_date",
+              "location",
+              "maintenance_periods",
+              "map_url",
+              "mode_name",
+              "name",
+              "network_requirement",
+              "notes",
+              "occupancy_minutes",
+              "offered",
+              "office_hours",
+              "official_description",
+              "open_periods",
+              "operational_status",
+              "operator",
+              "outcome",
+              "period",
+              "period_label",
+              "persons_max",
+              "persons_min",
+              "physical_pool_key",
+              "platform",
+              "players_max",
+              "players_min",
+              "preconditions",
+              "preset",
+              "procedure_id",
+              "profile_role",
+              "provider",
+              "public_contact_id",
+              "public_scope",
+              "publisher_url",
+              "purpose",
+              "query_profile",
+              "question",
+              "reason",
+              "registration_url",
+              "related_ids",
+              "required_documents",
+              "required_proofs",
+              "resolution_policy_id",
+              "resource_ids",
+              "role",
+              "room_seats",
+              "rulebook_release",
+              "scope_note",
+              "section_number",
+              "service_id",
+              "session_minutes",
+              "source_coverage",
+              "source_listing_sections",
+              "source_order",
+              "source_summary",
+              "source_title",
+              "source_variants",
+              "specifications",
+              "state",
+              "status_mapping",
+              "steps",
+              "studio_supported",
+              "subject",
+              "summary",
+              "supersedes_id",
+              "supported_platforms",
+              "tax_note",
+              "team",
+              "terms",
+              "text",
+              "timezone",
+              "title",
+              "topic",
+              "unit",
+              "usage",
+              "usage_conditions",
+              "value",
+              "venue_zone_ids",
+              "verification_note",
+              "weekday",
+              "zone_id",
+              "zone_ids"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "x-label": "เลือกภาษา: /th หรือ /en; เว้นว่างสำหรับค่าตัวเลข"
+          },
+          "projection": {
+            "enum": [
+              "identity",
+              "currency_literal"
+            ],
+            "x-label": "อ่านเป็นข้อความ/ค่าตรงต้นฉบับ หรือจำนวนเงินที่ระบุชัด"
+          },
+          "quote": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "x-label": "ข้อความอ้างตรงต้นฉบับ (ถ้าต้องการเฉพาะส่วน)"
+          }
+        },
+        "required": [
+          "record_id",
+          "field"
+        ],
+        "additionalProperties": false,
+        "x-label": "ช่องที่ระบุเงื่อนไข"
+      },
+      "uniqueItems": true,
+      "x-label": "ช่องที่ระบุเงื่อนไข"
+    },
+    "exception_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "minLength": 1,
+            "x-label": "เลือกรายการต้นทาง",
+            "x-reference-kind": "*"
+          },
+          "field": {
+            "type": "string",
+            "minLength": 1,
+            "x-label": "เลือกช่องข้อมูล",
+            "enum": [
+              "accessibility",
+              "account_policy_id",
+              "address",
+              "affiliation",
+              "age_rating",
+              "amount_minor",
+              "answer",
+              "audience_id",
+              "audience_ids",
+              "bindings",
+              "body",
+              "bookable_periods",
+              "booking_product_key",
+              "building",
+              "calculation_rule",
+              "capacity_max",
+              "capacity_min",
+              "capacity_persons",
+              "channel",
+              "competition_dates",
+              "competition_id",
+              "completeness",
+              "conditions_all",
+              "consequence",
+              "contact_id",
+              "coverage",
+              "currency",
+              "deadline_minutes",
+              "decision",
+              "depends_on_ids",
+              "description",
+              "description_captured_at",
+              "description_scope_note",
+              "details",
+              "device_type",
+              "display_name",
+              "division",
+              "duration_minutes",
+              "edition",
+              "eligibility",
+              "equipment_included",
+              "equipment_model_ids",
+              "event_end",
+              "event_name",
+              "event_start",
+              "exceptions",
+              "external_resource_key",
+              "facet",
+              "facets",
+              "floor",
+              "freshness_max_age_seconds",
+              "freshness_policy",
+              "game_id",
+              "game_version",
+              "genre",
+              "heading",
+              "how_to_play",
+              "input_device",
+              "installed_resource_ids",
+              "intent_key",
+              "inventory_basis",
+              "inventory_verified_on",
+              "limitations",
+              "local_date",
+              "location",
+              "maintenance_periods",
+              "map_url",
+              "mode_name",
+              "name",
+              "network_requirement",
+              "notes",
+              "occupancy_minutes",
+              "offered",
+              "office_hours",
+              "official_description",
+              "open_periods",
+              "operational_status",
+              "operator",
+              "outcome",
+              "period",
+              "period_label",
+              "persons_max",
+              "persons_min",
+              "physical_pool_key",
+              "platform",
+              "players_max",
+              "players_min",
+              "preconditions",
+              "preset",
+              "procedure_id",
+              "profile_role",
+              "provider",
+              "public_contact_id",
+              "public_scope",
+              "publisher_url",
+              "purpose",
+              "query_profile",
+              "question",
+              "reason",
+              "registration_url",
+              "related_ids",
+              "required_documents",
+              "required_proofs",
+              "resolution_policy_id",
+              "resource_ids",
+              "role",
+              "room_seats",
+              "rulebook_release",
+              "scope_note",
+              "section_number",
+              "service_id",
+              "session_minutes",
+              "source_coverage",
+              "source_listing_sections",
+              "source_order",
+              "source_summary",
+              "source_title",
+              "source_variants",
+              "specifications",
+              "state",
+              "status_mapping",
+              "steps",
+              "studio_supported",
+              "subject",
+              "summary",
+              "supersedes_id",
+              "supported_platforms",
+              "tax_note",
+              "team",
+              "terms",
+              "text",
+              "timezone",
+              "title",
+              "topic",
+              "unit",
+              "usage",
+              "usage_conditions",
+              "value",
+              "venue_zone_ids",
+              "verification_note",
+              "weekday",
+              "zone_id",
+              "zone_ids"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "x-label": "เลือกภาษา: /th หรือ /en; เว้นว่างสำหรับค่าตัวเลข"
+          },
+          "projection": {
+            "enum": [
+              "identity",
+              "currency_literal"
+            ],
+            "x-label": "อ่านเป็นข้อความ/ค่าตรงต้นฉบับ หรือจำนวนเงินที่ระบุชัด"
+          },
+          "quote": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "x-label": "ข้อความอ้างตรงต้นฉบับ (ถ้าต้องการเฉพาะส่วน)"
+          }
+        },
+        "required": [
+          "record_id",
+          "field"
+        ],
+        "additionalProperties": false,
+        "x-label": "ช่องที่ระบุข้อยกเว้น"
+      },
+      "uniqueItems": true,
+      "x-label": "ช่องที่ระบุข้อยกเว้น"
+    },
+    "applicability": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "known",
+            "unknown"
+          ],
+          "x-label": "สถานะการยืนยัน"
+        },
+        "service_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "x-label": "ใช้กับบริการใด",
+            "x-reference-kind": "service"
+          },
+          "uniqueItems": true,
+          "x-label": "ใช้กับบริการใด",
+          "x-reference-kind": "service"
+        },
+        "duration_minutes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "x-label": "เวลาที่ราคาครอบคลุม (นาที)"
+        },
+        "platform": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-label": "แพลตฟอร์ม (ถ้าจำกัด)"
+        },
+        "effective_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "x-label": "เริ่มมีผล (ISO พร้อมเขตเวลา)"
+        },
+        "effective_until": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "x-label": "สิ้นสุด (ถ้ามี)"
+        }
+      },
+      "required": [
+        "status",
+        "service_ids",
+        "duration_minutes",
+        "platform",
+        "effective_from",
+        "effective_until"
+      ],
+      "additionalProperties": false,
+      "x-label": "ขอบเขตและวันที่ใช้ข้อมูลนี้"
+    },
+    "dependency_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "x-label": "ข้อเท็จจริงที่ต้องอ่านด้วย (รหัสรายการ#รหัสข้อ)"
+      },
+      "uniqueItems": true,
+      "x-label": "ข้อเท็จจริงที่ต้องอ่านด้วย (รหัสรายการ#รหัสข้อ)"
+    },
+    "supersedes_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "x-label": "ใช้แทนข้อใด (ต้องมีหลักฐานยืนยันการแทนที่)"
+      },
+      "uniqueItems": true,
+      "x-label": "ใช้แทนข้อใด (ต้องมีหลักฐานยืนยันการแทนที่)"
+    },
+    "conditions_status": {
+      "enum": [
+        "unknown",
+        "known"
+      ],
+      "x-label": "ทราบเงื่อนไขครบแล้วหรือไม่"
+    },
+    "exceptions_status": {
+      "enum": [
+        "unknown",
+        "known"
+      ],
+      "x-label": "ทราบข้อยกเว้นครบแล้วหรือไม่"
+    }
+  },
+  "required": [
+    "binding_id",
+    "predicate",
+    "subject_ref",
+    "unit",
+    "actor_scope",
+    "value_ref",
+    "condition_refs",
+    "exception_refs",
+    "applicability",
+    "dependency_refs",
+    "supersedes_refs",
+    "conditions_status",
+    "exceptions_status"
+  ],
+  "additionalProperties": false
+}

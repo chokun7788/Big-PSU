@@ -1,0 +1,141 @@
+--- before/app/session/context_resolver.py
++++ after/app/session/context_resolver.py
+@@ -59,9 +59,23 @@
+     context_operation: str | None = None
+     context_topic: str | None = None
+     reason: str = ""
++    selected_requests: tuple[str, ...] = ()
++    selection_errors: tuple[str, ...] = ()
+ 
+     def to_dict(self) -> dict[str, Any]:
+         return asdict(self)
++
++    def to_selection_plan(self) -> dict[str, Any] | None:
++        if not self.selected_requests and not self.selection_errors:
++            return None
++        return {'schema_type': 'dialogue_selection_v1', 'schema_version': 1,
++                'act': 'select_multiple_targets', 'context_used': True,
++                'domain': self.context_domain, 'operation': self.context_operation,
++                'targets': [target for target in (self.context_topic or '').split(', ') if target],
++                'requests': list(self.selected_requests), 'resolved_query': self.resolved_question,
++                'selection_errors': list(self.selection_errors),
++                'selection_limit': 4 if self.reason == 'too_many_selected_targets' else None,
++                'provenance': 'explicit_user_selection_of_pending_task'}
+ 
+ 
+ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
+@@ -722,6 +736,9 @@
+ 
+ def _bare_game_choice(text: str) -> str | None:
+     q = _bare_choice_text(text)
++    from app.pipeline.game_edition_guard import unsupported_numbered_game
++    if unsupported_numbered_game(q):
++        return None
+     if re.search(r'คือ|ราคา|กติกา|กฎ|กฏ|ปุ่ม|ว่าง|อย่างไร|ยังไง|\b(?:what|how|why|price|cost|rules?|controls?|available)\b',q):
+         return None
+     matches = {game for game, _, key in _game_alias_index() if key == _alias_key(q)}
+@@ -739,6 +756,29 @@
+     return None
+ 
+ 
++def _selection_parts(text: str, *, allow_overflow: bool = False) -> list[str]:
++    """Split only a short, explicit selection; full new requests stay intact."""
++    q = _bare_choice_text(text)
++    if len(q) > 160 or re.search(r'คือ|ราคา|กติกา|กฎ|กฏ|ปุ่ม|ว่าง|อย่างไร|ยังไง|\b(?:what|how|why|price|cost|rules?|controls?|available)\b', q, re.I):
++        return []
++    parts = re.split(r'\s*(?:[,;/&+]|และ|กับ|\band\b)\s*', q, flags=re.I)
++    if len(parts) < 2 or (not allow_overflow and len(parts) > 4) or any(not part.strip() for part in parts):
++        return []
++    return [part.strip() for part in parts]
++
++
++def _unrecognized_game_choice(text: str) -> str | None:
++    choice = _bare_choice_text(text)
++    if not re.fullmatch(r"[a-zA-Z\u0e00-\u0e7f][a-zA-Z\u0e00-\u0e7f .:'-]{3,50}", choice) or len(choice.split()) > 4:
++        return None
++    if re.search(r'ใคร|คือ|ทำอะไร|ราคา|จอง|กฎ|กติกา|ปุ่ม|ว่าง|สวัสดี|ขอบคุณ|ทั้งหมด|ไม่|\b(?:what|how|why|price|cost|rules?|controls?|available|games?|equipment|booking|hello|hi|thanks|thank|all|everything|reset)\b', choice, re.I):
++        return None
++    from app.session.conversation_plan import service_mentions
++    if service_mentions(choice, fuzzy=False):
++        return None
++    return choice
++
++
+ def _resolve_selected_target(original: str, history: Any, locale: str) -> ResolvedQuestion | None:
+     items = _history_dict_items(history)
+     if len(items) < 2 or items[-1].get('role') != 'assistant' or items[-2].get('role') != 'user':
+@@ -753,7 +793,24 @@
+                         (intent == 'ambiguous_game_controls' and mode == 'pipeline:game_family_clarification_en') or
+                         (intent == 'game_control_lookup' and not detect_game(prior)
+                          and re.search(r'ขอชื่อเกมก่อน|which game|game title',str(previous.get('text','')),re.I)))
++    catalog = 'games_family' not in mode and ('games_catalog' in mode or 'service_game_availability' in mode or intent in {'games_lookup','list'} and previous.get('route_category')=='games')
++    if missing_controls or catalog:
++        all_parts = _selection_parts(original, allow_overflow=True)
++        if len(all_parts) > 4:
++            return ResolvedQuestion(original, original, True,
++                                    context_domain='game_controls' if missing_controls else 'games',
++                                    context_operation='control_lookup' if missing_controls else 'list',
++                                    reason='too_many_selected_targets', selection_errors=tuple(all_parts))
+     if missing_controls:
++        selected_parts = _selection_parts(original)
++        selected_games = [_bare_game_choice(part) or _unrecognized_game_choice(part) for part in selected_parts]
++        if selected_parts and all(selected_games):
++            offered = detect_games(str(previous.get('text', '')))
++            if intent != 'ambiguous_game_controls' or all(game in offered for game in selected_games):
++                games = list(dict.fromkeys(selected_games))
++                queries = [f'What are the controls for {game}?' if locale == 'en' else f'{game} มีปุ่มควบคุมอะไรบ้าง' for game in games]
++                return ResolvedQuestion(original, '; '.join(queries), True, None,
++                                        'game_controls', 'control_lookup', ', '.join(games), 'selected_multiple_control_games', tuple(queries))
+         game = _bare_game_choice(original)
+         if intent == 'ambiguous_game_controls':
+             offered=detect_games(str(previous.get('text','')))
+@@ -769,14 +826,26 @@
+         # A short unknown Latin title still answers the requested game slot.
+         # Keep it unverified and preserve the operation for the executor's
+         # no-data response; never replace it with a catalog or another title.
+-        choice = _bare_choice_text(original)
+-        if intent != 'ambiguous_game_controls' and re.fullmatch(r"[a-zA-Z][a-zA-Z .:'-]{3,50}",choice) and len(choice.split())<=4:
+-            if not re.search(r'\b(?:what|how|why|price|cost|rules?|controls?|available|games?|equipment|booking|hello|hi|thanks|thank|all|everything|reset)\b',choice,re.I):
+-                query=f'What are the controls for {choice}?' if locale=='en' else f'{choice} มีปุ่มควบคุมอะไรบ้าง'
+-                return ResolvedQuestion(original,query,True,None,'game_controls','control_lookup',choice,'unrecognized_missing_control_game')
++        choice = _unrecognized_game_choice(original)
++        if intent != 'ambiguous_game_controls' and choice:
++            query=f'What are the controls for {choice}?' if locale=='en' else f'{choice} มีปุ่มควบคุมอะไรบ้าง'
++            return ResolvedQuestion(original,query,True,None,'game_controls','control_lookup',choice,'unrecognized_missing_control_game')
+     # A short service name narrows the last displayed game catalog.
+-    catalog = 'games_family' not in mode and ('games_catalog' in mode or 'service_game_availability' in mode or intent in {'games_lookup','list'} and previous.get('route_category')=='games')
+     if catalog:
++        parts = _selection_parts(original)
++        if parts:
++            from app.session.conversation_plan import service_mentions, SERVICE_LABELS
++            choices = [service_mentions(part, fuzzy=True) for part in parts]
++            if all(len(choice) == 1 for choice in choices):
++                services = list(dict.fromkeys(choice[0] for choice in choices))
++                queries = [f'What games are available in {SERVICE_LABELS[service]}?' if locale == 'en' else f'{SERVICE_LABELS[service]} มีเกมอะไรบ้าง' for service in services]
++                return ResolvedQuestion(original, '; '.join(queries), True, context_domain='games',
++                                        context_operation='list', context_topic=', '.join(services), reason='selected_multiple_catalog_services', selected_requests=tuple(queries))
++            unknown = tuple(part for part, choice in zip(parts, choices) if len(choice) != 1)
++            known = list(dict.fromkeys(choice[0] for choice in choices if len(choice) == 1))
++            return ResolvedQuestion(original, original, True, context_domain='games',
++                                    context_operation='list', context_topic=', '.join(known),
++                                    reason='unresolved_multiple_catalog_services', selection_errors=unknown)
+         q = _bare_choice_text(original)
+         keys = {key for key, aliases in SERVICE_ALIASES.items() if any(_alias_key(q)==_alias_key(alias) for alias in aliases)}
+         if not keys and len(q)<=30 and not re.search(r'\d|[?]|\b(?:what|how|price|rules?|controls?)\b|คือ|ราคา|ปุ่ม|ว่าง',q):
+@@ -808,11 +877,15 @@
+     # An explicit rejection followed by a complete new request changes the
+     # task. Removing only this bounded preface prevents its rule word from
+     # routing the new game-identity request back into a competition rulebook.
+-    declined = re.fullmatch(r"(?:ไม่เอา|ไม่ต้อง(?:การ)?|ไม่อยาก(?:ดู|รู้))(?:กฎ|กฏ|กติกา)(?:แล้ว)?\s+(.+)", original)
++    declined = re.fullmatch(r"(?:ไม่เอา|ไม่ต้อง(?:การ)?|ไม่อยาก(?:ดู|รู้))(?:กฎ|กฏ|กติกา|ปุ่ม(?:ควบคุม)?|ราคา)(?:แล้ว)?\s+(.+)", original)
+     if declined:
+         remainder = declined.group(1).strip()
+         if detect_game(remainder) and re.search(r"คือ(?:เกม)?อะไร|เป็นเกมอะไร", remainder):
+             return ResolvedQuestion(original, remainder, False, detect_game(remainder), context_domain="games", context_operation="game_detail", reason="explicitly_declined_rules_and_requested_game_identity")
++        from app.session.conversation_plan import service_mentions
++        if (detect_game(remainder) or service_mentions(remainder, fuzzy=False)) and re.search(r'ราคา|ค่าบริการ|ปุ่ม|กติกา|กฎ|กฏ|จอง|ว่าง', remainder):
++            return ResolvedQuestion(original, remainder, False, detect_game(remainder),
++                                    reason='explicitly_declined_previous_operation_and_started_complete_request')
+ 
+     from app.session.conversation_plan import resolve_request_plan
+     price_plan = resolve_request_plan(original, recent_history, locale=locale)

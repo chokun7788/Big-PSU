@@ -1,0 +1,143 @@
+{
+  "question_key": "54002f464c383626d70765752d9182d005c6a9ba7acc0e50d58cbeb82cf16c6e",
+  "example_sha256": "a77497e8c86ad007c70518ed15a85bde82deafa9f7e20d99e953055ba2952d06",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One English question asks whether Friday afternoon is open; verified stuudio information is a style/source request.",
+      "raw_quotes": [
+        "Please answer from verified stuudio information: Is Friday afternoon open"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/detail/open_periods with opening_hours focus retains the requested opening predicate rather than substituting bookable periods or live occupancy.",
+      "raw_quotes": [
+        "Please answer from verified stuudio information: Is Friday afternoon open"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Keep Friday as the weekday constraint and add afternoon as an exact local time scope.",
+      "raw_quotes": [
+        "Please answer from verified stuudio information: Is Friday afternoon open"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove duplicated top-level Friday context; do not invent a calendar date, timezone from the user, clock time or prior booking.",
+      "raw_quotes": [
+        "Please answer from verified stuudio information: Is Friday afternoon open"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "An opening query is not an assertion that the whole Friday is closed or that a service slot is available.",
+      "raw_quotes": [
+        "Please answer from verified stuudio information: Is Friday afternoon open"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned migrated_schedule_4 revision4 has morning bookable periods, afternoon maintenance and service slots, but physical open_periods is unknown; service_closed false does not prove afternoon physical access.",
+      "raw_quotes": [
+        "Please answer from verified stuudio information: Is Friday afternoon open"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_4"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No hours, open/closed verdict, permission to enter, date conversion or availability conclusion is taught.",
+      "raw_quotes": [
+        "Please answer from verified stuudio information: Is Friday afternoon open"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Bookable and maintenance slots do not fill unknown physical open_periods.",
+      "handling": "Preserve afternoon predicate and unknown physical-access conclusion."
+    }
+  ],
+  "historical_review_row": 252,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Friday"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified stuudio information: Is Friday afternoon open",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Friday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please answer from verified stuudio information: Is Friday afternoon open",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Friday",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "afternoon",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    }
+  }
+}

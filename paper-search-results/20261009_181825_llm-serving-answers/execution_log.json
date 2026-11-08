@@ -1,0 +1,66 @@
+{
+  "search_id": "20261009_181825_llm-serving-answers",
+  "date": "2026-10-09",
+  "workflow_status": "Helper workflow halted at Setup; broader user goal continued via web fallback",
+  "setup_readiness": {
+    "openalex_key": false,
+    "ncbi_email": false,
+    "semantic_scholar_key": false,
+    "crossref_contact": false
+  },
+  "errors": [
+    {
+      "stage": "setup",
+      "reason": "OpenAlex API key and NCBI email missing",
+      "recovery": "Primary-source web search; no credentials invented"
+    },
+    {
+      "stage": "fulltext",
+      "url": "https://arxiv.org/html/2312.07104v3",
+      "reason": "Internal error",
+      "recovery": "Official NeurIPS PDF"
+    },
+    {
+      "stage": "targeted_find",
+      "url": "https://arxiv.org/html/2406.18665v4",
+      "reason": "Threshold find failed",
+      "recovery": "Limit claims to verified abstract and publication PDF header"
+    },
+    {
+      "stage": "local_git_status",
+      "reason": "git cannot change to C:/Users/Chokhun/Downloads/Learn-LLM",
+      "recovery": "No Git metadata changes; no project code edited"
+    }
+  ],
+  "skipped_steps": [
+    {
+      "step": "Federated helper search, classifier batches, discovery curve and citation network",
+      "reason": "Setup blocked; normal workflow not reached",
+      "loss": "No full Standard search coverage or automated relevance classification",
+      "recovery": "Targeted verification and manual applicability notes"
+    },
+    {
+      "step": "PubMed",
+      "reason": "No biomedical scope; setup blocked"
+    },
+    {
+      "step": "PRISMA-S and saturation",
+      "reason": "Not systematic; no corpus denominator"
+    },
+    {
+      "step": "Automatic abstract enrichment / citation / journal rank",
+      "reason": "Helper pipeline not run; none invented",
+      "recovery": "Full paper metadata links and reading ledger provided"
+    }
+  ],
+  "papers_retained": 19,
+  "total_candidates_screened": null,
+  "total_excluded": null,
+  "coverage_estimate": null,
+  "prisma_compliant": false,
+  "code_modified": false,
+  "new_load_tests_run": false,
+  "stop_reason": "Selected primary sources cover measured mechanisms and practical design decisions; saturation not claimed",
+  "reading_depth": "Relevant sections/excerpts only; see papers.json; not every page of every paper",
+  "raw_capture_note": "Later browser batches saved; first pre-compaction search batch retained only as query-family summary"
+}

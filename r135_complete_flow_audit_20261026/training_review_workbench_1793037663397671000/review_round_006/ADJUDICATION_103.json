@@ -1,0 +1,128 @@
+{
+  "question_key": "f0db1b35fe597405d36412ac761bd0958deb5c5536b5d11ee2f7be65a5e32cb3",
+  "example_sha256": "b2b75b1b323220dc532e85ae384d4fb04fb685f1d08463a9e373bba240d24f86",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One RoV competition-format question.",
+      "raw_quotes": [
+        "ROV รูปแบบการแข่งขันเป็นแบบไหน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause retains the rules scope.",
+      "raw_quotes": [
+        "ROV รูปแบบการแข่งขันเป็นแบบไหน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ROV is game target and รูปแบบการแข่งขัน is exact requested scope.",
+      "raw_quotes": [
+        "ROV รูปแบบการแข่งขันเป็นแบบไหน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No event year, mens division or earlier match is inherited.",
+      "raw_quotes": [
+        "ROV รูปแบบการแข่งขันเป็นแบบไหน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The request topic is clear while tournament edition and full format coverage remain execution/source obligations.",
+      "raw_quotes": [
+        "ROV รูปแบบการแข่งขันเป็นแบบไหน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "The pinned RoV competition record is a specific Blueket2025 mens edition with game/rulebook links and unknown coverage, not a global game format.",
+      "raw_quotes": [
+        "ROV รูปแบบการแข่งขันเป็นแบบไหน"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_rov_blueket_2025_men"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No selected event title, division, match count or tournament format is learned.",
+      "raw_quotes": [
+        "ROV รูปแบบการแข่งขันเป็นแบบไหน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Recorded RoV event coverage is unknown and no edition is explicitly requested.",
+      "handling": "Require scope/completeness checks; do not turn the event title into universal format authority."
+    }
+  ],
+  "historical_review_row": 103,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ROV รูปแบบการแข่งขันเป็นแบบไหน",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "ROV",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ROV รูปแบบการแข่งขันเป็นแบบไหน",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "ROV",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "รูปแบบการแข่งขัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_rov_blueket_2025_men": {
+      "revision": 6,
+      "record_sha256": "dcdc32ba359f0b8b40a97ebf56fa349e64f400022636b7255c01dcc5d98bb984"
+    }
+  }
+}

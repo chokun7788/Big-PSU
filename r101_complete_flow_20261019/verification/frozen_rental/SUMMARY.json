@@ -1,0 +1,967 @@
+{
+  "count": 19,
+  "passed": 18,
+  "checks": [
+    {
+      "case": "Legacy fact loaders blocked; current common package answered",
+      "passed": true,
+      "detail": {
+        "answer": "**Full-Day PC Zone Rental for External Organizations**\nPackage price: 4,000.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service.",
+        "artifact": {
+          "response_type": "partial_answer",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "rental_pc_external_full_day"
+            ],
+            "requested_fields": [
+              "amount_minor",
+              "currency",
+              "audience_id",
+              "period_label"
+            ],
+            "operation": "rental",
+            "method": "common_legacy_rental_bridge",
+            "request_contract": {
+              "version": 1,
+              "domain": "rental",
+              "requests": [
+                {
+                  "zones": [
+                    "zone_pc"
+                  ],
+                  "audiences": [
+                    "audience_external_org"
+                  ],
+                  "periods": [
+                    "full_day"
+                  ]
+                }
+              ],
+              "asks": [
+                "rates"
+              ],
+              "context_used": false,
+              "original_query": "pc full-day rental for external organizations price",
+              "action": "read"
+            },
+            "response_projection": [
+              {
+                "record_id": "rental_pc_external_full_day",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "currency": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "period_label": "necessary_context"
+                }
+              }
+            ],
+            "unknown_fields": [
+              {
+                "record_id": "rental_pc_external_full_day",
+                "field": "validity"
+              }
+            ],
+            "not_current_ids": [],
+            "legacy_fact_fallback_used": false,
+            "source_answer_confirmed": false
+          },
+          "obligations": [
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "amount_minor",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/amount_minor",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            },
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "currency",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/currency",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            },
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "audience_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/audience_id",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            },
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "period_label",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/period_label",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            },
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "validity",
+              "status": "unknown",
+              "evidence_refs": [],
+              "reason": "source_has_no_confirmed_effective_date"
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "need_ledger": {
+            "version": "common_need_ledger_v1",
+            "needs": [
+              {
+                "id": "field_amount_minor",
+                "field": "amount_minor",
+                "status": "answered",
+                "evidence_refs": [
+                  {
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "amount_minor",
+                    "sources": [
+                      {
+                        "locator": "/mapped_fields/amount_minor",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ]
+                  }
+                ],
+                "unanswered_records": []
+              },
+              {
+                "id": "field_currency",
+                "field": "currency",
+                "status": "answered",
+                "evidence_refs": [
+                  {
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "currency",
+                    "sources": [
+                      {
+                        "locator": "/mapped_fields/currency",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ]
+                  }
+                ],
+                "unanswered_records": []
+              },
+              {
+                "id": "field_audience_id",
+                "field": "audience_id",
+                "status": "answered",
+                "evidence_refs": [
+                  {
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "audience_id",
+                    "sources": [
+                      {
+                        "locator": "/mapped_fields/audience_id",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ]
+                  }
+                ],
+                "unanswered_records": []
+              },
+              {
+                "id": "field_period_label",
+                "field": "period_label",
+                "status": "answered",
+                "evidence_refs": [
+                  {
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "period_label",
+                    "sources": [
+                      {
+                        "locator": "/mapped_fields/period_label",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ]
+                  }
+                ],
+                "unanswered_records": []
+              }
+            ],
+            "total_needs": 4,
+            "answered_needs": 4,
+            "scope_limits": [
+              {
+                "reason": "unconfirmed_effective_dates"
+              }
+            ],
+            "snapshot_consistent": true,
+            "semantic_correctness_verified": false,
+            "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+            "evidence_hits": 4,
+            "response_type": "partial_answer"
+          },
+          "task_flow": {
+            "version": "r95",
+            "path": "typed_rental_adapter",
+            "task": "rental"
+          },
+          "interpretation_diagnostics": [
+            {
+              "stage": "shared_normalization",
+              "raw": "pc full-day rental for external organizations price",
+              "text": "pc full-day rental for external organizations price",
+              "offsets": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50
+              ],
+              "edits": [],
+              "protected": []
+            }
+          ],
+          "knowledge_snapshot": {
+            "release_id": "migration-preview-r69",
+            "epoch": 1840,
+            "content_view": "evaluation_draft"
+          },
+          "request_plan": {
+            "version": "common_request_plan_v3",
+            "question": "pc full-day rental for external organizations price",
+            "needs": [
+              {
+                "id": "n1",
+                "task": "rental",
+                "query": "pc full-day rental for external organizations price",
+                "source_span": "pc full-day rental for external organizations price",
+                "record_ids": [
+                  "zone_pc",
+                  "availability_pc_01_02",
+                  "availability_pc_03_10"
+                ],
+                "qualifiers": [],
+                "slot_origin": "current_user",
+                "predicate": "rental_package",
+                "slots": {},
+                "required_claims": [
+                  "rental_package"
+                ],
+                "hard_dependencies": []
+              }
+            ],
+            "scope": {
+              "release_bound_at_read": true,
+              "history_has_trusted_state": false,
+              "candidate_source": "common_snapshot",
+              "all_requested": false
+            },
+            "raw_question": "PC full-day rental for external organizations price"
+          },
+          "need_results": [
+            {
+              "need_id": "n1",
+              "task": "rental",
+              "predicate": "rental_package",
+              "source_span": "pc full-day rental for external organizations price",
+              "status": "partial_supported",
+              "reason_codes": [
+                "explicit_partial_response"
+              ],
+              "slots": {},
+              "record_ids": [
+                "rental_pc_external_full_day"
+              ],
+              "receipts": [
+                {
+                  "need_id": "n1",
+                  "record_id": "rental_pc_external_full_day",
+                  "field": "amount_minor",
+                  "predicate": "rental_package",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/amount_minor",
+                      "source_id": "migration_rental_pc_external_full_day"
+                    }
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "revision": 3,
+                  "validity": {
+                    "effective_from": null,
+                    "effective_until": null,
+                    "state": "unknown"
+                  },
+                  "claim_entailment_verified": false
+                },
+                {
+                  "need_id": "n1",
+                  "record_id": "rental_pc_external_full_day",
+                  "field": "currency",
+                  "predicate": "rental_package",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/currency",
+                      "source_id": "migration_rental_pc_external_full_day"
+                    }
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "revision": 3,
+                  "validity": {
+                    "effective_from": null,
+                    "effective_until": null,
+                    "state": "unknown"
+                  },
+                  "claim_entailment_verified": false
+                },
+                {
+                  "need_id": "n1",
+                  "record_id": "rental_pc_external_full_day",
+                  "field": "audience_id",
+                  "predicate": "rental_package",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/audience_id",
+                      "source_id": "migration_rental_pc_external_full_day"
+                    }
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "revision": 3,
+                  "validity": {
+                    "effective_from": null,
+                    "effective_until": null,
+                    "state": "unknown"
+                  },
+                  "claim_entailment_verified": false
+                },
+                {
+                  "need_id": "n1",
+                  "record_id": "rental_pc_external_full_day",
+                  "field": "period_label",
+                  "predicate": "rental_package",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/period_label",
+                      "source_id": "migration_rental_pc_external_full_day"
+                    }
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "revision": 3,
+                  "validity": {
+                    "effective_from": null,
+                    "effective_until": null,
+                    "state": "unknown"
+                  },
+                  "claim_entailment_verified": false
+                }
+              ],
+              "coverage": {
+                "version": 1,
+                "predicate": "rental_package",
+                "task": "rental",
+                "decision": "scope_unverified",
+                "reason_codes": [
+                  "compatibility_scope_not_migrated"
+                ],
+                "receipts": [
+                  {
+                    "need_id": "n1",
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "amount_minor",
+                    "predicate": "rental_package",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/amount_minor",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ],
+                    "release_id": "migration-preview-r69",
+                    "revision": 3,
+                    "validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "claim_entailment_verified": false
+                  },
+                  {
+                    "need_id": "n1",
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "currency",
+                    "predicate": "rental_package",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/currency",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ],
+                    "release_id": "migration-preview-r69",
+                    "revision": 3,
+                    "validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "claim_entailment_verified": false
+                  },
+                  {
+                    "need_id": "n1",
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "audience_id",
+                    "predicate": "rental_package",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/audience_id",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ],
+                    "release_id": "migration-preview-r69",
+                    "revision": 3,
+                    "validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "claim_entailment_verified": false
+                  },
+                  {
+                    "need_id": "n1",
+                    "record_id": "rental_pc_external_full_day",
+                    "field": "period_label",
+                    "predicate": "rental_package",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/period_label",
+                        "source_id": "migration_rental_pc_external_full_day"
+                      }
+                    ],
+                    "release_id": "migration-preview-r69",
+                    "revision": 3,
+                    "validity": {
+                      "effective_from": null,
+                      "effective_until": null,
+                      "state": "unknown"
+                    },
+                    "claim_entailment_verified": false
+                  }
+                ],
+                "semantic_correctness_verified": false
+              },
+              "coverage_basis": "typed predicate contract where available; unmigrated scope remains unverified",
+              "read_graph": {
+                "graph": {
+                  "op": "all_of",
+                  "children": [
+                    {
+                      "op": "all_of",
+                      "children": [
+                        {
+                          "op": "any_of",
+                          "children": [
+                            {
+                              "op": "all_of",
+                              "children": [
+                                {
+                                  "op": "field",
+                                  "children": [],
+                                  "record_id": "rental_pc_external_full_day",
+                                  "key": "amount_minor",
+                                  "reason": ""
+                                },
+                                {
+                                  "op": "field",
+                                  "children": [],
+                                  "record_id": "rental_pc_external_full_day",
+                                  "key": "currency",
+                                  "reason": ""
+                                },
+                                {
+                                  "op": "field",
+                                  "children": [],
+                                  "record_id": "rental_pc_external_full_day",
+                                  "key": "duration_minutes",
+                                  "reason": ""
+                                },
+                                {
+                                  "op": "field",
+                                  "children": [],
+                                  "record_id": "rental_pc_external_full_day",
+                                  "key": "terms",
+                                  "reason": ""
+                                }
+                              ],
+                              "record_id": "",
+                              "key": "",
+                              "reason": ""
+                            }
+                          ],
+                          "record_id": "",
+                          "key": "",
+                          "reason": ""
+                        },
+                        {
+                          "op": "optional",
+                          "children": [
+                            {
+                              "op": "field",
+                              "children": [],
+                              "record_id": "rental_pc_external_full_day",
+                              "key": "audience_id",
+                              "reason": ""
+                            }
+                          ],
+                          "record_id": "",
+                          "key": "",
+                          "reason": ""
+                        },
+                        {
+                          "op": "optional",
+                          "children": [
+                            {
+                              "op": "field",
+                              "children": [],
+                              "record_id": "rental_pc_external_full_day",
+                              "key": "period_label",
+                              "reason": ""
+                            }
+                          ],
+                          "record_id": "",
+                          "key": "",
+                          "reason": ""
+                        }
+                      ],
+                      "record_id": "",
+                      "key": "",
+                      "reason": ""
+                    }
+                  ],
+                  "record_id": "",
+                  "key": "",
+                  "reason": ""
+                },
+                "targets": [
+                  "rental_pc_external_full_day"
+                ],
+                "relation_paths": [],
+                "evaluation": {
+                  "status": "missing_source",
+                  "reason": "dependency_not_supported",
+                  "unmet": [
+                    {
+                      "status": "missing_source",
+                      "reason": "dependency_not_supported",
+                      "unmet": [
+                        {
+                          "status": "missing_source",
+                          "reason": "dependency_not_supported",
+                          "unmet": [
+                            {
+                              "status": "missing_source",
+                              "reason": "dependency_not_supported",
+                              "unmet": [
+                                {
+                                  "status": "missing_source",
+                                  "reason": "effective_period_unconfirmed",
+                                  "receipts": []
+                                },
+                                {
+                                  "status": "missing_source",
+                                  "reason": "effective_period_unconfirmed",
+                                  "receipts": []
+                                },
+                                {
+                                  "status": "missing_source",
+                                  "reason": "field_unknown",
+                                  "receipts": []
+                                },
+                                {
+                                  "status": "missing_source",
+                                  "reason": "field_unknown",
+                                  "receipts": []
+                                }
+                              ],
+                              "receipts": []
+                            }
+                          ],
+                          "receipts": []
+                        }
+                      ],
+                      "receipts": []
+                    }
+                  ],
+                  "receipts": []
+                },
+                "required_claims_delivered": false
+              },
+              "claim_packets": []
+            }
+          ],
+          "request_plan_snapshot": {
+            "release_id": "migration-preview-r69",
+            "epoch": 1840
+          },
+          "claim_packets": [],
+          "flow_contract": {
+            "version": "r101",
+            "all_needs_executed": true,
+            "semantic_entailment_claimed": false
+          },
+          "request_context": {
+            "request_id": "8b0b55c1e6fb4b68992eefb60c9a67fa",
+            "semantic_attempts": 0,
+            "corrective_reads": 0,
+            "snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 1840,
+              "reference_time": "2026-10-19T19:50:05.400161+07:00",
+              "locale": "en"
+            },
+            "budget": {
+              "global_timeout_enabled": false
+            },
+            "audits": []
+          },
+          "input_normalization": {
+            "raw": "PC full-day rental for external organizations price",
+            "text": "pc full-day rental for external organizations price",
+            "offsets": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50
+            ],
+            "edits": [],
+            "protected": []
+          },
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [],
+          "query_resolution": [
+            {
+              "stage": "shared_normalization",
+              "raw": "pc full-day rental for external organizations price",
+              "text": "pc full-day rental for external organizations price",
+              "offsets": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50
+              ],
+              "edits": [],
+              "protected": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "Compound follow-up preserves the selected tuple only",
+      "passed": true,
+      "detail": "**VR Zone Internal Unit half_day**\nPackage price: 1,500.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "Unknown short device cannot inherit old price",
+      "passed": true,
+      "detail": "The requested device does not match a recorded rental zone. Please specify a studio zone."
+    },
+    {
+      "case": "Custom duration cannot be priced from half/full-day packages",
+      "passed": false,
+      "detail": "ระบบตีความคำถามไม่พร้อมชั่วคราว กรุณาลองอีกครั้งครับ"
+    },
+    {
+      "case": "Cancel closes rental context",
+      "passed": true,
+      "detail": "Question interpretation is temporarily unavailable. Please retry."
+    },
+    {
+      "case": "Catalog exclusions preserve other packages without VR zone prices",
+      "passed": true,
+      "detail": "**เหมา PC Zone เต็มวัน หน่วยงานภายนอก**\nราคาแพ็กเกจ: 4,000.00 THB [S1]\n\n**All Zones หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 12,000.00 THB [S5]\n\n**All Zones หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 6,000.00 THB [S9]\n\n**All Zones หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 6,000.00 THB [S13]\n\n**All Zones หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 3,000.00 THB [S17]\n\n**Cockpit Zone หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S21]\n\n**Cockpit Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S25]\n\n**Cockpit Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 1,000.00 THB [S29]\n\n**Cockpit Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 500.00 THB [S33]\n\n**Nintendo Switch Zone หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S37]\n\n**Nintendo Switch Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S41]\n\n**Nintendo Switch Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 1,000.00 THB [S45]\n\n**Nintendo Switch Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 500.00 THB [S49]\n\n**PlayStation 5 Zone หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S53]\n\n**PlayStation 5 Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S57]\n\n**PlayStation 5 Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 1,000.00 THB [S61]\n\n**PlayStation 5 Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 500.00 THB [S65]\n\n**PC Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 2,000.00 THB [S69]\n\n**PC Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S73]\n\n**PC Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S77]\n\nข้อมูลต้นฉบับยังไม่ระบุวันมีผลของราคาเหมา กรุณายืนยันกับศูนย์ก่อนใช้บริการ"
+    },
+    {
+      "case": "Unknown validity is explicit, never a fully confirmed current price",
+      "passed": true,
+      "detail": {
+        "record_ids": [
+          "rental_pc_external_full_day"
+        ],
+        "requested_fields": [
+          "amount_minor",
+          "currency",
+          "audience_id",
+          "period_label"
+        ],
+        "operation": "rental",
+        "method": "common_legacy_rental_bridge",
+        "request_contract": {
+          "version": 1,
+          "domain": "rental",
+          "requests": [
+            {
+              "zones": [
+                "zone_pc"
+              ],
+              "audiences": [
+                "audience_external_org"
+              ],
+              "periods": [
+                "full_day"
+              ]
+            }
+          ],
+          "asks": [
+            "rates"
+          ],
+          "context_used": false,
+          "original_query": "pc full-day rental for external organizations price",
+          "action": "read"
+        },
+        "response_projection": [
+          {
+            "record_id": "rental_pc_external_full_day",
+            "fields": {
+              "amount_minor": "explicit",
+              "currency": "necessary_context",
+              "audience_id": "necessary_context",
+              "period_label": "necessary_context"
+            }
+          }
+        ],
+        "unknown_fields": [
+          {
+            "record_id": "rental_pc_external_full_day",
+            "field": "validity"
+          }
+        ],
+        "not_current_ids": [],
+        "legacy_fact_fallback_used": false,
+        "source_answer_confirmed": false
+      }
+    },
+    {
+      "case": "Edited price read on follow-up; history facts not reused",
+      "passed": true,
+      "detail": "**Full-Day PC Zone Rental for External Organizations**\nPackage price: 4,500.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "Period replacement preserves PC/external with latest revision",
+      "passed": true,
+      "detail": "**PC Zone External Agency half_day**\nPackage price: 2,250.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "Expired package never asserted as current price",
+      "passed": true,
+      "detail": "Some packages or their referenced records are not current, so their prices are not asserted as current."
+    },
+    {
+      "case": "New common zone works without editing code catalogs",
+      "passed": true,
+      "detail": "**Aurora half-day internal organization fixture**\nPackage price: 987.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "New zone equipment follow-up reads new common fields",
+      "passed": true,
+      "detail": "**Aurora half-day internal organization fixture**\nIncluded equipment: AURORA_PAD fixture equipment [S1]"
+    },
+    {
+      "case": "New zone revised price follows current revision",
+      "passed": true,
+      "detail": "**Aurora half-day internal organization fixture**\nPackage price: 1,234.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "Withdrawn package does not fall back to legacy or stale state",
+      "passed": true,
+      "detail": "Question interpretation is temporarily unavailable. Please retry."
+    },
+    {
+      "case": "New source is not blocked by old unknown-topic guard",
+      "passed": true,
+      "detail": "Do you mean this topic: Payment amount correction fixture?\nReply “yes” or “no”."
+    },
+    {
+      "case": "Confirmation reads newly added source answer",
+      "passed": true,
+      "detail": "**Relevant information**\n• Confirmed information: ISOLATED AMOUNT_REVIEW_V1 [S1]"
+    },
+    {
+      "case": "New correction source update is effective without router edit",
+      "passed": true,
+      "detail": "**Relevant information**\n• Confirmed information: ISOLATED AMOUNT_REVIEW_V2 [S1]"
+    },
+    {
+      "case": "Withdrawn new correction restores precise unconfirmed state",
+      "passed": true,
+      "detail": "The information I could read does not confirm how to correct an incorrect payment amount. Please contact the studio staff to confirm before proceeding.\nWas the payment above or below the booking amount? I cannot yet confirm a correction or refund procedure.\nStudio page: https://www.facebook.com/psuesportsphuket [S1]"
+    },
+    {
+      "case": "Real knowledge database unchanged",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "isolated_fixture": true,
+  "llm_on": true,
+  "controlled_transport": true,
+  "real_model_inference_verified": false,
+  "full_test_executed": false
+}

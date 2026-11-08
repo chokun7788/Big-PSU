@@ -1,0 +1,138 @@
+{
+  "question_key": "1806def707336a05166ef9b2589b66cb0450c840866d7ea5f6b920dccd0823f8",
+  "example_sha256": "9c70fa35fb6c7878e4e4c0eb3b556412edc5fc5aeec6ba49a7ff4af0e7594e41",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One catalog query asks which games occur in more than one zone.",
+      "raw_quotes": [
+        "เกมไหนเล่นได้หลายโซน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/list/zone plus the quoted หลายโซน filter preserves the requested relation.",
+      "raw_quotes": [
+        "เกมไหนเล่นได้หลายโซน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "No single game is named; do not invent a target from the source catalog.",
+      "raw_quotes": [
+        "เกมไหนเล่นได้หลายโซน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The multiple-zone qualifier scopes the one game-list task, not a global equipment list.",
+      "raw_quotes": [
+        "เกมไหนเล่นได้หลายโซน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "หลายโซน is a cardinality filter, not an instruction to return every zone or all games.",
+      "raw_quotes": [
+        "เกมไหนเล่นได้หลายโซน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_tekken_8 has explicit PC and PS5 studio-zone relations, while game_detail_new_super_mario_bros has only Nintendo; these demonstrate why the filter matters.",
+      "raw_quotes": [
+        "เกมไหนเล่นได้หลายโซน"
+      ],
+      "source_record_ids": [
+        "game_detail_tekken_8",
+        "game_detail_new_super_mario_bros"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No specific game or zone becomes the model answer target.",
+      "raw_quotes": [
+        "เกมไหนเล่นได้หลายโซน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 28,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "หลายโซน"
+    ],
+    "tasks": [
+      {
+        "quote": "เกมไหนเล่นได้หลายโซน",
+        "domain": "games",
+        "operation": "list",
+        "facet": "zone",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "หลายโซน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "หลายโซน"
+    ],
+    "tasks": [
+      {
+        "quote": "เกมไหนเล่นได้หลายโซน",
+        "domain": "games",
+        "operation": "list",
+        "facet": "zone",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "หลายโซน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "game_detail_tekken_8": {
+      "revision": 6,
+      "record_sha256": "d043ff783e90ed0e56f6ae40223caa876dee572e81fb732326a3e1d7b8f04bcc"
+    },
+    "game_detail_new_super_mario_bros": {
+      "revision": 8,
+      "record_sha256": "24e336e1995361dfea6ca166aea07d1e72903d6c0f8835aa7a0e377ca630993c"
+    }
+  }
+}

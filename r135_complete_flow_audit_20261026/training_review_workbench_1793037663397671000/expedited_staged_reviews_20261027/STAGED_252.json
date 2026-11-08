@@ -1,0 +1,106 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 252,
+  "question_key": "54002f464c383626d70765752d9182d005c6a9ba7acc0e50d58cbeb82cf16c6e",
+  "raw_question": "Please answer from verified stuudio information: Is Friday afternoon open",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Friday"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified stuudio information: Is Friday afternoon open",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Friday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please answer from verified stuudio information: Is Friday afternoon open",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Friday",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "afternoon",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One English question asks whether Friday afternoon is open; verified stuudio information is a style/source request.",
+    "intent_operation_facet": "schedule/detail/open_periods with opening_hours focus retains the requested opening predicate rather than substituting bookable periods or live occupancy.",
+    "entities_and_slot_roles": "Keep Friday as the weekday constraint and add afternoon as an exact local time scope.",
+    "local_shared_history_scope": "Remove duplicated top-level Friday context; do not invent a calendar date, timezone from the user, clock time or prior booking.",
+    "negation_and_ambiguity": "An opening query is not an assertion that the whole Friday is closed or that a service slot is available.",
+    "source_version_alignment": "Pinned migrated_schedule_4 revision4 has morning bookable periods, afternoon maintenance and service slots, but physical open_periods is unknown; service_closed false does not prove afternoon physical access.",
+    "no_business_answer_target": "No hours, open/closed verdict, permission to enter, date conversion or availability conclusion is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_schedule_4"
+  ],
+  "source_answer_issues": [
+    [
+      "Bookable and maintenance slots do not fill unknown physical open_periods.",
+      "Preserve afternoon predicate and unknown physical-access conclusion."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 253,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

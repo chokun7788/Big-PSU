@@ -1,0 +1,210 @@
+{
+  "question_key": "207177ab21da22e4f9091d6d06eeb0f4dfc52bc12b03ecc9615cc69c68e65121",
+  "example_sha256": "24306a0826c9e55ef6c1c735b0349ea76b35b84a1e61b40df573c5638b65604a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs request Cockpit price and offered-game list.",
+      "raw_quotes": [
+        "What is the price of Cockpit and what games are available"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount plus games/list/game_catalog preserve the requested operations.",
+      "raw_quotes": [
+        "What is the price of Cockpit and what games are available"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Cockpit is source task service and shared catalog target/service.",
+      "raw_quotes": [
+        "What is the price of Cockpit and what games are available"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Add the missing Cockpit service edge; no audience, duration or game is inherited.",
+      "raw_quotes": [
+        "What is the price of Cockpit and what games are available"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Missing price inputs must not suppress the independent source game catalog or create a default user group.",
+      "raw_quotes": [
+        "What is the price of Cockpit and what games are available"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "availability_cockpit_01_02 has explicit Gran Turismo7 game_service relation; separate Cockpit rates distinguish audience.",
+      "raw_quotes": [
+        "What is the price of Cockpit and what games are available"
+      ],
+      "source_record_ids": [
+        "availability_cockpit_01_02",
+        "migrated_link_availability_cockpit_01_02_game_detail_gran_turismo_7",
+        "migrated_rate_cockpit_60_1_1_psu_student_staff",
+        "migrated_rate_cockpit_60_1_1_psu_alumni_general_student",
+        "migrated_rate_cockpit_60_1_1_general_adult"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No game-list member, free price, adult price or physical machine count becomes a label answer.",
+      "raw_quotes": [
+        "What is the price of Cockpit and what games are available"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 142,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "Cockpit"
+    ],
+    "tasks": [
+      {
+        "quote": "What is the price of Cockpit",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "what games are available",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "Cockpit",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "Cockpit"
+    ],
+    "tasks": [
+      {
+        "quote": "What is the price of Cockpit",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "what games are available",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "Cockpit",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "Cockpit",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_cockpit_01_02": {
+      "revision": 5,
+      "record_sha256": "7f087dfdd63ad70bfb95aa38bfcf0d13418849c2ef01abba40bf53eda233efb0"
+    },
+    "migrated_link_availability_cockpit_01_02_game_detail_gran_turismo_7": {
+      "revision": 1,
+      "record_sha256": "d485fd350354407df65cb634a843638f30c7c12b9339c1b53d60182690b829cf"
+    },
+    "migrated_rate_cockpit_60_1_1_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "7af8f489e2a8f16416e45b8eafd2fcd1a55298c0b6109fb3bf6cca6256cec055"
+    },
+    "migrated_rate_cockpit_60_1_1_psu_alumni_general_student": {
+      "revision": 2,
+      "record_sha256": "8e17ef75b09a1e846cac128eabbee966722287bb407ae1d09908ac91e977f07c"
+    },
+    "migrated_rate_cockpit_60_1_1_general_adult": {
+      "revision": 2,
+      "record_sha256": "2d3ce0f7d9ed9b6dd8051209f008c905dee62a8648e0c2bf32b5d8aeca26faa2"
+    }
+  }
+}

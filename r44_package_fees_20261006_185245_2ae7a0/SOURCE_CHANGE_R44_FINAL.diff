@@ -1,0 +1,685 @@
+--- before/app/core/source_registry.py
++++ after/app/core/source_registry.py
+@@ -6,6 +6,7 @@
+ 
+ SERVICE_FEE_IMAGE_2026_ID = "service_fee_image_2026"
+ PC_SERVICE_FEE_LOCAL_UPDATE_20260727_ID = "pc_service_fee_local_update_20260727"
++ZONE_RENTAL_FEES_20261006_ID = "zone_rental_fees_user_workbook_20261006"
+ 
+ 
+ @dataclass(frozen=True)
+@@ -22,6 +23,13 @@
+ 
+ 
+ SOURCE_REGISTRY: dict[str, SourceRecord] = {
++    ZONE_RENTAL_FEES_20261006_ID: SourceRecord(
++        source_id=ZONE_RENTAL_FEES_20261006_ID, category="service_fee",
++        title="User-provided half/full-day zone rental fees", source_url="local://service_fee/zone_rental_fees_20261006",
++        source_type="user_provided_workbook", trust_level="user_confirmed", updated_at="2026-10-06",
++        origin="User supplied workbook on 2026-10-06; original archived under data/sources",
++        description="Zone rental for internal/external organizations; 24 rates, seating and equipment. Effective dates and rental hours are not specified.",
++    ),
+     SERVICE_FEE_IMAGE_2026_ID: SourceRecord(
+         source_id=SERVICE_FEE_IMAGE_2026_ID,
+         category="service_fee",
+--- before/app/pipeline/engine.py
++++ after/app/pipeline/engine.py
+@@ -860,6 +860,13 @@
+             )
+             set_current_locale_decision(resolved_locale)
+             entry_timings = [_timing_trace("locale_resolution", locale_started, metadata=deadline_metadata())]
++            from app.pipeline.zone_rental import resolve_zone_rental_plan, build_zone_rental_answer
++            rental_plan = request_plan if request_plan and request_plan.get('schema_type')=='zone_rental_v1' else (resolve_zone_rental_plan(question,recent_history,locale=resolved_locale.effective) if request_plan is None else None)
++            if rental_plan is not None:
++                rental_result = build_zone_rental_answer(rental_plan,resolved_locale.effective)
++                if rental_result is not None:
++                    return self._build_result(rental_result['answer'],rental_result['hits'],started,rental_result['mode'],.99,
++                        rental_result['route'],rental_result['entities'],rental_result['validation'],[*entry_timings,*rental_result['trace']])
+             if request_plan and request_plan.get('schema_type') == 'dialogue_state_clarification_v1':
+                 english = resolved_locale.effective == 'en'
+                 messages = {
+--- before/app/pipeline/validator.py
++++ after/app/pipeline/validator.py
+@@ -10,6 +10,7 @@
+ from app.core.source_registry import (
+     PC_SERVICE_FEE_LOCAL_UPDATE_20260727_ID,
+     SERVICE_FEE_IMAGE_2026_ID,
++    ZONE_RENTAL_FEES_20261006_ID,
+ )
+ from app.pipeline.schemas import EntityBundle, PipelineRoute, UniversalIntent, ValidationResult
+ 
+@@ -386,7 +387,8 @@
+             and _has(question, "PC", "คอม", "คอมพิวเตอร์")
+         )
+         if pc_price_context:
+-            if PC_SERVICE_FEE_LOCAL_UPDATE_20260727_ID not in source_ids:
++            rental_source = mode == 'pipeline:zone_rental_fee' and ZONE_RENTAL_FEES_20261006_ID in source_ids
++            if PC_SERVICE_FEE_LOCAL_UPDATE_20260727_ID not in source_ids and not rental_source:
+                 errors.append("pc_price_answer_missing_pc_local_update_source")
+         if PC_SERVICE_FEE_LOCAL_UPDATE_20260727_ID in source_ids and not _has(question + "\n" + answer, "PC", "คอม", "คอมพิวเตอร์"):
+             warnings.append("pc_local_update_source_present_without_pc_price_context")
+--- before/app/session/conversation_plan.py
++++ after/app/session/conversation_plan.py
+@@ -164,6 +164,10 @@
+ 
+ 
+ def resolve_request_plan(question: str, history=None, *, active_task: dict | None = None, locale='th') -> dict | None:
++    from app.pipeline.zone_rental import resolve_zone_rental_plan
++    rental = resolve_zone_rental_plan(question,history,locale=locale)
++    if rental is not None:
++        return rental
+     q = normalize_text(question)
+     active = copy.deepcopy(active_task) if valid_price_task(active_task) else legacy_task(history)
+     price = is_fee_request(q)
+--- before/app/session/task_memory.py
++++ after/app/session/task_memory.py
+@@ -30,7 +30,8 @@
+         family_offer=[c.title for c in resolution.candidates if c.title.casefold() in text.casefold()] if resolution.is_ambiguous else []
+         family_offer.sort(key=lambda g:text.casefold().find(g.casefold()))
+         if len(family_offer)>1:domain,operation='game_controls','control_lookup'
+-    if category=='service_fee':domain,operation='service_fee','price_lookup'
++    if category=='service_fee':
++        domain,operation=('zone_rental','zone_rental_fee') if intent=='zone_rental_fee' else ('service_fee','price_lookup')
+     elif category=='competition_rules':domain,operation='competition_rules','rule_lookup'
+     elif category=='games':
+         if 'control' in mode or 'control' in intent:domain,operation='game_controls','control_lookup'
+@@ -48,6 +49,11 @@
+     if domain is None:return None
+     targets=list(detect_games(query)) if domain in ('game_controls','competition_rules') or operation=='game_detail' else service_mentions(query)
+     price_task=None
++    rental_plan=None
++    if domain=='zone_rental':
++        from app.pipeline.zone_rental import valid_zone_rental_plan
++        if valid_zone_rental_plan(plan):
++            rental_plan=copy.deepcopy(plan);targets=list(plan['targets'])
+     if domain=='service_fee':
+         p=plan or resolve_request_plan(query,[],locale='en' if query.isascii() else 'th')
+         if p and p.get('tasks') and valid_price_task(p['tasks'][0]):
+@@ -59,7 +65,7 @@
+         offered.sort(key=lambda g:text.casefold().find(g.casefold()))
+     if len(offered)>1 and domain=='game_controls':targets=[]
+     return dict(schema_version=1,key=domain+'/'+operation,domain=domain,operation=operation,targets=targets,offered_options=offered,
+-                query=query,price_task=price_task,seed_question=question,mode=mode,route_category=category,route_intent=intent,
++                query=query,price_task=price_task,rental_plan=rental_plan,seed_question=question,mode=mode,route_category=category,route_intent=intent,
+                 response_id=response.get('request_id'),status=response.get('task_status') or (response.get('task_contract') or {}).get('status','recorded'),
+                 provenance='server_completed_user_request')
+ 
+@@ -125,7 +131,8 @@
+         from app.session.context_resolver import detect_games
+         if service_mentions(tail) or detect_games(tail) or re.search(r'\d|ไม่|\b(?:not|except|without)\b',tail):return None,None
+         selector=None;remainder=tail
+-        for key,pattern in [('service_fee/price_lookup',r'ราคา|ค่าบริการ|\b(?:prices?|fees?)\b'),
++        for key,pattern in [('zone_rental/zone_rental_fee',r'(?:ราคา|ค่าบริการ)?(?:เช่า)?เหมา|ราคาเช่าโซน|\b(?:rental(?:\s+(?:prices?|fees?))?|zone rental)\b'),
++                            ('service_fee/price_lookup',r'ราคา|ค่าบริการ|\b(?:prices?|fees?)\b'),
+                             ('game_controls/control_lookup',r'ปุ่ม|ควบคุม|\bcontrols?\b'),
+                             ('competition_rules/rule_lookup',r'กฎ|กฏ|กติกา|\b(?:rules?|rulebook)\b'),
+                             ('games/list',r'รายชื่อเกม|รายการเกม|\b(?:game\s+list|games\s+list|catalog)\b'),
+@@ -154,6 +161,12 @@
+         if task.get('price_task'):
+             price_plan=resolve_request_plan('retry',[],active_task=task['price_task'],locale=locale)
+             query=price_plan['resolved_query'];price_plan['original_query']=question;price_plan['context_used']=True;price_plan['act']='resume_task'
++        if task.get('rental_plan'):
++            from app.pipeline.zone_rental import valid_zone_rental_plan
++            if valid_zone_rental_plan(task['rental_plan']):
++                price_plan=copy.deepcopy(task['rental_plan'])
++                price_plan.update(original_query=question,context_used=True,act='resume_rental_task')
++                query=price_plan['resolved_query']
+         resolved,unused=_resolved(question,query,task,'explicitly_resumed_archived_task')
+         if task.get('queries'):return _resume_many(question,task,resolved)
+         return resolved,price_plan
+--- before/app/web_api/server.py
++++ after/app/web_api/server.py
+@@ -590,8 +590,9 @@
+                 if turn.get('context_resolution'):
+                     resolved = ResolvedQuestion(**turn['context_resolution'])
+                 elif request_plan:
++                    rental = request_plan.get('schema_type') == 'zone_rental_v1'
+                     resolved = ResolvedQuestion(question, request_plan['resolved_query'], request_plan.get('context_used', False),
+-                        context_domain='service_fee', context_operation='price_lookup', reason='parent_typed_request_plan')
++                        context_domain='zone_rental' if rental else 'service_fee', context_operation='zone_rental_fee' if rental else 'price_lookup', reason='parent_typed_request_plan')
+                 else:
+                     resolved = resolve_question_with_context(question, recent_history, locale=locale_decision.effective)
+                     request_plan = resolved.to_selection_plan()
+@@ -745,8 +746,14 @@
+                     response["trace"] = result.trace
+ 
+                 contract = next((t.metadata for t in reversed(result.trace) if t.stage == 'conversation_contract'), {})
++                rental_contract = next((t.metadata for t in reversed(result.trace) if t.stage == 'zone_rental_contract'), {})
+                 task_contract = next((t.metadata for t in reversed(result.trace) if t.stage == 'task_answer_contract'), {})
+-                actual_plan = contract.get('request_plan') or request_plan
++                actual_plan = rental_contract.get('request_plan') or contract.get('request_plan') or request_plan
++                from app.pipeline.zone_rental import valid_zone_rental_plan
++                if valid_zone_rental_plan(actual_plan):
++                    resolved = ResolvedQuestion(question, actual_plan['resolved_query'], actual_plan.get('context_used',False),
++                        context_domain='zone_rental', context_operation='zone_rental_fee', reason='validated_zone_rental_plan')
++                    if debug: response['context_resolution'] = resolved.to_dict()
+                 if actual_plan and actual_plan.get('resolved_query') and actual_plan.get('tasks') and valid_price_task(actual_plan['tasks'][0]):
+                     resolved = ResolvedQuestion(question, actual_plan['resolved_query'], actual_plan.get('context_used',False),
+                         context_domain='service_fee', context_operation='price_lookup', reason='validated_typed_request_plan')
+@@ -756,6 +763,7 @@
+                 response['rule_coverage'] = next((t.metadata for t in reversed(result.trace) if t.stage == 'competition_full_coverage'), None)
+                 response['client_turn_id'] = client_turn_id
+                 response['request_plan'] = actual_plan
++                if rental_contract: response['zone_rental_contract'] = rental_contract
+                 response['task_contract'] = task_contract
+                 response['conversation_outcome'] = contract.get('outcome', task_contract.get('outcome','delegated_existing_pipeline'))
+                 response['coverage'] = {k: contract.get(k) for k in ('expected_ids', 'returned_ids', 'missing_ids', 'temporal_validity', 'task_outcomes') if k in contract}
+@@ -772,6 +780,7 @@
+                     "conversation_state": response['conversation_state'],
+                     "request_plan": actual_plan,
+                     "conversation_contract": contract,
++                    "zone_rental_contract": rental_contract,
+                     "task_contract": task_contract,
+                     "question": question,
+                     "resolved_question": resolved.resolved_question,
+--- before/app/pipeline/zone_rental.py
++++ after/app/pipeline/zone_rental.py
+@@ -0,0 +1,180 @@
++"""User-supplied zone/organization rental fees, separate from play-session fees."""
++from __future__ import annotations
++import copy,json,re
++from pathlib import Path
++from app.core.normalization import normalize_text
++from app.core.source_registry import ZONE_RENTAL_FEES_20261006_ID, make_source_hit
++from app.pipeline.schemas import EntityBundle,PipelineRoute,PipelineTrace,ValidationResult
++
++DATA_PATH=Path(__file__).resolve().parents[2]/'data/curated/zone_rental_fees_20261006.json'
++TARGETS=('all_zones','cockpit','vr','nintendo_switch','ps5','pc')
++GROUPS=('external','internal');PERIODS=('half_day','full_day')
++RENTAL=re.compile(r'เหมา(?!ะ)|เช่า|\b(?:rent(?:al)?|hire|venue)\b',re.I)
++HALF=re.compile(r'ครึ่งวัน|\bhalf[ -]?day\b',re.I)
++FULL=re.compile(r'เต็มวัน|ทั้งวัน|เหมาวัน|\b(?:full[ -]?day|whole day|daily|per day)\b',re.I)
++PRICE=re.compile(r'ราคา|ค่าบริการ|กี่บาท|เท่าไหร่|เท่าไร|\b(?:price|prices|fees?|rates?|cost|how much)\b',re.I)
++HOURLY=re.compile(r'รายชั่วโมง|ต่อชั่วโมง|\bhourly\b|\bper hour\b',re.I)
++RETURN=re.compile(r'^(?:กลับ(?:ไป|มา)(?:เรื่อง|ที่)?|(?:go )?back to|return to)',re.I)
++ASKS={'rates','capacity','equipment','duration_definition','effective_date','booking','live_availability','overtime','per_unit','eligibility','hourly_rental','multi_day'}
++
++def load_zone_rental_data():
++    data=json.loads(DATA_PATH.read_text(encoding='utf-8'))
++    if data.get('schema_version')!=1 or data.get('price_scope')!='zone_rental_for_organizations' or data.get('source_id')!=ZONE_RENTAL_FEES_20261006_ID:
++        raise ValueError('invalid zone rental source schema')
++    rows=data.get('rows',[])
++    if [r.get('id') for r in rows]!=list(TARGETS):raise ValueError('rental source target coverage')
++    for row in rows:
++        for group in GROUPS:
++            for period in PERIODS:
++                price=row['prices_thb'][group][period]
++                if type(price)!=int or price<0:raise ValueError('rental price must be a nonnegative integer')
++    return data
++
++def valid_zone_rental_plan(p):
++    return (isinstance(p,dict) and p.get('schema_type')=='zone_rental_v1' and p.get('schema_version')==1
++        and all(isinstance(p.get(k),list) and len(p[k])<=limit and all(isinstance(v,str) and v in allowed for v in p[k])
++            for k,allowed,limit in [('targets',TARGETS,6),('groups',GROUPS,2),('periods',PERIODS,2),('asks',ASKS,12)])
++        and bool(p['groups']) and bool(p['periods']) and bool(p['asks'])
++        and isinstance(p.get('unresolved_targets'),list) and len(p['unresolved_targets'])<=6
++        and all(isinstance(v,str) and 0<len(v)<=100 for v in p['unresolved_targets'])
++        and all(len(p[k])==len(set(p[k])) for k in ('targets','groups','periods','asks'))
++        and bool(p['targets'] or p['unresolved_targets'])
++        and isinstance(p.get('resolved_query'),str) and 0<len(p['resolved_query'])<=2000)
++
++def _targets(q):
++    from app.session.conversation_plan import service_mentions, excluded_services
++    selected=service_mentions(q,fuzzy=True)
++    bundle=bool(re.search(r'ทุกโซน|ทั้งศูนย์|ทั้งห้อง|\ball zones\b|\b(?:entire|whole)\s+(?:studio|venue|room)\b',q,re.I))
++    catalog=bool(re.search(r'แต่ละโซน|แยก.{0,8}โซน|ทุกแพ็กเกจ|ราคาทั้งหมด|ทุกแบบ|\b(?:all (?:rental )?(?:prices|rates|packages)|each zone)\b',q,re.I))
++    selected=list(TARGETS) if catalog else (['all_zones'] if bundle else [])+selected
++    excluded=excluded_services(q)
++    return list(dict.fromkeys(t for t in selected if t not in excluded))
++
++def _groups(q):
++    internal=bool(re.search(r'หน่วยงานภายใน|หน่วยงานในมหาวิทยาลัย|\binternal\b|\bpsu (?:department|unit|organization)\b',q,re.I))
++    external=bool(re.search(r'หน่วยงานภายนอก|หน่วยงานนอก|\bexternal\b',q,re.I))
++    if re.fullmatch(r'(?:ภายใน|ในมหาวิทยาลัย)[.!?\s]*',q):internal=True
++    if re.fullmatch(r'(?:ภายนอก|นอกมหาวิทยาลัย)[.!?\s]*',q):external=True
++    return [g for g,found in [('external',external),('internal',internal)] if found]
++
++def _asks(q):
++    asks=[]
++    if PRICE.search(q):asks.append('rates')
++    for key,pattern in [
++        ('capacity',r'ที่นั่ง|รองรับ|กี่คน|\b(?:seats|seating|capacity|how many people)\b'),
++        ('equipment',r'อุปกรณ์|กี่เครื่อง|รวมอะไร|มีอะไรให้|\b(?:equipment|included devices|how many machines|what is included)\b'),
++        ('duration_definition',r'กี่ชั่วโมง|กี่โมง|ช่วงเวลา|นับเวลา|\b(?:how many hours|what hours|what times|how long)\b'),
++        ('effective_date',r'เริ่มใช้|มีผล|หมดอายุ|\b(?:validity|effective date|valid from|expiry)\b'),
++        ('booking',r'จอง|\b(?:book|booking|reserve|reservation)\b'),
++        ('live_availability',r'ว่าง|ถูกจอง|\b(?:available|availability|booked)\b'),
++        ('overtime',r'เจ้าหน้าที่|นอกเวลา|\b(?:staff|overtime|extra charge)\b'),
++        ('per_unit',r'เครื่องเดียว|ต่อเครื่อง|pc\s*#?\s*\d+(?!\d|\s*(?:วัน|days))|\b(?:one machine|single pc|per machine|per device)\b'),
++        ('eligibility',r'นักศึกษา|บุคคลทั่วไป|\b(?:student|individual|private person|general adult)\b'),
++        ('multi_day',r'(?:[2-9]|\d{2,})\s*วัน|\b(?:[2-9]|\d{2,})\s*days\b'),
++    ]:
++        if re.search(pattern,q,re.I):asks.append(key)
++    if HOURLY.search(q):asks.append('hourly_rental')
++    if 'hourly_rental' in asks or ('overtime' in asks and not re.search(r'ราคา|ค่าบริการ|\brental (?:prices?|fees?|rates?)\b',q,re.I)):
++        asks=[a for a in asks if a!='rates']
++    if 'effective_date' in asks and not re.search(r'กี่บาท|เท่าไหร่|เท่าไร|\b(?:how much|prices|rates|fees)\b',q,re.I):
++        asks=[a for a in asks if a!='rates']
++    return list(dict.fromkeys(asks)) or ['rates']
++
++def _unknown_targets(q):
++    # Read the requested noun phrase; a supplied unknown noun cannot mean all zones.
++    from app.core.normalization import SERVICE_ALIASES
++    from app.session.conversation_plan import service_mentions
++    found=[]
++    spans=[m[1] for m in re.finditer(r'(?:เหมา(?!ะ)|เช่า|\b(?:rent|hire)\b)\s*(.*?)(?=ครึ่งวัน|เต็มวัน|ทั้งวัน|รายชั่วโมง|รองรับ|กี่คน|มีอุปกรณ์|มีค่า|เจ้าหน้าที่|นอกเวลา|ว่าง|กี่ชั่วโมง|เริ่มใช้|มีผล|หมดอายุ|ยังไง|อย่างไร|\b(?:half[ -]?day|full[ -]?day|whole day)\b|$)',q,re.I)]
++    if q.isascii():
++        spans.extend(m[1] for m in re.finditer(r'([^?;\n]*?)\brental\b',q,re.I))
++    for span in spans:
++        span=re.sub(r'\d+\s*(?:วัน|days|ชั่วโมง|hours)\b',' ',span,flags=re.I)
++        span=re.sub(r'\bpc\s*#?\s*\d+\b','pc',span,flags=re.I)
++        for alias in sorted({a for aa in SERVICE_ALIASES.values() for a in aa},key=len,reverse=True):
++            normalized=normalize_text(alias)
++            pattern=r'(?<![a-z0-9])'+re.escape(normalized)+r'(?![a-z])' if normalized.isascii() else re.escape(normalized)
++            span=re.sub(pattern,' ',span,flags=re.I)
++        span=re.sub(r'ทุกแพ็กเกจ|ทั้งศูนย์|ทั้งห้อง|ทุกแบบ|แต่ละโซน|ยกเว้น|ไม่เอา|อุปกรณ์|ห้อง|โซน|เครื่อง|ทั้งหมด|ทุกโซน|หน่วยงานภายใน|หน่วยงานภายนอก|ราคา|กี่บาท|เท่าไหร่|เท่าไร|\b(?:what|is|are|how|much|show|when|do|i|book|hourly|full|half|whole|day|entire|seating|capacity|included|for|a|an|the|zone|studio|all|zones|and|of|equipment|prices?|rates?|fees?|external|internal|organizations?|please|except)\b|และ|กับ|ครับ|ค่ะ|หน่อย|[^\w\u0e00-\u0e7f]+',' ',span,flags=re.I).strip()
++        span=' '.join(token for token in span.split() if not service_mentions(token,fuzzy=True))
++        if span and len(span)<=100:found.append(span)
++    return list(dict.fromkeys(found))[:6]
++
++def resolve_zone_rental_plan(question,history=None,*,locale='th'):
++    q=normalize_text(question).strip();previous=None
++    explicit=bool(RENTAL.search(q) or ((HALF.search(q) or FULL.search(q)) and PRICE.search(q)))
++    if HOURLY.search(q) and not RENTAL.search(q):return None
++    if isinstance(history,list):
++        candidates=history if RETURN.search(q) and RENTAL.search(q) else history[-1:]
++        for row in reversed(candidates):
++            if row.get('role')=='assistant' and row.get('delivery_status')=='client_acknowledged' and valid_zone_rental_plan(row.get('request_plan')):
++                previous=copy.deepcopy(row['request_plan']);break
++    targets=_targets(q);groups=_groups(q);periods=[p for p,found in [('half_day',HALF.search(q)),('full_day',FULL.search(q))] if found]
++    bare=re.fullmatch(r'(?:ทั้งหมด(?:เลย)?|ทุกแบบ|all(?: of them)?|both|both periods|ภายใน|ภายนอก|internal|external)[.!?\s]*',q,re.I)
++    short_selection=bool(targets or groups or periods or re.search(r'ทั้งสองกลุ่ม|\bboth groups\b',q,re.I)) and len(q)<=90 and not re.search(r'เกม|ปุ่ม|ว่าง|กฎ|แข่งขัน|\b(?:games?|controls?|rules?|availability|available)\b',q,re.I)
++    information_followup=bool(previous and re.search(r'กี่ชั่วโมง|กี่โมง|ที่นั่ง|อุปกรณ์|รวมอะไร|มีอะไรให้|เจ้าหน้าที่|นอกเวลา|เริ่มใช้|\b(?:how many hours|seats|equipment|what is included|overtime|effective date)\b',q,re.I))
++    if not explicit and not (previous and (bare or short_selection or information_followup)):return None
++    # A complete unrelated question containing a service name is a topic shift.
++    if not explicit and previous and PRICE.search(q) and not groups and not periods:return None
++    inherited=bool(previous and (not explicit or RETURN.search(q)))
++    p=copy.deepcopy(previous) if inherited else dict(schema_type='zone_rental_v1',schema_version=1,targets=list(TARGETS),groups=list(GROUPS),periods=list(PERIODS),asks=['rates'],unresolved_targets=[])
++    if targets:p['targets']=targets
++    elif bare and re.search(r'ทั้งหมด|ทุกแบบ|\ball\b',q,re.I):p['targets']=list(TARGETS)
++    if groups:p['groups']=groups
++    if re.search(r'ทั้งสองกลุ่ม|ทั้งภายในและภายนอก|\bboth (?:groups|organization types)\b',q,re.I):p['groups']=list(GROUPS)
++    if periods:p['periods']=periods
++    if bare and re.search(r'\bboth(?: periods)?\b',q,re.I):p['periods']=list(PERIODS)
++    if explicit or information_followup:p['asks']=_asks(q)
++    unknown=_unknown_targets(q) if explicit else []
++    # A fuzzy matched known service should not become a leftover unknown noun.
++    if unknown and not targets:p['targets']=[]
++    p['unresolved_targets']=unknown
++    p.update(original_query=question,context_used=inherited,act='fill_rental_scope' if inherited else 'new_rental_request')
++    p['resolved_query']='Zone rental request: '+', '.join(p['targets'])+'; organizations '+', '.join(p['groups'])+'; periods '+', '.join(p['periods'])+'; facts '+', '.join(p['asks'])
++    return p
++
++def build_zone_rental_answer(plan,locale='th'):
++    if not valid_zone_rental_plan(plan):return None
++    data=load_zone_rental_data();en=locale=='en';rows=[r for r in data['rows'] if r['id'] in plan['targets']]
++    lines=['Zone rental fees for organizations' if en else 'ราคาเช่าเหมาโซนสำหรับหน่วยงาน'];returned=[];missing=[]
++    prices='rates' in plan['asks'];groups={'external':'External organizations' if en else 'หน่วยงานภายนอก','internal':'Internal organizations' if en else 'หน่วยงานภายใน'}
++    periods={'half_day':'half day' if en else 'ครึ่งวัน','full_day':'full day' if en else 'เต็มวัน'}
++    if prices or {'capacity','equipment'} & set(plan['asks']):
++        for row in rows:
++            lines+=['',f"**{row['label']}**"]
++            if prices:
++                for group in plan['groups']:
++                    parts=[]
++                    for period in plan['periods']:
++                        value=row['prices_thb'][group][period];parts.append(f"{periods[period]} {value:,} {'THB' if en else 'บาท'}")
++                        returned.append(dict(id=f"{row['id']}:{group}:{period}",value=value,cell=row['source_cells'][f'{group}_{period}']))
++                    lines.append(f"• {groups[group]}: "+' / '.join(parts))
++            lines.append(f"• {'Seating capacity' if en else 'รองรับ'}: {row['seats']} {'seats' if en else 'ที่นั่ง'}; {'equipment' if en else 'อุปกรณ์'}: {row['equipment_en' if en else 'equipment_th']}")
++    messages={
++      'duration_definition':('The workbook does not define the number of hours or clock windows for half-day/full-day rental. Please confirm the rental hours with the studio.','ไฟล์ไม่ได้ระบุว่าครึ่งวัน/เต็มวันนับกี่ชั่วโมงหรือเริ่ม–สิ้นสุดกี่โมง ต้องยืนยันช่วงเวลาเช่าเหมาจากศูนย์ครับ'),
++      'effective_date':('The workbook does not state an effective or expiry date for these rental rates.','ไฟล์ไม่ได้ระบุวันเริ่มใช้หรือวันสิ้นสุดของอัตราเช่าเหมานี้ครับ'),
++      'booking':('The workbook lists rental fees but does not specify the rental booking procedure. Please confirm it with the studio.','ไฟล์ระบุราคาเช่าเหมา แต่ไม่ได้ระบุขั้นตอนหรือช่องทางจองเหมา ต้องสอบถามศูนย์เพื่อยืนยันครับ'),
++      'live_availability':('These rental rates do not establish whether the zone is currently available for private rental.','ราคาในไฟล์ยังใช้ยืนยันไม่ได้ว่าโซนว่างสำหรับการเช่าเหมาในวันเวลาที่ถามครับ'),
++      'overtime':('The note in the All Zones row says staff overtime compensation is reimbursed under university regulations. It does not state the amount, who pays, or whether it is included in rent.','หมายเหตุในแถว All Zones ระบุว่าค่าตอบแทนเจ้าหน้าที่ทำงานนอกเวลาเบิกตามระเบียบมหาวิทยาลัย แต่ไม่ได้ระบุจำนวนเงิน ผู้จ่าย หรือว่ารวมในค่าเช่าแล้วหรือไม่ครับ'),
++      'per_unit':('These are zone rental rates with the listed equipment. The workbook does not provide a rental price per individual machine.','อัตรานี้เป็นราคาเช่าเหมาโซนพร้อมอุปกรณ์ที่ระบุ ไฟล์ไม่ได้ให้ราคาเหมาต่อเครื่อง จึงหารหรือใช้แทนราคาต่อเครื่องไม่ได้ครับ'),
++      'eligibility':('Rates are grouped by internal/external organizations. The workbook does not assign an individual or student to either organization rate.','ตารางนี้แบ่งราคาตามหน่วยงานภายใน/ภายนอก ไม่ได้ระบุสิทธิ์ราคาของบุคคลหรือนักศึกษา จึงยังจัดเข้ากลุ่มหน่วยงานให้เองไม่ได้ครับ'),
++      'hourly_rental':('This workbook provides half-day/full-day zone rental fees, not an hourly zone rental rate.','ไฟล์นี้ให้ราคาเหมาโซนแบบครึ่งวัน/เต็มวัน ไม่ได้ให้ราคาเหมาโซนรายชั่วโมงครับ'),
++      'multi_day':('The workbook lists a full-day rate but does not specify a multi-day package or discount.','ไฟล์ให้อัตราต่อวัน แต่ไม่ได้ระบุแพ็กเกจเหมาหลายวันหรือส่วนลดครับ'),
++    }
++    for ask in plan['asks']:
++        if ask in messages:lines+=['',messages[ask][0 if en else 1]];missing.append(ask)
++    if plan['unresolved_targets']:
++        lines+=['',('No rental rate is recorded for these requested targets: ' if en else 'ยังไม่มีราคาเช่าเหมาในไฟล์สำหรับรายการที่ระบุ: ')+', '.join(plan['unresolved_targets'])];missing.append('unresolved_targets')
++    if prices:
++        lines+=['',('Prices are per zone for organizations, not per player or machine. The workbook does not define the rental hours or effective dates.' if en else 'อัตรานี้เป็นราคาเช่าเหมาโซนของหน่วยงาน ไม่ใช่ราคาต่อผู้เล่น/เครื่อง ไฟล์ไม่ได้ระบุจำนวนชั่วโมงของช่วงเช่าหรือวันที่มีผลของอัตรา')]
++    if any(r['id']=='all_zones' for r in rows) and prices:
++        lines.append(data['source_notes'][0]['text_en' if en else 'text_th'])
++    lines+=['',('Source: user-provided half/full-day rental workbook' if en else 'แหล่งข้อมูล: ไฟล์ค่าบริการครึ่งวันและเต็มวันที่ผู้ใช้ส่งให้'),data['source_url']]
++    known=bool(returned or ({'capacity','equipment'} & set(plan['asks']) and rows) or ('overtime' in plan['asks']))
++    status='partial' if known and missing else 'missing' if missing else 'answered'
++    outcome='answered_partial' if status=='partial' else 'no_answer' if status=='missing' else 'answered_complete'
++    meta=dict(request_plan=plan,returned_rates=returned,missing_fields=missing,source_sha256=data['source_sha256'],source_sheet=data['source_sheet'],price_scope=data['price_scope'],effective_from=data['effective_from'],period_hours=data['period_hours'],outcome=outcome)
++    route=PipelineRoute('service_fee','zone_rental_fee',.99,'fact','low','user-provided workbook zone/organization tariffs')
++    contract=dict(schema_version=1,kind='single',status=status,outcome=outcome,category='service_fee',intent='zone_rental_fee',source_count=1,coverage_meaning='source_fields_not_live_booking_or_owner_missing_policy')
++    return dict(answer='\n'.join(lines),hits=[make_source_hit(ZONE_RENTAL_FEES_20261006_ID)],route=route,entities=EntityBundle(),validation=ValidationResult(True,(),tuple(missing)),
++        mode='pipeline:zone_rental_fee',trace=[PipelineTrace('zone_rental_contract',outcome,.99,'cell-bound source facts; no hourly/session conversion',meta),PipelineTrace('task_answer_contract',outcome,1.0,'requested known/missing source fields',contract)],metadata=meta)
+--- before/tests/test_zone_rental_r44.py
++++ after/tests/test_zone_rental_r44.py
+@@ -0,0 +1,128 @@
++"""Workbook-bound tariff and acknowledged dialogue oracles, separate from play fees."""
++import copy,json,unittest,zipfile,xml.etree.ElementTree as ET
++from pathlib import Path
++from app.pipeline.zone_rental import resolve_zone_rental_plan as resolve, build_zone_rental_answer as build, valid_zone_rental_plan as valid, load_zone_rental_data, TARGETS
++from app.session.conversation_store import ConversationStore
++
++ROOT=Path(__file__).resolve().parents[1]
++
++class ZoneRentalTests(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
++        with zipfile.ZipFile(ROOT/'data/sources/zone_rental_fees_20261006.xlsx') as z:
++            shared=[''.join(t.text or '' for t in s.findall('.//m:t',ns)) for s in ET.fromstring(z.read('xl/sharedStrings.xml')).findall('m:si',ns)]
++            cls.cells={}
++            for c in ET.fromstring(z.read('xl/worksheets/sheet1.xml')).findall('.//m:sheetData/m:row/m:c',ns):
++                v=c.findtext('m:v',default='',namespaces=ns)
++                if v:cls.cells[c.attrib['r']]=shared[int(v)] if c.attrib.get('t')=='s' else v
++
++    def test_all_24_rates_bound_to_original_cells(self):
++        result=build(resolve('Show all rental rates'),'en')
++        rows=result['metadata']['returned_rates']
++        self.assertEqual(len(rows),24)
++        columns={('external','full_day'):'B',('external','half_day'):'C',('internal','full_day'):'D',('internal','half_day'):'E'}
++        for rate in rows:
++            target,group,period=rate['id'].split(':')
++            cell=f'{columns[group,period]}{TARGETS.index(target)+3}'
++            self.assertEqual(rate['cell'],cell)
++            self.assertEqual(rate['value'],int(self.cells[cell]))
++
++    def test_capacity_and_equipment_from_original(self):
++        data=load_zone_rental_data()
++        for row in data['rows']:
++            self.assertEqual(row['seats'],int(self.cells[f"F{row['source_row']}"]))
++            self.assertEqual(row['equipment_th'],self.cells[f"G{row['source_row']}"].strip())
++        pc=build(resolve('เหมา PC รองรับกี่คน มีอุปกรณ์อะไร'))
++        self.assertIn('43 ที่นั่ง',pc['answer']);self.assertIn('PC 10 เครื่อง',pc['answer'])
++
++    def test_package_is_not_sum_of_individual_zones(self):
++        rates=build(resolve('ราคาเหมาทั้งศูนย์หน่วยงานภายนอกเต็มวัน'))['metadata']['returned_rates']
++        self.assertEqual([(r['id'],r['value']) for r in rates],[('all_zones:external:full_day',12000)])
++
++    def test_missing_hours_effective_dates_not_invented(self):
++        d=load_zone_rental_data()
++        self.assertIsNone(d['effective_from']);self.assertIsNone(d['effective_until'])
++        self.assertEqual(d['period_hours'],{'half_day':None,'full_day':None})
++        for q,field in [('เหมา PC กี่ชั่วโมง','duration_definition'),('ราคาเหมาเริ่มใช้เมื่อไร','effective_date')]:
++            r=build(resolve(q));self.assertIn(field,r['metadata']['missing_fields'])
++            self.assertEqual(r['metadata']['returned_rates'],[])
++
++    def test_staff_amount_is_not_invented(self):
++        r=build(resolve('เช่าโซน PC มีค่าเจ้าหน้าที่นอกเวลาเท่าไหร่'))
++        self.assertIn('overtime',r['metadata']['missing_fields'])
++        self.assertIn('All Zones',r['answer']);self.assertIn('ไม่ได้ระบุจำนวนเงิน',r['answer'])
++
++    def test_english_contains_no_thai(self):
++        r=build(resolve('Show all rental fees'),'en')
++        self.assertFalse(any('\u0e00'<=ch<='\u0e7f' for ch in r['answer']))
++
++    def test_unknown_target_is_not_all_zones(self):
++        for q in ('ราคาเหมา Xbox เต็มวัน','Xbox rental price for a full day'):
++            p=resolve(q);self.assertEqual(p['targets'],[])
++            self.assertTrue(p['unresolved_targets']);self.assertEqual(build(p)['metadata']['returned_rates'],[])
++
++    def test_partial_unknown_keeps_known_and_missing(self):
++        r=build(resolve('ราคาเหมา PC และ Xbox เต็มวัน'))
++        self.assertEqual(len(r['metadata']['returned_rates']),2)
++        self.assertEqual(r['metadata']['missing_fields'],['unresolved_targets'])
++        self.assertEqual(r['metadata']['outcome'],'answered_partial')
++
++    def test_fuzzy_target_without_alias_does_not_add_unknown(self):
++        p=resolve('ราคาเหมา cockpik ครึ่งวัน')
++        self.assertEqual(p['targets'],['cockpit']);self.assertEqual(p['unresolved_targets'],[])
++
++    def test_individual_is_not_an_internal_organization(self):
++        p=resolve('นักศึกษา PSU ราคาเหมา PC')
++        self.assertEqual(p['groups'],['external','internal'])
++        self.assertIn('eligibility',build(p)['metadata']['missing_fields'])
++
++    def test_per_machine_is_not_zone_rate(self):
++        p=resolve('ราคาเหมา PC1 เต็มวัน')
++        self.assertEqual(p['targets'],['pc'])
++        self.assertEqual(build(p)['metadata']['missing_fields'],['per_unit'])
++
++    def test_half_full_hourly_are_separate(self):
++        self.assertIsNone(resolve('PC hourly price for external users'))
++        p=resolve('ราคาเหมา PC รายชั่วโมง')
++        self.assertIn('hourly_rental',build(p)['metadata']['missing_fields'])
++
++    def test_target_exclusions(self):
++        self.assertNotIn('pc',resolve('Show all rental rates except PC')['targets'])
++        self.assertEqual(resolve('เช่า PC เต็มวัน')['targets'],['pc'])
++
++    def test_invalid_duplicate_or_missing_plan_rejected(self):
++        p=resolve('ราคาเหมา PC')
++        for key in ('targets','groups','periods','asks'):
++            changed=copy.deepcopy(p);changed[key]+=changed[key][:1];self.assertFalse(valid(changed))
++        p['targets']=[];self.assertFalse(valid(p));self.assertIsNone(build(p))
++
++    def _completed(self,ack=True):
++        store=ConversationStore();q='ราคาเหมา PC หน่วยงานภายนอกครึ่งวัน'
++        turn=store.begin('one','first',q,history=[]);r=build(turn['plan'])
++        store.complete('one','first',turn['revision'],dict(ok=True,request_id='first',answer=r['answer'],route_category='service_fee',route_intent='zone_rental_fee',mode=r['mode']),plan=turn['plan'])
++        if ack:store.acknowledge('one','first')
++        return store
++
++    def test_acknowledged_followup_retains_scope(self):
++        s=self._completed();t=s.begin('one','next','VR',history=s.history('one'))
++        self.assertEqual(t['plan']['targets'],['vr']);self.assertEqual(t['plan']['groups'],['external'])
++        self.assertEqual(t['plan']['periods'],['half_day']);self.assertTrue(t['plan']['context_used'])
++
++    def test_unacknowledged_and_other_session_cannot_inherit(self):
++        s=self._completed(False)
++        self.assertIsNone(resolve('VR',s.history('one')))
++        self.assertIsNone(resolve('VR',s.history('two')))
++
++    def test_rental_and_play_tasks_have_distinct_memory_keys(self):
++        s=self._completed();keys=s.snapshot('one')['current_task_keys']
++        self.assertEqual(keys,['zone_rental/zone_rental_fee'])
++        t=s.begin('one','resume','กลับไปเรื่องราคาเหมาเมื่อกี้',history=s.history('one'))
++        self.assertEqual(t['plan']['schema_type'],'zone_rental_v1');self.assertEqual(t['plan']['groups'],['external'])
++
++    def test_topic_shifts_do_not_keep_rental(self):
++        s=self._completed()
++        for q in ('PC มีเกมอะไรบ้าง','PC รายชั่วโมงราคาเท่าไหร่','PC ว่างไหม','กฎการแข่งขัน CS2'):
++            self.assertIsNone(resolve(q,s.history('one')))
++
++if __name__=='__main__':unittest.main()
+--- before/data/curated/zone_rental_fees_20261006.json
++++ after/data/curated/zone_rental_fees_20261006.json
+@@ -0,0 +1,194 @@
++{
++  "schema_version": 1,
++  "source_id": "zone_rental_fees_user_workbook_20261006",
++  "source_url": "local://service_fee/zone_rental_fees_20261006",
++  "source_file": "data/sources/zone_rental_fees_20261006.xlsx",
++  "source_original_filename": "ค่าบริการครึ่งวันและเต็มวัน PSU Esports Studio - Phuket (1).xlsx",
++  "source_sha256": "bbcc850c1b348e79b9c65577ebf2a284f26fc81674c1d44de9e8e846653b8894",
++  "source_sheet": "ค่าบริการเช่าห้อง PSU Esports S",
++  "received_on": "2026-10-06",
++  "effective_from": null,
++  "effective_until": null,
++  "price_scope": "zone_rental_for_organizations",
++  "currency": "THB",
++  "period_hours": {
++    "half_day": null,
++    "full_day": null
++  },
++  "customer_groups": {
++    "internal": "หน่วยงานภายใน",
++    "external": "หน่วยงานภายนอก"
++  },
++  "source_notes": [
++    {
++      "text_th": "ค่าตอบแทนของเจ้าหน้าที่ทำงานนอกเวลาเบิกตามระเบียบมหาวิทยาลัย",
++      "text_en": "Staff overtime compensation is reimbursed according to university regulations.",
++      "cell": "H3",
++      "scope": "all_zones_row"
++    }
++  ],
++  "rows": [
++    {
++      "id": "all_zones",
++      "label": "All Zones",
++      "original_label": "PSU Esports Studio - Phuket - All Zones",
++      "seats": 50,
++      "equipment_th": "อุปกรณ์เกมทั้งหมด",
++      "equipment_en": "All gaming equipment",
++      "prices_thb": {
++        "external": {
++          "full_day": 12000,
++          "half_day": 6000
++        },
++        "internal": {
++          "full_day": 6000,
++          "half_day": 3000
++        }
++      },
++      "source_row": 3,
++      "source_cells": {
++        "external_full_day": "B3",
++        "external_half_day": "C3",
++        "internal_full_day": "D3",
++        "internal_half_day": "E3",
++        "seats": "F3",
++        "equipment": "G3"
++      }
++    },
++    {
++      "id": "cockpit",
++      "label": "Cockpit Zone",
++      "original_label": "PSU Esports Studio - Phuket - Cockpit Zone",
++      "seats": 35,
++      "equipment_th": "Cockpit 2 เครื่อง",
++      "equipment_en": "2 Cockpit units",
++      "prices_thb": {
++        "external": {
++          "full_day": 2000,
++          "half_day": 1000
++        },
++        "internal": {
++          "full_day": 1000,
++          "half_day": 500
++        }
++      },
++      "source_row": 4,
++      "source_cells": {
++        "external_full_day": "B4",
++        "external_half_day": "C4",
++        "internal_full_day": "D4",
++        "internal_half_day": "E4",
++        "seats": "F4",
++        "equipment": "G4"
++      }
++    },
++    {
++      "id": "vr",
++      "label": "VR Zone",
++      "original_label": "PSU Esports Studio - Phuket - VR Zone",
++      "seats": 34,
++      "equipment_th": "VR 1 เครื่อง",
++      "equipment_en": "1 VR unit",
++      "prices_thb": {
++        "external": {
++          "full_day": 6000,
++          "half_day": 3000
++        },
++        "internal": {
++          "full_day": 3000,
++          "half_day": 1500
++        }
++      },
++      "source_row": 5,
++      "source_cells": {
++        "external_full_day": "B5",
++        "external_half_day": "C5",
++        "internal_full_day": "D5",
++        "internal_half_day": "E5",
++        "seats": "F5",
++        "equipment": "G5"
++      }
++    },
++    {
++      "id": "nintendo_switch",
++      "label": "Nintendo Switch Zone",
++      "original_label": "PSU Esports Studio - Phuket - Nintendo Switch Zone",
++      "seats": 37,
++      "equipment_th": "Nintendo Switch 1 เครื่อง",
++      "equipment_en": "1 Nintendo Switch unit",
++      "prices_thb": {
++        "external": {
++          "full_day": 2000,
++          "half_day": 1000
++        },
++        "internal": {
++          "full_day": 1000,
++          "half_day": 500
++        }
++      },
++      "source_row": 6,
++      "source_cells": {
++        "external_full_day": "B6",
++        "external_half_day": "C6",
++        "internal_full_day": "D6",
++        "internal_half_day": "E6",
++        "seats": "F6",
++        "equipment": "G6"
++      }
++    },
++    {
++      "id": "ps5",
++      "label": "PlayStation 5 Zone",
++      "original_label": "PSU Esports Studio - Phuket - PlayStation 5 Zone",
++      "seats": 37,
++      "equipment_th": "PlayStation 5 2 เครื่อง",
++      "equipment_en": "2 PlayStation 5 units",
++      "prices_thb": {
++        "external": {
++          "full_day": 2000,
++          "half_day": 1000
++        },
++        "internal": {
++          "full_day": 1000,
++          "half_day": 500
++        }
++      },
++      "source_row": 7,
++      "source_cells": {
++        "external_full_day": "B7",
++        "external_half_day": "C7",
++        "internal_full_day": "D7",
++        "internal_half_day": "E7",
++        "seats": "F7",
++        "equipment": "G7"
++      }
++    },
++    {
++      "id": "pc",
++      "label": "PC Zone",
++      "original_label": "PSU Esports Studio - Phuket - PC Zone",
++      "seats": 43,
++      "equipment_th": "PC 10 เครื่อง",
++      "equipment_en": "10 PC units",
++      "prices_thb": {
++        "external": {
++          "full_day": 4000,
++          "half_day": 2000
++        },
++        "internal": {
++          "full_day": 2000,
++          "half_day": 1000
++        }
++      },
++      "source_row": 8,
++      "source_cells": {
++        "external_full_day": "B8",
++        "external_half_day": "C8",
++        "internal_full_day": "D8",
++        "internal_half_day": "E8",
++        "seats": "F8",
++        "equipment": "G8"
++      }
++    }
++  ]
++}

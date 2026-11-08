@@ -1,0 +1,166 @@
+{
+  "question_key": "aa50c26c89d96b6587cfab18fb61df10d27e6687448c2b6909883c4141eb1fd1",
+  "example_sha256": "40efbdada99af3cc32d62df92c9e415252cb006bcf393858e6120508298b349c",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One PSU Student thirty-minute Cockpit price request.",
+      "raw_quotes": [
+        "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount retains the requested total.",
+      "raw_quotes": [
+        "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PSU Student is audience,30 นาที duration and Cockpit the service.",
+      "raw_quotes": [
+        "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No general-adult group, extra user, one-hour request or prior rate is inherited.",
+      "raw_quotes": [
+        "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Shorter requested duration must be evaluated under source session_ceil rather than an invented linear half-price rule.",
+      "raw_quotes": [
+        "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_rate_cockpit_60_1_1_psu_student_staff explicitly records60-minute session_ceil; source capacity is one per station.",
+      "raw_quotes": [
+        "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": [
+        "migrated_rate_cockpit_60_1_1_psu_student_staff",
+        "availability_cockpit_01_02"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No zero amount, rounded session count or physical inventory count is taught.",
+      "raw_quotes": [
+        "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 154,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "30 นาที",
+      "PSU Student",
+      "Cockpit"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU Student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "30 นาที",
+      "PSU Student",
+      "Cockpit"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU Student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_cockpit_60_1_1_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "7af8f489e2a8f16416e45b8eafd2fcd1a55298c0b6109fb3bf6cca6256cec055"
+    },
+    "availability_cockpit_01_02": {
+      "revision": 5,
+      "record_sha256": "7f087dfdd63ad70bfb95aa38bfcf0d13418849c2ef01abba40bf53eda233efb0"
+    }
+  }
+}

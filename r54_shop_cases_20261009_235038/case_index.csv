@@ -1,0 +1,157 @@
+﻿id,language,category,question,mode,seconds,status,note
+c001,th,policy,ที่นี่เป็นร้านเกมทั่วไปหรือของมหาวิทยาลัย,pipeline:user_service_facts,2.969,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c002,en,policy,Is this a university facility or a regular gaming cafe?,pipeline:user_service_facts,2.701,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c003,th,policy,ต้องเป็นสมาชิกก่อนเล่นไหม,pipeline:user_service_facts,1.03,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c004,en,policy,Do I need membership to use the studio?,pipeline:user_service_facts,1.32,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c005,th,policy,ไปนั่งดูเพื่อนเล่นเฉยๆได้ไหม,pipeline:user_service_facts,1.145,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c006,en,policy,Can I sit and watch my friend play?,pipeline:user_service_facts,2.094,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c007,th,policy,เดินเข้าไปเล่นเลยได้ไหม ต้องจองไหม,pipeline:user_service_facts,1.044,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c008,en,policy,Can I walk in without booking?,pipeline:user_service_facts,0.83,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c009,th,policy,ศูนย์อยู่ตึกไหน ชั้นอะไร,pipeline:user_service_facts,0.742,PASS_FORMAT,答案与owner source一致，只因83120后空格导致原始exact-match报警；忽略空白后通过。
+c010,en,policy,Which building and floor is the studio in?,pipeline:user_service_facts,0.727,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c011,th,policy,ขอลิงก์แผนที่ศูนย์หน่อย,pipeline:user_service_facts,0.733,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c012,en,policy,Can I have the studio map link?,pipeline:user_service_facts,0.539,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c013,th,policy,มีที่จอดรถยนต์กับมอเตอร์ไซค์ไหม,pipeline:user_service_facts,0.599,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c014,en,policy,Is there parking for cars and motorcycles?,pipeline:user_service_facts,0.815,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c015,th,policy,หาศูนย์ไม่เจอ ติดต่อใครได้,pipeline:user_service_facts,0.543,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c016,en,policy,Who can I contact if I cannot find the studio?,pipeline:user_service_facts,0.608,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c017,th,policy,มากันสี่คนควรเลือกเครื่องไหน,pipeline:user_service_facts,0.561,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c018,en,policy,What should a group of four choose?,pipeline:english_no_answer,1.062,FAIL_INTENT,四人选择问题未匹配four_people；pattern只含four people/four of us和有限中文动作词，漏group of four/4 ppl/玩哪个等表达。应按owner回答Nintendo Switch。
+c019,th,policy,จองชื่อเราแต่ให้เพื่อนที่ไม่มีชื่อเล่นแทนได้ไหม,pipeline:request_timeout_no_answer,19.117,FAIL_TIMEOUT,未在deadline内回答。owner已给出named-player policy，实际只返回timeout；response无完整stage trace，不能确认是哪次模型调用耗时。
+c020,en,policy,Can a friend who is not named in my booking play instead?,pipeline:user_service_facts,0.62,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c021,th,policy,ตอนมาถึงต้องแสดงบัตรอะไร,pipeline:user_service_facts,0.566,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c022,en,policy,What ID should I show when I arrive?,pipeline:user_service_facts,0.543,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c023,th,policy,จองผิดเครื่องต้องแก้ยังไง,pipeline:user_service_facts,0.544,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c024,en,policy,How do I change a booking for the wrong machine?,pipeline:user_service_facts,0.801,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c025,th,policy,เปลี่ยนเวลาจองทำยังไง,pipeline:user_service_facts,0.586,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c026,en,policy,How can I change my booking time?,pipeline:user_service_facts,0.6,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c027,th,policy,เอาคีย์บอร์ดหรือเมาส์ตัวเองมาใช้ได้ไหม,pipeline:user_service_facts,0.814,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c028,en,policy,Can I bring my own keyboard or mouse?,pipeline:user_service_facts,0.59,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c029,th,policy,แนบสลิปผิดรูปต้องทำยังไง,pipeline:user_service_facts,0.578,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c030,en,policy,What should I do if I uploaded the wrong payment slip?,pipeline:user_service_facts,0.553,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c031,th,policy,จองหลายเครื่องโอนครั้งเดียวได้ไหม,pipeline:user_service_facts,0.924,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c032,en,policy,Can I make one bank transfer for several machines?,pipeline:user_service_facts,0.877,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c033,th,policy,มาถึงก่อนเพื่อนเช็กอินแทนทั้งกลุ่มได้ไหม,pipeline:user_service_facts,0.886,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c034,en,policy,Can I check in for my whole group before my friends arrive?,pipeline:user_service_facts,0.59,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c035,th,policy,มีที่นั่งพักรอเพื่อนไหม,pipeline:user_service_facts,2.188,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c036,en,policy,Is there seating where I can rest while waiting for friends?,pipeline:games_unknown_target_en,2.144,FAIL_INTENT,休息座位有owner source，却未匹配rest_seating；英文被当游戏标题，中文返回泛化澄清。应回答中央休息区；不能据此确认特定booking等候点。
+c037,th,policy_variant,ต้องสมัคสมาชิกก่อนไหม,pipeline:user_service_facts,0.565,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c038,en,policy_variant,do i need a memebrship first,pipeline:user_service_facts,0.597,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c039,th,policy_variant,แค่มาดูเพื่อนได้ปะ ไม่เล่น,pipeline:user_service_facts,0.555,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c040,en,policy_variant,can i just watch my freind,pipeline:user_service_facts,0.405,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c041,th,policy_variant,ไม่ได้จองมา เดินเข้าได้ปะ,pipeline:user_service_facts,0.535,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c042,en,policy_variant,can i walkin and play straight away,pipeline:user_service_facts,0.568,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c043,th,policy_variant,อยู่ตึกไร ชั้นไหนอ่ะ,pipeline:user_service_facts,0.558,PASS_FORMAT,答案与owner source一致，只因83120后空格导致原始exact-match报警；忽略空白后通过。
+c044,th,policy_variant,มอไซจอดไหน มีที่จอดปะ,pipeline:user_service_facts,0.567,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c045,th,policy_variant,มา4คน เล่นอันไหนดี,pipeline:general_rag_miss_llm_unavailable,18.018,FAIL_INTENT,四人选择问题未匹配four_people；pattern只含four people/four of us和有限中文动作词，漏group of four/4 ppl/玩哪个等表达。应按owner回答Nintendo Switch。
+c046,en,policy_variant,we are 4 ppl what can we play,pipeline:english_no_answer,1.132,FAIL_INTENT,四人选择问题未匹配four_people；pattern只含four people/four of us和有限中文动作词，漏group of four/4 ppl/玩哪个等表达。应按owner回答Nintendo Switch。
+c047,th,policy_variant,เพื่อนไม่มีชื่อในจอง เล่นแทนได้มะ,pipeline:semantic_rag_dynamic,6.234,PASS_EQUIVALENT,提问限定无名朋友代玩，答不可转让与该上下文的owner禁止条件一致；未评价其他有名队友的情况。
+c048,th,policy_variant,ไปถึงต้องเอาบัตรไรไปมั่ง,pipeline:candidate_margin_clarification,8.208,FAIL_INTENT,证件问题有source，口语/拼错documents未进checkin_documents，而进入clarification/no_answer。
+c049,en,policy_variant,which documnts do i bring for checkin,pipeline:english_no_answer,1.107,FAIL_INTENT,证件问题有source，口语/拼错documents未进checkin_documents，而进入clarification/no_answer。
+c050,th,policy_variant,จองผืดเครื่อง เปลี่ยนไง,pipeline:user_service_facts,0.565,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c051,th,policy_variant,อยากเปลี่ยนรอบที่จอง ต้องทำไง,pipeline:rag_direct_curated,2.108,SOURCE_REVIEW,旧rule source提供取消重订和至少1小时前、原slip；latest owner回答仅确认取消重订。答案主步骤相符，但source条件版本需协调，不能称为凭空编造。
+c052,th,policy_variant,เอาเม้าส์ตัวเองไปเสียบได้ปะ,pipeline:user_service_facts,0.582,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c053,en,policy_variant,can i use my own keybaord,pipeline:user_service_facts,0.551,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c054,th,policy_variant,อัพสลิปผืด ส่งใหม่ทางไหน,pipeline:rag_direct_curated,1.868,FAIL_WRONG_POLICY,错误slip应发Facebook page；却返回取消booking再重订旧rule。
+c055,th,policy_variant,จอง3เครื่อง จ่ายรวมทีเดียวได้ปะ,pipeline:user_service_facts,0.298,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c056,th,policy_variant,เพื่อนยังมาไม่ถึง เช็คอินให้ทั้งแก๊งได้ไหม,pipeline:protected_checkin_required,0.798,FAIL_WRONG_POLICY,代全组checkin应回答逐人检查/先到者可玩；却答一般checkin时间及证件。
+c057,th,policy_variant,มีตรงให้นั่งรอมั้ย,pipeline:candidate_margin_clarification,1.379,FAIL_INTENT,休息座位有owner source，却未匹配rest_seating；英文被当游戏标题，中文返回泛化澄清。应回答中央休息区；不能据此确认特定booking等候点。
+c058,th,price_budget,ราคา PC บุคคลทั่วไป,pipeline:structured_service_fee_conversation,0.302,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c059,en,price_budget,PC prices for general adults,pipeline:structured_service_fee_conversation,0.299,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c060,th,price_budget,เป็นบุคคลทั่วไป เล่น PC 2 ชั่วโมงเท่าไหร่,pipeline:structured_service_fee_conversation,0.293,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c061,en,price_budget,"General adult PC for two hours, how much?",pipeline:structured_service_fee_conversation,0.328,FAIL_FILTERS,request_plan把General adult及two hours丢失，customer_scope=unspecified、duration_minutes=null，回答全部人群每小时价格。应70×2=140 THB。
+c062,th,price_budget,มี 100 บาท เป็นบุคคลทั่วไป เล่น PC ได้กี่ชั่วโมง,pipeline:deterministic_calculator_fast,3.728,FAIL_BUDGET,没有budget allocation路径。中文只报70/小时，英文What can I play触发games catalog，未按100baht筛选/算可负担session。PC General Adult100baht应1个60分钟package，余30baht（按记录价）。
+c063,en,price_budget,I am a general adult with 100 baht. What can I play?,pipeline:structured_games_catalog_en,1.89,FAIL_BUDGET,没有budget allocation路径。中文只报70/小时，英文What can I play触发games catalog，未按100baht筛选/算可负担session。PC General Adult100baht应1个60分钟package，余30baht（按记录价）。
+c064,th,price_budget,มา4คนเล่น Nintendo 1 ชั่วโมง บุคคลทั่วไปเท่าไหร่,pipeline:structured_service_fee_conversation,0.298,PASS_RECORDED,Nintendo3-4people generaladult记录价280/60min，正确标明原表到2026-03-31；本测试不确认现价续期。
+c065,th,price_budget,ขอตารางราคาทุกบริการบุคคลภายนอก,pipeline:structured_service_fee_conversation,0.306,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c066,en,price_budget,All service prices for external users,pipeline:structured_service_fee_conversation,0.307,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c067,th,rental,หน่วยงานภายนอกเหมา PC เต็มวันราคาเท่าไหร่,pipeline:zone_rental_fee,0.299,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c068,en,rental,PC whole-day rental price for external organizations,pipeline:zone_rental_fee,0.28,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c069,th,rental,หน่วยงานภายนอกเหมาทุกโซน ครึ่งวันกับเต็มวันราคาเท่าไหร่,pipeline:zone_rental_fee,0.353,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c070,en,rental,Compare PC full-day rental external organizations with VR half-day internal organizations,pipeline:zone_rental_fee,0.373,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c071,th,rental,เหมาครึ่งวันคือกี่ชั่วโมง,pipeline:zone_rental_fee,0.302,SAFE_UNCONFIRMED,正确不猜缺失的rental hours或不存在的PS55费率。
+c072,en,rental,Can I rent PS55 for a full day?,pipeline:zone_rental_fee,0.362,SAFE_UNCONFIRMED,正确不猜缺失的rental hours或不存在的PS55费率。
+c073,th,games,PC มีเกมอะไรบ้าง ขอทั้งหมด,pipeline:structured_service_game_availability,0.808,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c074,en,games,What games are available on PC? List all of them.,pipeline:structured_games_catalog_en,0.545,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c075,th,games,Nintendo มีเกมไรมั่ง,pipeline:game_target_ambiguous,0.539,FAIL_CATALOG,Nintendo/Cockpit游戏列表请求被当成未知游戏/没有答案；已存在按zone的catalog。
+c076,en,games,What games can I play on Nintendo Switch?,pipeline:structured_games_catalog_en,0.556,PASS_CATALOG,命中正确zone游戏列表；不代表现场每台都安装/已更新。
+c077,th,games,PS5 มีเกมไรบ้าง,pipeline:structured_service_game_availability,0.581,PASS_CATALOG,命中正确zone游戏列表；不代表现场每台都安装/已更新。
+c078,th,games,Cockpit เล่นเกมอะไร,pipeline:no_answer,13.039,FAIL_CATALOG,Nintendo/Cockpit游戏列表请求被当成未知游戏/没有答案；已存在按zone的catalog。
+c079,th,games,VR มีเกมอะไรบ้าง,pipeline:structured_service_game_availability,0.598,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c080,th,games,ที่ศูนย์มีเกมให้เล่นทั้งหมดกี่เกม,pipeline:hybrid_guarded_rerank,6.159,FAIL_AGGREGATE,ถามจำนวน游戏总数却检索到Naruto单条描述。应该从游戏catalog按去重口径计算并说明zone重复。
+c081,th,competition,กฏตอนเเข่ง cs2 มีอะไรมั่ง,pipeline:competition_rule_overview_source,0.867,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c082,th,competition,กฏตอนเเข่ง rov มีอะไรมั่ง,pipeline:competition_rule_overview_source,1.082,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c083,th,competition,กฏตอนเเข่ง tekken 8 มีอะไรมั่ง,pipeline:competition_rule_overview_source,0.586,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c084,th,competition,กฏตอนแข่งวาโลมีอะไรมั่ง,pipeline:competition_rule_overview_source,0.883,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c085,th,competition,ขอกฎการแข่งขัน CS2 ทั้งหมดทุกหัวข้อ,pipeline:competition_rule_full_sections_source,0.59,PARTIAL_PAGE,CS2 full rules返回8/56部分，明确标记partial；target命中并不代表all coverage通过。后续分页另测失败。
+c086,en,competition,All documented competition rules for Tekken 8,pipeline:competition_rule_full_sections_source,0.592,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c087,en,competition,What are the ROV tournament rules?,pipeline:competition_rule_overview_source,0.817,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c088,th,competition,กฎแข่ง CS2 ปี 2030,pipeline:competition_rule_detail_no_answer,0.288,SAFE_EDITION,正确拒绝拿2026文档确认2030规则。
+c089,th,live_booking,ตอนนี้ PC ว่างไหม,pipeline:live_booking_status_fast_path,1.876,LIVE_UNVERIFIED,WordPress live path有timestamp并返回closed/history状态，但未用同一timestamp外部ground truth逐slot比对；不等同availability accuracy确认。
+c090,th,live_booking,cockpik ว่างไหม,pipeline:live_booking_status_fast_path,1.905,LIVE_UNVERIFIED,WordPress live path有timestamp并返回closed/history状态，但未用同一timestamp外部ground truth逐slot比对；不等同availability accuracy确认。
+c091,th,live_booking,วันนี้ตอนบ่าย3มีอุปกรณ์อะไรว่างให้เล่นบ้าง,pipeline:live_booking_status_fast_path,1.605,LIVE_UNVERIFIED,WordPress live path有timestamp并返回closed/history状态，但未用同一timestamp外部ground truth逐slot比对；不等同availability accuracy确认。
+c092,en,live_booking,Which equipment is free today at 3 pm?,pipeline:live_booking_status_fast_path,1.654,LIVE_UNVERIFIED,WordPress live path有timestamp并返回closed/history状态，但未用同一timestamp外部ground truth逐slot比对；不等同availability accuracy确认。
+c093,en,live_booking,Is PC1 free today at 10 am?,pipeline:live_booking_status_fast_path,1.638,LIVE_UNVERIFIED,WordPress live path有timestamp并返回closed/history状态，但未用同一timestamp外部ground truth逐slot比对；不等同availability accuracy确认。
+c094,th,live_booking,วันนี้ VR 9:00-9:30 ว่างไหม,pipeline:live_booking_status_fast_path,1.661,FAIL_TIME_ENTITY,VR紧跟9:00被_requested_resource_number的regex读成设备#9。不能把clock hour当机器编号。
+c095,th,policy_boundary,เครื่องค้างระหว่างเล่น คืนเวลาให้ไหม,pipeline:user_service_facts,0.824,SAFE_UNCONFIRMED,针对未确认policy明确表示未知/区分旧recorded rule和owner未答项；不算wrong answer，不假定已解决owner policy。
+c096,en,policy_boundary,Can I install a game that is not in your list?,pipeline:user_service_facts,0.865,SAFE_UNCONFIRMED,针对未确认policy明确表示未知/区分旧recorded rule和owner未答项；不算wrong answer，不假定已解决owner policy。
+c097,th,policy_boundary,เอา Steam ตัวเองล็อกอินได้ไหม,pipeline:candidate_margin_clarification,7.989,FAIL_UNHELPFUL_CLARIFICATION,Steam个人账号使用policy尚未确认；应明确该字段未知而非泛化询问游戏/价格/设备。
+c098,en,policy_boundary,"If I arrive 15 minutes late, can I still play?",pipeline:user_service_facts,0.564,SAFE_UNCONFIRMED,针对未确认policy明确表示未知/区分旧recorded rule和owner未答项；不算wrong answer，不假定已解决owner policy。
+c099,th,policy_boundary,เด็กอายุ10ขวบเล่นได้ไหม ต้องมีผู้ปกครองไหม,pipeline:user_service_facts,0.327,SAFE_UNCONFIRMED,针对未确认policy明确表示未知/区分旧recorded rule和owner未答项；不算wrong answer，不假定已解决owner policy。
+c100,en,policy_boundary,May I stream from a studio computer?,pipeline:user_service_facts,0.282,SAFE_UNCONFIRMED,针对未确认policy明确表示未知/区分旧recorded rule和owner未答项；不算wrong answer，不假定已解决owner policy。
+c101,th,policy_boundary,จ่ายแล้วจองผิดวัน เปลี่ยนวันกับขอเลื่อนแทนคืนเงินได้ไหม,pipeline:user_service_facts,0.387,SAFE_UNCONFIRMED,针对未确认policy明确表示未知/区分旧recorded rule和owner未答项；不算wrong answer，不假定已解决owner policy。
+c102,th,policy_boundary,เกมต้องอัปเดตตอนมาถึง เวลานับยังไง,pipeline:user_service_facts,0.818,SAFE_UNCONFIRMED,针对未确认policy明确表示未知/区分旧recorded rule和owner未答项；不算wrong answer，不假定已解决owner policy。
+c103,th,dialogue,ราคาของบุคคลภายนอก,pipeline:protected_price_missing_service,0.416,PASS_CLARIFICATION,初轮价格缺service或比赛规则缺game，询问缺项合理；后续相同session返回选定scope。
+c104,th,dialogue,PC,pipeline:structured_service_fee_conversation,0.294,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c105,th,dialogue,ต้องการราคาของบุคคลภายนอก,pipeline:protected_price_missing_service,0.382,PASS_CLARIFICATION,初轮价格缺service或比赛规则缺game，询问缺项合理；后续相同session返回选定scope。
+c106,th,dialogue,ทั้งหมด,pipeline:structured_service_fee_conversation,0.335,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c107,en,dialogue,Service prices for external users,pipeline:protected_price_missing_service,0.309,PASS_CLARIFICATION,初轮价格缺service或比赛规则缺game，询问缺项合理；后续相同session返回选定scope。
+c108,en,dialogue,PC,pipeline:structured_service_fee_conversation,0.296,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c109,en,dialogue,Service prices for external users,pipeline:protected_price_missing_service,0.288,PASS_CLARIFICATION,初轮价格缺service或比赛规则缺game，询问缺项合理；后续相同session返回选定scope。
+c110,en,dialogue,all of them,pipeline:structured_service_fee_conversation,0.283,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c111,th,dialogue,PC มีเกมอะไรบ้าง,pipeline:structured_service_game_availability,0.561,PASS_CATALOG,首轮PC游戏按设备组给出list。
+c112,th,dialogue,ทั้งหมด,pipeline:dialogue_state_clarification,0.3,FAIL_CONTEXT,last_seen_response_id已提交；resolver仍用all_catalog_axis_ambiguous询问泛化scope，而非保留PC+games list。
+c113,th,dialogue,ขอกฎการแข่งขัน,pipeline:competition_target_clarification,0.542,PASS_CLARIFICATION,初轮价格缺service或比赛规则缺game，询问缺项合理；后续相同session返回选定scope。
+c114,th,dialogue,CS2,pipeline:competition_rule_overview_source,0.599,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c115,en,dialogue,I want the competition rules,pipeline:competition_target_clarification_en,0.571,PASS_CLARIFICATION,初轮价格缺service或比赛规则缺game，询问缺项合理；后续相同session返回选定scope。
+c116,en,dialogue,Tekken 8,pipeline:competition_rule_overview_source,0.551,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c117,en,dialogue,PC full-day rental price for external organizations,pipeline:zone_rental_fee,0.337,PASS_RECORDED,按对应记录source返回PC zone rental4000或PC generaladult70。
+c118,en,dialogue,How many people can it accommodate?,pipeline:zone_rental_fee,0.575,PASS_RECORDED,followup继承PC rental并返回43 seats/10 PC units，正确区分座位容量与设备数量。
+c119,en,dialogue,PC full-day rental price for external organizations,pipeline:zone_rental_fee,0.338,PASS_RECORDED,按对应记录source返回PC zone rental4000或PC generaladult70。
+c120,en,dialogue,How can I reserve it?,pipeline:zone_rental_fee,0.322,SAFE_UNCONFIRMED,followup继承rental，但workbook没有rental booking流程，正确不借一般play booking替代。
+c121,th,dialogue,ราคา PC บุคคลทั่วไป,pipeline:structured_service_fee_conversation,0.3,PASS_RECORDED,按对应记录source返回PC zone rental4000或PC generaladult70。
+c122,th,dialogue,แล้ว VR ล่ะ,pipeline:structured_service_fee_conversation,0.312,PASS_BOUNDED,通过原始source/keyword检查，未据此声称所有claim/完整scope/当前数据已认证。
+c123,th,dialogue,ราคา PC บุคคลทั่วไป,pipeline:structured_service_fee_conversation,0.362,PASS_RECORDED,按对应记录source返回PC zone rental4000或PC generaladult70。
+c124,th,dialogue,กฎแข่ง ROV ล่ะ,pipeline:competition_source_rag,1.878,PASS_TARGET_ONLY,换话题至ROV后game/source正确，内容只选一条rule；仅确认topic不混PC价格，未认证overview覆盖全部。
+c125,th,dialogue,วันนี้ PC1 ตอน10โมงว่างไหม,pipeline:live_booking_status_fast_path,1.62,LIVE_UNVERIFIED,WordPress live path有timestamp并返回closed/history状态，但未用同一timestamp外部ground truth逐slot比对；不等同availability accuracy确认。
+c126,th,dialogue,แล้ว PC2 ล่ะ,pipeline:candidate_margin_clarification,1.09,FAIL_CONTEXT,PC2 followup丢失前轮availability/日期/10点，no_matching_context_resolution，返回泛化clarification。
+c127,th,hours,เปิดกี่โมง ปิดกี่โมง,pipeline:structured_schedule,0.525,PASS_SCHEDULE,返回recorded timetable，未重新确认特殊关门。
+c128,en,hours,What are your opening hours?,pipeline:chatbot_identity_en,0.327,FAIL_INTENT,opening hours被chatbot_identity_en拦截，回答自我介绍。
+c129,th,hours,วัน Maintenance ใช้บริการได้ไหม,pipeline:general_llm_after_rag_miss,15.446,GROUNDING_GAP,Maintenance属于中心schedule，却用了general LLM知识，未引用已有时段表；不能据此认定整天maintenance。
+c130,en,hours,Is the studio open on maintenance days?,pipeline:structured_schedule_en,0.54,PASS_SCHEDULE,recorded表列具体maintenance区间/午休/周末无常规服务，区分live。
+c131,th,hours,วันอาทิตย์เปิดไหม,pipeline:structured_schedule,0.916,FAIL_COVERAGE,问周日，仅返回周一到周五，未直接说明Sunday常规表未列服务。
+c132,en,multi_topic,Where is the studio and when does it open?,pipeline:user_service_facts,0.301,FAIL_COVERAGE,问where+when，只答地址，漏营业时间。
+c133,th,booking_process,จองเครื่องยังไง ขอขั้นตอนทั้งหมด,pipeline:conversation_scope_clarification,0.184,FAIL_OVERCLARIFICATION,booking流程完整问题被all/scope guard挡成询问全部哪个topic。
+c134,en,booking_process,How do I book a PC? Give all the steps.,pipeline:rule_en,0.322,PASS_RECORDED,返回6步booking流程及reservation source。
+c135,th,payment,ชำระเงินยังไง จ่ายเงินสดได้ไหม,pipeline:protected_payment_method,0.361,FAIL_COVERAGE,回答bank transfer，却没说明cash是否有确认，第二个问题未答。
+c136,en,payment,Can I pay cash when I arrive?,pipeline:english_no_answer,6.351,SAFE_UNCONFIRMED,cash许可未确认；generic no_answer虽不够友好，但不能按已有转账方法推出现金绝对禁止。
+c137,th,budget,มี 100 บาท เล่น PC ได้กี่รอบ บุคคลทั่วไป,pipeline:deterministic_calculator_fast,0.563,FAIL_BUDGET,与c062同：只答单价不答可玩几轮。
+c138,en,budget,I have 100 THB and want to play PC as a general adult. How many sessions can I afford?,pipeline:rule_en,0.546,FAIL_WRONG_POLICY,afford几session错误选择一次booking最多3session规则，与预算可负担数无关。
+c139,th,controls,ปุ่มยิงกับรีโหลดใน CS2 คืออะไร,pipeline:structured_game_controls,0.991,DEVICE_VERIFY_PENDING,CS2shoot/reload从secondary guide回复LMB/R，明确设备设置未确认；不是现场验证通过。
+c140,en,controls,How do I shoot and reload in CS2?,pipeline:structured_game_availability_en,0.392,FAIL_INTENT,CS2shoot/reload被当game availability，没回答buttons。
+c141,th,controls,ขอปุ่มควบคุม Tekken 8 ทั้งหมด,pipeline:structured_game_controls,0.929,SOURCE_QUALITY_ISSUE,Thai Tekken控制描述有Arabic بشكل，来自game_control_facts.jsonl原文并非本轮LLM生成；controls现场仍未验证。
+c142,en,controls,What are the basic controls for Tekken 8?,pipeline:structured_game_controls_en,0.395,DEVICE_VERIFY_PENDING,English Tekken mappings返回已有secondary guide并注明设备未确认。
+c143,th,equipment_spec,คอมของศูนย์สเปคอะไร,pipeline:structured_equipment_item,0.31,PASS_RECORDED,回答记录中的CPU/RAM/GPU；本轮未核对实际机器。
+c144,en,equipment_spec,What PC specifications does the studio have?,pipeline:structured_equipment_catalog_en,0.357,FAIL_COVERAGE,问PC specifications，却只列equipment catalog，漏已有CPU/RAM/GPU。
+c145,th,multi_topic,ต้องเป็นสมาชิกไหม มีที่จอดรถไหม แล้วต้องเอาบัตรอะไรไป,pipeline:user_service_facts,0.182,FAIL_COVERAGE,membership+parking+ID只回答前两项，漏证件。
+c146,en,multi_topic,"Do I need membership, is there parking, and what ID should I bring?",pipeline:user_service_facts,0.264,PASS_MULTI_POLICY,英文3项都答出owner source。
+c147,th,multi_topic,เอาเมาส์มาเองได้ไหม แล้วจองผิดเครื่องเปลี่ยนยังไง,pipeline:multi_question_splitter,0.572,PASS_MULTI_POLICY,中文2项正确分拆：personal mouse禁止+cancel/rebook机器。
+c148,en,multi_topic,"Can I bring my own keyboard, and can someone else use my booking?",pipeline:multi_question_splitter,0.224,PASS_MULTI_POLICY,英文2项正确分拆：keyboard禁止+named-player条件。
+c149,th,live_booking,วันนี้ VR เวลา 09:00 ถึง 09:30 ว่างไหม,pipeline:live_booking_status_fast_path,1.091,LIVE_UNVERIFIED,明确时间隔开设备名可进live路径。09:00-09:30原区间及morning/afternoon两条输出，应再用fixture确认effective hour占用/套餐筛选，未认证可book。
+c150,en,live_booking,Is VR free today from 09:00 to 09:30?,pipeline:live_booking_status_fast_path,1.194,LIVE_UNVERIFIED,与c149同，英文输出已有booking历史，未独立验证有效时间/资源filter。
+c151,th,live_booking,วันนี้ PC1 เวลา10โมง และ PC2 เวลา11โมงว่างไหม,pipeline:live_booking_status_fast_path,1.203,FAIL_MULTI_TARGET,PC1@10及PC2@11只回PC1@10，第二目标和时间被丢弃。
+c152,th,multi_topic,PC มีเกมอะไรบ้าง และคนทั่วไปเล่นสองชั่วโมงเท่าไหร่,pipeline:structured_service_fee_conversation,0.126,FAIL_MULTI_FILTERS,games+2hours+generaladult只回price全部人群每package：漏games并丢word-number/group。
+c153,en,multi_topic,"What games are on PC, and how much does two hours cost for a general adult?",pipeline:structured_service_fee_conversation,0.206,FAIL_MULTI_FILTERS,English同c152。
+c154,th,player_identity,คนจองกับคนเล่นต้องเป็นคนเดียวกันไหม,pipeline:user_service_facts,0.382,PASS_OWNER,owner named-player policy直接正确。
+c155,th,policy_boundary,นั่งดูเพื่อนต้องเสียเงินไหม,pipeline:user_service_facts,0.34,FAIL_COVERAGE,问观看收费，只答允许观看。owner只确认permission，未确认费用，应说明费用未知。
+c156,en,policy_boundary,Is parking free?,pipeline:user_service_facts,0.19,SAFE_UNCONFIRMED,停车可用与免费不同，正确标明parking fees未指定。

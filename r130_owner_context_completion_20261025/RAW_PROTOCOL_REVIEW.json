@@ -1,0 +1,241 @@
+{
+  "saved_raw_only": true,
+  "new_inferences": 0,
+  "baseline_answers_regraded": false,
+  "candidate_runtime_modified": false,
+  "all_330_saved_rows_read": true,
+  "raw_file_sha256": "4fcc9f54860dcb4c12b541f09e1bc7a079b74434708b7ec8d0cfb385dc6404c2",
+  "arms": {
+    "base": {
+      "requests": 110,
+      "json_parseable": 0,
+      "runtime_wire_accepted": 0,
+      "actual_model_identity_verified": 110,
+      "raw_semantic_accuracy": null
+    },
+    "retained": {
+      "requests": 110,
+      "json_parseable": 95,
+      "runtime_wire_accepted": 0,
+      "actual_model_identity_verified": 110,
+      "raw_semantic_accuracy": null
+    },
+    "new": {
+      "requests": 110,
+      "json_parseable": 110,
+      "runtime_wire_accepted": 90,
+      "actual_model_identity_verified": 110,
+      "raw_semantic_accuracy": null
+    }
+  },
+  "samples": {
+    "base": [
+      {
+        "key": "8570a28b567efb150998f4e15cebed739de8dcc6c72b66747d9f66b10022607a",
+        "question": "Please answer from verified studio information: Which studio zone has TEKKEN 8",
+        "raw_output": "version: 1\nfocus: game_location\ncontext_quotes: []\ntasks:\n- id: 1\n  quote: \"Please answer from verified studio information: Which studio zone has TEKKEN 8\"\n  domain: general\n  operation: unknown\n  facet: game_location\n  target: studio_zone\n  constraints: []\n  ambiguous: true\nshared_bindings: []",
+        "wire_version": null,
+        "protocol_error": "invalid_json_but_runtime_fallback_still_executed",
+        "provenance": {
+          "serving_protocol": "r129-multi-profile-v2",
+          "effective_profile": "base",
+          "adapter_active": false,
+          "adapter_sha256": null,
+          "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+          "profile_digest": "d7fd41965185024bd2bbe699364511fd4b61d0f275ccbd17287cf5c467894ffd",
+          "effective_messages_sha256": "75cb7854261c2927a8f6452eb33bcfcb72f9b23c29adcf08235a517480333956",
+          "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+          "quantization": "NF4 double quant BF16",
+          "stage": "context_understanding",
+          "effective_max_new_tokens": 900,
+          "hit_token_limit": false
+        }
+      },
+      {
+        "key": "43d4deaf88e230ef0049d9526e5693675df8614fe11f2843c54cb12fd35060ff",
+        "question": "What are all the buttons in Fortnite?",
+        "raw_output": "version: 1\nfocus: game_controls\ncontext_quotes: [\"What are all the buttons in Fortnite?\"]\ntasks:\n- id: 1\n  quote: \"What are all the buttons in Fortnite?\"\n  domain: game_controls\n  operation: detail\n  facet: input_bindings\n  target: audience\n  constraints: []\n  ambiguous: true\nshared_bindings: []",
+        "wire_version": null,
+        "protocol_error": "invalid_json_but_runtime_fallback_still_executed",
+        "provenance": {
+          "serving_protocol": "r129-multi-profile-v2",
+          "effective_profile": "base",
+          "adapter_active": false,
+          "adapter_sha256": null,
+          "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+          "profile_digest": "d7fd41965185024bd2bbe699364511fd4b61d0f275ccbd17287cf5c467894ffd",
+          "effective_messages_sha256": "fc8813ee667ca3092d5f00aaea1a435178528731d9447f36bc02c279ef2633a1",
+          "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+          "quantization": "NF4 double quant BF16",
+          "stage": "context_understanding",
+          "effective_max_new_tokens": 900,
+          "hit_token_limit": false
+        }
+      }
+    ],
+    "retained": [
+      {
+        "key": "8570a28b567efb150998f4e15cebed739de8dcc6c72b66747d9f66b10022607a",
+        "question": "Please answer from verified studio information: Which studio zone has TEKKEN 8",
+        "raw_output": "{\"version\":\"1.0\",\"focus\":\"game_location\",\"context_quotes\":[],\"tasks\":[{\"id\":\"1\",\"quote\":\"TEKKEN 8\",\"domain\":\"games\",\"operation\":\"detail\",\"facet\":\"zone\",\"target\":\"TEKKEN 8\",\"constraints\":[{\"slot\":\"service\",\"quote\":\"TEKKEN 8\",\"source_record_id\":\"\",\"scope\":\"local\",\"source\":\"studio_services\"}],\"ambiguous\":false}],\"shared_bindings\":[{\"source_task_id\":\"1\",\"target_task_id\":\"1\",\"slot\":\"service\",\"quote\":\"TEKKEN 8\",\"basis\":\"explicit_anaphor\"}]}",
+        "wire_version": null,
+        "protocol_error": null,
+        "provenance": {
+          "serving_protocol": "r129-multi-profile-v2",
+          "effective_profile": "retained",
+          "adapter_active": true,
+          "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+          "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+          "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+          "effective_messages_sha256": "75cb7854261c2927a8f6452eb33bcfcb72f9b23c29adcf08235a517480333956",
+          "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+          "quantization": "NF4 double quant BF16",
+          "stage": "context_understanding",
+          "effective_max_new_tokens": 900,
+          "hit_token_limit": false
+        }
+      },
+      {
+        "key": "43d4deaf88e230ef0049d9526e5693675df8614fe11f2843c54cb12fd35060ff",
+        "question": "What are all the buttons in Fortnite?",
+        "raw_output": "{\"version\":\"1.0\",\"focus\":\"game_controls\",\"context_quotes\":[],\"tasks\":[{\"id\":\"1\",\"quote\":\"What are all the buttons in Fortnite?\",\"domain\":\"game_controls\",\"operation\":\"list\",\"facet\":\"input_bindings\",\"target\":\"Fortnite\",\"constraints\":[{\"slot\":\"platform\",\"quote\":\"Fortnite\",\"source_record_id\":\"\",\"scope\":\"local\"}],\"ambiguous\":false}],\"shared_bindings\":[],\"rules\":[],\"errors\":[]}",
+        "wire_version": null,
+        "protocol_error": null,
+        "provenance": {
+          "serving_protocol": "r129-multi-profile-v2",
+          "effective_profile": "retained",
+          "adapter_active": true,
+          "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+          "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+          "profile_digest": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+          "effective_messages_sha256": "fc8813ee667ca3092d5f00aaea1a435178528731d9447f36bc02c279ef2633a1",
+          "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+          "quantization": "NF4 double quant BF16",
+          "stage": "context_understanding",
+          "effective_max_new_tokens": 900,
+          "hit_token_limit": false
+        }
+      }
+    ],
+    "new": [
+      {
+        "key": "8570a28b567efb150998f4e15cebed739de8dcc6c72b66747d9f66b10022607a",
+        "question": "Please answer from verified studio information: Which studio zone has TEKKEN 8",
+        "raw_output": "{\"version\":\"r129-plan-v2\",\"focus\":\"game_location\",\"context_quotes\":[\"TEKKEN 8\"],\"tasks\":[{\"quote\":\"Please answer from verified studio information: Which studio zone has TEKKEN 8\",\"domain\":\"games\",\"operation\":\"detail\",\"facet\":\"zone\",\"target\":\"TEKKEN 8\",\"constraints\":[{\"slot\":\"service\",\"quote\":\"TEKKEN 8\",\"source_record_id\":\"\",\"scope\":\"local\"}],\"ambiguous\":false,\"id\":\"t1\"}],\"shared_bindings\":[]}",
+        "wire_version": "r129-plan-v2",
+        "protocol_error": null,
+        "provenance": {
+          "serving_protocol": "r129-multi-profile-v2",
+          "effective_profile": "new",
+          "adapter_active": true,
+          "adapter_sha256": "2b06494ba249b2f09edb27340e0a4e7a89801017de8f0336ea125566b65764dc",
+          "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+          "profile_digest": "400558c1f53991fba16401446e0b5d6c6b8615cb84c58bd7fb23f99c67c465f3",
+          "effective_messages_sha256": "75cb7854261c2927a8f6452eb33bcfcb72f9b23c29adcf08235a517480333956",
+          "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+          "quantization": "NF4 double quant BF16",
+          "stage": "context_understanding",
+          "effective_max_new_tokens": 900,
+          "hit_token_limit": false
+        }
+      },
+      {
+        "key": "43d4deaf88e230ef0049d9526e5693675df8614fe11f2843c54cb12fd35060ff",
+        "question": "What are all the buttons in Fortnite?",
+        "raw_output": "{\"version\":\"r129-plan-v2\",\"focus\":\"game_controls\",\"context_quotes\":[\"Fortnite\"],\"tasks\":[{\"quote\":\"What are all the buttons in Fortnite?\",\"domain\":\"game_controls\",\"operation\":\"list\",\"facet\":\"input_bindings\",\"target\":\"Fortnite\",\"constraints\":[{\"slot\":\"service\",\"quote\":\"Fortnite\",\"source_record_id\":\"\",\"scope\":\"local\"}],\"ambiguous\":false,\"id\":\"t1\"}],\"shared_bindings\":[]}",
+        "wire_version": "r129-plan-v2",
+        "protocol_error": null,
+        "provenance": {
+          "serving_protocol": "r129-multi-profile-v2",
+          "effective_profile": "new",
+          "adapter_active": true,
+          "adapter_sha256": "2b06494ba249b2f09edb27340e0a4e7a89801017de8f0336ea125566b65764dc",
+          "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+          "profile_digest": "400558c1f53991fba16401446e0b5d6c6b8615cb84c58bd7fb23f99c67c465f3",
+          "effective_messages_sha256": "fc8813ee667ca3092d5f00aaea1a435178528731d9447f36bc02c279ef2633a1",
+          "effective_schema_sha256": "88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0",
+          "quantization": "NF4 double quant BF16",
+          "stage": "context_understanding",
+          "effective_max_new_tokens": 900,
+          "hit_token_limit": false
+        }
+      }
+    ]
+  },
+  "observed_live_log_stages_not_final": {
+    "context_understanding": {
+      "observed_calls": 334,
+      "json_parseable": 205
+    },
+    "evidence_selection": {
+      "observed_calls": 59,
+      "json_parseable": 22
+    }
+  },
+  "selector_samples": [
+    {
+      "json_parseable": false,
+      "raw_output": "[{\"i\": 0, \"question\": \"กติกา Valorant งานล่าสุดใช้อะไร\", \"evidence\": [{\"choice\": 1, \"subject\": \"VALORANT\", \"field\": \"บริการที่มีเกมนี้\", \"value\": \"PC #01-#02; PC #03-#10\"}, {\"choice\": 2, \"subject\": \"VALORANT\", \"field\": \"แนวเกม\", \"value\": \"เกมยิง Tactical FPS แบบทีม 5v5\"}, {\"choice\": 3, \"subject\": \"VALORANT\", \"field\": \"โซนที่ยืนยันว่ามีเกมนี้\", \"value\": \"PC Zone\"}, {\"choice\": 4, \"subject\": \"VALORANT\", \"field\": \"วิธีเล่น\", \"value\": \"ฝ่ายบุกต้องวาง Spike ส่วนฝ่ายรับต้องป้องกันพื้นที่หรือกู้ Spike การเล่นเน้นการเล็ง การสื่อสาร การใช้",
+      "provenance": {
+        "serving_protocol": "r129-multi-profile-v2",
+        "effective_profile": "base",
+        "adapter_active": false,
+        "adapter_sha256": null,
+        "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+        "profile_digest": "d7fd41965185024bd2bbe699364511fd4b61d0f275ccbd17287cf5c467894ffd",
+        "effective_messages_sha256": "43da4ef019daf55944a649d47dc03e39a6c32c1b8d676d26e899858a7b7bd9f6",
+        "effective_schema_sha256": "94a101ff8aa9d50c254eacdc394af2ba4ec112328519a158b2241f3a094b4ab3",
+        "quantization": "NF4 double quant BF16",
+        "stage": "evidence_selection",
+        "effective_max_new_tokens": 640,
+        "hit_token_limit": false
+      }
+    },
+    {
+      "json_parseable": true,
+      "raw_output": "[{\"i\": 0, \"question\": \"PC ชั้งจอรุ่นอะไร\", \"evidence\": [{\"choice\": 1, \"subject\": \"PC #01-#02\", \"field\": \"รายชื่อเกมทั้งหมด\", \"value\": \"TEKKEN 8; Counter-Strike 2; League of Legends; PUBG: BATTLEGROUNDS; VALORANT\"}, {\"choice\": 2, \"subject\": \"PC #03-#10\", \"field\": \"รายชื่อเกมทั้งหมด\", \"value\": \"Call of Duty: Warzone; Counter-Strike 2; League of Legends; PUBG: BATTLEGROUNDS; VALORANT\"}]}]",
+      "provenance": {
+        "serving_protocol": "r129-multi-profile-v2",
+        "effective_profile": "base",
+        "adapter_active": false,
+        "adapter_sha256": null,
+        "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+        "profile_digest": "d7fd41965185024bd2bbe699364511fd4b61d0f275ccbd17287cf5c467894ffd",
+        "effective_messages_sha256": "02f03ce6748d6e094b543eb27ef391164d5eaa5f88addd8d905f9854fa9050fe",
+        "effective_schema_sha256": "94a101ff8aa9d50c254eacdc394af2ba4ec112328519a158b2241f3a094b4ab3",
+        "quantization": "NF4 double quant BF16",
+        "stage": "evidence_selection",
+        "effective_max_new_tokens": 640,
+        "hit_token_limit": false
+      }
+    },
+    {
+      "json_parseable": true,
+      "raw_output": "[{\"i\": 0, \"question\": \"กติกา VALORANT ใช้สกิลนอกขอบแผนที่เพื่อหาข้อมูลได้ไหม\", \"evidence\": [{\"choice\": 1, \"subject\": \"VALORANT\", \"field\": \"วิธีเล่น\", \"value\": \"ฝ่ายบุกต้องวาง Spike ส่วนฝ่ายรับต้องป้องกันพื้นที่หรือกู้ Spike การเล่นเน้นการเล็ง การสื่อสาร การใช้สกิล และการเล่นเป็นทีม\"}]}]",
+      "provenance": {
+        "serving_protocol": "r129-multi-profile-v2",
+        "effective_profile": "base",
+        "adapter_active": false,
+        "adapter_sha256": null,
+        "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+        "profile_digest": "d7fd41965185024bd2bbe699364511fd4b61d0f275ccbd17287cf5c467894ffd",
+        "effective_messages_sha256": "a20192197bf9f939f66187a690c58a3ec26f46fe5c96c1a269410a7d02c92574",
+        "effective_schema_sha256": "94a101ff8aa9d50c254eacdc394af2ba4ec112328519a158b2241f3a094b4ab3",
+        "quantization": "NF4 double quant BF16",
+        "stage": "evidence_selection",
+        "effective_max_new_tokens": 640,
+        "hit_token_limit": false
+      }
+    }
+  ],
+  "source_execution_review_still_required": true,
+  "semantic_accuracy_not_inferred_from_wire_acceptance": true,
+  "findings": [
+    "graph_protocol.SYSTEM requests a graph but does not literally specify JSON serialization or the version value; the requested format schema is carried separately.",
+    "serve_model.py hashes and records the format schema but does not apply constrained JSON/schema decoding to model.generate; template and greedy generation are identical for all arms.",
+    "Base emits YAML-like output for all 110 saved context requests. Retained produces parseable JSON for 95 requests, but its hybrid/new-version output is not an accepted old or new wire. These failures are not 0% answer correctness.",
+    "New adapter protocol transfer is substantially stronger, but operation/slot metrics and source-backed execution must be reviewed separately. A passed JSON/schema gate cannot by itself promote weights.",
+    "A parseable selector response may echo the input and still violate the selection contract. JSON parseability counts are not selector success counts.",
+    "Original legacy Ollama/GGUF and this Transformers NF4 backend have different format-enforcement behavior; saved legacy comparisons cannot isolate planner/Flow effect."
+  ]
+}

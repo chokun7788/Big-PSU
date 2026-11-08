@@ -1,0 +1,26 @@
+--- before/Start-PSU-Esports-Chatbot.ps1
++++ r62/Start-PSU-Esports-Chatbot.ps1
+@@ -19,20 +19,9 @@
+     return
+ }
+ 
+-try {
+-    $models = (Invoke-RestMethod -Uri "http://127.0.0.1:11434/api/tags" -TimeoutSec 3).models.name
+-} catch {
+-    throw "Ollama API is not running at 127.0.0.1:11434. Open Ollama first, then start the chatbot again."
+-}
+-
+-$requiredModels = @("scb10x/typhoon2.5-qwen3-4b", "psu-bge-m3:q8_0")
+-# Ollama reports a default tag as `:latest`; the runtime is allowed to use
+-# either the explicit name or that equivalent default-tag form.
+-$installedModelBases = @($models | ForEach-Object { ([string]$_) -replace ':latest$', '' })
+-$missingModels = @($requiredModels | Where-Object { $_ -notin $installedModelBases })
+-if ($missingModels.Count -gt 0) {
+-    throw "Missing local model(s): $($missingModels -join ', '). Run Setup-Local-Models.cmd once while connected to the internet."
+-}
++. (Join-Path $projectRoot 'Portable-Models.ps1')
++Assert-PSUModels $projectRoot
++Warm-PSUChatModel
+ 
+ $env:PSU_RUNTIME_PROFILE = "owner-local-rag-assist"
+ $manifestPath = Join-Path $projectRoot 'package_manifest.json'

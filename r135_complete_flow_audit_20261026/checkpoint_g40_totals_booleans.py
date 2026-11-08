@@ -1,0 +1,48 @@
+"""Durable bounded acceptance without changing the original 76 requirements."""
+import hashlib,json,time
+from pathlib import Path
+R=Path(__file__).resolve().parent
+def read(p):return json.loads(p.read_text('utf8'))
+ledger=read(R/'COMPLETION_LEDGER.json');assert len(ledger['requirements'])==76
+for row in ledger['requirements']:assert hashlib.sha256(row['text'].encode()).hexdigest()==row['text_sha256'],row['id']
+for name in ['FLOW_MAIN_TH.md','DATA_CONTRACTS_TH.md','IMPLEMENTATION_EVALUATION_TH.md']:assert (R/'spec'/name).read_bytes()==(R.parent/'r123_plan_distillation_architecture_20261023'/name).read_bytes()
+reports={}
+for prefix in ['calculated_dependencies_','boolean_dependencies_','live_resource_sets_','execution_dependencies_','execution_dependency_native_','live_window_proofs_']:
+ p=sorted(R.glob(prefix+'*/RESULT.json'))[-1];report=read(p);assert report['all_passed'],p
+ reports[prefix.rstrip('_')]={'path':str(p.relative_to(R)),'checks':len(report['checks']),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+gaps=read(R/'AUDIT_GAPS.json')
+for gap in gaps['gaps']:
+ if gap.get('diagnostic'):assert (R/gap['diagnostic']).exists(),gap['id']
+reviews=[read(R/name) for name in ['OWNER_REQUIREMENT_REVIEWS.json','REQUEST_REQUIREMENT_REVIEWS.json','EXECUTOR_REQUIREMENT_REVIEWS.json','CATEGORY_REQUIREMENT_REVIEWS.json']]
+rows=[row for review in reviews for row in review['requirements']];assert len({r['requirement_id'] for r in rows})==len(rows)
+observation=sorted(R.glob('SOURCE_PRESERVATION_OBSERVATION_*.json'))[-1]
+status=read(R/'STATUS.json');status.update(last_recorded_at=time.time(),last_component_repairs=['G40_bounded_totals_and_calendar_live_booleans','G42','G43','G44','G45','G46','G47'],requirement_specific_review_ids=[r['requirement_id'] for r in rows],requirement_specific_controlled_criteria_passed=sum(c['state']=='passed_controlled_acceptance' for r in rows for c in r['criteria']),request_contract_review_pending_criteria=sum(c['state']=='review_required' for r in reviews[1]['requirements'] for c in r['criteria']),executor_review_pending_criteria=sum(c['state']=='review_required' for r in reviews[2]['requirements'] for c in r['criteria']),category_review_pending_criteria=sum(c['state']=='review_required' for r in reviews[3]['requirements'] for c in r['criteria']),last_source_preservation_observation=observation.name,bounded_dependency_reports=reports,next_work='Continue G40 mixed-audience/multi-rate total and remaining explicitly declared dependent predicate/condition scopes, then all finite source/operation/slot/category acceptance, authority multi-step/field mappings and original training/eval requirements. Finish root/paired source review and actual model/API/freeze/activation backup/re-audit before closure.',complete=False,whole_flow_complete=False,candidate_frozen=False,candidate_installed=False,active_installed_revision='R134',requirement_closure_claimed=False)
+(R/'STATUS.json').write_text(json.dumps(status,ensure_ascii=False,indent=2)+'\n','utf8')
+header=f'''## ล่าสุดจริง — G40 single-rate total + calendar/live boolean predicates ผ่าน bounded controls; G42–G47 repaired
+
+R135 working/unfrozen/uninstalled; R134 installed จริง health8115ok build common-r134-resolution-scope SHA db1685eafe9f1d95460614a0948792710c3462cdfac20b90beabd2f12d1ae157. ตรวจPID37660/45088/42136+commandlinesจริงในturnนี้; model42136ยังR129server/12921 Typhoon retained R121 context/base selectorเดิม. {observation.name} SQLiteทุกtableรวมWAL candidate/frozenR134/actualinstalledเท่ากัน. ไม่แตะuserdata/approval/log/frozenR132/130/131/weights ไม่actualcontextinference/actualproviderHTTP/retrain/restart/subagents. Constraineddecoderยังไม่active; modelkillเคยauto-reviewreject2ครั้ง ห้ามเลี่ยง. ไม่มีexternalblockที่ทำให้งานอื่นเดินไม่ได้.
+
+G40ยังOPEN `identified_pending_additional_dependency_predicates_and_final_acceptance` ไม่ปิดFLOW-14/CONTRACT-04/11จากpredicateชุดนี้. Implemented finite predicates: THB unit rate; source-declared single-rate people/session/duration total; If yes/so/true/no/false และ ถ้าใช่/ไม่ใช่ จากหนึ่งคำถามIs...open for play...หรือIs...free/available...ที่มีrequested point/range. Liveและplayservicecalendarคนละsemantics. Multi-resource/alternatives, daywide/history, stale/missing slots/calendarconflict/unsupportedconditionไม่เปิดdependentreader. ยังต้องmixedaudience/multirate totals, broader explicit output conditions/condition-exception scopes, all finite capability source/operation/slot/category acceptance, authority multi-step/field projection และoriginaltraining-eval requirements. ไม่ให้คำถามlistingกลายเป็นboolean.
+
+Totalproofrecomputesactualrateamount/currency/service-audience/declaredbillingbasis/people/sessions/duration/sourceSHA+locator/revision/snapshotแล้วเทียบthreshold. Checksreceipt total,unitrate,billingquantity/unit,sessions,inputrefs,evidencerefs,unitcalculation,transformation ไม่เชื่อplannerbusinessvalues/receiptflags. G42 nativecompoundเคยdropchildcalculationreceipts; ตอนนี้preserveพร้อมparent/childIDs. Diagnostic calculated_dependencies_1793007847573526200/DETAILS.json. G43ก่อนwhole-requestverifier resourcecountยังunverifiedแต่prereqpreparedเป็นsupportedจึงเปิดbookingได้; gateตรวจconstraint/resourcequantityเองก่อนใช้scalar. Diagnostic calculated_dependencies_1793007961950251900/DETAILS.json.
+
+Booleanproofrecomputescurrentactualrequestprovider snapshotจากCURRENT.liveโดยไม่fetchซ้ำ, sourcemapping/pointers/revision/snapshot/TTL+wallclock, targetdate/raw-effectivewindow/payloadSHA/slotcoverage/calendarconflict. Nativeobservationเพิ่มpayloadSHA/scopekind. Calendarbooleanและfinaldate/timeใช้exacttaskservice_calendar.plan+actualsourcepointers/currentclaims/receipts independently. Storedtrue/false/verifiedflagไม่ใช่authority; providercacheไม่ข้ามrequest. Parentchildconditionprefixรองรับaffirmativeพร้อมguardNoneในverifier (initialdevelopmenttracebackก่อนfixเก็บในtoolhistory;ไม่แก้rawresults).
+
+G44 Commonlivefastpathmissed 'how do I book' และindependentgameทำcompoundหาย; ตอนนี้จำกัดsingleliveด้วยindependentclauses/non-liveobservedneeds. G45 finalCommonหลังnativecompoundไม่มีtypedmetadataจึงfalse-unverified date/time; ตอนนี้recomputeexacttaskcalendarจากcurrentreceipts/sourceไม่เชื่อflags. ทั้งคู่diagnostic boolean_dependencies_1793012688577061600/DETAILS.json; finalcalendar/liveCommonconstraintsverifiedจริง. G46 PC2+PC3เดิมเลือกเครื่องแรก; diagnostic live_resource_sets_1793013005449004200/DETAILS.json. Candidate app/booking/live_status.pyเลือกexplicitstationnumbersครบ, missingproviderstationเป็นmissing_sourceไม่อ้างเครื่องแรกแทน, booleanrequireonescalarresource. Thai/English/leadingzeroes/single/familycontrolsมี. Fuzzy/implicitconjunction/otherrequestsemanticsยังต้องall-sourceacceptance ไม่claimครบจาก4selectorchecks.
+
+G47ตรวจoriginalR123FLOW-27พบexplicit PC #03-#10ต้องรองรับจริง แต่เดิมเลือก#03; diagnostic live_resource_sets_1793013347655968600/DETAILS.json. Parserexpandmarkedranges, preflightbindทุกcanonicalresourceในrangeก่อนprovider ไม่ใช่เพียงstartendpoint; reversedrangeเป็นmissing_inputก่อนfetch, missingmiddleproviderrowเป็นmissing_sourceไม่partialfree. actualCommonfixtureoriginalcaseมี8current-sourcebindingobservations/oneproviderread พร้อมnegativecontrols. boolean_dependencies_1793013431008339700/DETAILS.jsonเผยrangePC2-PC3sourcebindingขาดendmemberและglobalinvalidmappingเคยถูกnativeperrowreceiptpromoteกลับsupported; propagateincompleteselectionให้ทุกrowและsourcegateexpandbindingrangeแล้ว. ไม่แก้rawfailedreports.
+
+Latest bounded reports:
+{chr(10).join('- '+name+': '+row['path']+' ('+str(row['checks'])+' checks)' for name,row in reports.items())}
+
+Allaboveisolatedownerfixture/controlledproposals/providerpayloads ไม่empiricalmodelaccuracy/actualHTTP. Failed diagnostic artifactsเก็บเดิม. Core54/calendar26/requestdelivery9/projection4/snapshot6หลังsharedverifierchangesผ่าน; live19/window18/sourceguards19/requestcoverage12/graph21/wire3ผ่านterminalexit0. Modelmessages/schema/directoryยังตรงR132 SHA88e91887695c8cd99eb39286da9e37b43d8ada24549c92ab6464ab86a7e817e0 ไม่เปลี่ยนtrainedwire.
+
+Individualreviews {len(rows)}requirementsรวมC02/C06/C11/C12รายclause+sourcecontrol; {status['requirement_specific_controlled_criteria_passed']} controlledcriteria เป็นboundedacceptance ไม่ใช่ปิดrequirementใดหรือ%Flow; requestpending{status['request_contract_review_pending_criteria']}, executorpending{status['executor_review_pending_criteria']}, categorypending{status['category_review_pending_criteria']}. Original76IDs/textSHA/spec3filesassertตรงR123. AuditG01–G47; G40ยังopen. อย่ารันcheckpoint_g40_g41.pyเก่าทับlateststate; ใช้checkpoint_g40_totals_booleans.pyหลังrecord_audit_iteration.py+record_executor_requirement_reviews.py+record_category_requirement_reviews.py.
+
+R132sample+analyzerครบ2111unique/5584gradesแล้ว ไม่rerun/analyzeซ้ำ/baselineinference/regrade/Full20554. ยังต้องroot/source750changedcasesทุกcriticalgroup, R133459/R134deltareviewหรือexplicitsupersession, finalR135 exactsuccessfulrequest/messages/schema/profile/adapter/stage/precision/cap paired330โดยไม่มีnewcontextinference, source/input/weights/actualmodelassets/freeze/API. Activateเมื่อprovencompleteผ่านnormalentrypointsพร้อมfreshSQLitebackupactualinstalledliveDBทุกtableไม่เอาfrozenDBทับuserdata แล้วre-audit. ห้ามลบheartbeatหรือประกาศจบจากboundedcontrols. ทำaudit→repair→test→reauditต่อจนFlowครบจริง ไม่ถามอนุญาตซ้ำ/ไม่ใช้subagents.
+
+## ประวัติก่อน total/boolean acceptance
+
+'''
+handoff=R/'CURRENT_HANDOFF_TH.md';handoff.write_text(header+handoff.read_text('utf8'),encoding='utf8')
+print(json.dumps({'requirements_preserved':76,'individual_review_requirements':len(rows),'controlled_criteria':status['requirement_specific_controlled_criteria_passed'],'G40_still_open':True,'complete':False}))

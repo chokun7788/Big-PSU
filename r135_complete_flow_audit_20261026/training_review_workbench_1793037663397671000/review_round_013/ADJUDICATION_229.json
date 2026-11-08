@@ -1,0 +1,140 @@
+{
+  "question_key": "15fae66320b67adb6164c026f86a145c02f9551840ecc8c3eedf291c41913d88",
+  "example_sha256": "2f36fec0eb02e8e8bd0e1e2e69289f9e6d04f245eea6ba04258398a18c5020cc",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One policy question asks whether installments or a deposit are possible before service; both brief/summary phrases are style.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy keeps both alternative payment arrangements.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "แบ่งจ่าย and วางมัดจำ are action scopes; ก่อนใช้บริการ is their local timing/condition.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No installment count, deposit percentage, service, balance or consent is supplied.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A question about possible methods is not an assertion of permission or a request to make a deposit.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_q016 records a full-payment clause; it does not supply every installment/deposit schedule or timing exception.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": [
+        "r114_q016_owner_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No full-payment answer, payment percentage, amount, due date or invented arrangement is taught.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "A full-payment clause does not define installment/deposit schedules.",
+      "handling": "Keep missing schedules/amounts unknown."
+    }
+  ],
+  "historical_review_row": 229,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า สามารถแบ่งจ่ายหรือวางมัดจำก่อนใช้บริการได้ไหม ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "แบ่งจ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "วางมัดจำ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "ก่อนใช้บริการ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q016_owner_policy": {
+      "revision": 1,
+      "record_sha256": "69b0fd899f0ed34eb96743c7121a5cd6d0e34f8366c0ea29f2e4b1bf3ac0adcd"
+    }
+  }
+}

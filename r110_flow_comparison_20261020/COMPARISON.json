@@ -1,0 +1,1221 @@
+{
+  "created_at": "2026-10-20T23:44:13.261716+07:00",
+  "method": "retained files only",
+  "llm_calls": 0,
+  "chatbot_requests": 0,
+  "rows": [
+    {
+      "flow": "Legacy เดิม — R64 LLM ON",
+      "scope": "full",
+      "requests": 20554,
+      "positive_passed": 23517,
+      "positive_checked": 24909,
+      "positive_percent": 94.41,
+      "strict_passed": 42601,
+      "strict_total": 55811,
+      "strict_percent": 76.33,
+      "by_locale": {
+        "th": {
+          "passed": 12547,
+          "checked": 13142,
+          "percent": 95.47
+        },
+        "auto": {
+          "passed": 1883,
+          "checked": 2301,
+          "percent": 81.83
+        },
+        "en": {
+          "passed": 9087,
+          "checked": 9466,
+          "percent": 96.0
+        }
+      },
+      "source": "r89_saved_full_comparison_20261018/SAME_CHECKER_COMPARISON.json",
+      "limits": "R89 ใช้ literal checker เดียวกันบนผล Legacy/R88 ที่เก็บไว้ แต่โค้ด/ข้อมูลต่างรุ่น ไม่ใช่ schema-only experiment"
+    },
+    {
+      "flow": "Common — R88 LLM ON",
+      "scope": "full",
+      "requests": 20554,
+      "positive_passed": 17960,
+      "positive_checked": 24909,
+      "positive_percent": 72.1,
+      "strict_passed": 5033,
+      "strict_total": 55811,
+      "strict_percent": 9.02,
+      "by_locale": {
+        "th": {
+          "passed": 9674,
+          "checked": 13142,
+          "percent": 73.61
+        },
+        "auto": {
+          "passed": 1585,
+          "checked": 2301,
+          "percent": 68.88
+        },
+        "en": {
+          "passed": 6701,
+          "checked": 9466,
+          "percent": 70.79
+        }
+      },
+      "source": "r89_saved_full_comparison_20261018/SAME_CHECKER_COMPARISON.json",
+      "limits": "R89 ใช้ literal checker เดียวกันบนผล Legacy/R88 ที่เก็บไว้ แต่โค้ด/ข้อมูลต่างรุ่น ไม่ใช่ schema-only experiment"
+    },
+    {
+      "flow": "Common ผสม — R95 LLM ON",
+      "scope": "full",
+      "requests": 20554,
+      "positive_passed": 18579,
+      "positive_checked": 24909,
+      "positive_percent": 74.59,
+      "strict_passed": 5030,
+      "strict_total": 55811,
+      "strict_percent": 9.01,
+      "by_locale": {
+        "en": {
+          "passed": 6755,
+          "checked": 9466,
+          "percent": 71.36
+        },
+        "th": {
+          "passed": 10207,
+          "checked": 13142,
+          "percent": 77.67
+        },
+        "auto": {
+          "passed": 1617,
+          "checked": 2301,
+          "percent": 70.27
+        }
+      },
+      "source": "r95_merged_flow_implementation_20261018/full_analysis/ANALYSIS_FINAL.json",
+      "limits": "ใช้ metric R95 เดิม; เทียบ R88 บน 24,909 positive grades เดียวกันได้"
+    },
+    {
+      "flow": "Common Flow V2 ที่พัฒนาต่อ — R106 LLM ON",
+      "scope": "full",
+      "requests": 20554,
+      "positive_passed": 17238,
+      "positive_checked": 24891,
+      "positive_percent": 69.25,
+      "strict_passed": 5019,
+      "strict_total": 55811,
+      "strict_percent": 8.99,
+      "by_locale": {
+        "th": {
+          "passed": 9344,
+          "checked": 13126,
+          "percent": 71.19
+        },
+        "en": {
+          "passed": 6377,
+          "checked": 9465,
+          "percent": 67.37
+        },
+        "auto": {
+          "passed": 1517,
+          "checked": 2300,
+          "percent": 65.96
+        }
+      },
+      "source": "r106_complete_flow_20261020/full_analysis/SCORES.json",
+      "limits": "เป็น partition-based metric ของ R106 ไม่เท่ากับ literal checker R95 ทุกเงื่อนไข; execution failure ตัด positive denominator ออก 18 grades; ดู paired R95↔R106 แยก"
+    },
+    {
+      "flow": "Common หลังย้ายข้อมูล — R70",
+      "scope": "half",
+      "requests": 10277,
+      "positive_passed": 8630,
+      "positive_checked": 12481,
+      "positive_percent": 69.15,
+      "strict_passed": 2499,
+      "strict_total": 27923,
+      "strict_percent": 8.95,
+      "by_locale": {},
+      "source": "r70_half_common_llm_20261016/ANALYSIS_FINAL.json",
+      "limits": "ครึ่งชุด; model transport 0/253 จึงเป็น ON setting ที่ไม่ได้ยืนยัน inference จริง ห้ามจัดอันดับข้าม full corpus"
+    },
+    {
+      "flow": "R92 — วัดใน R93 สุ่ม 1,000",
+      "scope": "sample1000",
+      "requests": 1000,
+      "positive_passed": 765,
+      "positive_checked": 1140,
+      "positive_percent": 67.11,
+      "strict_passed": 248,
+      "strict_total": 2609,
+      "strict_percent": 9.51,
+      "by_locale": {},
+      "source": "r93_random_1000_common_on_20261018/REPORT_FINAL_TH.md",
+      "limits": "1,000 request keys / 998 ข้อความ; supplement อีก 2 requests แยกจากตารางหลัก ไม่เทียบ full R88 72.10 โดยตรง; R88 cohort เดียวกัน 758/1140=66.49%"
+    },
+    {
+      "flow": "R98 subset02",
+      "scope": "development91",
+      "requests": 91,
+      "positive_passed": 61,
+      "positive_checked": 72,
+      "positive_percent": 84.72,
+      "strict_passed": 19,
+      "strict_total": 162,
+      "strict_percent": 11.73,
+      "by_locale": {},
+      "source": "r98_flow_v2_implementation_20261019/subset02/COMPARISON.json",
+      "limits": "91 request keys / 72 positive grades ที่ใช้พัฒนา ไม่ใช่ full accuracy; ใช้รอบหลังตามลำดับ ไม่เลือกผลสูงสุดจากหลายรอบ"
+    },
+    {
+      "flow": "R100 subset05",
+      "scope": "development91",
+      "requests": 91,
+      "positive_passed": 63,
+      "positive_checked": 72,
+      "positive_percent": 87.5,
+      "strict_passed": 19,
+      "strict_total": 162,
+      "strict_percent": 11.73,
+      "by_locale": {},
+      "source": "r100_contract_flow_implementation_20261019/subset05/COMPARISON.json",
+      "limits": "91 request keys / 72 positive grades ที่ใช้พัฒนา ไม่ใช่ full accuracy; ใช้รอบหลังตามลำดับ ไม่เลือกผลสูงสุดจากหลายรอบ"
+    },
+    {
+      "flow": "R101 release_subset09",
+      "scope": "development91",
+      "requests": 91,
+      "positive_passed": 65,
+      "positive_checked": 72,
+      "positive_percent": 90.28,
+      "strict_passed": 19,
+      "strict_total": 162,
+      "strict_percent": 11.73,
+      "by_locale": {
+        "th": {
+          "passed": 25,
+          "checked": 29,
+          "percent": 86.21
+        },
+        "en": {
+          "passed": 23,
+          "checked": 26,
+          "percent": 88.46
+        },
+        "auto": {
+          "passed": 17,
+          "checked": 17,
+          "percent": 100.0
+        }
+      },
+      "source": "r101_complete_flow_20261019/release_subset09/ANALYSIS.json",
+      "limits": "ยังเป็นชุดพัฒนาเดิม 91 requests ไม่ใช่ผลสุ่มทั้งหมด"
+    },
+    {
+      "flow": "R103 retained_91",
+      "scope": "development91",
+      "requests": 91,
+      "positive_passed": 66,
+      "positive_checked": 72,
+      "positive_percent": 91.67,
+      "strict_passed": 19,
+      "strict_total": 162,
+      "strict_percent": 11.73,
+      "by_locale": {
+        "en": {
+          "passed": 24,
+          "checked": 26,
+          "percent": 92.31
+        },
+        "th": {
+          "passed": 26,
+          "checked": 29,
+          "percent": 89.66
+        },
+        "auto": {
+          "passed": 16,
+          "checked": 17,
+          "percent": 94.12
+        }
+      },
+      "source": "r103_complete_revision_20261020/analysis_integrated02/retained_91_SCORES.json",
+      "limits": "แสดงแยกชุดพัฒนา/holdout; data source และ scorer ต่างรุ่น ไม่ถือว่าทุกความต่างเป็น algorithm effect"
+    },
+    {
+      "flow": "R103 retained_holdout192",
+      "scope": "holdout192",
+      "requests": 192,
+      "positive_passed": 150,
+      "positive_checked": 249,
+      "positive_percent": 60.24,
+      "strict_passed": 33,
+      "strict_total": 473,
+      "strict_percent": 6.98,
+      "by_locale": {
+        "en": {
+          "passed": 40,
+          "checked": 71,
+          "percent": 56.34
+        },
+        "auto": {
+          "passed": 34,
+          "checked": 60,
+          "percent": 56.67
+        },
+        "th": {
+          "passed": 76,
+          "checked": 118,
+          "percent": 64.41
+        }
+      },
+      "source": "r103_complete_revision_20261020/analysis_integrated02/retained_holdout192_SCORES.json",
+      "limits": "แสดงแยกชุดพัฒนา/holdout; data source และ scorer ต่างรุ่น ไม่ถือว่าทุกความต่างเป็น algorithm effect"
+    },
+    {
+      "flow": "R104 retained_91",
+      "scope": "development91",
+      "requests": 91,
+      "positive_passed": 62,
+      "positive_checked": 72,
+      "positive_percent": 86.11,
+      "strict_passed": 19,
+      "strict_total": 162,
+      "strict_percent": 11.73,
+      "by_locale": {
+        "en": {
+          "passed": 24,
+          "checked": 26,
+          "percent": 92.31
+        },
+        "th": {
+          "passed": 22,
+          "checked": 29,
+          "percent": 75.86
+        },
+        "auto": {
+          "passed": 16,
+          "checked": 17,
+          "percent": 94.12
+        }
+      },
+      "source": "r104_complete_flow_20261020/analysis_integrated03/retained_91_SCORES.json",
+      "limits": "แสดงแยกชุดพัฒนา/holdout; data source และ scorer ต่างรุ่น ไม่ถือว่าทุกความต่างเป็น algorithm effect"
+    },
+    {
+      "flow": "R104 retained_holdout192",
+      "scope": "holdout192",
+      "requests": 192,
+      "positive_passed": 148,
+      "positive_checked": 249,
+      "positive_percent": 59.44,
+      "strict_passed": 33,
+      "strict_total": 473,
+      "strict_percent": 6.98,
+      "by_locale": {
+        "en": {
+          "passed": 38,
+          "checked": 71,
+          "percent": 53.52
+        },
+        "auto": {
+          "passed": 34,
+          "checked": 60,
+          "percent": 56.67
+        },
+        "th": {
+          "passed": 76,
+          "checked": 118,
+          "percent": 64.41
+        }
+      },
+      "source": "r104_complete_flow_20261020/analysis_integrated03/retained_holdout192_SCORES.json",
+      "limits": "แสดงแยกชุดพัฒนา/holdout; data source และ scorer ต่างรุ่น ไม่ถือว่าทุกความต่างเป็น algorithm effect"
+    },
+    {
+      "flow": "R105 retained_91",
+      "scope": "development91",
+      "requests": 91,
+      "positive_passed": 62,
+      "positive_checked": 72,
+      "positive_percent": 86.11,
+      "strict_passed": 19,
+      "strict_total": 162,
+      "strict_percent": 11.73,
+      "by_locale": {
+        "en": {
+          "passed": 24,
+          "checked": 26,
+          "percent": 92.31
+        },
+        "th": {
+          "passed": 22,
+          "checked": 29,
+          "percent": 75.86
+        },
+        "auto": {
+          "passed": 16,
+          "checked": 17,
+          "percent": 94.12
+        }
+      },
+      "source": "r105_complete_flow_20261020/analysis_integrated04/retained_91_SCORES.json",
+      "limits": "แสดงแยกชุดพัฒนา/holdout; data source และ scorer ต่างรุ่น ไม่ถือว่าทุกความต่างเป็น algorithm effect"
+    },
+    {
+      "flow": "R105 retained_holdout192",
+      "scope": "holdout192",
+      "requests": 192,
+      "positive_passed": 148,
+      "positive_checked": 249,
+      "positive_percent": 59.44,
+      "strict_passed": 33,
+      "strict_total": 473,
+      "strict_percent": 6.98,
+      "by_locale": {
+        "en": {
+          "passed": 38,
+          "checked": 71,
+          "percent": 53.52
+        },
+        "th": {
+          "passed": 76,
+          "checked": 118,
+          "percent": 64.41
+        },
+        "auto": {
+          "passed": 34,
+          "checked": 60,
+          "percent": 56.67
+        }
+      },
+      "source": "r105_complete_flow_20261020/analysis_integrated04/retained_holdout192_SCORES.json",
+      "limits": "แสดงแยกชุดพัฒนา/holdout; data source และ scorer ต่างรุ่น ไม่ถือว่าทุกความต่างเป็น algorithm effect"
+    }
+  ],
+  "r95_r106_same_grade_identities": {
+    "en": {
+      "shared_positive": 9465,
+      "r95_positive": 6720,
+      "r106_positive": 6377,
+      "r95_percent": 71.0,
+      "r106_percent": 67.37,
+      "delta_percentage_points": -3.63
+    },
+    "th": {
+      "shared_positive": 13126,
+      "r95_positive": 9915,
+      "r106_positive": 9344,
+      "r95_percent": 75.54,
+      "r106_percent": 71.19,
+      "delta_percentage_points": -4.35
+    },
+    "auto": {
+      "shared_positive": 2300,
+      "r95_positive": 1639,
+      "r106_positive": 1517,
+      "r95_percent": 71.26,
+      "r106_percent": 65.96,
+      "delta_percentage_points": -5.3
+    },
+    "total": {
+      "shared_positive": 24891,
+      "r95_positive": 18274,
+      "r106_positive": 17238,
+      "r95_percent": 73.42,
+      "r106_percent": 69.25,
+      "delta_percentage_points": -4.16
+    }
+  },
+  "strict_r64_saved": [
+    {
+      "arm": "legacy_offline",
+      "saved_counts": {
+        "requests": 20554,
+        "grades": 55811,
+        "passed": 42410,
+        "content_asserted": 32856,
+        "content_passed": 31538,
+        "positive_content_asserted": 25668,
+        "positive_content_passed": 24350,
+        "runtime_exceptions": 2696
+      }
+    },
+    {
+      "arm": "common_offline",
+      "saved_counts": {
+        "requests": 20554,
+        "grades": 55811,
+        "passed": 16998,
+        "content_asserted": 34320,
+        "content_passed": 20746,
+        "positive_content_asserted": 27132,
+        "positive_content_passed": 13864,
+        "runtime_exceptions": 866
+      }
+    },
+    {
+      "arm": "legacy_llm",
+      "saved_counts": {
+        "requests": 20554,
+        "grades": 55811,
+        "passed": 42601,
+        "content_asserted": 32856,
+        "content_passed": 31552,
+        "positive_content_asserted": 25668,
+        "positive_content_passed": 24364,
+        "runtime_exceptions": 2694
+      }
+    },
+    {
+      "arm": "common_llm",
+      "saved_counts": {
+        "requests": 20554,
+        "grades": 55811,
+        "passed": 12517,
+        "content_asserted": 34443,
+        "content_passed": 22177,
+        "positive_content_asserted": 27255,
+        "positive_content_passed": 15336,
+        "runtime_exceptions": 662
+      }
+    }
+  ],
+  "targeted_acceptance": [
+    {
+      "version": 103,
+      "passed": 399,
+      "checked": 444,
+      "percent": 89.86,
+      "source": "r103_complete_revision_20261020/analysis_integrated02/SCENARIO_SCORES.json",
+      "kind": "targeted_acceptance_not_full_accuracy"
+    },
+    {
+      "version": 104,
+      "passed": 441,
+      "checked": 444,
+      "percent": 99.32,
+      "source": "r104_complete_flow_20261020/analysis_integrated03/SCENARIO_SCORES.json",
+      "kind": "targeted_acceptance_not_full_accuracy"
+    },
+    {
+      "version": 105,
+      "passed": 444,
+      "checked": 444,
+      "percent": 100.0,
+      "source": "r105_complete_flow_20261020/analysis_integrated04/SCENARIO_SCORES.json",
+      "kind": "targeted_acceptance_not_full_accuracy"
+    },
+    {
+      "version": 106,
+      "passed": 444,
+      "checked": 444,
+      "percent": 100,
+      "source": "r106_complete_flow_20261020/final_gate/REPORT_TH.md",
+      "kind": "targeted_acceptance_not_full_accuracy"
+    }
+  ],
+  "inventory": [
+    {
+      "revision": 36,
+      "folder": "r36_focused_conversation_20261003_165903",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": null,
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 36,
+      "folder": "r36_focused_conversation_20261003_170011",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r36_focused_conversation_20261003_170011/ACTUAL_CHAT_ANALYSIS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 37,
+      "folder": "r37_conversation_tests_20261003_171632",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r37_conversation_tests_20261003_171632/FINAL_REPORT_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 40,
+      "folder": "r40_targeted_flow_20261006_022135_9e5ad7",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r40_targeted_flow_20261006_022135_9e5ad7/CASE_ANALYSIS_R40_3_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 41,
+      "folder": "r41_task_memory_20261006_142223_26da94",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r41_task_memory_20261006_142223_26da94/CASE_ANALYSIS_R41_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 42,
+      "folder": "r42_domain_resume_20261006_152553_b21f30",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r42_domain_resume_20261006_152553_b21f30/CASE_ANALYSIS_R42_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 43,
+      "folder": "r43_readiness_schedule_20261006_180143_00b40d",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r43_readiness_schedule_20261006_180143_00b40d/CASE_ANALYSIS_R43_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 44,
+      "folder": "r44_package_fees_20261006_185245_2ae7a0",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r44_package_fees_20261006_185245_2ae7a0/FLOW_R44_FINAL.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 45,
+      "folder": "r45_rental_cases_20261007_110336_e4eaa3",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r45_rental_cases_20261007_110336_e4eaa3/CASE_ANALYSIS_R45_ALL_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 46,
+      "folder": "r46_english_rental_20261007_e6fc8fe4",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r46_english_rental_20261007_e6fc8fe4/CASE_ANALYSIS_R46_ENGLISH_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 47,
+      "folder": "r47_answer_content_20261007_91dd6684",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r47_answer_content_20261007_91dd6684/CASE_ANALYSIS_R47_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 48,
+      "folder": "r48_user_facts_20261008_08f5235b",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r48_user_facts_20261008_08f5235b/ANALYSIS_SERVICE_50_R48.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 49,
+      "folder": "r49_service_dialogue_20261008_7d6cf466",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r49_service_dialogue_20261008_7d6cf466/FAILED_CASE_ANALYSIS_R49.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 50,
+      "folder": "r50_flow_load_20261009_66d96bb7",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r50_flow_load_20261009_66d96bb7/REPORT_FINAL_R50.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 51,
+      "folder": "r51_llm_benchmark_20261009_173746_93dfb5",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r51_llm_benchmark_20261009_173746_93dfb5/LLM_TIMING_REPORT_R51.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 52,
+      "folder": "r52_research_flow_20261009_191123",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r52_research_flow_20261009_191123/FLOW.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 53,
+      "folder": "r53_semantic_research_20261009_222545",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r53_semantic_research_20261009_222545/FLOW.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 54,
+      "folder": "r54_shop_cases_20261009_235038",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r54_shop_cases_20261009_235038/ALL_QUESTIONS_ANSWERS.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 55,
+      "folder": "r55_service_fixes_20261010_030151",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r55_service_fixes_20261010_030151/ALL_QUESTIONS_ANSWERS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 56,
+      "folder": "r56_remaining_fixes_20261010_145024",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r56_remaining_fixes_20261010_145024/FLOW_FINAL.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 57,
+      "folder": "r57_studio_scope_20261010_174001",
+      "group": "Flow เดิม/การแก้เฉพาะงานก่อน migration",
+      "report": "r57_studio_scope_20261010_174001/01_Download_Models_README_before.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 58,
+      "folder": "r58_common_content_20261010",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r58_common_content_20261010/DELIVERY_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 58,
+      "folder": "r58_examples_20sets_20261012",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r58_examples_20sets_20261012/README_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 58,
+      "folder": "r58_examples_240_20261012",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r58_examples_240_20261012/EXAMPLES_audience.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 59,
+      "folder": "r59_schema_repair_20261012",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r59_schema_repair_20261012/RESULTS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 60,
+      "folder": "r60_generalization_20261012",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r60_generalization_20261012/RESULTS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 61,
+      "folder": "r61_implementation_20261013",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r61_implementation_20261013/RESULTS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 61,
+      "folder": "r61_solution_plan_20261013",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r61_solution_plan_20261013/FLOW_SOLUTIONS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 62,
+      "folder": "r62_completion_20261013",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r62_completion_20261013/RESULTS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 63,
+      "folder": "r63_legacy_migration_20261013",
+      "group": "schema กลาง/แผน/ย้ายข้อมูลก่อน R64",
+      "report": "r63_legacy_migration_20261013/RESULTS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 64,
+      "folder": "r64_full_comparison_20261013",
+      "group": "full comparison/วิเคราะห์/ซ่อมข้อมูล",
+      "report": "r64_full_comparison_20261013/FINAL_FULL_TEST_REPORT.md",
+      "measured_rows": [
+        "Legacy เดิม — R64 LLM ON"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 65,
+      "folder": "r65_detailed_failure_analysis_20261014",
+      "group": "full comparison/วิเคราะห์/ซ่อมข้อมูล",
+      "report": "r65_detailed_failure_analysis_20261014/ALL_CORPUS_INDEX.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 66,
+      "folder": "r66_common_repair_20261014",
+      "group": "full comparison/วิเคราะห์/ซ่อมข้อมูล",
+      "report": "r66_common_repair_20261014/R66_FINAL_REPORT_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 67,
+      "folder": "r67_migration_parity_20261015",
+      "group": "full comparison/วิเคราะห์/ซ่อมข้อมูล",
+      "report": "r67_migration_parity_20261015/FINAL_REPORT_R67_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 68,
+      "folder": "r68_source_completion_20261016",
+      "group": "full comparison/วิเคราะห์/ซ่อมข้อมูล",
+      "report": "r68_source_completion_20261016/FINAL_REPORT_R68_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 70,
+      "folder": "r70_half_common_llm_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r70_half_common_llm_20261016/REPORT_FINAL_TH.md",
+      "measured_rows": [
+        "Common หลังย้ายข้อมูล — R70"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 71,
+      "folder": "r71_repair_flow_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r71_repair_flow_20261016/FLOW_COMMON_REPAIR_R71_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 72,
+      "folder": "r72_flow_implementation_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r72_flow_implementation_20261016/FLOW_R72_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 73,
+      "folder": "r73_scope_completion_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r73_scope_completion_20261016/FLOW_R73_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 74,
+      "folder": "r74_semantic_profile_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r74_semantic_profile_20261016/FLOW_R74_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 75,
+      "folder": "r75_profile_confirmation_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r75_profile_confirmation_20261016/FLOW_R75_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 76,
+      "folder": "r76_rejection_rephrase_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r76_rejection_rephrase_20261016/FLOW_R76_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 77,
+      "folder": "r77_qualified_confirmation_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r77_qualified_confirmation_20261016/FLOW_R77_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 78,
+      "folder": "r78_web_session_check_20261016",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r78_web_session_check_20261016/FLOW_R78_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 79,
+      "folder": "r79_connection_diagnostics_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r79_connection_diagnostics_20261017/FINDINGS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 80,
+      "folder": "r80_open_status_reply_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r80_open_status_reply_20261017/REPORT_R80_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 81,
+      "folder": "r81_selector_latency_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r81_selector_latency_20261017/FLOW_R81_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 82,
+      "folder": "r82_automatic_llm_check_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r82_automatic_llm_check_20261017/DELIVERY_STATUS.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 83,
+      "folder": "r83_selector_topic_repair_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r83_selector_topic_repair_20261017/FLOW_R83_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 84,
+      "folder": "r84_correction_scope_rental_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r84_correction_scope_rental_20261017/FLOW_R84_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 85,
+      "folder": "r85_legacy_common_flow_audit_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r85_legacy_common_flow_audit_20261017/LEGACY_VS_COMMON_FLOW_ANALYSIS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 86,
+      "folder": "r86_flow_semantic_contract_audit_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r86_flow_semantic_contract_audit_20261017/FLOW_DIFFERENCE_ROOT_CAUSE_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 87,
+      "folder": "r87_common_behavior_bridge_20261017",
+      "group": "Flow กลางซ่อมหมวดและการเชื่อมระบบ",
+      "report": "r87_common_behavior_bridge_20261017/FLOW_R87_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 88,
+      "folder": "r88_full_common_llm_20261017",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r88_full_common_llm_20261017/REPORT_FINAL_TH.md",
+      "measured_rows": [
+        "Common — R88 LLM ON"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 89,
+      "folder": "r89_saved_full_comparison_20261018",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r89_saved_full_comparison_20261018/COMPARISON_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 90,
+      "folder": "r90_full_flow_analysis_20261018",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r90_full_flow_analysis_20261018/01_FULL_FLOW_LEGACY_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 91,
+      "folder": "r91_common_task_flow_20261018",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r91_common_task_flow_20261018/01_PROPOSED_COMMON_FLOW_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 92,
+      "folder": "r92_common_flow_implementation_20261018",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r92_common_flow_implementation_20261018/IMPLEMENTATION_REPORT_TH.md",
+      "measured_rows": [
+        "R92 — วัดใน R93 สุ่ม 1,000"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 93,
+      "folder": "r93_random_1000_common_on_20261018",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r93_random_1000_common_on_20261018/REPORT_FINAL_TH.md",
+      "measured_rows": [
+        "R92 — วัดใน R93 สุ่ม 1,000"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 94,
+      "folder": "r94_merged_common_flow_20261018",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r94_merged_common_flow_20261018/01_MERGED_COMMON_FLOW_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 95,
+      "folder": "r95_merged_flow_implementation_20261018",
+      "group": "Flow กลาง R88/R92/R95 และงานวิเคราะห์ประกอบ",
+      "report": "r95_merged_flow_implementation_20261018/FLOW_REVIEW_ADDENDUM_TH.md",
+      "measured_rows": [
+        "Common ผสม — R95 LLM ON"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 96,
+      "folder": "r96_paper_informed_flow_20261019",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r96_paper_informed_flow_20261019/01_RESEARCH_AND_DIAGNOSIS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 97,
+      "folder": "r97_flow_reassessment_20261019",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r97_flow_reassessment_20261019/01_R96_GAP_REVIEW_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 98,
+      "folder": "r98_flow_v2_implementation_20261019",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r98_flow_v2_implementation_20261019/IMPLEMENTED_FLOW_TH.md",
+      "measured_rows": [
+        "R98 subset02"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 99,
+      "folder": "r99_flow_review_20261019",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r99_flow_review_20261019/RECOMMENDED_FLOW_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 100,
+      "folder": "r100_contract_flow_implementation_20261019",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r100_contract_flow_implementation_20261019/IMPLEMENTED_FLOW_TH.md",
+      "measured_rows": [
+        "R100 subset05"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 101,
+      "folder": "r101_complete_flow_20261019",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r101_complete_flow_20261019/IMPLEMENTED_FLOW_TH.md",
+      "measured_rows": [
+        "R101 release_subset09"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 102,
+      "folder": "r102_full_flow_plan_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r102_full_flow_plan_20261020/FULL_FLOW_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 103,
+      "folder": "r103_complete_revision_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r103_complete_revision_20261020/FULL_FLOW_TH.md",
+      "measured_rows": [
+        "R103 retained_91",
+        "R103 retained_holdout192"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 103,
+      "folder": "r103_execution_control_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": null,
+      "measured_rows": [
+        "R103 retained_91",
+        "R103 retained_holdout192"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 104,
+      "folder": "r104_complete_flow_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r104_complete_flow_20261020/FULL_FLOW_TH.md",
+      "measured_rows": [
+        "R104 retained_91",
+        "R104 retained_holdout192"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 104,
+      "folder": "r104_execution_control_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": null,
+      "measured_rows": [
+        "R104 retained_91",
+        "R104 retained_holdout192"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 105,
+      "folder": "r105_complete_flow_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r105_complete_flow_20261020/FULL_FLOW_TH.md",
+      "measured_rows": [
+        "R105 retained_91",
+        "R105 retained_holdout192"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 105,
+      "folder": "r105_execution_control_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": null,
+      "measured_rows": [
+        "R105 retained_91",
+        "R105 retained_holdout192"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 106,
+      "folder": "r106_complete_flow_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": "r106_complete_flow_20261020/FULL_FLOW_TH.md",
+      "measured_rows": [
+        "Common Flow V2 ที่พัฒนาต่อ — R106 LLM ON"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 106,
+      "folder": "r106_execution_control_20261020",
+      "group": "งานวิจัย/R97 V2/การพัฒนา R98–R106",
+      "report": null,
+      "measured_rows": [
+        "Common Flow V2 ที่พัฒนาต่อ — R106 LLM ON"
+      ],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 107,
+      "folder": "r107_owner_questions_20261020",
+      "group": "แบบฟอร์มและรับข้อมูลเจ้าของ ไม่ใช่ Flow ที่วัดใหม่",
+      "report": "r107_owner_questions_20261020/QUESTIONS_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 108,
+      "folder": "r108_owner_intake_20261020",
+      "group": "แบบฟอร์มและรับข้อมูลเจ้าของ ไม่ใช่ Flow ที่วัดใหม่",
+      "report": "r108_owner_intake_20261020/INTAKE_REVIEW_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    },
+    {
+      "revision": 109,
+      "folder": "r109_owner_answers_20261020",
+      "group": "แบบฟอร์มและรับข้อมูลเจ้าของ ไม่ใช่ Flow ที่วัดใหม่",
+      "report": "r109_owner_answers_20261020/RECEIPT_AND_UPDATES_TH.md",
+      "measured_rows": [],
+      "unscored_note": "ไม่สร้างเปอร์เซ็นต์รวมจาก unit/API/schema assertions หรือจากแผน Flow หากไม่มีผลชุดเทียบที่ระบุในตาราง"
+    }
+  ],
+  "source_hashes": {
+    "r89_saved_full_comparison_20261018/SAME_CHECKER_COMPARISON.json": "9e4ac1d049ecbd285bd5917623f848af16414d546d512d67771c7d5bafc8a435",
+    "r95_merged_flow_implementation_20261018/full_analysis/ANALYSIS_FINAL.json": "afb5e9cadd81e000459fea955ae8a46af511b4bfe264c79557930f41f52d760c",
+    "r106_complete_flow_20261020/full_analysis/SCORES.json": "a5ba09054168dfe4420cfc910d52f57b11deb8711f898983cd397292a360b2fb",
+    "r106_complete_flow_20261020/full_analysis/REVIEW_R95_COMPARISON.json": "7844a77a5c53d5e9770cd3e1f53392951ae199f0da83d067af6ddafbd56b6b52",
+    "r70_half_common_llm_20261016/ANALYSIS_FINAL.json": "1445422b55dae211b0b482f4d0af79ab5a964b178bdeba7f7d80b8bef4e8b067",
+    "r93_random_1000_common_on_20261018/REPORT_FINAL_TH.md": "a09be8c5bc501e130bd03e252c503744deec23c9b520b12826ace705e0004905",
+    "r98_flow_v2_implementation_20261019/subset02/COMPARISON.json": "a76e08981c2468279689ab8304284621d647907cac135dccce19fba9592531fa",
+    "r100_contract_flow_implementation_20261019/subset05/COMPARISON.json": "d6a9f2d04b83e6ff1755172ffcb05f2d32e4df169d740b43d6a682886feed976",
+    "r101_complete_flow_20261019/release_subset09/ANALYSIS.json": "c342bebcf86a1623dd4c9abc6b809a5845cb585a984088620dac2a4192f853f3",
+    "r103_complete_revision_20261020/analysis_integrated02/retained_91_SCORES.json": "429ef2f73dd6d92977848434ab4f6d94640df2092cf67aa916b05c39e7f27972",
+    "r103_complete_revision_20261020/analysis_integrated02/retained_holdout192_SCORES.json": "5184af01631c26032d3807e2e9b39389cf8afa7ccd1f2c40da2c6dd3a93c5ae6",
+    "r104_complete_flow_20261020/analysis_integrated03/retained_91_SCORES.json": "51d0b20b3270f715297df83038d4ccef85dac9df4b36bda32f98bcc2b7d0a01a",
+    "r104_complete_flow_20261020/analysis_integrated03/retained_holdout192_SCORES.json": "080f454e546a5b36b3bd67aa7b89158121f90ad329dbb178d38e9bfce7b31c1a",
+    "r105_complete_flow_20261020/analysis_integrated04/retained_91_SCORES.json": "51d0b20b3270f715297df83038d4ccef85dac9df4b36bda32f98bcc2b7d0a01a",
+    "r105_complete_flow_20261020/analysis_integrated04/retained_holdout192_SCORES.json": "8924a70e00940be995038dbff111afab3c69828a61cc9ddc37b9b843a8cdd72c",
+    "r64_full_comparison_20261013/ANALYSIS_LATEST.json": "3bced89cdb0457b3d5ad9b13b8910b37c2a4deea9272dc02a295c59d4d746bed",
+    "r64_full_comparison_20261013/FULL_TEST_COMPLETE.json": "2cf10c661db910aabbf2a035f7c2756c191baae53d2228f64882b3fc7a69e5d3",
+    "r88_full_common_llm_20261017/FULL_TEST_COMPLETE.json": "a5d6431144a764e87316421fa80916369addc5f65e80f0fde2d70c10e7a4f52b",
+    "r95_merged_flow_implementation_20261018/FULL_TEST_COMPLETE.json": "697a0689905d59d084c9f803df32320720d97fedd2bd843a943772d6258ce546",
+    "r106_complete_flow_20261020/FULL_TEST_COMPLETE.json": "a063bc672f05f1ff02ff51a1801d2670e7b71deabaf8715aaad8ad5e89c44f2e",
+    "r103_complete_revision_20261020/analysis_integrated02/SCENARIO_SCORES.json": "f86da663e0ab1b3618eb50115187b3d5b8ff795af989aeeb53b1ca8d4995db9e",
+    "r104_complete_flow_20261020/analysis_integrated03/SCENARIO_SCORES.json": "2d2206483e05fcb1feb40ae86ebe37439b0823f1f0c65d7fbac7e14324d77a4f",
+    "r105_complete_flow_20261020/analysis_integrated04/SCENARIO_SCORES.json": "213f75adaab9b65e288d3acdc709b5a3a8bbcb1e8399f2619bec1fffeef187b2",
+    "r106_complete_flow_20261020/final_gate/REPORT_TH.md": "c6a9f4702aa037f0d346c0bfbadbc991d4d581aeb66d446b23e74710e4d80a9b"
+  },
+  "limits": [
+    "Positive/checkpoint scores are not independently adjudicated semantic answer accuracy.",
+    "Full/half/development/holdout/acceptance scores are not one ranking.",
+    "Historical oracle/data versions differ; owner R108/R109 facts have not been applied to an evaluated Flow."
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "question_key": "c8d9c78fa099e0ae2726a3da4066357a96e22d67640aea89f2c41a5ad07103ed",
+  "example_sha256": "801e9b1dae7403b3642f9a46e036067d8bcab594f981b6bc2dbbb26db2372822",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One recurring Sunday opening question; courteous preface adds no need.",
+      "raw_quotes": [
+        "Could you please help me with this: Is it open on Sundays"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/availability/open_periods represents the open/closed predicate.",
+      "raw_quotes": [
+        "Could you please help me with this: Is it open on Sundays"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Use full raw Sundays rather than truncating the plural when recording the weekday quote.",
+      "raw_quotes": [
+        "Could you please help me with this: Is it open on Sundays"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No this-coming-Sunday date or earlier service is inherited.",
+      "raw_quotes": [
+        "Could you please help me with this: Is it open on Sundays"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Recurring weekday scope is clear; it must not become current machine availability.",
+      "raw_quotes": [
+        "Could you please help me with this: Is it open on Sundays"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_schedule_6 records Sunday fields and slots separately from exceptional closures.",
+      "raw_quotes": [
+        "Could you please help me with this: Is it open on Sundays"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_6"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No closed verdict or numeric opening interval is taught.",
+      "raw_quotes": [
+        "Could you please help me with this: Is it open on Sundays"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 68,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Sunday"
+    ],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: Is it open on Sundays",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Sunday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Sundays"
+    ],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: Is it open on Sundays",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Sundays",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_6": {
+      "revision": 4,
+      "record_sha256": "4619ab2ac36c59d3b782383119b445c81bf7b6c52f4d8348cec3433c8b94b5f3"
+    }
+  }
+}

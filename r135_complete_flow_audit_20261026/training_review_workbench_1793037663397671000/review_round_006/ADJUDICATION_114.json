@@ -1,0 +1,128 @@
+{
+  "question_key": "a9d10950ec93051af3724894e688a7dfa64aeea02a9d7c0329a56f9c1fdf281b",
+  "example_sha256": "8c9019d1f51dd673256ea8757bd69fce2265456811726c3cc716e17aef50ce26",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One eligibility question asks who may use studio equipment.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains access restrictions rather than equipment capacity.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "เข้าใช้เครื่องในศูนย์ is the local requested action.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No outsider age, student status, booking completion or past permission is inherited.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A clear eligibility question must not imply unrestricted access merely because some actor/exception source is missing.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_policy_text_public_access_booking_required records a public-visitor booking/ID scenario, not exhaustive age/guardian/actor eligibility.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_public_access_booking_required"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No unconditional permission, booking deadline, identity document or age threshold enters the label.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The public-access source covers a specific visitor/booking/ID scenario rather than every eligibility exception.",
+      "handling": "Do not teach unrestricted access or an exhaustive actor list."
+    }
+  ],
+  "historical_review_row": 114,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: มีข้อจำกัดว่าใครเข้าใช้เครื่องในศูนย์ได้บ้าง",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "เข้าใช้เครื่องในศูนย์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    }
+  }
+}

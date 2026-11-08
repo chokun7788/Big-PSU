@@ -1,0 +1,3 @@
+from pathlib import Path
+ROOT=Path(r'C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data')
+p=ROOT/'app/pipeline/user_service_facts.py';s=p.read_text(encoding='utf-8');s=s.replace('        subject_present=_has(q,subject)\n','        subject_present=_has(q,subject)\n        condition_present=_has(q,condition)\n');s=s.replace('            subject_present=subject_present or bool(detect_game(q) or is_known_unsupported_game_query(q))','            condition_present=condition_present or bool(detect_game(q) or is_known_unsupported_game_query(q))');s=s.replace('        if subject_present and _has(q,condition):','        if subject_present and condition_present:');p.write_text(s,encoding='utf-8');print('named game supplies installation subject condition')

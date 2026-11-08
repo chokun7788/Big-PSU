@@ -1,0 +1,3540 @@
+{
+  "executed_cases": 3,
+  "requests": 7,
+  "passed": 3,
+  "health": {
+    "ok": true,
+    "service": "psu-esports-chat-web",
+    "time": "2026-10-06T09:28:41.569224+00:00",
+    "warmup": {
+      "ok": true,
+      "elapsed_sec": 17.5502,
+      "warmed": [
+        "game_title_aliases",
+        "structured_tools",
+        "game_resolver",
+        "routing_data",
+        "retrieval_data",
+        "probe_queries",
+        "semantic_embedding"
+      ],
+      "errors": [],
+      "timings": {
+        "game_title_aliases": 0.8829,
+        "structured_tools": 1.4302,
+        "game_resolver": 0.334,
+        "routing_data": 0.3289,
+        "retrieval_data": 4.7364,
+        "probe_queries": 9.7841,
+        "semantic_embedding": 0.0536
+      }
+    },
+    "llm_preflight": {
+      "ok": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "kind": "preflight",
+      "elapsed_ms": 54.56,
+      "response_chars": 2,
+      "done_reason": "length",
+      "num_ctx": 3072,
+      "load_duration": 9255000,
+      "prompt_eval_duration": 24238000,
+      "eval_duration": 1000,
+      "health": {
+        "llm_health_enabled": true,
+        "llm_health_status": "ok",
+        "llm_health_failures": 0,
+        "llm_health_failure_scope": "model_and_kind"
+      }
+    },
+    "input_quality_guard": {
+      "enabled": true,
+      "mode": "enforce",
+      "repeat_policy": "warn_and_continue",
+      "layout_threshold": 0.39,
+      "repeat_threshold": 0.55,
+      "corpus_size": 4023,
+      "profile_version": "keyboard-profile-v1:2a863a4176572043"
+    },
+    "llm_health": {
+      "enabled": true,
+      "failure_threshold": 2,
+      "failure_window_sec": 30.0,
+      "cooldown_sec": 90.0,
+      "states": [
+        {
+          "kind": "model",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 54.56,
+          "last_checked_at": 1791278680.2506301,
+          "last_success_at": 1791278680.2506301,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 54.56,
+              "detail": "preflight_ok",
+              "at": 1791278680.25
+            }
+          ]
+        },
+        {
+          "kind": "preflight",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 54.56,
+          "last_checked_at": 1791278680.2500794,
+          "last_success_at": 1791278680.2500794,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 54.56,
+              "detail": "preflight_ok",
+              "at": 1791278680.25
+            }
+          ]
+        }
+      ]
+    },
+    "pipeline_workers": {
+      "enabled": true,
+      "started": true,
+      "worker_count": 1,
+      "workers": [
+        {
+          "worker_id": 0,
+          "pid": 15116,
+          "alive": true,
+          "ready": true,
+          "completed_requests": 18,
+          "busy": false,
+          "replacement_warming": false
+        }
+      ],
+      "performance": {
+        "run_id": "20261006T092419Z",
+        "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r42_domain_resume_20261006_152553_b21f30\\release_r42_4\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261006T092419Z.jsonl",
+        "events_written": 5578,
+        "events_dropped": 0
+      }
+    },
+    "runtime": {
+      "profile": "owner-local-rag-assist",
+      "version": "2026.10.06-domain-resume-r42.4",
+      "installation_id": "0250397b0779f7d4",
+      "started_at": "2026-10-06T09:24:18.358426+00:00",
+      "answer_timeout_sec": 20.0,
+      "pipeline_timeout_sec": 19.0,
+      "intent_timeout_sec": 14.0,
+      "local_llm": {
+        "enabled": true,
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "intent_timeout_sec": 14.0,
+        "planner_timeout_sec": 1.2,
+        "general_timeout_sec": 4.0,
+        "high_assist_profile": true
+      },
+      "semantic_rag": {
+        "enabled": true,
+        "embedding_model": "psu-bge-m3:q8_0"
+      },
+      "english": {
+        "enabled": true,
+        "draft_preview": false
+      },
+      "booking": {
+        "enabled": true,
+        "fetch_mode": "wordpress",
+        "cache_seconds": 0.0,
+        "dashboard_required": false,
+        "read_only": true
+      },
+      "input_quality": {
+        "mode": "enforce",
+        "keyboard_layout": "request_retype",
+        "repeated_characters": "warn_and_continue"
+      }
+    },
+    "features": {
+      "bilingual_english": true,
+      "local_llm_assist": true,
+      "semantic_rag": true,
+      "embedding_model": "psu-bge-m3:q8_0",
+      "live_booking_status": true
+    }
+  },
+  "results": [
+    {
+      "id": "duplicate-replay",
+      "passed": true,
+      "records": [
+        {
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "0da6520b85ea475e88ca19226e8965b8",
+            "session_id": "r42-identity-683fccd5c9234d88b2731c8bceca951c",
+            "answer": "Regular service hours are Monday-Friday. Monday morning and Friday afternoon are maintenance periods. Please specify a day for the exact play window.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+            "mode": "pipeline:structured_schedule_en",
+            "route_category": "schedule",
+            "route_intent": "schedule_query",
+            "universal_intent": null,
+            "confidence": 0.98,
+            "latency_sec": 0.3759,
+            "wall_sec": 0.3931,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.393,
+              "global_remaining_sec": 19.607,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.607,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "service_schedule",
+                "url": "https://esports.computing.psu.ac.th/"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.2582,
+              "language": "en",
+              "language_quality": 0.7418,
+              "should_review_intent": false,
+              "reason": "English character n-gram quality=0.742",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:40.943324+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:40.943324+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.00138,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 1.282
+            },
+            "context_resolution": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "used_context": false,
+              "context_game": null,
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "english_context_preserved_without_rewrite",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "normalized_query": "what are the studio opening hours?",
+              "query_variants": [
+                "What are the studio opening hours?"
+              ],
+              "active_query": "What are the studio opening hours?",
+              "active_query_changed": false,
+              "trace": [
+                {
+                  "stage": "preprocess",
+                  "decision": "normalized",
+                  "confidence": 1.0,
+                  "detail": "what are the studio opening hours?",
+                  "metadata": {
+                    "language_hint": "en",
+                    "nonsemantic_preface_removed": false,
+                    "query_variants": [
+                      "What are the studio opening hours?"
+                    ],
+                    "competition_name_recovery": [],
+                    "elapsed_ms": 24.66,
+                    "elapsed_sec": 0.0247
+                  }
+                }
+              ]
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "schedule",
+                "operation": "schedule_query",
+                "target": "",
+                "confidence": 0.98,
+                "method": "route"
+              },
+              "route": {
+                "category": "schedule",
+                "intent": "schedule_query",
+                "confidence": 0.98,
+                "answer_type": "fact",
+                "risk": "low",
+                "reason": "token-aware weekday and shared service calendar"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_structured_tool",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "execution_step": "execute_structured_tool",
+                "executed_capability": "structured.schedule",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [],
+                "evidence_count": 1,
+                "source_ids": [
+                  "service_schedule"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": null,
+                "user_group": "general_student",
+                "duration": null,
+                "price_intent": false
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "schedule",
+                "intent": "schedule_query",
+                "source_count": 1,
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": null,
+              "user_group": "general_student",
+              "duration": null,
+              "price_intent": false,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "what are the studio opening hours?",
+                "language_hint": "en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.0001,
+                  "global_remaining_sec": 18.3498,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3498,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 17.92,
+                  "elapsed_sec": 0.0179,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.0241,
+                  "global_remaining_sec": 18.3258,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3258,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.1282,
+                  "global_remaining_sec": 18.2217,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.2217,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the studio opening hours?",
+                  "candidate": "What are the studio opening hours?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 27.97,
+                  "elapsed_sec": 0.028,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.1562,
+                  "global_remaining_sec": 18.1937,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.1937,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 128.19,
+                  "parts": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what are the studio opening hours?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 24.66,
+                  "elapsed_sec": 0.0247
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 24.79,
+                  "elapsed_sec": 0.0248
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "schedule/schedule_query",
+                "metadata": {
+                  "elapsed_ms": 6.67,
+                  "elapsed_sec": 0.0067,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": "general_student",
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.95,
+                "detail": "game_resolution_unknown",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "reason": "game_resolution_unknown",
+                  "resolution": {
+                    "status": "unknown",
+                    "entity_type": "game",
+                    "top_candidate": null,
+                    "candidates": [],
+                    "top_score": 0.0,
+                    "margin": 0.0,
+                    "reason": "shortlist_below_threshold",
+                    "operation": "detail",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "trigram_fuzzy",
+                    "candidate_count": 25,
+                    "comparison_count": 51,
+                    "elapsed_ms": 21.437,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "detail": "token-aware weekday and shared service calendar",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "execution coverage does not certify source facts or semantic accuracy",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "single",
+                  "status": "answered",
+                  "outcome": "answered_complete",
+                  "category": "schedule",
+                  "intent": "schedule_query",
+                  "source_count": 1,
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_schedule_en",
+                "metadata": {
+                  "elapsed_ms": 3.86,
+                  "elapsed_sec": 0.0039,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 375.82,
+                  "total_elapsed_sec": 0.3758
+                }
+              }
+            ],
+            "resolved_question": "What are the studio opening hours?",
+            "rule_coverage": null,
+            "client_turn_id": "7abd85e787b947a9bf636486bc7e1cd2",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "schedule",
+              "intent": "schedule_query",
+              "source_count": 1,
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "schedule/schedule_lookup",
+                  "domain": "schedule",
+                  "operation": "schedule_lookup",
+                  "targets": [],
+                  "offered_options": [],
+                  "query": "What are the studio opening hours?",
+                  "price_task": null,
+                  "seed_question": "What are the studio opening hours?",
+                  "mode": "pipeline:structured_schedule_en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "response_id": "0da6520b85ea475e88ca19226e8965b8",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "schedule/schedule_lookup"
+              ],
+              "delivery": {
+                "7abd85e787b947a9bf636486bc7e1cd2": "prepared"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            },
+            "log_sinks": {
+              "status": "queued"
+            }
+          },
+          "payload": {
+            "question": "What are the studio opening hours?",
+            "locale": "en",
+            "debug": true,
+            "client_session_id": "r42-identity-683fccd5c9234d88b2731c8bceca951c",
+            "client_turn_id": "7abd85e787b947a9bf636486bc7e1cd2"
+          },
+          "elapsed_sec": 0.4414
+        },
+        {
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "0da6520b85ea475e88ca19226e8965b8",
+            "session_id": "r42-identity-683fccd5c9234d88b2731c8bceca951c",
+            "answer": "Regular service hours are Monday-Friday. Monday morning and Friday afternoon are maintenance periods. Please specify a day for the exact play window.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+            "mode": "pipeline:structured_schedule_en",
+            "route_category": "schedule",
+            "route_intent": "schedule_query",
+            "universal_intent": null,
+            "confidence": 0.98,
+            "latency_sec": 0.3759,
+            "wall_sec": 0.3931,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.393,
+              "global_remaining_sec": 19.607,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.607,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "service_schedule",
+                "url": "https://esports.computing.psu.ac.th/"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.2582,
+              "language": "en",
+              "language_quality": 0.7418,
+              "should_review_intent": false,
+              "reason": "English character n-gram quality=0.742",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:40.943324+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:40.943324+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.00138,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 1.282
+            },
+            "context_resolution": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "used_context": false,
+              "context_game": null,
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "english_context_preserved_without_rewrite",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "normalized_query": "what are the studio opening hours?",
+              "query_variants": [
+                "What are the studio opening hours?"
+              ],
+              "active_query": "What are the studio opening hours?",
+              "active_query_changed": false,
+              "trace": [
+                {
+                  "stage": "preprocess",
+                  "decision": "normalized",
+                  "confidence": 1.0,
+                  "detail": "what are the studio opening hours?",
+                  "metadata": {
+                    "language_hint": "en",
+                    "nonsemantic_preface_removed": false,
+                    "query_variants": [
+                      "What are the studio opening hours?"
+                    ],
+                    "competition_name_recovery": [],
+                    "elapsed_ms": 24.66,
+                    "elapsed_sec": 0.0247
+                  }
+                }
+              ]
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "schedule",
+                "operation": "schedule_query",
+                "target": "",
+                "confidence": 0.98,
+                "method": "route"
+              },
+              "route": {
+                "category": "schedule",
+                "intent": "schedule_query",
+                "confidence": 0.98,
+                "answer_type": "fact",
+                "risk": "low",
+                "reason": "token-aware weekday and shared service calendar"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_structured_tool",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "execution_step": "execute_structured_tool",
+                "executed_capability": "structured.schedule",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [],
+                "evidence_count": 1,
+                "source_ids": [
+                  "service_schedule"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": null,
+                "user_group": "general_student",
+                "duration": null,
+                "price_intent": false
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "schedule",
+                "intent": "schedule_query",
+                "source_count": 1,
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": null,
+              "user_group": "general_student",
+              "duration": null,
+              "price_intent": false,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "what are the studio opening hours?",
+                "language_hint": "en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.0001,
+                  "global_remaining_sec": 18.3498,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3498,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 17.92,
+                  "elapsed_sec": 0.0179,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.0241,
+                  "global_remaining_sec": 18.3258,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3258,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.1282,
+                  "global_remaining_sec": 18.2217,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.2217,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the studio opening hours?",
+                  "candidate": "What are the studio opening hours?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 27.97,
+                  "elapsed_sec": 0.028,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.3499,
+                  "global_elapsed_sec": 0.1562,
+                  "global_remaining_sec": 18.1937,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.1937,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 128.19,
+                  "parts": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what are the studio opening hours?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 24.66,
+                  "elapsed_sec": 0.0247
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 24.79,
+                  "elapsed_sec": 0.0248
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "schedule/schedule_query",
+                "metadata": {
+                  "elapsed_ms": 6.67,
+                  "elapsed_sec": 0.0067,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": "general_student",
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.95,
+                "detail": "game_resolution_unknown",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "reason": "game_resolution_unknown",
+                  "resolution": {
+                    "status": "unknown",
+                    "entity_type": "game",
+                    "top_candidate": null,
+                    "candidates": [],
+                    "top_score": 0.0,
+                    "margin": 0.0,
+                    "reason": "shortlist_below_threshold",
+                    "operation": "detail",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "trigram_fuzzy",
+                    "candidate_count": 25,
+                    "comparison_count": 51,
+                    "elapsed_ms": 21.437,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "detail": "token-aware weekday and shared service calendar",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "execution coverage does not certify source facts or semantic accuracy",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "single",
+                  "status": "answered",
+                  "outcome": "answered_complete",
+                  "category": "schedule",
+                  "intent": "schedule_query",
+                  "source_count": 1,
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_schedule_en",
+                "metadata": {
+                  "elapsed_ms": 3.86,
+                  "elapsed_sec": 0.0039,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 375.82,
+                  "total_elapsed_sec": 0.3758
+                }
+              }
+            ],
+            "resolved_question": "What are the studio opening hours?",
+            "rule_coverage": null,
+            "client_turn_id": "7abd85e787b947a9bf636486bc7e1cd2",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "schedule",
+              "intent": "schedule_query",
+              "source_count": 1,
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "schedule/schedule_lookup",
+                  "domain": "schedule",
+                  "operation": "schedule_lookup",
+                  "targets": [],
+                  "offered_options": [],
+                  "query": "What are the studio opening hours?",
+                  "price_task": null,
+                  "seed_question": "What are the studio opening hours?",
+                  "mode": "pipeline:structured_schedule_en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "response_id": "0da6520b85ea475e88ca19226e8965b8",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "schedule/schedule_lookup"
+              ],
+              "delivery": {
+                "7abd85e787b947a9bf636486bc7e1cd2": "server_written"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            }
+          },
+          "payload": {
+            "question": "What are the studio opening hours?",
+            "locale": "en",
+            "debug": true,
+            "client_session_id": "r42-identity-683fccd5c9234d88b2731c8bceca951c",
+            "client_turn_id": "7abd85e787b947a9bf636486bc7e1cd2"
+          },
+          "elapsed_sec": 0.019
+        }
+      ]
+    },
+    {
+      "id": "concurrent-identical-turn",
+      "passed": true,
+      "records": [
+        {
+          "status": 409,
+          "response": {
+            "ok": false,
+            "error": "session_busy",
+            "request_id": "990fce32333540a6bb46288da28bdaa2",
+            "retry_after_ms": 150,
+            "message": "A previous message in this conversation is still processing.",
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            }
+          },
+          "payload": {
+            "question": "What are the studio opening hours?",
+            "locale": "en",
+            "debug": true,
+            "client_session_id": "r42-identity-9351833647df40d1b3567d052a1850c8",
+            "client_turn_id": "509621b3ce8a428f82690dce42c07b8c"
+          },
+          "elapsed_sec": 0.1151
+        },
+        {
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "71af3a6be3c6425b8ba43b51c162e357",
+            "session_id": "r42-identity-9351833647df40d1b3567d052a1850c8",
+            "answer": "Regular service hours are Monday-Friday. Monday morning and Friday afternoon are maintenance periods. Please specify a day for the exact play window.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+            "mode": "pipeline:structured_schedule_en",
+            "route_category": "schedule",
+            "route_intent": "schedule_query",
+            "universal_intent": null,
+            "confidence": 0.98,
+            "latency_sec": 0.2333,
+            "wall_sec": 0.251,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.251,
+              "global_remaining_sec": 19.749,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.749,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "service_schedule",
+                "url": "https://esports.computing.psu.ac.th/"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.2582,
+              "language": "en",
+              "language_quality": 0.7418,
+              "should_review_intent": false,
+              "reason": "English character n-gram quality=0.742",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:41.221506+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:41.221506+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.00138,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 1.285
+            },
+            "context_resolution": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "used_context": false,
+              "context_game": null,
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "english_context_preserved_without_rewrite",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "normalized_query": "what are the studio opening hours?",
+              "query_variants": [
+                "What are the studio opening hours?"
+              ],
+              "active_query": "What are the studio opening hours?",
+              "active_query_changed": false,
+              "trace": [
+                {
+                  "stage": "preprocess",
+                  "decision": "normalized",
+                  "confidence": 1.0,
+                  "detail": "what are the studio opening hours?",
+                  "metadata": {
+                    "language_hint": "en",
+                    "nonsemantic_preface_removed": false,
+                    "query_variants": [
+                      "What are the studio opening hours?"
+                    ],
+                    "competition_name_recovery": [],
+                    "elapsed_ms": 21.2,
+                    "elapsed_sec": 0.0212
+                  }
+                }
+              ]
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "schedule",
+                "operation": "schedule_query",
+                "target": "",
+                "confidence": 0.98,
+                "method": "route"
+              },
+              "route": {
+                "category": "schedule",
+                "intent": "schedule_query",
+                "confidence": 0.98,
+                "answer_type": "fact",
+                "risk": "low",
+                "reason": "token-aware weekday and shared service calendar"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_structured_tool",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "execution_step": "execute_structured_tool",
+                "executed_capability": "structured.schedule",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [],
+                "evidence_count": 1,
+                "source_ids": [
+                  "service_schedule"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": null,
+                "user_group": "general_student",
+                "duration": null,
+                "price_intent": false
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "schedule",
+                "intent": "schedule_query",
+                "source_count": 1,
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": null,
+              "user_group": "general_student",
+              "duration": null,
+              "price_intent": false,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "what are the studio opening hours?",
+                "language_hint": "en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0001,
+                  "global_remaining_sec": 18.3499,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3499,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 14.72,
+                  "elapsed_sec": 0.0147,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0177,
+                  "global_remaining_sec": 18.3322,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3322,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.01,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0189,
+                  "global_remaining_sec": 18.3311,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3311,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the studio opening hours?",
+                  "candidate": "What are the studio opening hours?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 17.35,
+                  "elapsed_sec": 0.0173,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0362,
+                  "global_remaining_sec": 18.3137,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3137,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 18.85,
+                  "parts": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what are the studio opening hours?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 21.2,
+                  "elapsed_sec": 0.0212
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 21.34,
+                  "elapsed_sec": 0.0213
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "schedule/schedule_query",
+                "metadata": {
+                  "elapsed_ms": 9.09,
+                  "elapsed_sec": 0.0091,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": "general_student",
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.95,
+                "detail": "game_resolution_unknown",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "reason": "game_resolution_unknown",
+                  "resolution": {
+                    "status": "unknown",
+                    "entity_type": "game",
+                    "top_candidate": null,
+                    "candidates": [],
+                    "top_score": 0.0,
+                    "margin": 0.0,
+                    "reason": "shortlist_below_threshold",
+                    "operation": "detail",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "trigram_fuzzy",
+                    "candidate_count": 25,
+                    "comparison_count": 51,
+                    "elapsed_ms": 23.059,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "detail": "token-aware weekday and shared service calendar",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "execution coverage does not certify source facts or semantic accuracy",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "single",
+                  "status": "answered",
+                  "outcome": "answered_complete",
+                  "category": "schedule",
+                  "intent": "schedule_query",
+                  "source_count": 1,
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_schedule_en",
+                "metadata": {
+                  "elapsed_ms": 3.04,
+                  "elapsed_sec": 0.003,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 233.22,
+                  "total_elapsed_sec": 0.2332
+                }
+              }
+            ],
+            "resolved_question": "What are the studio opening hours?",
+            "rule_coverage": null,
+            "client_turn_id": "509621b3ce8a428f82690dce42c07b8c",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "schedule",
+              "intent": "schedule_query",
+              "source_count": 1,
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "schedule/schedule_lookup",
+                  "domain": "schedule",
+                  "operation": "schedule_lookup",
+                  "targets": [],
+                  "offered_options": [],
+                  "query": "What are the studio opening hours?",
+                  "price_task": null,
+                  "seed_question": "What are the studio opening hours?",
+                  "mode": "pipeline:structured_schedule_en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "response_id": "71af3a6be3c6425b8ba43b51c162e357",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "schedule/schedule_lookup"
+              ],
+              "delivery": {
+                "509621b3ce8a428f82690dce42c07b8c": "prepared"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            },
+            "log_sinks": {
+              "status": "queued"
+            }
+          },
+          "payload": {
+            "question": "What are the studio opening hours?",
+            "locale": "en",
+            "debug": true,
+            "client_session_id": "r42-identity-9351833647df40d1b3567d052a1850c8",
+            "client_turn_id": "509621b3ce8a428f82690dce42c07b8c"
+          },
+          "elapsed_sec": 0.257
+        },
+        {
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "71af3a6be3c6425b8ba43b51c162e357",
+            "session_id": "r42-identity-9351833647df40d1b3567d052a1850c8",
+            "answer": "Regular service hours are Monday-Friday. Monday morning and Friday afternoon are maintenance periods. Please specify a day for the exact play window.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+            "mode": "pipeline:structured_schedule_en",
+            "route_category": "schedule",
+            "route_intent": "schedule_query",
+            "universal_intent": null,
+            "confidence": 0.98,
+            "latency_sec": 0.2333,
+            "wall_sec": 0.251,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.251,
+              "global_remaining_sec": 19.749,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.749,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "service_schedule",
+                "url": "https://esports.computing.psu.ac.th/"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.2582,
+              "language": "en",
+              "language_quality": 0.7418,
+              "should_review_intent": false,
+              "reason": "English character n-gram quality=0.742",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:41.221506+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:41.221506+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.00138,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 1.285
+            },
+            "context_resolution": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "used_context": false,
+              "context_game": null,
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "english_context_preserved_without_rewrite",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "normalized_query": "what are the studio opening hours?",
+              "query_variants": [
+                "What are the studio opening hours?"
+              ],
+              "active_query": "What are the studio opening hours?",
+              "active_query_changed": false,
+              "trace": [
+                {
+                  "stage": "preprocess",
+                  "decision": "normalized",
+                  "confidence": 1.0,
+                  "detail": "what are the studio opening hours?",
+                  "metadata": {
+                    "language_hint": "en",
+                    "nonsemantic_preface_removed": false,
+                    "query_variants": [
+                      "What are the studio opening hours?"
+                    ],
+                    "competition_name_recovery": [],
+                    "elapsed_ms": 21.2,
+                    "elapsed_sec": 0.0212
+                  }
+                }
+              ]
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "schedule",
+                "operation": "schedule_query",
+                "target": "",
+                "confidence": 0.98,
+                "method": "route"
+              },
+              "route": {
+                "category": "schedule",
+                "intent": "schedule_query",
+                "confidence": 0.98,
+                "answer_type": "fact",
+                "risk": "low",
+                "reason": "token-aware weekday and shared service calendar"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_structured_tool",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "execution_step": "execute_structured_tool",
+                "executed_capability": "structured.schedule",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [],
+                "evidence_count": 1,
+                "source_ids": [
+                  "service_schedule"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": null,
+                "user_group": "general_student",
+                "duration": null,
+                "price_intent": false
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "schedule",
+                "intent": "schedule_query",
+                "source_count": 1,
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": null,
+              "user_group": "general_student",
+              "duration": null,
+              "price_intent": false,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "what are the studio opening hours?",
+                "language_hint": "en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0001,
+                  "global_remaining_sec": 18.3499,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3499,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 14.72,
+                  "elapsed_sec": 0.0147,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0177,
+                  "global_remaining_sec": 18.3322,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3322,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.01,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0189,
+                  "global_remaining_sec": 18.3311,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3311,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the studio opening hours?",
+                  "candidate": "What are the studio opening hours?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 17.35,
+                  "elapsed_sec": 0.0173,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0362,
+                  "global_remaining_sec": 18.3137,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3137,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 18.85,
+                  "parts": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what are the studio opening hours?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 21.2,
+                  "elapsed_sec": 0.0212
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 21.34,
+                  "elapsed_sec": 0.0213
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "schedule/schedule_query",
+                "metadata": {
+                  "elapsed_ms": 9.09,
+                  "elapsed_sec": 0.0091,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": "general_student",
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.95,
+                "detail": "game_resolution_unknown",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "reason": "game_resolution_unknown",
+                  "resolution": {
+                    "status": "unknown",
+                    "entity_type": "game",
+                    "top_candidate": null,
+                    "candidates": [],
+                    "top_score": 0.0,
+                    "margin": 0.0,
+                    "reason": "shortlist_below_threshold",
+                    "operation": "detail",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "trigram_fuzzy",
+                    "candidate_count": 25,
+                    "comparison_count": 51,
+                    "elapsed_ms": 23.059,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "detail": "token-aware weekday and shared service calendar",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "execution coverage does not certify source facts or semantic accuracy",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "single",
+                  "status": "answered",
+                  "outcome": "answered_complete",
+                  "category": "schedule",
+                  "intent": "schedule_query",
+                  "source_count": 1,
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_schedule_en",
+                "metadata": {
+                  "elapsed_ms": 3.04,
+                  "elapsed_sec": 0.003,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 233.22,
+                  "total_elapsed_sec": 0.2332
+                }
+              }
+            ],
+            "resolved_question": "What are the studio opening hours?",
+            "rule_coverage": null,
+            "client_turn_id": "509621b3ce8a428f82690dce42c07b8c",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "schedule",
+              "intent": "schedule_query",
+              "source_count": 1,
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "schedule/schedule_lookup",
+                  "domain": "schedule",
+                  "operation": "schedule_lookup",
+                  "targets": [],
+                  "offered_options": [],
+                  "query": "What are the studio opening hours?",
+                  "price_task": null,
+                  "seed_question": "What are the studio opening hours?",
+                  "mode": "pipeline:structured_schedule_en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "response_id": "71af3a6be3c6425b8ba43b51c162e357",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "schedule/schedule_lookup"
+              ],
+              "delivery": {
+                "509621b3ce8a428f82690dce42c07b8c": "server_written"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            }
+          },
+          "payload": {
+            "question": "What are the studio opening hours?",
+            "locale": "en",
+            "debug": true,
+            "client_session_id": "r42-identity-9351833647df40d1b3567d052a1850c8",
+            "client_turn_id": "509621b3ce8a428f82690dce42c07b8c"
+          },
+          "elapsed_sec": 0.0185
+        }
+      ]
+    },
+    {
+      "id": "changed-input-same-turn-conflict",
+      "passed": true,
+      "records": [
+        {
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "2f5813d249ac47cb989e221e3d998d48",
+            "session_id": "r42-identity-dc3412f85a06433e9d97c8bc7284e123",
+            "answer": "Regular service hours are Monday-Friday. Monday morning and Friday afternoon are maintenance periods. Please specify a day for the exact play window.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+            "mode": "pipeline:structured_schedule_en",
+            "route_category": "schedule",
+            "route_intent": "schedule_query",
+            "universal_intent": null,
+            "confidence": 0.98,
+            "latency_sec": 0.2407,
+            "wall_sec": 0.2558,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.2558,
+              "global_remaining_sec": 19.7442,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.7442,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "service_schedule",
+                "url": "https://esports.computing.psu.ac.th/"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.2582,
+              "language": "en",
+              "language_quality": 0.7418,
+              "should_review_intent": false,
+              "reason": "English character n-gram quality=0.742",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:41.524719+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "16:28",
+              "datetime_iso": "2026-10-06T16:28:41.524719+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "16:28",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "outside_hours",
+                "playable": false,
+                "slot": null,
+                "next_open_slot": null,
+                "reason": "outside_regular_service_hours",
+                "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.00138,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 1.278
+            },
+            "context_resolution": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "used_context": false,
+              "context_game": null,
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "english_context_preserved_without_rewrite",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "What are the studio opening hours?",
+              "resolved_question": "What are the studio opening hours?",
+              "normalized_query": "what are the studio opening hours?",
+              "query_variants": [
+                "What are the studio opening hours?"
+              ],
+              "active_query": "What are the studio opening hours?",
+              "active_query_changed": false,
+              "trace": [
+                {
+                  "stage": "preprocess",
+                  "decision": "normalized",
+                  "confidence": 1.0,
+                  "detail": "what are the studio opening hours?",
+                  "metadata": {
+                    "language_hint": "en",
+                    "nonsemantic_preface_removed": false,
+                    "query_variants": [
+                      "What are the studio opening hours?"
+                    ],
+                    "competition_name_recovery": [],
+                    "elapsed_ms": 20.98,
+                    "elapsed_sec": 0.021
+                  }
+                }
+              ]
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "schedule",
+                "operation": "schedule_query",
+                "target": "",
+                "confidence": 0.98,
+                "method": "route"
+              },
+              "route": {
+                "category": "schedule",
+                "intent": "schedule_query",
+                "confidence": 0.98,
+                "answer_type": "fact",
+                "risk": "low",
+                "reason": "token-aware weekday and shared service calendar"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_structured_tool",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "execution_step": "execute_structured_tool",
+                "executed_capability": "structured.schedule",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [],
+                "evidence_count": 1,
+                "source_ids": [
+                  "service_schedule"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": null,
+                "user_group": "general_student",
+                "duration": null,
+                "price_intent": false
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "single",
+                "status": "answered",
+                "outcome": "answered_complete",
+                "category": "schedule",
+                "intent": "schedule_query",
+                "source_count": 1,
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": null,
+              "user_group": "general_student",
+              "duration": null,
+              "price_intent": false,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "what are the studio opening hours?",
+                "language_hint": "en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0001,
+                  "global_remaining_sec": 18.3499,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3499,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 15.53,
+                  "elapsed_sec": 0.0155,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0178,
+                  "global_remaining_sec": 18.3322,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3322,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0199,
+                  "global_remaining_sec": 18.33,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.33,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the studio opening hours?",
+                  "candidate": "What are the studio opening hours?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 18.4,
+                  "elapsed_sec": 0.0184,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0384,
+                  "global_remaining_sec": 18.3116,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3116,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 19.93,
+                  "parts": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what are the studio opening hours?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What are the studio opening hours?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 20.98,
+                  "elapsed_sec": 0.021
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 21.1,
+                  "elapsed_sec": 0.0211
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "schedule/schedule_query",
+                "metadata": {
+                  "elapsed_ms": 9.93,
+                  "elapsed_sec": 0.0099,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": "general_student",
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.95,
+                "detail": "game_resolution_unknown",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "reason": "game_resolution_unknown",
+                  "resolution": {
+                    "status": "unknown",
+                    "entity_type": "game",
+                    "top_candidate": null,
+                    "candidates": [],
+                    "top_score": 0.0,
+                    "margin": 0.0,
+                    "reason": "shortlist_below_threshold",
+                    "operation": "detail",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "trigram_fuzzy",
+                    "candidate_count": 25,
+                    "comparison_count": 51,
+                    "elapsed_ms": 20.709,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_schedule_en",
+                "confidence": 0.98,
+                "detail": "token-aware weekday and shared service calendar",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "execution coverage does not certify source facts or semantic accuracy",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "single",
+                  "status": "answered",
+                  "outcome": "answered_complete",
+                  "category": "schedule",
+                  "intent": "schedule_query",
+                  "source_count": 1,
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_schedule_en",
+                "metadata": {
+                  "elapsed_ms": 2.65,
+                  "elapsed_sec": 0.0027,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 240.6,
+                  "total_elapsed_sec": 0.2406
+                }
+              }
+            ],
+            "resolved_question": "What are the studio opening hours?",
+            "rule_coverage": null,
+            "client_turn_id": "d6224add658d42ea9ea63b26eb626b9f",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "single",
+              "status": "answered",
+              "outcome": "answered_complete",
+              "category": "schedule",
+              "intent": "schedule_query",
+              "source_count": 1,
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "schedule/schedule_lookup",
+                  "domain": "schedule",
+                  "operation": "schedule_lookup",
+                  "targets": [],
+                  "offered_options": [],
+                  "query": "What are the studio opening hours?",
+                  "price_task": null,
+                  "seed_question": "What are the studio opening hours?",
+                  "mode": "pipeline:structured_schedule_en",
+                  "route_category": "schedule",
+                  "route_intent": "schedule_query",
+                  "response_id": "2f5813d249ac47cb989e221e3d998d48",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "schedule/schedule_lookup"
+              ],
+              "delivery": {
+                "d6224add658d42ea9ea63b26eb626b9f": "prepared"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            },
+            "log_sinks": {
+              "status": "queued"
+            }
+          },
+          "payload": {
+            "question": "What are the studio opening hours?",
+            "locale": "en",
+            "debug": true,
+            "client_session_id": "r42-identity-dc3412f85a06433e9d97c8bc7284e123",
+            "client_turn_id": "d6224add658d42ea9ea63b26eb626b9f"
+          },
+          "elapsed_sec": 0.2855
+        },
+        {
+          "status": 409,
+          "response": {
+            "ok": false,
+            "error": "client_turn_conflict",
+            "request_id": "1398b1b6629c49fd88449d8f4ece9fe3"
+          },
+          "payload": {
+            "question": "How can I contact the studio?",
+            "locale": "en",
+            "debug": true,
+            "client_session_id": "r42-identity-dc3412f85a06433e9d97c8bc7284e123",
+            "client_turn_id": "d6224add658d42ea9ea63b26eb626b9f"
+          },
+          "elapsed_sec": 0.0079
+        }
+      ]
+    }
+  ]
+}

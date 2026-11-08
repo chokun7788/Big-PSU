@@ -1,0 +1,115 @@
+{
+  "question_key": "9c658222c039416e29c42c6e68afcf719cf98cf0b06e9bccf1f8fc6401c60d3c",
+  "example_sha256": "d0f6c0ea437a2e624d104a6749f5adc082b008ccfc668b867b5d65583bd4e35f",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One booking-information need; typo-bearing polite/style text does not create another task.",
+      "raw_quotes": [
+        "Could uou please help me with this: What information do I need to book? Please answer brefly"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy requests required booking information, not live availability or cancellation.",
+      "raw_quotes": [
+        "Could uou please help me with this: What information do I need to book? Please answer brefly"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "What information do I need to book is the explicit action scope.",
+      "raw_quotes": [
+        "Could uou please help me with this: What information do I need to book? Please answer brefly"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No machine, date, person or previous context is stated; do not inherit one.",
+      "raw_quotes": [
+        "Could uou please help me with this: What information do I need to book? Please answer brefly"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The intent is clear despite uou/brefly typos; missing business data is not language ambiguity.",
+      "raw_quotes": [
+        "Could uou please help me with this: What information do I need to book? Please answer brefly"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Direct source lookup did not establish the exact information-requirements clause; advance/cancel/session-limit candidates are not substitutes.",
+      "raw_quotes": [
+        "Could uou please help me with this: What information do I need to book? Please answer brefly"
+      ],
+      "source_record_ids": []
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No required-document list or booking transaction is supervised.",
+      "raw_quotes": [
+        "Could uou please help me with this: What information do I need to book? Please answer brefly"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 13,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could uou please help me with this: What information do I need to book? Please answer brefly",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could uou please help me with this: What information do I need to book? Please answer brefly",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "What information do I need to book",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {}
+}

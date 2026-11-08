@@ -1,0 +1,126 @@
+{
+  "question_key": "8193721107238eefad91cb2eda48dae497216bd6757f779ea5befd550743bc30",
+  "example_sha256": "d55c077f81dc5d97f60444a03cbcc329b0b8f57e91fe4b6b542a4ecc988f9b33",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Thai inventory question asks what VR Zone has available to use; doubled บ is a typo, not another need.",
+      "raw_quotes": [
+        "VR Zone มีอะไรให้ใช้บบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "equipment/list/name with VR Zone target is the inventory purpose, not games, prices or equipment instructions.",
+      "raw_quotes": [
+        "VR Zone มีอะไรให้ใช้บบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "No capacity, room seats, current occupancy, exact device model or rental package is requested.",
+      "raw_quotes": [
+        "VR Zone มีอะไรให้ใช้บบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No prior service session, game edition, party size or live status is inherited.",
+      "raw_quotes": [
+        "VR Zone มีอะไรให้ใช้บบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Inventory wording does not promise that a listed device is currently unoccupied or working.",
+      "raw_quotes": [
+        "VR Zone มีอะไรให้ใช้บบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned home-equipment VR Zone FAQ revision2 names the local device inventory; zone_vr revision2 has unknown room seats/location. Neither source is a live-availability feed.",
+      "raw_quotes": [
+        "VR Zone มีอะไรให้ใช้บบ้าง"
+      ],
+      "source_record_ids": [
+        "migrated_faq_curated_home_equipment_vr_zone",
+        "zone_vr"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Keep the existing label; no device names, quantities, seats, prices or current availability answers enter it.",
+      "raw_quotes": [
+        "VR Zone มีอะไรให้ใช้บบ้าง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Static inventory does not establish current resource availability or room seats.",
+      "handling": "Keep inventory separate from live and capacity."
+    }
+  ],
+  "historical_review_row": 251,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "VR Zone มีอะไรให้ใช้บบ้าง",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "VR Zone",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "VR Zone มีอะไรให้ใช้บบ้าง",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "VR Zone",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_curated_home_equipment_vr_zone": {
+      "revision": 2,
+      "record_sha256": "4d4fafdd63d1e279487a701f078c6f8259dd01102f8571852ec0d3fb8bed9135"
+    },
+    "zone_vr": {
+      "revision": 2,
+      "record_sha256": "6da204a1777e5d087c159aef87176f78c9d0a6aba76c55be01d4e172e3bdc09e"
+    }
+  }
+}

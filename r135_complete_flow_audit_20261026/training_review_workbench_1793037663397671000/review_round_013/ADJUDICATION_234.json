@@ -1,0 +1,114 @@
+{
+  "question_key": "f587538a89ed7ff6031d8e3475fbf100ab145e997827495316c9757c132ce3dc",
+  "example_sha256": "f3dfc595fd6134036fe3d2f51c6ea4c333c5d334a5295e85a98af59b269524e1",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks which day to attend event04; brief-answer language is presentation.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "news/detail/date retains event occurrence date, not publication time or registration cutoff.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "กิจกรรมจำลองทดสอบ 04 is the literal target; ต้องไปวันไหน supplies attendance-date purpose.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Wanting to go does not supply a booking, a particular calendar date or a reference weekday.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The query does not assert that the event is upcoming or currently accepting registration.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Owner source has no typed news records or event04; retain the missing event/date source rather than borrow a competition date.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน"
+      ],
+      "source_record_ids": []
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No calendar value, eligibility, booking or date answer enters the label.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "This literal event name comes from an exposed synthetic corpus family, while the pinned owner snapshot contains no news records.",
+      "handling": "Review the language target only; keep business status/date/link unconfirmed and do not treat this as actual C14 source/category acceptance."
+    }
+  ],
+  "historical_review_row": 234,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "news",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน",
+        "domain": "news",
+        "operation": "detail",
+        "facet": "date",
+        "target": "กิจกรรมจำลองทดสอบ 04",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "news",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า อยากไป กิจกรรมจำลองทดสอบ 04 ต้องไปวันไหน",
+        "domain": "news",
+        "operation": "detail",
+        "facet": "date",
+        "target": "กิจกรรมจำลองทดสอบ 04",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {}
+}

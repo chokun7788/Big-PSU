@@ -1,0 +1,195 @@
+{
+  "count": 13,
+  "passed": 13,
+  "checks": [
+    {
+      "case": "Legacy fact loaders blocked; current common package answered",
+      "passed": true,
+      "detail": {
+        "answer": "**Full-Day PC Zone Rental for External Organizations**\nPackage price: 4,000.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service.",
+        "artifact": {
+          "response_type": "answer",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "rental_pc_external_full_day"
+            ],
+            "requested_fields": [
+              "amount_minor",
+              "currency",
+              "audience_id",
+              "period_label"
+            ],
+            "operation": "rental",
+            "method": "common_legacy_rental_bridge",
+            "request_contract": {
+              "version": 1,
+              "domain": "rental",
+              "requests": [
+                {
+                  "zones": [
+                    "zone_pc"
+                  ],
+                  "audiences": [
+                    "audience_external_org"
+                  ],
+                  "periods": [
+                    "full_day"
+                  ]
+                }
+              ],
+              "asks": [
+                "rates"
+              ],
+              "context_used": false,
+              "original_query": "PC full-day rental for external organizations price",
+              "action": "read"
+            },
+            "response_projection": [
+              {
+                "record_id": "rental_pc_external_full_day",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "currency": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "period_label": "necessary_context"
+                }
+              }
+            ],
+            "unknown_fields": [],
+            "not_current_ids": [],
+            "legacy_fact_fallback_used": false,
+            "source_answer_confirmed": true
+          },
+          "obligations": [
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "amount_minor",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/amount_minor",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            },
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "currency",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/currency",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            },
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "audience_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/audience_id",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            },
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "period_label",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/period_label",
+                  "source_id": "migration_rental_pc_external_full_day"
+                }
+              ]
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [],
+          "query_resolution": []
+        }
+      }
+    },
+    {
+      "case": "Edited price read on follow-up; history facts not reused",
+      "passed": true,
+      "detail": "**Full-Day PC Zone Rental for External Organizations**\nPackage price: 4,500.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "Period replacement preserves PC/external with latest revision",
+      "passed": true,
+      "detail": "**PC Zone External Agency half_day**\nPackage price: 2,250.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "Expired package never asserted as current price",
+      "passed": true,
+      "detail": "Some packages or their referenced records are not current, so their prices are not asserted as current."
+    },
+    {
+      "case": "New common zone works without editing code catalogs",
+      "passed": true,
+      "detail": "**Aurora half-day internal organization fixture**\nPackage price: 987.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "New zone equipment follow-up reads new common fields",
+      "passed": true,
+      "detail": "**Aurora half-day internal organization fixture**\nIncluded equipment: AURORA_PAD fixture equipment [S1]"
+    },
+    {
+      "case": "New zone revised price follows current revision",
+      "passed": true,
+      "detail": "**Aurora half-day internal organization fixture**\nPackage price: 1,234.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+    },
+    {
+      "case": "Withdrawn package does not fall back to legacy or stale state",
+      "passed": true,
+      "detail": "The previous scope was changed or withdrawn. Please specify the zone and audience again."
+    },
+    {
+      "case": "New source is not blocked by old unknown-topic guard",
+      "passed": true,
+      "detail": "Do you mean this topic: Payment amount correction fixture?\nReply “yes” or “no”."
+    },
+    {
+      "case": "Confirmation reads newly added source answer",
+      "passed": true,
+      "detail": "**Relevant information**\n• Confirmed information: ISOLATED AMOUNT_REVIEW_V1 [S1]"
+    },
+    {
+      "case": "New correction source update is effective without router edit",
+      "passed": true,
+      "detail": "**Relevant information**\n• Confirmed information: ISOLATED AMOUNT_REVIEW_V2 [S1]"
+    },
+    {
+      "case": "Withdrawn new correction restores precise unconfirmed state",
+      "passed": true,
+      "detail": "The information I could read does not confirm how to correct an incorrect payment amount. Please contact the studio staff to confirm before proceeding.\nWas the payment above or below the booking amount? I cannot yet confirm a correction or refund procedure.\nStudio page: https://www.facebook.com/psuesportsphuket [S1]"
+    },
+    {
+      "case": "Real knowledge database unchanged",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "isolated_fixture": true,
+  "llm_on": true,
+  "controlled_transport": true,
+  "real_model_inference_verified": false,
+  "full_test_executed": false
+}

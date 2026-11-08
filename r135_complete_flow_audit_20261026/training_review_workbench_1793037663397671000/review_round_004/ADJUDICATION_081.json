@@ -1,0 +1,108 @@
+{
+  "question_key": "90f33ee2ea59180a4a1a43b4b94fbdbdb3059b0b66bb358122c16589be78eb5f",
+  "example_sha256": "998d39365872109fadc02b467171cb723c8ab92aa0f33ac431748abfc2dae323",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One meta question asks whether specifying a game is needed for a later pause-rule query.",
+      "raw_quotes": [
+        "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Correct competition rule lookup to general/detail with empty business facet: the user asks how to ask, not for the pause clause itself.",
+      "raw_quotes": [
+        "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "pause is topic context; no game/event target or absolute rule is stated.",
+      "raw_quotes": [
+        "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No prior game or tournament edition can be inherited.",
+      "raw_quotes": [
+        "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The meta question is clear; remove the old ambiguous rule task rather than teaching a missing-target business lookup as the requested answer.",
+      "raw_quotes": [
+        "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "No single pinned game/event may answer a universal pause rule. Label only the meta intent and leave actual rule/source selection to a future explicit query.",
+      "raw_quotes": [
+        "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no universal game requirement, pause duration, authority or rulebook fact enters output.",
+      "raw_quotes": [
+        "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 81,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "general",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถ้าอยากรู้กติกา pause ต้องระบุเกมก่อนใช่ไหม",
+        "domain": "general",
+        "operation": "detail",
+        "facet": "",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {}
+}

@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "question_key": "8a85ca899d99c94f28df724dce206223b5af6bd471628a6c95131d418e51eb05",
+  "request_id": "controlled-request",
+  "response_request_id": "controlled-request",
+  "request": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "Interpret the customer request into a source-quoted task graph; do not answer. Return ONLY one JSON object, with no markdown, YAML, explanation or input echo. The version string MUST be exactly \"r129-plan-v2\". Root keys MUST be exactly version, focus, context_quotes, tasks, shared_bindings. tasks is a JSON array of one to four objects. shared_bindings and constraints are JSON arrays (use [] when empty). Task ids MUST be \"t1\", \"t2\", \"t3\", \"t4\" in order, never \"1\" or numeric 1. There MUST NOT be a root constraints key; constraints belongs inside each task only. target MUST be an exact question substring or empty string; never output a field name such as local_date as a target unless those characters were in the question. A single task quote must contain the whole question, including its requested action and conditions. Return version, focus, context_quotes, tasks, shared_bindings. Each task has id, quote, domain, operation, facet, target, constraints, ambiguous. Constraints have slot, quote, source_record_id (empty), scope (local/shared). All quotes are exact input substrings. Shared bindings have source_task_id,target_task_id,slot,quote,basis (shared_prefix/explicit_anaphor/source_related_ellipsis). Keep local overrides. Do not broadcast constraints to unrelated tasks. Preserve ambiguity and missing input. Split factual needs, never style requests. Game/device mentions may be context for booking, eligibility or price. Never invent IDs, answers, prices, dates not stated, permissions or source authority. Domains/facets: {\"contact\":\"operator description address building floor map_url value location\",\"members\":\"display_name role team affiliation period\",\"equipment\":\"name device_type specifications usage location quantity capacity_persons service_capacity controllers room_seats\",\"games\":\"summary official_description genre how_to_play supported_platforms studio_services zone game_catalog players_max\",\"game_controls\":\"input_bindings\",\"service_fee\":\"amount duration_minutes\",\"rental\":\"amount_thb duration_minutes equipment_included room_seats terms\",\"reservation\":\"owner_policy\",\"payment\":\"owner_policy payer\",\"rules\":\"owner_policy\",\"schedule\":\"open_periods closing_time bookable_periods maintenance_periods local_date reason\",\"live\":\"live_status\",\"competition_rules\":\"rule_clause\",\"news\":\"description body date event_start registration registration_url status\",\"general\":\"\"}. Operations: detail,list,count,control,price_calculate,role_lookup,availability,rule_lookup,unknown,compare. Slots: audience,persons,duration,sessions,service,platform,date,time,event,negation,condition,comparison,requested_scope,action. Focus: eligibility,price,service_duration,booking_procedure,booking_policy,payment,equipment_definition,equipment_inventory,equipment_capacity,equipment_location,hardware,game_catalog,game_description,game_controls,game_location,game_availability,game_platform,opening_hours,bookable_periods,maintenance,live_status,competition_rules,studio_rules,food_bring,food_consume,damage,people,contact,location,identity,news,rental,unclear,general,multiple"
+      },
+      {
+        "role": "user",
+        "content": "{\"question\":\"มีอะไรบ้าง\"}"
+      }
+    ]
+  },
+  "response": {
+    "content": "{\"version\": \"r129-plan-v2\", \"focus\": \"unclear\", \"context_quotes\": [], \"tasks\": [{\"quote\": \"มีอะไรบ้าง\", \"domain\": \"general\", \"operation\": \"unknown\", \"facet\": \"\", \"target\": \"\", \"constraints\": [], \"ambiguous\": true, \"id\": \"t1\"}], \"shared_bindings\": []}"
+  },
+  "model_identity": {
+    "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+    "backend": "controlled-HF-receipt",
+    "precision": "HF_NF4_doublequant_BF16",
+    "profile": "base",
+    "adapter_sha256": null
+  }
+}

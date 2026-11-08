@@ -1,0 +1,225 @@
+{
+  "question_key": "6f3e6d8df4f646b605f95de48ff2c1038a54d4a39af3037b27aef04b9726c579",
+  "example_sha256": "eece619596b46bb8f4abcf3f93ed292da3ec5d41543bf282ccb3159689476ed9",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs ask Cockpit one-hour pricing for another-university student and how to book it.",
+      "raw_quotes": [
+        "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Keep service_fee/price_calculate/amount plus reservation/detail/owner_policy.",
+      "raw_quotes": [
+        "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Duration and audience stay local to pricing; booking inherits only Cockpit through explicit it.",
+      "raw_quotes": [
+        "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove top context and repair shared service binding so inherited service constraint has a matching source edge. Keep the existing explicit target edge too.",
+      "raw_quotes": [
+        "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Another-university student is not PSU student/staff; booking instructions are not an executed reservation.",
+      "raw_quotes": [
+        "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Recorded Cockpit service/rate families distinguish audiences and session duration; booking_steps is a separate procedure source and cannot supply tariff inputs.",
+      "raw_quotes": [
+        "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?"
+      ],
+      "source_record_ids": [
+        "availability_cockpit_01_02",
+        "migrated_faq_rule_booking_steps"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No zero-price verdict, selected machine, numeric total, default audience or booking confirmation is taught.",
+      "raw_quotes": [
+        "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Explicit it inherits service only, not price audience/duration.",
+      "handling": "Require a matching shared service edge and separate tariff/procedure evidence."
+    }
+  ],
+  "historical_review_row": 282,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "one hour",
+      "student from another university",
+      "Cockpit"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does it cost for a student from another university to play Cockpit for one hour",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "one hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "student from another university",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "how do I book it",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "Cockpit",
+        "basis": "explicit_anaphor"
+      }
+    ]
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "How much does it cost for a student from another university to play Cockpit for one hour",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "one hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "student from another university",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "how do I book it",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "Cockpit",
+        "basis": "explicit_anaphor"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "Cockpit",
+        "basis": "explicit_anaphor"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_cockpit_01_02": {
+      "revision": 5,
+      "record_sha256": "7f087dfdd63ad70bfb95aa38bfcf0d13418849c2ef01abba40bf53eda233efb0"
+    },
+    "migrated_faq_rule_booking_steps": {
+      "revision": 4,
+      "record_sha256": "3d46ed93710725b42212be78cc05d7197ba3043e04ade3b26ae2890e897dd846"
+    }
+  }
+}

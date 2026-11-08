@@ -1,0 +1,31 @@
+--- before/app/core/source_registry.py
++++ after/app/core/source_registry.py
+@@ -23,6 +23,13 @@
+ 
+ 
+ SOURCE_REGISTRY: dict[str, SourceRecord] = {
++    'user_service_answers_20261008': SourceRecord(
++        source_id='user_service_answers_20261008', category='knowledge',
++        title='User-provided service answers 2026-10-08', source_url='local://service_policy/user_answers_20261008',
++        source_type='user_provided_answers', trust_level='user_confirmed', updated_at='2026-10-08',
++        origin='Answers supplied by the user in this chat; original archived under data/sources',
++        description='Bounded studio access, location, parking, booking identity and payment handling facts. Blank answers and rescheduling boundaries are not inferred.',
++    ),
+     ZONE_RENTAL_FEES_20261006_ID: SourceRecord(
+         source_id=ZONE_RENTAL_FEES_20261006_ID, category="service_fee",
+         title="User-provided half/full-day zone rental fees", source_url="local://service_fee/zone_rental_fees_20261006",
+--- before/app/pipeline/engine.py
++++ after/app/pipeline/engine.py
+@@ -1599,6 +1599,12 @@
+             )
+ 
+         locale = current_locale_decision()
++        from app.pipeline.user_service_facts import answer_user_service_facts
++        user_facts = answer_user_service_facts(main_question, locale.effective if locale is not None else 'th')
++        if user_facts is not None:
++            return self._build_result(user_facts['answer'], user_facts['hits'], started,
++                user_facts['mode'], .98, user_facts['route'], entities, user_facts['validation'],
++                [*trace, *user_facts['trace']])
+         if locale is None or locale.effective == "th":
+             # Keep the original operation here: preprocessing may have
+             # proposed ของ -> จอง before the clarification guard runs.

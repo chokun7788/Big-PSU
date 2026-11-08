@@ -1,0 +1,34 @@
+--- before/app/knowledge/common/query_contract.py
++++ r62/app/knowledge/common/query_contract.py
+@@ -47,6 +47,10 @@
+     if 'game' in result:result.update(('game_mode','game_service','control_set'))
+     if result&{'game_service','closure'}:result.add('policy')
+     if 'competition' in result:result.add('competition_rule')
++    if 'resource' in result:result.update(('equipment_model','zone'))
++    if 'service' in result:result.update(('resource','equipment_model','zone'))
++    if 'rate' in result:result.update(('service','audience'))
++    if 'policy' in result:result.add('procedure')
+     return result
+ 
+ # Language descriptions/cues are attributed to field meaning, scoped by kind.
+@@ -113,11 +117,18 @@
+ def resolve_fields(question,kinds=None):
+     q=normalize(question);primary=set(kinds or CATALOG);scoped=scope_kinds(primary)
+     keys={f['key'] for k in scoped for f in CATALOG[k]['fields']}
+-    if primary&{'service','audience','zone'}:keys.add('amount_minor')
++    pricing=bool(re.search(r'ราคา|ค่าบริการ|กี่บาท|\b(?:price|cost|fee|billing|tax)\b|amount_minor',q))
++    price_scope=bool(primary&{'resource','service','game','audience','zone'})
++    if price_scope:keys.add('amount_minor')
++    if price_scope and pricing:
++        scoped.add('rate');keys.update(f['key'] for f in CATALOG['rate']['fields'])
+     cue_keys={f['key'] for k in primary for f in CATALOG[k]['fields']}
+     if 'game' in primary:cue_keys.update(f['key'] for k in ('game_mode','game_service','control_set') for f in CATALOG[k]['fields'])
+     if 'competition' in primary:cue_keys.update(f['key'] for f in CATALOG['competition_rule']['fields'])
+-    if primary&{'service','audience','zone'}:cue_keys.add('amount_minor')
++    if primary&{'resource','service','rate','policy'}:
++        cue_keys.update(f['key'] for k in scoped for f in CATALOG[k]['fields'])
++    if price_scope:cue_keys.add('amount_minor')
++    if price_scope and pricing:cue_keys.update(f['key'] for f in CATALOG['rate']['fields'])
+     found=[];evidence=[]
+     def add(key,reason):
+         if key in keys and key not in found:found.append(key);evidence.append({'field':key,'cue':reason,'method':'schema_attribute'})

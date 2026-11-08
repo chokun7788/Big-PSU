@@ -1,0 +1,866 @@
+{
+  "requests_expected": 91,
+  "current_requests": 91,
+  "retained_matched_requests": 91,
+  "source_unchanged_from_focused_freeze": true,
+  "changed_source_paths": [],
+  "r95_retained": {
+    "totals": {
+      "requests": 91,
+      "exceptions": 0,
+      "empty_answers": 0,
+      "model_http_attempts": 39,
+      "model_response_opened": 39,
+      "grades": 162,
+      "strict_passed": 19,
+      "positive_grades": 72,
+      "positive_literal_passed": 55
+    },
+    "failure_partitions": {
+      "protocol": 150,
+      "outcome": 29,
+      "evidence": 0,
+      "content": 19,
+      "validation": 0,
+      "performance": 0,
+      "grader": 0
+    },
+    "locale": {
+      "en": {
+        "positive_grades": 26,
+        "positive_literal_passed": 16
+      },
+      "th": {
+        "positive_grades": 29,
+        "positive_literal_passed": 23
+      },
+      "auto": {
+        "positive_grades": 17,
+        "positive_literal_passed": 16
+      }
+    }
+  },
+  "r98_candidate": {
+    "totals": {
+      "requests": 91,
+      "exceptions": 0,
+      "empty_answers": 0,
+      "model_http_attempts": 43,
+      "model_response_opened": 43,
+      "grades": 162,
+      "strict_passed": 19,
+      "positive_grades": 72,
+      "positive_literal_passed": 61
+    },
+    "failure_partitions": {
+      "protocol": 150,
+      "outcome": 21,
+      "evidence": 0,
+      "content": 13,
+      "validation": 0,
+      "performance": 0,
+      "grader": 0
+    },
+    "locale": {
+      "en": {
+        "positive_grades": 26,
+        "positive_literal_passed": 20
+      },
+      "th": {
+        "positive_grades": 29,
+        "positive_literal_passed": 25
+      },
+      "auto": {
+        "positive_grades": 17,
+        "positive_literal_passed": 16
+      }
+    }
+  },
+  "changes": [
+    {
+      "key": "06e84051bd19abc5822cd1bec0641fa46cf6451fa27b7853f5e0977bfb85b980",
+      "question": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+      "locale": "th",
+      "improved_positive_grades": [
+        [
+          "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+          85,
+          "question"
+        ],
+        [
+          "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+          85,
+          "question"
+        ]
+      ],
+      "regressed_positive_grades": [],
+      "old_answer": "**ข้อมูลที่เกี่ยวข้อง**\n• ข้อมูลที่ยืนยันได้: ขั้นตอนการจองคือ เลือกบริการที่ต้องการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้บริการ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชีธนาคาร และแนบสลิปการโอนเงิน [S1]",
+      "new_answer": "**ข้อมูลที่เกี่ยวข้อง**\n• ข้อมูลที่ยืนยันได้: ไม่ได้เปิด 24 ชั่วโมง ตารางบริการแบ่งเป็น Morning 09:00–12:00 และ Afternoon 13:00–16:00 โดยดูตามวันดังนี้: วันจันทร์ (Monday) ช่วงเช้า 09:00–12:00 เป็น Maintenance* เล่นไม่ได้ และเปิดเล่นช่วงบ่าย 13:00–16:00; วันอังคาร-พฤหัสบดี (Tuesday-Thursday) เปิดตามรอบปกติ 09:00–12:00 และ 13:00–16:00; วันศุกร์ (Friday) เปิดช่วงเช้า 09:00–12:00 แต่ช่วงบ่าย 13:00–16:00 เป็น Maintenance** สำหรับ Weekly hardware inspection and cleaning จึงไม่ใช่ช่วงเล่น [S1]",
+      "new_artifact": {
+        "response_type": "answer",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [
+            "migrated_faq_rule_service_schedule"
+          ],
+          "scope_ids": [
+            "migrated_faq_rule_service_schedule"
+          ],
+          "requested_fields": [
+            "answer"
+          ],
+          "operation": "calendar",
+          "all_fields": false,
+          "platform": null,
+          "method": "r98_sourced_timetable_faq",
+          "unresolved_clauses": [],
+          "task_binding": {
+            "frame": "weekly_bookable_timetable",
+            "temporal_scope": "regular_timetable_not_live",
+            "source_authority_inferred": false
+          },
+          "response_projection": [
+            {
+              "record_id": "migrated_faq_rule_service_schedule",
+              "fields": {
+                "answer": "explicit"
+              }
+            }
+          ]
+        },
+        "obligations": [
+          {
+            "record_id": "migrated_faq_rule_service_schedule",
+            "field": "answer",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/answer",
+                "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+              }
+            ]
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [
+            {
+              "id": "field_answer",
+              "field": "answer",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "migrated_faq_rule_service_schedule",
+                  "field": "answer",
+                  "sources": [
+                    {
+                      "locator": "/mapped_fields/answer",
+                      "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            }
+          ],
+          "total_needs": 1,
+          "answered_needs": 1,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 1,
+          "response_type": "answer"
+        },
+        "task_flow": {
+          "version": "r95",
+          "path": "compatibility_common_domain",
+          "reason": "no_accepted_replacement_task"
+        },
+        "interpretation_diagnostics": [],
+        "knowledge_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840,
+          "content_view": "evaluation_draft"
+        },
+        "request_plan": {
+          "version": "common_request_plan_v2",
+          "question": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+          "needs": [
+            {
+              "id": "n1",
+              "task": "booking",
+              "query": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+              "source_span": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user"
+            }
+          ],
+          "scope": {
+            "release_bound_at_read": true,
+            "history_has_trusted_state": false,
+            "candidate_source": "common_snapshot",
+            "all_requested": false
+          }
+        },
+        "need_results": [
+          {
+            "need_id": "n1",
+            "task": "booking",
+            "source_span": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+            "status": "supported",
+            "reason_codes": [],
+            "record_ids": [
+              "migrated_faq_rule_service_schedule"
+            ],
+            "receipts": [
+              {
+                "record_id": "migrated_faq_rule_service_schedule",
+                "field": "answer",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+                  }
+                ],
+                "release_id": "migration-preview-r69",
+                "claim_entailment_verified": false
+              }
+            ],
+            "coverage_basis": "executed task and source obligations; semantic correctness not automatically verified"
+          }
+        ],
+        "request_plan_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840
+        },
+        "input_normalization": {
+          "raw": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+          "text": "อยากทราบวันและเวลาที่ศูนย์ให้บริการสำหรับการจอง",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "edits": [],
+          "protected": []
+        },
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": []
+      }
+    },
+    {
+      "key": "05472a512fde75fd8e2b2237a7a3e1809a6a01ab5a9faca66490507ceab539bb",
+      "question": "Before visiting, I need to know: On which days can I book morning and afternoon slots?",
+      "locale": "en",
+      "improved_positive_grades": [
+        [
+          "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+          562,
+          "question"
+        ],
+        [
+          "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+          562,
+          "question"
+        ]
+      ],
+      "regressed_positive_grades": [],
+      "old_answer": "**Relevant information**\n• Confirmed information: The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "new_answer": "**Relevant information**\n• Confirmed information: The studio is not open 24 hours. Service sessions are Morning 09:00-12:00 and Afternoon 13:00-16:00. By day: Monday morning 09:00-12:00 is Maintenance* and not playable, while Monday afternoon 13:00-16:00 is open; Tuesday-Thursday follow the regular slots 09:00-12:00 and 13:00-16:00; Friday morning 09:00-12:00 is open, but Friday afternoon 13:00-16:00 is Maintenance** for weekly hardware inspection and cleaning, so it is not playable. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "new_artifact": {
+        "response_type": "answer",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [
+            "migrated_faq_rule_service_schedule"
+          ],
+          "scope_ids": [
+            "migrated_faq_rule_service_schedule"
+          ],
+          "requested_fields": [
+            "answer"
+          ],
+          "operation": "calendar",
+          "all_fields": false,
+          "platform": null,
+          "method": "r98_sourced_timetable_faq",
+          "unresolved_clauses": [],
+          "task_binding": {
+            "frame": "weekly_bookable_timetable",
+            "temporal_scope": "regular_timetable_not_live",
+            "source_authority_inferred": false
+          },
+          "response_projection": [
+            {
+              "record_id": "migrated_faq_rule_service_schedule",
+              "fields": {
+                "answer": "explicit"
+              }
+            }
+          ]
+        },
+        "obligations": [
+          {
+            "record_id": "migrated_faq_rule_service_schedule",
+            "field": "answer",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/answer",
+                "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+              }
+            ]
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [
+            {
+              "id": "field_answer",
+              "field": "answer",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "migrated_faq_rule_service_schedule",
+                  "field": "answer",
+                  "sources": [
+                    {
+                      "locator": "/mapped_fields/answer",
+                      "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            }
+          ],
+          "total_needs": 1,
+          "answered_needs": 1,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 1,
+          "response_type": "answer"
+        },
+        "task_flow": {
+          "version": "r95",
+          "path": "compatibility_common_domain",
+          "reason": "no_accepted_replacement_task"
+        },
+        "interpretation_diagnostics": [],
+        "knowledge_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840,
+          "content_view": "evaluation_draft"
+        },
+        "request_plan": {
+          "version": "common_request_plan_v2",
+          "question": "before visiting, i need to know: on which days can i book morning and afternoon slots?",
+          "needs": [
+            {
+              "id": "n1",
+              "task": "booking",
+              "query": "before visiting, i need to know: on which days can i book morning and afternoon slots?",
+              "source_span": "before visiting, i need to know: on which days can i book morning and afternoon slots?",
+              "record_ids": [],
+              "qualifiers": [
+                "before"
+              ],
+              "slot_origin": "current_user"
+            }
+          ],
+          "scope": {
+            "release_bound_at_read": true,
+            "history_has_trusted_state": false,
+            "candidate_source": "common_snapshot",
+            "all_requested": false
+          }
+        },
+        "need_results": [
+          {
+            "need_id": "n1",
+            "task": "booking",
+            "source_span": "before visiting, i need to know: on which days can i book morning and afternoon slots?",
+            "status": "supported",
+            "reason_codes": [],
+            "record_ids": [
+              "migrated_faq_rule_service_schedule"
+            ],
+            "receipts": [
+              {
+                "record_id": "migrated_faq_rule_service_schedule",
+                "field": "answer",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+                  }
+                ],
+                "release_id": "migration-preview-r69",
+                "claim_entailment_verified": false
+              }
+            ],
+            "coverage_basis": "executed task and source obligations; semantic correctness not automatically verified"
+          }
+        ],
+        "request_plan_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840
+        },
+        "input_normalization": {
+          "raw": "Before visiting, I need to know: On which days can I book morning and afternoon slots?",
+          "text": "before visiting, i need to know: on which days can i book morning and afternoon slots?",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "edits": [],
+          "protected": [
+            {
+              "text": "Before",
+              "start": 0,
+              "end": 6
+            }
+          ]
+        },
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": []
+      }
+    },
+    {
+      "key": "081aaa664fb805fe2e87c7748795fd4915dd28805c9659c3199c711a30f3a6ba",
+      "question": "A question about the studio: Can I book Monday morning, or only the afternoon?",
+      "locale": "en",
+      "improved_positive_grades": [
+        [
+          "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+          571,
+          "question"
+        ],
+        [
+          "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+          571,
+          "question"
+        ]
+      ],
+      "regressed_positive_grades": [],
+      "old_answer": "Selected service/game: Monday — morning\n\n**Relevant information**\n• Confirmed information: The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "new_answer": "**Relevant information**\n• Confirmed information: The studio is not open 24 hours. Service sessions are Morning 09:00-12:00 and Afternoon 13:00-16:00. By day: Monday morning 09:00-12:00 is Maintenance* and not playable, while Monday afternoon 13:00-16:00 is open; Tuesday-Thursday follow the regular slots 09:00-12:00 and 13:00-16:00; Friday morning 09:00-12:00 is open, but Friday afternoon 13:00-16:00 is Maintenance** for weekly hardware inspection and cleaning, so it is not playable. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "new_artifact": {
+        "response_type": "answer",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [
+            "migrated_faq_rule_service_schedule"
+          ],
+          "scope_ids": [
+            "migrated_faq_rule_service_schedule"
+          ],
+          "requested_fields": [
+            "answer"
+          ],
+          "operation": "calendar",
+          "all_fields": false,
+          "platform": null,
+          "method": "r98_sourced_timetable_faq",
+          "unresolved_clauses": [],
+          "task_binding": {
+            "frame": "weekly_bookable_timetable",
+            "temporal_scope": "regular_timetable_not_live",
+            "source_authority_inferred": false
+          },
+          "response_projection": [
+            {
+              "record_id": "migrated_faq_rule_service_schedule",
+              "fields": {
+                "answer": "explicit"
+              }
+            }
+          ]
+        },
+        "obligations": [
+          {
+            "record_id": "migrated_faq_rule_service_schedule",
+            "field": "answer",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/answer",
+                "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+              }
+            ]
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [
+            {
+              "id": "field_answer",
+              "field": "answer",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "migrated_faq_rule_service_schedule",
+                  "field": "answer",
+                  "sources": [
+                    {
+                      "locator": "/mapped_fields/answer",
+                      "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            }
+          ],
+          "total_needs": 1,
+          "answered_needs": 1,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 1,
+          "response_type": "answer"
+        },
+        "task_flow": {
+          "version": "r95",
+          "path": "compatibility_common_domain",
+          "reason": "no_accepted_replacement_task"
+        },
+        "interpretation_diagnostics": [],
+        "knowledge_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840,
+          "content_view": "evaluation_draft"
+        },
+        "request_plan": {
+          "version": "common_request_plan_v2",
+          "question": "a question about the studio: can i book monday morning, or only the afternoon?",
+          "needs": [
+            {
+              "id": "n1",
+              "task": "booking",
+              "query": "a question about the studio: can i book monday morning, or only the afternoon?",
+              "source_span": "a question about the studio: can i book monday morning, or only the afternoon?",
+              "record_ids": [],
+              "qualifiers": [
+                "only"
+              ],
+              "slot_origin": "current_user"
+            }
+          ],
+          "scope": {
+            "release_bound_at_read": true,
+            "history_has_trusted_state": false,
+            "candidate_source": "common_snapshot",
+            "all_requested": false
+          }
+        },
+        "need_results": [
+          {
+            "need_id": "n1",
+            "task": "booking",
+            "source_span": "a question about the studio: can i book monday morning, or only the afternoon?",
+            "status": "supported",
+            "reason_codes": [],
+            "record_ids": [
+              "migrated_faq_rule_service_schedule"
+            ],
+            "receipts": [
+              {
+                "record_id": "migrated_faq_rule_service_schedule",
+                "field": "answer",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/answer",
+                    "source_id": "r63_7ae33b5d1f1f607a2936367a82eb"
+                  }
+                ],
+                "release_id": "migration-preview-r69",
+                "claim_entailment_verified": false
+              }
+            ],
+            "coverage_basis": "executed task and source obligations; semantic correctness not automatically verified"
+          }
+        ],
+        "request_plan_snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840
+        },
+        "input_normalization": {
+          "raw": "A question about the studio: Can I book Monday morning, or only the afternoon?",
+          "text": "a question about the studio: can i book monday morning, or only the afternoon?",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "edits": [],
+          "protected": [
+            {
+              "text": "only",
+              "start": 59,
+              "end": 63
+            }
+          ]
+        },
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": []
+      }
+    }
+  ],
+  "limits": [
+    "Development subset selected by domain/locale; not a full-corpus accuracy estimate.",
+    "Literal/clause mismatch requires content review; strict scores also include protocol requirements.",
+    "R95 was retained, not rerun; model transport can differ.",
+    "Booking is controlled unavailable; live availability correctness is not tested."
+  ]
+}

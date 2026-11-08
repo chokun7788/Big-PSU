@@ -1,0 +1,138 @@
+{
+  "question_key": "be51f94ba08f78a60ee1c438286fc6d9ba5c74644833af6231bc42a1d0a19445",
+  "example_sha256": "cf2fe971efdb7f4be835ca8e3189cf9bc7ff3d90a8226f6c51d82e3166fc0b34",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One request lists VR-related games.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/list/game_catalog preserves list scope rather than one-game description.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "VR is the current requested service; do not broaden the task to the whole center catalog.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The service quote is local; no shared edge or previous answer is needed.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "No player count or date is stated, so neither live occupancy nor a game-mode filter is added.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "availability_vr_30 and availability_vr_60 carry the recorded VR game catalogs and their source relations.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง"
+      ],
+      "source_record_ids": [
+        "availability_vr_30",
+        "availability_vr_60"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Game titles and available hardware are read at answer time, not copied into planner targets.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 3,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_catalog",
+    "context_quotes": [
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_catalog",
+    "context_quotes": [
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ VR มีเกมอะไรบ้าง",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_vr_30": {
+      "revision": 5,
+      "record_sha256": "684ca350ae5809737f1975682978283eca4dc308d432f694333d8261cec15d60"
+    },
+    "availability_vr_60": {
+      "revision": 5,
+      "record_sha256": "c3384985c72b8fa25a4bb9ec3ae5fd292dff804a0e93cb02ac5f82fe246f9913"
+    }
+  }
+}

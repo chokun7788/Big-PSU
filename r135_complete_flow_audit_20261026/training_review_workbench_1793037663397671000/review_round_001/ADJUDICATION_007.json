@@ -1,0 +1,147 @@
+{
+  "question_key": "8711c0d5094ea26fea23b4403fd1e102da385cb8b4a5097c0f623eb9ae9bc4be",
+  "example_sha256": "f9a0aa9fc0480c6b556ad6172eda53c7b84fb4006febef0697aedfa61a73b5a9",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One request checks Friday afternoon service closure; short-details wording is style.",
+      "raw_quotes": [
+        "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/availability/open_periods checks the service window; closing_time alone would answer a different scalar question.",
+      "raw_quotes": [
+        "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "วันศุกร์ is weekday and ช่วงบ่าย is a vague time-period quote; no exact clock is invented.",
+      "raw_quotes": [
+        "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Both time qualifiers belong only to the current schedule task.",
+      "raw_quotes": [
+        "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "ปิดใช่ไหม is a question, not a proven closed status; retain the source check.",
+      "raw_quotes": [
+        "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_schedule_4 separates Friday morning bookable periods and afternoon maintenance; the label must not substitute one closing-time value.",
+      "raw_quotes": [
+        "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_4"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Recorded clock intervals and closed/open answer are not supervised facts.",
+      "raw_quotes": [
+        "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 7,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "วันศุกร์",
+      "ช่วงบ่าย"
+    ],
+    "tasks": [
+      {
+        "quote": "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "closing_time",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "ช่วงบ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "วันศุกร์",
+      "ช่วงบ่าย"
+    ],
+    "tasks": [
+      {
+        "quote": "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "ช่วงบ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    }
+  }
+}

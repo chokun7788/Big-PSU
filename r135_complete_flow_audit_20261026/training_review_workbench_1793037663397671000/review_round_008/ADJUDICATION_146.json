@@ -1,0 +1,144 @@
+{
+  "question_key": "68c445a6770b55da2710e3932a0fb93ee198d101abf7b2591bae961be6b6ea11",
+  "example_sha256": "8bbed82a8e33325652432696d705f9e7df3089ca14cd026e687b35195072c3f0",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One water-bottle carrying permission need explicitly excludes asking about drinking.",
+      "raw_quotes": [
+        "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy and food_bring focus retain carrying.",
+      "raw_quotes": [
+        "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "carry a water bottle inside is action; retain not asking about drinking as local scope negation.",
+      "raw_quotes": [
+        "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual drinking, prior permission or gaming-zone location is inherited.",
+      "raw_quotes": [
+        "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Meta-negation excludes the consumption question rather than asserting that drinking is prohibited.",
+      "raw_quotes": [
+        "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "food_bring_general has separate bringing and designated-area consumption clauses; consumption-only FAQ is insufficient for this action.",
+      "raw_quotes": [
+        "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_food_bring_general",
+        "migrated_faq_rule_food_drink"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No permission, bottle restriction, consumption ban or designated-area answer enters labels.",
+      "raw_quotes": [
+        "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 146,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [
+      "not asking about drinking"
+    ],
+    "tasks": [
+      {
+        "quote": "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point.",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "not asking about drinking",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [
+      "not asking about drinking"
+    ],
+    "tasks": [
+      {
+        "quote": "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point.",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "not asking about drinking",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "carry a water bottle inside",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    },
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "actual_HTTP_or_model_inferences": 0,
+  "installed_revision": "R134",
+  "candidate_installed": false,
+  "whole_flow_complete": false,
+  "reviews_do_not_equal_training": true,
+  "source_discovery_before": {
+    "path": "saved_clause_discovery_1793108869730145200/DETAILS.json",
+    "sha256": "f4d467d67833d6e6c50cbc5b8c082147b17690690a912af0ded0363c3345d1ef"
+  },
+  "source_discovery_after": {
+    "path": "saved_clause_discovery_1793109112815122300/DETAILS.json",
+    "sha256": "e20c5ca6769a41177b6ec3046e5a850e7ad1002b4521c1b5ab93fef0d698a1f9"
+  },
+  "retained_failed_regression": {
+    "path": "control_scope_1793109201331091600/RESULT.json",
+    "sha256": "181d3280901312b38e7c21098d924b7a0c1b6629c03d29698f8584fb29dcf918"
+  },
+  "passed_controls": [
+    {
+      "path": "stick_controller_predicates_1793109239382415500/RESULT.json",
+      "sha256": "b3d886dc7f0bdddb41cbf2a048ba882d290eaaa7f5fc626519af6b1f472bef7a"
+    },
+    {
+      "path": "control_scope_1793109239362683900/RESULT.json",
+      "sha256": "64ab42dbd7177720072e48884dc2f9edd52ed8a3994936275facdab42cafa017"
+    },
+    {
+      "path": "control_predicate_scope_1793109162686329700/RESULT.json",
+      "sha256": "79ab6687872cc76924050f9c1e4a8ca92c03fd2751380ac402fcae1348864c48"
+    }
+  ],
+  "passed_control_counts": [
+    15,
+    25,
+    23
+  ],
+  "source_answer_deltas": {
+    "250": {
+      "question": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร",
+      "before_answer": "ยังไม่พบข้อมูลปุ่มหรือชุดปุ่มที่ระบุสำหรับเกมและแพลตฟอร์มนี้ครับ",
+      "after_answer": "**Super Mario Odyssey / Nintendo Switch**\n- **เคลื่อนที่**: L (Left Stick) — บังคับทิศทางการเดินและวิ่งของมาริโอ [S1]\nปุ่มชุดนี้มาจากแหล่งรอง ยังไม่ได้ตรวจยืนยันกับเวอร์ชันเกมและการตั้งค่าปุ่มของเครื่องที่ศูนย์ใช้อยู่จริง"
+    },
+    "254": {
+      "question": "Fortnite ใช้จอยยังไง",
+      "before_answer": "**คำตอบที่ยืนยัน**: เกม PlayStation 5 ที่มีในรายการรวมถึง Marvel’s Spider-Man 2, Fortnite, God of War Ragnarok และ TEKKEN 8 [S1]",
+      "after_answer": "**Fortnite / PlayStation / PS5**\n| ปุ่ม | การทำงาน |\n|---|---|\n| Options | เปิดเมนูเกม — บน PlayStation ให้กด Options เพื่อเปิดเมนู แล้วเข้า Settings เพื่อดู/แก้ controls [S1] |\n| Controller Mapping page | เปลี่ยน preset จอย — Epic ระบุว่าหน้า Controller Mapping มี preset เช่น Old School, Quick Builder, Combat Pro, Builder Pro และ Custom [S2] |\n| Builder Pro / Combat Pro / Custom | ชุดปุ่มควบคุม — ข้อมูลนี้เป็น preset ที่ Epic ระบุ ไม่ใช่ผังปุ่มละเอียดของแต่ละ preset [S3] |\nแหล่งข้อมูลระบุวิธีควบคุมเพียงบางส่วน ยังไม่มีผังปุ่มครบชุดที่ยืนยันได้\nหมายเหตุ: ฝ่ายสนับสนุนอย่างเป็นทางการของ Epic อธิบายวิธีค้นหา/เปลี่ยนค่าเริ่มต้นของจอยและระบุ preset แต่บทความสาธารณะไม่ได้ให้ผังปุ่มเกมเพลย์ PS5 ครบทุกปุ่ม"
+    }
+  },
+  "findings": [
+    {
+      "id": "G123",
+      "finding": "Full recorded L (Left Stick) label lost to a single-letter L extraction, yielding unknown despite a matching source binding.",
+      "repair": "precision.py:controls; complete exact source labels precede component-key extraction."
+    },
+    {
+      "id": "G124",
+      "finding": "Named-game Thai controller-use question Fortnite ใช้จอยยังไง was answered with a game catalog rather than game-specific recorded controls.",
+      "repair": "control_intent.py:request; recognize bounded controller-use predicates while preserving catalog/compatibility/price/rule exclusions."
+    },
+    {
+      "id": "G125",
+      "finding": "Affected control-scope re-audit found Which buttons trigger <source action> compiled as list rather than inverse control action although selected facts were a subset.",
+      "repair": "control_intent.py:request; action predicate precedes plural-buttons list wording."
+    }
+  ],
+  "still_open_source_or_runtime_observations": {
+    "244": "No complete Valorant sportsmanship source confirmed; do not substitute CS2.",
+    "245": "Genre source value delivered through bounded compatibility, final semantic execution remains pending.",
+    "247": "Truncated role returns no source dispatch; retain incomplete-role ambiguity, not a fabricated name.",
+    "248": "Wheel liability question not answered by native source dispatch; locale liability-condition conflict remains.",
+    "249": "Price result showed three audiences and did not verify both duration alternatives; retain requested-audience/duration application gap.",
+    "252_255": "Physical opening unknown/conflict disclosed separately from recorded play timetable; dated exceptions and final mapping proof remain.",
+    "253": "Before-match/on-site query returned source unknown despite multiple recorded linked clauses; routing/completeness investigation remains.",
+    "256": "General language query legitimately returns no source dispatch; previous audit harness assumed all questions returned an object. Harness now saves None explicitly and resumes only unsaved rows. This is not a content failure.",
+    "258": "General reservation-day/hour query returned no confirmed detail despite recorded bookable periods; native predicate/facet coverage investigation remains."
+  },
+  "source_records_and_owner_data_modified": false,
+  "remaining": "Other28 original sections/all14 final acceptance, actual model/training/three-arm evaluation/root/paired/final provenance/backup/normal activation/re-audit remain."
+}

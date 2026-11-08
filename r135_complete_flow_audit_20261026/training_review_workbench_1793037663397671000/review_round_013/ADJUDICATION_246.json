@@ -1,0 +1,134 @@
+{
+  "question_key": "b12fff150defd77ca13250799e79b8432b1182c72cfc3689d226445a86dff6dc",
+  "example_sha256": "b3f259a1eaa85adc17f1d6e488857bc80bfde2dbf74f96ee37b7a2824651dfac",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One request asks for rulebook evidence about TEKKEN 8 competition format; politeness is presentation.",
+      "raw_quotes": [
+        "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause retains a competition-specific source lookup, not device specifications or studio rules.",
+      "raw_quotes": [
+        "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Preserve compettition format as the exact requested_scope and official as a requested source-authority qualifier.",
+      "raw_quotes": [
+        "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual platform, match format, player count, duration or earlier rulebook identity is supplied by the question.",
+      "raw_quotes": [
+        "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The word official asks for authority verification; it does not certify the authority of a retrieved record.",
+      "raw_quotes": [
+        "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned TEKKEN8 section002 revision5 explicitly maps competition_format and records offline, PS5, singles and format clauses; completeness and dependencies remain unknown.",
+      "raw_quotes": [
+        "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please."
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_tekken8_psu_esports_section_002"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No source format values, round counts, tie outcome, authority verdict or equipment fact enters the language target.",
+      "raw_quotes": [
+        "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Competition-format content does not certify official authority or complete rulebook coverage.",
+      "handling": "Preserve requested authority and format scope; verify actual authority separately."
+    }
+  ],
+  "historical_review_row": 246,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "TEKKEN 8",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you explain: Please retrieve the official TEKKEN 8 rulebook evidence for the compettition format. please.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "TEKKEN 8",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "compettition format",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "official",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_tekken8_psu_esports_section_002": {
+      "revision": 5,
+      "record_sha256": "0c88562d29470399fc770fb22ab2e329f2a4130d3a34d2e427e3fbc304f1173a"
+    }
+  }
+}

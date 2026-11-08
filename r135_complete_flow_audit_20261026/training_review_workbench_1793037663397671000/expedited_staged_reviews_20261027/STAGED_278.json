@@ -1,0 +1,91 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 278,
+  "question_key": "a6bc6425eb8b8625afdbcabac7e9cb02081e46c2b190fbf65ad9b1cf37e44fa4",
+  "raw_question": "เบอร์ติดต่อคืออะไร",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "contact",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "เบอร์ติดต่อคืออะไร",
+        "domain": "contact",
+        "operation": "detail",
+        "facet": "value",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "contact",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "เบอร์ติดต่อคืออะไร",
+        "domain": "contact",
+        "operation": "detail",
+        "facet": "value",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "เบอร์ติดต่อ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One Thai contact question asks the phone number.",
+    "intent_operation_facet": "contact/detail/value retains channel-specific contact lookup.",
+    "entities_and_slot_roles": "Add เบอร์ติดต่อ scope so a Facebook URL is not substituted for a phone number.",
+    "local_shared_history_scope": "No named employee, extension, department or prior appointment is supplied.",
+    "negation_and_ambiguity": "A phone request is not authorization to call or message anyone.",
+    "source_version_alignment": "Pinned contact_phone FAQ revision3 records booking-system contact numbers; those are distinct from contact_studio_facebook and do not prove every department extension.",
+    "no_business_answer_target": "No telephone numbers, URL, operating hours or outgoing communication is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_faq_curated_contact_phone",
+    "contact_studio_facebook"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 279,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_faq_curated_contact_phone": {
+      "revision": 3,
+      "record_sha256": "fca845358ac40f81fef64986c946ba4dfae77e2c6ca150fa52a0a8d683a62790"
+    },
+    "contact_studio_facebook": {
+      "revision": 2,
+      "record_sha256": "4d3ce0e7221d39021f018ce351579fef3799203153074b6514ea4b70725884b0"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

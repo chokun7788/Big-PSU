@@ -1,0 +1,12 @@
+--- before/app/pipeline/retrieval.py
++++ after/app/pipeline/retrieval.py
+@@ -1268,6 +1268,9 @@
+     # overview; other resolved facets retain focused retrieval.
+     if detect_competition_facet(query) is not None:
+         return False
++    from app.pipeline.competition_conversation_signals import is_broad_rule_request
++    if is_broad_rule_request(query):
++        return True
+     if re.search(r"\b(?:about|concerning|regarding|procedures?)\b", q) or any(term in q for term in ("เรื่อง", "เกี่ยวกับ", "ขั้นตอน")):
+         # Unresolved specific topics need clarification/grounding, not a
+         # generic rule overview that merely shares the game's name.

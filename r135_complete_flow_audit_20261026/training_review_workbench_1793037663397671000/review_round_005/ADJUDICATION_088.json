@@ -1,0 +1,138 @@
+{
+  "question_key": "64260b84f3f7647d29585ac74f83b657a0391ab1d7033fc7338824edaf8c9ed5",
+  "example_sha256": "4efac2cf71bb5d5c61d1f79d5a2bba06f42abac2032503ae768e831bd6090a6f",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One price request names only general equipment use and outsider status.",
+      "raw_quotes": [
+        "How much does equipment use cost for an outsider?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount remains the apparent price need.",
+      "raw_quotes": [
+        "How much does equipment use cost for an outsider?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "outsider is a quoted audience qualifier; equipment use does not select PC, VR or a specific service.",
+      "raw_quotes": [
+        "How much does equipment use cost for an outsider?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No age, student status, duration or resource is inherited.",
+      "raw_quotes": [
+        "How much does equipment use cost for an outsider?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Keep ambiguous true because the service is unspecified; outsider does not automatically mean General Adult.",
+      "raw_quotes": [
+        "How much does equipment use cost for an outsider?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned audience/rate records distinguish PSU student/staff, alumni/general students and adults, as well as service choices; there is no single outsider price.",
+      "raw_quotes": [
+        "How much does equipment use cost for an outsider?"
+      ],
+      "source_record_ids": [
+        "audience_general_adult",
+        "audience_psu_student_staff"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No adult identity, duration, rate or nearest equipment price is learned.",
+      "raw_quotes": [
+        "How much does equipment use cost for an outsider?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 88,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "outsider"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does equipment use cost for an outsider?",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "outsider",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "outsider"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does equipment use cost for an outsider?",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "outsider",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "audience_general_adult": {
+      "revision": 2,
+      "record_sha256": "eff1a35320f4bce8e53c800337806508f70a7e9da7057ebd849896fb239da291"
+    },
+    "audience_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "472a9d9704602244c0efd5c2a78e6d2ca957f53684bffc1689a6801a8bb1fcf3"
+    }
+  }
+}

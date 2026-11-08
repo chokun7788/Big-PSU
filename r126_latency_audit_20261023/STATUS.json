@@ -1,0 +1,98 @@
+{
+  "status": "analysis_complete",
+  "questions": 34,
+  "runtime_changed": false,
+  "source_changes": 0,
+  "report": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r126_latency_audit_20261023\\REPORT_TH.md",
+  "summary": {
+    "completed_questions": 34,
+    "actual_transport_errors": 0,
+    "latency_overall": {
+      "n": 34,
+      "median_sec": 20.703195299998697,
+      "p95_nearest_rank_sec": 49.30643560000317,
+      "mean_sec": 18.353882958823625,
+      "min_sec": 0.37368200000128127,
+      "max_sec": 74.24079350000102
+    },
+    "latency_by_model_calls": {
+      "0": {
+        "n": 13,
+        "median_sec": 0.5873264000001654,
+        "p95_nearest_rank_sec": 3.7089534000006097,
+        "mean_sec": 0.9656780923071963,
+        "min_sec": 0.37368200000128127,
+        "max_sec": 3.7089534000006097
+      },
+      "1": {
+        "n": 19,
+        "median_sec": 25.005790600000182,
+        "p95_nearest_rank_sec": 74.24079350000102,
+        "mean_sec": 28.796858310526755,
+        "min_sec": 7.055798600002163,
+        "max_sec": 74.24079350000102
+      },
+      "2": {
+        "n": 2,
+        "median_sec": 32.16894875000071,
+        "p95_nearest_rank_sec": 33.78728950000004,
+        "mean_sec": 32.16894875000071,
+        "min_sec": 30.550608000001375,
+        "max_sec": 33.78728950000004
+      }
+    },
+    "model_http_fraction_of_model_request_pipeline_time": 0.979806347554457,
+    "model_calls": 23,
+    "all_measured_model_transports_successful": true,
+    "context_output_length_regression": {
+      "n": 20,
+      "slope_sec_per_generated_token": 0.3801198185893735,
+      "intercept_sec": 0.6968352538093292,
+      "r_squared": 0.9989690006635339,
+      "interpretation": "Observed end-to-end model HTTP time versus output tokens; not isolated decode speed or proof of causality. Includes prefill, possible queue, compute and HTTP."
+    },
+    "gpu": {
+      "samples": 150,
+      "states": {
+        "P4": 127,
+        "P0": 20,
+        "P3": 3
+      },
+      "ranges": {
+        "power_w": {
+          "min": 11.31,
+          "median": 12.89,
+          "max": 40.25
+        },
+        "sm_mhz": {
+          "min": 510.0,
+          "median": 675.0,
+          "max": 2685.0
+        },
+        "gpu_pct": {
+          "min": 3.0,
+          "median": 36.0,
+          "max": 99.0
+        },
+        "used_mib": {
+          "min": 4330.0,
+          "median": 4332.0,
+          "max": 4422.0
+        },
+        "free_mib": {
+          "min": 1499.0,
+          "median": 1589.0,
+          "max": 1591.0
+        }
+      },
+      "sampling_interval_sec_approx": 2,
+      "not_causal_power_mode_ab_test": true
+    },
+    "source_files_checked": 1145,
+    "protected_source_changes": [],
+    "runtime_modified": false,
+    "database_modified": false,
+    "fresh_accuracy": null,
+    "full_test": false
+  }
+}

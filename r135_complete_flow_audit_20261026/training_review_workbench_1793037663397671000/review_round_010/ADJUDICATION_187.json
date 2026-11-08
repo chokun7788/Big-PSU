@@ -1,0 +1,127 @@
+{
+  "question_key": "e314a8b014a9f7b02120592b6ba8491c45b54595c19357822d92ca09f49cb319",
+  "example_sha256": "ea59ce4fb6ebab4bd0642c8afd026dd7be1b294a9e33a65646d5280650835f66",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One bringing-food permission need; polite preface is style.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy with food_bring retains carrying rather than consumption.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "เอาอาหารเข้า is the exact requested action.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No eating place, drink, prior permission or gaming zone is inherited.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Bringing food must not be answered solely from a consumption-only restriction.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "food_bring_general explicitly separates bringing from designated-area consumption, unlike food_drink alone.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_food_bring_general",
+        "migrated_faq_rule_food_drink"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes permission, area condition or fine is taught.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 187,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "เอาอาหารเข้า",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    },
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "same_key_requests": 91,
+  "baseline_r100_retained": {
+    "totals": {
+      "requests": 91,
+      "exceptions": 0,
+      "empty": 0,
+      "grades": 162,
+      "strict_pass": 19,
+      "failure_protocol": 150,
+      "failure_outcome": 19,
+      "failure_evidence": 0,
+      "failure_content": 10,
+      "failure_validation": 0,
+      "failure_performance": 0,
+      "failure_grader": 0,
+      "model_attempts": 37,
+      "model_transport_ok": 37,
+      "positive": 72,
+      "positive_pass": 63
+    },
+    "locales": {
+      "en": {
+        "total": 26,
+        "pass": 21
+      },
+      "th": {
+        "total": 29,
+        "pass": 25
+      },
+      "auto": {
+        "total": 17,
+        "pass": 17
+      }
+    }
+  },
+  "candidate_r101": {
+    "totals": {
+      "requests": 91,
+      "exceptions": 0,
+      "empty": 0,
+      "grades": 162,
+      "strict_pass": 19,
+      "failure_protocol": 150,
+      "failure_outcome": 20,
+      "failure_evidence": 0,
+      "failure_content": 10,
+      "failure_validation": 0,
+      "failure_performance": 0,
+      "failure_grader": 0,
+      "model_attempts": 26,
+      "model_transport_ok": 25,
+      "positive": 72,
+      "positive_pass": 63
+    },
+    "locales": {
+      "th": {
+        "total": 29,
+        "pass": 25
+      },
+      "en": {
+        "total": 26,
+        "pass": 21
+      },
+      "auto": {
+        "total": 17,
+        "pass": 17
+      }
+    }
+  },
+  "changes": [],
+  "transport": [
+    {
+      "question": "What is the shoot button?",
+      "calls": [
+        {
+          "url": "http://127.0.0.1:11434/api/generate",
+          "transport_ok": false,
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_sec": 12.1227993999928
+        }
+      ],
+      "context": {
+        "request_id": "49f9b0109ad44aa1b1718d6ad2c55f0a",
+        "semantic_attempts": 1,
+        "corrective_reads": 0,
+        "snapshot": {
+          "release_id": "migration-preview-r69",
+          "epoch": 1840,
+          "reference_time": "2026-10-16T12:00:00+07:00",
+          "locale": "en"
+        },
+        "budget": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 18.0,
+          "global_elapsed_sec": 13.7556,
+          "global_remaining_sec": 4.2444,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 3.2444
+        },
+        "audits": [
+          {
+            "stage": "whole_request_plan",
+            "attempted": true,
+            "candidates": 8,
+            "reason": "model_transport_failure",
+            "error_type": "TimeoutError",
+            "body_received": false,
+            "elapsed_ms": 12126.429299998563
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "development subset, not full accuracy or independent semantic adjudication"
+}

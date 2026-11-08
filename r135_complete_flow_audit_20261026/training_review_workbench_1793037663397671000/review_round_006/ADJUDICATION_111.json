@@ -1,0 +1,167 @@
+{
+  "question_key": "d15f211ae19ae9bb69ddb3301304d61b894068e5f2cecc60f49123f5c83be0f2",
+  "example_sha256": "3ff2cf420a8a90f6ea61fe4d214931a11aa760f2f6b63550617c072d9a12826d",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One VR price request for a compound duration.",
+      "raw_quotes": [
+        "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount retains a price calculation, not two duration options.",
+      "raw_quotes": [
+        "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "1 ชั่วโมง 30 นาที is one full duration quote; PSU Student and VR are audience/service scopes.",
+      "raw_quotes": [
+        "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No splitting into alternative one-hour and thirty-minute tasks or inherited group size is allowed.",
+      "raw_quotes": [
+        "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The 90-minute unit conversion is runtime normalization; selecting or rounding a VR package requires explicit source billing rules.",
+      "raw_quotes": [
+        "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "VR30 and VR60 PSU-student/staff rates have separate duration and session_ceil fields; equal zero amounts do not collapse those business rules.",
+      "raw_quotes": [
+        "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": [
+        "migrated_rate_vr_30_1_5_psu_student_staff",
+        "migrated_rate_vr_60_1_5_psu_student_staff"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No normalized90 literal not in the question, billed-session count, zero price or total is taught.",
+      "raw_quotes": [
+        "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 111,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "1 ชั่วโมง",
+      "30 นาที",
+      "PSU Student",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "PSU Student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "1 ชั่วโมง 30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "1 ชั่วโมง 30 นาที",
+      "PSU Student",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Student เล่น VR 1 ชั่วโมง 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "PSU Student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "1 ชั่วโมง 30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_vr_30_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "cbb10c075112bf48345bdfd11b307d02ed5edfc120ef5c3644a97d924de3f823"
+    },
+    "migrated_rate_vr_60_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "3b937929a76c3c519ddfe1d1afdef0a6fa6e699b4e298b63f1aaac0d736ea0df"
+    }
+  }
+}

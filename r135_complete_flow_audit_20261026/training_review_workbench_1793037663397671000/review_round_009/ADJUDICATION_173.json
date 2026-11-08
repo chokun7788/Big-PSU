@@ -1,0 +1,167 @@
+{
+  "question_key": "bff5ba9e53069ed1890207659c8c7e75ea02857c35c148b35f64f106d43c5a9d",
+  "example_sha256": "a3efdbbe3cb9e40b19fa21fb3343694978d4e3c7ae4abbf3a448e7a5436b9bce",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two RoV rule needs ask first-game blue-side allocation and next-game side choice.",
+      "raw_quotes": [
+        "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Split into two competition_rules/rule_lookup/rule_clause tasks instead of a broad single-task label.",
+      "raw_quotes": [
+        "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "RoV is local/shared game target; เกมแรก and เกมต่อไป are separate conditions with their own who/side scopes.",
+      "raw_quotes": [
+        "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Only RoV is shared by raw-bound ellipsis; first-game condition must not leak into the next-game task.",
+      "raw_quotes": [
+        "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The question does not specify bracket position, prior winner/loser, event edition or an actual team.",
+      "raw_quotes": [
+        "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_rov_23_rule_clause contains first-game bracket placement and next-game previous-loser clauses; those conditions/dependencies must remain distinct.",
+      "raw_quotes": [
+        "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง"
+      ],
+      "source_record_ids": [
+        "r114_rov_23_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No top-bracket team, previous loser, blue-side assignment or actual side-choice answer is taught.",
+      "raw_quotes": [
+        "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "No event edition, actual bracket team or previous-game result is supplied.",
+      "handling": "Explain only scoped source rules/dependencies; never infer an actual team or outcome."
+    }
+  ],
+  "historical_review_row": 173,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "RoV",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "RoV"
+    ],
+    "tasks": [
+      {
+        "id": "t1",
+        "quote": "กติกกา RoV เกมแรกใครอยู่สีฟ้า",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "RoV",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "เกมแรก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใครอยู่สีฟ้า",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      },
+      {
+        "id": "t2",
+        "quote": "เกมต่อไปใครเลือกฝั่ง",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "RoV",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "เกมต่อไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใครเลือกฝั่ง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "RoV",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_rov_23_rule_clause": {
+      "revision": 1,
+      "record_sha256": "4fb420317f45be0b900a7a2234087d7c61b16885fbfbc73bc0d24b8f1909d993"
+    }
+  }
+}

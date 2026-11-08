@@ -1,0 +1,128 @@
+{
+  "question_key": "c93db2f4683ad2666000dbd64550645e12fbe7641103333d34be90811bac014b",
+  "example_sha256": "3b22fdb82550c60d6b26573937a02b8497bb4d10404555a472ae0d499d56a694",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One permission question asks eating at a gaming desk.",
+      "raw_quotes": [
+        "A question about the studio: May I eat at a gaming desk?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy with food_consume focus is consumption, not carrying food inside.",
+      "raw_quotes": [
+        "A question about the studio: May I eat at a gaming desk?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add eat and gaming desk as exact action/location scopes.",
+      "raw_quotes": [
+        "A question about the studio: May I eat at a gaming desk?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No food type, sealed bottle, event, designated area or prior permission is supplied.",
+      "raw_quotes": [
+        "A question about the studio: May I eat at a gaming desk?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Being allowed to bring food does not grant permission to eat at this location.",
+      "raw_quotes": [
+        "A question about the studio: May I eat at a gaming desk?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned general food clause revision2 distinguishes bringing inside from consumption in designated areas; the user supplied a specific location, not proof it is designated.",
+      "raw_quotes": [
+        "A question about the studio: May I eat at a gaming desk?"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_food_bring_general"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no permission, location approval or tournament rule is taught.",
+      "raw_quotes": [
+        "A question about the studio: May I eat at a gaming desk?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 277,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "A question about the studio: May I eat at a gaming desk?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "A question about the studio: May I eat at a gaming desk?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "eat",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "gaming desk",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    }
+  }
+}

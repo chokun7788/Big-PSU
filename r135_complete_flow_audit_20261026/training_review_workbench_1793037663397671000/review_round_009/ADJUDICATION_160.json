@@ -1,0 +1,161 @@
+{
+  "question_key": "88010793be90d52053721dbe0018c5859ccd72c115d15a13afbbce973851488a",
+  "example_sha256": "b62c02750ce3bb51680e927906ea7b7e7d5671663ee3189a10e1cd2ba929735b",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two policy topics request nonpayment information and late-check-in information; visit-planning preface is style.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Split payment/detail/owner_policy from reservation/detail/owner_policy rather than one broad booking task.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ไม่จ่าย 10 is the literal first topic and เช็คอินช้า the second; preserve nonpayment negation.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Bare10 belongs only to the first topic; do not copy it as a check-in delay or inherit any booking state.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The fragment requests policy information;10 is not normalized to minutes or a customer deadline assertion.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "payment_and_late_checkin explicitly contains two distinct conditional clauses; payment_10_minutes and checkin_late separately bind them.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_payment_and_late_checkin",
+        "migrated_faq_rule_payment_10_minutes",
+        "migrated_faq_rule_checkin_late"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No10-minute limit, cancellation, refund verdict or actual booking state is taught.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 160,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "id": "t1",
+        "quote": "ไม่จ่าย 10",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ไม่จ่าย 10",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "negation",
+            "quote": "ไม่จ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      },
+      {
+        "id": "t2",
+        "quote": "เช็คอินช้า",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "เช็คอิน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "เช็คอินช้า",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_payment_and_late_checkin": {
+      "revision": 4,
+      "record_sha256": "760bb74cfc5d22b8fb45ab0c023b98568359bd7bc6d4b6c720d4ebe078830cd6"
+    },
+    "migrated_faq_rule_payment_10_minutes": {
+      "revision": 4,
+      "record_sha256": "46f3b420fb920f1adf923c8ceac4173ab0962ffb6f9ea423d80a647f90f87e3a"
+    },
+    "migrated_faq_rule_checkin_late": {
+      "revision": 4,
+      "record_sha256": "a478d2a9dd5a679c79c8d53eeffb1b5f2358fa9c7ef03ab7e906a30188a8dca6"
+    }
+  }
+}

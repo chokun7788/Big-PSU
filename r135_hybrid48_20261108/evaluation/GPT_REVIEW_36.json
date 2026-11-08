@@ -1,0 +1,849 @@
+{
+  "scope": "36 changed questions, GPT textual intent review; partial source checks; not full semantic accuracy",
+  "rows": [
+    {
+      "key": "29f41eadb669766a4741c249e0134af42690a8e4f52bb23b9682a19c6aa38f08",
+      "question": "ขอสอบถามหน่อยครับ Sony PlayStation VR2 คืออุปกรณ์อะไร",
+      "new": "**ชื่ออุปกรณ์**: Sony PlayStation VR2 [S1]\n**ชนิดอุปกรณ์**: vr [S2]\n**สเปก**: zone; VR Zone; quantity; 1 Unit [S3]\n**Sony PlayStation VR2**",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "Sony PlayStation VR2"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": true,
+      "intent": "อุปกรณ์นี้คืออะไร",
+      "finding": "ตอบชื่อ/ชนิด/สเปก แต่ยังไม่อธิบายหน้าที่ด้วยภาษาธรรมดา",
+      "assessment": "ตอบบางส่วน",
+      "cause_or_hypothesis": "field selection และ renderer เป็นสาเหตุที่เป็นไปได้ ต้องดู trace ก่อนแก้",
+      "semantic_score": null
+    },
+    {
+      "key": "2b9d3342a3386ec6fc2c81e921a97dbecc060c74cee7be14fa379a77ba536839",
+      "question": "PUBG: BATTLEGROUNDS เล่นได้ที่ไหน",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old": "**โซนที่ยืนยันว่ามีเกมนี้**: PC Zone [S1]\n**PUBG: BATTLEGROUNDS**",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "PC",
+          "เล่นได้ที่"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": false,
+      "intent": "เกมเล่นได้ที่ไหน",
+      "finding": "ระบบไม่พร้อม จึงไม่ตอบเป้าหมาย",
+      "assessment": "ตรวจต่อใน log",
+      "cause_or_hypothesis": "ข้อความปลายทางไม่แยก verifier rejection กับ transport failure",
+      "semantic_score": null
+    },
+    {
+      "key": "cbb59b457e87114b83b9151e6bb1d4fd9f7f7b645d6084b747b652f8b5a87e8c",
+      "question": "PSU Student เล่น VR 1 ชั่วโมง 1 ชั่วโมง เสียกี่บาท",
+      "new": "ระยะเวลาถูกระบุซ้ำ ต้องการระยะเวลาเดียวหรือรวมหลายรอบครับ? กรุณายืนยันระยะเวลารวมก่อนคำนวณราคา",
+      "old": "**VR / PSU Student and Staff**\n0 บาท สำหรับ 60 นาที [S1]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "0 บาท",
+          "บาท",
+          "ฟรี"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": false,
+      "intent": "ราคา VR ระยะเวลาซ้ำ",
+      "finding": "ถามกลับอย่างมีเหตุผล ไม่ควรเดาว่าหนึ่งหรือสองรอบ",
+      "assessment": "การชี้แจงเหมาะสม",
+      "cause_or_hypothesis": "duration_scope.py/plan_contract.py มี guard ระยะเวลาซ้ำโดยตรง",
+      "semantic_score": null
+    },
+    {
+      "key": "b12dd87cbeb81d274dccaf2bc7b9fb8789e9dfebf4e7f9c1864228a259a81f64",
+      "question": "บุคคลทั่วไป เล่น Cockpit 2 ชั่วโมง เสียกี่บาท แล้วจองยังงไ",
+      "new": "**บุคคลทั่วไป เล่น cockpit 2 ชั่วโมง เสียกี่บาท**\n\n**Cockpit / General Adult**\n400 บาท สำหรับ 120 นาที [S1]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)\n\n**จองยังงไ**\n\nยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ\n\nยังยืนยันการใช้เงื่อนไขต่อไปนี้ในคำตอบไม่ได้: 2 ชั่วโมง",
+      "old": "**Cockpit / General Adult**\n400 บาท สำหรับ 120 นาที [S1]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "จอง",
+          "เลือก",
+          "บริการ"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": true,
+      "intent": "ราคาและวิธีจอง",
+      "finding": "ตอบราคา แต่ขั้นตอนจองที่สะกดผิดยังหาย",
+      "assessment": "คำตอบไม่ครบ",
+      "cause_or_hypothesis": "อาจสูญเสีย predicate จากคำสะกดผิดหรือ task scope; สถานะ duration ยังขัดกับราคาที่แสดง ต้องตรวจ receipt",
+      "semantic_score": null
+    },
+    {
+      "key": "3ccffd03b89ab207cffb82b42d3d484bd8ece9e7b3f83e9f53bffbd233cdf05c",
+      "question": "Monster Hunter Rise ใช้จอยยังไง",
+      "new": "**Monster Hunter Rise / PlayStation / PS5**\n| ปุ่ม | การทำงาน |\n|---|---|\n| L (Left Stick) | เคลื่อนที่ — บังคับทิศทางการเดินและเคลื่อนที่ของตัวละคร [S1] |\n| R (Right Stick) | มุมกล้อง — แพนมุมกล้องเพื่อดูสภาพแวดล้อมและมอนสเตอร์ [S2] |\n| R3 (Click Right Stick) | ล็อกเป้าหมาย — ล็อกเป้าหมายมอนสเตอร์เพื่อให้มุมกล้องหันตาม [S3] |\n| L1 | รีเซ็ตมุมกล้อง / เมนูลัด (กดค้าง) — กดเพื่อรีเซ็ตมุมกล้อง หรือกดค้างเพื่อเปิดวงล้อเมนูไอเทม [S4] |\n| R1 | วิ่งเร็ว (กดค้าง) — กดค้างเพื่อวิ่งสปรินต์ (ทำได้เมื่อเก็บอาวุธอยู่) [S5] |\n| Cross | ย่อตัว / กลิ้งหลบ / กระโดด — ใช้เพื่อย่อตัว กลิ้งหลบการโจมตี หรือกระโดด [S6] |\n| Circle | โต้ตอบ — เก็บของ, คุยกับ NPC, หรือแล่ชิ้นส่วน [S7] |\n| Square | ใช้ไอเทม — กดเพื่อใช้ไอเทมที่เลือกไว้ หรือกดเพื่อเก็บอาวุธเข้าฝัก [S8] |\n| Triangle | ชักอาวุธ — ดึงอาวุธออกมาเตรียมพร้อมโจมตี [S9] |\n| D-Pad Up / Down | แถบแอคชั่น: เลือก/ใช้งาน — กดเพื่อใช้งานคำสั่งใน Action Bar [S10] |\n| D-Pad Left / Right | แถบแอคชั่น: เลื่อนซ้าย/ขวา — เลื่อนเปลี่ยนคำสั่งในแถบ Action Bar ไปทางซ้ายหรือขวา [S11] |\n| Options | เมนูหลัก — เปิดหน้าต่างเมนูหลักของเกม [S12] |\n| Touch Pad | แผนที่ — เปิดดูแผนที่แบบเต็มจอ [S13] |\nปุ่มชุดนี้มาจากแหล่งรอง ยังไม่ได้ตรวจยืนยันกับเวอร์ชันเกมและการตั้งค่าปุ่มของเครื่องที่ศูนย์ใช้อยู่จริง",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "kind": "single",
+        "group": "game_controls",
+        "question": "Monster Hunter Rise ใช้จอยยังไง",
+        "expected_category": "games",
+        "expected_mode_prefix": null,
+        "must_contain": [],
+        "must_contain_any": [
+          "Monster Hunter Rise",
+          "ปุ่ม",
+          "จอย",
+          "คอนโทรล"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ],
+        "note": "",
+        "risk": "medium",
+        "id": "GC-078",
+        "locale": "auto"
+      },
+      "new_match": true,
+      "intent": "วิธีใช้จอย Monster Hunter Rise",
+      "finding": "เลือก PS5 โดยผู้ถามไม่ระบุแพลตฟอร์ม; source มีบริการ Nintendo และ control PS5 ซึ่งไม่ใช่หลักฐานว่าศูนย์มีเกม PS5",
+      "assessment": "scope ยังไม่ยืนยัน",
+      "cause_or_hypothesis": "ต้องแยก control source กับ offered-service relation",
+      "semantic_score": null
+    },
+    {
+      "key": "fbaba897be6fa72582e55c98c44c7a9da925f3b22eddcf935f536b1057c785ac",
+      "question": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: กินอาหารระหว่างเล่น PC ได้ไหม",
+      "new": "มีข้อความนโยบายหลายฉบับที่ยังยืนยันไม่ได้ว่าใช้ขอบเขตหรือเงื่อนไขเดียวกัน จึงคงข้อมูลแต่ละฉบับไว้ กรุณาตรวจสอบกับศูนย์ก่อนใช้\nอาหารและเครื่องดื่ม: อนุญาตให้รับประทานอาหารและเครื่องดื่มเฉพาะในพื้นที่ที่กำหนดเท่านั้น [S1]\nอนุญาตให้รับประทานอาหารและเครื่องดื่มเฉพาะในพื้นที่ที่กำหนดเท่านั้น [S2]\nช่วงที่นโยบายมีผลยังไม่ยืนยัน ข้างต้นเป็นข้อความที่บันทึกไว้ ไม่ยืนยันสิทธิ์ปัจจุบัน",
+      "old": "วันที่ตรวจสอบ: 2026-10-31 (เวลาไทย)\nโซน PC: ว่าง 0/10 รายการ ช่วง 02:09 น. เพราะศูนย์ปิดให้บริการ\n•    PC #01 (1 Person): ปิดให้บริการ\n•    PC #02 (1 Person): ปิดให้บริการ\n•    PC #03 (1 Person): ปิดให้บริการ\n•    PC #04 (1 Person): ปิดให้บริการ\n•    PC #05 (1 Person): ปิดให้บริการ\n•    PC #06 (1 Person): ปิดให้บริการ\n•    PC #07 (1 Person): ปิดให้บริการ\n•    PC #08 (1 Person): ปิดให้บริการ\n•    PC #09 (1 Person): ปิดให้บริการ\n•    PC #10 (1 Person): ปิดให้บริการ\nอัปเดต: 2026-10-31 02:09:59\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "พื้นที่ที่กำหนด",
+          "designated area"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": true,
+      "intent": "กินอาหารระหว่างเล่น PC ได้ไหม",
+      "finding": "ตอบนโยบายพื้นที่กินพร้อมข้อจำกัด แทนการไปตอบเครื่องว่างแบบรุ่นเก่า",
+      "assessment": "ตรงหัวข้อมากขึ้น แต่สิทธิ์ปัจจุบันยังไม่ยืนยัน",
+      "cause_or_hypothesis": "แยก policy predicate ออกจาก live availability; ไม่ลบ validity caveat",
+      "semantic_score": null
+    },
+    {
+      "key": "c15da1510f1406d60bf5d9f2b349c52431da6f15cd8f366bfcf95ed66d416a4d",
+      "question": "ขอสอบถามหน่อยครับ Pulse Elite Wireless Headset ใช้งานยังไง",
+      "new": "**สเปก**: zone; Cockpit Zone; quantity; 2 Units [S1]\n**Pulse Elite Wireless Headset**",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "Pulse Elite Wireless Headset"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": true,
+      "intent": "วิธีใช้หูฟัง Pulse Elite",
+      "finding": "ตอบ zone/จำนวน แทน usage ที่มีอยู่ใน source",
+      "assessment": "ตอบผิดส่วน",
+      "cause_or_hypothesis": "equipment_definition_card ใน meaning_reader.py มีเส้นทาง broad fields; ต้องยืนยันเส้นทางจริงจาก log ของข้อนี้",
+      "semantic_score": null
+    },
+    {
+      "key": "5d72f8e1f68951da0764b290c713b01f251781d454d3dd7d61f3e3afa8b51ffe",
+      "question": "Cockpit #01-#02 เล่นได้กี่คน",
+      "new": "**cockpit #01-#02 เล่นได้กี่คน**\n\nยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ\n\n**cockpit #01-#02 เล่นได้กี่คน**\n\nยังไม่พบโหมดเกมที่ยืนยันว่ารองรับจำนวนผู้เล่นและเงื่อนไขที่ถามครับ",
+      "old": "**คำตอบที่ยืนยัน**: Cockpit ใช้เล่นเกม Gran Turismo 7 (Single Player) ได้ [S1]",
+      "contract": {
+        "kind": "single",
+        "group": "availability_service",
+        "question": "Cockpit #01-#02 เล่นได้กี่คน",
+        "expected_category": [
+          "games",
+          "reservation"
+        ],
+        "expected_mode_prefix": null,
+        "must_contain": [],
+        "must_contain_any": [
+          "1 คน",
+          "คน"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ],
+        "llm_required": false,
+        "quality_bucket": "psu_fact",
+        "risk": "medium",
+        "source": "service_game_availability",
+        "note": "",
+        "id": "MB-0819-AS-015",
+        "locale": "auto"
+      },
+      "new_match": true,
+      "intent": "Cockpit สองเครื่องเล่นได้กี่คน",
+      "finding": "ไม่ตอบ capacity; รุ่นเก่าพูด single-player ซึ่งไม่เท่ากับจำนวนคนต่อเครื่อง/รวมสองเครื่อง",
+      "assessment": "ยังตัดสินจำนวนไม่ได้",
+      "cause_or_hypothesis": "ต้องแยก resource capacity กับ game player count",
+      "semantic_score": null
+    },
+    {
+      "key": "0af584de02534ae1b5b2237d41465724617c6bf17a041266b430ea0bf957fded",
+      "question": "คีย์บอร์ด mechanical คืออะไรแบบสั้น ตอบแบบประโยคเดียว",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "old": "**ชนิดอุปกรณ์**: peripheral [S1]\n**การใช้งาน**\n- คีย์บอร์ดสำหรับควบคุมเกมและพิมพ์บน Gaming PC\n- ใช้งานกับเครื่อง PC ที่จองไว้ หลีกเลี่ยงการแกะ ย้าย หรือปรับอุปกรณ์เอง หากมีปุ่มเสียควรแจ้งเจ้าหน้าที่\n- ควบคุมเกม PC\n- พิมพ์ข้อมูล [S2]\n**ที่ตั้ง**: PC Zone [S3]\n**Gaming Keyboard**",
+      "contract": {
+        "kind": "single",
+        "group": "general_llm",
+        "question": "คีย์บอร์ด mechanical คืออะไรแบบสั้น ตอบแบบประโยคเดียว",
+        "expected_category": [
+          "general",
+          "knowledge"
+        ],
+        "expected_mode_prefix": null,
+        "must_contain": [],
+        "must_contain_any": [
+          "คีย์บอร์ด",
+          "mechanical"
+        ],
+        "must_not_contain": [],
+        "llm_required": true,
+        "quality_bucket": "general_llm",
+        "risk": "low",
+        "source": "handwritten_general",
+        "note": "No-LLM baseline should decline; LLM runs should answer.",
+        "id": "MB-1553-GL-228",
+        "locale": "auto"
+      },
+      "new_match": false,
+      "intent": "ความหมาย mechanical แบบสั้น",
+      "finding": "ใหม่ระงับคำตอบ เก่าเป็นข้อมูลคีย์บอร์ดทั่วไป ไม่ใช่คำนิยาม mechanical",
+      "assessment": "ข้อมูลไม่พอ ไม่ใช่พิสูจน์ว่าใหม่ผิด",
+      "cause_or_hypothesis": "meaning_reader.py ระงับ subtype definition โดยตรง",
+      "semantic_score": null
+    },
+    {
+      "key": "34852276dfaf78b6c7796da54427fe94883d3a68e7db48550b6407a72f72eec3",
+      "question": "CS2 สรุปกติกาสั้นๆ",
+      "new": "1. ANCIENT, ANUBIS, DUST 2, INFERNO, MIRAGE, NUKE, TRAIN [S1]\nต้นทางยังไม่ยืนยันข้อกติกาที่อ้างถึงหรือความครบถ้วนของเนื้อหาบางส่วน ข้างต้นเป็นข้อความที่มีหลักฐานบันทึกไว้\n**PSU Phuket CS2 2026 Tournament**\nโปรดตรวจสอบว่ากติกาของรายการที่แสดงใช้กับแมตช์ของคุณหรือไม่",
+      "old": "ยังระบุเกม เครื่อง หรือหัวข้อที่ต้องการอ่านไม่ชัดเจนครับ กรุณาระบุเป้าหมายเพิ่มเติม",
+      "contract": {
+        "kind": "single",
+        "group": "competition_rules",
+        "question": "CS2 สรุปกติกาสั้นๆ",
+        "expected_category": "competition_rules",
+        "expected_mode_prefix": null,
+        "must_contain": [],
+        "must_contain_any": [
+          "CS2",
+          "กติกา",
+          "แข่งขัน",
+          "ยังไม่พบ"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ],
+        "note": "",
+        "risk": "high",
+        "id": "CR-030",
+        "locale": "auto"
+      },
+      "new_match": true,
+      "intent": "สรุปกติกา CS2",
+      "finding": "ตอบเพียงชื่อแผนที่ ไม่ครบใจความกติกา แม้แจ้งข้อจำกัด",
+      "assessment": "ตอบบางส่วน",
+      "cause_or_hypothesis": "operation summary/overview และ rule dependency coverage ต้องตรวจร่วม",
+      "semantic_score": null
+    },
+    {
+      "key": "0eacbb45db2ac675c883df8b6c6cf684282551b603a3cf46717ca15b86631349",
+      "question": "Nintendo มีอะไรบ้าง",
+      "new": "**Nintendo Switch — 17 เกม**\n- Pokémon Champions\n- Animal Crossing: New Horizons\n- It Takes Two\n- Little Nightmares II\n- Luigi's Mansion 3\n- Mario Kart 8 Deluxe\n- Mario Party Superstars\n- Monster Hunter Rise\n- Moving Out 2\n- New Super Mario Bros. U Deluxe\n- Nintendo Switch Sports\n- Overcooked!\n- Overcooked 2\n- Ring Fit Adventure\n- Super Mario Odyssey\n- Super Smash Bros Ultimate\n- The Legend of Zelda: Breath of the Wild\n[S1] [S2]",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "kind": "single",
+        "group": "ambiguity_no_answer",
+        "question": "Nintendo มีอะไรบ้าง",
+        "expected_category": [
+          "clarification",
+          "games",
+          "equipment",
+          "service_fee",
+          "reservation",
+          "no_answer"
+        ],
+        "expected_mode_prefix": null,
+        "must_contain": [],
+        "must_contain_any": [
+          "หมายถึง",
+          "พิมพ์",
+          "ยังไม่",
+          "เกม",
+          "อุปกรณ์",
+          "ราคา",
+          "จอง"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ],
+        "note": "",
+        "risk": "high",
+        "id": "ANA-003",
+        "locale": "auto"
+      },
+      "new_match": true,
+      "intent": "Nintendo มีอะไรบ้าง",
+      "finding": "เลือกตอบรายชื่อเกม อาจตรงหากหมายถึงเกม แต่คำถามอาจหมายถึงเครื่อง/อุปกรณ์",
+      "assessment": "เจตนากำกวม",
+      "cause_or_hypothesis": "ไม่ควรให้คะแนน semantic ว่าถูกจากรายชื่อเกมอย่างเดียว",
+      "semantic_score": null
+    },
+    {
+      "key": "c819fcacd1d587e78313e52a2c24d9eddc0d22eb3bda1ddd9ceeaa1f1af47c77",
+      "question": "คีย์บอร์ด mechanical คืออะไรแบบสั้น ไม่ต้องยาว",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "old": "**ชนิดอุปกรณ์**: peripheral [S1]\n**การใช้งาน**\n- คีย์บอร์ดสำหรับควบคุมเกมและพิมพ์บน Gaming PC\n- ใช้งานกับเครื่อง PC ที่จองไว้ หลีกเลี่ยงการแกะ ย้าย หรือปรับอุปกรณ์เอง หากมีปุ่มเสียควรแจ้งเจ้าหน้าที่\n- ควบคุมเกม PC\n- พิมพ์ข้อมูล [S2]\n**ที่ตั้ง**: PC Zone [S3]\n**Gaming Keyboard**",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "คีย์บอร์ด",
+          "mechanical"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "ความหมาย mechanical แบบสั้น",
+      "finding": "ใหม่ไม่ยืนยัน เก่าอธิบาย generic keyboard และยาวเกินคำขอ",
+      "assessment": "ข้อมูลไม่พอ",
+      "cause_or_hypothesis": "ไม่ยก generic usage เป็น subtype definition",
+      "semantic_score": null
+    },
+    {
+      "key": "ac8a5ad20afe4c962ef26bcd47c62457d4e65da5494fa3976b832817c4bb0963",
+      "question": "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS ใช้จอยยังไง",
+      "new": "**NARUTO X BORUTO Ultimate Ninja Storm Connections / PlayStation / PS5**\n| ปุ่ม | การทำงาน |\n|---|---|\n| LS (Left Stick) | เคลื่อนที่ — บังคับทิศทางของตัวละคร [S1] |\n| RS (Right Stick) Left/Right | เปลี่ยนตัวละครหลัก — ดันซ้ายหรือขวาเพื่อสลับบังคับเพื่อนร่วมทีมทันที [S2] |\n| Circle | โจมตีระยะประชิด — ต่อย/เตะ ทำคอมโบกระบวนท่า [S3] |\n| Triangle | คาถานินจา / จักระ — รีดเร้นจักระเพื่อใช้คาถาหรือท่าไม้ตายลับ (Secret Technique) [S4] |\n| Square | ดาวกระจาย — ปาดาวกระจายโจมตีระยะไกล [S5] |\n| Cross | กระโดด — กระโดด หรือพุ่งตัวเข้าหาศัตรู [S6] |\n| L2 | คาถาสลับร่าง — สลับร่างหลบการโจมตี (ใช้เกจหลบหลีก) [S7] |\n| R2 | ป้องกัน — ตั้งการ์ดบล็อกการโจมตี [S8] |\n| L1 | กำลังเสริม 1 — เรียกตัวละครซัพพอร์ตคนที่ 1 [S9] |\n| R1 | กำลังเสริม 2 — เรียกตัวละครซัพพอร์ตคนที่ 2 [S10] |\n| D-Pad | ใช้อุปกรณ์นินจา — ใช้งานไอเทม 4 ทิศทาง [S11] |\n| Touch Pad | เมนู — เปิดเมนูหยุดเกม [S12] |\nแหล่งข้อมูลระบุวิธีควบคุมเพียงบางส่วน ยังไม่มีผังปุ่มครบชุดที่ยืนยันได้\nหมายเหตุ: เกมเน้นความรวดเร็วในการกดคอมโบและการชิงจังหวะด้วยคาถาสลับร่าง (L2) รวมถึงการสลับตัวละครแบบเรียลไทม์ (RS)",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS",
+          "ปุ่ม",
+          "จอย",
+          "คอนโทรล"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": true,
+      "intent": "ปุ่ม Naruto ใช้ยังไง",
+      "finding": "แสดงตารางปุ่ม แต่แพลตฟอร์ม/เวอร์ชัน/ความตรงต้นทางยังต้องตรวจทุก binding",
+      "assessment": "รูปคำตอบตรงงาน แต่ข้อเท็จจริงยังไม่รับรองครบ",
+      "cause_or_hypothesis": "controller platform/preset/version scope",
+      "semantic_score": null
+    },
+    {
+      "key": "81e02ba7a3a3c78f2b494cf0f6feb436c6ca06006a930337482ef11ef9080d9a",
+      "question": "General Adult เล่น PS5 2 ชั่วโมง เสียกี่บาท",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "old": "**PlayStation 5 / General Adult**\n300 บาท สำหรับ 120 นาที [S1]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "บาท",
+          "บาท",
+          "ฟรี"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": false,
+      "intent": "ราคา PS5 สองชั่วโมง",
+      "finding": "ใหม่ไม่ตอบ เก่าให้ราคา 300 บาท; ยังใช้ราคาเก่าเป็นคำตอบถูกไม่ได้ก่อนเช็กช่วงมีผลและขอบเขตคน",
+      "assessment": "ต้องตรวจ source/receipt",
+      "cause_or_hypothesis": "ราคาแยก service/audience/duration/person bounds/confirmation",
+      "semantic_score": null
+    },
+    {
+      "key": "84b782b81b63796e295421e739bfe8e8574fde1c3528ff74ab0bd36414903b8c",
+      "question": "PC Zone รอบละกี่นาที",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old": "**PC — 5 เกม**\n- TEKKEN 8\n- Counter-Strike 2\n- League of Legends\n- PUBG: BATTLEGROUNDS\n- VALORANT\n[S1]",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "TEKKEN 8",
+          "Counter-Strike 2",
+          "League of Legends",
+          "60"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "PC Zone รอบละกี่นาที",
+      "finding": "ใหม่ระบบไม่พร้อม; เก่าแสดงรายชื่อเกมซึ่งไม่ตอบระยะเวลารอบ",
+      "assessment": "ทั้งสองยังไม่ตอบโจทย์",
+      "cause_or_hypothesis": "ต้องอ่าน session duration จาก service ไม่ใช่ game catalog",
+      "semantic_score": null
+    },
+    {
+      "key": "e91e1076a10a038a68791640ce64abde7ebb47a0255ce9e26838ac2efc8329b4",
+      "question": "What is the weekly schedule for booking equipment?",
+      "new": "Recorded weekday periods, not live machine availability.\n**Monday**\n**bookable periods**: 13:00–16:00 [S1]\n**Tuesday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S2]\n**Wednesday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S3]\n**Thursday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S4]\n**Friday**\n**bookable periods**: 09:00–12:00 [S5]\n**Saturday**\n**bookable periods**: ไม่มี / None [S6]\n**Sunday**\n**bookable periods**: ไม่มี / None [S7]\nUnconfirmed: effective date interval, applicable resource or zone",
+      "old": "**Relevant information**\n• Confirmed information: The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "09:00",
+          "13:00",
+          "9:00",
+          "1 pm"
+        ],
+        "must_not_contain": [
+          "ขั้นตอนโดยสรุปคือ 1)"
+        ]
+      },
+      "new_match": true,
+      "intent": "ตารางจองรายสัปดาห์",
+      "finding": "ใหม่ตอบวันและช่วงจองพร้อม caveat; เก่าตอบขั้นตอนจอง",
+      "assessment": "ตรงเจตนามากขึ้น",
+      "cause_or_hypothesis": "ยังไม่พิสูจน์ current applicability หรือ live availability",
+      "semantic_score": null
+    },
+    {
+      "key": "a1b27a76b09af28fb3d9797fd9f5b742078065734af915b530705dbc8bcb0422",
+      "question": "What time is the afternoon session? Could you check this for me",
+      "new": "Recorded play-service periods; these do not establish booking windows, building hours or live availability.\nMonday — afternoon: 13:00–16:00 (open)\nTuesday — afternoon: 13:00–16:00 (open)\nWednesday — afternoon: 13:00–16:00 (open)\nThursday — afternoon: 13:00–16:00 (open)\nFriday — afternoon: 13:00–16:00 (maintenance)\nSaturday — afternoon: recorded closed day\nSunday — afternoon: recorded closed day [S1] [S2] [S3] [S4] [S5] [S6] [S7]\nSource limitations remain; not fully confirmed: effective interval, applicable zone",
+      "old": "**Relevant information**\n• Confirmed information: The Afternoon slot is 13:00-16:00, but if no day is specified you should check the weekly timeline: Monday morning 09:00-12:00 is Maintenance* and Monday afternoon 13:00-16:00 is open; Tuesday-Thursday are open in both slots 09:00-12:00 and 13:00-16:00; Friday morning 09:00-12:00 is open, but Friday afternoon 13:00-16:00 is Maintenance** for weekly hardware inspection and cleaning, so it is not playable. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "contract": {
+        "must_contain": [
+          "13:00-16:00"
+        ],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "เวลา session บ่าย",
+      "finding": "ใหม่และเก่าระบุเวลาเดียวกัน แต่ใหม่แยกวัน/maintenance; literal อาจแพ้เครื่องหมายขีด",
+      "assessment": "ความต่างรูปแบบไม่ใช่หลักฐานคำตอบผิด",
+      "cause_or_hypothesis": "ตรวจ play-service scope และ effective interval",
+      "semantic_score": null
+    },
+    {
+      "key": "3ca4fc6afab0bbb0b97f4077e43876740ca3a4ea763197c7266c55e205feef96",
+      "question": "How do I use the Logitech G923 TRUEFORCE Racing Wheel",
+      "new": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old": "**device type**: wheel [S1]\n**equipment name**: Logitech G923 TRUEFORCE Racing Wheel [S2]\n**location**: Cockpit Zone [S3]\n**quantity**: 2 Units with Driving Force Shifter [S4]\n**specifications**: zone; Cockpit Zone; quantity; 2 Units with Driving Force Shifter [S5]\n**usage**\n- Race steering wheel set for playing driving games in Cockpit Zone\n- Book Cockpit Zone and use the steering wheel, press the accelerator and brake pedals, and control the car according to the games provided by the center\n- Play Gran Turismo 7 with the Cockpit kit and a 65-inch TV [S6]\n**Logitech G923 TRUEFORCE Racing Wheel**",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "Logitech G923 TRUEFORCE Racing Wheel"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "วิธีใช้พวงมาลัย Logitech",
+      "finding": "ใหม่ระบบไม่พร้อม; ข้อมูลรุ่นเก่าที่เห็นเน้นชนิด/ที่ตั้ง/จำนวน ยังไม่พอเป็นวิธีใช้",
+      "assessment": "ต้องตรวจ log และ usage",
+      "cause_or_hypothesis": "อย่าปิด failure ด้วยการแสดง card กว้าง",
+      "semantic_score": null
+    },
+    {
+      "key": "398170d78be93ba876e72c7d26080cd049b1d32a01b1532a52ca34514a5cf0ea",
+      "question": "What are the studio service days and hours for reservations?",
+      "new": "Recorded weekday periods, not live machine availability.\n**Monday**\n**bookable periods**: 13:00–16:00 [S1]\n**Tuesday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S2]\n**Wednesday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S3]\n**Thursday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S4]\n**Friday**\n**bookable periods**: 09:00–12:00 [S5]\n**Saturday**\n**bookable periods**: ไม่มี / None [S6]\n**Sunday**\n**bookable periods**: ไม่มี / None [S7]\nUnconfirmed: effective date interval, applicable resource or zone",
+      "old": "Question interpretation is temporarily unavailable. Please retry.",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "09:00",
+          "13:00",
+          "9:00",
+          "1 pm"
+        ],
+        "must_not_contain": [
+          "ขั้นตอนโดยสรุปคือ 1)"
+        ]
+      },
+      "new_match": true,
+      "intent": "วันและเวลาจอง",
+      "finding": "ใหม่ตอบ recorded booking periods เก่าตีความไม่พร้อม",
+      "assessment": "ตรงรูปงานมากขึ้น",
+      "cause_or_hypothesis": "แยก booking windows/building/play/live และระบุช่วงมีผล",
+      "semantic_score": null
+    },
+    {
+      "key": "ae0400c111815911ea1965f64881a44f636f3bbf7544ded741fa03f3094edc0b",
+      "question": "Who operates PSU Esports Studio? Could you check this for me",
+      "new": "No confirmed source is available for the requested detail.",
+      "old": "The studio was established by Prince of Songkla University and is operated by the College of Computing. [S1]",
+      "contract": {
+        "must_contain": [
+          "College of Computing"
+        ],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "ใครดำเนินงานศูนย์",
+      "finding": "ใหม่ unknown; FAQ เก่าระบุ College แต่ binding/authority ยังไม่ชัดและ typed center ระบุ PSU",
+      "assessment": "ยังตัดสินข้อเท็จจริงไม่ได้",
+      "cause_or_hypothesis": "ห้ามผูก FAQ กับศูนย์ด้วย regex เพียงอย่างเดียว",
+      "semantic_score": null
+    },
+    {
+      "key": "233bdebf01273e756b7fc4ac9559737168f806a38f9f68600892ab457d000c03",
+      "question": "ในเกม The Last of Us Part II (Remastered) บน PlayStation / PS5 ปุ่ม R (Right Stick) ใช้ทำอะไร",
+      "new": "**The Last of Us Part II / PlayStation / PS5**\n- **มุมกล้อง**: R (Right Stick) — หมุนอนาล็อกเพื่อหันมุมมอง กวาดสายตาดูรอบๆ ตัว หรือใช้ควบคุมทิศทางเป้าปืน [S1]\nปุ่มชุดนี้มาจากแหล่งรอง ยังไม่ได้ตรวจยืนยันกับเวอร์ชันเกมและการตั้งค่าปุ่มของเครื่องที่ศูนย์ใช้อยู่จริง",
+      "old": "ยังไม่พบข้อมูลปุ่มหรือชุดปุ่มที่ระบุสำหรับเกมและแพลตฟอร์มนี้ครับ",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "R (Right Stick)",
+          "มุมกล้อง"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": true,
+      "intent": "ปุ่ม Right Stick ของเกมฉบับ Remastered",
+      "finding": "ใหม่ตอบมุมกล้องพร้อมเตือนแหล่งรอง แต่หัวเรื่องเป็น base game",
+      "assessment": "ตรง action แต่ edition scope ยังต้องตรวจ",
+      "cause_or_hypothesis": "alias ของ edition ไม่ใช่หลักฐานว่า binding ใช้ร่วมกัน",
+      "semantic_score": null
+    },
+    {
+      "key": "8117ae7ac95f2c53ae779f34a5d17f8af7652ee859a85d15db1621c9a63db095",
+      "question": "Tekken 8 ปุ่มอะไร แล้ว PC ราคาเทาไหร่",
+      "new": "**tekken 8 ปุ่มอะไร แล้ว pc ราคาเทาไหร่**\n\nยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ\n\n**tekken 8 ปุ่มอะไร แล้ว pc ราคาเทาไหร่**\n\nยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "old": "**PC / PSU Student and Staff**\n0 บาทต่อคน สำหรับ 60 นาที [S1] [S4]\n**PC / PSU Alumni and General Student**\n25 บาทต่อคน สำหรับ 60 นาที [S2] [S5]\n**PC / General Adult**\n70 บาทต่อคน สำหรับ 60 นาที [S3] [S6]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "คำถามที่",
+          "ราคา",
+          "ปุ่ม",
+          "Zone",
+          "จอง"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": true,
+      "intent": "ปุ่ม Tekken และราคา PC",
+      "finding": "ใหม่ยืนยันไม่ได้ซ้ำสองช่วง จึงไม่ตอบทั้งสอง need; เก่าตอบแต่ราคา",
+      "assessment": "คำตอบไม่ครบทั้งสองรุ่น",
+      "cause_or_hypothesis": "task split/slot ownership และ guard คำสะกดผิดก่อน renderer",
+      "semantic_score": null
+    },
+    {
+      "key": "08e23d8d5da4d10918ea4f94704db797ad655e98cc9676e6ceb6f73a7cdc3f34",
+      "question": "PUBG: BATTLEGROUNDS ใช้จอยยังไง",
+      "new": "**PUBG: BATTLEGROUNDS / PC**\n| ปุ่ม | การทำงาน |\n|---|---|\n| W / A / S / D | เคลื่อนที่ — เคลื่อนที่ตัวละคร [S1] |\n| F | โต้ตอบ — เก็บของ เปิดประตู หรือใช้งานวัตถุ [S2] |\n| C | ย่อตัว — ย่อตัว [S3] |\n| Z | หมอบ — นอนหมอบ [S4] |\n| Shift | วิ่ง / กลั้นหายใจ — วิ่งเร็ว และใช้กลั้นหายใจตอนเล็ง ADS [S5] |\n| Ctrl | เดิน — เดินช้า [S6] |\n| Space | กระโดด — กระโดด [S7] |\n| Tab / I | เปิดกระเป๋า — เปิด inventory [S8] |\n| M | เปิดแผนที่ — เปิดแผนที่ [S9] |\n| Alt | มองอิสระ — มองรอบตัวโดยไม่เปลี่ยนทิศทางเดิน [S10] |\n| Q / E | เอียงซ้าย / เอียงขวา — เอียงตัวเพื่อ peek [S11] |\n| R | รีโหลด — เปลี่ยนกระสุน [S12] |\n| B | เปลี่ยนโหมดยิง — สลับโหมดยิงของอาวุธ [S13] |\n| X | เก็บ/ถอดอาวุธ — เก็บอาวุธที่ถืออยู่ [S14] |\n| Left Mouse Button | ยิง — ยิงอาวุธ [S15] |\n| Right Mouse Button | เล็ง — เล็งแบบ soft aim หรือ ADS ตาม setting [S16] |\n| 1 / 2 / 3 / 4 / 5 | เลือกอาวุธ — เลือกช่องอาวุธหลัก/รอง/มีด/ของขว้าง [S17] |\n| T | พูดคุยด้วยเสียง — Push to talk [S18] |\nปุ่มชุดนี้มาจากแหล่งรอง ยังไม่ได้ตรวจยืนยันกับเวอร์ชันเกมและการตั้งค่าปุ่มของเครื่องที่ศูนย์ใช้อยู่จริง\nหมายเหตุ: รายการปุ่มละเอียดมาจากคู่มือ GameFAQs ที่อัปเดตในปี 2026 คู่มือระบุว่าปุ่ม PC ปรับได้ จึงต้องตรวจบน PC ของศูนย์ก่อนระบุว่าครบ",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "PUBG",
+          "ปุ่ม",
+          "จอย",
+          "คอนโทรล"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": true,
+      "intent": "PUBG ใช้จอย",
+      "finding": "ใหม่ตอบปุ่มคีย์บอร์ด PC ซึ่งมี source จริงแต่ไม่ใช่จอย",
+      "assessment": "อุปกรณ์ควบคุมผิดเจตนา",
+      "cause_or_hypothesis": "input device ต้องเป็น constraint ที่ reader/verifier ตรวจ ไม่ใช่เดาตาม control set ที่มี",
+      "semantic_score": null
+    },
+    {
+      "key": "f4598207fcad0e2f8d289e07e0e0b190f5ca44f55da1b20946dd08def0c321ae",
+      "question": "ขอสอบถามหน่อยครับ Pulse Elite Wireless Headset คืออุปกรณ์อะไร",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old": "**ชื่ออุปกรณ์**: Pulse Elite Wireless Headset [S1]\n**Pulse Elite Wireless Headset**",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "Pulse Elite Wireless Headset"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "Pulse Elite คืออะไร",
+      "finding": "ใหม่ระบบไม่พร้อม; เก่ามีแต่ชื่อก็ยังไม่ใช่คำอธิบายครบ",
+      "assessment": "ต้องตรวจ log",
+      "cause_or_hypothesis": "type/name/usage คนละคำตอบตามคำถาม",
+      "semantic_score": null
+    },
+    {
+      "key": "635520a4a69c0c3bd1318b06d2c95962db01fca2cf52623622b244b804784293",
+      "question": "Could you please help me with this: Who operates PSU Esports Studio",
+      "new": "No confirmed source is available for the requested detail.",
+      "old": "The studio was established by Prince of Songkla University and is operated by the College of Computing. [S1]",
+      "contract": {
+        "must_contain": [
+          "College of Computing"
+        ],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "ใครดำเนินงานศูนย์",
+      "finding": "FAQ กับ center ยังมี scope/authority ที่แก้ไม่ได้ด้วยคำตรง",
+      "assessment": "ยังไม่ยืนยัน",
+      "cause_or_hypothesis": "คง unknown จนมี relation และ authority รองรับ",
+      "semantic_score": null
+    },
+    {
+      "key": "f56073f90ac96eb87c3e99bdac0cb2cffe09d02e2863db30ce5f466378e11607",
+      "question": "คนทั่วไป เล่น PS5 2 ชั่วโมง เสียกี่บาท",
+      "new": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "old": "**PlayStation 5 / General Adult**\n300 บาท สำหรับ 120 นาที [S1]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "บาท",
+          "บาท",
+          "ฟรี"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": false,
+      "intent": "ราคา PS5 สองชั่วโมง",
+      "finding": "เช่นเดียวกับกลุ่มราคา PS5 ไม่สรุปว่า 300 บาทถูกสำหรับวันปัจจุบัน",
+      "assessment": "ต้องตรวจ source/receipt",
+      "cause_or_hypothesis": "ตรวจ confirmation/effective interval และ raw person bounds",
+      "semantic_score": null
+    },
+    {
+      "key": "afed81abb3ca348c659ced79c1cae9be2c0fe982d1b00bb41f2b8b063b7c2233",
+      "question": "PSU Student เล่น VR 30 นาที 30 นาที เสียกี่บาท",
+      "new": "ระยะเวลาถูกระบุซ้ำ ต้องการระยะเวลาเดียวหรือรวมหลายรอบครับ? กรุณายืนยันระยะเวลารวมก่อนคำนวณราคา",
+      "old": "**VR / PSU Student and Staff**\n0 บาท สำหรับ 30 นาที [S1]\nอัตราที่เจ้าของยืนยันล่าสุด ณ 2026-10-20 (ยังไม่ยืนยันวันเริ่ม–สิ้นสุดใหม่)",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "0 บาท",
+          "บาท",
+          "ฟรี"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ]
+      },
+      "new_match": false,
+      "intent": "ราคา VR ระยะเวลาซ้ำ",
+      "finding": "ถามยืนยันว่าหนึ่งช่วงหรือหลายรอบเป็นพฤติกรรมมีเหตุผล",
+      "assessment": "การชี้แจงเหมาะสม",
+      "cause_or_hypothesis": "ห้าม normalize จำนวน/เวลาโดยเงียบ",
+      "semantic_score": null
+    },
+    {
+      "key": "687e3f2051f12054ecf28f6e0185414820d2e73c04e8283f478287200df8c3be",
+      "question": "Who operates PSU Esports Studio",
+      "new": "No confirmed source is available for the requested detail.",
+      "old": "The studio was established by Prince of Songkla University and is operated by the College of Computing. [S1]",
+      "contract": {
+        "must_contain": [
+          "College of Computing"
+        ],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "ใครดำเนินงานศูนย์",
+      "finding": "ยังไม่สามารถตัดสินจาก FAQ ตัวเดียว",
+      "assessment": "ยังไม่ยืนยัน",
+      "cause_or_hypothesis": "ต้องมี center binding และ authority ที่แยก institution/operator",
+      "semantic_score": null
+    },
+    {
+      "key": "7635e211b056601fe334c9292a90444174b70dbde08c85f8931d2168982242a4",
+      "question": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: PUBG: BATTLEGROUNDS คือเมอะไร",
+      "new": "**คำอธิบายเกม**: PUBG: BATTLEGROUNDS คือเกมเอาชีวิตรอดที่ผู้เล่นลงสนาม ค้นหาอาวุธและอุปกรณ์ แล้วพยายามอยู่รอดเป็นคนหรือทีมสุดท้าย [S1]\n**PUBG: BATTLEGROUNDS**",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "PUBG: BATTLEGROUNDS คือเกมเอาชีวิตรอดที่ผู้เล่นลงสนาม ค้นหาอาวุธและอุปกรณ์ แล้วพยายามอยู่รอดเป็นคนหรือทีมสุดท้าย"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": true,
+      "intent": "PUBG คือเกมอะไร",
+      "finding": "ใหม่ให้คำอธิบายแนวเอาชีวิตรอดซึ่งตอบชนิดคำถามมากกว่า error เก่า",
+      "assessment": "ตรงเจตนาในระดับข้อความ",
+      "cause_or_hypothesis": "ยังต้องเทียบ claim กับ summary/source/edition ก่อนรับรอง factual correctness เต็ม",
+      "semantic_score": null
+    },
+    {
+      "key": "5dbaf4116082ce7f4c2bc7c74c666bee34ea0fc1da2fac6a0681601f543c28ee",
+      "question": "Could you please help me with this: How do I use the Racezone Full Cockpit V3",
+      "new": "**specifications**: zone; Cockpit Zone; quantity; 2 Units [S1]\n**usage**: Seat and cockpit replica set for racing games\\nSit in the Cockpit and use the steering wheel, accelerator, and brake as configured in the game\\nPlay Gran Turismo 7 with more realistic driving simulation [S2]\n**Racezone Full Cockpit V3**",
+      "old": "The checking service is unavailable; this detail cannot be confirmed.",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "Racezone Full Cockpit V3"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": true,
+      "intent": "วิธีใช้ Racezone Cockpit",
+      "finding": "ใหม่มีคำอธิบายให้นั่งและใช้พวงมาลัย/คันเร่ง/เบรก ตรงการใช้งานมากกว่า error เก่า",
+      "assessment": "ตรงเจตนาเบื้องต้น",
+      "cause_or_hypothesis": "ยังไม่พิสูจน์ขั้นตอนเปิดเครื่องหรือความปลอดภัยที่ไม่ได้มีใน source",
+      "semantic_score": null
+    },
+    {
+      "key": "3d9cad6949cdebc0650e3ddb7596fb38544f22391dddb817dcd4165eb60f5227",
+      "question": "TV 86 นิ้ว คืออุปกรณ์อะไร",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old": "**ชื่ออุปกรณ์**: TV 86 นิ้ว [S1]\n**TV 86 นิ้ว**",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "TV 86 นิ้ว"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "TV 86 นิ้วคืออะไร",
+      "finding": "ใหม่ระบบไม่พร้อม เก่าเพียงชื่อก็ยังไม่อธิบายชนิดและหน้าที่",
+      "assessment": "ต้องตรวจ log",
+      "cause_or_hypothesis": "ไม่ควรถือ name echo เป็นคำจำกัดความ",
+      "semantic_score": null
+    },
+    {
+      "key": "490358f3e7a45333a3361d50a0f414221a246f5d2276cf180261ac7a26f08e9b",
+      "question": "ปุมควบคุมของ Super Mario Odyssey บน Nintendo Switch มีอะไรบ้่ง",
+      "new": "**Super Mario Odyssey / Nintendo Switch**\n| ปุ่ม | การทำงาน |\n|---|---|\n| A / B | กระโดด — ใช้กระโดด สามารถใช้ปุ่ม A หรือ B ก็ได้ [S1] |\n| L (Left Stick) | เคลื่อนที่ — บังคับทิศทางการเดินและวิ่งของมาริโอ [S2] |\n| ZL | ย่อตัว — ย่อตัวลงเพื่อม้วนตัว หรือใช้ทำท่ากระแทกพื้น (Ground Pound) [S3] |\n| D-Pad Right | สแกนอะมีโบ — เปิดใช้งานระบบสแกนฟิกเกอร์ amiibo [S4] |\n| + (Plus) | หยุดเกม — หยุดเกมชั่วคราวและเปิดเมนูตัวเลือก [S5] |\n| R (Right Stick) | มุมกล้อง — หมุนและแพนมุมกล้องเพื่อดูสภาพแวดล้อม [S6] |\n| R | รีเซ็ตกล้อง — รีเซ็ตมุมกล้องให้หันไปทางเดียวกับที่มาริโอกำลังมองอยู่ [S7] |\n| D-Pad Down | โหมดถ่ายภาพ — เข้าสู่โหมดถ่ายภาพเพื่อตกแต่งและบันทึกหน้าจอ [S8] |\n| - (Minus) | แผนที่ — เปิดแผนที่เพื่อดูข้อมูลอาณาจักรหรือใช้วาร์ป [S9] |\n| X / Y | ขว้างหมวก / วิ่งเร็ว — กดเพื่อขว้างหมวก Cappy หรือกดค้างไว้พร้อมบังคับทิศทางเพื่อวิ่งเร็ว [S10] |\n| R3 (Click Right Stick) | มุมมองบุคคลที่หนึ่ง — กดเพื่อเปลี่ยนเป็นมุมมองบุคคลที่หนึ่งสำหรับส่องดูรายละเอียด [S11] |\nปุ่มชุดนี้มาจากแหล่งรอง ยังไม่ได้ตรวจยืนยันกับเวอร์ชันเกมและการตั้งค่าปุ่มของเครื่องที่ศูนย์ใช้อยู่จริง",
+      "old": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "Super Mario Odyssey",
+          "Nintendo Switch"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": true,
+      "intent": "ปุ่ม Mario Odyssey บน Switch",
+      "finding": "ใหม่แสดงปุ่มตาม platform ที่ผู้ใช้ระบุ",
+      "assessment": "ตรงงานเบื้องต้น",
+      "cause_or_hypothesis": "ต้องตรวจ binding/action ทั้งตารางและ source version ก่อนบอกถูกทุกปุ่ม",
+      "semantic_score": null
+    },
+    {
+      "key": "ce16a71c43cce6a9e5b1411f9fd4d024e71b74719e6cc1742517af21e8c9885e",
+      "question": "Could you please help me with this: What time is the afternoon session? Please use verified information",
+      "new": "Recorded play-service periods; these do not establish booking windows, building hours or live availability.\nMonday — afternoon: 13:00–16:00 (open)\nTuesday — afternoon: 13:00–16:00 (open)\nWednesday — afternoon: 13:00–16:00 (open)\nThursday — afternoon: 13:00–16:00 (open)\nFriday — afternoon: 13:00–16:00 (maintenance)\nSaturday — afternoon: recorded closed day\nSunday — afternoon: recorded closed day [S1] [S2] [S3] [S4] [S5] [S6] [S7]\nSource limitations remain; not fully confirmed: effective interval, applicable zone",
+      "old": "**Relevant information**\n• Confirmed information: The Afternoon slot is 13:00-16:00, but if no day is specified you should check the weekly timeline: Monday morning 09:00-12:00 is Maintenance* and Monday afternoon 13:00-16:00 is open; Tuesday-Thursday are open in both slots 09:00-12:00 and 13:00-16:00; Friday morning 09:00-12:00 is open, but Friday afternoon 13:00-16:00 is Maintenance** for weekly hardware inspection and cleaning, so it is not playable. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "contract": {
+        "must_contain": [
+          "13:00-16:00"
+        ],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "เวลา session บ่าย",
+      "finding": "ความต่าง hyphen/en-dash และรายละเอียดวันยังไม่ใช่ semantic regression",
+      "assessment": "ตรวจ scope ต่อ",
+      "cause_or_hypothesis": "อย่าแก้ให้ผ่าน literal โดยลบ maintenance/validity",
+      "semantic_score": null
+    },
+    {
+      "key": "c4e83019f83f69f2b8fce45d18434b23b28202c28b323ea1d1ddd56d94d6fc14",
+      "question": "ROV มีปุ่มให้เล่นในศูนย์ไหม",
+      "new": "ยังระบุเกม เครื่อง หรือหัวข้อที่ต้องการอ่านไม่ชัดเจนครับ กรุณาระบุเป้าหมายเพิ่มเติม",
+      "old": "ต้องการปุ่มของเกมอะไรครับ? กรุณาระบุชื่อเกมและแพลตฟอร์มที่เล่น",
+      "contract": {
+        "kind": "single",
+        "group": "game_controls",
+        "question": "ROV มีปุ่มให้เล่นในศูนย์ไหม",
+        "expected_category": [
+          "games",
+          "clarification",
+          "no_answer"
+        ],
+        "expected_mode_prefix": null,
+        "must_contain": [],
+        "must_contain_any": [
+          "ยังไม่แน่ใจ",
+          "ยังไม่พบ",
+          "ขอ",
+          "ไม่มี"
+        ],
+        "must_not_contain": [
+          "Local LLM"
+        ],
+        "note": "",
+        "risk": "high",
+        "id": "GC-154",
+        "locale": "auto"
+      },
+      "new_match": false,
+      "intent": "ROV มีปุ่มให้เล่นที่ศูนย์ไหม",
+      "finding": "อาจถามว่ามีเกมหรือขอผังปุ่ม; ทั้งสองควรถามให้ชัดโดยรักษาชื่อ ROV ที่ระบุแล้ว",
+      "assessment": "การชี้แจงยังไม่เฉพาะจุด",
+      "cause_or_hypothesis": "แยก offered-game predicate ออกจาก control predicate",
+      "semantic_score": null
+    },
+    {
+      "key": "e54bfaa62ada1d0f6f5aa220bbd7ff5382e4431a47f97a10a4b0d4bc9f82a339",
+      "question": "I am planning a visit and would like to know: What time is the afternoon session? Please use verified information",
+      "new": "Recorded play-service periods; these do not establish booking windows, building hours or live availability.\nMonday — afternoon: 13:00–16:00 (open)\nTuesday — afternoon: 13:00–16:00 (open)\nWednesday — afternoon: 13:00–16:00 (open)\nThursday — afternoon: 13:00–16:00 (open)\nFriday — afternoon: 13:00–16:00 (maintenance)\nSaturday — afternoon: recorded closed day\nSunday — afternoon: recorded closed day [S1] [S2] [S3] [S4] [S5] [S6] [S7]\nSource limitations remain; not fully confirmed: effective interval, applicable zone",
+      "old": "**Relevant information**\n• Confirmed information: The Afternoon slot is 13:00-16:00, but if no day is specified you should check the weekly timeline: Monday morning 09:00-12:00 is Maintenance* and Monday afternoon 13:00-16:00 is open; Tuesday-Thursday are open in both slots 09:00-12:00 and 13:00-16:00; Friday morning 09:00-12:00 is open, but Friday afternoon 13:00-16:00 is Maintenance** for weekly hardware inspection and cleaning, so it is not playable. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "contract": {
+        "must_contain": [
+          "13:00-16:00"
+        ],
+        "must_contain_any": [],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "เวลา session บ่าย",
+      "finding": "ตอบเวลาและข้อจำกัดสอดคล้องชนิดคำถาม",
+      "assessment": "ตรวจ scope ต่อ",
+      "cause_or_hypothesis": "แยกเวลาที่บันทึกกับสิทธิ์เข้าใช้จริง",
+      "semantic_score": null
+    },
+    {
+      "key": "a838d8fa42272acc17a8c23246177c107183a8e5c9385bd99bc08f3a3755a208",
+      "question": "Gaming Keyboard คืออุปกรณ์อไะร",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old": "**ชื่ออุปกรณ์**: Gaming Keyboard [S1]\n**Gaming Keyboard**",
+      "contract": {
+        "must_contain": [],
+        "must_contain_any": [
+          "Gaming Keyboard"
+        ],
+        "must_not_contain": []
+      },
+      "new_match": false,
+      "intent": "Gaming Keyboard คืออะไร",
+      "finding": "ใหม่ระบบไม่พร้อม; เก่าตอบแค่ชื่อก็ไม่เพียงพอ",
+      "assessment": "ต้องตรวจ log",
+      "cause_or_hypothesis": "trace first ไม่สรุปว่า source ไม่มีจากข้อความ unavailable",
+      "semantic_score": null
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "question_key": "f0bb232737952bd1df73eeb68a7f810574c5a102934912b7300e42374aa5033b",
+  "example_sha256": "a4249f153de7e1d0cada3813acd3a6e65c0a56d3451b6e4a269ad228fffbdc56",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One game-control request asks about the camera.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings keeps camera lookup separate from gameplay summary.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Monster Hunter Rise is full game target; มุมกล้อง is the action scope.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No platform is quoted; the reader may use the one scoped recorded layout without teaching a guessed platform.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not guess a button or collapse several camera actions into a false precise mapping.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "controls_ps5_monster_hunter_rise provides source camera bindings and actual PS5 scope.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร"
+      ],
+      "source_record_ids": [
+        "controls_ps5_monster_hunter_rise"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Only the requested camera concept is in the label; source mappings remain outside weights.",
+      "raw_quotes": [
+        "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 14,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Monster Hunter Rise",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Monster Hunter Rise ปุ่มมุมกล้องกดอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Monster Hunter Rise",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "มุมกล้อง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_ps5_monster_hunter_rise": {
+      "revision": 6,
+      "record_sha256": "cf3e8d03f73d7bddf7e5a9939b1a2301f6b4f5c6818b01e89551e1e2b03b0f99"
+    }
+  }
+}

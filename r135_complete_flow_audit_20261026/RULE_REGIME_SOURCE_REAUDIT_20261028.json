@@ -1,0 +1,33 @@
+{
+  "question": "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?",
+  "before_answer": "No confirmed source is available for the requested detail.",
+  "after_answer": "3. Initial amount: $800 | Bomb time: 40 seconds [S1]\n5. Overtime: 3 rounds per side (6 in total). The first team to win 4 of the 6 rounds wins. Starting money: $10,000. There is no limit on the number of overtimes. [S2]\nThe source has not confirmed all linked rule clauses or that the text is complete. The recorded text is shown above.\n**PSU Phuket CS2 2026 Tournament**",
+  "before_source": {
+    "path": "saved_clause_discovery_1793110072496582900\\DETAILS.json",
+    "sha256": "112c375a7e5f3727a34913e44f2c43c6c3bf36de7d905492eabf78e867300151"
+  },
+  "after_source": {
+    "path": "rule_regime_scope_1793123415360008600\\DETAILS.json",
+    "sha256": "c37a849b9dca98ca7f68dd45a5e911f778f64ae83ee974ffaf9a97a9db3ffe64"
+  },
+  "source_controls": {
+    "path": "rule_regime_scope_1793123415360008600\\RESULT.json",
+    "sha256": "197f71d7bae8b105bd77d006df979d6624b66c957e48289ffe4a0a585d8b58c2",
+    "checks": 9
+  },
+  "dependency_regression": {
+    "path": "rule_dependency_proofs_1793123415656728600\\RESULT.json",
+    "sha256": "69ea2490efbc53f78863f8a832b8a92a61bfbbc308b5988d16299e71bee40aa8",
+    "checks": 11
+  },
+  "retained_initial_failure": {
+    "path": "rule_regime_scope_1793123356427316600\\RESULT.json",
+    "sha256": "a22a8f0d19bd62242e5dd85469c2ef439499e74978e84519b618ac7d6b5a844f"
+  },
+  "failure_resolution": "The initial missing-source assertion did not accept the explicit stale-snapshot retry and the overtime body predicate also matched a different game timeout mentioning regulation rounds. The source predicate was narrowed to actual rounds-per-side or starting-money configuration, and missing data may safely yield a retry. The earlier harness wrapper also lacked connect(); it was repaired in the isolated test.",
+  "source_evidence": "Actual CS2 sections025 and027 provide distinct regulation and overtime clauses; unchanged model, SQL owner data and physical source documents. Event/source and stored completeness warnings remain. Numeric source values are neither hardcoded into candidate routing nor treated as full semantic acceptance.",
+  "actual_model_or_http_calls": 0,
+  "owner_frozen_data_modified": false,
+  "whole_flow_complete": false,
+  "remaining": "On-site preparation, sanctions, condition coverage, arbitrary competition topics, source authority/version/completeness, actual model/paired/final acceptance and all original76/14 obligations remain."
+}

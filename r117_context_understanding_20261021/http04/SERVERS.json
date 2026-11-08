@@ -1,0 +1,305 @@
+[
+  {
+    "server_pid": 44660,
+    "runner_pid": 14732,
+    "url": "http://127.0.0.1:49972",
+    "clock": "2026-10-21T12:00:00+07:00",
+    "command": "serve_frozen.py",
+    "candidate_only": true,
+    "health_before": {
+      "ok": true,
+      "service": "psu-esports-chat-web",
+      "time": "2026-10-21T14:27:50.692464+00:00",
+      "warmup": null,
+      "llm_preflight": null,
+      "input_quality_guard": {
+        "enabled": true,
+        "mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "layout_threshold": 0.39,
+        "repeat_threshold": 0.55,
+        "corpus_size": 4023,
+        "profile_version": "keyboard-profile-v1:2a863a4176572043"
+      },
+      "llm_health": {
+        "enabled": true,
+        "failure_threshold": 2,
+        "failure_window_sec": 30.0,
+        "cooldown_sec": 90.0,
+        "states": []
+      },
+      "common_loaded_build": {
+        "build_id": "common-r115-native-http-guards",
+        "loaded_source_sha256": "3af8a0fc1b16bc98b4897a7c4c2f5d5ff9563a423a926f1afa50ab1c0b9eff95",
+        "fingerprint_scope": "application, web UI and launchers at module import"
+      },
+      "pipeline_workers": {
+        "enabled": false
+      },
+      "runtime": {
+        "profile": "r117-context-regression",
+        "knowledge_profile": "r69-migration-preview",
+        "knowledge_draft_preview": true,
+        "version": "R117-context-first",
+        "installation_id": "4a4c185c0b74f0f8",
+        "started_at": "2026-10-21T14:27:44.450296+00:00",
+        "system_memory": {
+          "available": true,
+          "physical_load_percent": 79,
+          "available_physical_mb": 3342.9,
+          "available_commit_mb": 9246.1
+        },
+        "python": {
+          "executable_id": "bfed722a022a8d63",
+          "version": [
+            3,
+            12,
+            14
+          ],
+          "bits": 64,
+          "pid": 44660
+        },
+        "answer_timeout_sec": 32.0,
+        "pipeline_timeout_sec": 30.0,
+        "intent_timeout_sec": 5.5,
+        "local_llm": {
+          "enabled": true,
+          "model": "scb10x/typhoon2.5-qwen3-4b:latest",
+          "intent_timeout_sec": 5.5,
+          "planner_timeout_sec": 1.2,
+          "general_timeout_sec": 15.0,
+          "high_assist_profile": false
+        },
+        "semantic_rag": {
+          "enabled": true,
+          "embedding_model": "psu-bge-m3:q8_0"
+        },
+        "english": {
+          "enabled": true,
+          "draft_preview": false
+        },
+        "booking": {
+          "enabled": true,
+          "fetch_mode": "dashboard",
+          "cache_seconds": 10.0,
+          "dashboard_required": true,
+          "read_only": true
+        },
+        "input_quality": {
+          "mode": "enforce",
+          "keyboard_layout": "request_retype",
+          "repeated_characters": "warn_and_continue"
+        },
+        "queue_ttl_sec": null
+      },
+      "features": {
+        "bilingual_english": true,
+        "local_llm_assist": true,
+        "semantic_rag": true,
+        "embedding_model": "psu-bge-m3:q8_0",
+        "live_booking_status": true,
+        "chat_jobs": false
+      },
+      "chat_jobs": {
+        "enabled": false
+      }
+    },
+    "health_after": {
+      "ok": true,
+      "service": "psu-esports-chat-web",
+      "time": "2026-10-21T14:28:53.257506+00:00",
+      "warmup": null,
+      "llm_preflight": null,
+      "input_quality_guard": {
+        "enabled": true,
+        "mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "layout_threshold": 0.39,
+        "repeat_threshold": 0.55,
+        "corpus_size": 4023,
+        "profile_version": "keyboard-profile-v1:2a863a4176572043"
+      },
+      "llm_health": {
+        "enabled": true,
+        "failure_threshold": 2,
+        "failure_window_sec": 30.0,
+        "cooldown_sec": 90.0,
+        "states": [
+          {
+            "kind": "model",
+            "model": "scb10x/typhoon2.5-qwen3-4b:latest",
+            "status": "ok",
+            "failures": 0,
+            "successes": 0,
+            "cooldown_remaining_sec": 0.0,
+            "last_error_type": "",
+            "last_error": "",
+            "last_elapsed_ms": 0.0,
+            "last_checked_at": 0.0,
+            "last_success_at": 0.0,
+            "half_open_probe_in_flight": false,
+            "events": []
+          },
+          {
+            "kind": "r114_evidence_selector",
+            "model": "scb10x/typhoon2.5-qwen3-4b:latest",
+            "status": "ok",
+            "failures": 0,
+            "successes": 8,
+            "cooldown_remaining_sec": 0.0,
+            "last_error_type": "",
+            "last_error": "",
+            "last_elapsed_ms": 1625.0,
+            "last_checked_at": 1792592933.0917368,
+            "last_success_at": 1792592933.0917368,
+            "half_open_probe_in_flight": false,
+            "events": [
+              {
+                "event": "failure",
+                "kind": "r114_evidence_selector",
+                "error_type": "TimeoutError",
+                "error": "timed out",
+                "elapsed_ms": 8156.0,
+                "failures": 1,
+                "cooldown_until": 0.0,
+                "at": 1792592901.816
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 1687.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592907.337
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 2250.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592909.998
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 1703.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592912.271
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 1641.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592914.445
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 5828.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592920.34
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 7031.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592927.672
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 2500.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592930.763
+              },
+              {
+                "event": "success",
+                "kind": "r114_evidence_selector",
+                "elapsed_ms": 1625.0,
+                "detail": "HTTP response received; schema checked separately",
+                "at": 1792592933.092
+              }
+            ]
+          }
+        ]
+      },
+      "common_loaded_build": {
+        "build_id": "common-r115-native-http-guards",
+        "loaded_source_sha256": "3af8a0fc1b16bc98b4897a7c4c2f5d5ff9563a423a926f1afa50ab1c0b9eff95",
+        "fingerprint_scope": "application, web UI and launchers at module import"
+      },
+      "pipeline_workers": {
+        "enabled": false
+      },
+      "runtime": {
+        "profile": "r117-context-regression",
+        "knowledge_profile": "r69-migration-preview",
+        "knowledge_draft_preview": true,
+        "version": "R117-context-first",
+        "installation_id": "4a4c185c0b74f0f8",
+        "started_at": "2026-10-21T14:27:44.450296+00:00",
+        "system_memory": {
+          "available": true,
+          "physical_load_percent": 80,
+          "available_physical_mb": 3210.2,
+          "available_commit_mb": 9419.3
+        },
+        "python": {
+          "executable_id": "bfed722a022a8d63",
+          "version": [
+            3,
+            12,
+            14
+          ],
+          "bits": 64,
+          "pid": 44660
+        },
+        "answer_timeout_sec": 32.0,
+        "pipeline_timeout_sec": 30.0,
+        "intent_timeout_sec": 5.5,
+        "local_llm": {
+          "enabled": true,
+          "model": "scb10x/typhoon2.5-qwen3-4b:latest",
+          "intent_timeout_sec": 5.5,
+          "planner_timeout_sec": 1.2,
+          "general_timeout_sec": 15.0,
+          "high_assist_profile": false
+        },
+        "semantic_rag": {
+          "enabled": true,
+          "embedding_model": "psu-bge-m3:q8_0"
+        },
+        "english": {
+          "enabled": true,
+          "draft_preview": false
+        },
+        "booking": {
+          "enabled": true,
+          "fetch_mode": "dashboard",
+          "cache_seconds": 10.0,
+          "dashboard_required": true,
+          "read_only": true
+        },
+        "input_quality": {
+          "mode": "enforce",
+          "keyboard_layout": "request_retype",
+          "repeated_characters": "warn_and_continue"
+        },
+        "queue_ttl_sec": null
+      },
+      "features": {
+        "bilingual_english": true,
+        "local_llm_assist": true,
+        "semantic_rag": true,
+        "embedding_model": "psu-bge-m3:q8_0",
+        "live_booking_status": true,
+        "chat_jobs": false
+      },
+      "chat_jobs": {
+        "enabled": false
+      }
+    },
+    "stopped_exit_code": 1
+  }
+]

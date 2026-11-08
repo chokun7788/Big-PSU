@@ -1,0 +1,219 @@
+{
+  "ok": true,
+  "service": "psu-esports-chat-web",
+  "time": "2026-10-09T16:50:39.423167+00:00",
+  "warmup": {
+    "ok": true,
+    "elapsed_sec": 17.8163,
+    "warmed": [
+      "game_title_aliases",
+      "structured_tools",
+      "game_resolver",
+      "routing_data",
+      "retrieval_data",
+      "probe_queries",
+      "semantic_embedding"
+    ],
+    "errors": [],
+    "timings": {
+      "game_title_aliases": 0.8122,
+      "structured_tools": 1.334,
+      "game_resolver": 0.3567,
+      "routing_data": 0.2962,
+      "retrieval_data": 3.9128,
+      "probe_queries": 11.0144,
+      "semantic_embedding": 0.0899
+    }
+  },
+  "llm_preflight": {
+    "ok": true,
+    "model": "scb10x/typhoon2.5-qwen3-4b",
+    "kind": "preflight",
+    "elapsed_ms": 277.78,
+    "response_chars": 2,
+    "done_reason": "length",
+    "num_ctx": 3072,
+    "load_duration": 11929400,
+    "prompt_eval_duration": 199777000,
+    "eval_duration": 1000,
+    "health": {
+      "llm_health_enabled": true,
+      "llm_health_status": "ok",
+      "llm_health_failures": 0,
+      "llm_health_failure_scope": "model_and_kind"
+    }
+  },
+  "input_quality_guard": {
+    "enabled": true,
+    "mode": "enforce",
+    "repeat_policy": "warn_and_continue",
+    "layout_threshold": 0.39,
+    "repeat_threshold": 0.55,
+    "corpus_size": 4023,
+    "profile_version": "keyboard-profile-v1:2a863a4176572043"
+  },
+  "llm_health": {
+    "enabled": true,
+    "failure_threshold": 2,
+    "failure_window_sec": 30.0,
+    "cooldown_sec": 90.0,
+    "states": [
+      {
+        "kind": "model",
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "status": "ok",
+        "failures": 0,
+        "successes": 1,
+        "cooldown_remaining_sec": 0.0,
+        "last_error_type": "",
+        "last_error": "",
+        "last_elapsed_ms": 277.78,
+        "last_checked_at": 1791561480.6918752,
+        "last_success_at": 1791561480.6918752,
+        "half_open_probe_in_flight": false,
+        "events": [
+          {
+            "event": "success",
+            "kind": "preflight",
+            "elapsed_ms": 277.78,
+            "detail": "preflight_ok",
+            "at": 1791561480.692
+          }
+        ]
+      },
+      {
+        "kind": "preflight",
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "status": "ok",
+        "failures": 0,
+        "successes": 1,
+        "cooldown_remaining_sec": 0.0,
+        "last_error_type": "",
+        "last_error": "",
+        "last_elapsed_ms": 277.78,
+        "last_checked_at": 1791561480.6918752,
+        "last_success_at": 1791561480.6918752,
+        "half_open_probe_in_flight": false,
+        "events": [
+          {
+            "event": "success",
+            "kind": "preflight",
+            "elapsed_ms": 277.78,
+            "detail": "preflight_ok",
+            "at": 1791561480.692
+          }
+        ]
+      }
+    ]
+  },
+  "pipeline_workers": {
+    "enabled": true,
+    "started": true,
+    "worker_count": 2,
+    "workers": [
+      {
+        "worker_id": 0,
+        "pid": 28692,
+        "alive": true,
+        "ready": true,
+        "completed_requests": 3,
+        "busy": false,
+        "replacement_warming": false
+      },
+      {
+        "worker_id": 1,
+        "pid": 43116,
+        "alive": true,
+        "ready": true,
+        "completed_requests": 2,
+        "busy": false,
+        "replacement_warming": false
+      }
+    ],
+    "performance": {
+      "run_id": "20261009T155739Z",
+      "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r53_semantic_research_20261009_222545\\candidate_r53_3\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261009T155739Z.jsonl",
+      "events_written": 20,
+      "events_dropped": 0
+    },
+    "model_admission": {
+      "limit": 1,
+      "active": 0,
+      "waiting": 0,
+      "peak_active": 1,
+      "scope": "all_pipeline_workers",
+      "durable": false
+    }
+  },
+  "runtime": {
+    "profile": "owner-local-rag-assist",
+    "version": "2026.10.09-semantic-r53.3",
+    "installation_id": "fe9f43e540c6f1d3",
+    "started_at": "2026-10-09T15:57:38.550999+00:00",
+    "system_memory": {
+      "available": true,
+      "physical_load_percent": 85,
+      "available_physical_mb": 2282.9,
+      "available_commit_mb": 5251.0
+    },
+    "python": {
+      "executable_id": "16a5fdffbda88a30",
+      "version": [
+        3,
+        12,
+        14
+      ],
+      "bits": 64,
+      "pid": 19444
+    },
+    "answer_timeout_sec": 20.0,
+    "pipeline_timeout_sec": 19.0,
+    "intent_timeout_sec": 14.0,
+    "local_llm": {
+      "enabled": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "intent_timeout_sec": 14.0,
+      "planner_timeout_sec": 1.2,
+      "general_timeout_sec": 15.0,
+      "high_assist_profile": true
+    },
+    "semantic_rag": {
+      "enabled": true,
+      "embedding_model": "psu-bge-m3:q8_0"
+    },
+    "english": {
+      "enabled": true,
+      "draft_preview": false
+    },
+    "booking": {
+      "enabled": true,
+      "fetch_mode": "wordpress",
+      "cache_seconds": 0.0,
+      "dashboard_required": false,
+      "read_only": true
+    },
+    "input_quality": {
+      "mode": "enforce",
+      "keyboard_layout": "request_retype",
+      "repeated_characters": "warn_and_continue"
+    }
+  },
+  "features": {
+    "bilingual_english": true,
+    "local_llm_assist": true,
+    "semantic_rag": true,
+    "embedding_model": "psu-bge-m3:q8_0",
+    "live_booking_status": true,
+    "chat_jobs": true
+  },
+  "chat_jobs": {
+    "enabled": true,
+    "capacity": 32,
+    "dispatch_workers": 2,
+    "ttl_sec": 90.0,
+    "counts": {
+      "completed": 5
+    },
+    "durable": true
+  }
+}

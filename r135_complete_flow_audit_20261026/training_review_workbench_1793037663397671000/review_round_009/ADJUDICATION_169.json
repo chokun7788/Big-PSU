@@ -1,0 +1,133 @@
+{
+  "question_key": "fbac1a17fd6923188c551de79099da9a3d9ad033b7490e1ecf33920005484004",
+  "example_sha256": "7cf20d33a00f7cd7be0a7265ed5c8081db5b8013fe5a67adea789f12b08f074d",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One policy question concerns failing to check in on time; travel-planning prefix is style.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy retains check-in policy.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "check in is action and ไม่ทัน the local late/missed condition.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No payment failure, minutes-late number or confirmed booking state is inherited.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Late check-in is distinct from arriving early or making payment; no refund result is presumed.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "checkin_late and payment_and_late_checkin explicitly condition cancellation on missing the slot start.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_checkin_late",
+        "migrated_faq_rule_payment_and_late_checkin"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No cancellation, refund verdict, advance deadline or actual booking status is taught.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 169,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "check in",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "ไม่ทัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_checkin_late": {
+      "revision": 4,
+      "record_sha256": "a478d2a9dd5a679c79c8d53eeffb1b5f2358fa9c7ef03ab7e906a30188a8dca6"
+    },
+    "migrated_faq_rule_payment_and_late_checkin": {
+      "revision": 4,
+      "record_sha256": "760bb74cfc5d22b8fb45ab0c023b98568359bd7bc6d4b6c720d4ebe078830cd6"
+    }
+  }
+}

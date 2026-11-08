@@ -1,0 +1,133 @@
+{
+  "question_key": "d7158a3603066d752c81f8a29efbf49f19da64295b8d648ad6c2aa77c7d2ecf5",
+  "example_sha256": "0fb266fd0688a7fa6e0aa7d519112a83fa0dd55d40249da03d927ed618fa7efc",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One food-bringing permission need; briefly is style.",
+      "raw_quotes": [
+        "Can I bring food into the studio? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy is retained; bringing and consuming are different actions.",
+      "raw_quotes": [
+        "Can I bring food into the studio? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "bring food into the studio is an exact action quote; no consumption action is invented.",
+      "raw_quotes": [
+        "Can I bring food into the studio? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The action belongs only to this current studio-policy question.",
+      "raw_quotes": [
+        "Can I bring food into the studio? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Can I is an interrogative, not evidence that bringing is allowed.",
+      "raw_quotes": [
+        "Can I bring food into the studio? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned food FAQs speak about consumption in designated areas; they do not prove a separate bringing permission.",
+      "raw_quotes": [
+        "Can I bring food into the studio? Please answer briefly"
+      ],
+      "source_record_ids": [
+        "migrated_faq_curated_rule_food_drinks",
+        "migrated_faq_rule_food_drink"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "The label records the requested action only, with no yes/no or designated-area answer.",
+      "raw_quotes": [
+        "Can I bring food into the studio? Please answer briefly"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Food source speaks about consumption rather than a separate bringing permission.",
+      "handling": "Do not infer bringing permission from consumption or teach it in the planner label."
+    }
+  ],
+  "historical_review_row": 23,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I bring food into the studio? Please answer briefly",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I bring food into the studio? Please answer briefly",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "bring food into the studio",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "migrated_faq_curated_rule_food_drinks": {
+      "revision": 4,
+      "record_sha256": "bce68adbda6ce0080dde43e993d7c0ab936b145623964e499aae7e6b383b89d2"
+    },
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    }
+  }
+}

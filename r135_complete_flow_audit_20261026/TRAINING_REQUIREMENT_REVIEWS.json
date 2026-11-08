@@ -1,0 +1,374 @@
+{
+  "reviewed_at": 1793071492.9319456,
+  "candidate": "R135 working unfrozen uninstalled",
+  "whole_flow_complete": false,
+  "requirements": [
+    {
+      "requirement_id": "CONTRACT-14",
+      "original_text": "PlannerProposal เป็น wire format ที่ต้อง version ส่วน compiled task graph เป็น internal representation ที่รวมผลจาก binder/normalizer ด้วย ต้องแยกว่า field ใดโมเดลส่งมาและ field ใดโค้ดสร้างหลังตรวจ\n\nR121 checkpoint ไม่ได้ฝึกให้สร้าง R123 contracts นี้มาแล้ว การใช้ checkpoint เดิมต้องมี compatibility adapter ที่ประกาศว่าแปลงอะไรได้ และส่วนใดไม่มีหลักฐานพอให้เติม shared roles/ambiguity จึงต้องเก็บ unresolved ไม่ใส่ข้อมูลที่ compiler คาดเดาลงแล้วอ้างว่าโมเดลเรียนรู้มา\n\nการทดลองหนึ่งรอบต้อง freeze accepted wire versions, adapter/parser, prompt, schema และ compiler เหมือนกันทุกแขน หากเปลี่ยน output protocol พร้อมการฝึก ต้องระบุว่าเป็นผลร่วมของ protocol adaptation กับ supervision และรายงาน structural failures แยกจาก semantic failures",
+      "original_text_sha256": "72424e1c3575b0c5eb3c408c057a42373b18cac780eb3b017f0c196c24f3b095",
+      "criteria": [
+        {
+          "criterion": "current exact schema/prompt/template/options are required despite the same wire-version string, with an independently replayed consumer freeze",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "old_prompt_same_version",
+            "changed_actual_template_options_rejected",
+            "schema_fingerprint_mismatch_rejected",
+            "consumer_revalidates_actual_approved_frozen_rows",
+            "consumer_rejects_changed_optimization_file"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "actual same-engine three-arm wire/parser/compiler freeze and model-proposal versus compiler-added fields",
+          "state": "review_required",
+          "reason": "Wire compatibility and prior graph controls are separate evidence; no new three-arm inference, no claim R121 learned R123 fields. Current accepted wire is unchanged from frozen R132. Full actual model/parser/compiler identity and protocol-adaptation acceptance remain pending"
+        },
+        {
+          "criterion": "experimental play-period v3 is explicitly versioned and source-executable while retained v2 messages/schema/parser and quarantined teaching cohort remain separate",
+          "state": "passed_controlled_acceptance",
+          "evidence": "period_wire_v3_1793095633257850200\\RESULT.json",
+          "evidence_sha256": "0d9000c7d929ea4e7a2d86e72db6260234f88fbbd309d5c9060fb474386d2bb3",
+          "checks": [
+            "explicit_v3_field_and_focus_accepted",
+            "no_semantic_facet_disguised_as_bookable",
+            "v3_proposal_dispatches_same_actual_service_source",
+            "retained_v2_parser_does_not_silently_accept_v3",
+            "v3_does_not_silently_accept_old_version",
+            "native_schema_extension_not_global_v2_mutation",
+            "old_row191_quarantine_not_readmitted_by_codec",
+            "retained_training_consumer_wire_not_silently_switched"
+          ],
+          "iteration": "named_service_period_native_boundary",
+          "semantic_accuracy_claimed": false
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "CONTRACT-15",
+      "original_text": "TrainingExample มี question key, family, raw question, allowed context, contract version, plan label และ annotation provenance ไม่ใส่คำตอบราคา/เวลา/สิทธิ์เป็น target ของ planner\n\nReviewRecord เก็บ label source, teacher trace refs, source version ที่ใช้ตรวจ, reviewer/adjudication status, unresolved issues และเหตุผลการ quarantine ป้ายที่แก้ด้วย heuristic ยังเป็น draft จนกว่าจะ review ผ่าน\n\nห้ามปะปน train/dev/holdout โดยนับ paraphrase ของ core เดียวกันเป็นคนละ family และห้ามอ้างว่าชุดที่เห็นผลและใช้แก้ระบบซ้ำแล้วเป็น fresh holdout",
+      "original_text_sha256": "1cef5e61137c26eaebe10472eac7defd3b156c4ecd980ffe1571fc418693e308",
+      "criteria": [
+        {
+          "criterion": "artifact-bound question/context/label/family/origin reviews reject missing/generic/heuristic adjudication, unresolved label issues and altered input/labels",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "exact_artifact_bound_individual_review_admitted",
+            "missing_review_never_admitted",
+            "historical_generic_review_not_current_adjudication",
+            "heuristic_draft_not_promoted_by_accepted_flag",
+            "missing_unresolved_issue_inventory_not_assumed_empty",
+            "accepted_flag_cannot_hide_unresolved_label_issue",
+            "review_not_reused_after_label_edit",
+            "review_not_reused_after_input_edit"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "language-only labels cannot add a business answer, unquoted target or invented source ID, and context is not silently flattened",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "business_answer_target",
+            "unquoted_target",
+            "invented_source_record_id",
+            "undeclared_history_flattening",
+            "gate_never_claims_semantic_truth"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "source/reviewer/teacher receipts are bound to actual artifacts, question/response/stage/profile and model provenance; declared source change requires adjudication",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "review_of_other_source_snapshot_rejected",
+            "adjudication_artifact_hash_change_rejected",
+            "artifact_change_during_batch_blocks_optimization",
+            "teacher_plan_without_actual_trace_rejected",
+            "same_source_teacher_trace_and_current_review_admitted",
+            "successful_other_request_receipt_not_teacher_proof",
+            "teacher_alias_not_actual_model_provenance",
+            "selector_receipt_not_context_teacher_proof",
+            "changed_teacher_source_without_adjudication_rejected",
+            "explicit_source_change_adjudication_admitted",
+            "manual_review_cannot_invent_teacher_trace"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "original/review family and identical normalized core cannot cross splits; known exposed keys cannot be relabelled a fresh holdout",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "review_family_cannot_cross_splits",
+            "original_family_cannot_cross_splits",
+            "identical_normalized_core_cannot_hide_behind_new_key_and_family",
+            "known_retained_key_cannot_be_relabelled_fresh_holdout",
+            "duplicate_keys_and_missing_inventory_rejected"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "native dialogue history training reuses the server history boundary, pinned clock/source and independently recomputed input derivation instead of flattening context",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_history_input_1793050427799060200\\RESULT.json",
+          "evidence_sha256": "ccc690e939685a86b51c762ea29ad3a11aa79d37569830f3a82892a82cf81264",
+          "checks": [
+            "artifact_bound_native_history_input_admitted",
+            "client_delivery_flag_not_history_evidence",
+            "history_not_added_after_saved_origin",
+            "bare_verified_receipt_rejected",
+            "wrong_current_request_rejected",
+            "source_change_requires_new_alignment",
+            "changed_recorded_common_state_rejected",
+            "user_history_without_saved_turn_rejected",
+            "raw_only_prompt_cannot_silently_flatten_inherited_scope",
+            "assistant_prose_business_answer_not_in_prompt"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "all289 actual semantic adjudications and remaining context transformation paths",
+          "state": "review_required",
+          "reason": "66 current source-specific agent adjudications exist (32accepted/34corrected or enriched),223 unresolved. Artifact-bound native dialogue_task input is now positively supported with independently rederived scope. Other transformation stages and actual corpus history labels still need review; controlled fixtures are not actual teacher gold or full context coverage"
+        },
+        {
+          "criterion": "wire-version migration reuses an existing semantic review only after pinned original-example/review and exact version-only provenance replay",
+          "state": "passed_controlled_acceptance",
+          "evidence": "protocol_v3_admission_controls_1793099625435430700\\RESULT.json",
+          "evidence_sha256": "52b743934f00ec89d727c2db206e002a06212f787aee6abcef3ffb5066eabff6",
+          "checks": [
+            "actual_prior_individual_review_admitted_after_structural_bridge",
+            "changed_facet_cannot_reuse_prior_review",
+            "changed_operation_cannot_reuse_prior_review",
+            "changed_slot_role_cannot_reuse_prior_review",
+            "changed_slot_quote_cannot_reuse_prior_review",
+            "changed_raw_input_cannot_reuse_prior_review",
+            "changed_family_cannot_reuse_prior_review",
+            "changed_origin_method_cannot_reuse_prior_review",
+            "missing_migration_record_cannot_reuse_old_review",
+            "changed_migration_record_hash_rejected"
+          ],
+          "iteration": "protocol_v3_admission",
+          "semantic_accuracy_claimed": false
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "PHASE-07",
+      "original_text": "ใช้คำถามเดิมและ traces ที่เก็บไว้ก่อน โดยไม่รัน Flow เดิมซ้ำในงานวางแผนนี้ ขั้นเตรียมจริงต้องระบุว่า source ของครูกับ source ปัจจุบันต่างกันหรือไม่\n\nรายการตรวจ annotation:\n\n- แยก task ครบตาม factual needs และไม่แยก style requests เป็นงาน\n- intent/operation/facet ตรงความหมาย ไม่เพียงตรงชื่อหมวด\n- entity และ slots อ้าง raw spans ได้\n- ระบุ local/shared scope ถูก ไม่มี `constraints(whole_question)` แจกทุก task\n- duration comparison มีทุก option และไม่กลายเป็นคำขอซื้อเวลารวม\n- shared prefix และ anaphora มี provenance; ambiguous จริงถูกเก็บไว้\n- จุดที่ teacher ตอบผิด/อ้าง source เก่า/ยังตัดสินไม่ได้ถูก quarantine\n- ไม่ใส่ราคา/สิทธิ์/ตารางของศูนย์เป็น factual targets ของ planner\n\nReview labels เดิม 244 train / 15 validation / 30 test ในฐานะ corpus ที่มีประวัติ ไม่ถือว่าชุดเก่าทั้งหมดเป็น gold หรือ fresh holdout อีกต่อไปเมื่อถูกเปิดดูและใช้แก้ระบบแล้ว\n\nTeacher supervision ควรเป็น plan และ decision codes สั้นที่ตรวจได้ พร้อม source refs สำหรับการ adjudicate ไม่บังคับให้โมเดลสร้างคำอธิบายยาวหรือถือคำอธิบายของครูเป็นหลักฐานความถูกต้อง",
+      "original_text_sha256": "ce711183b0749db930bfa83eea2378151d7af40654e1de2c95c35572eace2083",
+      "criteria": [
+        {
+          "criterion": "all original keys remain visible and only individually adjudicated rows can become eligible; unreviewed inventory blocks actual readiness and quarantine is retained",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "one_unreviewed_row_blocks_declared_inventory",
+            "explicit_quarantine_is_reviewed_but_not_optimized",
+            "blocked_bundle_has_quarantine_and_no_ready_marker",
+            "bare_ready_flag_not_optimization_authority"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "the actual historical corpus is preserved while current reviews/split fixes remain distinct from historical generic reviewed tags",
+          "state": "passed_controlled_acceptance",
+          "evidence": "saved_training_import_1793051034302362900\\RESULT.json",
+          "evidence_sha256": "63f32532ed49de681aaefabb8fd218714abafc6d0f9e73f24a3bc208344b7699",
+          "checks": [
+            "all289_original_keys_once",
+            "all281_saved_split_rows_found",
+            "all_recorded_current_adjudications_preserved",
+            "prior21_adjudication_records_unchanged",
+            "packing_and_split_fix_do_not_rewrite_semantic_reviews",
+            "historical_split_files_unchanged",
+            "actual_dataset_remains_not_ready"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "review remaining223 raw questions, plan needs/options/slots/edges/ambiguity and source alignment",
+          "state": "review_required",
+          "reason": "Actual review covers rows0–64 and97. Do not infer that all original teachers were correct or that34 corrections/enrichments are34 semantic errors. Multi-need, comparison/shared/history/negation families still need individual source review. Do not rerun the legacy Flow or turn variable business facts into targets"
+        },
+        {
+          "criterion": "the corrected named-period target has an individual v3 adjudication; changing wire version cannot promote old quarantine or64 unreviewed labels",
+          "state": "passed_controlled_acceptance",
+          "evidence": "protocol_v3_admission_controls_1793099625435430700\\RESULT.json",
+          "evidence_sha256": "52b743934f00ec89d727c2db206e002a06212f787aee6abcef3ffb5066eabff6",
+          "checks": [
+            "actual_row191_new_v3_semantic_review_admitted",
+            "old_v2_row191_quarantine_bytes_and_state_retained",
+            "old_quarantine_cannot_be_auto_readmitted_by_migration",
+            "accepted_flag_cannot_override_old_quarantined_artifact",
+            "unreviewed64_not_promoted_by_wire_version",
+            "actual_v3_consumer_blocks_unreviewed_inventory_before_frameworks"
+          ],
+          "iteration": "protocol_v3_admission",
+          "semantic_accuracy_claimed": false
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "PHASE-08",
+      "original_text": "ใช้ retained question pool ที่มีอยู่ เลือกตาม category/locale/operation/ความซับซ้อน แยก family และ normalized core ระหว่าง train/validation/holdout รวมทั้งคำถามที่เป็น paraphrase ต่างภาษาเมื่อรู้ว่ามาจาก family เดียวกัน\n\nกลุ่มที่ต้องมี coverage:\n\n1. single need ที่ตอบตรงได้\n2. multi need คนละหมวด\n3. shared entity และ shared audience/date\n4. negation และ condition/exception\n5. comparison/list/count\n6. ambiguity และ missing source ที่ควรถามกลับ/งดตอบ\n7. source conflict/validity/provider unavailable\n8. event edition และ rule dependencies\n\nจำนวนตัวอย่างให้ขึ้นกับ corpus ที่มีและ coverage ที่ตรวจได้ ไม่ประกาศว่าจำนวนหนึ่งเพียงพอทุกหมวดโดยไม่มีข้อมูล ถ้าบางกลุ่มมีตัวอย่างน้อยให้รายงานว่าแปลผลกลุ่มนั้นไม่ได้\n\nHoldout ที่เห็นผลและนำมาใช้แก้ระบบแล้วต้องเลื่อนเป็น development set พร้อมบันทึก ไม่แก้คำตอบอ้างอิงระหว่างรันเพื่อทำให้ผลดูดี ถ้าพบ gold ผิดให้เก็บ adjudication และรายงานทั้ง reference version เดิม/ใหม่จาก saved responses",
+      "original_text_sha256": "1584eada8544cb35957bde906ba2ab409337246091f7acca5a5df92f4f3a090c",
+      "criteria": [
+        {
+          "criterion": "use final frozen split-file membership instead of stale prior row metadata, preserve both family groupings, and move exposed historical test rows to development",
+          "state": "passed_controlled_acceptance",
+          "evidence": "saved_training_import_1793051034302362900\\RESULT.json",
+          "evidence_sha256": "63f32532ed49de681aaefabb8fd218714abafc6d0f9e73f24a3bc208344b7699",
+          "checks": [
+            "stale_original_row_split_metadata_observed",
+            "current_split_uses_final_frozen_file_membership",
+            "review_families_stay_disjoint_after_test_to_development",
+            "original_families_stay_disjoint_after_test_to_development",
+            "all_exposed_rows_explicit_development_history"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "negative family/core leakage controls are independent of an accepted semantic-review flag",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "review_family_cannot_cross_splits",
+            "original_family_cannot_cross_splits",
+            "identical_normalized_core_cannot_hide_behind_new_key_and_family",
+            "known_retained_key_cannot_be_relabelled_fresh_holdout"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "freeze reviewed family/core regrouping and all required stratified category/locale/operation/complexity coverage",
+          "state": "review_required",
+          "reason": "All old corpus keys are exposed; no fresh holdout claimed. Recompute semantic family groups after actual289 label review and report sparse/uninterpretable groups. Current corpus remains blocked; no post-result metric-threshold adjustment or gold rewrite"
+        },
+        {
+          "criterion": "consumer requires separately pinned semantic-family inventory, all eight recorded strata, sparse-group limits and explicit retained exposure; synthetic gate acceptance is not corpus coverage",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_optimizer_1793071288086147700\\RESULT.json",
+          "evidence_sha256": "505de755546d13ce98c4eb022b671d07b008dc4f94509578b50d703d2ed8e243",
+          "checks": [
+            "family_inventory_missing",
+            "one_of_eight_strata_missing",
+            "empty_stratum_cannot_claim_coverage",
+            "sparse_stratum_without_limit",
+            "retained_exposed_keys_cannot_be_fresh"
+          ],
+          "iteration": "optimizer_and_labels",
+          "actual_optimization_proven": false,
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "actual frozen split-file membership overrides stale proposal tags and old exposed evaluation rows cannot become training or fresh holdout",
+          "state": "passed_controlled_acceptance",
+          "evidence": "protocol_v3_admission_controls_1793099625435430700\\RESULT.json",
+          "evidence_sha256": "52b743934f00ec89d727c2db206e002a06212f787aee6abcef3ffb5066eabff6",
+          "checks": [
+            "independent281_saved_file_memberships_preserved",
+            "v3_actual_saved_membership_counts_no_fresh_holdout",
+            "exposed_old_test_never_becomes_v3_training_or_fresh_holdout",
+            "stale_or_forged_train_tag_cannot_override_saved_eval_file",
+            "new_manual_v3_review_does_not_authorize_old_test_to_train",
+            "historical_split_files_not_modified"
+          ],
+          "iteration": "protocol_v3_admission",
+          "semantic_accuracy_claimed": false
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "PHASE-09",
+      "original_text": "เริ่มจาก base/model family และ LoRA configuration ที่เคยรันได้ก่อน เพื่อแยกผลของข้อมูลสอนและ contracts ที่แก้ ไม่เปลี่ยนขนาดโมเดล จำนวน calls และทุก hyperparameter พร้อมกัน\n\nฝึก targets ของ task graph/slots/shared refs/clarification และ operation selection วัด validation แยกตามชนิด ไม่ให้ JSON ที่สร้างสั้นลงหรือ slots ว่างทำให้ดูเหมือนดีขึ้นโดยไม่รักษาบริบท\n\nเงื่อนไขก่อนฝึก:\n\n- examples ที่ใช้ optimize ผ่าน annotation review ที่กำหนด\n- production/native data และชุดผลเดิมถูก freeze\n- schema/prompt ที่ใช้ฝึกและที่ backend ใช้ infer version ตรงกัน\n- checkpoint/optimizer steps/gradients/parameter hashes และ environment บันทึกได้\n- ไม่ใช้ test loss หรือคำตอบ holdout เลือกแก้ป้ายหรือเพิ่ม epochs\n\nLoRA เป็นวิธีอัปเดตน้ำหนักแบบจำกัด ไม่ใช่หลักฐานว่าถ่ายทอด Flow ครบ การเพิ่ม epochs ไม่รับรองว่าจะเรียนเงื่อนไขที่ป้ายยังผิดหรือแทบไม่มีตัวอย่าง",
+      "original_text_sha256": "2563781c73552a99b785d922d61444d371ba1e07c8a515b63cc0d3423c976740",
+      "criteria": [
+        {
+          "criterion": "current admission blocks optimization without full reviewed inventory, exact inference contracts and unchanged consumed artifacts; no overwrite of prior bundles",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_contract_1793050577921409300\\RESULT.json",
+          "evidence_sha256": "fff41a55321f538b2cc7871559f6d3fbee52e28afd5735e1728b84fed37972c7",
+          "checks": [
+            "one_unreviewed_row_blocks_declared_inventory",
+            "old_prompt_same_version",
+            "changed_actual_template_options_rejected",
+            "schema_fingerprint_mismatch_rejected",
+            "consumer_revalidates_actual_approved_frozen_rows",
+            "consumer_rejects_changed_optimization_file",
+            "existing_bundle_never_overwritten",
+            "artifact_change_during_batch_blocks_optimization"
+          ],
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "actual optimizer-entrypoint integration, all labels reviewed and run freeze/gradient/base/adapter/environment proof",
+          "state": "review_required",
+          "reason": "Dataset builder and consumer admission are implemented; no new optimizer/model load has run. Old R12960step/462microstep optimization remains historical evidence and failed new adapter remains unpromoted. Need admitted history path, reviewed inventory, frozen metrics/config and resource-safe actual training/evaluation before this phase can close; do not stop protected model42136"
+        },
+        {
+          "criterion": "actual optimizer CLI consumes full row/source/runtime admission before any model framework import; the current partially reviewed real corpus is rejected without a run directory",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_optimizer_1793071288086147700\\RESULT.json",
+          "evidence_sha256": "505de755546d13ce98c4eb022b671d07b008dc4f94509578b50d703d2ed8e243",
+          "checks": [
+            "fully_pinned_control_check_only_admitted_without_optimizer",
+            "actual_partial_corpus_blocked_before_model_assets_or_frameworks",
+            "actual_cli_blocks_partial_corpus_before_framework_import",
+            "actual_partial_corpus_did_not_create_run_or_import_frameworks"
+          ],
+          "iteration": "optimizer_and_labels",
+          "actual_optimization_proven": false,
+          "semantic_accuracy_claimed": false
+        },
+        {
+          "criterion": "exact template/token prefix and full completion/generation limits are checked without truncation; changed base/runtime/protocol and post-admission errors remain distinct",
+          "state": "passed_controlled_acceptance",
+          "evidence": "training_optimizer_1793071288086147700\\RESULT.json",
+          "evidence_sha256": "505de755546d13ce98c4eb022b671d07b008dc4f94509578b50d703d2ed8e243",
+          "checks": [
+            "exact_template_completion_prefix_and_labels_preserved",
+            "generation_cap_never_silently_truncated",
+            "sequence_cap_never_silently_truncated",
+            "bpe_prefix_mismatch",
+            "base_weight_bytes_changed",
+            "changed_runtime_contract_sha256",
+            "metrics_without_frozen_criteria",
+            "cli_distinguishes_post_admission_failure_from_rejected_data"
+          ],
+          "iteration": "optimizer_and_labels",
+          "actual_optimization_proven": false,
+          "semantic_accuracy_claimed": false
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    }
+  ],
+  "no_new_training_or_model_inference": true
+}

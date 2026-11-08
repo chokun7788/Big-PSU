@@ -1,0 +1,3674 @@
+[
+  {
+    "id": "00842",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "th",
+    "style": "natural",
+    "question": "รอบทดลอง ดาวเหนือ หนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ดาวเหนือ**\n• ระยะเวลาเล่นของบริการ: 60 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "หนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.43046300020068884,
+    "exception": null
+  },
+  {
+    "id": "00844",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "th",
+    "style": "followup",
+    "question": "แล้วหนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "รอบทดลอง ดาวเหนือ ขอรายละเอียด"
+      }
+    ],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ดาวเหนือ**\n• ระยะเวลาเล่นของบริการ: 60 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "history_exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "แล้วหนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 7.079425500007346,
+    "exception": null
+  },
+  {
+    "id": "00845",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "th",
+    "style": "multi_field",
+    "question": "รอบทดลอง ดาวเหนือ เวลาเล่นกับเวลาที่กินช่องจองกี่นาที",
+    "expected_fields": [
+      "session_minutes",
+      "occupancy_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ดาวเหนือ**\n• ระยะเวลาเล่นของบริการ: 60 [S1]\n• เวลาที่กันทรัพยากร เช่น VR 30 นาทีอาจกัน 60: 60 [S2]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "occupancy_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "เวลาเล่นกับเวลาที่กินช่องจองกี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "เวลาเล่น",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "occupancy_minutes",
+            "cue": "กินช่องจอง",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": "demo20_service_01",
+          "field": "occupancy_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/occupancy_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      },
+      {
+        "id": "demo20_service_01:occupancy_minutes:S2",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S2",
+        "locator": "/values/occupancy_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.43673390010371804,
+    "exception": null
+  },
+  {
+    "id": "00846",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "th",
+    "style": "name_repeat",
+    "question": "รอบทดลอง  ดาวเหนือ หนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ดาวเหนือ**\n• ระยะเวลาเล่นของบริการ: 60 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "หนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.42376599996350706,
+    "exception": null
+  },
+  {
+    "id": "00848",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "en",
+    "style": "natural",
+    "question": "Demo session Northstar How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Northstar**\n• session minutes: 60 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.43897100002504885,
+    "exception": null
+  },
+  {
+    "id": "00849",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "en",
+    "style": "paraphrase",
+    "question": "Demo session Northstar How long can I play in one session?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Northstar**\n• session minutes: 60 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how long can i play in one session?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "how long",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.41810439992696047,
+    "exception": null
+  },
+  {
+    "id": "00850",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "en",
+    "style": "followup",
+    "question": "And How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Demo session Northstar Tell me about it"
+      }
+    ],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Northstar**\n• session minutes: 60 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "history_exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "and how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 7.058440300170332,
+    "exception": null
+  },
+  {
+    "id": "00851",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo session Northstar What are the play duration and booking occupancy in minutes?",
+    "expected_fields": [
+      "session_minutes",
+      "occupancy_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Northstar**\n• session minutes: 60 [S1]\n• occupancy minutes: 60 [S2]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "occupancy_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the play duration and booking occupancy in minutes?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "play duration",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "occupancy_minutes",
+            "cue": "booking occupancy",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "duration",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": "demo20_service_01",
+          "field": "occupancy_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/occupancy_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      },
+      {
+        "id": "demo20_service_01:occupancy_minutes:S2",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S2",
+        "locator": "/values/occupancy_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4362306999973953,
+    "exception": null
+  },
+  {
+    "id": "00852",
+    "rid": "demo20_service_01",
+    "kind": "service",
+    "lang": "en",
+    "style": "name_repeat",
+    "question": "Demo sessionn Northstar How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Northstar**\n• session minutes: 60 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "unique_repeat_edit",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_01:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_01",
+        "snapshot_sha256": "24225b682a4be7c124e26c52c74e460baf2ab0718f95a2cdab6edb672401eab9",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 6.7017079999204725,
+    "exception": null
+  },
+  {
+    "id": "00866",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "th",
+    "style": "natural",
+    "question": "รอบทดลอง ละอองฝน หนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ละอองฝน**\n• ระยะเวลาเล่นของบริการ: 30 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "หนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.428475100081414,
+    "exception": null
+  },
+  {
+    "id": "00868",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "th",
+    "style": "followup",
+    "question": "แล้วหนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "รอบทดลอง ละอองฝน ขอรายละเอียด"
+      }
+    ],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ละอองฝน**\n• ระยะเวลาเล่นของบริการ: 30 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "history_exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "แล้วหนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 7.129898399813101,
+    "exception": null
+  },
+  {
+    "id": "00869",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "th",
+    "style": "multi_field",
+    "question": "รอบทดลอง ละอองฝน เวลาเล่นกับเวลาที่กินช่องจองกี่นาที",
+    "expected_fields": [
+      "session_minutes",
+      "occupancy_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ละอองฝน**\n• ระยะเวลาเล่นของบริการ: 30 [S1]\n• เวลาที่กันทรัพยากร เช่น VR 30 นาทีอาจกัน 60: 60 [S2]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "occupancy_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "เวลาเล่นกับเวลาที่กินช่องจองกี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "เวลาเล่น",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "occupancy_minutes",
+            "cue": "กินช่องจอง",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": "demo20_service_03",
+          "field": "occupancy_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/occupancy_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      },
+      {
+        "id": "demo20_service_03:occupancy_minutes:S2",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S2",
+        "locator": "/values/occupancy_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4124399998690933,
+    "exception": null
+  },
+  {
+    "id": "00870",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "th",
+    "style": "name_repeat",
+    "question": "รอบทดลอง  ละอองฝน หนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง ละอองฝน**\n• ระยะเวลาเล่นของบริการ: 30 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "หนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.41469880007207394,
+    "exception": null
+  },
+  {
+    "id": "00872",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "en",
+    "style": "natural",
+    "question": "Demo session Drizzle How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Drizzle**\n• session minutes: 30 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4285812999587506,
+    "exception": null
+  },
+  {
+    "id": "00873",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "en",
+    "style": "paraphrase",
+    "question": "Demo session Drizzle How long can I play in one session?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Drizzle**\n• session minutes: 30 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how long can i play in one session?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "how long",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.44471579999662936,
+    "exception": null
+  },
+  {
+    "id": "00874",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "en",
+    "style": "followup",
+    "question": "And How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Demo session Drizzle Tell me about it"
+      }
+    ],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Drizzle**\n• session minutes: 30 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "history_exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "and how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 7.096227200003341,
+    "exception": null
+  },
+  {
+    "id": "00875",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo session Drizzle What are the play duration and booking occupancy in minutes?",
+    "expected_fields": [
+      "session_minutes",
+      "occupancy_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Drizzle**\n• session minutes: 30 [S1]\n• occupancy minutes: 60 [S2]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "occupancy_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the play duration and booking occupancy in minutes?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "play duration",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "occupancy_minutes",
+            "cue": "booking occupancy",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "duration",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": "demo20_service_03",
+          "field": "occupancy_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/occupancy_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      },
+      {
+        "id": "demo20_service_03:occupancy_minutes:S2",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S2",
+        "locator": "/values/occupancy_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4210763000883162,
+    "exception": null
+  },
+  {
+    "id": "00876",
+    "rid": "demo20_service_03",
+    "kind": "service",
+    "lang": "en",
+    "style": "name_repeat",
+    "question": "Demo sessioon Drizzle How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Drizzle**\n• session minutes: 30 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_03"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "unique_repeat_edit",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_03",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_03"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_03:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "30",
+        "source_id": "fixture20_demo20_service_03",
+        "snapshot_sha256": "0d998af31c55d1678381c2c721b5781dfd80c75a49714509f68b4d20ba90d2b4",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 6.662021399941295,
+    "exception": null
+  },
+  {
+    "id": "01070",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "th",
+    "style": "natural",
+    "question": "รอบทดลอง รุ่งเรือง หนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง รุ่งเรือง**\n• ระยะเวลาเล่นของบริการ: 240 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "หนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.43573440006002784,
+    "exception": null
+  },
+  {
+    "id": "01079",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo session Radiance What are the play duration and booking occupancy in minutes?",
+    "expected_fields": [
+      "session_minutes",
+      "occupancy_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Radiance**\n• session minutes: 240 [S1]\n• occupancy minutes: 240 [S2]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "occupancy_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the play duration and booking occupancy in minutes?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "play duration",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "occupancy_minutes",
+            "cue": "booking occupancy",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "duration",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": "demo20_service_20",
+          "field": "occupancy_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/occupancy_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      },
+      {
+        "id": "demo20_service_20:occupancy_minutes:S2",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S2",
+        "locator": "/values/occupancy_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.43892959994263947,
+    "exception": null
+  },
+  {
+    "id": "01080",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "en",
+    "style": "name_repeat",
+    "question": "Demo sessioon Radiance How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Radiance**\n• session minutes: 240 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "unique_repeat_edit",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 6.661507399985567,
+    "exception": null
+  },
+  {
+    "id": "01072",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "th",
+    "style": "followup",
+    "question": "แล้วหนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "รอบทดลอง รุ่งเรือง ขอรายละเอียด"
+      }
+    ],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง รุ่งเรือง**\n• ระยะเวลาเล่นของบริการ: 240 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "history_exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "แล้วหนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 7.134255399927497,
+    "exception": null
+  },
+  {
+    "id": "01073",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "th",
+    "style": "multi_field",
+    "question": "รอบทดลอง รุ่งเรือง เวลาเล่นกับเวลาที่กินช่องจองกี่นาที",
+    "expected_fields": [
+      "session_minutes",
+      "occupancy_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง รุ่งเรือง**\n• ระยะเวลาเล่นของบริการ: 240 [S1]\n• เวลาที่กันทรัพยากร เช่น VR 30 นาทีอาจกัน 60: 240 [S2]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "occupancy_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "เวลาเล่นกับเวลาที่กินช่องจองกี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "เวลาเล่น",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "occupancy_minutes",
+            "cue": "กินช่องจอง",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": "demo20_service_20",
+          "field": "occupancy_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/occupancy_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      },
+      {
+        "id": "demo20_service_20:occupancy_minutes:S2",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S2",
+        "locator": "/values/occupancy_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4286636000033468,
+    "exception": null
+  },
+  {
+    "id": "01074",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "th",
+    "style": "name_repeat",
+    "question": "รอบทดลอง รรุ่งเรือง หนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**รอบทดลอง รุ่งเรือง**\n• ระยะเวลาเล่นของบริการ: 240 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "unique_repeat_edit",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "หนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 6.678079500095919,
+    "exception": null
+  },
+  {
+    "id": "01076",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "en",
+    "style": "natural",
+    "question": "Demo session Radiance How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Radiance**\n• session minutes: 240 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4259311999194324,
+    "exception": null
+  },
+  {
+    "id": "01077",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "en",
+    "style": "paraphrase",
+    "question": "Demo session Radiance How long can I play in one session?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Radiance**\n• session minutes: 240 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how long can i play in one session?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "how long",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4227122999727726,
+    "exception": null
+  },
+  {
+    "id": "01078",
+    "rid": "demo20_service_20",
+    "kind": "service",
+    "lang": "en",
+    "style": "followup",
+    "question": "And How many minutes does one session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Demo session Radiance Tell me about it"
+      }
+    ],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo session Radiance**\n• session minutes: 240 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_service_20"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "history_exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "and how many minutes does one session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_service_20",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture20_demo20_service_20"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_service_20:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "240",
+        "source_id": "fixture20_demo20_service_20",
+        "snapshot_sha256": "d34af2f5479a93efd09139ff0b5bcd55a067f134d4c16718eceb9bbbdbd478de",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 7.044417500030249,
+    "exception": null
+  },
+  {
+    "id": "02765",
+    "rid": "demo20_control_set_01",
+    "kind": "control_set",
+    "lang": "th",
+    "style": "multi_field",
+    "question": "ชุดควบคุมทดลอง ดาวเหนือ ใช้กับเครื่องประเภทไหนและต้องกดปุ่มอะไร",
+    "expected_fields": [
+      "platform",
+      "bindings"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:platform"
+    ],
+    "answer": "**demo20_control_set_01**\n• ปุ่ม + กด/ค้าง/กดพร้อมกัน/ลำดับ + action + context; ทุกรายการต้องมีหลักฐานชุดเดียวกัน มิฉะนั้นแยก record: • ยืนยัน → DEMO_gamepad_1 (press; คำสั่งสมมุติของ สวนเมฆ)\n• เคลื่อนที่ → DEMO_gamepad_2 (press; คำสั่งสมมุติของ สวนเมฆ) [S1]",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_control_set_01"
+        ],
+        "requested_fields": [
+          "bindings"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "ใช้กับเครื่องประเภทไหนและต้องกดปุ่มอะไร",
+        "field_selection": [
+          {
+            "field": "bindings",
+            "cue": "ปุ่ม",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "ใช้กับเครื่องประเภทไหน"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_control_set_01",
+          "field": "bindings",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/bindings",
+              "source_id": "fixture20_demo20_control_set_01"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_control_set_01:bindings:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "• action: ยืนยัน; buttons: • DEMO_gamepad_1; context: คำสั่งสมมุติของ สวนเมฆ; gesture: press\n• action: เคลื่อนที่; buttons: • DEMO_gamepad_2; context: คำสั่งสมมุติของ สวนเมฆ; gesture: press",
+        "source_id": "fixture20_demo20_control_set_01",
+        "snapshot_sha256": "6280658b3d3be6d847f9a7af03ac1de1fd8e4165fe8303a5effef8445819a7d4",
+        "citation_label": "S1",
+        "locator": "/values/bindings",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4453769999090582,
+    "exception": null
+  },
+  {
+    "id": "02785",
+    "rid": "demo20_control_set_03",
+    "kind": "control_set",
+    "lang": "th",
+    "style": "multi_field",
+    "question": "ชุดควบคุมทดลอง ละอองฝน ใช้กับเครื่องประเภทไหนและต้องกดปุ่มอะไร",
+    "expected_fields": [
+      "platform",
+      "bindings"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:platform"
+    ],
+    "answer": "**demo20_control_set_03**\n• ปุ่ม + กด/ค้าง/กดพร้อมกัน/ลำดับ + action + context; ทุกรายการต้องมีหลักฐานชุดเดียวกัน มิฉะนั้นแยก record: • ยืนยัน → DEMO_vr_motion_1 (press; คำสั่งสมมุติของ ประภาคารเสมือน) [S1]",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_control_set_03"
+        ],
+        "requested_fields": [
+          "bindings"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "ใช้กับเครื่องประเภทไหนและต้องกดปุ่มอะไร",
+        "field_selection": [
+          {
+            "field": "bindings",
+            "cue": "ปุ่ม",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "ใช้กับเครื่องประเภทไหน"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_control_set_03",
+          "field": "bindings",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/bindings",
+              "source_id": "fixture20_demo20_control_set_03"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_control_set_03:bindings:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "• action: ยืนยัน; buttons: • DEMO_vr_motion_1; context: คำสั่งสมมุติของ ประภาคารเสมือน; gesture: press",
+        "source_id": "fixture20_demo20_control_set_03",
+        "snapshot_sha256": "2b454585ad1a03dec198f87dde2e1fea322150d4cd3c904474e6c21a356a1381",
+        "citation_label": "S1",
+        "locator": "/values/bindings",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4224086001049727,
+    "exception": null
+  },
+  {
+    "id": "02955",
+    "rid": "demo20_control_set_20",
+    "kind": "control_set",
+    "lang": "th",
+    "style": "multi_field",
+    "question": "ชุดควบคุมทดลอง รุ่งเรือง ใช้กับเครื่องประเภทไหนและต้องกดปุ่มอะไร",
+    "expected_fields": [
+      "platform",
+      "bindings"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:platform"
+    ],
+    "answer": "**demo20_control_set_20**\n• ปุ่ม + กด/ค้าง/กดพร้อมกัน/ลำดับ + action + context; ทุกรายการต้องมีหลักฐานชุดเดียวกัน มิฉะนั้นแยก record: • ยืนยัน → DEMO_keyboard_mouse_1 (press; คำสั่งสมมุติของ เวทีฝึกฝน)\n• เคลื่อนที่ → DEMO_keyboard_mouse_2 (press; คำสั่งสมมุติของ เวทีฝึกฝน)\n• ย้อนกลับ → DEMO_keyboard_mouse_3 (press; คำสั่งสมมุติของ เวทีฝึกฝน) [S1]",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_control_set_20"
+        ],
+        "requested_fields": [
+          "bindings"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "ใช้กับเครื่องประเภทไหนและต้องกดปุ่มอะไร",
+        "field_selection": [
+          {
+            "field": "bindings",
+            "cue": "ปุ่ม",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "ใช้กับเครื่องประเภทไหน"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_control_set_20",
+          "field": "bindings",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/bindings",
+              "source_id": "fixture20_demo20_control_set_20"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_control_set_20:bindings:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "• action: ยืนยัน; buttons: • DEMO_keyboard_mouse_1; context: คำสั่งสมมุติของ เวทีฝึกฝน; gesture: press\n• action: เคลื่อนที่; buttons: • DEMO_keyboard_mouse_2; context: คำสั่งสมมุติของ เวทีฝึกฝน; gesture: press\n• action: ย้อนกลับ; buttons: • DEMO_keyboard_mouse_3; context: คำสั่งสมมุติของ เวทีฝึกฝน; gesture: press",
+        "source_id": "fixture20_demo20_control_set_20",
+        "snapshot_sha256": "d122c7584eebadefe05e6be355ac2909cc9638bacd63441802a07ab973c84b78",
+        "citation_label": "S1",
+        "locator": "/values/bindings",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.42296340013854206,
+    "exception": null
+  },
+  {
+    "id": "03370",
+    "rid": "demo20_schedule_01",
+    "kind": "schedule",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo timetable Northstar What are the opening and maintenance periods?",
+    "expected_fields": [
+      "open_periods",
+      "maintenance_periods"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:open_periods"
+    ],
+    "answer": "**demo20_schedule_01**\n• maintenance periods: • end: 13:00; start: 12:00 [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_schedule_01"
+        ],
+        "requested_fields": [
+          "maintenance_periods"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the opening and maintenance periods?",
+        "field_selection": [
+          {
+            "field": "maintenance_periods",
+            "cue": "maintenance periods",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "what are the opening"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_schedule_01",
+          "field": "maintenance_periods",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/maintenance_periods",
+              "source_id": "fixture20_demo20_schedule_01"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_schedule_01:maintenance_periods:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "• end: 13:00; start: 12:00",
+        "source_id": "fixture20_demo20_schedule_01",
+        "snapshot_sha256": "f3be621c75cb4059252f1f63ac8dd97f72b0440de70e0669538d4f950fbb17ea",
+        "citation_label": "S1",
+        "locator": "/values/maintenance_periods",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.5649472000077367,
+    "exception": null
+  },
+  {
+    "id": "03560",
+    "rid": "demo20_schedule_20",
+    "kind": "schedule",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo timetable Radiance What are the opening and maintenance periods?",
+    "expected_fields": [
+      "open_periods",
+      "maintenance_periods"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:open_periods"
+    ],
+    "answer": "**demo20_schedule_20**\n• maintenance periods: None (confirmed) [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_schedule_20"
+        ],
+        "requested_fields": [
+          "maintenance_periods"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the opening and maintenance periods?",
+        "field_selection": [
+          {
+            "field": "maintenance_periods",
+            "cue": "maintenance periods",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "what are the opening"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_schedule_20",
+          "field": "maintenance_periods",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/maintenance_periods",
+              "source_id": "fixture20_demo20_schedule_20"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_schedule_20:maintenance_periods:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "None (confirmed)",
+        "source_id": "fixture20_demo20_schedule_20",
+        "snapshot_sha256": "3e3f13074f53bfd5fa8a26da183fa0cac5d83a6cf25ae42ac1724632f2ed01f0",
+        "citation_label": "S1",
+        "locator": "/values/maintenance_periods",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4386538998223841,
+    "exception": null
+  },
+  {
+    "id": "03390",
+    "rid": "demo20_schedule_03",
+    "kind": "schedule",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo timetable Drizzle What are the opening and maintenance periods?",
+    "expected_fields": [
+      "open_periods",
+      "maintenance_periods"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:open_periods"
+    ],
+    "answer": "**demo20_schedule_03**\n• maintenance periods: • end: 13:00; start: 12:00 [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_schedule_03"
+        ],
+        "requested_fields": [
+          "maintenance_periods"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the opening and maintenance periods?",
+        "field_selection": [
+          {
+            "field": "maintenance_periods",
+            "cue": "maintenance periods",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "what are the opening"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_schedule_03",
+          "field": "maintenance_periods",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/maintenance_periods",
+              "source_id": "fixture20_demo20_schedule_03"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_schedule_03:maintenance_periods:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "• end: 13:00; start: 12:00",
+        "source_id": "fixture20_demo20_schedule_03",
+        "snapshot_sha256": "2022aa7fed66f23c9f2527cba8a0e21412126bd53d7947e6f983ff7594f87d58",
+        "citation_label": "S1",
+        "locator": "/values/maintenance_periods",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.4205502001568675,
+    "exception": null
+  },
+  {
+    "id": "04770",
+    "rid": "demo20_live_binding_01",
+    "kind": "live_binding",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo binding Northstar What are the status mappings and freshness policy?",
+    "expected_fields": [
+      "status_mapping",
+      "freshness_policy"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:status_mapping"
+    ],
+    "answer": "**demo20_live_binding_01**\n• freshness policy: Synthetic TTL 20 seconds; no API call or live status claim [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_live_binding_01"
+        ],
+        "requested_fields": [
+          "freshness_policy"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the status mappings and freshness policy?",
+        "field_selection": [
+          {
+            "field": "freshness_policy",
+            "cue": "freshness policy",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "what are the status mappings"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_live_binding_01",
+          "field": "freshness_policy",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/freshness_policy",
+              "source_id": "fixture20_demo20_live_binding_01"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_live_binding_01:freshness_policy:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "Synthetic TTL 20 seconds; no API call or live status claim",
+        "source_id": "fixture20_demo20_live_binding_01",
+        "snapshot_sha256": "60b2c749948fe3d014c663c1bba133dfc31a965257a562a4f2d44c7a779a4416",
+        "citation_label": "S1",
+        "locator": "/values/freshness_policy",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.5215895001310855,
+    "exception": null
+  },
+  {
+    "id": "04790",
+    "rid": "demo20_live_binding_03",
+    "kind": "live_binding",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo binding Drizzle What are the status mappings and freshness policy?",
+    "expected_fields": [
+      "status_mapping",
+      "freshness_policy"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:status_mapping"
+    ],
+    "answer": "**demo20_live_binding_03**\n• freshness policy: Synthetic TTL 30 seconds; no API call or live status claim [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_live_binding_03"
+        ],
+        "requested_fields": [
+          "freshness_policy"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the status mappings and freshness policy?",
+        "field_selection": [
+          {
+            "field": "freshness_policy",
+            "cue": "freshness policy",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "what are the status mappings"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_live_binding_03",
+          "field": "freshness_policy",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/freshness_policy",
+              "source_id": "fixture20_demo20_live_binding_03"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_live_binding_03:freshness_policy:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "Synthetic TTL 30 seconds; no API call or live status claim",
+        "source_id": "fixture20_demo20_live_binding_03",
+        "snapshot_sha256": "c769bd587cc8675f71968fae86f89d95d8923826644e8e0697e680ec68c81b69",
+        "citation_label": "S1",
+        "locator": "/values/freshness_policy",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.5278900999110192,
+    "exception": null
+  },
+  {
+    "id": "04960",
+    "rid": "demo20_live_binding_20",
+    "kind": "live_binding",
+    "lang": "en",
+    "style": "multi_field",
+    "question": "Demo binding Radiance What are the status mappings and freshness policy?",
+    "expected_fields": [
+      "status_mapping",
+      "freshness_policy"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "missing_field:status_mapping"
+    ],
+    "answer": "**demo20_live_binding_20**\n• freshness policy: Synthetic TTL 115 seconds; no API call or live status claim [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_answer",
+    "decision": {
+      "response_type": "answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo20_live_binding_20"
+        ],
+        "requested_fields": [
+          "freshness_policy"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "what are the status mappings and freshness policy?",
+        "field_selection": [
+          {
+            "field": "freshness_policy",
+            "cue": "freshness policy",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": [
+          "what are the status mappings"
+        ]
+      },
+      "obligations": [
+        {
+          "record_id": "demo20_live_binding_20",
+          "field": "freshness_policy",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/freshness_policy",
+              "source_id": "fixture20_demo20_live_binding_20"
+            }
+          ]
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo20_live_binding_20:freshness_policy:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "Synthetic TTL 115 seconds; no API call or live status claim",
+        "source_id": "fixture20_demo20_live_binding_20",
+        "snapshot_sha256": "9642ccc169213c37efdd99f24b352c15a4873a962fd4a85d95cfe43eb9082a41",
+        "citation_label": "S1",
+        "locator": "/values/freshness_policy",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.5388589999638498,
+    "exception": null
+  },
+  {
+    "id": "05050",
+    "rid": "demo_service_01",
+    "kind": "service",
+    "lang": "th",
+    "style": "old_control_natural",
+    "question": "ตัวอย่าง รายการที่เลือกในระบบจอง 01 หนึ่งรอบเล่นได้กี่นาที",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**ตัวอย่าง บริการฝึก Mario Kart 8 Deluxe 01**\n• ระยะเวลาเล่นของบริการ: 60 [S1]\n\nduration_minutes: หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "หนึ่งรอบเล่นได้กี่นาที",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "หนึ่งรอบ",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "กี่นาที",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture_source_demo_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo_service_01:session_minutes:S1",
+        "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture_source_demo_service_01",
+        "snapshot_sha256": "0b268a8e1c175667f73913e01c3b63b3c470db913a1e98381b2023d0633421da",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "ข้อมูลศูนย์ที่ผ่านการอนุมัติ",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.5267075998708606,
+    "exception": null
+  },
+  {
+    "id": "05052",
+    "rid": "demo_service_01",
+    "kind": "service",
+    "lang": "en",
+    "style": "old_control_natural",
+    "question": "Demo service 01 How many minutes does a session last?",
+    "expected_fields": [
+      "session_minutes"
+    ],
+    "history": [],
+    "passed": false,
+    "reasons": [
+      "response_partial_answer"
+    ],
+    "answer": "**Demo Mario Kart 8 Deluxe practice service 01**\n• session minutes: 60 [S1]\n\nduration minutes: This attribute is outside the selected record scope; please specify the related service or record.\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "mode": "pipeline:common_partial_answer",
+    "decision": {
+      "response_type": "partial_answer",
+      "release_id": "6a976d45840645759f5bd0219c1c0e40",
+      "query_plan": {
+        "record_ids": [
+          "demo_service_01"
+        ],
+        "requested_fields": [
+          "session_minutes",
+          "duration_minutes"
+        ],
+        "all_fields": false,
+        "method": "exact",
+        "scope": "common_published",
+        "platform": null,
+        "query_without_entity": "how many minutes does a session last?",
+        "field_selection": [
+          {
+            "field": "session_minutes",
+            "cue": "session",
+            "method": "schema_attribute"
+          },
+          {
+            "field": "duration_minutes",
+            "cue": "minutes",
+            "method": "schema_attribute"
+          }
+        ],
+        "confidence_calibrated": false,
+        "unresolved_clauses": []
+      },
+      "obligations": [
+        {
+          "record_id": "demo_service_01",
+          "field": "session_minutes",
+          "status": "known",
+          "evidence_refs": [
+            {
+              "locator": "/values/session_minutes",
+              "source_id": "fixture_source_demo_service_01"
+            }
+          ]
+        },
+        {
+          "record_id": null,
+          "field": "duration_minutes",
+          "status": "unsupported_scope"
+        }
+      ],
+      "catalog_scope": "common_published",
+      "coverage_errors": [
+        "missing_requested_field:duration_minutes"
+      ],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness"
+    },
+    "evidence": [
+      {
+        "id": "demo_service_01:session_minutes:S1",
+        "title": "Approved center information",
+        "source_url": "",
+        "text": "60",
+        "source_id": "fixture_source_demo_service_01",
+        "snapshot_sha256": "0b268a8e1c175667f73913e01c3b63b3c470db913a1e98381b2023d0633421da",
+        "citation_label": "S1",
+        "locator": "/values/session_minutes",
+        "metadata": {
+          "common_approved": true,
+          "title": "Approved center information",
+          "release_id": "6a976d45840645759f5bd0219c1c0e40"
+        }
+      }
+    ],
+    "elapsed_seconds": 0.503300900105387,
+    "exception": null
+  }
+]

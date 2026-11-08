@@ -1,0 +1,133 @@
+{
+  "question_key": "c9d551ec2e2c2933e6d133b2bd3695009b7241cb9237733891643ae273875cbf",
+  "example_sha256": "b6fb946dca2ccead6205117ad90227d5c4b9766e964f1f79275acc4e96afd177",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One action-to-button lookup asks which buttons produce movement.",
+      "raw_quotes": [
+        "In Overcooked 2, which buttons are used for movement?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings is retained instead of a general gameplay summary.",
+      "raw_quotes": [
+        "In Overcooked 2, which buttons are used for movement?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Overcooked 2 is the game target and movement the exact requested action.",
+      "raw_quotes": [
+        "In Overcooked 2, which buttons are used for movement?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No PS5 platform is supplied by the question or inherited from history.",
+      "raw_quotes": [
+        "In Overcooked 2, which buttons are used for movement?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A clear movement request does not prove one applicable controller platform or compatibility.",
+      "raw_quotes": [
+        "In Overcooked 2, which buttons are used for movement?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "recovered_controls_ps5_overcooked_2 binds that exact game to a PS5 control set; controls_ps5_overcooked binds the different Overcooked edition and must not substitute.",
+      "raw_quotes": [
+        "In Overcooked 2, which buttons are used for movement?"
+      ],
+      "source_record_ids": [
+        "recovered_controls_ps5_overcooked_2",
+        "controls_ps5_overcooked"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Left Stick, other binding, platform compatibility or affirmative installation is taught.",
+      "raw_quotes": [
+        "In Overcooked 2, which buttons are used for movement?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Exact-sequel controls are PS5-scoped while the studio sequel game is Nintendo-scoped.",
+      "handling": "Resolve source platform/offering relationships; do not teach a universal controller layout."
+    }
+  ],
+  "historical_review_row": 117,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "In Overcooked 2, which buttons are used for movement?",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Overcooked 2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "In Overcooked 2, which buttons are used for movement?",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Overcooked 2",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "movement",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "recovered_controls_ps5_overcooked_2": {
+      "revision": 2,
+      "record_sha256": "2228bd823d40260c3b2ff81d527e2aa3e223bf1c5d04fa5124e7f1f2797c9246"
+    },
+    "controls_ps5_overcooked": {
+      "revision": 7,
+      "record_sha256": "3b5a833e33364b1d01dcb8c0534febc1df940ef670a50da4da509c010c96a0ea"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+test_public_access_questions_use_the_requested_facet (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_public_access_questions_use_the_requested_facet) ... 
+  test_public_access_questions_use_the_requested_facet (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_public_access_questions_use_the_requested_facet) (question='What ID does an external visitor need to use the studio?') ... FAIL
+  test_public_access_questions_use_the_requested_facet (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_public_access_questions_use_the_requested_facet) (question='Does a public visitor need membership before entering?') ... FAIL
+test_specific_policy_facets_beat_generic_public_access (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_specific_policy_facets_beat_generic_public_access) ... 
+  test_specific_policy_facets_beat_generic_public_access (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_specific_policy_facets_beat_generic_public_access) (question='Does a non-PSU guest need a membership or national ID?') ... FAIL
+test_unspecified_english_pay_questions_ask_for_service (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_unspecified_english_pay_questions_ask_for_service) ... 
+  test_unspecified_english_pay_questions_ask_for_service (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_unspecified_english_pay_questions_ask_for_service) (question='What would a member of the public pay to play?') ... FAIL
+
+======================================================================
+FAIL: test_public_access_questions_use_the_requested_facet (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_public_access_questions_use_the_requested_facet) (question='What ID does an external visitor need to use the studio?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Documents\Codex\2026-09-25\psu-esports-studio-phuket-chatbot-c-2\r52_research_flow_20261009_191123\before\tests\test_intent_trap_protected_flow.py", line 335, in test_public_access_questions_use_the_requested_facet
+    self.assertIn("https://esports.computing.psu.ac.th/", result.answer)
+AssertionError: 'https://esports.computing.psu.ac.th/' not found in 'At arrival, present a national ID card, university student card, school student card, or passport.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008'
+
+======================================================================
+FAIL: test_public_access_questions_use_the_requested_facet (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_public_access_questions_use_the_requested_facet) (question='Does a public visitor need membership before entering?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Documents\Codex\2026-09-25\psu-esports-studio-phuket-chatbot-c-2\r52_research_flow_20261009_191123\before\tests\test_intent_trap_protected_flow.py", line 334, in test_public_access_questions_use_the_requested_facet
+    self.assertIn(expected, result.answer)
+AssertionError: 'do not need to be a PSU student' not found in 'Membership is not required to use the studio.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008'
+
+======================================================================
+FAIL: test_specific_policy_facets_beat_generic_public_access (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_specific_policy_facets_beat_generic_public_access) (question='Does a non-PSU guest need a membership or national ID?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Documents\Codex\2026-09-25\psu-esports-studio-phuket-chatbot-c-2\r52_research_flow_20261009_191123\before\tests\test_intent_trap_protected_flow.py", line 354, in test_specific_policy_facets_beat_generic_public_access
+    self.assertIn(expected, result.answer)
+AssertionError: 'National ID' not found in 'Membership is not required to use the studio.\n\nAt arrival, present a national ID card, university student card, school student card, or passport.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008'
+
+======================================================================
+FAIL: test_unspecified_english_pay_questions_ask_for_service (tests.test_intent_trap_protected_flow.ProtectedIntentFlowTests.test_unspecified_english_pay_questions_ask_for_service) (question='What would a member of the public pay to play?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Documents\Codex\2026-09-25\psu-esports-studio-phuket-chatbot-c-2\r52_research_flow_20261009_191123\before\tests\test_intent_trap_protected_flow.py", line 263, in test_unspecified_english_pay_questions_ask_for_service
+    self.assertEqual(result.route.category, "clarification")
+AssertionError: 'reservation' != 'clarification'
+- reservation
++ clarification
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 12.824s
+
+FAILED (failures=4)

@@ -1,0 +1,140 @@
+{
+  "question_key": "9bb5d678fcf9636c2fc6152ee22d64ed8d1c7316799d0c2d485789ccdbfd5e2d",
+  "example_sha256": "0c1b61d63f7179fb71ee54d5c182f4eb71ee72cbf69833d19a752e42e64349d3",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One membership-prerequisite question for a public visitor.",
+      "raw_quotes": [
+        "Please use verified studio information: Does a public visitor need membership before entering?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains eligibility rather than registration execution or a price query.",
+      "raw_quotes": [
+        "Please use verified studio information: Does a public visitor need membership before entering?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "public visitor is audience,need membership action and before entering condition.",
+      "raw_quotes": [
+        "Please use verified studio information: Does a public visitor need membership before entering?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No PSU status, membership account, booking completion or identity document is inherited.",
+      "raw_quotes": [
+        "Please use verified studio information: Does a public visitor need membership before entering?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Absence of membership sign-up in a procedure does not itself prove every visitor has unconditional entry rights.",
+      "raw_quotes": [
+        "Please use verified studio information: Does a public visitor need membership before entering?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "public_access_membership states what published booking steps specify and preserves visitor/document context; it is not exhaustive universal membership authority.",
+      "raw_quotes": [
+        "Please use verified studio information: Does a public visitor need membership before entering?"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_public_access_membership"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no membership rule, ID requirement, fee or entry permission is taught.",
+      "raw_quotes": [
+        "Please use verified studio information: Does a public visitor need membership before entering?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Procedure silence on separate membership does not exhaust every entry/actor exception.",
+      "handling": "Do not infer unconditional entry permission."
+    }
+  ],
+  "historical_review_row": 183,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: Does a public visitor need membership before entering?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: Does a public visitor need membership before entering?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "public visitor",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "need membership",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "before entering",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_public_access_membership": {
+      "revision": 2,
+      "record_sha256": "fe0896654a5521a5b9c2bb3162ae218250853842147b0c412a35e21c98abd1de"
+    }
+  }
+}

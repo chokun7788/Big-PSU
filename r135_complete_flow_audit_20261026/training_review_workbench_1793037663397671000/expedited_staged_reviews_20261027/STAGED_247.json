@@ -1,0 +1,91 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 247,
+  "question_key": "87aa69e37cd5b550f86d95d41525033d6510a1fb1e0ca3adcdbfc65483bbcd1c",
+  "raw_question": "ใครเป็นผู้จัดกา",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ใครเป็นผู้จัดกา",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "role",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ใครเป็นผู้จัดกา",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "display_name",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ผู้จัดกา",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "The Thai fragment asks who occupies a role, but the role word ends at ผู้จัดกา.",
+    "intent_operation_facet": "members/role_lookup must request display_name rather than return the role itself.",
+    "entities_and_slot_roles": "Preserve ผู้จัดกา as an exact requested_scope quote; no completed role word or person name is supplied by the user.",
+    "local_shared_history_scope": "There is no prior person, team, date or dialogue context to fill in the truncated role.",
+    "negation_and_ambiguity": "Mark the incomplete role ambiguous rather than silently completing it to an authoritative person identification.",
+    "source_version_alignment": "Pinned member_17d23bd43ffdcfb0 revision5 has separately sourced display_name and ผู้จัดการ/Manager role fields; this is a possible source match, not proof of the intended completion.",
+    "no_business_answer_target": "No employee name, completed role literal, tenure, authority or business answer is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "member_17d23bd43ffdcfb0"
+  ],
+  "source_answer_issues": [
+    [
+      "Truncated role does not establish a unique intended role or employee.",
+      "Preserve literal scope and ambiguity before identifying a person."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 248,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "member_17d23bd43ffdcfb0": {
+      "revision": 5,
+      "record_sha256": "c137b6fdf69bd1ac0e611f1b96babfd40914ecc72733202ac1eb3ac8dc3158a1"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

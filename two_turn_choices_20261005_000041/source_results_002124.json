@@ -1,0 +1,789 @@
+[
+  {
+    "case": {
+      "id": "th-extra-controls-วาโลครับ",
+      "locale": "th",
+      "initial": "ขอดูปุ่มควบคุมเกม",
+      "choice": "วาโลครับ",
+      "expected_category": "game_control",
+      "expected_contains": [
+        "VALORANT",
+        "W / A / S / D"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`",
+      "mode": "pipeline:game_control_missing_game_context",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": {
+        "domain": "game_controls",
+        "operation": "control",
+        "target": "",
+        "filters": {},
+        "needs": [
+          "list_controls"
+        ],
+        "answer_style": "direct_then_details",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "reason": "domain_terms=3; control operation overrides domain; control terms found"
+      },
+      "request_id": "first",
+      "resolved_question": "ขอดูปุ่มควบคุมเกม",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "VALORANT มีข้อมูลปุ่มควบคุมดังนี้:\nPC\n•    W / A / S / D: เคลื่อนที่ - W เดินหน้า, A ไปซ้าย, S ถอยหลัง, D ไปขวา\n•    Left Shift: เดินช้า - ใช้เดินเงียบหรือเดินแบบควบคุมเสียง\n•    Space Bar: กระโดด - กระโดด\n•    Left Ctrl: ย่อตัว - ย่อตัวเพื่อลดระดับตัวละคร\n•    Left Mouse Button: ยิง - ยิงอาวุธหลัก\n•    Right Mouse Button: ยิง/เล็งแบบรอง - ใช้งานโหมดรองของอาวุธหรือเล็งตามชนิดอาวุธ\n•    R: รีโหลด - เปลี่ยนกระสุน\n•    1 / 2 / 3: เลือกอาวุธ - 1 อาวุธหลัก, 2 อาวุธรอง, 3 อาวุธระยะประชิด\n•    4: หยิบ/ใช้ Spike - ใช้กับ Spike เช่น วางหรือกู้ตามสถานการณ์\n•    Q / E / C / X: ใช้สกิล Agent - Q/E/C คือสกิลทั่วไป และ X คือ Ultimate\n•    F: โต้ตอบกับวัตถุ - ใช้โต้ตอบกับวัตถุในเกม\n•    B: เปิดร้านซื้ออาวุธ - เปิดหน้า Armory ในช่วงซื้อของ\n•    M: เปิดแผนที่ - เปิด/ปิดแผนที่\n•    Tab: ดูตารางคะแนน - กดค้างเพื่อดู scoreboard\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "mode": "pipeline:structured_game_controls",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": {
+        "domain": "game_controls",
+        "operation": "control",
+        "target": "VALORANT",
+        "filters": {
+          "resolved_target_id": "valorant",
+          "resolved_target_type": "game"
+        },
+        "needs": [
+          "list_controls"
+        ],
+        "answer_style": "direct_then_details",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "reason": "known game alias found; control operation overrides domain; control terms found"
+      },
+      "request_id": "second",
+      "resolved_question": "VALORANT มีปุ่มควบคุมอะไรบ้าง",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "th-extra-controls-Valoant",
+      "locale": "th",
+      "initial": "ขอดูปุ่มควบคุมเกม",
+      "choice": "Valoant",
+      "expected_category": "game_control",
+      "expected_contains": [
+        "VALORANT",
+        "W / A / S / D"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`",
+      "mode": "pipeline:game_control_missing_game_context",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": {
+        "domain": "game_controls",
+        "operation": "control",
+        "target": "",
+        "filters": {},
+        "needs": [
+          "list_controls"
+        ],
+        "answer_style": "direct_then_details",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "reason": "domain_terms=3; control operation overrides domain; control terms found"
+      },
+      "request_id": "first",
+      "resolved_question": "ขอดูปุ่มควบคุมเกม",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "VALORANT มีข้อมูลปุ่มควบคุมดังนี้:\nPC\n•    W / A / S / D: เคลื่อนที่ - W เดินหน้า, A ไปซ้าย, S ถอยหลัง, D ไปขวา\n•    Left Shift: เดินช้า - ใช้เดินเงียบหรือเดินแบบควบคุมเสียง\n•    Space Bar: กระโดด - กระโดด\n•    Left Ctrl: ย่อตัว - ย่อตัวเพื่อลดระดับตัวละคร\n•    Left Mouse Button: ยิง - ยิงอาวุธหลัก\n•    Right Mouse Button: ยิง/เล็งแบบรอง - ใช้งานโหมดรองของอาวุธหรือเล็งตามชนิดอาวุธ\n•    R: รีโหลด - เปลี่ยนกระสุน\n•    1 / 2 / 3: เลือกอาวุธ - 1 อาวุธหลัก, 2 อาวุธรอง, 3 อาวุธระยะประชิด\n•    4: หยิบ/ใช้ Spike - ใช้กับ Spike เช่น วางหรือกู้ตามสถานการณ์\n•    Q / E / C / X: ใช้สกิล Agent - Q/E/C คือสกิลทั่วไป และ X คือ Ultimate\n•    F: โต้ตอบกับวัตถุ - ใช้โต้ตอบกับวัตถุในเกม\n•    B: เปิดร้านซื้ออาวุธ - เปิดหน้า Armory ในช่วงซื้อของ\n•    M: เปิดแผนที่ - เปิด/ปิดแผนที่\n•    Tab: ดูตารางคะแนน - กดค้างเพื่อดู scoreboard\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "mode": "pipeline:structured_game_controls",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": {
+        "domain": "game_controls",
+        "operation": "control",
+        "target": "VALORANT",
+        "filters": {
+          "resolved_target_id": "valorant",
+          "resolved_target_type": "game"
+        },
+        "needs": [
+          "list_controls"
+        ],
+        "answer_style": "direct_then_details",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "reason": "known game alias found; control operation overrides domain; control terms found"
+      },
+      "request_id": "second",
+      "resolved_question": "VALORANT มีปุ่มควบคุมอะไรบ้าง",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "th-extra-new-operation",
+      "locale": "th",
+      "initial": "ขอดูปุ่มควบคุมเกม",
+      "choice": "VALORANT คืออะไร",
+      "expected_category": "games",
+      "expected_contains": [
+        "VALORANT"
+      ],
+      "requires_clarification": "",
+      "full_detail": false,
+      "expected_intent": "game_detail_lookup"
+    },
+    "first": {
+      "ok": true,
+      "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`",
+      "mode": "pipeline:game_control_missing_game_context",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": {
+        "domain": "game_controls",
+        "operation": "control",
+        "target": "",
+        "filters": {},
+        "needs": [
+          "list_controls"
+        ],
+        "answer_style": "direct_then_details",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "reason": "domain_terms=3; control operation overrides domain; control terms found"
+      },
+      "request_id": "first",
+      "resolved_question": "ขอดูปุ่มควบคุมเกม",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "VALORANT: VALORANT คือเกมยิงเชิงกลยุทธ์ที่ผู้เล่นเลือก Agent ที่มีสกิลเฉพาะ แล้วเล่นเป็นฝ่ายบุก/รับในแต่ละรอบ\nแนวเกม: เกมยิง Tactical FPS แบบทีม 5v5\nวิธีเล่นโดยสรุป: ฝ่ายบุกต้องวาง Spike ส่วนฝ่ายรับต้องป้องกันพื้นที่หรือกู้ Spike การเล่นเน้นการเล็ง การสื่อสาร การใช้สกิล และการเล่นเป็นทีม\nเล่นได้ที่: PC Zone\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "mode": "pipeline:structured_game_detail",
+      "route_category": "games",
+      "route_intent": "game_detail_lookup",
+      "universal_intent": {
+        "domain": "games",
+        "operation": "detail",
+        "target": "VALORANT",
+        "filters": {
+          "resolved_target_id": "valorant",
+          "resolved_target_type": "game"
+        },
+        "needs": [
+          "summarize_detail"
+        ],
+        "answer_style": "direct",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "reason": "known game alias found; detail terms found"
+      },
+      "request_id": "second",
+      "resolved_question": "VALORANT คืออะไร",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "th-extra-zone-typo",
+      "locale": "th",
+      "initial": "มีเกมอะไรให้เล่นบ้าง",
+      "choice": "cockpik",
+      "expected_category": "games",
+      "expected_contains": [
+        "Gran Turismo 7"
+      ],
+      "requires_clarification": false,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 เกม)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 เกม)\n•    Gran Turismo 7\n\nVR Zone (4 เกม)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+      "mode": "pipeline:structured_games_catalog",
+      "route_category": "games",
+      "route_intent": "list",
+      "universal_intent": {
+        "domain": "games",
+        "operation": "list",
+        "target": "",
+        "filters": {},
+        "needs": [
+          "list_items"
+        ],
+        "answer_style": "summary_bullets",
+        "confidence": 0.84,
+        "method": "heuristic",
+        "reason": "game catalog/count terms override zone/equipment domain; game route keeps games domain; no clear operation terms; game route intent supplies operation"
+      },
+      "request_id": "first",
+      "resolved_question": "มีเกมอะไรให้เล่นบ้าง",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "Cockpit Zone มีเกมที่ยืนยันได้ดังนี้\n\nCockpit #01-#02 (60 นาที, 1 คน)\n•    Gran Turismo 7\nหมายเหตุ: Cockpit มี 2 เครื่อง และใช้รายการเกมเดียวกัน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "mode": "pipeline:structured_service_game_availability",
+      "route_category": "games",
+      "route_intent": "list",
+      "universal_intent": {
+        "domain": "games",
+        "operation": "list",
+        "target": "Cockpit #01-#02",
+        "filters": {
+          "resolved_target_id": "availability_cockpit_01_02",
+          "resolved_target_type": "service"
+        },
+        "needs": [
+          "list_items"
+        ],
+        "answer_style": "summary_bullets",
+        "confidence": 0.82,
+        "method": "heuristic",
+        "reason": "game catalog/count terms override zone/equipment domain; list terms found"
+      },
+      "request_id": "second",
+      "resolved_question": "Cockpit มีเกมอะไรบ้าง",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "th-extra-zone-polite",
+      "locale": "th",
+      "initial": "มีเกมอะไรให้เล่นบ้าง",
+      "choice": "ขอ PS5 ครับ",
+      "expected_category": "games",
+      "expected_contains": [
+        "God of War"
+      ],
+      "requires_clarification": false,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 เกม)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 เกม)\n•    Gran Turismo 7\n\nVR Zone (4 เกม)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+      "mode": "pipeline:structured_games_catalog",
+      "route_category": "games",
+      "route_intent": "list",
+      "universal_intent": {
+        "domain": "games",
+        "operation": "list",
+        "target": "",
+        "filters": {},
+        "needs": [
+          "list_items"
+        ],
+        "answer_style": "summary_bullets",
+        "confidence": 0.84,
+        "method": "heuristic",
+        "reason": "game catalog/count terms override zone/equipment domain; game route keeps games domain; no clear operation terms; game route intent supplies operation"
+      },
+      "request_id": "first",
+      "resolved_question": "มีเกมอะไรให้เล่นบ้าง",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "PlayStation 5 Zone มีเกมที่ยืนยันได้ดังนี้\n\nPlayStation 5 #01-#02 (60 นาที, 1-2 คน)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\nหมายเหตุ: PlayStation 5 #01 และ #02 ใช้รายการเกมเดียวกัน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "mode": "pipeline:structured_service_game_availability",
+      "route_category": "games",
+      "route_intent": "list",
+      "universal_intent": {
+        "domain": "games",
+        "operation": "list",
+        "target": "PlayStation 5 #01-#02",
+        "filters": {
+          "resolved_target_id": "availability_ps5_01_02",
+          "resolved_target_type": "service"
+        },
+        "needs": [
+          "list_items"
+        ],
+        "answer_style": "summary_bullets",
+        "confidence": 0.82,
+        "method": "heuristic",
+        "reason": "game catalog/count terms override zone/equipment domain; list terms found"
+      },
+      "request_id": "second",
+      "resolved_question": "PlayStation 5 มีเกมอะไรบ้าง",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-controls-the VALORANT one",
+      "locale": "en",
+      "initial": "Show me the game controls",
+      "choice": "the VALORANT one",
+      "expected_category": "game_control",
+      "expected_contains": [
+        "VALORANT",
+        "W / A / S / D"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "Which game do you want controls for? Please provide the game title.",
+      "mode": "pipeline:game_control_missing_game_context_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "Show me the game controls",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "VALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "mode": "pipeline:structured_game_controls_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "What are the controls for VALORANT?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-controls-Valoant please",
+      "locale": "en",
+      "initial": "Show me the game controls",
+      "choice": "Valoant please",
+      "expected_category": "game_control",
+      "expected_contains": [
+        "VALORANT",
+        "W / A / S / D"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "Which game do you want controls for? Please provide the game title.",
+      "mode": "pipeline:game_control_missing_game_context_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "Show me the game controls",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "VALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "mode": "pipeline:structured_game_controls_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "What are the controls for VALORANT?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-new-operation",
+      "locale": "en",
+      "initial": "Show me the game controls",
+      "choice": "What is VALORANT?",
+      "expected_category": "games",
+      "expected_contains": [
+        "VALORANT"
+      ],
+      "requires_clarification": "",
+      "full_detail": false,
+      "expected_intent": "game_detail_lookup"
+    },
+    "first": {
+      "ok": true,
+      "answer": "Which game do you want controls for? Please provide the game title.",
+      "mode": "pipeline:game_control_missing_game_context_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "Show me the game controls",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "Verified English information:\nVALORANT\nGenre: Tactical 5v5 team-based FPS\nOverview: VALORANT is a tactical shooter game where players select agents with unique skills and play as either attackers or defenders in each round.\nHow to play: Attackers must plant the Spike; defenders must defend the area or defuse the Spike. Play emphasizes aiming, communication, ability use and teamwork.\nAvailable at: PC Zone\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)",
+      "mode": "pipeline:structured_game_detail_en",
+      "route_category": "games",
+      "route_intent": "game_detail_lookup",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "What is VALORANT?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-zone-typo",
+      "locale": "en",
+      "initial": "What games can I play?",
+      "choice": "cockpik",
+      "expected_category": "games",
+      "expected_contains": [
+        "Gran Turismo 7"
+      ],
+      "requires_clarification": false,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "There are currently 42 verified games available.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 games)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 games)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 game)\n•    Gran Turismo 7\n\nVR Zone (4 games)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+      "mode": "pipeline:structured_games_catalog_en",
+      "route_category": "games",
+      "route_intent": "games_lookup",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "What games can I play?",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "There are currently 1 verified games in Cockpit Zone.\n\nCockpit Zone (1 game)\n•    Gran Turismo 7\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+      "mode": "pipeline:structured_games_catalog_en",
+      "route_category": "games",
+      "route_intent": "games_lookup",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "What games are available in Cockpit?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-zone-polite",
+      "locale": "en",
+      "initial": "What games can I play?",
+      "choice": "the PS5 one",
+      "expected_category": "games",
+      "expected_contains": [
+        "God of War"
+      ],
+      "requires_clarification": false,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "There are currently 42 verified games available.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 games)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 games)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 game)\n•    Gran Turismo 7\n\nVR Zone (4 games)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+      "mode": "pipeline:structured_games_catalog_en",
+      "route_category": "games",
+      "route_intent": "games_lookup",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "What games can I play?",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "There are currently 17 verified games in PlayStation 5 Zone.\n\nPlayStation 5 Zone (17 games)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+      "mode": "pipeline:structured_games_catalog_en",
+      "route_category": "games",
+      "route_intent": "games_lookup",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "What games are available in PlayStation 5?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-family-controls",
+      "locale": "en",
+      "initial": "What are the controls for Call of Duty?",
+      "choice": "Modern Warfare III",
+      "expected_category": "game_control",
+      "expected_contains": [
+        "Modern Warfare III",
+        "L2"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "Which game do you mean: Call of Duty: Modern Warfare III, Call of Duty: Warzone? Please name the exact title so I can check its controls.",
+      "mode": "pipeline:game_family_clarification_en",
+      "route_category": "clarification",
+      "route_intent": "ambiguous_game_controls",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "What are the controls for Call of Duty?",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "Call of Duty: Modern Warfare III controls:\n- L1: Jump/Mantle\n- R3: Change Stance/Slide/Dive\n- Cross: Use Tactical Equipment\n- Circle: Melee\n- L2: Aim Down Sight\n- R2: Fire Weapon\n- R1: Use Lethal Equipment\n- Square: Interact/Reload\n- Triangle: Switch Weapon\n- L3: Sprint/Tactical Sprint/Focus\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.gamepur.com/guides/best-modern-warfare-3-controller-settings-aim-assist-deadzones-button-layout",
+      "mode": "pipeline:structured_game_controls_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "What are the controls for Call of Duty: Modern Warfare III?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-singular-control",
+      "locale": "en",
+      "initial": "Show me the game control",
+      "choice": "VALORANT",
+      "expected_category": "game_control",
+      "expected_contains": [
+        "VALORANT",
+        "W / A / S / D"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "Which game do you want controls for? Please provide the game title.",
+      "mode": "pipeline:game_control_missing_game_context_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "Show me the game control",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "VALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "mode": "pipeline:structured_game_controls_en",
+      "route_category": "games",
+      "route_intent": "game_control_lookup",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "What are the controls for VALORANT?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-domain-fees",
+      "locale": "en",
+      "initial": "What does PS5 offer?",
+      "choice": "fees",
+      "expected_category": "service_fee",
+      "expected_contains": [
+        "PlayStation 5",
+        "150"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "Which topic about PlayStation 5 do you mean: games, equipment, prices, or booking? You can reply with just the topic.",
+      "mode": "pipeline:service_broad_choice_en",
+      "route_category": "clarification",
+      "route_intent": "service_broad_choice",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "What does PS5 offer?",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "Service prices (recorded package rates):\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 150 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "mode": "pipeline:structured_service_fee_conversation",
+      "route_category": "service_fee",
+      "route_intent": "conversation_price_lookup",
+      "universal_intent": {
+        "domain": "service_fee",
+        "operation": "price_lookup",
+        "target": "ps5",
+        "filters": {
+          "customer_scope": "unspecified",
+          "customer_group_ids": [],
+          "duration_minutes": null,
+          "people_count": null
+        },
+        "needs": [],
+        "answer_style": "direct",
+        "confidence": 0.98,
+        "method": "conversation_plan",
+        "reason": "typed dialogue request"
+      },
+      "request_id": "second",
+      "resolved_question": "Service prices for PlayStation 5",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  },
+  {
+    "case": {
+      "id": "en-extra-domain-booking",
+      "locale": "en",
+      "initial": "What's in the VR zone?",
+      "choice": "booking",
+      "expected_category": "reservation",
+      "expected_contains": [
+        "book"
+      ],
+      "requires_clarification": true,
+      "full_detail": false,
+      "expected_intent": null
+    },
+    "first": {
+      "ok": true,
+      "answer": "Which topic about VR do you mean: games, equipment, prices, or booking? You can reply with just the topic.",
+      "mode": "pipeline:service_broad_choice_en",
+      "route_category": "clarification",
+      "route_intent": "service_broad_choice",
+      "universal_intent": null,
+      "request_id": "first",
+      "resolved_question": "What's in the VR zone?",
+      "rule_coverage": null
+    },
+    "second": {
+      "ok": true,
+      "answer": "Booking steps:\n• Select a service.\n• Choose a date and time.\n• Fill in your user information.\n• Review the details.\n• Pay by bank transfer.\n• Upload the payment slip.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)",
+      "mode": "pipeline:rule_en",
+      "route_category": "reservation",
+      "route_intent": "booking_steps",
+      "universal_intent": null,
+      "request_id": "second",
+      "resolved_question": "How do I book VR?",
+      "rule_coverage": null
+    },
+    "passed": true,
+    "checks": {
+      "first_question": true,
+      "category_and_operation": true,
+      "content": true,
+      "scope": true,
+      "http": true
+    }
+  }
+]

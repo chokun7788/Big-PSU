@@ -1,0 +1,142 @@
+{
+  "question_key": "490a5b13b782510c507fdb5692383211a2537734caa8e7e489f42932969ea534",
+  "example_sha256": "7c92efba638e9ddcc473ed53d560cf3e9102512115208d419c19ec23a9412bfb",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One access query concerns a person who is not a PSU student; visit framing is style.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Keep general studio eligibility rather than competition qualification.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Preserve full ไม่ใช่นักศึกษา PSU negation; the embedded student phrase cannot become positive audience context.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove both top context duplicates; no actual university, age, game or booking is supplied.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Non-PSU does not specify general adult versus another-university student for pricing.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual r114_q037 revision1 and public-access clauses distinguish general visitors from tournament restrictions and retain booking/check-in conditions.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า"
+      ],
+      "source_record_ids": [
+        "r114_q037_owner_policy",
+        "migrated_policy_text_public_access_general",
+        "migrated_policy_text_public_access_booking_required"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no access verdict, price audience assignment or booking exemption is taught.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 269,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [
+      "ไม่ใช่นักศึกษา PSU",
+      "นักศึกษา PSU"
+    ],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ใช่นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ใช่นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q037_owner_policy": {
+      "revision": 1,
+      "record_sha256": "8e44cbcfcc536f9cd579694998bacfbf169920807581f24c25c3695e4c2874de"
+    },
+    "migrated_policy_text_public_access_general": {
+      "revision": 2,
+      "record_sha256": "df8c8a2d3c4b0fa505909395eb1bcaadfd832b630f1ecf9ced55d8fa1fa48f91"
+    },
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    }
+  }
+}

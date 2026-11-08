@@ -1,0 +1,207 @@
+{
+  "case": "rental_package-en-reserved_new",
+  "passed": true,
+  "reasons": [],
+  "answer": "**Demo package Gentle Sun**\n• Package price: 1,512.50 THB [S1]\n• Included equipment: Fictional Gentle Sun station and PC inputs [S2]\n• audience id: Demo visitors Gentle Sun [S3]\n• currency: THB [S4]\n• period label: full_day [S5]\n• Duration (minutes): 360 [S6]\n• terms: Synthetic package excludes extensions; 5–10 people per session [S7]\n• zone ids: Demo zone Gentle Sun [S8]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+  "artifact": {
+    "response_type": "answer",
+    "release_id": "6a976d45840645759f5bd0219c1c0e40",
+    "query_plan": {
+      "record_ids": [
+        "demo20_rental_package_07"
+      ],
+      "requested_fields": [
+        "amount_minor",
+        "equipment_included"
+      ],
+      "all_fields": false,
+      "method": "exact",
+      "scope": "common_published",
+      "platform": null,
+      "query_without_entity": "what kit is covered by the rental price?",
+      "field_selection": [
+        {
+          "field": "amount_minor",
+          "cue": "price",
+          "method": "schema_attribute"
+        },
+        {
+          "field": "equipment_included",
+          "cue": "schema concept conjunction",
+          "method": "schema_attribute"
+        }
+      ],
+      "confidence_calibrated": false,
+      "request_focus": null,
+      "authority": {
+        "decision": "common",
+        "reason": "published_target_owned",
+        "record_ids": [
+          "demo20_rental_package_07"
+        ],
+        "release_id": "6a976d45840645759f5bd0219c1c0e40",
+        "epoch": 722
+      },
+      "field_authority": [
+        {
+          "record_id": "demo20_rental_package_07",
+          "field": "amount_minor",
+          "authority": "common",
+          "status": "known",
+          "revision": 1
+        },
+        {
+          "record_id": "demo20_rental_package_07",
+          "field": "equipment_included",
+          "authority": "common",
+          "status": "known",
+          "revision": 1
+        }
+      ],
+      "unresolved_clauses": [],
+      "semantic_review_needed": false,
+      "semantic_plan_accepted": false,
+      "read_contract": {
+        "schema_version": "common_read_plan_v1",
+        "needs": [
+          {
+            "id": "n1",
+            "field_refs": [
+              {
+                "kind": "rental_package",
+                "key": "amount_minor"
+              }
+            ],
+            "source_span": "demo package gentle sun what kit is covered by the rental price",
+            "resolution": "typed_supported",
+            "ambiguous_kind": false
+          },
+          {
+            "id": "n2",
+            "field_refs": [
+              {
+                "kind": "rental_package",
+                "key": "equipment_included"
+              }
+            ],
+            "source_span": "demo package gentle sun what kit is covered by the rental price",
+            "resolution": "typed_supported",
+            "ambiguous_kind": false
+          }
+        ],
+        "unresolved_spans": [],
+        "semantic_correctness_verified": false
+      },
+      "response_projection": [
+        {
+          "record_id": "demo20_rental_package_07",
+          "fields": {
+            "amount_minor": "explicit",
+            "equipment_included": "explicit",
+            "audience_id": "necessary_context",
+            "currency": "necessary_context",
+            "period_label": "necessary_context",
+            "duration_minutes": "necessary_context",
+            "terms": "necessary_context",
+            "zone_ids": "necessary_context"
+          }
+        }
+      ]
+    },
+    "obligations": [
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "amount_minor",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/amount_minor",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      },
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "equipment_included",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/equipment_included",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      },
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "audience_id",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/audience_id",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      },
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "currency",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/currency",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      },
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "period_label",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/period_label",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      },
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "duration_minutes",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/duration_minutes",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      },
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "terms",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/terms",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      },
+      {
+        "record_id": "demo20_rental_package_07",
+        "field": "zone_ids",
+        "status": "known",
+        "evidence_refs": [
+          {
+            "locator": "/values/zone_ids",
+            "source_id": "fixture20_demo20_rental_package_07"
+          }
+        ]
+      }
+    ],
+    "catalog_scope": "common_published",
+    "coverage_errors": [],
+    "confidence_calibrated": false,
+    "validation_scope": "selected fields and evidence, not human intent correctness"
+  },
+  "unchanged_gold": true
+}

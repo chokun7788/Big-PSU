@@ -1,0 +1,46 @@
+--- before/app/pipeline/engine.py
++++ after/app/pipeline/engine.py
+@@ -948,6 +948,7 @@
+                         return self._answer_single(
+                             planned_parts[0],
+                             planned_task=planner.tasks[0],
++                            recent_history=recent_history,
+                             experimental_rag_fallback=experimental_rag_fallback,
+                             experimental_allow_llm=experimental_allow_llm,
+                             pipeline_started=started,
+@@ -967,6 +968,7 @@
+                 )
+             return self._answer_single(
+                 question,
++                recent_history=recent_history,
+                 experimental_rag_fallback=experimental_rag_fallback,
+                 experimental_allow_llm=experimental_allow_llm,
+                 pipeline_started=started,
+@@ -1289,6 +1291,7 @@
+         question: str,
+         *,
+         planned_task: QueryPlanTask | None = None,
++        recent_history=None,
+         experimental_rag_fallback: bool,
+         experimental_allow_llm: bool,
+         pipeline_started: float | None = None,
+@@ -1582,14 +1585,15 @@
+         if competition_signal and looks_like_broad_competition_rules_query(pre.clean_query):
+             from app.pipeline.competition_overview import build_competition_overview
+ 
+-            overview = build_competition_overview(pre.clean_query, locale.effective if locale is not None else "th")
++            overview = build_competition_overview(pre.clean_query, locale.effective if locale is not None else "th", recent_history=recent_history)
+             if overview is not None:
+                 overview_route = PipelineRoute("competition_rules", "competition_rules_overview", 0.98, "fact", "medium", "substantive clauses from the explicit rulebook target")
+                 overview_frame = build_question_frame(pre.clean_query, overview_route)
+-                validation = validate_answer(pre.clean_query, overview.answer, overview_route, entities, hits=overview.hits, mode="pipeline:competition_rule_overview_source", frame=overview_frame)
+-                trace.append(PipelineTrace("competition_overview", "accepted" if validation.ok else "rejected", 0.98, "source clauses across sections; headings alone are insufficient", {"section_ids": list(overview.section_ids), "game_ids": [target.game_id for target in competition_target.targets], "validation_errors": list(validation.errors)}))
++                overview_mode = "pipeline:competition_rule_detail_no_answer" if overview.no_further_clauses else "pipeline:competition_rule_overview_source"
++                validation = validate_answer(pre.clean_query, overview.answer, overview_route, entities, hits=overview.hits, mode=overview_mode, frame=overview_frame)
++                trace.append(PipelineTrace("competition_overview", "accepted" if validation.ok else "rejected", 0.98, "source clauses across sections; headings alone are insufficient", {"section_ids": list(overview.section_ids), "game_ids": [target.game_id for target in competition_target.targets], "validation_errors": list(validation.errors), "history_answer_count": overview.history_answer_count, "excluded_clause_count": overview.excluded_clause_count, "no_further_clauses": overview.no_further_clauses}))
+                 if validation.ok:
+-                    return self._build_result(overview.answer, overview.hits, started, "pipeline:competition_rule_overview_source", 0.98, overview_route, entities, validation, trace)
++                    return self._build_result(overview.answer, overview.hits, started, overview_mode, 0.98, overview_route, entities, validation, trace)
+         if locale is not None and locale.effective == "en":
+             english_result = answer_english_supported(
+                 pre.clean_query,

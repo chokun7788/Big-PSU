@@ -1,0 +1,127 @@
+{
+  "question_key": "00301c15cd98d9ae70f652fc7e3e088e82b1780bf462c6be801ec81eec2a824a",
+  "example_sha256": "77a52703da2b8ebae259712ae8a66b9deec39a3679192ab35de0eb2303dfcebd",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One temporary suspension policy request; visit-planning wording is not another need.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy is retained, adding the exact requested penalty scope.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ระงับสิทธิ์ชั่วคราว must stay distinct from permanent suspension and ordinary equipment faults.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No current alleged violation, actor, cause or prior sanction is asserted.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Asking for information does not admit a violation or imply any sanction applies to this user.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_faq_curated_penalty_temp_suspension specifies temporary suspension and conditions; the permanent suspension FAQ is a separate policy.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว"
+      ],
+      "source_record_ids": [
+        "migrated_faq_curated_penalty_temp_suspension",
+        "migrated_faq_curated_penalty_permanent_suspension"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No duration range, sanction or violation judgment is taught.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 35,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องระงับสิทธิ์ชั่วคราว",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ระงับสิทธิ์ชั่วคราว",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "migrated_faq_curated_penalty_temp_suspension": {
+      "revision": 5,
+      "record_sha256": "4cafb9b9bd7bb656e3ddd2e5a022b3c6d3fda3f3449da57b44ab7314c628e1ef"
+    },
+    "migrated_faq_curated_penalty_permanent_suspension": {
+      "revision": 2,
+      "record_sha256": "ce574e698da3804d93761a080af99dd3244ef06cb186862f20ee8e468555f27e"
+    }
+  }
+}

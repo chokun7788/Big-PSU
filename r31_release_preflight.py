@@ -1,0 +1,11 @@
+import json,hashlib
+from pathlib import Path
+r=Path(Path('r31_report_path.txt').read_text().strip());p=Path(r'C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data')
+def load(name):return json.loads((r/name).read_text(encoding='utf-8'))
+preserve=load('preservation_package_C.json');units=load('final_C_unit_all.json');api=load('API_FINAL_B_C_SUMMARY.json');full=load('R31_C_FULL_ANALYSIS_SUMMARY.json');paired=load('R31_COMMON_SCORING_COMPARISON.json');smoke=load('complete_A_smoke_all.json');affected=load('final_B_competition_smoke_summary.json')
+expected_failure=len(units['failures'])==1 and units['failures'][0][0].startswith('test_checked_in_locale_files_match_builder') and not units['errors'] and not units['skipped']
+freeze=load('app_freeze_final_C.json');same_freeze=all(hashlib.sha256((p/k).read_bytes()).hexdigest()==v for k,v in freeze.items())
+gate=(not any(preserve[k] for k in ['owner_changes','snapshot_changes','original_tests_changed','package_app_mismatch']) and same_freeze and units['tests']==441 and expected_failure and api['all_passed'] and api['unique_case_grades']==941 and full['same_inputs_and_grade_count'] and not full['counts'].get('grade_new_failed',0) and paired['new_failed']==0 and len(smoke)==85 and not affected['new_failures'])
+data=dict(runtime='2026.10.02-question-target-content-r31',revision='C',changed_behavior_release_gates_passed=gate,owner_data_unchanged=True,original_tests_unchanged=True,original_logs_retained=True,same_frozen_app=same_freeze,unit_tests=441,unit_passed=440,known_preexisting_gold_builder_failure_only=expected_failure,api_unique_cases=941,api_C_reexecuted=482,root_input_keys=20327,root_grades=55583,common_scoring_pair_improvements=paired['improved'],common_scoring_new_pair_failures=paired['new_failed'],smoke_initial_sweep_passed=sum(x['status']=='passed' for x in smoke),smoke_files=85,smoke_scope='A sweep followed by B affected competition replay; final C unit/content/API gates cover the local technical change. No all-85 C rerun claimed.',legacy_suites_are_not_all_green=True,owner_policy_approved=False,real_booking_oracle_verified=False)
+with (r/'release_preflight_C.json').open('x',encoding='utf-8') as out:json.dump(data,out,ensure_ascii=False,indent=2)
+print(json.dumps(data,ensure_ascii=False),flush=True);assert gate

@@ -1,0 +1,109 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 227,
+  "question_key": "bf367f96c730d0bad6aac9fc5d51056cd53b64109cc86125acc9bd00ece91d02",
+  "raw_question": "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "ขอ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบเสร็จ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบเสนอราคา",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบกำกับภาษี",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One availability predicate coordinates receipt, quotation and tax invoice; ขอสรุปให้เข้าใจง่าย requests presentation only.",
+    "intent_operation_facet": "payment/detail/owner_policy remains one purpose rather than an added service-price task from ราคา inside ใบเสนอราคา.",
+    "entities_and_slot_roles": "Add exact ขอ action and ใบเสร็จ, ใบเสนอราคา, ใบกำกับภาษี scopes so all document types survive.",
+    "local_shared_history_scope": "No completed purchase, amount, tax status, invoice issuer or inherited booking is supplied.",
+    "negation_and_ambiguity": "The alternative document nouns are not interchangeable and do not assert that any document is available.",
+    "source_version_alignment": "r114_q018 distinguishes the invoice wording from the earlier quotation/receipt answer; preserve type/version scope and unknown effective interval.",
+    "no_business_answer_target": "No issue/refusal verdict, tax fact, document contents or price is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "r114_q018_owner_policy"
+  ],
+  "source_answer_issues": [
+    [
+      "Document type and prior-answer version distinctions remain material.",
+      "Keep all three document scopes and original source wording/currentness."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 228,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "r114_q018_owner_policy": {
+      "revision": 1,
+      "record_sha256": "54da266ac52770fbdfcb3d7bdbe4d8093a30aa7ae6a0d39497e5d04ba810ade0"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

@@ -1,0 +1,163 @@
+{
+  "question_key": "0a9f3a7b8f83c110626f5e12e4598d85d453065fbf70f420815339be9fd896af",
+  "example_sha256": "53b3355a43734c14371d0d85f68a89ec501110314bdad1c53928e6ee6b913564",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One duration-in-minutes question selects the external/half-day Cockpit rental package.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/duration_minutes remains separate from ordinary play-session duration.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Retain the entire literal package target, audience and half-day category; remove the false ordinary-service role.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Visit-planning framing does not supply a clock window, booking date or participant count.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Half-day is a categorical package label, not permission to calculate a conventional number of minutes.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_5 supplies its own duration_minutes and Cockpit equipment list; those source values are not interchangeable.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที"
+      ],
+      "source_record_ids": [
+        "package_5",
+        "audience_external_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No180/240-minute assumption, price or quantity is taught.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 209,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "ภายนอก",
+      "Cockpit Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "duration_minutes",
+        "target": "Cockpit Zone",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Cockpit Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ เวลาใช้งานของ PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน นับเป็นกี่นาที",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "duration_minutes",
+        "target": "PSU Esports Studio - Phuket - Cockpit Zone / ภายนอก / ครึ่งวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_5": {
+      "revision": 1,
+      "record_sha256": "aa5aa842908a878342677e963ea767145b3ab69fd6b1a42688f32c2a47f73bfd"
+    },
+    "audience_external_org": {
+      "revision": 2,
+      "record_sha256": "15fc64bde64d0d5dad8a7470d59bccdf56f5ba932185ff4cfee6618ffea8a463"
+    }
+  }
+}

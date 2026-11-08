@@ -1,0 +1,122 @@
+{
+  "question_key": "d4ec7e5b100a8784e99ba0fb7851f112b190a1f3778804472d45da796dbecc29",
+  "example_sha256": "8661f8a5c6d926a8c208d6f576607b3552ab6f6daa61a61b1d7fc6b266c287aa",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One tournament-rule question asks how a forfeit score is recorded.",
+      "raw_quotes": [
+        "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause is correct; add the specific score-recording scope.",
+      "raw_quotes": [
+        "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "VALORANT is game target; ปรับแพ้บันทึกคะแนน is the requested rule scope, not a numeric score.",
+      "raw_quotes": [
+        "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No event year or edition is quoted and none is imported from a source title.",
+      "raw_quotes": [
+        "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "เท่าไร is a question about a result, not an assertion that a particular score applies.",
+      "raw_quotes": [
+        "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_valorant_42_rule_clause explicitly concerns forfeit score recording; 75-77 concern different penalty levels and are not substitutes.",
+      "raw_quotes": [
+        "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย"
+      ],
+      "source_record_ids": [
+        "r114_valorant_42_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "The source score 13-0 is deliberately absent from the label.",
+      "raw_quotes": [
+        "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 21,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "สอบถามหน่อยครับ กติกา VALORANT ปรับแพ้บันทึกคะแนนเท่าไร หน่อย",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ปรับแพ้บันทึกคะแนน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "r114_valorant_42_rule_clause": {
+      "revision": 1,
+      "record_sha256": "373752b85c2a79c5cdef53936db484e88146a4a67b92fb653ceeb115fc8d03dd"
+    }
+  }
+}

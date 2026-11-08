@@ -1,0 +1,15 @@
+--- before/app/knowledge/common/schema_language.py
++++ r61/app/knowledge/common/schema_language.py
+@@ -33,7 +33,11 @@
+         # Never infer a different valid word or remove a negation.
+         if len(candidates)!=1:return m.group()
+         target=candidates[0]
+-        if len(target)==len(token):return m.group() # do not substitute a valid word by guessing
++        if len(target)==len(token):
++            # A single adjacent transposition is a concrete channel; arbitrary
++            # substitutions remain suggestions requiring a separate review.
++            different=[i for i,(a,b) in enumerate(zip(token,target)) if a!=b]
++            if len(different)!=2 or different[1]!=different[0]+1 or token[different[0]]!=target[different[1]] or token[different[1]]!=target[different[0]]:return m.group()
+         if target in {'not','never','now','none'}:return m.group()
+         edits.append({'observed':m.group(),'intended':target,'start':m.start(),'distance':1,'source':'schema_description_lexicon'})
+         return target

@@ -1,0 +1,97 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 231,
+  "question_key": "e802f63d00af0c176800befff8b374ab34cb20c5480864cf3e5fbeb64ecd823d",
+  "raw_question": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "payer",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า ผู้โอนเงินต้องมีชื่อในรายการจองด้วยหรือไม่ ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "payer",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ผู้โอนเงิน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "มีชื่อในรายการจอง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One payer-identity requirement asks whether the sender must be named in the booking; visit planning and summary language are framing.",
+    "intent_operation_facet": "payment/detail/payer remains distinct from general payment procedure or personnel lookup.",
+    "entities_and_slot_roles": "ผู้โอนเงิน and มีชื่อในรายการจอง are literal requested actor/booking-identity scopes.",
+    "local_shared_history_scope": "No actual name, account, primary-booker role or participant identity is inherited.",
+    "negation_and_ambiguity": "A boolean requirement query does not assert that the sender is already named or must be only the primary booker.",
+    "source_version_alignment": "r114_r108_payer_payer states named-in-booking payer scope, which is not a primary-booker-only restriction.",
+    "no_business_answer_target": "No yes/no requirement answer, identity, bank details or permission enters the label."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "r114_r108_payer_payer"
+  ],
+  "source_answer_issues": [
+    [
+      "Named payer is not necessarily only the primary booker.",
+      "Keep actor condition without inventing a primary-only restriction."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 232,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "r114_r108_payer_payer": {
+      "revision": 1,
+      "record_sha256": "38941bfaa48f59251a0da6f681b1f900803a05b2dc40debf7c8a3a0760333c85"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

@@ -1,0 +1,163 @@
+{
+  "question_key": "b0e417e13a14f9b4755e860aa56275bfbadf8b8181f4dd8f48c985bb2289250b",
+  "example_sha256": "9a57357336fa6486244316583eed135383b471e670324493ddb4beadf7a72892",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One hypothetical rental-price question names the external/half-day VR package; answer-briefly is style.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/price_calculate/amount_thb is retained for the selected package rather than an ordinary VR play fee.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "The entire package name is target; external and half-day are quoted package dimensions, not a new service offering.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No party size, user identity, date, booking action or extra package quantity is inherited.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "If renting is the price scenario, not an established purchase or an output-dependent permission task.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_9 has its own THB amount_minor, period and audience relation; it differs from per-session VR rates.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท"
+      ],
+      "source_record_ids": [
+        "package_9",
+        "audience_external_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No amount, multiplication, inferred session count or purchase is taught.",
+      "raw_quotes": [
+        "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 210,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "ภายนอก",
+      "VR Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท",
+        "domain": "rental",
+        "operation": "price_calculate",
+        "facet": "amount_thb",
+        "target": "VR Zone",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยตอบสั้น ๆ ว่า ถ้าเช่า PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน ต้องจ่ายกี่บาท",
+        "domain": "rental",
+        "operation": "price_calculate",
+        "facet": "amount_thb",
+        "target": "PSU Esports Studio - Phuket - VR Zone / ภายนอก / ครึ่งวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_9": {
+      "revision": 1,
+      "record_sha256": "850a0d07328da9cc33b37205d451f693f4777b1a5908bc86282431fc8b5699e0"
+    },
+    "audience_external_org": {
+      "revision": 2,
+      "record_sha256": "15fc64bde64d0d5dad8a7470d59bccdf56f5ba932185ff4cfee6618ffea8a463"
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "question_key": "6fd7a9ebca01251de0ca430355a909af4f13f1019252c66c197f4079669ff79f",
+  "example_sha256": "85aab3e828acf1b60d37c69f4fb7f780ca374087f3311369252162648e4bd2a2",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One seating-capacity question selects the internal/full-day All Zones rental package.",
+      "raw_quotes": [
+        "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/room_seats retains room seating rather than gameplay party size.",
+      "raw_quotes": [
+        "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Use the complete package name with internal/full-day dimensions; remove the false service slot.",
+      "raw_quotes": [
+        "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual attendance, purchase quantity or PSU-student identity is inherited.",
+      "raw_quotes": [
+        "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "How many people can sit does not certify every gaming station can be played simultaneously.",
+      "raw_quotes": [
+        "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_2 has room_seats distinct from all-equipment inclusion and package duration.",
+      "raw_quotes": [
+        "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน"
+      ],
+      "source_record_ids": [
+        "package_2",
+        "audience_internal_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No capacity number, controller count or admission guarantee is taught.",
+      "raw_quotes": [
+        "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 215,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "ภายใน",
+      "All Zones"
+    ],
+    "tasks": [
+      {
+        "quote": "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "room_seats",
+        "target": "All Zones",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "All Zones",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "พื้นที่ PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน นั่งได้กี่คน",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "room_seats",
+        "target": "PSU Esports Studio - Phuket - All Zones / ภายใน / เต็มวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_2": {
+      "revision": 1,
+      "record_sha256": "842efa4884429d5d40ad385aa3651bc5f18cd0419801361f34e27ef2873b9a77"
+    },
+    "audience_internal_org": {
+      "revision": 2,
+      "record_sha256": "d098dad7f2532de4774513d2ef2b572977cd3987fc5229333ccfa5b5af36f84f"
+    }
+  }
+}

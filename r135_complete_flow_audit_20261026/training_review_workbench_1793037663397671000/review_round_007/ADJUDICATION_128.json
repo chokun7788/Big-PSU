@@ -1,0 +1,139 @@
+{
+  "question_key": "0a0a9fe798329ab43d3714c8dd2eca7374f8d4c8d0b49ee450710daf38f8102c",
+  "example_sha256": "273475ee94ba0ad8941ee79893803abdfa17a2f1758ff494fd7e31ed841b1e27",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One permission question asks whether a guardian may use equipment.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy preserves actor-specific eligibility.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ผู้ปกครอง is requested actor scope and เข้าไปใช้อุปกรณ์ the action.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No minor, accompanying-child status or audience discount is inherited.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Guardian as equipment user differs from a guardian accompanying a minor; the question does not establish permission for either.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Public-access general and booking-required records cover public visitors and booking/ID conditions, not exhaustive guardian-as-user exceptions.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_public_access_general",
+        "migrated_policy_text_public_access_booking_required"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No unconditional permission, child threshold, booking deadline or ID answer is taught.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Public visitor clauses do not exhaust guardian-as-user eligibility.",
+      "handling": "Keep unverified actor/exception permission unknown."
+    }
+  ],
+  "historical_review_row": 128,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอถามเกี่ยวกับศูนย์หน่อยครับ: ผู้ปกครองเข้าไปใช้อุปกรณ์ได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ผู้ปกครอง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "เข้าไปใช้อุปกรณ์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_public_access_general": {
+      "revision": 2,
+      "record_sha256": "df8c8a2d3c4b0fa505909395eb1bcaadfd832b630f1ecf9ced55d8fa1fa48f91"
+    },
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    }
+  }
+}

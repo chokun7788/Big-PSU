@@ -1,0 +1,12 @@
+--- before/app/session/conversation_store.py
++++ r62/app/session/conversation_store.py
+@@ -126,7 +126,8 @@
+                      'route_intent':response.get('route_intent',''),'resolved_text':(turn['plan'] or {}).get('resolved_query',response.get('resolved_question',turn['question'])),
+                      'universal_intent':intent,'request_plan':turn['plan'],'request_id':response.get('request_id',''),
+                      'rule_coverage':copy.deepcopy(response.get('rule_coverage')),
+-                     'service_fact_state':copy.deepcopy(fact_state) if fact_state is not None else service_fact_state(response)},
++                     'service_fact_state':copy.deepcopy(fact_state) if fact_state is not None else service_fact_state(response),
++                     'common_read_state':copy.deepcopy(response.get('common_read_state'))},
+                 ])
+                 r['history']=r['history'][-16:]
+                 self._save(session_id)

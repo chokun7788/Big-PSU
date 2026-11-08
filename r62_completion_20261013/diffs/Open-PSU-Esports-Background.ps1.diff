@@ -1,0 +1,31 @@
+--- before/Open-PSU-Esports-Background.ps1
++++ r62/Open-PSU-Esports-Background.ps1
+@@ -2,8 +2,10 @@
+ $ErrorActionPreference = "Stop"
+ if ($Port -ne 0 -and ($Port -lt 1024 -or $Port -gt 65535)) { throw 'Port must be between 1024 and 65535.' }
+ $packageRoot = $PSScriptRoot
++Set-Location -LiteralPath $packageRoot
+ . (Join-Path $packageRoot 'Runtime-Readiness.ps1')
+ $python = Get-ChatbotPython $packageRoot $PythonPath
++$env:PSU_EXPECTED_SOURCE_SHA256=(& $python.Path -B -c "from app.knowledge.common.build_info import LOADED_BUILD;print(LOADED_BUILD['loaded_source_sha256'])").Trim()
+ . (Join-Path $packageRoot "Booking-Dashboard-Probe.ps1")
+ $ownerDashboardAt8080 = Test-BookingDashboardIdentity -BaseUrl "http://127.0.0.1:8080"
+ $manifestPath = Join-Path $packageRoot 'package_manifest.json'
+@@ -32,7 +34,7 @@
+ }
+ 
+ function Test-ThisPackage($Health) {
+-    return ($Health.service -eq 'psu-esports-chat-web' -and $Health.runtime.version -eq $expectedVersion -and $Health.runtime.installation_id -eq $expectedInstallation)
++    return ($Health.service -eq 'psu-esports-chat-web' -and $Health.runtime.version -eq $expectedVersion -and $Health.runtime.installation_id -eq $expectedInstallation -and $Health.common_loaded_build.loaded_source_sha256 -eq $env:PSU_EXPECTED_SOURCE_SHA256)
+ }
+ $chatbotPort = $null
+ $candidatePorts = if ($Port) { @($Port) } else { 8090..8099 }
+@@ -75,7 +77,7 @@
+ }
+ Write-Host "Startup logs: $logs"
+ Write-Host "Checking readiness before opening the browser. Python: $($python.Path)"
+-for ($attempt = 0; $attempt -lt 90; $attempt++) {
++for ($attempt = 0; $attempt -lt 300; $attempt++) {
+     if ($child.HasExited) {
+         Save-Readiness @{Ready=$false;Stage='process';Reasons=@('launcher_exited');ExitCode=$child.ExitCode} 'startup'
+         throw "Chatbot stopped during startup. Read the startup logs in $logs."

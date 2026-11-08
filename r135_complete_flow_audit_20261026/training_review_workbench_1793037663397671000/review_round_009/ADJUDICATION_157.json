@@ -1,0 +1,183 @@
+{
+  "question_key": "c048af4898454d1edc15c901db8392c593738094182167846a5915322b520a3d",
+  "example_sha256": "9fb83ac889abae763e514f38bd1a53021ef999442046b917fb76c48e04e9d0fc",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One public-user Nintendo Switch hourly-price request.",
+      "raw_quotes": [
+        "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount is retained.",
+      "raw_quotes": [
+        "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "บุคคลทั่วไป is a quoted source audience label,1 ชั่วโมง duration and Nintendo Switch service/platform.",
+      "raw_quotes": [
+        "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No party size, personal age or PSU status is inherited.",
+      "raw_quotes": [
+        "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The source tariff group alias can bind without asserting the customer's age; missing party size must not silently choose a band.",
+      "raw_quotes": [
+        "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "audience_general_adult explicitly aliases บุคคลทั่วไป; Nintendo general-adult rates separately cover1-2 and3-4 persons.",
+      "raw_quotes": [
+        "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": [
+        "audience_general_adult",
+        "migrated_rate_nintendo_switch_60_1_2_general_adult",
+        "migrated_rate_nintendo_switch_60_3_4_general_adult"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No140/280THB total, adult-age fact or default group count is taught.",
+      "raw_quotes": [
+        "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 157,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "1 ชั่วโมง",
+      "Nintendo Switch",
+      "บุคคลทั่วไป"
+    ],
+    "tasks": [
+      {
+        "quote": "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "1 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "บุคคลทั่วไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "1 ชั่วโมง",
+      "Nintendo Switch",
+      "บุคคลทั่วไป"
+    ],
+    "tasks": [
+      {
+        "quote": "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "1 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "บุคคลทั่วไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "audience_general_adult": {
+      "revision": 2,
+      "record_sha256": "eff1a35320f4bce8e53c800337806508f70a7e9da7057ebd849896fb239da291"
+    },
+    "migrated_rate_nintendo_switch_60_1_2_general_adult": {
+      "revision": 2,
+      "record_sha256": "8c218d926f2a14f0b884ae8f65a98d08572026680a4fa89a7611d46a71240632"
+    },
+    "migrated_rate_nintendo_switch_60_3_4_general_adult": {
+      "revision": 2,
+      "record_sha256": "abe6173b7c44a6069c3b4319fda3390dd42fdd3c3d437679ae2a2842629a31c4"
+    }
+  }
+}

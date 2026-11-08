@@ -1,0 +1,740 @@
+[
+  {
+    "summary": {
+      "question": "วันที่ 26 ตุลาเปิดไหม",
+      "answer": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "elapsed": 17.402069499999925,
+      "understanding": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "validated_interpretation_proposal",
+        "tasks": [
+          {
+            "quote": "วันที่ 26 ตุลาเปิดไหม",
+            "domain": "schedule",
+            "category": "C11",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ],
+        "event": {
+          "id": "519d3356f3be4b9a82a0e09f583f514b",
+          "stage": "context_understanding",
+          "model": "psu-r121-trained:latest",
+          "transport_ok": true,
+          "schema_ok": true,
+          "model_provenance": {
+            "base_repository": "typhoon-ai/typhoon2.5-qwen3-4b",
+            "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+            "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+            "adapter_active": true,
+            "stage": "context",
+            "quantization": "NF4",
+            "profile_digest": "5a5285d8a6cb1eec20d5eb710606cf03ac8313609da41e7769d33b54f6cbed50"
+          },
+          "response_model": "psu-r121-trained:latest",
+          "identity_verified": true,
+          "raw_content": "{\"focus\":\"opening_hours\",\"context_quotes\":[],\"tasks\":[{\"quote\":\"วันที่ 26 ตุลาเปิดไหม\",\"domain\":\"schedule\",\"operation\":\"detail\",\"facet\":\"open_periods\",\"target\":\"\",\"constraints\":[],\"ambiguous\":false}]}",
+          "context_focus": "opening_hours",
+          "context_quotes": [],
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "validated_interpretation_proposal",
+          "elapsed_sec": 17.079,
+          "http_attempted": true,
+          "input_question": "วันที่ 26 ตุลาเปิดไหม",
+          "legacy_contrast": {
+            "domain": "schedule",
+            "operation": "schedule_lookup",
+            "needs": [
+              "lookup_schedule"
+            ],
+            "reason": "domain_terms=2; schedule terms found"
+          },
+          "context_scope_version": "r122"
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "needs": [
+        {
+          "category": "C11",
+          "status": "missing_source",
+          "reason_codes": [
+            "entity_not_bound"
+          ]
+        }
+      ]
+    },
+    "raw": {
+      "question": "วันที่ 26 ตุลาเปิดไหม",
+      "pipeline": {
+        "answer": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+        "hits": [],
+        "elapsed": 17.402069499999925,
+        "mode": "pipeline:common_unconfirmed",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unconfirmed",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unconfirmed",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unconfirmed",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unconfirmed"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2449,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "unconfirmed",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [],
+            "requested_fields": [],
+            "method": "r114_domain_readers",
+            "operation": "domain",
+            "source_answer_confirmed": false
+          },
+          "obligations": [],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "need_ledger": {
+            "version": "common_need_ledger_v1",
+            "needs": [],
+            "total_needs": 0,
+            "answered_needs": 0,
+            "scope_limits": [],
+            "snapshot_consistent": true,
+            "semantic_correctness_verified": false,
+            "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+            "evidence_hits": 0,
+            "response_type": "unconfirmed"
+          },
+          "task_flow": {
+            "version": "r95",
+            "path": "compatibility_common_domain",
+            "reason": "no_accepted_replacement_task"
+          },
+          "interpretation_diagnostics": [],
+          "knowledge_snapshot": {
+            "release_id": "migration-preview-r69",
+            "epoch": 2449,
+            "content_view": "evaluation_draft"
+          },
+          "request_plan": {
+            "version": "common_request_plan_v3",
+            "question": "วันที่ 26 ตุลาเปิดไหม",
+            "needs": [
+              {
+                "id": "r114_n1",
+                "task": "schedule",
+                "query": "วันที่ 26 ตุลาเปิดไหม",
+                "source_span": "วันที่ 26 ตุลาเปิดไหม",
+                "record_ids": [],
+                "qualifiers": [],
+                "slot_origin": "current_user",
+                "predicate": "schedule",
+                "slots": {},
+                "required_claims": [],
+                "hard_dependencies": []
+              }
+            ],
+            "scope": {
+              "source": "current_pinned_snapshot",
+              "router": "r114"
+            },
+            "raw_question": "วันที่ 26 ตุลาเปิดไหม"
+          },
+          "need_results": [
+            {
+              "need_id": "r114_n1",
+              "task": "schedule",
+              "category": "C11",
+              "source_span": "วันที่ 26 ตุลาเปิดไหม",
+              "execution_query": "วันที่ 26 ตุลาเปิดไหม ",
+              "status": "missing_source",
+              "reason_codes": [
+                "entity_not_bound"
+              ],
+              "receipts": [],
+              "claim_packets": [],
+              "execution_contract": {
+                "version": "r123-obligation-verifier-v1",
+                "task_id": "t1",
+                "terminal_state": "missing_source",
+                "reason_codes": [
+                  "entity_not_bound"
+                ],
+                "obligations": [
+                  {
+                    "id": "t1:answer",
+                    "kind": "task_completion",
+                    "task_id": "t1",
+                    "expected": "open_periods",
+                    "fulfilled": false,
+                    "reason": "entity_not_bound",
+                    "claim_refs": []
+                  }
+                ],
+                "receipts": [],
+                "fatal": [],
+                "source_refs_checked": true,
+                "all_obligations_fulfilled": false,
+                "whole_question_semantics_verified": false,
+                "planned_task_coverage_only": true
+              },
+              "semantic_correctness_verified": false
+            }
+          ],
+          "understanding": {
+            "version": "r117",
+            "accepted": true,
+            "reason": "validated_interpretation_proposal",
+            "tasks": [
+              {
+                "quote": "วันที่ 26 ตุลาเปิดไหม",
+                "domain": "schedule",
+                "category": "C11",
+                "operation": "detail",
+                "facet": "open_periods",
+                "target": "",
+                "constraints": [],
+                "ambiguous": false
+              }
+            ],
+            "event": {
+              "id": "519d3356f3be4b9a82a0e09f583f514b",
+              "stage": "context_understanding",
+              "model": "psu-r121-trained:latest",
+              "transport_ok": true,
+              "schema_ok": true,
+              "model_provenance": {
+                "base_repository": "typhoon-ai/typhoon2.5-qwen3-4b",
+                "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+                "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+                "adapter_active": true,
+                "stage": "context",
+                "quantization": "NF4",
+                "profile_digest": "5a5285d8a6cb1eec20d5eb710606cf03ac8313609da41e7769d33b54f6cbed50"
+              },
+              "response_model": "psu-r121-trained:latest",
+              "identity_verified": true,
+              "raw_content": "{\"focus\":\"opening_hours\",\"context_quotes\":[],\"tasks\":[{\"quote\":\"วันที่ 26 ตุลาเปิดไหม\",\"domain\":\"schedule\",\"operation\":\"detail\",\"facet\":\"open_periods\",\"target\":\"\",\"constraints\":[],\"ambiguous\":false}]}",
+              "context_focus": "opening_hours",
+              "context_quotes": [],
+              "teaching_example_ids": [],
+              "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+              "reason": "validated_interpretation_proposal",
+              "elapsed_sec": 17.079,
+              "http_attempted": true,
+              "input_question": "วันที่ 26 ตุลาเปิดไหม",
+              "legacy_contrast": {
+                "domain": "schedule",
+                "operation": "schedule_lookup",
+                "needs": [
+                  "lookup_schedule"
+                ],
+                "reason": "domain_terms=2; schedule terms found"
+              },
+              "context_scope_version": "r122"
+            },
+            "factual_correctness_verified": false,
+            "legacy_answer_read": false
+          },
+          "execution_contract": {
+            "version": "r123",
+            "path": "compiled_legacy_wire",
+            "request_plan": {
+              "question": "วันที่ 26 ตุลาเปิดไหม",
+              "snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2449,
+                "reference_time": "2026-10-23T19:46:40.069311+07:00"
+              },
+              "tasks": [
+                {
+                  "id": "t1",
+                  "source_span": {
+                    "start": 0,
+                    "end": 21,
+                    "text": "วันที่ 26 ตุลาเปิดไหม"
+                  },
+                  "category": "C11",
+                  "operation": "detail",
+                  "facet": "open_periods",
+                  "capability": {
+                    "version": "r123-capabilities-v1",
+                    "category": "C11",
+                    "legacy_operation": "detail",
+                    "operation": "field_lookup",
+                    "field": "open_periods",
+                    "status": "adapter_available",
+                    "executor": "native_domain_reader",
+                    "verification_level": "source_and_obligation_checks_required",
+                    "complete_semantics_verified": false
+                  },
+                  "target_span": null,
+                  "target_scope": "none",
+                  "bound_record_ids": [],
+                  "slots": [],
+                  "bindings": [],
+                  "obligations": [
+                    {
+                      "id": "t1:answer",
+                      "kind": "task_completion",
+                      "task_id": "t1",
+                      "expected": "open_periods"
+                    }
+                  ],
+                  "ambiguities": [],
+                  "errors": []
+                }
+              ],
+              "compiler_events": [],
+              "version": "r123-plan-ir-v1",
+              "wire_version": "r121-meaning-wire",
+              "wire_adapter": "validated_meaning_task_adapter",
+              "whole_question_semantics_verified": false,
+              "input_basis": "engine_question_after_native_normalization",
+              "raw_request_offset_mapping_implemented": false
+            },
+            "tasks": [
+              {
+                "version": "r123-obligation-verifier-v1",
+                "task_id": "t1",
+                "terminal_state": "missing_source",
+                "reason_codes": [
+                  "entity_not_bound"
+                ],
+                "obligations": [
+                  {
+                    "id": "t1:answer",
+                    "kind": "task_completion",
+                    "task_id": "t1",
+                    "expected": "open_periods",
+                    "fulfilled": false,
+                    "reason": "entity_not_bound",
+                    "claim_refs": []
+                  }
+                ],
+                "receipts": [],
+                "fatal": [],
+                "source_refs_checked": true,
+                "all_obligations_fulfilled": false,
+                "whole_question_semantics_verified": false,
+                "planned_task_coverage_only": true
+              }
+            ],
+            "schedule": [
+              {
+                "phase": "typed_read_complete",
+                "task_id": "t1",
+                "reason": "entity_not_bound",
+                "model_calls_used": 1
+              }
+            ],
+            "typed_reads_before_fallback": true,
+            "whole_question_semantics_verified": false,
+            "full_r123_architecture_implemented": false,
+            "request_context": {
+              "version": "r123-request-provenance-v1",
+              "request_id": "431128d83f75436eba39a5fa27156d6c",
+              "raw_question": "วันที่ 26 ตุลาเปิดไหม",
+              "normalized_question": "วันที่ 26 ตุลาเปิดไหม",
+              "engine_question": "วันที่ 26 ตุลาเปิดไหม",
+              "input_origin": "native_request_context",
+              "input_basis": "current_raw",
+              "normalization": {
+                "raw": "วันที่ 26 ตุลาเปิดไหม",
+                "text": "วันที่ 26 ตุลาเปิดไหม",
+                "offsets": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19,
+                  20
+                ],
+                "edits": [],
+                "protected": [
+                  {
+                    "text": "26",
+                    "start": 7,
+                    "end": 9
+                  }
+                ]
+              },
+              "derivation": null,
+              "history": {
+                "present": true,
+                "native_delivered_state_accepted": true,
+                "state_sha256": "3a8ab68e76b91ec6f726bdb3d38f179e8adfd2c9863fb5e4dd3fa32c33bbf53f",
+                "facts_inherited": false,
+                "trust_basis": "native_delivered_state_gate_requires_server_sanitized_history",
+                "arbitrary_assistant_prose_used": false
+              },
+              "whole_question_semantics_verified": false
+            },
+            "input_span_receipts": [
+              {
+                "task_id": "t1",
+                "spans": [
+                  {
+                    "kind": "task",
+                    "execution_span": {
+                      "start": 0,
+                      "end": 21,
+                      "text": "วันที่ 26 ตุลาเปิดไหม"
+                    },
+                    "raw_mapping": {
+                      "status": "exact_current_raw",
+                      "start": 0,
+                      "end": 21,
+                      "text": "วันที่ 26 ตุลาเปิดไหม"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "domain_flow": {
+            "version": "r114",
+            "categories": [
+              "C11"
+            ],
+            "path": "domain_readers",
+            "status": "missing_source",
+            "model_events": [
+              {
+                "id": "519d3356f3be4b9a82a0e09f583f514b",
+                "stage": "context_understanding",
+                "model": "psu-r121-trained:latest",
+                "transport_ok": true,
+                "schema_ok": true,
+                "model_provenance": {
+                  "base_repository": "typhoon-ai/typhoon2.5-qwen3-4b",
+                  "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+                  "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+                  "adapter_active": true,
+                  "stage": "context",
+                  "quantization": "NF4",
+                  "profile_digest": "5a5285d8a6cb1eec20d5eb710606cf03ac8313609da41e7769d33b54f6cbed50"
+                },
+                "response_model": "psu-r121-trained:latest",
+                "identity_verified": true,
+                "raw_content": "{\"focus\":\"opening_hours\",\"context_quotes\":[],\"tasks\":[{\"quote\":\"วันที่ 26 ตุลาเปิดไหม\",\"domain\":\"schedule\",\"operation\":\"detail\",\"facet\":\"open_periods\",\"target\":\"\",\"constraints\":[],\"ambiguous\":false}]}",
+                "context_focus": "opening_hours",
+                "context_quotes": [],
+                "teaching_example_ids": [],
+                "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+                "reason": "validated_interpretation_proposal",
+                "elapsed_sec": 17.079,
+                "http_attempted": true,
+                "input_question": "วันที่ 26 ตุลาเปิดไหม",
+                "legacy_contrast": {
+                  "domain": "schedule",
+                  "operation": "schedule_lookup",
+                  "needs": [
+                    "lookup_schedule"
+                  ],
+                  "reason": "domain_terms=2; schedule terms found"
+                }
+              }
+            ],
+            "typed_claims": [],
+            "fixture": false,
+            "english_translation_missing": false
+          },
+          "flow_contract": {
+            "version": "r114",
+            "source_contract": "domain_scoped_facts",
+            "semantic_correctness_verified": false
+          },
+          "input_normalization": {
+            "raw": "วันที่ 26 ตุลาเปิดไหม",
+            "text": "วันที่ 26 ตุลาเปิดไหม",
+            "offsets": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20
+            ],
+            "edits": [],
+            "protected": [
+              {
+                "text": "26",
+                "start": 7,
+                "end": 9
+              }
+            ]
+          },
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [],
+          "query_resolution": [],
+          "request_context": {
+            "request_id": "431128d83f75436eba39a5fa27156d6c",
+            "semantic_attempts": 0,
+            "corrective_reads": 0,
+            "snapshot": {},
+            "budget": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 190.0,
+              "global_elapsed_sec": 17.4692,
+              "global_remaining_sec": 172.5308,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 171.5308
+            },
+            "audits": [],
+            "events": [
+              {
+                "stage": "R124_reference_clock",
+                "elapsed_ms": 235.461,
+                "reference_time": "2026-10-23T19:46:40.069311+07:00",
+                "monotonic_value": 19400.3971004
+              },
+              {
+                "stage": "S16_snapshot_check",
+                "elapsed_ms": 17403.229,
+                "still_current": true,
+                "release_id": "migration-preview-r69",
+                "epoch": 2449
+              },
+              {
+                "stage": "S11_dependencies",
+                "elapsed_ms": 17403.363,
+                "unmet": []
+              },
+              {
+                "stage": "S12_gap_resolution",
+                "elapsed_ms": 17403.366,
+                "issues": [
+                  {
+                    "need_id": "r114_n1",
+                    "task": "schedule",
+                    "status": "missing_source",
+                    "first_stage": "evidence_insufficient",
+                    "reason_codes": [
+                      "entity_not_bound"
+                    ]
+                  }
+                ]
+              },
+              {
+                "stage": "S13_render",
+                "elapsed_ms": 17403.369,
+                "characters": 40,
+                "source_hit_count": 0
+              },
+              {
+                "stage": "S15_finalizer",
+                "elapsed_ms": 17403.373,
+                "outcome": "unconfirmed",
+                "need_statuses": [
+                  {
+                    "id": "r114_n1",
+                    "status": "missing_source"
+                  }
+                ]
+              }
+            ],
+            "input": {
+              "raw_question": "วันที่ 26 ตุลาเปิดไหม",
+              "normalized_question": "วันที่ 26 ตุลาเปิดไหม",
+              "span_map": {
+                "raw": "วันที่ 26 ตุลาเปิดไหม",
+                "text": "วันที่ 26 ตุลาเปิดไหม",
+                "offsets": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15,
+                  16,
+                  17,
+                  18,
+                  19,
+                  20
+                ],
+                "edits": [],
+                "protected": [
+                  {
+                    "text": "26",
+                    "start": 7,
+                    "end": 9
+                  }
+                ]
+              },
+              "requested_locale": "auto",
+              "effective_locale": "th"
+            }
+          },
+          "flow_audit": {
+            "version": "r102",
+            "needs": 1,
+            "issues": [
+              {
+                "need_id": "r114_n1",
+                "task": "schedule",
+                "status": "missing_source",
+                "first_stage": "evidence_insufficient",
+                "reason_codes": [
+                  "entity_not_bound"
+                ]
+              }
+            ],
+            "data_profile": "evaluation_draft",
+            "source_snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 2449,
+              "content_view": "evaluation_draft"
+            },
+            "attribution_basis": "terminal contracts and model audits; not independent root-cause proof",
+            "interpretation_verified_by_human": false,
+            "model_accuracy_from_transport": false
+          }
+        },
+        "language": {
+          "requested": "auto",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 0.9617,
+          "reason": "thai_script"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,1639 @@
+{
+  "counts": {
+    "train": 244,
+    "validation": 15,
+    "test": 30
+  },
+  "changed_rows": 16,
+  "changes": [
+    {
+      "split": "train",
+      "key": "c8d9c78fa099e0ae2726a3da4066357a96e22d67640aea89f2c41a5ad07103ed",
+      "question": "Could you please help me with this: Is it open on Sundays",
+      "before": {
+        "focus": "opening_hours",
+        "context_quotes": [
+          "Sunday"
+        ],
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: Is it open on Sundays",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "date",
+                "quote": "Sunday",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "opening_hours",
+        "context_quotes": [
+          "Sunday"
+        ],
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: Is it open on Sundays",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "date",
+                "quote": "Sunday",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": true
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "unresolved_referent",
+          "task_quote": "Could you please help me with this: Is it open on Sundays"
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "95e528d34c8549076003e5e2e4b072acd38a0e13f79f34fe4df394fca8874f30",
+      "question": "Write one polite promotional sentence for the event. Keep it under three lines.",
+      "before": {
+        "focus": "general",
+        "context_quotes": [],
+        "tasks": [
+          {
+            "quote": "Write one polite promotional sentence for the event. Keep it under three lines.",
+            "domain": "general",
+            "operation": "detail",
+            "facet": "",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "general",
+        "context_quotes": [],
+        "tasks": [
+          {
+            "quote": "Write one polite promotional sentence for the event. Keep it under three lines.",
+            "domain": "general",
+            "operation": "detail",
+            "facet": "",
+            "target": "",
+            "constraints": [],
+            "ambiguous": true
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "unresolved_referent",
+          "task_quote": "Write one polite promotional sentence for the event. Keep it under three lines."
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "1803fb1ea2eb4e22f75b6ddbb27f80ab61a3f36665068e41a86d3d02dd1ee3b2",
+      "question": "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 นาที",
+          "PC",
+          "นักศึกษา PSU"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "PC",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 นาที",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "PC",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PC",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 นาที",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "PC",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PC",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 นาที",
+          "PC",
+          "นักศึกษา PSU"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "PC",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 นาที",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "PC",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PC",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "service",
+            "quote": "PC",
+            "source_record_id": ""
+          }
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "0cfd656985ef7e31c4976e6ee7faed18a240e6dfc7a37607c2a298b27942c0c2",
+      "question": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม",
+      "before": {
+        "focus": "live_status",
+        "context_quotes": [
+          "พฤหัสบดี",
+          "15:00",
+          "Nintendo"
+        ],
+        "tasks": [
+          {
+            "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม",
+            "domain": "live",
+            "operation": "availability",
+            "facet": "live_status",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "date",
+                "quote": "พฤหัสบดี",
+                "source_record_id": ""
+              },
+              {
+                "slot": "time",
+                "quote": "15:00",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "live_status",
+        "context_quotes": [
+          "พฤหัสบดี",
+          "15:00",
+          "Nintendo"
+        ],
+        "tasks": [
+          {
+            "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม",
+            "domain": "live",
+            "operation": "availability",
+            "facet": "live_status",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "date",
+                "quote": "พฤหัสบดี",
+                "source_record_id": ""
+              },
+              {
+                "slot": "time",
+                "quote": "15:00",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": true
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "occupancy_distinct_from_regular_timetable",
+          "task_quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "2d5b3fdfdcadaebb65bf8b142b797578de75b9aaf4f31029535cbfef68627faa",
+      "question": "นักศึกษา PSU เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "2 ชั่วโมง",
+          "Nintendo Switch",
+          "นักศึกษา PSU"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Nintendo Switch",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "2 ชั่วโมง",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "2 ชั่วโมง",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "2 ชั่วโมง",
+          "Nintendo Switch",
+          "นักศึกษา PSU"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Nintendo Switch",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "2 ชั่วโมง",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": ""
+          }
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "3cd0dcae2a26771cedcbd7db2867e6ba3516244fbd7cca594f4a4593ff66eeda",
+      "question": "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 นาที",
+          "Nintendo Switch",
+          "นักศึกษา PSU"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Nintendo Switch",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 นาที",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 นาที",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 นาที",
+          "Nintendo Switch",
+          "นักศึกษา PSU"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Nintendo Switch",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 นาที",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Nintendo Switch",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": ""
+          }
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "89b39aa857ac086c3f5bedd309d625af76a22dd8a50a57c6d452d552095245a4",
+      "question": "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท แล้วจองยังไง",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "2 ชั่วโมง",
+          "นักศึกษา PSU",
+          "VR"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "VR",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "2 ชั่วโมง",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "VR",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "2 ชั่วโมง",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "VR",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "2 ชั่วโมง",
+          "นักศึกษา PSU",
+          "VR"
+        ],
+        "tasks": [
+          {
+            "quote": "นักศึกษา PSU เล่น VR 2 ชั่วโมง เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "VR",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "2 ชั่วโมง",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "นักศึกษา PSU",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "VR",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "แล้วจองยังไง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "แล้วจองยังไง",
+          "constraint": {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": ""
+          }
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "f2d74ced4210a5e67f7e0295340ade55b4a547b2b294509fd6d0e5d68de57ff6",
+      "question": "Can outsiders come in and use the equipment? Please answer only that point.",
+      "before": {
+        "focus": "eligibility",
+        "context_quotes": [],
+        "tasks": [
+          {
+            "quote": "Can outsiders come in and use the equipment? Please answer only that point.",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "eligibility",
+        "context_quotes": [],
+        "tasks": [
+          {
+            "quote": "Can outsiders come in and use the equipment? Please answer only that point.",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": true
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "unresolved_referent",
+          "task_quote": "Can outsiders come in and use the equipment? Please answer only that point."
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "a6eb5e4dddda911c8b5c97ce6f0f650fb124053854f18a1b089892e56b3e3029",
+      "question": "Can a tourist use the studio's equipment? Please answer only that point.",
+      "before": {
+        "focus": "eligibility",
+        "context_quotes": [
+          "tourist"
+        ],
+        "tasks": [
+          {
+            "quote": "Can a tourist use the studio's equipment? Please answer only that point.",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "audience",
+                "quote": "tourist",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "eligibility",
+        "context_quotes": [
+          "tourist"
+        ],
+        "tasks": [
+          {
+            "quote": "Can a tourist use the studio's equipment? Please answer only that point.",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "audience",
+                "quote": "tourist",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": true
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "unresolved_referent",
+          "task_quote": "Can a tourist use the studio's equipment? Please answer only that point."
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "60b3ef4fccb64f41f8e70cd8ada2ee5abc75ba788f4fce2224c3233d11e29f50",
+      "question": "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 minutes",
+          "PS5",
+          "general visitor"
+        ],
+        "tasks": [
+          {
+            "quote": "How much does it cost for a general visitor to play PS5 for 30 minutes",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "PS5",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 minutes",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "PS5",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "general visitor",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PS5",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "how do I book",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 minutes",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "PS5",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PS5",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 minutes",
+          "PS5",
+          "general visitor"
+        ],
+        "tasks": [
+          {
+            "quote": "How much does it cost for a general visitor to play PS5 for 30 minutes",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "PS5",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 minutes",
+                "source_record_id": ""
+              },
+              {
+                "slot": "platform",
+                "quote": "PS5",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "general visitor",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PS5",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "how do I book",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "how do I book",
+          "constraint": {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "how do I book",
+          "constraint": {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "how do I book",
+          "constraint": {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": ""
+          }
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "207177ab21da22e4f9091d6d06eeb0f4dfc52bc12b03ecc9615cc69c68e65121",
+      "question": "What is the price of Cockpit and what games are available",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "Cockpit"
+        ],
+        "tasks": [
+          {
+            "quote": "What is the price of Cockpit",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Cockpit",
+            "constraints": [
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "what games are available",
+            "domain": "games",
+            "operation": "list",
+            "facet": "game_catalog",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "Cockpit"
+        ],
+        "tasks": [
+          {
+            "quote": "What is the price of Cockpit",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Cockpit",
+            "constraints": [
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "what games are available",
+            "domain": "games",
+            "operation": "list",
+            "facet": "game_catalog",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "what games are available",
+          "constraint": {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": ""
+          }
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "831a618e86ca1735d5b64a3241c951ef3ca5dc5b7ada0bb6d7cdeceac7c824df",
+      "question": "How is VR for 30 minutes different from VR for 1 hour, and how do I book it?",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 minutes",
+          "1 hour",
+          "VR"
+        ],
+        "tasks": [
+          {
+            "quote": "How is VR for 30 minutes different from VR for 1 hour",
+            "domain": "service_fee",
+            "operation": "compare",
+            "facet": "duration_minutes",
+            "target": "VR",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 minutes",
+                "source_record_id": ""
+              },
+              {
+                "slot": "duration",
+                "quote": "1 hour",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "VR",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "how do I book it",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 minutes",
+                "source_record_id": ""
+              },
+              {
+                "slot": "duration",
+                "quote": "1 hour",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "VR",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "30 minutes",
+          "1 hour",
+          "VR"
+        ],
+        "tasks": [
+          {
+            "quote": "How is VR for 30 minutes different from VR for 1 hour",
+            "domain": "service_fee",
+            "operation": "compare",
+            "facet": "duration_minutes",
+            "target": "VR",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 minutes",
+                "source_record_id": ""
+              },
+              {
+                "slot": "duration",
+                "quote": "1 hour",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "VR",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": true
+          },
+          {
+            "quote": "how do I book it",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": true
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "duration_roles_not_distinguished",
+          "source_quotes": [
+            "30 minutes",
+            "1 hour"
+          ]
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "how do I book it",
+          "constraint": {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "how do I book it",
+          "constraint": {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "how do I book it",
+          "constraint": {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "unresolved_referent",
+          "task_quote": "how do I book it"
+        }
+      ]
+    },
+    {
+      "split": "train",
+      "key": "68c445a6770b55da2710e3932a0fb93ee198d101abf7b2591bae961be6b6ea11",
+      "question": "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point.",
+      "before": {
+        "focus": "food_bring",
+        "context_quotes": [
+          "not asking about drinking"
+        ],
+        "tasks": [
+          {
+            "quote": "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point.",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "negation",
+                "quote": "not asking about drinking",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "food_bring",
+        "context_quotes": [
+          "not asking about drinking"
+        ],
+        "tasks": [
+          {
+            "quote": "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point.",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "negation",
+                "quote": "not asking about drinking",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": true
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "unresolved_referent",
+          "task_quote": "Can I carry a water bottle inside? I am not asking about drinking. Please answer only that point."
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "key": "d91ee50a1f6c21f141226b55bb86aaea2935e3a4b5e73b339ff4d83b81a1deaa",
+      "question": "What are the 8 buttons in Tekken 8, ans what is the PC price",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "PC",
+          "8 buttons",
+          "Tekken 8"
+        ],
+        "tasks": [
+          {
+            "quote": "What are the 8 buttons in Tekken 8",
+            "domain": "game_controls",
+            "operation": "list",
+            "facet": "input_bindings",
+            "target": "Tekken 8",
+            "constraints": [
+              {
+                "slot": "platform",
+                "quote": "PC",
+                "source_record_id": ""
+              },
+              {
+                "slot": "requested_scope",
+                "quote": "8 buttons",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "what is the PC price",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "PC",
+            "constraints": [
+              {
+                "slot": "platform",
+                "quote": "PC",
+                "source_record_id": ""
+              },
+              {
+                "slot": "requested_scope",
+                "quote": "8 buttons",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PC",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Tekken 8",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "8 buttons",
+          "PC"
+        ],
+        "tasks": [
+          {
+            "quote": "What are the 8 buttons in Tekken 8",
+            "domain": "game_controls",
+            "operation": "list",
+            "facet": "input_bindings",
+            "target": "Tekken 8",
+            "constraints": [
+              {
+                "slot": "requested_scope",
+                "quote": "8 buttons",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "what is the PC price",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "PC",
+            "constraints": [
+              {
+                "slot": "platform",
+                "quote": "PC",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "PC",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "What are the 8 buttons in Tekken 8",
+          "constraint": {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "what is the PC price",
+          "constraint": {
+            "slot": "requested_scope",
+            "quote": "8 buttons",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "what is the PC price",
+          "constraint": {
+            "slot": "service",
+            "quote": "Tekken 8",
+            "source_record_id": ""
+          }
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "key": "a603ab1aed328e10dbf5ac72b6a752be2fb77658ea0365896a1776cd04806370",
+      "question": "How to book Cockpit and what days is it open?",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "Cockpit"
+        ],
+        "tasks": [
+          {
+            "quote": "How to book Cockpit",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "what days is it open",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "Cockpit"
+        ],
+        "tasks": [
+          {
+            "quote": "How to book Cockpit",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "what days is it open",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "Cockpit",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "unique_previous_source_named_referent",
+          "task_quote": "what days is it open",
+          "source_quote": "Cockpit"
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "key": "6f3e6d8df4f646b605f95de48ff2c1038a54d4a39af3037b27aef04b9726c579",
+      "question": "How much does it cost for a student from another university to play Cockpit for one hour, and how do I book it?",
+      "before": {
+        "focus": "multiple",
+        "context_quotes": [
+          "one hour",
+          "student from another university",
+          "Cockpit"
+        ],
+        "tasks": [
+          {
+            "quote": "How much does it cost for a student from another university to play Cockpit for one hour",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Cockpit",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "one hour",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "student from another university",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "how do I book it",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "one hour",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "after": {
+        "focus": "multiple",
+        "context_quotes": [
+          "one hour",
+          "student from another university",
+          "Cockpit"
+        ],
+        "tasks": [
+          {
+            "quote": "How much does it cost for a student from another university to play Cockpit for one hour",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "Cockpit",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "one hour",
+                "source_record_id": ""
+              },
+              {
+                "slot": "audience",
+                "quote": "student from another university",
+                "source_record_id": ""
+              },
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          },
+          {
+            "quote": "how do I book it",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "Cockpit",
+            "constraints": [
+              {
+                "slot": "service",
+                "quote": "Cockpit",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "audit": [
+        {
+          "action": "removed_cross_need_constraint",
+          "task_quote": "how do I book it",
+          "constraint": {
+            "slot": "duration",
+            "quote": "one hour",
+            "source_record_id": ""
+          }
+        },
+        {
+          "action": "unique_previous_source_named_referent",
+          "task_quote": "how do I book it",
+          "source_quote": "Cockpit"
+        }
+      ]
+    }
+  ],
+  "review_status": "draft, not independently adjudicated",
+  "used_for_training": false,
+  "evaluation_reference_replaced": false,
+  "source_business_answers_changed": false
+}

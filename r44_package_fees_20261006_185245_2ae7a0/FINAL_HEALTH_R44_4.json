@@ -1,0 +1,191 @@
+{
+  "ok": true,
+  "service": "psu-esports-chat-web",
+  "time": "2026-10-06T12:25:39.687380+00:00",
+  "warmup": {
+    "ok": true,
+    "elapsed_sec": 25.1174,
+    "warmed": [
+      "game_title_aliases",
+      "structured_tools",
+      "game_resolver",
+      "routing_data",
+      "retrieval_data",
+      "probe_queries",
+      "semantic_embedding"
+    ],
+    "errors": [],
+    "timings": {
+      "game_title_aliases": 1.411,
+      "structured_tools": 2.1013,
+      "game_resolver": 0.5482,
+      "routing_data": 0.3957,
+      "retrieval_data": 5.6111,
+      "probe_queries": 14.9992,
+      "semantic_embedding": 0.0508
+    }
+  },
+  "llm_preflight": {
+    "ok": true,
+    "model": "scb10x/typhoon2.5-qwen3-4b",
+    "kind": "preflight",
+    "elapsed_ms": 96.33,
+    "response_chars": 2,
+    "done_reason": "length",
+    "num_ctx": 3072,
+    "load_duration": 14424200,
+    "prompt_eval_duration": 61788000,
+    "eval_duration": 1000,
+    "health": {
+      "llm_health_enabled": true,
+      "llm_health_status": "ok",
+      "llm_health_failures": 0,
+      "llm_health_failure_scope": "model_and_kind"
+    }
+  },
+  "input_quality_guard": {
+    "enabled": true,
+    "mode": "enforce",
+    "repeat_policy": "warn_and_continue",
+    "layout_threshold": 0.39,
+    "repeat_threshold": 0.55,
+    "corpus_size": 4023,
+    "profile_version": "keyboard-profile-v1:2a863a4176572043"
+  },
+  "llm_health": {
+    "enabled": true,
+    "failure_threshold": 2,
+    "failure_window_sec": 30.0,
+    "cooldown_sec": 90.0,
+    "states": [
+      {
+        "kind": "model",
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "status": "ok",
+        "failures": 0,
+        "successes": 1,
+        "cooldown_remaining_sec": 0.0,
+        "last_error_type": "",
+        "last_error": "",
+        "last_elapsed_ms": 96.33,
+        "last_checked_at": 1791289302.8962,
+        "last_success_at": 1791289302.8962,
+        "half_open_probe_in_flight": false,
+        "events": [
+          {
+            "event": "success",
+            "kind": "preflight",
+            "elapsed_ms": 96.33,
+            "detail": "preflight_ok",
+            "at": 1791289302.896
+          }
+        ]
+      },
+      {
+        "kind": "preflight",
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "status": "ok",
+        "failures": 0,
+        "successes": 1,
+        "cooldown_remaining_sec": 0.0,
+        "last_error_type": "",
+        "last_error": "",
+        "last_elapsed_ms": 96.33,
+        "last_checked_at": 1791289302.8962,
+        "last_success_at": 1791289302.8962,
+        "half_open_probe_in_flight": false,
+        "events": [
+          {
+            "event": "success",
+            "kind": "preflight",
+            "elapsed_ms": 96.33,
+            "detail": "preflight_ok",
+            "at": 1791289302.896
+          }
+        ]
+      }
+    ]
+  },
+  "pipeline_workers": {
+    "enabled": true,
+    "started": true,
+    "worker_count": 1,
+    "workers": [
+      {
+        "worker_id": 0,
+        "pid": 25068,
+        "alive": true,
+        "ready": true,
+        "completed_requests": 126,
+        "busy": false,
+        "replacement_warming": false
+      }
+    ],
+    "performance": {
+      "run_id": "20261006T122111Z",
+      "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r44_package_fees_20261006_185245_2ae7a0\\release_r44_4\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261006T122111Z.jsonl",
+      "events_written": 586,
+      "events_dropped": 0
+    }
+  },
+  "runtime": {
+    "profile": "owner-local-rag-assist",
+    "version": "2026.10.06-zone-rental-r44.4",
+    "installation_id": "03bb74b79837acb7",
+    "started_at": "2026-10-06T12:21:09.647744+00:00",
+    "system_memory": {
+      "available": true,
+      "physical_load_percent": 94,
+      "available_physical_mb": 918.8,
+      "available_commit_mb": 3127.2
+    },
+    "python": {
+      "executable_id": "16a5fdffbda88a30",
+      "version": [
+        3,
+        12,
+        14
+      ],
+      "bits": 64,
+      "pid": 3800
+    },
+    "answer_timeout_sec": 20.0,
+    "pipeline_timeout_sec": 19.0,
+    "intent_timeout_sec": 14.0,
+    "local_llm": {
+      "enabled": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "intent_timeout_sec": 14.0,
+      "planner_timeout_sec": 1.2,
+      "general_timeout_sec": 4.0,
+      "high_assist_profile": true
+    },
+    "semantic_rag": {
+      "enabled": true,
+      "embedding_model": "psu-bge-m3:q8_0"
+    },
+    "english": {
+      "enabled": true,
+      "draft_preview": false
+    },
+    "booking": {
+      "enabled": true,
+      "fetch_mode": "wordpress",
+      "cache_seconds": 0.0,
+      "dashboard_required": false,
+      "read_only": true
+    },
+    "input_quality": {
+      "mode": "enforce",
+      "keyboard_layout": "request_retype",
+      "repeated_characters": "warn_and_continue"
+    }
+  },
+  "features": {
+    "bilingual_english": true,
+    "local_llm_assist": true,
+    "semantic_rag": true,
+    "embedding_model": "psu-bge-m3:q8_0",
+    "live_booking_status": true
+  }
+}

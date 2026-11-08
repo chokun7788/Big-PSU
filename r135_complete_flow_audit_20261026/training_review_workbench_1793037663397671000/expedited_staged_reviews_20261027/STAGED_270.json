@@ -1,0 +1,91 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 270,
+  "question_key": "fe55f25aaebb1da6334206ac51f14ddbe94f9f67fe187a21cdfabd862779dbb9",
+  "raw_question": "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "role",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "display_name",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ผู้ช่วยอธิการบดีฝ่ายวิชาการ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One Thai question asks who holds the academic-affairs assistant-president role.",
+    "intent_operation_facet": "members/role_lookup must return display_name rather than role.",
+    "entities_and_slot_roles": "Add exact ผู้ช่วยอธิการบดีฝ่ายวิชาการ as requested role scope.",
+    "local_shared_history_scope": "No date, tenure, team or inherited person is supplied.",
+    "negation_and_ambiguity": "A recorded role/name pair is not independent proof of current incumbency.",
+    "source_version_alignment": "Pinned member_832e24bbcd11737e revision5 records separate role and name source fields; similarly named computer technical roles are not substitutes.",
+    "no_business_answer_target": "No person name, current titleholder assertion or authority fact enters labels."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "member_832e24bbcd11737e"
+  ],
+  "source_answer_issues": [
+    [
+      "Recorded member fields do not prove current tenure.",
+      "Retain source-version/currentness limits."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 271,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "member_832e24bbcd11737e": {
+      "revision": 5,
+      "record_sha256": "f2bf9cd354f0c4ff0eaa69450bf76f6c9978b6a4bcf4541a2d7d401fbd9d6fc1"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

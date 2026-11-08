@@ -1,0 +1,259 @@
+{
+  "question_key": "3cd0dcae2a26771cedcbd7db2867e6ba3516244fbd7cca594f4a4593ff66eeda",
+  "example_sha256": "58993e3637b7ef0149f9642bdfe8a71e6df85203d7477e53f915a3e0f576a381",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs ask a30-minute Nintendo Switch price and how to book.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount plus reservation/detail/owner_policy preserve both needs.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "30 นาที is duration,นักศึกษา PSU audience and Nintendo Switch service/platform.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Add explicit shared service/platform edges to t2 without copying duration/audience or inventing a history reference.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The short duration is not automatically a half-price session; แล้ว is not a conditional dependency.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Nintendo60 PSU rates use session_ceil and separate party bands; booking_steps remains procedural rather than a live booking command.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": [
+        "migrated_rate_nintendo_switch_60_1_2_psu_student_staff",
+        "migrated_rate_nintendo_switch_60_3_4_psu_student_staff",
+        "migrated_faq_rule_booking_steps"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No half-hour normalized tariff, free-price verdict, party default or executed reservation enters labels.",
+      "raw_quotes": [
+        "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท แล้วจองยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 134,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 นาที",
+      "Nintendo Switch",
+      "นักศึกษา PSU"
+    ],
+    "tasks": [
+      {
+        "quote": "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "แล้วจองยังไง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "Nintendo Switch",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 นาที",
+      "Nintendo Switch",
+      "นักศึกษา PSU"
+    ],
+    "tasks": [
+      {
+        "quote": "นักศึกษา PSU เล่น Nintendo Switch 30 นาที เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "แล้วจองยังไง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "Nintendo Switch",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "Nintendo Switch",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "platform",
+        "quote": "Nintendo Switch",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_nintendo_switch_60_1_2_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "1cba6de12cc2ea9ce6e54cc918d3189f0f2e5d951e3ff2a7bff7dd80286840de"
+    },
+    "migrated_rate_nintendo_switch_60_3_4_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "fab7d7289a95a76abf9b837534b2ba2f8dd057ec2f6a650bb8229f33750aa81a"
+    },
+    "migrated_faq_rule_booking_steps": {
+      "revision": 4,
+      "record_sha256": "3d46ed93710725b42212be78cc05d7197ba3043e04ade3b26ae2890e897dd846"
+    }
+  }
+}

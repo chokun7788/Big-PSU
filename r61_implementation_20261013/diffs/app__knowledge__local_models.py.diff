@@ -1,0 +1,12 @@
+--- before/app/knowledge/local_models.py
++++ r61/app/knowledge/local_models.py
+@@ -12,7 +12,8 @@
+ from app.pipeline.semantic_embeddings import embed_texts, embedding_base_url, embedding_model_name, embedding_num_ctx
+ 
+ 
+-MODEL_WORK = threading.BoundedSemaphore(1)
++from app.knowledge.model_gate import SharedModelGate
++MODEL_WORK = SharedModelGate()
+ 
+ 
+ def warm_knowledge_models() -> dict:

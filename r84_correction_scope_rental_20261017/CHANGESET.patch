@@ -1,0 +1,171 @@
+--- before/app/knowledge/common/answer.py
++++ after/app/knowledge/common/answer.py
+@@ -454,6 +454,10 @@
+             ids=[rid for rid,r in records.items() if r['kind']=='center' and effective(r,at,records)]
+             if ids:scope_ids=list(ids);method='common_typed_attribute_scope'
+         if not ids and planner and budget is None and not live_query(q) and not all_query(q) and not re.search(r'อะไรบ้าง|มีเกมอะไร|\blist\b|what games|which games|(?:what|which)\b.*\b(?:prices|fees|rates)\b',q,re.I):
++            # An explicit unresolved need cannot be answered by an ordinary
++            # near-neighbour (e.g. check-in ID list or a duplicate slip FAQ).
++            unresolved=self.unconfirmed(snap,started,question,lang,records)
++            if unresolved is not None:return unresolved
+             from .entity_search import select
+             choice,entity_audit=select(q,{rid:r for rid,r in records.items() if rid not in self.declined_profile_ids and effective(r,at,records)},names,prefer_profile_confirmation=True)
+             if isinstance(choice,dict) and choice.get('profile_confirmation'):
+--- before/app/knowledge/common/audience_scope.py
++++ after/app/knowledge/common/audience_scope.py
+@@ -2,6 +2,12 @@
+ import re
+ from .registry import value
+ from .query_contract import normalize,matches
++
++def organization_groups(text):
++    # Actor grammar is separate from personal audience eligibility. A studio's
++    # declared internal/external organizational audience supplies the mapping.
++    q=normalize(text)
++    return {m.group(1) for m in re.finditer(r'\b(internal|external)\s+(?:organi[sz]ations?|units?|agenc(?:y|ies))\b',q)}
+ 
+ def resolve(question,records):
+     q=normalize(question)
+@@ -14,6 +20,8 @@
+         for label in sorted((normalize(x) for x in labels if x),key=len,reverse=True):
+             q,n=re.subn(neg+re.escape(label), ' ',q);removed=removed or bool(n)
+     q,n=re.subn(neg+r'(?:psu\s+)?(?:general adult|general public|students?|staff|alumni|alumnus|นักศึกษา|นักเรียน|บุคลากร|ศิษย์เก่า|บุคคลทั่วไป|ประชาชนทั่วไป)', ' ',q);removed=removed or bool(n)
++    q,n=re.subn(neg+r'(?:internal|external)\s+(?:organi[sz]ations?|units?|agenc(?:y|ies))\b',' ',q);removed=removed or bool(n)
++    organizations=organization_groups(q)
+     concepts=[];spans=[]
+     for pattern in (r'บุคคลทั่วไป|ประชาชนทั่วไป|\bgeneral (?:adult|public)\b',r'ศิษย์เก่า|\balumni\b|\balumnus\b|นักเรียน|นักศึกษาทั่วไป|\bgeneral student\b',r'\bpsu\s+(?:students?|staff)\b|\b(?:students?|staff)\s+(?:of|at|from)\s+psu\b|(?:นักศึกษา|บุคลากร|เจ้าหน้าที่)\s*(?:ม\.อ\.?|มอ(?:\s|$)|มหาวิทยาลัยสงขลานครินทร์)'):
+         spans.extend(m.group() for m in re.finditer(pattern,q))
+@@ -31,5 +39,6 @@
+         spans.extend(normalize(a) for a in literal_aliases)
+         source=' '.join(str(a or '') for a in labels).lower()
+         semantic=('general_adult' in concepts and bool(re.search(r'general\s+adult|บุคคลทั่วไป',source)) or 'alumni_general_student' in concepts and bool(re.search(r'alumni|ศิษย์เก่า|general\s+student|นักศึกษาทั่วไป',source)) or 'psu_staff' in concepts and bool(re.search(r'psu|ม\.?อ\.?',source)) and bool(re.search(r'\bstaff\b|บุคลากร',source)) or 'psu_student' in concepts and bool(re.search(r'psu\s+student|นักศึกษา\s*ม\.?อ\.?',source)))
+-        if literal or semantic:selected.append(rid)
+-    return (selected if selected or concepts or removed else None),{'concepts':concepts,'negated_group_removed':removed,'selected_ids':selected,'matched_spans':list(dict.fromkeys(spans)),'source':'existing_audience_labels_only'}
++        organizational=bool(organizations & organization_groups(source))
++        if literal or semantic or organizational:selected.append(rid)
++    return (selected if selected or concepts or removed or organizations else None),{'concepts':concepts,'organization_groups':sorted(organizations),'negated_group_removed':removed,'selected_ids':selected,'matched_spans':list(dict.fromkeys(spans)),'source':'existing_audience_labels_and_organizational_actor_grammar'}
+--- before/app/knowledge/common/correction_scope.py
++++ after/app/knowledge/common/correction_scope.py
+@@ -0,0 +1,32 @@
++"""Identify explicit correction objects, never a remedy or an owner policy.
++
++These are language-level distinctions. Profile subjects come from records;
++no source ID, price, or studio rule is embedded here. Unrecognized wording
++keeps the existing bounded proposal/confirmation path.
++"""
++import re
++from .query_contract import normalize
++
++def subject_types(text):
++    q=normalize(text);found=set()
++    if re.search(r'บัตรประชาชน|บัตรนักศึกษา|บัตรนักเรียน|พาสปอร์ต|หนังสือเดินทาง|ยืนยันตัวตน|เอกสารประจำตัว|\b(?:identity|identification|passport|student\s+id|national\s+id|id\s+(?:card|document))\b',q):found.add('identity_document')
++    if re.search(r'ยอดเงิน|ยอด(?:จ่าย|ชำระ|โอน)|จำนวนเงิน|(?:จ่าย|โอน|ชำระ).{0,15}(?:ยอด|จำนวน)|\b(?:payment\s+amount|amount\s+(?:paid|transferred|i\s+paid)|(?:wrong|incorrect)\s+amount)\b',q):found.add('payment_amount')
++    # A payment event alone is not an image/document.
++    if re.search(r'สลิป|\bslips?\b',q) or (re.search(r'ชำระ|โอนเงิน|จ่ายเงิน|\b(?:payment|transfer|transaction)\b',q) and re.search(r'รูป|ภาพ|หลักฐาน|ไฟล์|เอกสาร|\b(?:proof|image|photo|picture|attachment|attachement|receipt|document)\b',q)):found.add('payment_evidence')
++    return found
++
++def compatible(question,profile):
++    if profile.get('task')!='correction':return True
++    wanted=subject_types(question)
++    available=set().union(*(subject_types(' '.join(s for s in subject.values() if isinstance(s,str))) for subject in profile.get('subjects',[])))
++    # Unknown subjects are not semantic matches. This guard only rejects a
++    # concrete conflict, and cannot authorize reading any profile facts.
++    return not wanted or not available or wanted<=available
++
++def unresolved_topic(question):
++    q=normalize(question)
++    if not re.search(r'ผิด|แก้|\b(?:wrong|incorrect|mistak\w*|fix|correct|correction|correcting)\b',q):return None
++    subjects=subject_types(q)
++    if subjects=={'identity_document'}:return 'identity_correction'
++    if subjects=={'payment_amount'}:return 'wrong_amount'
++    return None
+--- before/app/knowledge/common/entity_search.py
++++ after/app/knowledge/common/entity_search.py
+@@ -94,6 +94,9 @@
+  rows=candidates(question,records,names)
+  if not rows:return None,{'attempted':False,'reason':'no_candidate'}
+  retrieved_ids=[row['record_id'] for row in rows]
++ from .correction_scope import compatible as correction_compatible
++ conflicting=[row['record_id'] for row in rows if profile(records[row['record_id']]) and not correction_compatible(question,profile(records[row['record_id']]))]
++ rows=[row for row in rows if row['record_id'] not in conflicting]
+  # Move the existing post-selection guard ahead of inference. It cannot
+  # accept an unanchored ordinary record even if the model selects it.
+  rejected=[row['record_id'] for row in rows if not profile(records[row['record_id']]) and not topic_alignment(question,records[row['record_id']])[0]]
+@@ -102,9 +105,10 @@
+  # already fails it, a model call cannot produce an acceptable selection.
+  if not any(topic_alignment(question,records[row['record_id']])[0] or profile(records[row['record_id']]) for row in rows):
+   return None,{'attempted':False,'reason':'no_independent_topic_anchor','candidate_ids':[],
+-      'retrieved_candidate_ids':retrieved_ids,'rejected_unanchored_ids':rejected,'intent_verified':False}
++      'retrieved_candidate_ids':retrieved_ids,'rejected_unanchored_ids':rejected,'rejected_correction_subject_ids':conflicting,'intent_verified':False}
+  audit={'candidate_ids':[x['record_id'] for x in rows],'candidate_scores':[x['score'] for x in rows],'intent_verified':False}
+  audit['retrieved_candidate_ids']=retrieved_ids
++ audit['rejected_correction_subject_ids']=conflicting
+  audit['candidate_pruning']={'before_count':len(retrieved_ids),'after_count':len(rows),
+      'rejected_ids':rejected,'reason':'fails_existing_independent_topic_guard'}
+  timing={'retrieval_ms':round((time.perf_counter()-started)*1000,3)}
+--- before/app/knowledge/common/profile_confirmation.py
++++ after/app/knowledge/common/profile_confirmation.py
+@@ -22,6 +22,8 @@
+         p=value(r,'query_profile')
+         if r['kind'] not in KINDS or not isinstance(p,dict) or p.get('task') not in wanted:continue
+         if (p.get('context')=='competition')!=competition:continue
++        from .correction_scope import compatible
++        if not compatible(question,p):continue
+         if p.get('ownership')=='personal' and (not re.search(r'ส่วนตัว|ตัวเอง|ของผม|ของฉัน|\b(?:own|personal|my|mine)\b',q) or re.search(r'ของศูนย์|\b(?:studio|center|venue)[’\x27]?s\b',q)):continue
+         found.append(rid)
+     # Stable independent of SQLite insertion order. This is a topic menu,
+--- before/app/knowledge/common/query_scope.py
++++ after/app/knowledge/common/query_scope.py
+@@ -9,10 +9,10 @@
+ def operation(question):
+     q=normalize(question)
+     if re.search(r'เสียหาย|ทำ.{0,8}พัง|\bdamag\w*\b',q) and re.search(r'ค่าปรับ|ชดเชย|รับผิดชอบ|\b(?:fines?|penalt\w*|compensation)\b',q) and not re.search(r'แข่ง|กฎ|กติกา|\b(?:tournament|competition|rules|rulebook)\b',q):return 'policy'
+-    if re.search(r'\bhow much\s+(?:is|are|does|do|will|would|for|to|it)\b',q) and not re.search(r'แข่ง|กฎ|กติกา|\b(?:tournament|competition|rules|rulebook)\b',q):return 'price'
+     if re.search(r'ใครบ้าง|คนไหนบ้าง',q):return 'people'
+     rental_q=q.replace('เหมาะ',' ')
+     if re.search(r'เหมา|ครึ่งวัน|เต็มวัน|\b(?:rent|rental|half.day|full.day)\b',rental_q):return 'rental'
++    if re.search(r'\bhow much\s+(?:is|are|does|do|will|would|for|to|it)\b',q) and not re.search(r'แข่ง|กฎ|กติกา|\b(?:tournament|competition|rules|rulebook)\b',q):return 'price'
+     # Competition money/time/maps are game rules, not service fees/hours/maps.
+     if re.search(r'แข่ง|กติก|กฎ|กฏ|\b(?:tournament|competition|rules|rulebook)\b',q):return 'rules'
+     if re.search(r'ราคา|ค่าบริการ|ค่าเล่น|กี่บาท|เล่นฟรี|\b(?:price|cost|fees?|rates?|budget|free of charge)\b',q):return 'price'
+@@ -154,6 +154,9 @@
+         if r['kind']=='resource':zones.add(value(r,'zone_id'))
+         if r['kind']=='service':zones.update(value(records.get(resource,{'fields':{}}),'zone_id') for resource in value(r,'resource_ids') or [])
+     q=normalize(question)
++    if re.search(r'ทุกโซน|ทุก(?:พื้นที่|โซน)|\ball\s+zones\b',q):
++        all_zones={rid for rid,r in records.items() if r['kind']=='zone' and any(re.search(r'ทุกโซน|\ball\s+zones\b',normalize(str(label))) for label in (value(r,'name') or {}).values())}
++        if all_zones:zones=all_zones
+     periods=set()
+     if re.search(r'ครึ่งวัน|half.day',q):periods.add('half_day')
+     if re.search(r'เต็มวัน|full.day',q):periods.add('full_day')
+--- before/app/knowledge/common/question_profiles.py
++++ after/app/knowledge/common/question_profiles.py
+@@ -32,6 +32,8 @@
+   profile=value(r,'query_profile')
+   if r['kind'] not in KINDS or not isinstance(profile,dict) or profile.get('task') not in wanted:continue
+   if competition!=(profile.get('context')=='competition'):continue
++  from .correction_scope import compatible
++  if not compatible(question,profile):continue
+   subjects=[s for s in profile.get('subjects',[]) if any(phrase_match(q,term) for term in s.values() if isinstance(term,str))]
+   if not subjects:continue
+   my_subject=any(re.search(r'\bmy\s+(?:own\s+|personal\s+|gaming\s+|wireless\s+)*'+re.escape(normalize(s.get('en','')))+r'(?:s)?\b',q) for s in subjects if s.get('en'))
+--- before/app/knowledge/common/unconfirmed_request.py
++++ after/app/knowledge/common/unconfirmed_request.py
+@@ -5,6 +5,9 @@
+  q=normalize(question)
+  if re.search(r'โอนเกิน|จ่ายเกิน|\b(?:overpaid|overpay|paid too much)\b|\b(?:payment|amount)\s+(?:was|is)\s+too\s+high\b',q):return 'overpayment'
+  if re.search(r'โอนขาด|จ่ายขาด|(?:โอน|จ่าย|ชำระ).{0,15}ไม่ครบ|\b(?:underpaid|underpay|paid too little)\b|\b(?:payment|amount)\s+(?:was|is)\s+too\s+low\b',q):return 'underpayment'
++ from .correction_scope import unresolved_topic
++ correction=unresolved_topic(question)
++ if correction:return correction
+  if re.search(r'(?:จ่าย|ชำระ|โอน).{0,20}(?:ยอดผิด|จำนวนผิด)|\b(?:wrong|incorrect)\s+(?:payment\s+)?amount\b',q):return 'wrong_amount'
+  if re.search(r'ผ่อน(?:จ่าย|ชำระ)?|\binstallments?\b',q):return 'installments'
+  # Account destination is not transfer latency. Require an arrival event AND
+@@ -15,6 +18,7 @@
+  if re.search(r'อายุ|ผู้ปกครอง|\b(?:minimum age|age limit|years? old|guardian|parental)\b',q):return 'age_guardian'
+  return None
+ LABELS={
++ 'identity_correction':('วิธีแก้ไขเอกสารหรือหลักฐานยืนยันตัวตนที่ผิด','how to correct an incorrect identity document or proof of identity'),
+  'overpayment':('วิธีจัดการเมื่อโอนเกิน','how overpayments are handled'),
+  'underpayment':('วิธีจัดการเมื่อโอนขาด','how underpayments are handled'),
+  'wrong_amount':('วิธีแก้ไขเมื่อชำระยอดผิด','how to correct an incorrect payment amount'),

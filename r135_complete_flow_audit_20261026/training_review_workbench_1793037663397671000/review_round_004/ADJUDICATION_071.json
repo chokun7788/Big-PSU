@@ -1,0 +1,127 @@
+{
+  "question_key": "e7a3582eb91ae5efaa59505498774e8fb8612e92d4a2b5736d12c78a7b467a5d",
+  "example_sha256": "6735fd891a3df352422b9a6ec7c0983588fd9b614f5d9e8892140b2b263300bc",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One incomplete policy fragment mentions lost belongings and wet equipment; explanation style does not resolve an incident.",
+      "raw_quotes": [
+        "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains the apparent policy need.",
+      "raw_quotes": [
+        "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ของหาย อุปกรณ์ เปียก is preserved as requested scope.",
+      "raw_quotes": [
+        "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No owner, cause, existing damage case or previous belongings are supplied.",
+      "raw_quotes": [
+        "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Keep ambiguous true; do not assert that the user caused damage or split the words into invented factual incidents.",
+      "raw_quotes": [
+        "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_faq_rule_mixed_lost_and_damage contains separate personal-loss and equipment-damage clauses; the source does not prove which event happened here.",
+      "raw_quotes": [
+        "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_mixed_lost_and_damage",
+        "migrated_faq_rule_lost_personal_items"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No liability, fine amount or compensation obligation enters the label.",
+      "raw_quotes": [
+        "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 71,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "unclear",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "unclear",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอธิบายให้เข้าใจง่ายหน่อยว่า ขอข้อมูลเรื่องของหาย อุปกรณ์ เปียก",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ของหาย อุปกรณ์ เปียก",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_mixed_lost_and_damage": {
+      "revision": 4,
+      "record_sha256": "cb5d133dcbfb36d0c99907c33f41b0f98b9331ea266c8120e67fccb4ad14d2c0"
+    },
+    "migrated_faq_rule_lost_personal_items": {
+      "revision": 4,
+      "record_sha256": "c133c770da5032036d6b153ebf5e75cf4a8faad228a3020d541e2cc5ad6d2438"
+    }
+  }
+}

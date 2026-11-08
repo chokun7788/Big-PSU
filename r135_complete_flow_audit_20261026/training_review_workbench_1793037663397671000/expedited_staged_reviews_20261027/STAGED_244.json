@@ -1,0 +1,102 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 244,
+  "question_key": "2e97ef121e977a741a379bfd045b04155d8407579ed7f02d14f1b76358fb4310",
+  "raw_question": "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please.",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Valorant",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you explain: For Valorant, can you verify the rule on player conduct and sportsmanship? please.",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Valorant",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "player conduct",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "sportsmanship",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One Valorant rule query coordinates player conduct and sportsmanship; please/explain are style.",
+    "intent_operation_facet": "Keep competition_rules/rule_lookup/rule_clause targeted to Valorant rather than general studio conduct or CS2.",
+    "entities_and_slot_roles": "Add player conduct and sportsmanship as literal requested scopes under one rule purpose.",
+    "local_shared_history_scope": "No player, incident, penalty, tournament date or prior rulebook context is supplied.",
+    "negation_and_ambiguity": "Verify asks for evidence and does not assert that a conduct rule or sportsmanship definition exists.",
+    "source_version_alignment": "Actual Valorant section014 revision4 records serious misconduct as a map-forfeit condition; that is not a complete sportsmanship definition. The explicit sportsmanship clause found in CS2 section036 belongs to another competition and cannot fill this gap.",
+    "no_business_answer_target": "No CS2 conduct content, Valorant permission, definition, penalty amount or source-completeness claim enters the label."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "competition_competition_rules_valorant_psu_phuket_2026_section_014",
+    "competition_competition_rules_cs2_psu_phuket_2026_section_036"
+  ],
+  "source_answer_issues": [
+    [
+      "Misconduct penalty is not a full sportsmanship rule; explicit CS2 conduct is cross-competition evidence.",
+      "Keep Valorant source gaps and reject cross-title substitution."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 245,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "competition_competition_rules_valorant_psu_phuket_2026_section_014": {
+      "revision": 4,
+      "record_sha256": "c9ce862ebf1c05ab5fdba1e9e8e852bb26ff9fa07cf27b4cf6a09caa0a83615f"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_036": {
+      "revision": 4,
+      "record_sha256": "74321abf4a72dd6911620777ede475e8a02c0adda6b57bd0c0ade6edd01b35f0"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

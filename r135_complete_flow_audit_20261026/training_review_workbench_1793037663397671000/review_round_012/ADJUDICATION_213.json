@@ -1,0 +1,170 @@
+{
+  "question_key": "7bed0ab6929d0197ab9697ca00a522b052688466f24625668a664247883014fe",
+  "example_sha256": "c768fc2cf80abdfa840d15ca2b03ea72887e0717ab142b9252cd7d3771ac5d06",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inclusion question selects the internal/half-day Nintendo Switch Zone package.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/equipment_included is retained.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full package name is target; remove platform Nintendo Switch and service Nintendo Switch Zone inferred from inside that name.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Internal/half-day are local package dimensions, not a general personal affiliation or console-game request.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Naming a console zone does not ask its platform catalogue or require an ordinary play-service relation.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_15 records the package inclusion field and its internal organization/half_day scope.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": [
+        "package_15",
+        "audience_internal_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No console quantity, game list, booking condition or package answer is taught.",
+      "raw_quotes": [
+        "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 213,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "Nintendo Switch",
+      "ภายใน",
+      "Nintendo Switch Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "Nintendo Switch Zone",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กให้หน่อย แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน มีอุปกรณ์อะไรให้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายใน / ครึ่งวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_15": {
+      "revision": 1,
+      "record_sha256": "1d5b2ee5a54e1a979eb888be23f633580c4224ec0dda87b68e617985dc86a9ba"
+    },
+    "audience_internal_org": {
+      "revision": 2,
+      "record_sha256": "d098dad7f2532de4774513d2ef2b572977cd3987fc5229333ccfa5b5af36f84f"
+    }
+  }
+}

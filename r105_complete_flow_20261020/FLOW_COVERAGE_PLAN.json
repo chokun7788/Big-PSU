@@ -1,0 +1,1548 @@
+{
+  "status": "design_only_not_implemented_or_executed",
+  "date": "2026-10-20",
+  "timezone": "Asia/Bangkok",
+  "baseline": "R101 release_subset09",
+  "reference": "R97 Flow V2",
+  "runtime_edited": false,
+  "chatbot_tests_run": false,
+  "design_counts": {
+    "r97_exact_scenarios": 37,
+    "tasks": 32,
+    "owner_kinds": 24,
+    "target_language_wording_variants": 444
+  },
+  "execution_counts": {
+    "requests": 0,
+    "model_calls": 0,
+    "behavioral_assertions": 0
+  },
+  "batch_policy": {
+    "freeze_after_all_implementation": true,
+    "one_integrated_run_before_analysis": true,
+    "intermediate_chatbot_reruns": false,
+    "rerun_legacy": false
+  },
+  "reference_hashes": {
+    "r97_flow_reassessment_20261019\\FLOW_SPEC.json": "a758129a4c6dfaca1f642b2f6006696673187517409bdb41a6d553faeaaa9693",
+    "r101_complete_flow_20261019\\system\\app\\knowledge\\common\\catalog.json": "6309016a13f9ad7689d0567be39b0855bbf8b729788b0bcb66a9ec7e136bf264",
+    "r101_complete_flow_20261019\\IMPLEMENTED_FLOW_TH.md": "9014d9d6f46ca85117fd2ecade89e916f044d0c662b1bc2ec3550adb7a2e3eab"
+  },
+  "cases": [
+    {
+      "id": "C01",
+      "group": "all_scope",
+      "utterance": "ขอราคาบุคคลภายนอกทั้งหมด",
+      "fixture_precondition": "Published offered-service scope and rates have explicit evidence",
+      "expected_behavior": "price table uses service set and preserves audience",
+      "required_invariants": [
+        "I01",
+        "I06",
+        "I07"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S07",
+        "S08",
+        "S13"
+      ],
+      "implementation_focus_th": "ทั้ง service set และ audience; สมาชิกไม่มีราคาต้องไม่หาย",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C02",
+      "group": "follow_up",
+      "utterance": "PC",
+      "fixture_precondition": "Pending price/service slot and previously stated audience exist",
+      "expected_behavior": "fills service slot; preserves price intent and audience",
+      "required_invariants": [
+        "I04",
+        "I09"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S03",
+        "S05",
+        "S08"
+      ],
+      "implementation_focus_th": "PC เติม service พร้อมราคา/audience เดิม",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C03",
+      "group": "follow_up",
+      "utterance": "ทั้งหมด",
+      "fixture_precondition": "Pending task has a delivered candidate scope",
+      "expected_behavior": "selects full declared scope without inventing a new task",
+      "required_invariants": [
+        "I06",
+        "I09"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S03",
+        "S07"
+      ],
+      "implementation_focus_th": "ทั้งหมดใช้ displayed scope เดิมและอ่าน release ใหม่",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C04",
+      "group": "paraphrase",
+      "utterance": "Please tell me: Can I get a refund",
+      "fixture_precondition": "Source policy matches the action and actor",
+      "expected_behavior": "wrapper does not cause blanket rejection of supported policy",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S04",
+        "S06",
+        "S10"
+      ],
+      "implementation_focus_th": "wrapper ไม่ปิด policy ที่ source รองรับ; actor/action ตรง",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C05",
+      "group": "temporal",
+      "utterance": "ตอนเย็นเปิดถึงกี่โมง",
+      "fixture_precondition": "Schedule has explicit day-specific closing periods",
+      "expected_behavior": "uses temporal meaning; shows day differences or asks only material day slot",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S08",
+        "S13"
+      ],
+      "implementation_focus_th": "เวลาเย็น/วันต่างกันคง closing periods ไม่ตอบ now แทน",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C06",
+      "group": "relation",
+      "utterance": "VALORANT ใช้ผู้เล่นกี่คน",
+      "fixture_precondition": "Linked game_mode has count facts",
+      "expected_behavior": "reads mode relation; does not require unrelated optional fields",
+      "required_invariants": [
+        "I01",
+        "I03"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S08",
+        "S10"
+      ],
+      "implementation_focus_th": "reverse game_mode FK และ required claims เฉพาะจำนวนผู้เล่น",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C07",
+      "group": "ambiguity",
+      "utterance": "ROV ถ้าเกมหลุดทำยังไง",
+      "fixture_precondition": "General-play and competition contexts give materially different actions; no prior context",
+      "expected_behavior": "asks which context, not a generic topic menu",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S12"
+      ],
+      "implementation_focus_th": "ถาม context เมื่อทั่วไปกับแข่งขันให้ผลต่างจริง",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C08",
+      "group": "competition",
+      "utterance": "ROV",
+      "fixture_precondition": "Pending competition disconnect topic exists",
+      "expected_behavior": "inherits rule topic and resolves the selected game",
+      "required_invariants": [
+        "I04",
+        "I09"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S03",
+        "S05",
+        "S08"
+      ],
+      "implementation_focus_th": "เลือก ROV แล้วรักษา disconnect topic และ event qualifiers",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C09",
+      "group": "target_lock",
+      "utterance": "กฎ CS2",
+      "fixture_precondition": "CS2 requested; only VALORANT rule is in first candidates",
+      "expected_behavior": "does not answer another game; tries declared CS2 scope or reports exact gap",
+      "required_invariants": [
+        "I03",
+        "I04"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S06",
+        "S09",
+        "S10"
+      ],
+      "implementation_focus_th": "CS2 ห้ามถูกแทนด้วย VALORANT แม้ retrieval สูงกว่า",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C10",
+      "group": "all_scope",
+      "utterance": "ขอเกมทั้งหมด",
+      "fixture_precondition": "Declared complete offering set is larger than retrieval top K",
+      "expected_behavior": "enumerates full offering set or labels pagination",
+      "required_invariants": [
+        "I06"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S08",
+        "S14"
+      ],
+      "implementation_focus_th": "complete offering set ใหญ่กว่า top-K และมี scope receipt",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C11",
+      "group": "all_scope",
+      "utterance": "มีเกมใน PS5 กับ Switch อะไรบ้าง",
+      "fixture_precondition": "Same game is offered in both scopes",
+      "expected_behavior": "deduplicates or groups by requested offering scope explicitly",
+      "required_invariants": [
+        "I04",
+        "I06"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S07",
+        "S13"
+      ],
+      "implementation_focus_th": "multi-platform scope และ dedup ตามเกมหรือ offering ที่ถาม",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C12",
+      "group": "partial",
+      "utterance": "ราคาและวิธีจอง PC",
+      "fixture_precondition": "Current rate unavailable; booking procedure supported",
+      "expected_behavior": "does not calculate price; answers independent booking need",
+      "required_invariants": [
+        "I01",
+        "I02",
+        "I07"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S11",
+        "S12",
+        "S15"
+      ],
+      "implementation_focus_th": "ราคาไม่พร้อมยังตอบ booking independent need",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C13",
+      "group": "dependency",
+      "utterance": "มี 100 บาทเล่นได้นานแค่ไหน",
+      "fixture_precondition": "No current eligible rate or billing rule",
+      "expected_behavior": "no derived play time from missing or expired rate",
+      "required_invariants": [
+        "I02",
+        "I05",
+        "I07"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S10",
+        "S11"
+      ],
+      "implementation_focus_th": "งบ derive ไม่ได้หากราคา/สูตรไม่พร้อม",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C14",
+      "group": "tuple_binding",
+      "utterance": "PC 2 ชั่วโมง กับ VR 30 นาทีสำหรับบุคคลภายนอก",
+      "fixture_precondition": "Eligible rate facts exist for requested tuples",
+      "expected_behavior": "does not create unintended audience/service/duration cross product",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S06",
+        "S11"
+      ],
+      "implementation_focus_th": "PC2h/VR30m/audience ไม่คูณไขว้",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C15",
+      "group": "rental",
+      "utterance": "เหมาเต็มวันราคาเท่าไร",
+      "fixture_precondition": "Published rental package exists; no hourly-to-day conversion policy",
+      "expected_behavior": "reads package; does not infer rental price by multiplying hourly rate",
+      "required_invariants": [
+        "I03",
+        "I07",
+        "I08"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S08",
+        "S11"
+      ],
+      "implementation_focus_th": "rental package ไม่ derive จาก hourly",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C16",
+      "group": "calendar",
+      "utterance": "วันนี้เปิดไหม",
+      "fixture_precondition": "Opening predicate is explicitly confirmed for request local date",
+      "expected_behavior": "date plus confirmed opening status in concise answer",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S08",
+        "S10",
+        "S13"
+      ],
+      "implementation_focus_th": "วันไทยและ physical opening มี evidence; ตอบสั้นตรง",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C17",
+      "group": "calendar",
+      "utterance": "วันนี้เปิดไหม",
+      "fixture_precondition": "Only empty bookable periods are known; physical opening unknown",
+      "expected_behavior": "does not infer physical closure from empty booking slots",
+      "required_invariants": [
+        "I05",
+        "I07"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S10",
+        "S12"
+      ],
+      "implementation_focus_th": "empty bookable ไม่ยืนยัน physical closed",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C18",
+      "group": "live",
+      "utterance": "ตอนบ่ายสามมีเครื่องไหนว่างบ้าง",
+      "fixture_precondition": "Fresh read-only provider observation with known mapping exists",
+      "expected_behavior": "lists verified free resources within requested scope",
+      "required_invariants": [
+        "I06",
+        "I10"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S08",
+        "S10"
+      ],
+      "implementation_focus_th": "free set ตรง15:00/freshness/mapping ไม่ใช่ available_now",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C19",
+      "group": "live",
+      "utterance": "PC ว่างไหมแล้วจองยังไง",
+      "fixture_precondition": "Live provider unavailable; static booking procedure supported",
+      "expected_behavior": "reports live limitation and answers independent procedure",
+      "required_invariants": [
+        "I01",
+        "I02",
+        "I10"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S08",
+        "S12",
+        "S15"
+      ],
+      "implementation_focus_th": "live unavailable ยังตอบ booking procedure",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C20",
+      "group": "same_task_multi_subject",
+      "utterance": "เกม A กับเกม B คือเกมอะไร",
+      "fixture_precondition": "Both games have source-backed summaries",
+      "expected_behavior": "two subject-bound overview needs even though operation is the same",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S06",
+        "S15"
+      ],
+      "implementation_focus_th": "same task สองเกมคงสอง subject-bound needs",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C21",
+      "group": "rules",
+      "utterance": "ก่อนกับหลัง First Blood ต่างกันยังไง",
+      "fixture_precondition": "Relevant rule clauses with different conditions and dependencies exist",
+      "expected_behavior": "preserves both conditions and required exceptions",
+      "required_invariants": [
+        "I01",
+        "I04",
+        "I08"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S08",
+        "S10",
+        "S14"
+      ],
+      "implementation_focus_th": "before/after FirstBlood พร้อม linked exceptions ครบ",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C22",
+      "group": "negation",
+      "utterance": "ไม่ใช่บุคลากร PSU ใช้ราคาไหน",
+      "fixture_precondition": "Audience information and eligibility rules exist",
+      "expected_behavior": "negation is preserved; does not pick PSU staff rate by substring",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S05",
+        "S06",
+        "S10"
+      ],
+      "implementation_focus_th": "not PSU staff ไม่เลือก staff rate เพราะ substring",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C23",
+      "group": "authority",
+      "utterance": "ราคานี้ใช่ไหม",
+      "fixture_precondition": "FAQ and structured rate disagree without resolved claim authority",
+      "expected_behavior": "reports or resolves conflict only with applicable source-backed policy",
+      "required_invariants": [
+        "I03",
+        "I07"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S10",
+        "S12"
+      ],
+      "implementation_focus_th": "FAQ-rate claim mapping/overlapping applicability/authority/conflict",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C24",
+      "group": "lifecycle",
+      "utterance": "ราคา PC",
+      "fixture_precondition": "Same service selected previously; rate has new published revision",
+      "expected_behavior": "re-reads amount from new release without asking service again",
+      "required_invariants": [
+        "I03",
+        "I09"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S03",
+        "S08",
+        "S16"
+      ],
+      "implementation_focus_th": "published new price revision reread โดยไม่ถาม service ซ้ำ",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C25",
+      "group": "lifecycle",
+      "utterance": "ราคา PC",
+      "fixture_precondition": "Selected service or rate was withdrawn after previous answer",
+      "expected_behavior": "does not resurrect value from history, alias or cache",
+      "required_invariants": [
+        "I03",
+        "I09"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S03",
+        "S08",
+        "S16"
+      ],
+      "implementation_focus_th": "withdrawal ไม่ resurrect history/cache",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C26",
+      "group": "lifecycle",
+      "utterance": "PC",
+      "fixture_precondition": "Unrelated contact record changed epoch; service task unchanged",
+      "expected_behavior": "revalidates dependencies and preserves valid task slots",
+      "required_invariants": [
+        "I09"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S03",
+        "S16"
+      ],
+      "implementation_focus_th": "unrelated epoch change ไม่ทิ้ง valid task slots",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C27",
+      "group": "known_empty",
+      "utterance": "มีอุปกรณ์ไหม",
+      "fixture_precondition": "Explicit complete inventory is empty",
+      "expected_behavior": "may assert empty within that exact scope",
+      "required_invariants": [
+        "I05",
+        "I06"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S10"
+      ],
+      "implementation_focus_th": "known complete empty inventory จึงตอบไม่มีใน scope นั้น",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C28",
+      "group": "unknown",
+      "utterance": "มีอุปกรณ์ไหม",
+      "fixture_precondition": "Inventory completeness and members unknown",
+      "expected_behavior": "does not assert that no equipment exists",
+      "required_invariants": [
+        "I05"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S12"
+      ],
+      "implementation_focus_th": "unknown inventory ไม่แปลเป็นไม่มี",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C29",
+      "group": "relation",
+      "utterance": "เกม A เล่นที่ไหน",
+      "fixture_precondition": "Game supported_platforms exists but studio offering relation does not",
+      "expected_behavior": "does not equate supported platform with installed studio offering",
+      "required_invariants": [
+        "I03",
+        "I05"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S10"
+      ],
+      "implementation_focus_th": "platform supported ไม่เท่ากับ offering/installed ที่ศูนย์",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C30",
+      "group": "localization",
+      "utterance": "Explain the booking exception in English",
+      "fixture_precondition": "Source permission and exception are supported; translation mode permitted",
+      "expected_behavior": "critical decision, amounts and exception remain unchanged",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S13",
+        "S14"
+      ],
+      "implementation_focus_th": "ภาษาอังกฤษคง decision/exception/critical quantities",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C31",
+      "group": "failure",
+      "utterance": "ขอข้อมูลกติกา",
+      "fixture_precondition": "Model returns body that is not valid plan JSON",
+      "expected_behavior": "temporary/plan failure is not reported as absence of source facts",
+      "required_invariants": [
+        "I01",
+        "I11"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S06",
+        "S12",
+        "S17"
+      ],
+      "implementation_focus_th": "invalid model body แยกจาก source missing",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C32",
+      "group": "failure",
+      "utterance": "ขอราคาและกติกา",
+      "fixture_precondition": "Shared budget exhausted while waiting for model",
+      "expected_behavior": "no recursive budget reset; finalizer reserve preserved",
+      "required_invariants": [
+        "I01",
+        "I11"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S01",
+        "S11",
+        "S15"
+      ],
+      "implementation_focus_th": "queue/model/children ใช้งบเดียว finalizer reserve ไม่ reset",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C33",
+      "group": "lifecycle",
+      "utterance": "เกมใหม่เล่นยังไง",
+      "fixture_precondition": "New game uses supported kind with valid how_to_play source",
+      "expected_behavior": "data-only addition works without new name-specific regex",
+      "required_invariants": [
+        "I03",
+        "I12"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S04",
+        "S08",
+        "S16"
+      ],
+      "implementation_focus_th": "เกมชื่อใหม่จาก owner form ตอบ how_to_play ไม่เพิ่ม regex",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C34",
+      "group": "capability",
+      "utterance": "ขอสูตรโปรโมชั่นแบบใหม่",
+      "fixture_precondition": "New record describes an unsupported billing operator",
+      "expected_behavior": "does not execute a model-invented business formula",
+      "required_invariants": [
+        "I03",
+        "I12"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S06",
+        "S11",
+        "S12"
+      ],
+      "implementation_focus_th": "unsupported operator ไม่ให้โมเดล invent formula",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C35",
+      "group": "broken_relation",
+      "utterance": "เกม A เล่นได้กี่คน",
+      "fixture_precondition": "game_mode references a missing game or invalid platform",
+      "expected_behavior": "reports broken relation rather than guessing count",
+      "required_invariants": [
+        "I03",
+        "I05"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S10",
+        "S12"
+      ],
+      "implementation_focus_th": "broken FK/invalid platform ไม่เดาผู้เล่น",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C36",
+      "group": "scope_reset",
+      "utterance": "ไม่ใช่ ขอวิธีจอง",
+      "fixture_precondition": "Pending service-price clarification exists",
+      "expected_behavior": "replaces task explicitly instead of answering abandoned price intent",
+      "required_invariants": [
+        "I04",
+        "I09"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S03",
+        "S05"
+      ],
+      "implementation_focus_th": "explicit reset price→booking ไม่ตอบ abandoned task",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    },
+    {
+      "id": "C37",
+      "group": "partial_ambiguity",
+      "utterance": "ศูนย์อยู่ที่ไหน แล้วราคาเท่าไร",
+      "fixture_precondition": "Address supported; price has a material unresolved service/audience scope",
+      "expected_behavior": "reads and answers address while asking only necessary price slot",
+      "required_invariants": [
+        "I01",
+        "I02",
+        "I04"
+      ],
+      "executed": false,
+      "status": "design_only",
+      "stages": [
+        "S07",
+        "S12",
+        "S15"
+      ],
+      "implementation_focus_th": "ตอบที่อยู่แล้วถามเฉพาะ material price slot",
+      "fixture_id": null,
+      "runner_case_id": null,
+      "result": null
+    }
+  ],
+  "tasks": [
+    {
+      "task": "game_overview",
+      "baseline_kinds": "game",
+      "baseline_required": "summary",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "game_how_to_play",
+      "baseline_kinds": "game",
+      "baseline_required": "how_to_play",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "game_platforms",
+      "baseline_kinds": "game",
+      "baseline_required": "supported_platforms",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "game_at_studio",
+      "baseline_kinds": "game",
+      "baseline_required": "offered + service_id",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "game_players",
+      "baseline_kinds": "game, game_mode",
+      "baseline_required": "players_min + players_max",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "game_controls",
+      "baseline_kinds": "game, control_set",
+      "baseline_required": "bindings OR limitations",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "game_account",
+      "baseline_kinds": "game, game_service",
+      "baseline_required": "decision + conditions_all + details",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "game_version",
+      "baseline_kinds": "game, game_service, control_set",
+      "baseline_required": "game_version",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; game/mode/platform/edition ไม่ปน; offering ไม่เท่ากับ installed",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "equipment_explain",
+      "baseline_kinds": "equipment_model",
+      "baseline_required": "name + device_type",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "equipment_specs",
+      "baseline_kinds": "equipment_model, resource, service",
+      "baseline_required": "specifications",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "equipment_location",
+      "baseline_kinds": "equipment_model",
+      "baseline_required": "zone_id OR specifications",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "equipment_list",
+      "baseline_kinds": "zone, service, resource",
+      "baseline_required": "name",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "resource_capacity",
+      "baseline_kinds": "resource, service",
+      "baseline_required": "capacity_min + capacity_max OR capacity_persons",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "service_duration",
+      "baseline_kinds": "service",
+      "baseline_required": "session_minutes",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "center_operator",
+      "baseline_kinds": "center",
+      "baseline_required": "operator",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "center_location",
+      "baseline_kinds": "center",
+      "baseline_required": "address OR building + floor OR map_url",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "center_overview",
+      "baseline_kinds": "center",
+      "baseline_required": "name + description",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "contact",
+      "baseline_kinds": "contact",
+      "baseline_required": "channel + value",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "facility",
+      "baseline_kinds": "facility",
+      "baseline_required": "name + location",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "people",
+      "baseline_kinds": "person",
+      "baseline_required": "display_name + role + public_scope",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "audience",
+      "baseline_kinds": "audience",
+      "baseline_required": "name + eligibility + required_proofs",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "price",
+      "baseline_kinds": "zone, service, resource, audience, rate",
+      "baseline_required": "amount_minor + currency + unit + duration_minutes + calculation_rule",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; currentness/unit/audience/operator และ conflict",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "rental",
+      "baseline_kinds": "rental_package, zone, audience",
+      "baseline_required": "amount_minor + currency + duration_minutes + terms",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; currentness/unit/audience/operator และ conflict",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "policy",
+      "baseline_kinds": "policy, faq",
+      "baseline_required": "decision + conditions_all + exceptions + details OR answer",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; action/actor/conditions/dependent clauses ไม่ตกหล่น",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "procedure",
+      "baseline_kinds": "procedure, faq",
+      "baseline_required": "steps + preconditions OR answer",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; action/actor/conditions/dependent clauses ไม่ตกหล่น",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "faq_content",
+      "baseline_kinds": "faq",
+      "baseline_required": "answer",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; action/actor/conditions/dependent clauses ไม่ตกหล่น",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "competition_rules",
+      "baseline_kinds": "competition, competition_rule",
+      "baseline_required": "text + completeness",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; action/actor/conditions/dependent clauses ไม่ตกหล่น",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "competition_metadata",
+      "baseline_kinds": "competition",
+      "baseline_required": "event_name + rulebook_release",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "schedule",
+      "baseline_kinds": "schedule, closure",
+      "baseline_required": "open_periods",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; physical-open/bookable/closing/maintenance แยกและ timezone/date scope",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "news",
+      "baseline_kinds": "news",
+      "baseline_required": "title + body",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "live_status",
+      "baseline_kinds": "live_binding, service, resource, zone",
+      "baseline_required": "service_id + provider + external_resource_key + status_mapping + freshness_policy + freshness_max_age_seconds",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่; target window/provider/mapping/freshness/partial static needs",
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "task": "schema_attributes",
+      "baseline_kinds": "center, contact, facility, zone, equipment_model, resource, service, game, game_service, game_mode, control_set, audience, rate, rental_package, schedule, closure, policy, procedure, competition, competition_rule, news, person, faq, live_binding",
+      "baseline_required": "ตาม explicit attributes ที่ผู้ใช้เลือก",
+      "acceptance_th": "เพิ่มข้อมูลใหม่ใน kind ที่รองรับ → ถามเฉพาะงานนี้ → ตรวจ receipts/qualifiers → แก้/ถอนแล้วอ่านใหม่",
+      "status": "planned",
+      "executed": false
+    }
+  ],
+  "owner_kinds": [
+    {
+      "kind": "center",
+      "publish_core_fields": [
+        "name",
+        "operator",
+        "timezone"
+      ],
+      "reference_fields": [],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "contact",
+      "publish_core_fields": [
+        "channel",
+        "value",
+        "purpose"
+      ],
+      "reference_fields": [],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "facility",
+      "publish_core_fields": [
+        "name",
+        "location"
+      ],
+      "reference_fields": [],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "zone",
+      "publish_core_fields": [
+        "name"
+      ],
+      "reference_fields": [],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "equipment_model",
+      "publish_core_fields": [
+        "name",
+        "device_type"
+      ],
+      "reference_fields": [],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "resource",
+      "publish_core_fields": [
+        "name",
+        "zone_id",
+        "physical_pool_key",
+        "operational_status"
+      ],
+      "reference_fields": [
+        "zone_id→zone",
+        "equipment_model_ids→equipment_model"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "service",
+      "publish_core_fields": [
+        "name",
+        "resource_ids",
+        "platform",
+        "session_minutes",
+        "occupancy_minutes"
+      ],
+      "reference_fields": [
+        "resource_ids→resource"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "game",
+      "publish_core_fields": [
+        "title"
+      ],
+      "reference_fields": [
+        "venue_zone_ids→zone"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "game_service",
+      "publish_core_fields": [
+        "game_id",
+        "service_id",
+        "offered"
+      ],
+      "reference_fields": [
+        "game_id→game",
+        "service_id→service",
+        "installed_resource_ids→resource",
+        "account_policy_id→policy"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "game_mode",
+      "publish_core_fields": [
+        "game_id",
+        "mode_name",
+        "platform"
+      ],
+      "reference_fields": [
+        "game_id→game"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "control_set",
+      "publish_core_fields": [
+        "game_id",
+        "platform",
+        "input_device",
+        "preset",
+        "bindings"
+      ],
+      "reference_fields": [
+        "game_id→game"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "audience",
+      "publish_core_fields": [
+        "name",
+        "eligibility"
+      ],
+      "reference_fields": [],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "rate",
+      "publish_core_fields": [
+        "service_id",
+        "audience_id",
+        "amount_minor",
+        "currency",
+        "unit",
+        "duration_minutes",
+        "calculation_rule"
+      ],
+      "reference_fields": [
+        "service_id→service",
+        "audience_id→audience"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "rental_package",
+      "publish_core_fields": [
+        "name",
+        "zone_ids",
+        "audience_id",
+        "period_label",
+        "amount_minor",
+        "currency"
+      ],
+      "reference_fields": [
+        "zone_ids→zone",
+        "audience_id→audience"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "schedule",
+      "publish_core_fields": [
+        "timezone",
+        "zone_ids",
+        "weekday",
+        "open_periods",
+        "bookable_periods"
+      ],
+      "reference_fields": [
+        "zone_ids→zone"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "closure",
+      "publish_core_fields": [
+        "local_date",
+        "zone_ids",
+        "state",
+        "reason"
+      ],
+      "reference_fields": [
+        "zone_ids→zone",
+        "resolution_policy_id→policy"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "policy",
+      "publish_core_fields": [
+        "topic",
+        "subject",
+        "decision",
+        "conditions_all",
+        "details"
+      ],
+      "reference_fields": [
+        "procedure_id→procedure"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "procedure",
+      "publish_core_fields": [
+        "topic",
+        "preconditions",
+        "steps"
+      ],
+      "reference_fields": [],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "competition",
+      "publish_core_fields": [
+        "game_id",
+        "event_name",
+        "rulebook_release",
+        "coverage"
+      ],
+      "reference_fields": [
+        "game_id→game",
+        "supersedes_id→competition"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "competition_rule",
+      "publish_core_fields": [
+        "competition_id",
+        "section_number",
+        "facet",
+        "heading",
+        "text",
+        "completeness"
+      ],
+      "reference_fields": [
+        "competition_id→competition",
+        "depends_on_ids→competition_rule"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "news",
+      "publish_core_fields": [
+        "title",
+        "body"
+      ],
+      "reference_fields": [
+        "audience_ids→audience",
+        "contact_id→contact"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "person",
+      "publish_core_fields": [
+        "display_name",
+        "role",
+        "public_scope"
+      ],
+      "reference_fields": [
+        "public_contact_id→contact"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "faq",
+      "publish_core_fields": [
+        "question",
+        "answer",
+        "topic"
+      ],
+      "reference_fields": [
+        "related_ids→*"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    },
+    {
+      "kind": "live_binding",
+      "publish_core_fields": [
+        "service_id",
+        "provider",
+        "external_resource_key",
+        "physical_pool_key",
+        "status_mapping",
+        "timezone",
+        "freshness_policy"
+      ],
+      "reference_fields": [
+        "service_id→service"
+      ],
+      "lifecycle_required": [
+        "create",
+        "edit",
+        "withdraw"
+      ],
+      "status": "planned",
+      "executed": false
+    }
+  ]
+}

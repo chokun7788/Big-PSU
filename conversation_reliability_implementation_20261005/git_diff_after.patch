@@ -1,0 +1,666 @@
+diff --git a/app/pipeline/closed_query_improvements.py b/app/pipeline/closed_query_improvements.py
+index fa7d10e..eead939 100644
+--- a/app/pipeline/closed_query_improvements.py
++++ b/app/pipeline/closed_query_improvements.py
+@@ -66,6 +66,13 @@ def _booking_resource(query,locale):
+     return StructuredToolResult('\n'.join(lines),hits,'structured_booking_game_service_selection',.97,{'game':game,'services':sorted(seen),'catalog_only':True})
+ 
+ def _fee_catalog(query,locale):
++    from app.session.conversation_plan import resolve_request_plan
++    from app.pipeline.conversation_fee import build_price_plan_answer
++    plan = resolve_request_plan(query, locale=locale)
++    if plan and plan.get('tasks') and plan['tasks'][0]['scope']['entity_selection'] == 'all':
++        result = build_price_plan_answer(plan, locale)
++        if result:
++            return StructuredToolResult(result['answer'], result['hits'], 'structured_service_fee_catalog', .98, result['metadata'])
+     from app.core.normalization import has_price_intent,SERVICE_ALIASES,contains_alias
+     if not (has_price_intent(query) or 'ค่าเล่น' in query or re.search(r'\b(?:prices?|fees?|costs?)\b',query,re.I)):return None
+     if not re.search(r'แต่ละ(?:เครื่อง|โซน|บริการ)|ตาราง.*ราคา|ค่าบริการ.*ทั้งหมด|ราคา.*ทั้งหมด|ค่าเล่น.*(?:เครื่อง|โซน).*บ้าง|\b(?:each|all)\s+(?:service|zone|device|station)s?\b',query,re.I):return None
+diff --git a/app/pipeline/competition_conversation_signals.py b/app/pipeline/competition_conversation_signals.py
+index f8d5fdc..793444e 100644
+--- a/app/pipeline/competition_conversation_signals.py
++++ b/app/pipeline/competition_conversation_signals.py
+@@ -4,8 +4,8 @@ import re
+ import unicodedata
+ from app.core.typo_similarity import osa_distance
+ 
+-_THAI_WORDS = r"(?:ขอ|ดู|เอา|แล้ว|อยากรู้|อยากดู|บอก|สรุป|มี|เรื่อง|ของ|เกมนี้|เกม|กฎ|กติกา|ระเบียบ|การ|ตอน|แข่งขัน|แข่ง|ทัวร์นาเมนต์|อะไร|ไร|บ้าง|มั่ง|อื่น|เพิ่มเติม|เพิ่ม|อีก|ทั้งหมด|ไหม|มั้ย|หน่อย|ครับ|ค่ะ|คับ|\s|[?!.,])+"
+-_ENGLISH_WORDS = r"(?:can|could|i|we|you|see|show|tell|give|me|please|pls|what|which|are|is|there|the|a|an|and|any|about|it|its|this|game|of|for|tournament|competition|rules|rule|regulations|other|more|additional|all|overview|summarize|\s|[?!.,])+"
++_THAI_WORDS = r"(?:ขอ|ดู|เอา|แล้ว|อยากรู้|อยากดู|บอก|สรุป|มี|เรื่อง|ของ|เกมนี้|เกม|กฎ|กติกา|ระเบียบ|การ|ตอน|แข่งขัน|แข่ง|ทัวร์นาเมนต์|อะไร|ไร|บ้าง|มั่ง|อื่น|เพิ่มเติม|เพิ่ม|อีก|ทั้งหมด|ทุกหัวข้อ|ทุกข้อ|ทุกส่วน|รายละเอียด|ครบ|ไหม|มั้ย|หน่อย|ครับ|ค่ะ|คับ|\s|[?!.,])+"
++_ENGLISH_WORDS = r"(?:can|could|i|we|you|see|show|tell|give|me|please|pls|what|which|are|is|there|the|a|an|and|any|about|it|its|this|game|of|for|tournament|competition|rules|rule|regulations|other|more|additional|all|full|complete|detailed|details|sections|topics|overview|summarize|\s|[?!.,])+"
+ 
+ def _clean(query: str) -> str:
+     q=unicodedata.normalize('NFC',str(query or '')).casefold().strip(' ?!.,')
+diff --git a/app/pipeline/competition_overview.py b/app/pipeline/competition_overview.py
+index 695694f..8e18893 100644
+--- a/app/pipeline/competition_overview.py
++++ b/app/pipeline/competition_overview.py
+@@ -122,6 +122,8 @@ def build_competition_overview(query: str, locale: str, *, recent_history=None)
+                 continue
+             if item.get('contextEligible') is False or item.get('context_eligible') is False:
+                 continue
++            if item.get('delivery_status') in {'prepared', 'server_written', 'uncertain'}:
++                continue
+             previous = resolve_competition_targets(str(item.get('resolved_text') or ''))
+             if previous.status == 'exact' and previous.targets[0].game_id == target.game_id:
+                 # History only excludes already displayed clauses. It is not
+diff --git a/app/pipeline/decision_artifact.py b/app/pipeline/decision_artifact.py
+index 398b0d9..c3d763b 100644
+--- a/app/pipeline/decision_artifact.py
++++ b/app/pipeline/decision_artifact.py
+@@ -170,6 +170,17 @@ def build_decision_artifact(
+     selection = candidates_trace.metadata.get("selection", {}) if candidates_trace is not None else {}
+     selection = selection if isinstance(selection, dict) else {}
+     outcome = _outcome_for_mode(mode)
++    conversation = _trace_by_stage(trace, 'conversation_contract')
++    contract = conversation.metadata if conversation is not None else {}
++    semantic_outcome = contract.get('outcome')
++    if semantic_outcome == 'clarification_required':
++        outcome = 'clarification'
++    elif semantic_outcome in {'answered_complete', 'answered_partial'}:
++        outcome = 'answered'
++    typed_request = _trace_by_stage(trace, 'conversation_request')
++    if typed_request is not None and selected_candidate is None:
++        selected_candidate = {'capability_id': executed_capability, 'score': None,
++                              'reason': 'explicit typed dialogue contract; no candidate scoring required'}
+     repair_attempted = bool(repair_traces)
+     selected_matches_execution = (
+         isinstance(selected_candidate, dict)
+@@ -239,6 +250,9 @@ def build_decision_artifact(
+         "production_metrics": {
+             "policy_version": "correctness_control_flow_v2",
+             "outcome": outcome,
++            "semantic_outcome": semantic_outcome,
++            "temporal_validity": contract.get('temporal_validity'),
++            "adequacy_status": 'complete_for_recorded_scope' if semantic_outcome == 'answered_complete' else semantic_outcome,
+             "quality_gate_status": quality_gate_status,
+             "candidate_margin": selection.get("margin"),
+             "selection_status": selection.get("status", ""),
+@@ -262,4 +276,6 @@ def build_decision_artifact(
+         "candidate_execution": [item for item in candidate_execution if item is not None],
+         "validation": _trace_dict(validation_trace),
+         "llm_calls": llm_calls,
++        "conversation_contract": contract,
++        "score_semantics": 'heuristic ranking / routing confidence, not a calibrated correctness probability',
+     }
+diff --git a/app/pipeline/engine.py b/app/pipeline/engine.py
+index a751cc7..2a87531 100644
+--- a/app/pipeline/engine.py
++++ b/app/pipeline/engine.py
+@@ -837,6 +837,7 @@ class AnswerQualityPipeline:
+         locale_decision: LocaleDecision | dict | None = None,
+         recent_history=None,
+         keyboard_layout_direction: str | None = None,
++        request_plan: dict | None = None,
+     ) -> PipelineAnswer:
+         with request_deadline(global_timeout_sec):
+             started = time.perf_counter()
+@@ -854,6 +855,23 @@ class AnswerQualityPipeline:
+             cue_started = time.perf_counter()
+             cue_preflight, cue_recoveries = recover_intent_cue_sequence(question)
+             entry_timings.append(_timing_trace("intent_cue_preflight", cue_started, metadata=deadline_metadata()))
++            from app.session.conversation_plan import resolve_request_plan
++            from app.pipeline.conversation_fee import build_price_plan_answer
++            from app.pipeline.dialogue_choice import review_pending_choice
++            typed_plan = request_plan or resolve_request_plan(cue_preflight, recent_history, locale=resolved_locale.effective)
++            if typed_plan is not None:
++                typed_plan, choice_trace = review_pending_choice(typed_plan, resolved_locale.effective, bool(experimental_allow_llm))
++                fee_result = build_price_plan_answer(typed_plan, resolved_locale.effective)
++                if fee_result is not None:
++                    contract = fee_result['metadata']
++                    trace = [*entry_timings, PipelineTrace('conversation_request', typed_plan['act'], 1.0,
++                             'typed slots preserve user filters; assistant options are not selections',
++                             {'request_plan': typed_plan, 'outcome': contract.get('outcome')}),
++                             *([choice_trace] if choice_trace else []), *fee_result['trace']]
++                    if not any(t.stage == 'conversation_contract' for t in trace):
++                        trace.append(PipelineTrace('conversation_contract', contract['outcome'], 1.0, 'targeted dialogue clarification', contract))
++                    return self._build_result(fee_result['answer'], fee_result['hits'], started,
++                        fee_result['mode'], .98, fee_result['route'], fee_result['entities'], fee_result['validation'], trace)
+             canonical_started = time.perf_counter()
+             if cue_preflight == question and resolved_locale.effective == "th" and os.getenv("PSU_CANONICAL_KNOWLEDGE", "0").lower() in {"1", "true", "on"}:
+                 from app.knowledge.answer import try_canonical_answer
+@@ -1563,6 +1581,13 @@ class AnswerQualityPipeline:
+                 if improved_validation.ok:
+                     return self._build_result(improved.answer, improved.hits, started, improved_mode,
+                         improved.confidence, improved_route, entities, improved_validation, trace)
++        if competition_signal and competition_target.status == "exact":
++            from app.pipeline.conversation_rules import build_full_rule_answer
++            full = build_full_rule_answer(pre.clean_query, locale.effective if locale else 'th', recent_history=recent_history)
++            if full:
++                trace.extend(full['trace'])
++                return self._build_result(full['answer'], full['hits'], started, full['mode'], .98,
++                                          full['route'], entities, full['validation'], trace)
+         if competition_signal and competition_target.status == "exact":
+             from app.pipeline.competition_source_gaps import lookup_competition_reply
+             from app.pipeline.retrieval import hit_from_curated
+@@ -2757,7 +2782,7 @@ class AnswerQualityPipeline:
+                 route=route,
+                 entities=entities,
+             )
+-        if not bool(selection.get("execution_allowed", True)) and question_frame.operation == "unknown":
++        if not bool(selection.get("execution_allowed", True)) and question_frame.operation == "unknown" and not (route.category == "general" and route.risk == "low" and looks_like_clear_general_request(pre.clean_query)):
+             clarify_route = PipelineRoute(
+                 "clarification",
+                 "candidate_margin_clarification",
+@@ -4272,6 +4297,12 @@ class AnswerQualityPipeline:
+                     "errors": rejected_errors,
+                 },
+             ))
++            for item in trace:
++                if item.stage in {'conversation_contract', 'competition_full_coverage'}:
++                    item.metadata['outcome'] = 'schema_rejected'
++                    item.metadata['rejected_errors'] = rejected_errors
++                    item.metadata['returned_ids'] = []
++                    item.metadata['covered_ids'] = []
+             answer = format_no_answer(route.category, locale.effective)
+             hits = []
+             mode = "pipeline:answer_contract_no_answer"
+@@ -4386,6 +4417,7 @@ def answer_question_pipeline_debug(
+     locale_decision: LocaleDecision | dict | None = None,
+     recent_history=None,
+     keyboard_layout_direction: str | None = None,
++    request_plan: dict | None = None,
+ ) -> PipelineAnswer:
+     return get_pipeline().answer(
+         question,
+@@ -4396,6 +4428,7 @@ def answer_question_pipeline_debug(
+         locale_decision=locale_decision,
+         recent_history=recent_history,
+         keyboard_layout_direction=keyboard_layout_direction,
++        request_plan=request_plan,
+     )
+ 
+ 
+diff --git a/app/pipeline/experimental_fallback.py b/app/pipeline/experimental_fallback.py
+index 81e2e8f..1eaef1f 100644
+--- a/app/pipeline/experimental_fallback.py
++++ b/app/pipeline/experimental_fallback.py
+@@ -2,6 +2,7 @@ from __future__ import annotations
+ 
+ import json
+ import os
++import re
+ import time
+ import urllib.error
+ import urllib.request
+@@ -529,6 +530,20 @@ def _shape_general_output(
+     profile: GeneralGenerationProfile,
+     provider: dict[str, Any],
+ ) -> str:
++    if profile.name == 'general_concise' and effective_locale() == 'en':
++        # The concise contract asks for one or two sentences. A provider token
++        # limit after that complete prefix need not discard an intact answer.
++        # Never accept an unfinished first sentence or use this for lists,
++        # comparisons, translations or source-grounded multi-part requests.
++        sentences = re.findall(r'.+?[.!?](?=\s|$)', answer.strip(), re.S)
++        selected = sentences[:2]
++        if selected and all(_line_looks_complete(s) for s in selected):
++            prefix = ' '.join(s.strip() for s in selected)
++            if len(prefix.split()) <= 60:
++                if prefix != answer.strip():
++                    provider['llm_output_extra_items_removed'] = max(1,len(sentences)-len(selected))
++                provider['llm_output_bounded_prefix_complete'] = True
++                return prefix
+     lines = [line.strip() for line in answer.splitlines() if line.strip()]
+     if profile.name not in {"single_sentence", "short_creation", "two_sentences", "short_bullets"} or not profile.expected_items:
+         return answer.strip()
+diff --git a/app/pipeline/performance_trace.py b/app/pipeline/performance_trace.py
+index 89e34c1..9106f80 100644
+--- a/app/pipeline/performance_trace.py
++++ b/app/pipeline/performance_trace.py
+@@ -168,7 +168,8 @@ class ParentPerformanceLogger:
+     def __init__(self, event_queue: Any, *, run_id: str | None = None, path: Path | None = None) -> None:
+         self.event_queue = event_queue
+         self.run_id = run_id or datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+-        self.path = path or PERFORMANCE_LOG_DIR / f"pipeline_{self.run_id}.jsonl"
++        log_override = os.getenv('PSU_PERFORMANCE_LOG_DIR') or (str(Path(os.environ['PSU_CHAT_LOG_DIR'])/'performance') if os.getenv('PSU_CHAT_LOG_DIR') else '')
++        self.path = path or (Path(log_override) if log_override else PERFORMANCE_LOG_DIR) / f"pipeline_{self.run_id}.jsonl"
+         self._stop = threading.Event()
+         self._thread: threading.Thread | None = None
+         self._count = 0
+diff --git a/app/pipeline/query_signals.py b/app/pipeline/query_signals.py
+index 5230da8..c69ceb2 100644
+--- a/app/pipeline/query_signals.py
++++ b/app/pipeline/query_signals.py
+@@ -248,6 +248,10 @@ def looks_like_clear_general_request(text: str) -> bool:
+         return False
+     if has_any_signal(query, *_PSU_INVENTORY_TERMS):
+         return False
++    # A complete causal/order question can be general even without a glossary term.
++    # Domain operations still take precedence over broad syntax.
++    if not re.search(r'ราคา|ค่าบริการ|จอง|ว่าง|กติกา|กฎ|แข่ง|ศูนย์|\b(?:price|fee|book|available|rules?|tournament|studio)\b', query, re.I) and re.search(r'อะไรเกิดก่อน|อะไรมาก่อน|ทำไม.+(?:ถึง|จึง)|\b(?:which|what)\b.+\b(?:came|comes)\s+first\b|\bwhy\s+(?:do|does|is|are|can)\b', query, re.I):
++        return True
+     if has_any_signal(query, *_GENERAL_TRANSLATION_TERMS, *_GENERAL_CREATION_TERMS):
+         return True
+     if has_any_signal(
+diff --git a/app/session/context_resolver.py b/app/session/context_resolver.py
+index b771999..472eef4 100644
+--- a/app/session/context_resolver.py
++++ b/app/session/context_resolver.py
+@@ -273,7 +273,9 @@ def latest_context_state(recent_history: Any) -> dict[str, Any]:
+ 
+ 
+ def _latest_zone_from_history(recent_history: Any) -> str | None:
+-    for text in reversed(_history_text_items(recent_history)):
++    # An assistant's list of options does not identify the user's zone.
++    selected_history = [item for item in recent_history if isinstance(item, dict) and item.get('role') == 'user'] if isinstance(recent_history, list) else []
++    for text in reversed(_history_text_items(selected_history)):
+         q = normalize_text(text)
+         if any(term in q for term in ("playstation 5 zone", "ps5", "playstation", "เพลย์")):
+             return "PlayStation 5"
+@@ -587,7 +589,9 @@ def _resolve_competition_followup(original: str, recent_history: Any) -> Resolve
+ 
+     current_target = resolve_competition_targets(original)
+     more = is_more_rule_request(original)
+-    generic = is_broad_rule_request(original) or more
++    from app.pipeline.conversation_rules import wants_full_rules
++    full_scope = wants_full_rules(original) and not re.search(r'ราคา|จอง|เกมอะไร|อุปกรณ์|ปุ่ม|\b(?:price|book|games?|equipment|controls?)\b', original, re.I)
++    generic = is_broad_rule_request(original) or more or full_scope
+     from app.pipeline.competition_taxonomy import detect_competition_facet
+     def specific_rule_request(text):
+         return (
+@@ -597,7 +601,7 @@ def _resolve_competition_followup(original: str, recent_history: Any) -> Resolve
+         )
+     specific_followup = current_target.status == "absent" and specific_rule_request(original)
+     english = original.isascii()
+-    prefix = ("Additional competition rules for" if more else "Competition rules for") if english else ("กติกาการแข่งขันเพิ่มเติม" if more else "กติกาการแข่งขัน")
++    prefix = ("All detailed competition rules for" if full_scope else "Additional competition rules for" if more else "Competition rules for") if english else ("กติกาการแข่งขันทั้งหมด" if full_scope else "กติกาการแข่งขันเพิ่มเติม" if more else "กติกาการแข่งขัน")
+     if current_target.status == "exact" and generic:
+         target = current_target.targets[0]
+         return ResolvedQuestion(
+@@ -617,6 +621,13 @@ def _resolve_competition_followup(original: str, recent_history: Any) -> Resolve
+     prior = str(previous_answer.get("resolved_text") or previous_user.get("text") or "").strip()
+     answer = str(previous_answer.get("text") or "")
+     is_competition = previous_answer.get("route_category") == "competition_rules"
++    if previous_answer.get('route_category') == 'games' and current_target.status == 'absent' and re.search(r'กฎ|กฏ|กติกา|\brules?\b', original, re.I):
++        latest_user_target = resolve_competition_targets(str(previous_user.get('text') or ''))
++        if latest_user_target.status == 'exact' and (generic or specific_followup):
++            target = latest_user_target.targets[0]
++            return ResolvedQuestion(original, original+' '+target.label, True, target.label,
++                context_domain='competition_rules', context_operation='rule_lookup', context_topic=target.label,
++                reason='explicit_rule_request_for_latest_user_game')
+     catalog_choice = is_competition and previous_answer.get("route_intent") == "competition_rulebook_catalog"
+     pending = is_competition and (
+         "ต้องการดูกติกาของเกมใด" in answer
+@@ -677,7 +688,9 @@ def _resolve_competition_followup(original: str, recent_history: Any) -> Resolve
+         if reply.get("route_category") == "competition_rules" and prior_target.status == "exact":
+             # An explicit target or a resolved rule follow-up anchors context;
+             # assistant example lists never provide a target.
+-            if user_target.status == "exact" or is_broad_rule_request(user_text) or is_more_rule_request(user_text) or specific_rule_request(user_text):
++            detail_anchor = (wants_full_rules(user_text) and isinstance(reply.get('rule_coverage'),dict)
++                             and reply['rule_coverage'].get('game_id') == prior_target.targets[0].game_id)
++            if user_target.status == "exact" or is_broad_rule_request(user_text) or is_more_rule_request(user_text) or specific_rule_request(user_text) or detail_anchor:
+                 target = prior_target.targets[0]
+                 return ResolvedQuestion(
+                     original, f"{original if specific_followup else prefix} {target.label}", True, target.label,
+@@ -703,6 +716,11 @@ def resolve_question_with_context(question: str, recent_history: Any, *, locale:
+         if detect_game(remainder) and re.search(r"คือ(?:เกม)?อะไร|เป็นเกมอะไร", remainder):
+             return ResolvedQuestion(original, remainder, False, detect_game(remainder), context_domain="games", context_operation="game_detail", reason="explicitly_declined_rules_and_requested_game_identity")
+ 
++    from app.session.conversation_plan import resolve_request_plan
++    price_plan = resolve_request_plan(original, recent_history, locale=locale)
++    if price_plan and price_plan.get('context_used'):
++        return ResolvedQuestion(original, price_plan['resolved_query'], True, context_domain='service_fee',
++                                context_operation='price_lookup', reason='typed_price_followup')
+     competition_followup = _resolve_competition_followup(original, recent_history)
+     if competition_followup is not None:
+         return competition_followup
+diff --git a/app/web_api/pipeline_supervisor.py b/app/web_api/pipeline_supervisor.py
+index 21a61df..e95316a 100644
+--- a/app/web_api/pipeline_supervisor.py
++++ b/app/web_api/pipeline_supervisor.py
+@@ -190,6 +190,7 @@ def _worker_main(requests: Any, results: Any, events: Any, ready: Any, run_id: s
+                     locale=str(task.get("locale") or "auto"),
+                     locale_decision=task.get("locale_decision"),
+                     recent_history=task.get("recent_history"),
++                    request_plan=task.get("request_plan"),
+                 )
+                 emit_performance_event("request_finished", "pipeline", status="completed", attributes={"mode": result.mode})
+                 results.put({"task_id": task_id, "status": "ok", "result": result})
+@@ -286,6 +287,7 @@ class PipelineWorkerSupervisor:
+         locale: str = "auto",
+         locale_decision: dict[str, Any] | None = None,
+         recent_history: list[dict[str, Any]] | None = None,
++        request_plan: dict | None = None,
+     ) -> SupervisedCall:
+         started = time.perf_counter()
+         self.start()
+@@ -328,6 +330,7 @@ class PipelineWorkerSupervisor:
+                     "locale": locale,
+                     "locale_decision": locale_decision or {},
+                     "recent_history": list(recent_history or [])[-10:],
++                    "request_plan": request_plan,
+                     # The child must respect queue time already consumed in
+                     # the parent; otherwise a burst could exceed the HTTP SLA.
+                     "pipeline_timeout_sec": max(0.1, remaining_timeout_sec - 0.15),
+diff --git a/app/web_api/server.py b/app/web_api/server.py
+index c722c9b..82c109c 100644
+--- a/app/web_api/server.py
++++ b/app/web_api/server.py
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ 
+ import argparse
++import hashlib
+ import json
+ import mimetypes
+ import os
+@@ -34,7 +35,8 @@ from app.pipeline.request_deadline import deadline_metadata, request_deadline
+ from app.pipeline.semantic_embeddings import embedding_model_name, semantic_retrieval_enabled
+ from app.pipeline.warmup import WarmupResult, pipeline_warmup_enabled, warm_pipeline_caches
+ from app.runtime.pipeline_answer import answer_question_pipeline_debug
+-from app.session.context_resolver import resolve_question_with_context
++from app.session.context_resolver import resolve_question_with_context, ResolvedQuestion
++from app.session.conversation_store import STORE, TurnConflict
+ from app.session.chat_logger import is_valid_session_id, read_sqlite_session_history, write_chat_log
+ from app.session.intent_feedback import write_intent_feedback
+ from app.web_api.pipeline_supervisor import PipelineWorkerSupervisor, worker_supervisor_enabled
+@@ -42,7 +44,7 @@ from app.web_api.pipeline_supervisor import PipelineWorkerSupervisor, worker_sup
+ 
+ PROJECT_ROOT = Path(__file__).resolve().parents[2]
+ WEB_ROOT = PROJECT_ROOT / "web_chat"
+-LOG_DIR = PROJECT_ROOT / "data" / "logs"
++LOG_DIR = Path(os.getenv("PSU_CHAT_LOG_DIR") or PROJECT_ROOT / "data" / "logs")
+ MAX_BODY_BYTES = 128 * 1024
+ MAX_QUESTION_CHARS = 4000
+ 
+@@ -108,6 +110,7 @@ def _runtime_status() -> dict[str, Any]:
+     return {
+         "profile": os.getenv("PSU_RUNTIME_PROFILE", "ad-hoc"),
+         "version": os.getenv("PSU_RUNTIME_VERSION", "dev"),
++        "installation_id": hashlib.sha256(os.path.normcase(str(PROJECT_ROOT.resolve())).encode('utf-8')).hexdigest()[:16],
+         "started_at": SERVER_STARTED_AT.isoformat(),
+         "answer_timeout_sec": _product_backend_timeout_sec(),
+         "pipeline_timeout_sec": _env_float("PSU_PIPELINE_GLOBAL_TIMEOUT_SEC", 9.0, minimum=1.0),
+@@ -434,6 +437,10 @@ class ChatHandler(BaseHTTPRequestHandler):
+         client_session_id = str(payload.get("client_session_id") or "").strip()
+         if not is_valid_session_id(client_session_id):
+             client_session_id = f"session-{uuid.uuid4()}"
++        client_turn_id = str(payload.get('client_turn_id') or '').strip()
++        if not is_valid_session_id(client_turn_id):
++            client_turn_id = f'turn-{uuid.uuid4()}'
++        last_seen_response_id = str(payload.get('last_seen_response_id') or '')[:128]
+         recent_history = payload.get("recent_history") or []
+         requested_locale = normalize_requested_locale(payload.get("locale"))
+         debug = bool(payload.get("debug", False))
+@@ -520,7 +527,33 @@ class ChatHandler(BaseHTTPRequestHandler):
+                     self._send_json(response, content_language=locale_decision.effective)
+                     return
+ 
+-                resolved = resolve_question_with_context(question, recent_history, locale=locale_decision.effective)
++                if last_seen_response_id:
++                    STORE.acknowledge(client_session_id, last_seen_response_id)
++                recent_history = STORE.history(client_session_id, recent_history)
++                locale_decision = resolve_locale(question, requested=requested_locale, recent_history=recent_history,
++                    keyboard_layout_direction=layout_direction,
++                    surface_language=input_recovery.language if input_recovery.should_review_intent else None)
++                try:
++                    turn = STORE.begin(client_session_id, client_turn_id, question, locale=locale_decision.effective,
++                        history=recent_history, fingerprint_locale=requested_locale)
++                except TurnConflict:
++                    self._send_json({'ok': False, 'error': 'client_turn_conflict', 'request_id': request_id}, 409)
++                    return
++                if turn['response']:
++                    turn['response']['conversation_state'] = STORE.snapshot(client_session_id)
++                    cached_language = (turn['response'].get('language') or {}).get('effective',locale_decision.effective)
++                    self._send_json(turn['response'], content_language=cached_language)
++                    STORE.delivery(client_session_id, client_turn_id, 'server_written')
++                    _write_chat_log_async({'event_type':'cached_response_replay','request_id':request_id,
++                        'original_response_id':turn['response'].get('request_id'),'client_session_id':client_session_id,
++                        'client_turn_id':client_turn_id,'state_revision':turn['revision']})
++                    return
++                request_plan = turn['plan']
++                if request_plan:
++                    resolved = ResolvedQuestion(question, request_plan['resolved_query'], request_plan.get('context_used', False),
++                        context_domain='service_fee', context_operation='price_lookup', reason='parent_typed_request_plan')
++                else:
++                    resolved = resolve_question_with_context(question, recent_history, locale=locale_decision.effective)
+                 worker_id = -1
+                 if PIPELINE_SUPERVISOR is not None:
+                     supervised = PIPELINE_SUPERVISOR.answer(
+@@ -532,6 +565,7 @@ class ChatHandler(BaseHTTPRequestHandler):
+                         locale=requested_locale,
+                         locale_decision=locale_decision.to_dict(),
+                         recent_history=recent_history,
++                        request_plan=request_plan,
+                     )
+                     worker_id = supervised.worker_id
+                     if supervised.status == "timeout":
+@@ -604,6 +638,7 @@ class ChatHandler(BaseHTTPRequestHandler):
+                         locale_decision=locale_decision,
+                         recent_history=recent_history,
+                         keyboard_layout_direction=layout_direction,
++                        request_plan=request_plan,
+                     )
+                 sources = _source_list(result.hits)
+                 query_debug = _trace_query_debug(result, question, resolved.resolved_question)
+@@ -668,12 +703,32 @@ class ChatHandler(BaseHTTPRequestHandler):
+                     response["validation"] = result.validation
+                     response["trace"] = result.trace
+ 
++                contract = next((t.metadata for t in reversed(result.trace) if t.stage == 'conversation_contract'), {})
++                actual_plan = contract.get('request_plan') or request_plan
++                if actual_plan and actual_plan.get('resolved_query'):
++                    resolved = ResolvedQuestion(question, actual_plan['resolved_query'], actual_plan.get('context_used',False),
++                        context_domain='service_fee', context_operation='price_lookup', reason='validated_typed_request_plan')
++                    if debug:
++                        response['context_resolution'] = resolved.to_dict()
++                response['resolved_question'] = resolved.resolved_question
++                response['rule_coverage'] = next((t.metadata for t in reversed(result.trace) if t.stage == 'competition_full_coverage'), None)
++                response['client_turn_id'] = client_turn_id
++                response['request_plan'] = actual_plan
++                response['conversation_outcome'] = contract.get('outcome', 'delegated_existing_pipeline')
++                response['coverage'] = {k: contract.get(k) for k in ('expected_ids', 'returned_ids', 'missing_ids', 'temporal_validity', 'task_outcomes') if k in contract}
++                if not response['timed_out']:
++                    STORE.complete(client_session_id, client_turn_id, turn['revision'], response, plan=actual_plan)
++                response['conversation_state'] = STORE.snapshot(client_session_id)
+                 log_record = {
+                     "event_type": "chat_exchange",
+                     "exchange_id": exchange_id,
+                     "channel": "web",
+                     "request_id": request_id,
+                     "client_session_id": client_session_id,
++                    "client_turn_id": client_turn_id,
++                    "conversation_state": response['conversation_state'],
++                    "request_plan": actual_plan,
++                    "conversation_contract": contract,
+                     "question": question,
+                     "resolved_question": resolved.resolved_question,
+                     "context_resolution": resolved.to_dict(),
+@@ -707,7 +762,15 @@ class ChatHandler(BaseHTTPRequestHandler):
+                     log_record["input_quality"] = input_quality.to_log_dict()
+                 if debug:
+                     response["log_sinks"] = {"status": "queued"}
+-                self._send_json(response, content_language=(result.language or locale_decision).effective)
++                try:
++                    self._send_json(response, content_language=(result.language or locale_decision).effective)
++                    STORE.delivery(client_session_id, client_turn_id, 'server_written')
++                except (BrokenPipeError, ConnectionResetError, OSError):
++                    STORE.delivery(client_session_id, client_turn_id, 'uncertain')
++                    log_record['delivery_status'] = 'uncertain'
++                    _write_chat_log_async(log_record)
++                    return
++                log_record['delivery_status'] = 'server_written'
+                 _write_chat_log_async(log_record)
+             except Exception as exc:
+                 _write_chat_log_async({
+diff --git a/deployment_templates/Open-PSU-Esports-Background.ps1 b/deployment_templates/Open-PSU-Esports-Background.ps1
+index 885bcd8..6b5c2d9 100644
+--- a/deployment_templates/Open-PSU-Esports-Background.ps1
++++ b/deployment_templates/Open-PSU-Esports-Background.ps1
+@@ -1,9 +1,16 @@
++param([switch]$NoBrowser)
+ $ErrorActionPreference = "Stop"
+ $packageRoot = $PSScriptRoot
+ . (Join-Path $packageRoot "Booking-Dashboard-Probe.ps1")
+ $ownerDashboardAt8080 = Test-BookingDashboardIdentity -BaseUrl "http://127.0.0.1:8080"
+-$chatbotPort = 8090
+-$chatbotUrl = "http://127.0.0.1:$chatbotPort/"
++$manifestPath = Join-Path $packageRoot 'package_manifest.json'
++if (-not (Test-Path -LiteralPath $manifestPath)) { throw 'Missing package_manifest.json. Use a complete Chatbot package.' }
++$expectedVersion = (Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json).runtime_version
++$hasher = [System.Security.Cryptography.SHA256]::Create()
++try {
++    $rootBytes = [System.Text.Encoding]::UTF8.GetBytes(([System.IO.Path]::GetFullPath($packageRoot)).ToLowerInvariant())
++    $expectedInstallation = ([System.BitConverter]::ToString($hasher.ComputeHash($rootBytes))).Replace('-','').ToLowerInvariant().Substring(0,16)
++} finally { $hasher.Dispose() }
+ 
+ function Test-LocalPortInUse([int]$ListenPort) {
+     $client = [System.Net.Sockets.TcpClient]::new()
+@@ -17,17 +24,27 @@ function Test-LocalPortInUse([int]$ListenPort) {
+     }
+ }
+ 
+-if (Test-LocalPortInUse $chatbotPort) {
+-    try {
+-        $health = Invoke-RestMethod -Uri "http://127.0.0.1:$chatbotPort/health" -TimeoutSec 2
+-        if ($health.service -eq "psu-esports-chat-web") {
+-            Write-Host "Chatbot is already running: $chatbotUrl"
+-            Start-Process $chatbotUrl
+-            return
+-        }
+-    } catch { }
+-    throw "Chatbot port $chatbotPort is already in use by another service."
++function Test-ThisPackage($Health) {
++    return ($Health.service -eq 'psu-esports-chat-web' -and $Health.runtime.version -eq $expectedVersion -and $Health.runtime.installation_id -eq $expectedInstallation)
++}
++$chatbotPort = $null
++foreach ($candidatePort in 8090..8099) {
++    if (Test-LocalPortInUse $candidatePort) {
++        try {
++            $health = Invoke-RestMethod -Uri "http://127.0.0.1:$candidatePort/health" -TimeoutSec 1
++            if (Test-ThisPackage $health) {
++                $chatbotUrl = "http://127.0.0.1:$candidatePort/"
++                Write-Host "This Chatbot package is already running: $chatbotUrl"
++                if (-not $NoBrowser) { Start-Process $chatbotUrl }
++                return
++            }
++        } catch { }
++    } elseif ($null -eq $chatbotPort) {
++        $chatbotPort = $candidatePort
++    }
+ }
++if ($null -eq $chatbotPort) { throw 'Ports 8090..8099 are in use. Close an unused Chatbot instance first.' }
++$chatbotUrl = "http://127.0.0.1:$chatbotPort/"
+ 
+ $logs = Join-Path $packageRoot "data\logs\launcher"
+ New-Item -ItemType Directory -Force -Path $logs | Out-Null
+@@ -37,7 +54,7 @@ if (-not (Test-Path -LiteralPath $scriptPath)) {
+     throw "Missing package launcher: $scriptPath"
+ }
+ $child = Start-Process -FilePath "PowerShell.exe" `
+-    -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ('"' + $scriptPath + '"'), "-Port", "$chatbotPort") `
++    -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ('"' + $scriptPath + '"'), "-Port", "$chatbotPort", "-NoBrowser") `
+     -WorkingDirectory $packageRoot -WindowStyle Hidden -PassThru `
+     -RedirectStandardOutput (Join-Path $logs "chatbot_$runId.out.log") `
+     -RedirectStandardError (Join-Path $logs "chatbot_$runId.err.log")
+@@ -46,3 +63,15 @@ Write-Host "Chatbot: $chatbotUrl"
+ Write-Host "Dashboard: http://127.0.0.1:$(if ($ownerDashboardAt8080) { 8080 } else { 8091 })/"
+ Write-Host "Startup logs: $logs"
+ Write-Host "The window can now close. The computer must remain on for local answers."
++for ($attempt = 0; $attempt -lt 60; $attempt++) {
++    if ($child.HasExited) { throw "Chatbot stopped during startup. Read the startup logs in $logs." }
++    try {
++        $health = Invoke-RestMethod -Uri "http://127.0.0.1:$chatbotPort/health" -TimeoutSec 1
++        if (Test-ThisPackage $health) {
++            if (-not $NoBrowser) { Start-Process $chatbotUrl }
++            return
++        }
++    } catch { }
++    Start-Sleep -Seconds 1
++}
++throw "Chatbot did not become ready within 60 seconds. Read the startup logs in $logs."
+diff --git a/deployment_templates/Open-PSU-Esports-Chatbot.ps1 b/deployment_templates/Open-PSU-Esports-Chatbot.ps1
+index 77c0e46..a3400d2 100644
+--- a/deployment_templates/Open-PSU-Esports-Chatbot.ps1
++++ b/deployment_templates/Open-PSU-Esports-Chatbot.ps1
+@@ -1,5 +1,6 @@
+ param(
+-    [int]$Port = 8090
++    [int]$Port = 8090,
++    [switch]$NoBrowser
+ )
+ 
+ $ErrorActionPreference = "Stop"
+@@ -64,4 +65,4 @@ if ($missingModels.Count -gt 0) {
+     }
+ }
+ 
+-& (Join-Path $projectRoot "Start-PSU-Esports-Chatbot.ps1") -Port $Port -OpenBrowser
++& (Join-Path $projectRoot "Start-PSU-Esports-Chatbot.ps1") -Port $Port -OpenBrowser:(!$NoBrowser)
+diff --git a/tools/build_owner_local_package.ps1 b/tools/build_owner_local_package.ps1
+index abf7df4..e467a23 100644
+--- a/tools/build_owner_local_package.ps1
++++ b/tools/build_owner_local_package.ps1
+@@ -109,7 +109,7 @@ Copy-Item -LiteralPath (Join-Path $projectRoot "tools\export_local_chat_logs.py"
+     built_at = (Get-Date).ToUniversalTime().ToString("o")
+     runtime_version = $RuntimeVersion
+     included_data_directories = $runtimeDataDirectories
+-    local_runtime_features = @("per_page_anonymous_sessions", "sqlite_transcript", "append_only_daily_jsonl_log", "owner_html_log_report", "loopback_only_server", "live_booking_status_aggregate_only", "bounded_intent_cue_recovery")
++    local_runtime_features = @("per_page_anonymous_sessions", "sqlite_transcript", "append_only_daily_jsonl_log", "owner_html_log_report", "loopback_only_server", "live_booking_status_aggregate_only", "bounded_intent_cue_recovery", "typed_price_conversation", "external_group_scoped_prices", "idempotent_client_turns", "acknowledged_full_rulebook_sections")
+     excluded = @("reports", "tests", "tools except export_local_chat_logs.py", "notebooks", "data/eval", "data/ground_truth", "data/human_review", "data/logs", "Ollama model weights")
+     required_local_models = @("scb10x/typhoon2.5-qwen3-4b", "psu-bge-m3:q8_0")
+ } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $packageRoot "package_manifest.json") -Encoding UTF8
+diff --git a/web_chat/app.js b/web_chat/app.js
+index 4892e64..6a0a5be 100644
+--- a/web_chat/app.js
++++ b/web_chat/app.js
+@@ -173,6 +173,7 @@ function saveMessages() {
+ }
+ 
+ let clientSessionId = loadOrCreateSessionId();
++let lastSeenResponseId = "";
+ const messages = [];
+ const experimentalRagFallback = true;
+ const experimentalAllowLlm = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+@@ -400,6 +401,7 @@ function recentHistory() {
+       route_intent: item.routeIntent || "",
+       resolved_text: item.resolvedText || "",
+       answer_language: item.answerLanguage || "",
++      request_plan: item.requestPlan || null,
+     }));
+ }
+ 
+@@ -507,6 +509,8 @@ async function ask(question) {
+     const {response, data} = await PSUChatRequest.requestChat({
+       question: cleanQuestion,
+       client_session_id: clientSessionId,
++      client_turn_id: makeSessionId(),
++      last_seen_response_id: lastSeenResponseId,
+       recent_history: outgoingHistory,
+       locale: selectedLocale,
+       debug: true,
+@@ -528,7 +532,7 @@ async function ask(question) {
+     removePending();
+     const inputQuality = data.input_quality || null;
+     const inputRejected = data.route_category === "input_guard";
+-    const inputContextExcluded = inputRejected || inputQuality?.applied_action === "warn_and_continue";
++    const inputContextExcluded = inputRejected;
+     if (inputContextExcluded) {
+       const latestUser = [...messages].reverse().find((item) => item.role === "user" && item.contextEligible !== false);
+       if (latestUser) {
+@@ -554,6 +558,7 @@ async function ask(question) {
+       notice: inputQuality && inputQuality.applied_action === "warn_and_continue" ? (localeCopy[data.language?.effective || uiLocale] || copy()).continuedTypoNotice : "",
+       answerLanguage: data.language?.effective || uiLocale,
+       requestId: data.request_id || "",
++      requestPlan: data.request_plan || null,
+       question: cleanQuestion,
+       inputRecovery: data.input_recovery || null,
+     });
+@@ -581,6 +586,8 @@ async function ask(question) {
+       validation: data.validation,
+       trace: data.trace,
+     }, null, 2);
++    renderMessages();
++    lastSeenResponseId = data.request_id || lastSeenResponseId;
+     setStatus(true, copy().localApi);
+   } catch (error) {
+     removePending();
+@@ -627,6 +634,7 @@ questionEl.addEventListener("keydown", (event) => {
+ clearButtonEl.addEventListener("click", () => {
+   messages.length = 0;
+   clientSessionId = makeSessionId();
++  lastSeenResponseId = "";
+   clearMetrics();
+   renderMessages();
+   questionEl.focus();

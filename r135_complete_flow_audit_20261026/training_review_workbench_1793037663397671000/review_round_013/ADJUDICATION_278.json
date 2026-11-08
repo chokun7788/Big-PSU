@@ -1,0 +1,127 @@
+{
+  "question_key": "a6bc6425eb8b8625afdbcabac7e9cb02081e46c2b190fbf65ad9b1cf37e44fa4",
+  "example_sha256": "90a4ee2039758dfab84dcc23d27830620f8f0c4244ec8d98f25528252c7c6056",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Thai contact question asks the phone number.",
+      "raw_quotes": [
+        "เบอร์ติดต่อคืออะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "contact/detail/value retains channel-specific contact lookup.",
+      "raw_quotes": [
+        "เบอร์ติดต่อคืออะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add เบอร์ติดต่อ scope so a Facebook URL is not substituted for a phone number.",
+      "raw_quotes": [
+        "เบอร์ติดต่อคืออะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No named employee, extension, department or prior appointment is supplied.",
+      "raw_quotes": [
+        "เบอร์ติดต่อคืออะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A phone request is not authorization to call or message anyone.",
+      "raw_quotes": [
+        "เบอร์ติดต่อคืออะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned contact_phone FAQ revision3 records booking-system contact numbers; those are distinct from contact_studio_facebook and do not prove every department extension.",
+      "raw_quotes": [
+        "เบอร์ติดต่อคืออะไร"
+      ],
+      "source_record_ids": [
+        "migrated_faq_curated_contact_phone",
+        "contact_studio_facebook"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No telephone numbers, URL, operating hours or outgoing communication is taught.",
+      "raw_quotes": [
+        "เบอร์ติดต่อคืออะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 278,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "contact",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "เบอร์ติดต่อคืออะไร",
+        "domain": "contact",
+        "operation": "detail",
+        "facet": "value",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "contact",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "เบอร์ติดต่อคืออะไร",
+        "domain": "contact",
+        "operation": "detail",
+        "facet": "value",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "เบอร์ติดต่อ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_curated_contact_phone": {
+      "revision": 3,
+      "record_sha256": "fca845358ac40f81fef64986c946ba4dfae77e2c6ca150fa52a0a8d683a62790"
+    },
+    "contact_studio_facebook": {
+      "revision": 2,
+      "record_sha256": "4d3ce0e7221d39021f018ce351579fef3799203153074b6514ea4b70725884b0"
+    }
+  }
+}

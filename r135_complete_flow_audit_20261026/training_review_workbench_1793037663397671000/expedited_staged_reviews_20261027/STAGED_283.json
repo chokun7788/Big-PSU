@@ -1,0 +1,119 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 283,
+  "question_key": "7dc976a448677ceb0b0642a5446263d7c2c9a53043e5fad402054797cfd82016",
+  "raw_question": "is there any free slot from 14:00 to 15:00 ?",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "14:00",
+      "15:00"
+    ],
+    "tasks": [
+      {
+        "quote": "is there any free slot from 14:00 to 15:00 ?",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "14:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "15:00",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "is there any free slot from 14:00 to 15:00 ?",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "14:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "15:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "from 14:00 to 15:00",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One availability question asks a free slot in the14:00–15:00 interval.",
+    "intent_operation_facet": "live/availability/live_status with ambiguity retains a live interval query.",
+    "entities_and_slot_roles": "Keep both clock fragments and add the whole from 14:00 to 15:00 interval scope.",
+    "local_shared_history_scope": "Remove duplicated top context; date, timezone and service/resource are missing.",
+    "negation_and_ambiguity": "Do not choose today, any machine or a weekly booking period as if it were an actual live slot.",
+    "source_version_alignment": "Pinned provider mappings define freshness and physical-resource keys but are not successful live reads for the unspecified requested service/date.",
+    "no_business_answer_target": "No invented date, slot, count, transport success or free/busy answer is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "live_wordpress_16"
+  ],
+  "source_answer_issues": [
+    [
+      "Service and date are absent from the live interval query.",
+      "Ask for missing inputs rather than inventing a live result."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 284,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "live_wordpress_16": {
+      "revision": 1,
+      "record_sha256": "c17b2afc6d143fd747cbd0ab6409582dd76a641273d8dc98eefee9c1189411dc"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

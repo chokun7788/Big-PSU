@@ -1,0 +1,1033 @@
+{
+  "candidate_release": {
+    "count": 61,
+    "passed": 61,
+    "failed": [],
+    "candidate": true,
+    "real_model_calls": 0,
+    "full_test": false
+  },
+  "owner_2": {
+    "count": 13,
+    "passed": 13,
+    "failed": [],
+    "isolated_database": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r92_common_flow_implementation_20261018\\verification\\owner_2\\ISOLATED_NOT_PRODUCTION.sqlite",
+    "simulated_approvals_only": true,
+    "real_owner_approvals_created": false,
+    "new_record_kinds": [
+      "game",
+      "faq",
+      "zone",
+      "equipment_model"
+    ],
+    "model_calls": 0
+  },
+  "existing_fixture": {
+    "count": 19,
+    "passed": 19,
+    "checks": [
+      {
+        "case": "Legacy fact loaders blocked; current common package answered",
+        "passed": true,
+        "detail": {
+          "answer": "**Full-Day PC Zone Rental for External Organizations**\nPackage price: 4,000.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service.",
+          "artifact": {
+            "response_type": "partial_answer",
+            "release_id": "migration-preview-r69",
+            "query_plan": {
+              "record_ids": [
+                "rental_pc_external_full_day"
+              ],
+              "requested_fields": [
+                "amount_minor",
+                "currency",
+                "audience_id",
+                "period_label"
+              ],
+              "operation": "rental",
+              "method": "common_legacy_rental_bridge",
+              "request_contract": {
+                "version": 1,
+                "domain": "rental",
+                "requests": [
+                  {
+                    "zones": [
+                      "zone_pc"
+                    ],
+                    "audiences": [
+                      "audience_external_org"
+                    ],
+                    "periods": [
+                      "full_day"
+                    ]
+                  }
+                ],
+                "asks": [
+                  "rates"
+                ],
+                "context_used": false,
+                "original_query": "PC full-day rental for external organizations price",
+                "action": "read"
+              },
+              "response_projection": [
+                {
+                  "record_id": "rental_pc_external_full_day",
+                  "fields": {
+                    "amount_minor": "explicit",
+                    "currency": "necessary_context",
+                    "audience_id": "necessary_context",
+                    "period_label": "necessary_context"
+                  }
+                }
+              ],
+              "unknown_fields": [
+                {
+                  "record_id": "rental_pc_external_full_day",
+                  "field": "validity"
+                }
+              ],
+              "not_current_ids": [],
+              "legacy_fact_fallback_used": false,
+              "source_answer_confirmed": false
+            },
+            "obligations": [
+              {
+                "record_id": "rental_pc_external_full_day",
+                "field": "amount_minor",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/amount_minor",
+                    "source_id": "migration_rental_pc_external_full_day"
+                  }
+                ]
+              },
+              {
+                "record_id": "rental_pc_external_full_day",
+                "field": "currency",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/currency",
+                    "source_id": "migration_rental_pc_external_full_day"
+                  }
+                ]
+              },
+              {
+                "record_id": "rental_pc_external_full_day",
+                "field": "audience_id",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/audience_id",
+                    "source_id": "migration_rental_pc_external_full_day"
+                  }
+                ]
+              },
+              {
+                "record_id": "rental_pc_external_full_day",
+                "field": "period_label",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/period_label",
+                    "source_id": "migration_rental_pc_external_full_day"
+                  }
+                ]
+              },
+              {
+                "record_id": "rental_pc_external_full_day",
+                "field": "validity",
+                "status": "unknown",
+                "evidence_refs": [],
+                "reason": "source_has_no_confirmed_effective_date"
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "content_view": "evaluation_draft",
+            "production_publication_verified": false,
+            "need_ledger": {
+              "version": "common_need_ledger_v1",
+              "needs": [
+                {
+                  "id": "field_amount_minor",
+                  "field": "amount_minor",
+                  "status": "answered",
+                  "evidence_refs": [
+                    {
+                      "record_id": "rental_pc_external_full_day",
+                      "field": "amount_minor",
+                      "sources": [
+                        {
+                          "locator": "/mapped_fields/amount_minor",
+                          "source_id": "migration_rental_pc_external_full_day"
+                        }
+                      ]
+                    }
+                  ],
+                  "unanswered_records": []
+                },
+                {
+                  "id": "field_currency",
+                  "field": "currency",
+                  "status": "answered",
+                  "evidence_refs": [
+                    {
+                      "record_id": "rental_pc_external_full_day",
+                      "field": "currency",
+                      "sources": [
+                        {
+                          "locator": "/mapped_fields/currency",
+                          "source_id": "migration_rental_pc_external_full_day"
+                        }
+                      ]
+                    }
+                  ],
+                  "unanswered_records": []
+                },
+                {
+                  "id": "field_audience_id",
+                  "field": "audience_id",
+                  "status": "answered",
+                  "evidence_refs": [
+                    {
+                      "record_id": "rental_pc_external_full_day",
+                      "field": "audience_id",
+                      "sources": [
+                        {
+                          "locator": "/mapped_fields/audience_id",
+                          "source_id": "migration_rental_pc_external_full_day"
+                        }
+                      ]
+                    }
+                  ],
+                  "unanswered_records": []
+                },
+                {
+                  "id": "field_period_label",
+                  "field": "period_label",
+                  "status": "answered",
+                  "evidence_refs": [
+                    {
+                      "record_id": "rental_pc_external_full_day",
+                      "field": "period_label",
+                      "sources": [
+                        {
+                          "locator": "/mapped_fields/period_label",
+                          "source_id": "migration_rental_pc_external_full_day"
+                        }
+                      ]
+                    }
+                  ],
+                  "unanswered_records": []
+                }
+              ],
+              "total_needs": 4,
+              "answered_needs": 4,
+              "scope_limits": [
+                {
+                  "reason": "unconfirmed_effective_dates"
+                }
+              ],
+              "snapshot_consistent": true,
+              "semantic_correctness_verified": false,
+              "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+              "evidence_hits": 4,
+              "response_type": "partial_answer"
+            },
+            "knowledge_snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 1840,
+              "content_view": "evaluation_draft"
+            },
+            "migration": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            },
+            "planner_audits": [],
+            "query_resolution": []
+          }
+        }
+      },
+      {
+        "case": "Compound follow-up preserves the selected tuple only",
+        "passed": true,
+        "detail": "**VR Zone Internal Unit half_day**\nPackage price: 1,500.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+      },
+      {
+        "case": "Unknown short device cannot inherit old price",
+        "passed": true,
+        "detail": "The requested device does not match a recorded rental zone. Please specify a studio zone."
+      },
+      {
+        "case": "Custom duration cannot be priced from half/full-day packages",
+        "passed": true,
+        "detail": "ข้อมูลราคาที่มีเป็นแพ็กเกจตามโซน ยังยืนยันราคาของชุดที่ปรับรายการเองไม่ได้ครับ"
+      },
+      {
+        "case": "Cancel closes rental context",
+        "passed": true,
+        "detail": "Rental pricing context cleared. You can ask a new question."
+      },
+      {
+        "case": "Catalog exclusions preserve other packages without VR zone prices",
+        "passed": true,
+        "detail": "**เหมา PC Zone เต็มวัน หน่วยงานภายนอก**\nราคาแพ็กเกจ: 4,000.00 THB [S1]\n\n**All Zones หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 12,000.00 THB [S5]\n\n**All Zones หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 6,000.00 THB [S9]\n\n**All Zones หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 6,000.00 THB [S13]\n\n**All Zones หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 3,000.00 THB [S17]\n\n**Cockpit Zone หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S21]\n\n**Cockpit Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S25]\n\n**Cockpit Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 1,000.00 THB [S29]\n\n**Cockpit Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 500.00 THB [S33]\n\n**Nintendo Switch Zone หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S37]\n\n**Nintendo Switch Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S41]\n\n**Nintendo Switch Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 1,000.00 THB [S45]\n\n**Nintendo Switch Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 500.00 THB [S49]\n\n**PlayStation 5 Zone หน่วยงานภายนอก full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S53]\n\n**PlayStation 5 Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S57]\n\n**PlayStation 5 Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 1,000.00 THB [S61]\n\n**PlayStation 5 Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 500.00 THB [S65]\n\n**PC Zone หน่วยงานภายนอก half_day**\nราคาแพ็กเกจ: 2,000.00 THB [S69]\n\n**PC Zone หน่วยงานภายใน full_day**\nราคาแพ็กเกจ: 2,000.00 THB [S73]\n\n**PC Zone หน่วยงานภายใน half_day**\nราคาแพ็กเกจ: 1,000.00 THB [S77]\n\nข้อมูลต้นฉบับยังไม่ระบุวันมีผลของราคาเหมา กรุณายืนยันกับศูนย์ก่อนใช้บริการ"
+      },
+      {
+        "case": "Unknown validity is explicit, never a fully confirmed current price",
+        "passed": true,
+        "detail": {
+          "record_ids": [
+            "rental_pc_external_full_day"
+          ],
+          "requested_fields": [
+            "amount_minor",
+            "currency",
+            "audience_id",
+            "period_label"
+          ],
+          "operation": "rental",
+          "method": "common_legacy_rental_bridge",
+          "request_contract": {
+            "version": 1,
+            "domain": "rental",
+            "requests": [
+              {
+                "zones": [
+                  "zone_pc"
+                ],
+                "audiences": [
+                  "audience_external_org"
+                ],
+                "periods": [
+                  "full_day"
+                ]
+              }
+            ],
+            "asks": [
+              "rates"
+            ],
+            "context_used": false,
+            "original_query": "PC full-day rental for external organizations price",
+            "action": "read"
+          },
+          "response_projection": [
+            {
+              "record_id": "rental_pc_external_full_day",
+              "fields": {
+                "amount_minor": "explicit",
+                "currency": "necessary_context",
+                "audience_id": "necessary_context",
+                "period_label": "necessary_context"
+              }
+            }
+          ],
+          "unknown_fields": [
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "validity"
+            }
+          ],
+          "not_current_ids": [],
+          "legacy_fact_fallback_used": false,
+          "source_answer_confirmed": false
+        }
+      },
+      {
+        "case": "Edited price read on follow-up; history facts not reused",
+        "passed": true,
+        "detail": "**Full-Day PC Zone Rental for External Organizations**\nPackage price: 4,500.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+      },
+      {
+        "case": "Period replacement preserves PC/external with latest revision",
+        "passed": true,
+        "detail": "**PC Zone External Agency half_day**\nPackage price: 2,250.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+      },
+      {
+        "case": "Expired package never asserted as current price",
+        "passed": true,
+        "detail": "Some packages or their referenced records are not current, so their prices are not asserted as current."
+      },
+      {
+        "case": "New common zone works without editing code catalogs",
+        "passed": true,
+        "detail": "**Aurora half-day internal organization fixture**\nPackage price: 987.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+      },
+      {
+        "case": "New zone equipment follow-up reads new common fields",
+        "passed": true,
+        "detail": "**Aurora half-day internal organization fixture**\nIncluded equipment: AURORA_PAD fixture equipment [S1]"
+      },
+      {
+        "case": "New zone revised price follows current revision",
+        "passed": true,
+        "detail": "**Aurora half-day internal organization fixture**\nPackage price: 1,234.00 THB [S1]\n\nThe source does not specify effective dates for these rental prices. Confirm with the studio before using the service."
+      },
+      {
+        "case": "Withdrawn package does not fall back to legacy or stale state",
+        "passed": true,
+        "detail": "The previous scope was changed or withdrawn. Please specify the zone and audience again."
+      },
+      {
+        "case": "New source is not blocked by old unknown-topic guard",
+        "passed": true,
+        "detail": "Do you mean this topic: Payment amount correction fixture?\nReply “yes” or “no”."
+      },
+      {
+        "case": "Confirmation reads newly added source answer",
+        "passed": true,
+        "detail": "**Relevant information**\n• Confirmed information: ISOLATED AMOUNT_REVIEW_V1 [S1]"
+      },
+      {
+        "case": "New correction source update is effective without router edit",
+        "passed": true,
+        "detail": "**Relevant information**\n• Confirmed information: ISOLATED AMOUNT_REVIEW_V2 [S1]"
+      },
+      {
+        "case": "Withdrawn new correction restores precise unconfirmed state",
+        "passed": true,
+        "detail": "The information I could read does not confirm how to correct an incorrect payment amount. Please contact the studio staff to confirm before proceeding.\nWas the payment above or below the booking amount? I cannot yet confirm a correction or refund procedure.\nStudio page: https://www.facebook.com/psuesportsphuket [S1]"
+      },
+      {
+        "case": "Real knowledge database unchanged",
+        "passed": true,
+        "detail": null
+      }
+    ],
+    "isolated_fixture": true,
+    "llm_on": true,
+    "controlled_transport": true,
+    "real_model_inference_verified": false,
+    "full_test_executed": false
+  },
+  "competition_fixture": {
+    "count": 7,
+    "passed": 7,
+    "checks": [
+      {
+        "case": "Current source edited deadline in th",
+        "passed": true,
+        "detail": {
+          "answer": "ข้อกติกาตามประเด็นที่ถาม — PSU Phuket CS2 2026 Tournament\n\n\n\n**ข้อพิพาท**\n• 2. การประท้วง ต้องยื่นเรื่องภายใน 23 นาทีหลังจากจบแมตช์ โดยกัปตันทีมหรือโค้ชเท่านั้น [S1]",
+          "artifact": {
+            "response_type": "answer",
+            "release_id": "migration-preview-r69",
+            "query_plan": {
+              "record_ids": [
+                "competition_competition_rules_cs2_psu_phuket_2026"
+              ],
+              "requested_fields": [
+                "text"
+              ],
+              "all_fields": false,
+              "method": "common_legacy_proposition_detail",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "กติกา เรื่องการประท้วงและข้อพิพาท ว่าอย่างไร",
+              "operation": "rules",
+              "scope_ids": [
+                "competition_competition_rules_cs2_psu_phuket_2026"
+              ],
+              "field_selection": [
+                {
+                  "field": "text",
+                  "cue": "competition rule text",
+                  "method": "schema_attribute"
+                }
+              ],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "schema_language_recoveries": [],
+              "rule_content_all": false,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "competition_competition_rules_cs2_psu_phuket_2026"
+                ],
+                "release_id": "migration-preview-r69",
+                "epoch": 1841
+              },
+              "field_authority": [],
+              "response_projection": [
+                {
+                  "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                  "fields": {
+                    "text": "explicit"
+                  }
+                }
+              ],
+              "clause_selection": [
+                {
+                  "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                  "facet": "dispute",
+                  "clauses": [
+                    "2. การประท้วง ต้องยื่นเรื่องภายใน 23 นาทีหลังจากจบแมตช์ โดยกัปตันทีมหรือโค้ชเท่านั้น"
+                  ]
+                }
+              ],
+              "legacy_fact_fallback_used": false,
+              "summary_is_complete": null,
+              "source_answer_confirmed": true
+            },
+            "obligations": [
+              {
+                "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                "field": "text",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/text",
+                    "source_id": "fixture_r87_258692ecdf54bf2c522052bd"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "content_view": "evaluation_draft",
+            "production_publication_verified": false,
+            "need_ledger": {
+              "version": "common_need_ledger_v1",
+              "needs": [
+                {
+                  "id": "field_text",
+                  "field": "text",
+                  "status": "answered",
+                  "evidence_refs": [
+                    {
+                      "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                      "field": "text",
+                      "sources": [
+                        {
+                          "locator": "/text",
+                          "source_id": "fixture_r87_258692ecdf54bf2c522052bd"
+                        }
+                      ]
+                    }
+                  ],
+                  "unanswered_records": []
+                }
+              ],
+              "total_needs": 1,
+              "answered_needs": 1,
+              "scope_limits": [],
+              "snapshot_consistent": true,
+              "semantic_correctness_verified": false,
+              "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+              "evidence_hits": 1,
+              "response_type": "answer"
+            },
+            "knowledge_snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 1841,
+              "content_view": "evaluation_draft"
+            },
+            "migration": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            },
+            "planner_audits": [],
+            "query_resolution": [
+              {
+                "stage": "request_needs",
+                "needs": []
+              },
+              {
+                "stage": "named_scope",
+                "record_ids": [
+                  "game_detail_cs2",
+                  "controls_pc_counter_strike_2"
+                ],
+                "method": "exact"
+              },
+              {
+                "stage": "question_profile",
+                "selection": {
+                  "method": "declared_question_profile",
+                  "reason": "no_supported_task",
+                  "candidate_ids": []
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "case": "Current source edited deadline in en",
+        "passed": true,
+        "detail": {
+          "answer": "Requested rulebook clause — PSU Phuket CS2 2026 Tournament\n\n\n\n**Disputes**\n• 2. Objections must be submitted within 23 minutes after the match ends, by only the team captain or coach. [S1]",
+          "artifact": {
+            "response_type": "answer",
+            "release_id": "migration-preview-r69",
+            "query_plan": {
+              "record_ids": [
+                "competition_competition_rules_cs2_psu_phuket_2026"
+              ],
+              "requested_fields": [
+                "text"
+              ],
+              "all_fields": false,
+              "method": "common_legacy_proposition_detail",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": ": who can submit a protest and when?",
+              "operation": "rules",
+              "scope_ids": [
+                "competition_competition_rules_cs2_psu_phuket_2026"
+              ],
+              "field_selection": [],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "schema_language_recoveries": [],
+              "rule_content_all": false,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "competition_competition_rules_cs2_psu_phuket_2026"
+                ],
+                "release_id": "migration-preview-r69",
+                "epoch": 1841
+              },
+              "field_authority": [],
+              "response_projection": [
+                {
+                  "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                  "fields": {
+                    "text": "explicit"
+                  }
+                }
+              ],
+              "clause_selection": [
+                {
+                  "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                  "facet": "dispute",
+                  "clauses": [
+                    "2. Objections must be submitted within 23 minutes after the match ends, by only the team captain or coach."
+                  ]
+                }
+              ],
+              "legacy_fact_fallback_used": false,
+              "summary_is_complete": null,
+              "source_answer_confirmed": true
+            },
+            "obligations": [
+              {
+                "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                "field": "text",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/text",
+                    "source_id": "fixture_r87_258692ecdf54bf2c522052bd"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "content_view": "evaluation_draft",
+            "production_publication_verified": false,
+            "need_ledger": {
+              "version": "common_need_ledger_v1",
+              "needs": [
+                {
+                  "id": "field_text",
+                  "field": "text",
+                  "status": "answered",
+                  "evidence_refs": [
+                    {
+                      "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_058",
+                      "field": "text",
+                      "sources": [
+                        {
+                          "locator": "/text",
+                          "source_id": "fixture_r87_258692ecdf54bf2c522052bd"
+                        }
+                      ]
+                    }
+                  ],
+                  "unanswered_records": []
+                }
+              ],
+              "total_needs": 1,
+              "answered_needs": 1,
+              "scope_limits": [],
+              "snapshot_consistent": true,
+              "semantic_correctness_verified": false,
+              "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+              "evidence_hits": 1,
+              "response_type": "answer"
+            },
+            "knowledge_snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 1841,
+              "content_view": "evaluation_draft"
+            },
+            "migration": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            },
+            "planner_audits": [],
+            "query_resolution": [
+              {
+                "stage": "request_needs",
+                "needs": []
+              },
+              {
+                "stage": "named_scope",
+                "record_ids": [
+                  "game_detail_cs2",
+                  "competition_competition_rules_tekken8_psu_esports_section_002",
+                  "controls_pc_counter_strike_2"
+                ],
+                "method": "exact"
+              },
+              {
+                "stage": "question_profile",
+                "selection": {
+                  "method": "declared_question_profile",
+                  "reason": "no_supported_task",
+                  "candidate_ids": []
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "case": "New source clause read in summary th",
+        "passed": true,
+        "detail": {
+          "answer": "สรุปกติกาบางประเด็นจากเอกสารที่มี — Blueket Games 2025 ประเภททีมชาย\n\n\n\n**รูปแบบการแข่งขัน**\n• เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3 [S1]\n\n**คุณสมบัติและการลงทะเบียน**\n• เวลา 8.00-8.30 ลงทะเบียน [S2]\n\n**อุปกรณ์การแข่งขัน**\n• ผู้เล่นต้องใช้อุปกรณ์ FIXTURE_PAD_901 สำหรับการแข่งขันทดลองเท่านั้น [S3]\n\n**การหยุดเกมและเวลานอก**\n• 4.3.1.ในกรณีที่มีผู้เข้าแข่งขันหลุดออกจากเกม ให้ทำการหยุดเกมชั่วคราว โดยแต่ละทีมสามารถกดหยุดเกมได้ทีมละ 5 ครั้ง ครั้งละไม่เกิน 1 นาที ถ้าหากเกินเวลาดังกล่าว อีกทีมสามารถกด Resume ได้ทันทีและทำการแข่งขันต่อตามปกติ [S4]\n\n**ข้อห้ามและพฤติกรรม**\n• 4.1.1.ห้ามใช้ชื่อตัวละครหรือคําพูดที่เป็นการหยาบคายหรือเสียดสีผู้อื่น [S5]\n\n**บทลงโทษ**\n• 4.1.4.หากเริ่มการแข่งขันช้าเกินกว่าเวลาที่กำหนดไว้ 15 นาที ฝ่ายที่ล่าช้าจะถูกปรับแพ้จากการแข่งขันทันที [S6]\n\n\n\nเป็นสรุปบางข้อ ถ้าต้องการครบทุกข้อ ให้ถามกติกาทั้งหมด หรือระบุหัวข้อที่ต้องการรายละเอียด",
+          "plan": {
+            "record_ids": [
+              "competition_competition_rules_rov_blueket_2025_men"
+            ],
+            "requested_fields": [
+              "text"
+            ],
+            "all_fields": false,
+            "method": "common_legacy_clause_overview",
+            "scope": "common_published",
+            "platform": null,
+            "query_without_entity": "สรุปกติกาสั้นๆ",
+            "operation": "rules",
+            "scope_ids": [
+              "competition_competition_rules_rov_blueket_2025_men"
+            ],
+            "field_selection": [
+              {
+                "field": "text",
+                "cue": "competition rule text",
+                "method": "schema_attribute"
+              }
+            ],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "rule_content_all": false,
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "competition_competition_rules_rov_blueket_2025_men"
+              ],
+              "release_id": "migration-preview-r69",
+              "epoch": 1842
+            },
+            "field_authority": [],
+            "response_projection": [
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "fixture_new_rov_clause",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "fields": {
+                  "text": "explicit"
+                }
+              }
+            ],
+            "clause_selection": [
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "facet": "competition_format",
+                "clauses": [
+                  "เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3"
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "facet": "eligibility_registration",
+                "clauses": [
+                  "เวลา 8.00-8.30 ลงทะเบียน"
+                ]
+              },
+              {
+                "record_id": "fixture_new_rov_clause",
+                "facet": "equipment",
+                "clauses": [
+                  "ผู้เล่นต้องใช้อุปกรณ์ FIXTURE_PAD_901 สำหรับการแข่งขันทดลองเท่านั้น"
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "facet": "pause_timeout",
+                "clauses": [
+                  "4.3.1.ในกรณีที่มีผู้เข้าแข่งขันหลุดออกจากเกม ให้ทำการหยุดเกมชั่วคราว โดยแต่ละทีมสามารถกดหยุดเกมได้ทีมละ 5 ครั้ง ครั้งละไม่เกิน 1 นาที ถ้าหากเกินเวลาดังกล่าว อีกทีมสามารถกด Resume ได้ทันทีและทำการแข่งขันต่อตามปกติ"
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "facet": "conduct",
+                "clauses": [
+                  "4.1.1.ห้ามใช้ชื่อตัวละครหรือคําพูดที่เป็นการหยาบคายหรือเสียดสีผู้อื่น"
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "facet": "penalty",
+                "clauses": [
+                  "4.1.4.หากเริ่มการแข่งขันช้าเกินกว่าเวลาที่กำหนดไว้ 15 นาที ฝ่ายที่ล่าช้าจะถูกปรับแพ้จากการแข่งขันทันที"
+                ]
+              }
+            ],
+            "legacy_fact_fallback_used": false,
+            "summary_is_complete": false,
+            "source_answer_confirmed": true
+          }
+        }
+      },
+      {
+        "case": "New source clause read in summary en",
+        "passed": true,
+        "detail": {
+          "answer": "Selected rulebook clauses — Blueket Games 2025 Men's Team\n\n\n\n**Competition format**\n• 8.40-10.00 Round of 5 teams: Single Elimination BO3 [S1]\n\n**Eligibility and registration**\n• 8.00-8.30 Registration [S2]\n\n**Competition equipment**\n• Players must use FIXTURE_PAD_901 equipment for this fixture competition only. [S3]\n\n**Pauses and timeouts**\n• 4.3.1. If a competitor disconnects, temporarily pause the game. Each team may pause 5 times, no more than 1 minute each. Beyond that time, the other team may immediately press Resume and continue normally. [S4]\n\n**Restrictions and conduct**\n• 4.1.1. Character names or language that are rude or mock others are prohibited. [S5]\n\n**Penalties**\n• 5.3. Tablets or iPads, as well as any other equipment other than a mobile phone (Mobile Phone), are not permitted for use during competition. If detected, the team will be immediately disqualified [S6]\n\n\n\nThese are selected clauses. Ask for all rules or name a topic for details.",
+          "plan": {
+            "record_ids": [
+              "competition_competition_rules_rov_blueket_2025_men"
+            ],
+            "requested_fields": [
+              "text"
+            ],
+            "all_fields": false,
+            "method": "common_legacy_clause_overview",
+            "scope": "common_published",
+            "platform": null,
+            "query_without_entity": "give me a brief overview of",
+            "operation": "rules",
+            "scope_ids": [
+              "competition_competition_rules_rov_blueket_2025_men"
+            ],
+            "field_selection": [],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "rule_content_all": false,
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "competition_competition_rules_rov_blueket_2025_men"
+              ],
+              "release_id": "migration-preview-r69",
+              "epoch": 1842
+            },
+            "field_authority": [],
+            "response_projection": [
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "fixture_new_rov_clause",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "fields": {
+                  "text": "explicit"
+                }
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_010",
+                "fields": {
+                  "text": "explicit"
+                }
+              }
+            ],
+            "clause_selection": [
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "facet": "competition_format",
+                "clauses": [
+                  "8.40-10.00 Round of 5 teams: Single Elimination BO3"
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+                "facet": "eligibility_registration",
+                "clauses": [
+                  "8.00-8.30 Registration"
+                ]
+              },
+              {
+                "record_id": "fixture_new_rov_clause",
+                "facet": "equipment",
+                "clauses": [
+                  "Players must use FIXTURE_PAD_901 equipment for this fixture competition only."
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "facet": "pause_timeout",
+                "clauses": [
+                  "4.3.1. If a competitor disconnects, temporarily pause the game. Each team may pause 5 times, no more than 1 minute each. Beyond that time, the other team may immediately press Resume and continue normally."
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+                "facet": "conduct",
+                "clauses": [
+                  "4.1.1. Character names or language that are rude or mock others are prohibited."
+                ]
+              },
+              {
+                "record_id": "competition_competition_rules_rov_blueket_2025_men_section_010",
+                "facet": "penalty",
+                "clauses": [
+                  "5.3. Tablets or iPads, as well as any other equipment other than a mobile phone (Mobile Phone), are not permitted for use during competition. If detected, the team will be immediately disqualified"
+                ]
+              }
+            ],
+            "legacy_fact_fallback_used": false,
+            "summary_is_complete": false,
+            "source_answer_confirmed": true
+          }
+        }
+      },
+      {
+        "case": "Withdrawn summary clause disappears",
+        "passed": true,
+        "detail": "Selected rulebook clauses — Blueket Games 2025 Men's Team\n\n\n\n**Competition format**\n• 8.40-10.00 Round of 5 teams: Single Elimination BO3 [S1]\n\n**Eligibility and registration**\n• 8.00-8.30 Registration [S2]\n\n**Competition equipment**\n• 5.3. Tablets or iPads, as well as any other equipment other than a mobile phone (Mobile Phone), are not permitted for use during competition. If detected, the team will be immediately disqualified [S3]\n\n**Pauses and timeouts**\n• 4.3.1. If a competitor disconnects, temporarily pause the game. Each team may pause 5 times, no more than 1 minute each. Beyond that time, the other team may immediately press Resume and continue normally. [S4]\n\n**Restrictions and conduct**\n• 4.1.1. Character names or language that are rude or mock others are prohibited. [S5]\n\n**Penalties**\n• 6.1.2.1. Penalty: Immediate game loss and disqualification of the offending team from the competition upon detection of misconduct. [S6]\n\n\n\nThese are selected clauses. Ask for all rules or name a topic for details."
+      },
+      {
+        "case": "Withdrawn detail cannot return old or fixture deadline",
+        "passed": true,
+        "detail": "Competition rules: Counter-Strike 2 — PSU Phuket CS2 2026 Tournament\n\n**3. Language: The official language of the competition is Thai. All communication, protests, and reporting must be conducted in Thai, unless otherwise specified.**\n• Rule topic: 3. Language: The official language of the competition is Thai. All communication, protests, and reporting must be conducted in Thai, unless otherwise specified. [S1]\n• Rule details: 3. Language: The official language of the competition is Thai. All communication, protests, and reporting must be conducted in Thai, unless otherwise specified. [S2]\n\n**9. Management and Officials**\n• Rule topic: 9. Management and Officials [S3]\n• Rule details: 9. Management and Officials [S4]\n\n**1. Judging Authority: The decisions of the referees and organizers shall be final. The organizing party reserves the right to amend the rules as appropriate for fairness.**\n• Rule topic: 1. Judging Authority: The decisions of the referees and organizers shall be final. The organizing party reserves the right to amend the rules as appropriate for fairness. [S5]\n• Rule details: 1. The authority of judgment shall be final and binding upon the referee and organizers; the organizing party reserves the right to amend the rules as appropriate for fairness. [S6]\n\nEnglish translation is machine generated and has not been reviewed by the owner."
+      },
+      {
+        "case": "Real knowledge database unchanged",
+        "passed": true,
+        "detail": null
+      }
+    ],
+    "isolated_fixture": true,
+    "llm_on": true,
+    "controlled_transport": true,
+    "real_model_inference_verified": false,
+    "full_test_executed": false
+  },
+  "flow_3": {
+    "count": 65,
+    "passed": 65,
+    "failed": [],
+    "model_calls": 0,
+    "full_test": false,
+    "simulated_owner_approvals_only": true
+  },
+  "owner_http": {
+    "count": 7,
+    "passed": 7,
+    "failed": [],
+    "isolated_owner_http": true,
+    "model_calls": 0,
+    "full_test": false
+  },
+  "live_2": {
+    "requests": 6,
+    "asserted": 5,
+    "passed": 5,
+    "observational": 1,
+    "actual_model_preflight_done": true,
+    "chat_model_http_calls": 1,
+    "transport_failure_calls": 0,
+    "llm_enabled": true,
+    "full_test": false
+  },
+  "installed_web_2": {
+    "count": 7,
+    "passed": 7,
+    "failed": [],
+    "installed_build_verified": true,
+    "llm_enabled": true,
+    "full_test": false,
+    "database_unchanged": true,
+    "loaded_fingerprint": "cc18af485c5c626366757a7baa14a729321d28ccf35e94fdc7dddf8d807d7d48"
+  }
+}

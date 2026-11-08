@@ -1,0 +1,146 @@
+{
+  "question_key": "ed5d8832b8a33e04d9759f2412e464fb502ea01eb9b5710f6eacf7891efccaf0",
+  "example_sha256": "b422bf10c515bfae54f7902ede06d85b271735a46674b7efe9fbc15129617d25",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One payment-problem contact procedure asks both where to contact and which evidence accompanies it.",
+      "raw_quotes": [
+        "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy retains one purpose-specific procedure with both requested attributes rather than an unrelated general-contact lookup.",
+      "raw_quotes": [
+        "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "มีปัญหาเรื่องเงินที่จ่าย is case scope, ติดต่อ action, ติดต่อที่ไหน and หลักฐานอะไร required requested scopes.",
+      "raw_quotes": [
+        "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No refund entitlement, machine failure, closure cause, processing deadline or prior message is inherited.",
+      "raw_quotes": [
+        "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Contact purpose and accompanying proof must both survive; neither authorizes the assistant to contact a third party.",
+      "raw_quotes": [
+        "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_q019 provides payment-problem contact plus slip/booking evidence and explicitly does not establish refund entitlement or timing.",
+      "raw_quotes": [
+        "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร"
+      ],
+      "source_record_ids": [
+        "r114_q019_owner_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No contact address, evidence list, refund result or message is taught.",
+      "raw_quotes": [
+        "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Payment-problem contact/evidence does not establish refund entitlement or processing time.",
+      "handling": "Preserve purpose-specific contact and evidence while keeping outcome/deadline unknown."
+    }
+  ],
+  "historical_review_row": 223,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "อยากรู้ว่า มีปัญหาเรื่องเงินที่จ่ายต้องติดต่อที่ไหนพร้อมหลักฐานอะไร",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "มีปัญหาเรื่องเงินที่จ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ติดต่อ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ติดต่อที่ไหน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "หลักฐานอะไร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q019_owner_policy": {
+      "revision": 1,
+      "record_sha256": "f2d8d738026b11424cff5dc4fff8acbb1d7b01e160f8d1042d39e0f4cc4b13a6"
+    }
+  }
+}

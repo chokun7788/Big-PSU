@@ -1,0 +1,101 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 272,
+  "question_key": "e57f02961055c3c0a53d1c221408cad728f8813afb52ce12e3b8da79576b2b37",
+  "raw_question": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [
+      "ไม่ได้ถามเรื่องกิน"
+    ],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ได้ถามเรื่องกิน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ได้ถามเรื่องกิน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ถือขวดน้ำ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One question asks permission to carry a water bottle, explicitly excluding consumption.",
+    "intent_operation_facet": "rules/detail/owner_policy with food_bring focus retains carrying, not food_consume.",
+    "entities_and_slot_roles": "Add ถือขวดน้ำ action and keep ไม่ได้ถามเรื่องกิน as local negation.",
+    "local_shared_history_scope": "Remove duplicate top context; no drinking act, gaming desk or named event is supplied.",
+    "negation_and_ambiguity": "Do not broaden permission to consuming everywhere or apply a tournament-specific sealed-container rule.",
+    "source_version_alignment": "Pinned general food_bring clause revision2 separates bringing inside from eating/drinking only in designated areas.",
+    "no_business_answer_target": "No permission answer, allowed area, water-container condition or consumption entitlement is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_policy_text_food_bring_general"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 273,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

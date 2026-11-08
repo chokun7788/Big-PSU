@@ -1,0 +1,173 @@
+{
+  "question_key": "0cfd656985ef7e31c4976e6ee7faed18a240e6dfc7a37607c2a298b27942c0c2",
+  "example_sha256": "edbf9e3f0048ac638c1a71855e04f894f60357fbc572bdd4c0ced617bf2bb541",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One future live-availability question for a numbered Nintendo machine.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "live/availability/live_status remains distinct from weekly opening hours.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Keep พฤหัสบดี,15:00,Nintendo and the exact เครื่อง 2 resource scope; two is not a party size.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "All constraints are local; no resource ID or observation is inherited.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The question is interpretable but needs current clock/provider/resource resolution before a status can be known.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "availability_nintendo_1_2 records service party capacity, not a machine-two live observation or resource identity.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+      ],
+      "source_record_ids": [
+        "availability_nintendo_1_2"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No free/busy verdict, canonical machine ID or weekday date is taught.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "No request-local observation or proven machine-two resource identity is in this source evidence.",
+      "handling": "Resolve physical resource, clock and provider freshness before live status."
+    }
+  ],
+  "historical_review_row": 120,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "พฤหัสบดี",
+      "15:00",
+      "Nintendo"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "พฤหัสบดี",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "15:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "live_status",
+    "context_quotes": [
+      "พฤหัสบดี",
+      "15:00",
+      "Nintendo"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: พฤหัสบดีตอน 15:00 Nintendo เครื่อง 2 ว่างไหม",
+        "domain": "live",
+        "operation": "availability",
+        "facet": "live_status",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "พฤหัสบดี",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "15:00",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เครื่อง 2",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_nintendo_1_2": {
+      "revision": 5,
+      "record_sha256": "2cecf1a5c961c46e8daf1a9985fee9d175ee37b55dd0d42e2f0b8c1b6d4d2333"
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "question_key": "82bce60c5afaf504680752a5707120ea9f962b54d47b4a1b7319d36850c1a19f",
+  "example_sha256": "dd3cc5e713537430211e5d6d7fe08047df609632489b574eff2d274ba3589da4",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One bringing-food permission need explicitly excludes eating in the gaming room.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy with food_bring focus retains carrying rather than consuming.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "เอาอาหารจากข้างนอกเข้าไป is the action; ไม่กินในห้องเล่น is the explicit excluded consumption condition.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No prior food permission or consumption place is inherited.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Preserve the negation locally; it does not assert a new business rule or request to eat elsewhere.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "food_bring_general explicitly distinguishes bringing from designated-area consumption; consumption-only FAQs cannot answer bringing alone.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_food_bring_general",
+        "migrated_faq_rule_food_drink"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No permission verdict, room rule or fine is taught.",
+      "raw_quotes": [
+        "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 139,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า เอาอาหารจากข้างนอกเข้าไปแต่ไม่กินในห้องเล่นได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "เอาอาหารจากข้างนอกเข้าไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "negation",
+            "quote": "ไม่กินในห้องเล่น",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    },
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    }
+  }
+}

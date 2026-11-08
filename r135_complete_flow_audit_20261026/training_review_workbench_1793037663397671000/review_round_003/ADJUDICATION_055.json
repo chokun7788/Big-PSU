@@ -1,0 +1,139 @@
+{
+  "question_key": "790d4406db2db9773074032f548a0c38b10f5a2874ea6e57bf911dede2d57b7e",
+  "example_sha256": "ce28b2558840b5cf772cca8f9c669e9a64f3753894de79ff95b5c35037f67196",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Monday-morning open/closed question; visit planning is context.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/availability/open_periods checks the qualified opening window.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "วันจันทร์ is weekday and เช้า is a separate time qualifier, previously omitted.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Both qualifiers scope this one task; no absolute date or whole-week request is added.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "เปิดหรือปิด names alternatives to check, not two tasks or proof of closure.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_schedule_0 distinguishes morning maintenance and afternoon playable slots; an all-day scalar would lose the morning constraint.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_0"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No 09:00-12:00 maintenance interval or opening judgment enters labels.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 55,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "วันจันทร์"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันจันทร์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "วันจันทร์"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันจันทร์",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "เช้า",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_0": {
+      "revision": 4,
+      "record_sha256": "43877514a17f5ca9e24a3d1036e1746148a1ad002e7096d2d4db073f6ce27d0a"
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "question_key": "0ce8d5cf6311f2ca992677f5b56750653aebc613fc7faeabe5be499700f793d3",
+  "example_sha256": "d7f4645b0f80435fcc544ac96d340df4426cf163de7e032f0372fd84190f8c8b",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One VR play-price request; muc/xost are typos.",
+      "raw_quotes": [
+        "How muc does it xost for a PSU student to play VR for 1 hour"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount retains the intended price calculation.",
+      "raw_quotes": [
+        "How muc does it xost for a PSU student to play VR for 1 hour"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PSU student, VR and 1 hour are exact local audience/service/duration scopes.",
+      "raw_quotes": [
+        "How muc does it xost for a PSU student to play VR for 1 hour"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No group size, second service or previous duration is inherited.",
+      "raw_quotes": [
+        "How muc does it xost for a PSU student to play VR for 1 hour"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Clear price intent does not establish a purchased session or student eligibility proof beyond the raw quote.",
+      "raw_quotes": [
+        "How muc does it xost for a PSU student to play VR for 1 hour"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned VR60 PSU-student/staff rate and separate VR30 rate have explicit durations and session rounding; the label must not choose an option from price equality.",
+      "raw_quotes": [
+        "How muc does it xost for a PSU student to play VR for 1 hour"
+      ],
+      "source_record_ids": [
+        "migrated_rate_vr_60_1_5_psu_student_staff",
+        "migrated_rate_vr_30_1_5_psu_student_staff"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No zero price, session count or total is supervised.",
+      "raw_quotes": [
+        "How muc does it xost for a PSU student to play VR for 1 hour"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 95,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "1 hour",
+      "PSU student",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How muc does it xost for a PSU student to play VR for 1 hour",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "1 hour",
+      "PSU student",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How muc does it xost for a PSU student to play VR for 1 hour",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_vr_60_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "3b937929a76c3c519ddfe1d1afdef0a6fa6e699b4e298b63f1aaac0d736ea0df"
+    },
+    "migrated_rate_vr_30_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "cbb10c075112bf48345bdfd11b307d02ed5edfc120ef5c3644a97d924de3f823"
+    }
+  }
+}

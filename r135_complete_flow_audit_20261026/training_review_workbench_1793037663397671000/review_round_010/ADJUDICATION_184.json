@@ -1,0 +1,152 @@
+{
+  "question_key": "db2919f1ab9c68fb22c5a09a1e8b27a8843313d425cc5d61fb3818027472ca22",
+  "example_sha256": "d5c52ed4bfe0ca54fe06af3f5b7f1361799dd08de43c464507014c4b08386ee9",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One weekly calendar collection asks both booking days and periods.",
+      "raw_quotes": [
+        "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Change schedule/detail to list/bookable_periods so all requested recorded day/time tuples remain in scope.",
+      "raw_quotes": [
+        "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "วันไหนและช่วงเวลาไหนบ้าง is the requested collection scope; no date literal is supplied.",
+      "raw_quotes": [
+        "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No one weekday, service or current slot is inherited.",
+      "raw_quotes": [
+        "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "This asks regular bookable windows, not current vacant machines or physical opening hours.",
+      "raw_quotes": [
+        "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "All seven weekly bookable_periods fields include empty weekends and differ from maintenance/service/physical-opening fields.",
+      "raw_quotes": [
+        "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_0",
+        "migrated_schedule_1",
+        "migrated_schedule_2",
+        "migrated_schedule_3",
+        "migrated_schedule_4",
+        "migrated_schedule_5",
+        "migrated_schedule_6"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No weekday set, time range, live availability or booking success is taught.",
+      "raw_quotes": [
+        "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 184,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "bookable_periods",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "bookable_periods",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "bookable_periods",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง",
+        "domain": "schedule",
+        "operation": "list",
+        "facet": "bookable_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "วันไหนและช่วงเวลาไหนบ้าง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_0": {
+      "revision": 4,
+      "record_sha256": "43877514a17f5ca9e24a3d1036e1746148a1ad002e7096d2d4db073f6ce27d0a"
+    },
+    "migrated_schedule_1": {
+      "revision": 3,
+      "record_sha256": "a30b631c4777569af4196a5537dfb7ef5e38727adc9201eee6ca5a1d689e397c"
+    },
+    "migrated_schedule_2": {
+      "revision": 3,
+      "record_sha256": "54f567b0a429b84ed238f9f73ecf0a3aa19e5f16cd4a3f876eb991506ce704a7"
+    },
+    "migrated_schedule_3": {
+      "revision": 3,
+      "record_sha256": "9c34b6adae2e230074b10139043344b06136d0427dcc11b1e061cd5e8ba35aad"
+    },
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    },
+    "migrated_schedule_5": {
+      "revision": 4,
+      "record_sha256": "4a62a2d3da96f4f392888a63fd7d5b96c13210fa5db1bab0d6b0193609894733"
+    },
+    "migrated_schedule_6": {
+      "revision": 4,
+      "record_sha256": "4619ab2ac36c59d3b782383119b445c81bf7b6c52f4d8348cec3433c8b94b5f3"
+    }
+  }
+}

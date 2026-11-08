@@ -1,0 +1,112 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 248,
+  "question_key": "e078a573627b9ec7b035841ab048db6142e4f5f6b1a99d3a2c31692f2b4c83f3",
+  "raw_question": "Please use verified studio information: What am I responsible for if the Cockpit wheel breaks?",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [
+      "if the Cockpit wheel breaks"
+    ],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: What am I responsible for if the Cockpit wheel breaks?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "if the Cockpit wheel breaks",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: What am I responsible for if the Cockpit wheel breaks?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "if the Cockpit wheel breaks",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "Cockpit wheel",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "responsible",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One conditional question asks liability if a Cockpit wheel breaks; verified-source framing is style.",
+    "intent_operation_facet": "rules/detail/owner_policy with damage focus is a responsibility question, not a separate equipment-usage lookup.",
+    "entities_and_slot_roles": "Keep the literal if-clause locally and add Cockpit wheel plus responsible as the device and responsibility scopes.",
+    "local_shared_history_scope": "Remove the duplicated top-level context quote; no prior cause, negligence, repair quote, damage severity or actual incident is supplied.",
+    "negation_and_ambiguity": "The hypothetical breakage does not prove user fault, a specific fine, or permission to charge the user.",
+    "source_version_alignment": "Pinned damage_responsibility revision6 explicitly preserves Thai/English liability-condition differences: English limits to improper/negligent use while Thai does not state that restriction. A wheel-specific cause is unproven.",
+    "no_business_answer_target": "No penalty amount, liability decision, inferred negligence, payment obligation or compensating business answer is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_faq_rule_damage_responsibility"
+  ],
+  "source_answer_issues": [
+    [
+      "Source locales differ on liability conditions; a hypothetical wheel failure does not establish negligence.",
+      "Keep local conditional scope and unresolved source conflict."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 249,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_faq_rule_damage_responsibility": {
+      "revision": 6,
+      "record_sha256": "52714d489ea9ec6cd12be3c61050dfe4e83d0abbc8094ddbd0f6d3189213ee5f"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

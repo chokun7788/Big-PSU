@@ -1,0 +1,393 @@
+{
+  "counts": {
+    "legacy:query_planner:skipped": 67,
+    "legacy:preprocess:normalized": 56,
+    "legacy:semantic_route:skipped_exact_competition_facet": 44,
+    "legacy:task_answer_contract:answered_complete": 46,
+    "legacy:competition_target_guard:target_absent_clarification": 2,
+    "legacy:task_answer_contract:needs_clarification": 4,
+    "legacy:timing:semantic_route_refiner": 8,
+    "legacy:semantic_route_refiner:no_route_candidate": 3,
+    "legacy:model_gateway:skip_preflight_llm": 4,
+    "legacy:universal_intent:general/count": 1,
+    "legacy:tool_router:heuristic:fast_path": 2,
+    "legacy:universal_intent:competition_rules/rule_lookup": 3,
+    "legacy:competition_target_guard:unknown_explicit_no_answer": 2,
+    "legacy:task_answer_contract:no_answer": 6,
+    "legacy:semantic_route_refiner:skipped_unanchored_general": 4,
+    "legacy:model_gateway:allow_preflight_llm": 4,
+    "legacy:timing:universal_intent": 4,
+    "legacy:universal_route_refine:general/unknown_domain_query -> competition_rules/competition_rules_lookup": 2,
+    "legacy:tool_router:heuristic:retrieval": 2,
+    "legacy:universal_intent:general/detail": 1,
+    "legacy:timing:tool_router": 1,
+    "legacy:tool_router:heuristic:general_llm": 1,
+    "legacy:decision_candidates:retrieval.competition_fact_cards": 2,
+    "legacy:semantic_route_refiner:kept_explicit_rule_route": 1,
+    "legacy:bilingual_route:defer_english_response_to_intent_review": 3,
+    "legacy:universal_intent:general/unknown": 1,
+    "legacy:universal_route_refine:general/unknown_domain_query -> general/general_knowledge_query": 1,
+    "legacy:universal_intent:competition_rules/unknown": 1,
+    "legacy:universal_intent:competition_rules/detail": 1,
+    "legacy:universal_route_refine:general/unknown_domain_query -> competition_rules/detail": 1,
+    "common:common_content:answer": 137,
+    "common:query_planner:skipped": 19,
+    "common:preprocess:normalized": 19,
+    "common:semantic_route:skipped_exact_competition_facet": 14,
+    "common:task_answer_contract:answered_complete": 14,
+    "common:common_query_planner:audited": 175,
+    "common:common_content:partial_answer": 69,
+    "common:common_content:clarification": 24,
+    "common:timing:semantic_route_refiner": 4,
+    "common:semantic_route_refiner:no_route_candidate": 3,
+    "common:model_gateway:skip_preflight_llm": 2,
+    "common:universal_intent:general/count": 1,
+    "common:tool_router:heuristic:fast_path": 2,
+    "common:task_answer_contract:needs_clarification": 2,
+    "common:universal_intent:competition_rules/rule_lookup": 1,
+    "common:competition_target_guard:unknown_explicit_no_answer": 1,
+    "common:task_answer_contract:no_answer": 3,
+    "common:competition_target_guard:target_absent_clarification": 1,
+    "common:bilingual_route:defer_english_response_to_intent_review": 2,
+    "common:semantic_route_refiner:skipped_unanchored_general": 1,
+    "common:model_gateway:allow_preflight_llm": 2,
+    "common:timing:universal_intent": 2,
+    "common:universal_intent:competition_rules/unknown": 1,
+    "common:universal_route_refine:general/unknown_domain_query -> competition_rules/competition_rules_lookup": 1,
+    "common:universal_intent:competition_rules/detail": 1,
+    "common:universal_route_refine:general/unknown_domain_query -> competition_rules/detail": 1
+  },
+  "samples": [
+    {
+      "mode": "legacy",
+      "question": "กติกา RoV เรื่องจำนวนผู้เล่นต่อทีม ว่าอย่างไร",
+      "trace": {
+        "stage": "query_planner",
+        "decision": "skipped",
+        "confidence": 0.0,
+        "detail": "competition_rule_target_grounded_retrieval",
+        "metadata": {
+          "method": "gated",
+          "llm_attempted": false,
+          "allow_llm": true
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "กติกา RoV เรื่องจำนวนผู้เล่นต่อทีม ว่าอย่างไร",
+      "trace": {
+        "stage": "preprocess",
+        "decision": "normalized",
+        "confidence": 1.0,
+        "detail": "กติกา rov เรื่องจำนวนผู้เล่นต่อทีม ว่าอย่างไร",
+        "metadata": {
+          "language_hint": "mixed_th_en",
+          "nonsemantic_preface_removed": false,
+          "query_variants": [
+            "กติกา RoV เรื่องจำนวนผู้เล่นต่อทีม ว่าอย่างไร"
+          ],
+          "competition_name_recovery": [],
+          "elapsed_ms": 4.67,
+          "elapsed_sec": 0.0047
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "กติกา RoV เรื่องจำนวนผู้เล่นต่อทีม ว่าอย่างไร",
+      "trace": {
+        "stage": "semantic_route",
+        "decision": "skipped_exact_competition_facet",
+        "confidence": 0.97,
+        "detail": "explicit detail propositions already bound to source clauses",
+        "metadata": {}
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "กติกา RoV เรื่องจำนวนผู้เล่นต่อทีม ว่าอย่างไร",
+      "trace": {
+        "stage": "task_answer_contract",
+        "decision": "answered_complete",
+        "confidence": 1.0,
+        "detail": "execution coverage does not certify source facts or semantic accuracy",
+        "metadata": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "answered",
+          "outcome": "answered_complete",
+          "category": "competition_rules",
+          "intent": "competition_rules_lookup",
+          "source_count": 1,
+          "coverage_meaning": "execution_status_not_factual_accuracy"
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+      "trace": {
+        "stage": "query_planner",
+        "decision": "skipped",
+        "confidence": 0.0,
+        "detail": "competition_rule_target_grounded_retrieval",
+        "metadata": {
+          "method": "gated",
+          "llm_attempted": false,
+          "allow_llm": true
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+      "trace": {
+        "stage": "preprocess",
+        "decision": "normalized",
+        "confidence": 1.0,
+        "detail": "arena of valor แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+        "metadata": {
+          "language_hint": "mixed_th_en",
+          "nonsemantic_preface_removed": false,
+          "query_variants": [
+            "Arena of Valor แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน"
+          ],
+          "competition_name_recovery": [],
+          "elapsed_ms": 4.84,
+          "elapsed_sec": 0.0048
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+      "trace": {
+        "stage": "semantic_route",
+        "decision": "skipped_exact_competition_facet",
+        "confidence": 0.97,
+        "detail": "explicit detail propositions already bound to source clauses",
+        "metadata": {}
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+      "trace": {
+        "stage": "task_answer_contract",
+        "decision": "answered_complete",
+        "confidence": 1.0,
+        "detail": "execution coverage does not certify source facts or semantic accuracy",
+        "metadata": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "answered",
+          "outcome": "answered_complete",
+          "category": "competition_rules",
+          "intent": "competition_rules_lookup",
+          "source_count": 1,
+          "coverage_meaning": "execution_status_not_factual_accuracy"
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "ขออ้างอิงกติกา อารีน่าออฟเวเลอร์ ในหัวข้อจำนวนผู้เล่นต่อทีม หน่อย",
+      "trace": {
+        "stage": "query_planner",
+        "decision": "skipped",
+        "confidence": 0.0,
+        "detail": "competition_rule_target_grounded_retrieval",
+        "metadata": {
+          "method": "gated",
+          "llm_attempted": false,
+          "allow_llm": true
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "ขออ้างอิงกติกา อารีน่าออฟเวเลอร์ ในหัวข้อจำนวนผู้เล่นต่อทีม หน่อย",
+      "trace": {
+        "stage": "preprocess",
+        "decision": "normalized",
+        "confidence": 1.0,
+        "detail": "ขออ้างอิงกติกา อารีน่าออฟเวเลอร์ ในหัวข้อจำนวนผู้เล่นต่อทีม หน่อย",
+        "metadata": {
+          "language_hint": "th",
+          "nonsemantic_preface_removed": false,
+          "query_variants": [
+            "ขออ้างอิงกติกา อารีน่าออฟเวเลอร์ ในหัวข้อจำนวนผู้เล่นต่อทีม หน่อย"
+          ],
+          "competition_name_recovery": [],
+          "elapsed_ms": 4.86,
+          "elapsed_sec": 0.0049
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "ขออ้างอิงกติกา อารีน่าออฟเวเลอร์ ในหัวข้อจำนวนผู้เล่นต่อทีม หน่อย",
+      "trace": {
+        "stage": "semantic_route",
+        "decision": "skipped_exact_competition_facet",
+        "confidence": 0.97,
+        "detail": "explicit detail propositions already bound to source clauses",
+        "metadata": {}
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "ขออ้างอิงกติกา อารีน่าออฟเวเลอร์ ในหัวข้อจำนวนผู้เล่นต่อทีม หน่อย",
+      "trace": {
+        "stage": "task_answer_contract",
+        "decision": "answered_complete",
+        "confidence": 1.0,
+        "detail": "execution coverage does not certify source facts or semantic accuracy",
+        "metadata": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "answered",
+          "outcome": "answered_complete",
+          "category": "competition_rules",
+          "intent": "competition_rules_lookup",
+          "source_count": 1,
+          "coverage_meaning": "execution_status_not_factual_accuracy"
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+      "trace": {
+        "stage": "query_planner",
+        "decision": "skipped",
+        "confidence": 0.0,
+        "detail": "competition_rule_target_grounded_retrieval",
+        "metadata": {
+          "method": "gated",
+          "llm_attempted": false,
+          "allow_llm": true
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+      "trace": {
+        "stage": "preprocess",
+        "decision": "normalized",
+        "confidence": 1.0,
+        "detail": "กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+        "metadata": {
+          "language_hint": "mixed_th_en",
+          "nonsemantic_preface_removed": false,
+          "query_variants": [
+            "กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม"
+          ],
+          "competition_name_recovery": [],
+          "elapsed_ms": 5.29,
+          "elapsed_sec": 0.0053
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+      "trace": {
+        "stage": "semantic_route",
+        "decision": "skipped_exact_competition_facet",
+        "confidence": 0.97,
+        "detail": "explicit detail propositions already bound to source clauses",
+        "metadata": {}
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+      "trace": {
+        "stage": "task_answer_contract",
+        "decision": "answered_complete",
+        "confidence": 1.0,
+        "detail": "execution coverage does not certify source facts or semantic accuracy",
+        "metadata": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "answered",
+          "outcome": "answered_complete",
+          "category": "competition_rules",
+          "intent": "competition_rules_lookup",
+          "source_count": 1,
+          "coverage_meaning": "execution_status_not_factual_accuracy"
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor มีข้อกำหนดเรื่องจำนวนผู้เล่นต่อทีม ไหม",
+      "trace": {
+        "stage": "query_planner",
+        "decision": "skipped",
+        "confidence": 0.0,
+        "detail": "competition_rule_target_grounded_retrieval",
+        "metadata": {
+          "method": "gated",
+          "llm_attempted": false,
+          "allow_llm": true
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor มีข้อกำหนดเรื่องจำนวนผู้เล่นต่อทีม ไหม",
+      "trace": {
+        "stage": "preprocess",
+        "decision": "normalized",
+        "confidence": 1.0,
+        "detail": "arena of valor มีข้อกำหนดเรื่องจำนวนผู้เล่นต่อทีม ไหม",
+        "metadata": {
+          "language_hint": "mixed_th_en",
+          "nonsemantic_preface_removed": false,
+          "query_variants": [
+            "Arena of Valor มีข้อกำหนดเรื่องจำนวนผู้เล่นต่อทีม ไหม"
+          ],
+          "competition_name_recovery": [],
+          "elapsed_ms": 12.58,
+          "elapsed_sec": 0.0126
+        }
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor มีข้อกำหนดเรื่องจำนวนผู้เล่นต่อทีม ไหม",
+      "trace": {
+        "stage": "semantic_route",
+        "decision": "skipped_exact_competition_facet",
+        "confidence": 0.97,
+        "detail": "explicit detail propositions already bound to source clauses",
+        "metadata": {}
+      }
+    },
+    {
+      "mode": "legacy",
+      "question": "Arena of Valor มีข้อกำหนดเรื่องจำนวนผู้เล่นต่อทีม ไหม",
+      "trace": {
+        "stage": "task_answer_contract",
+        "decision": "answered_complete",
+        "confidence": 1.0,
+        "detail": "execution coverage does not certify source facts or semantic accuracy",
+        "metadata": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "answered",
+          "outcome": "answered_complete",
+          "category": "competition_rules",
+          "intent": "competition_rules_lookup",
+          "source_count": 1,
+          "coverage_meaning": "execution_status_not_factual_accuracy"
+        }
+      }
+    }
+  ],
+  "scope": "current memo_counter arm only, trace labels do not themselves prove HTTP200 or factual correctness"
+}

@@ -1,0 +1,138 @@
+{
+  "question_key": "8d91c3ec51d077dea2add8369a9f9e241022c6856f4fe6258c0f114e59655dc7",
+  "example_sha256": "fe17aa82b7e58c0518e410a4384c319a2d3e53694d8312c1a8ba4b056fb22ee6",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One catalog request asks for games supporting a PS5 controller.",
+      "raw_quotes": [
+        "เกมที่ใช้จอย PS5 มีอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/list/game_catalog remains, with device-model scope corrected.",
+      "raw_quotes": [
+        "เกมที่ใช้จอย PS5 มีอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "จอย PS5 is one requested_scope; remove platform/service PS5 because it modifies the controller.",
+      "raw_quotes": [
+        "เกมที่ใช้จอย PS5 มีอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No PS5 console platform, zone or prior compatible game can be inherited.",
+      "raw_quotes": [
+        "เกมที่ใช้จอย PS5 มีอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The request is clear while exact compatibility remains source-limited; console availability is not compatibility evidence.",
+      "raw_quotes": [
+        "เกมที่ใช้จอย PS5 มีอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "All43 pinned control_set.input_device fields are unknown and none has an exact model field; the PS5-console FAQ is not controller proof. New candidate model support changes no source facts.",
+      "raw_quotes": [
+        "เกมที่ใช้จอย PS5 มีอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No console game list, affirmative support or incompatibility answer enters the label.",
+      "raw_quotes": [
+        "เกมที่ใช้จอย PS5 มีอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Exact controller model/class compatibility is unknown across all43 pinned control sets.",
+      "handling": "Keep controller support distinct from console catalog; do not teach affirmative or negative compatibility."
+    }
+  ],
+  "historical_review_row": 84,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_catalog",
+    "context_quotes": [
+      "PS5"
+    ],
+    "tasks": [
+      {
+        "quote": "เกมที่ใช้จอย PS5 มีอะไร",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_catalog",
+    "context_quotes": [
+      "จอย PS5"
+    ],
+    "tasks": [
+      {
+        "quote": "เกมที่ใช้จอย PS5 มีอะไร",
+        "domain": "games",
+        "operation": "list",
+        "facet": "game_catalog",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "จอย PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {}
+}

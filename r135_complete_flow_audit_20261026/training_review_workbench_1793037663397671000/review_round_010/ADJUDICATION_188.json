@@ -1,0 +1,139 @@
+{
+  "question_key": "1d252f4fee66dd473f373f0d0147ca4ed325bc0a1c05a796d2c071c614b923c3",
+  "example_sha256": "349be8464fbeed57a26aafbeefc526b685ece0c762c4f6287e0b23264ac73a2a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One policy topic concerns incorrect information after booking; request-checking preface is style.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Change booking_procedure focus to booking_policy while retaining reservation/detail/owner_policy.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ข้อมูลผิด is local requested topic and หลังจอง the condition.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No wrong-slip image, wrong date, payment failure or prior booking ID is inherited.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not treat the fragment as an instruction to edit/cancel a real booking or an automatic cancellation assertion.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "edit_booking concerns changes after confirmation while booking_cancel_invalid_info covers possible cancellation for incorrect data; those conditions differ.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_edit_booking",
+        "migrated_faq_rule_booking_cancel_invalid_info"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No no-edit verdict, one-hour deadline, cancellation or refund instruction is taught.",
+      "raw_quotes": [
+        "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Editing after confirmation and cancellation for invalid information are different conditional clauses.",
+      "handling": "Preserve the requested after-booking scope and do not assert a specific outcome."
+    }
+  ],
+  "historical_review_row": 188,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_procedure",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ข้อมูลผิด",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "หลังจอง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_edit_booking": {
+      "revision": 4,
+      "record_sha256": "4edc21687283d9fe8b70317e98b904dd0164842957746b97acedcafa65c0e77d"
+    },
+    "migrated_faq_rule_booking_cancel_invalid_info": {
+      "revision": 4,
+      "record_sha256": "4c1ab3a85ca14200f4300932ac7d630a7039f17bea0ae7bc3e4eec7cb35622fa"
+    }
+  }
+}

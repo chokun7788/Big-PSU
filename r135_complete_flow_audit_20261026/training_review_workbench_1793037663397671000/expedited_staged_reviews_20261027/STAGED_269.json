@@ -1,0 +1,106 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 269,
+  "question_key": "490a5b13b782510c507fdb5692383211a2537734caa8e7e489f42932969ea534",
+  "raw_question": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [
+      "ไม่ใช่นักศึกษา PSU",
+      "นักศึกษา PSU"
+    ],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ใช่นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ก่อนเดินทางไปใช้บริการ อยากทราบว่า คนที่ไม่ใช่นักศึกษา PSU เข้าไปเล่นได้หรือเปล่า",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ใช่นักศึกษา PSU",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One access query concerns a person who is not a PSU student; visit framing is style.",
+    "intent_operation_facet": "Keep general studio eligibility rather than competition qualification.",
+    "entities_and_slot_roles": "Preserve full ไม่ใช่นักศึกษา PSU negation; the embedded student phrase cannot become positive audience context.",
+    "local_shared_history_scope": "Remove both top context duplicates; no actual university, age, game or booking is supplied.",
+    "negation_and_ambiguity": "Non-PSU does not specify general adult versus another-university student for pricing.",
+    "source_version_alignment": "Actual r114_q037 revision1 and public-access clauses distinguish general visitors from tournament restrictions and retain booking/check-in conditions.",
+    "no_business_answer_target": "No yes/no access verdict, price audience assignment or booking exemption is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "r114_q037_owner_policy",
+    "migrated_policy_text_public_access_general",
+    "migrated_policy_text_public_access_booking_required"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 270,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "r114_q037_owner_policy": {
+      "revision": 1,
+      "record_sha256": "8e44cbcfcc536f9cd579694998bacfbf169920807581f24c25c3695e4c2874de"
+    },
+    "migrated_policy_text_public_access_general": {
+      "revision": 2,
+      "record_sha256": "df8c8a2d3c4b0fa505909395eb1bcaadfd832b630f1ecf9ced55d8fa1fa48f91"
+    },
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

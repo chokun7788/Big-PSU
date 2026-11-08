@@ -1,0 +1,127 @@
+{
+  "question_key": "644c55c5200510dffc9ab1cb5a160f9d121869e034970f7f7e867f8646bf31b2",
+  "example_sha256": "2cda7ed9874f31fc3ee59045277af976495aeb01ba79d7aa9b96b679fb80677a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One general refund eligibility/policy question includes repeated verification framing.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Can I get a refund? Could you check this for me"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy is a policy inquiry, not transaction execution or evidence of entitlement.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Can I get a refund? Could you check this for me"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add refund as the literal requested scope.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Can I get a refund? Could you check this for me"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No cancellation, payment, booking ID, equipment fault or closure cause is supplied.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Can I get a refund? Could you check this for me"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not infer the user qualifies for an exception or authorize a transfer.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Can I get a refund? Could you check this for me"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned refund policy revisions4/3 distinguish general no-refund policy from center-fault exceptions; actual case qualification and effective interval need independent evidence.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Can I get a refund? Could you check this for me"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_refund_policy",
+        "migrated_faq_curated_refund_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No refund verdict, deadline, amount, exception qualification or transaction outcome is taught.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Can I get a refund? Could you check this for me"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 274,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Can I get a refund? Could you check this for me",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Can I get a refund? Could you check this for me",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "refund",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_refund_policy": {
+      "revision": 4,
+      "record_sha256": "3dcbd45456748859e360eacc4a1f6fa87ccfb869e53a4238ab107434ef3304ae"
+    },
+    "migrated_faq_curated_refund_policy": {
+      "revision": 3,
+      "record_sha256": "2281d56ddb69c6a1b6ccc6d6a0c48a33046c588f6004fb918b54d70a9db5629f"
+    }
+  }
+}

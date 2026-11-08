@@ -1,0 +1,10 @@
+--- before/Runtime-Readiness.ps1
++++ r62/Runtime-Readiness.ps1
+@@ -39,6 +39,7 @@
+ 
+ function Test-ChatbotHealth($Health, [string]$Version, [string]$InstallationId, $PythonIdentity) {
+     $reasons = @()
++    if ($env:PSU_EXPECTED_SOURCE_SHA256 -and $Health.common_loaded_build.loaded_source_sha256 -ne $env:PSU_EXPECTED_SOURCE_SHA256) { $reasons += 'loaded_source_stale' }
+     if ($Health.ok -ne $true -or $Health.service -ne 'psu-esports-chat-web') { $reasons += 'health_service' }
+     if ($Health.runtime.version -ne $Version -or $Health.runtime.installation_id -ne $InstallationId) { $reasons += 'package_identity' }
+     if ($Health.runtime.python.executable_id -ne $PythonIdentity.executable_id -or

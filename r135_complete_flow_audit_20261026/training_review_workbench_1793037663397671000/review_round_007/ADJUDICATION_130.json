@@ -1,0 +1,134 @@
+{
+  "question_key": "a635e4bd14ac41d41a2ad4e14bec6b72a4b7f8e3fa9c7add6747de323541aaff",
+  "example_sha256": "67052b2e0530d031f3f0b7b0ea8def0dbdcdddd11cdba458a846c659a3a485cd",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One responsibility question includes user-caused chair damage.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy requests who bears damage responsibility.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "เมื่อผู้ใช้ทำเก้าอี้พัง is the exact actor/cause condition and รับผิดชอบค่าเสียหาย the action.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No intent, severity, repair cost or previous chair state is inherited.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Explicit user-caused damage must not be reduced to spontaneous equipment failure or a fixed severity.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Damage responsibility source variants differ on improper/negligent use and preserve scope caveats; generic damage bands do not settle this chair case.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_damage_responsibility"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No liable person, fine amount, market value or negligence ruling is taught.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "User-caused chair damage does not itself select severity or resolve source liability-condition differences.",
+      "handling": "Preserve cause and source caveat before any responsible-person claim."
+    }
+  ],
+  "historical_review_row": 130,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ใครรับผิดชอบค่าเสียหายเมื่อผู้ใช้ทำเก้าอี้พัง",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "เมื่อผู้ใช้ทำเก้าอี้พัง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "รับผิดชอบค่าเสียหาย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_damage_responsibility": {
+      "revision": 6,
+      "record_sha256": "52714d489ea9ec6cd12be3c61050dfe4e83d0abbc8094ddbd0f6d3189213ee5f"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "question_key": "0a00000d589ff1289bde21138edaae2f4071c278c44887ef046325cb4e101ea6",
+  "example_sha256": "733000eba66adcae0c62b03e15891ced6f7e9deac077fb34ff8ce750ae98c7b5",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks what must be booked to play FINAL FANTASY XVI; paly is a typo.",
+      "raw_quotes": [
+        "What do you need to book to paly FINAL FANTASY XVI"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/availability/studio_services captures game-to-bookable-service lookup, not a request to book.",
+      "raw_quotes": [
+        "What do you need to book to paly FINAL FANTASY XVI"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Retain game title target and add book as action; a game title is not itself a service slot.",
+      "raw_quotes": [
+        "What do you need to book to paly FINAL FANTASY XVI"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove duplicated context and false service constraint; no platform, resource, date or payment is supplied.",
+      "raw_quotes": [
+        "What do you need to book to paly FINAL FANTASY XVI"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A game/service relation is not current availability, ownership, DLC entitlement or successful booking.",
+      "raw_quotes": [
+        "What do you need to book to paly FINAL FANTASY XVI"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual game_service revision1 links the FFXVI title to a PS5 service; source title/profile and linked service must retain separate identities.",
+      "raw_quotes": [
+        "What do you need to book to paly FINAL FANTASY XVI"
+      ],
+      "source_record_ids": [
+        "game_detail_final_fantasy_xvi",
+        "migrated_link_availability_ps5_01_02_game_detail_final_fantasy_xvi"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No source service name, platform default, current free slot or booking confirmation enters labels.",
+      "raw_quotes": [
+        "What do you need to book to paly FINAL FANTASY XVI"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 273,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [
+      "FINAL FANTASY XVI"
+    ],
+    "tasks": [
+      {
+        "quote": "What do you need to book to paly FINAL FANTASY XVI",
+        "domain": "games",
+        "operation": "availability",
+        "facet": "studio_services",
+        "target": "FINAL FANTASY XVI",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "FINAL FANTASY XVI",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What do you need to book to paly FINAL FANTASY XVI",
+        "domain": "games",
+        "operation": "availability",
+        "facet": "studio_services",
+        "target": "FINAL FANTASY XVI",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "book",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_final_fantasy_xvi": {
+      "revision": 9,
+      "record_sha256": "142cf12318f4274d9850684037722342ffb765ff957e043a702427937a847529"
+    },
+    "migrated_link_availability_ps5_01_02_game_detail_final_fantasy_xvi": {
+      "revision": 1,
+      "record_sha256": "e2f867a04df27d41cafd352b70e5a8db4158c9936df922eb8e13af2f462c07c4"
+    }
+  }
+}

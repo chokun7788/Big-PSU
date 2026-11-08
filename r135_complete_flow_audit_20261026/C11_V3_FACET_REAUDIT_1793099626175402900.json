@@ -1,0 +1,473 @@
+{
+  "reviewed_at": 1793099625.8808613,
+  "cohort": "training_review_workbench_1793037663397671000\\protocol_v3_admission_1793099508335411600",
+  "cohort_examples_sha256": "10ca9529ab881ac4a45d9346a53e07068db6b28043e72a03e86f2012d399ee24",
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "review_scope": "Current18 C11 language labels against the explicit service-period/booking/opening/maintenance/closing distinction. No new training labels or205-question review-count inflation.",
+  "records": [
+    {
+      "original_row": 2,
+      "question_key": "eca9a6816e9e5627bedd41f819355b4c325185fefbeac56ae5174b6489e2ab83",
+      "raw_question": "ขอสอบถามหน่อยครับ ช่วง Maintenance จองได้ไหม",
+      "schedule_task": {
+        "quote": "ขอสอบถามหน่อยครับ ช่วง Maintenance จองได้ไหม",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "bookable_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ช่วง Maintenance",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "The literal question asks whether booking is possible during maintenance. A booking predicate is distinct from asking maintenance dates or play-session start/end times.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 7,
+      "question_key": "8711c0d5094ea26fea23b4403fd1e102da385cb8b4a5097c0f623eb9ae9bc4be",
+      "raw_question": "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ",
+      "schedule_task": {
+        "quote": "วันศุกร์ช่วงบ่ายปิดใช่ไหม ขอรายละเอียดแบบสั้น ๆ",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "ช่วงบ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Friday-afternoon closed-state confirmation asks broad opening, not the named-session timetable. Physical opening conflict and known play maintenance must stay source-qualified.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 15,
+      "question_key": "c22cb4772b78341efce6e39c2c3f17123a8c090e72e9304f53faaf0693935ea8",
+      "raw_question": "Could you please help me with this: I am planning a visit and need to know: Will the studio be open tomorrow",
+      "schedule_task": {
+        "quote": "Could you please help me with this: I am planning a visit and need to know: Will the studio be open tomorrow",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "tomorrow",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Will the studio be open tomorrow is a broad future opening request; visit planning is framing. No named play period, booking window or vacancy is requested.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 32,
+      "question_key": "a9ecf2e1299ecafcd502f509c23241bf23889fad81c1a196d62f13c9c480d7e2",
+      "raw_question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลที่ยืนยันได้หน่อยครับ: Maintenance คือช่วงไหน",
+      "schedule_task": {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลที่ยืนยันได้หน่อยครับ: Maintenance คือช่วงไหน",
+        "domain": "schedule",
+        "operation": "list",
+        "facet": "maintenance_periods",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Maintenance คือช่วงไหน requests the recorded maintenance-period set without a weekday. It is not the full named play-session timetable or an opening guarantee.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 34,
+      "question_key": "f10707b2c0244f8083805c71be540378e1f2090baa4cfb2a10ad7af8cc422f7f",
+      "raw_question": "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง",
+      "schedule_task": {
+        "quote": "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันอังคาร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Tuesday studio-opening time is explicit. Preserve the typo/framing and weekday while keeping physical/source-play scope distinct at execution.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 41,
+      "question_key": "2204b0a8c1dcc11cbd923870f71f83a322743817cf363f87ab147b4a1ed481c8",
+      "raw_question": "ขอข้อมูลเรื่องวันศุกร์ maintenance",
+      "schedule_task": {
+        "quote": "ขอข้อมูลเรื่องวันศุกร์ maintenance",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "maintenance_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Friday maintenance information requests maintenance scope, not booking or a universal session time. The stated weekday is local.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 52,
+      "question_key": "69812416b4c4bda6fc2c08556eabfa8117b4ec25eb72a7ebe7eeec11deac4d58",
+      "raw_question": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: ตอนนี้ศูนย์เปิดมั้ย",
+      "schedule_task": {
+        "quote": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: ตอนนี้ศูนย์เปิดมั้ย",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "ตอนนี้",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Is the studio open now requests current opening state. It does not ask which machines are vacant; the source clock and opening-field conflict remain reader obligations.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 55,
+      "question_key": "790d4406db2db9773074032f548a0c38b10f5a2874ea6e57bf911dede2d57b7e",
+      "raw_question": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด",
+      "schedule_task": {
+        "quote": "กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า วันจันทร์เช้าเปิดหรือปิด",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันจันทร์",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "เช้า",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Monday morning open-or-closed is a state question rather than a named-session start/end request. Maintenance alone cannot prove physical building closure.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 66,
+      "question_key": "b32fb6babd0a86f30c5a9863fdc4e6cab54abe142a07ed3b5e3308a9034fb741",
+      "raw_question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม",
+      "schedule_task": {
+        "quote": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ศุกร์บ่ายเปิดไหม",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "ศุกร์",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "time",
+            "quote": "บ่าย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Friday afternoon open asks the broad opening predicate. Preserve weekday/period and disclose physical-opening status separately from recorded play maintenance.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 68,
+      "question_key": "c8d9c78fa099e0ae2726a3da4066357a96e22d67640aea89f2c41a5ad07103ed",
+      "raw_question": "Could you please help me with this: Is it open on Sundays",
+      "schedule_task": {
+        "quote": "Could you please help me with this: Is it open on Sundays",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Sundays",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Open on Sundays is a recurring weekday-opening question, not a booking or live-occupancy predicate. Recorded empty periods/currentness remain source-qualified.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 137,
+      "question_key": "3e3bf5f32c49dea818052e61126c5c81524eb250d8ca81721a73117110aaa59a",
+      "raw_question": "How to book VR and what days are available",
+      "schedule_task": {
+        "quote": "what days are available",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "bookable_periods",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      },
+      "reason": "How to book VR supplies booking context for what days are available. The second need retains regular bookable-day scope and shared VR, without asserting current machine vacancies.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 158,
+      "question_key": "eedac27d650fcfee11bbfafe6894df6a7a9c042abb2ba4626ffe989c51a7c4f2",
+      "raw_question": "ขอสอบถามหน่อยครับ วันนี้เปิดไหม",
+      "schedule_task": {
+        "quote": "ขอสอบถามหน่อยครับ วันนี้เปิดไหม",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันนี้",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Today open asks broad dated opening state. No session name or booking-window predicate is supplied; source and date applicability must not be invented.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 159,
+      "question_key": "fb29c44cbb8ae3df1c8f42b110dadc4b8ff0f757ba437165c109849f45d5a959",
+      "raw_question": "ปิดกี่โมงงอ่า",
+      "schedule_task": {
+        "quote": "ปิดกี่โมงงอ่า",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "closing_time",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "ปิดกี่โมง asks closing time. No day is supplied, so source/date clarification or a qualified recorded schedule remains necessary; do not relabel it as booking or a named play session.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 174,
+      "question_key": "76ca0ec4cd098d3c7e4f9dc72408e35d353b87d6f21c80715814a65a0ded5cdf",
+      "raw_question": "Could you plese help me with this: Will the studio be opem tomorrow",
+      "schedule_task": {
+        "quote": "Could you plese help me with this: Will the studio be opem tomorrow",
+        "domain": "schedule",
+        "operation": "availability",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "tomorrow",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Will the studio be opem tomorrow retains the literal typo and tomorrow scope. Meaning is an opening-state request, not a named play-period time.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 182,
+      "question_key": "f2a13ac7b6e42a72d0748bb884694ae6febdf3dfa3114a58a0f0ae2f402b11d2",
+      "raw_question": "What are the opening hours on Wednesday? Please use verified information.",
+      "schedule_task": {
+        "quote": "What are the opening hours on Wednesday? Please use verified information.",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Wednesday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "The wording explicitly asks Wednesday opening hours. Verified-information framing does not make conflicted physical hours known or turn them into service periods.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 184,
+      "question_key": "db2919f1ab9c68fb22c5a09a1e8b27a8843313d425cc5d61fb3818027472ca22",
+      "raw_question": "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง",
+      "schedule_task": {
+        "quote": "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง",
+        "domain": "schedule",
+        "operation": "list",
+        "facet": "bookable_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "วันไหนและช่วงเวลาไหนบ้าง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "เปิดจองวันไหนและช่วงเวลาไหน explicitly requests the complete recorded booking-day/time tuples. A named play-period facet would lose its booking predicate.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 191,
+      "question_key": "703523faaabe601a65578894f204ea56f4c7d676501fa35c8e5b6b3ab13441cd",
+      "raw_question": "Please tell me: What time is the afternoon session",
+      "schedule_task": {
+        "id": "t1",
+        "quote": "Please tell me: What time is the afternoon session",
+        "domain": "schedule",
+        "operation": "list",
+        "facet": "service_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "time",
+            "quote": "afternoon",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false
+      },
+      "reason": "What time is the afternoon session explicitly requests a named play-service period without a booking predicate. Friday afternoon maintenance versus absent booking window is the source counterexample requiring a new v3 semantic label.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    },
+    {
+      "original_row": 197,
+      "question_key": "e95c76f3a876b8e456a7a5f25b13b67b12d3e9516ee9297cb0175dc190bd69f4",
+      "raw_question": "วันจันทร์เปิดกี่โมง",
+      "schedule_task": {
+        "quote": "วันจันทร์เปิดกี่โมง",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันจันทร์",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      "reason": "Monday opening time remains the broad opening facet. No session word or booking predicate appears; its source-field conflict cannot be normalized away.",
+      "label_changed_by_this_audit": false,
+      "source_business_answer_accuracy_claimed": false
+    }
+  ],
+  "new_semantic_review_records_created": 0,
+  "only_new_v3_semantic_correction_already_recorded": 191,
+  "source_caveats": [
+    "Physical opening conflicts and effective interval/resource scope remain source obligations.",
+    "Booking-context available days do not establish live vacancy.",
+    "No native/source execution or parser pass proves a model learned v3."
+  ],
+  "all_C11_language_semantics_for_arbitrary_questions_verified": false,
+  "actual_model_generation_or_optimization": false,
+  "complete": false
+}

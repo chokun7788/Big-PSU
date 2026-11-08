@@ -1,0 +1,22 @@
+{
+  "tests_run": 10,
+  "failures": [
+    {
+      "test": "test_existing_owner_address_reads_in_both_languages (__main__.Residual.test_existing_owner_address_reads_in_both_languages)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\test_residual_reader.py\", line 7, in test_existing_owner_address_reads_in_both_languages\n    r=answer(q,lang);self.assertIn('83120',r.answer);self.assertIn('อาคาร 5' if lang=='th' else 'Building 5',r.answer);self.assertIn('กะทู้' if lang=='th' else 'Kathu',r.answer);self.assertNotIn('Kata Noi',r.answer);self.assertTrue(r.validation.ok)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: '83120' not found in 'ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ ศูนย์อยู่ตรงไหน? เช่น คำถามตั้งต้น ไม่จำเป็นต้องเก็บทุก paraphrase / ข้อมูลที่ยืนยันได้ / หัวข้อเชิงความหมาย?'\n"
+    },
+    {
+      "test": "test_game_not_in_target_list_is_not_invented_as_installed (__main__.Residual.test_game_not_in_target_list_is_not_invented_as_installed)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\test_residual_reader.py\", line 25, in test_game_not_in_target_list_is_not_invented_as_installed\n    r=answer('อยากรูเว่า PC #01 มี Call of Duty: Warzone ไหม');self.assertIn('PC #03-#10',r.answer);self.assertIn('ยังไม่พบ',r.answer);self.assertEqual(r.decision_artifact['response_type'],'partial_answer');self.assertFalse(r.decision_artifact['query_plan']['negative_from_absence'])\n                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PC #03-#10' not found in 'ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC #01 เช่น แพลตฟอร์ม เช่น PC หรือ PS5 / อุปกรณ์ควบคุม / ชื่อชุดปุ่ม เช่น default / ปุ่มควบคุม: เพิ่มทีละปุ่มหรือชุดปุ่ม?'\n"
+    },
+    {
+      "test": "test_specific_game_resource_presence_uses_installed_ids (__main__.Residual.test_specific_game_resource_presence_uses_installed_ids)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\test_residual_reader.py\", line 23, in test_specific_game_resource_presence_uses_installed_ids\n    r=answer('PC #03 มี Call of Duty: Warzone ไหม');self.assertIn('Call of Duty: Warzone',r.answer);self.assertIn('PC #03',r.answer);self.assertEqual(r.decision_artifact['query_plan']['method'],'declared_game_installation_scope');self.assertTrue(r.validation.ok)\n                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Call of Duty: Warzone' not found in 'ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ วอร์โซน เช่น แพลตฟอร์ม เช่น PC หรือ PS5 / อุปกรณ์ควบคุม / ชื่อชุดปุ่ม เช่น default / ปุ่มควบคุม: เพิ่มทีละปุ่มหรือชุดปุ่ม?'\n"
+    },
+    {
+      "test": "test_unknown_machine_number_is_preserved (__main__.Residual.test_unknown_machine_number_is_preserved)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\test_residual_reader.py\", line 27, in test_unknown_machine_number_is_preserved\n    r=answer('Does PC #99 have Call of Duty: Warzone?','en');self.assertIsNotNone(r);self.assertIn('PC #99',r.answer);self.assertEqual(r.decision_artifact['response_type'],'partial_answer')\n                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'PC #99' not found in 'The requested topic is unclear. Which part of Call of Duty: Warzone do you need: Platform / input device / preset / Controls?'\n"
+    }
+  ],
+  "errors": []
+}

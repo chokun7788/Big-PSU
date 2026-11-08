@@ -1,0 +1,91 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 275,
+  "question_key": "d8b3d77d8bb29bf24b9f7e8bb344c07ab11e81deffd6dcdccfe05df64d49645f",
+  "raw_question": "What is the minimum age requirement to enter this VALORANT tournament",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What is the minimum age requirement to enter this VALORANT tournament",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What is the minimum age requirement to enter this VALORANT tournament",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "minimum age requirement",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One VALORANT tournament question asks the minimum age to enter.",
+    "intent_operation_facet": "Keep competition_rules/rule_lookup/rule_clause with VALORANT target, not general studio eligibility or game age-rating.",
+    "entities_and_slot_roles": "Add minimum age requirement as exact requested scope.",
+    "local_shared_history_scope": "No actual age, date of birth, applicant, tournament edition or guardian consent is supplied.",
+    "negation_and_ambiguity": "The question does not prove an age rule exists or allow a game-rating threshold to replace tournament criteria.",
+    "source_version_alignment": "Inspection of pinned Valorant rule texts found no explicit age threshold; competition overview identity cannot establish one.",
+    "no_business_answer_target": "No invented age, rating, eligibility result or source-completeness claim is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "competition_competition_rules_valorant_psu_phuket_2026_section_001"
+  ],
+  "source_answer_issues": [
+    [
+      "No explicit age threshold found in the pinned Valorant rule text.",
+      "Do not import a game-rating threshold or another tournament age."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 276,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "competition_competition_rules_valorant_psu_phuket_2026_section_001": {
+      "revision": 5,
+      "record_sha256": "94354379a8c330da25bea7fdf728350c19e3401c2d0be95a27d1ac2be1776d99"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

@@ -1,0 +1,2224 @@
+{
+  "legacy": [
+    {
+      "line": 1567,
+      "call": "ObservedTraceList"
+    },
+    {
+      "line": 1575,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1577,
+      "call": "answer_user_service_facts"
+    },
+    {
+      "line": 1578,
+      "condition": "bounded is None",
+      "calls": [
+        "answer_explicit_source_operation"
+      ]
+    },
+    {
+      "line": 1580,
+      "condition": "bounded is not None",
+      "calls": [
+        "self._build_result",
+        "EntityBundle",
+        "bounded.get"
+      ]
+    },
+    {
+      "line": 1585,
+      "call": "self._booking_navigation_result"
+    },
+    {
+      "line": 1586,
+      "condition": "navigation is not None",
+      "calls": []
+    },
+    {
+      "line": 1588,
+      "call": "self._named_game_guard"
+    },
+    {
+      "line": 1589,
+      "condition": "guarded is not None",
+      "calls": []
+    },
+    {
+      "line": 1592,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 1593,
+      "call": "strip_nonsemantic_preface"
+    },
+    {
+      "line": 1594,
+      "call": "preprocess_input"
+    },
+    {
+      "line": 1611,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 1612,
+      "call": "_select_active_preprocessed_query"
+    },
+    {
+      "line": 1623,
+      "condition": "pre.clean_query != original_pre.clean_query",
+      "calls": [
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 1653,
+      "condition": "self._deadline_is_exceeded(trace, 'after_route_selection')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 1662,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1664,
+      "call": "answer_user_service_facts"
+    },
+    {
+      "line": 1665,
+      "condition": "user_facts is not None",
+      "calls": [
+        "self._build_result"
+      ]
+    },
+    {
+      "line": 1669,
+      "condition": "locale is None or locale.effective == 'th'",
+      "calls": [
+        "main_question.strip",
+        "bool",
+        "re.fullmatch",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1686,
+      "call": "social_dialogue_reply"
+    },
+    {
+      "line": 1690,
+      "condition": "social_reply is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1703,
+      "condition": "locale is not None and locale.effective == 'en'",
+      "calls": [
+        "_ambiguous_game_pay_target",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1723,
+      "call": "answer_protected_intent"
+    },
+    {
+      "line": 1730,
+      "condition": "protected is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult",
+        "_hit_for_url"
+      ]
+    },
+    {
+      "line": 1759,
+      "call": "looks_like_competition_rule_query"
+    },
+    {
+      "line": 1761,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1762,
+      "call": "build_rulebook_catalog"
+    },
+    {
+      "line": 1763,
+      "condition": "catalog is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult",
+        "list"
+      ]
+    },
+    {
+      "line": 1767,
+      "call": "lock_explicit_game_target"
+    },
+    {
+      "line": 1768,
+      "condition": "target_lock.locked and (not competition_signal)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace",
+        "target_lock.as_dict"
+      ]
+    },
+    {
+      "line": 1800,
+      "call": "resolve_competition_targets"
+    },
+    {
+      "line": 1801,
+      "condition": "competition_signal and competition_target.status == 'absent'",
+      "calls": [
+        "current_locale_decision",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1809,
+      "condition": "not competition_signal and competition_target.status != 'unknown_explicit'",
+      "calls": [
+        "answer_live_booking_status"
+      ]
+    },
+    {
+      "line": 1811,
+      "condition": "live_booking is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1839,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1840,
+      "condition": "not competition_signal",
+      "calls": [
+        "answer_closed_query_improvement",
+        "PipelineRoute",
+        "UniversalIntent",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "list"
+      ]
+    },
+    {
+      "line": 1859,
+      "condition": "competition_signal and competition_target.status == 'exact'",
+      "calls": [
+        "build_full_rule_answer",
+        "trace.extend",
+        "self._build_result"
+      ]
+    },
+    {
+      "line": 1866,
+      "condition": "competition_signal and competition_target.status == 'exact'",
+      "calls": [
+        "time.perf_counter",
+        "lookup_competition_reply",
+        "trace.append",
+        "_timing_trace",
+        "{'no_answer': 'pipeline:competition_rule_detail_no_answer', 'partial': 'pipeline:competition_rule_detail_partial_source', 'conflict': 'pipeline:competition_rule_source_conflict'}.get",
+        "PipelineRoute",
+        "validate_answer",
+        "hit_from_curated",
+        "PipelineTrace",
+        "self._build_result",
+        "list"
+      ]
+    },
+    {
+      "line": 1885,
+      "condition": "competition_signal and looks_like_broad_competition_rules_query(pre.clean_query)",
+      "calls": [
+        "looks_like_broad_competition_rules_query",
+        "build_competition_overview",
+        "PipelineRoute",
+        "build_question_frame",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "list"
+      ]
+    },
+    {
+      "line": 1897,
+      "condition": "locale is not None and locale.effective == 'en'",
+      "calls": [
+        "answer_english_supported",
+        "looks_like_clear_general_request",
+        "trace.append",
+        "self._build_result",
+        "english_no_answer_needs_domain_recovery",
+        "PipelineTrace",
+        "requires_english_intent_review"
+      ]
+    },
+    {
+      "line": 1973,
+      "call": "exact_competition_intent"
+    },
+    {
+      "line": 1976,
+      "condition": "competition_closed_intent is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "PipelineTrace",
+        "time.perf_counter",
+        "allow_stage",
+        "target_lock.as_dict",
+        "max",
+        "refine_route_with_semantic_evidence",
+        "initial_frame.as_dict",
+        "bool",
+        "_timing_trace",
+        "semantic_route_trace.metadata.get"
+      ]
+    },
+    {
+      "line": 2043,
+      "call": "evaluate_freshness_requirement"
+    },
+    {
+      "line": 2045,
+      "condition": "freshness.requires_live_evidence",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_semantic_guarded",
+        "trace.append",
+        "semantic_hits_have_current_evidence",
+        "_timing_trace",
+        "PipelineTrace",
+        "PipelineRoute",
+        "self._build_result",
+        "ValidationResult",
+        "len"
+      ]
+    },
+    {
+      "line": 2104,
+      "condition": "looks_like_missing_task_input(pre.clean_query)",
+      "calls": [
+        "looks_like_missing_task_input",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 2135,
+      "call": "evaluate_boundary"
+    },
+    {
+      "line": 2143,
+      "condition": "boundary.action != 'allow'",
+      "calls": [
+        "PipelineRoute",
+        "ValidationResult",
+        "self._build_result"
+      ]
+    },
+    {
+      "line": 2165,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2166,
+      "call": "guard_scope"
+    },
+    {
+      "line": 2169,
+      "condition": "guard_answer and guard_confidence >= 0.9",
+      "calls": [
+        "PipelineRoute",
+        "ValidationResult",
+        "self._build_result",
+        "build_experimental_fallback",
+        "trace.append"
+      ]
+    },
+    {
+      "line": 2202,
+      "condition": "locale is not None and locale.effective == 'th'",
+      "calls": [
+        "answer_equipment_availability",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 2220,
+      "condition": "self._deadline_is_exceeded(trace, 'before_universal_intent')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2228,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2229,
+      "call": "preflight_llm_allowed"
+    },
+    {
+      "line": 2230,
+      "condition": "english_deferred_for_intent and experimental_allow_llm and (not english_direct_general)",
+      "calls": []
+    },
+    {
+      "line": 2233,
+      "condition": "competition_closed_intent is not None",
+      "calls": []
+    },
+    {
+      "line": 2248,
+      "condition": "competition_closed_intent is not None",
+      "calls": [
+        "PipelineTrace",
+        "self._planned_task_matches_route",
+        "planned_task.to_universal_intent",
+        "resolve_universal_intent",
+        "trace.append"
+      ]
+    },
+    {
+      "line": 2293,
+      "condition": "has_thai_game_catalog_surface_variant(pre.clean_query)",
+      "calls": [
+        "has_thai_game_catalog_surface_variant",
+        "UniversalIntent",
+        "PipelineTrace",
+        "max"
+      ]
+    },
+    {
+      "line": 2332,
+      "call": "refine_route_with_universal_intent"
+    },
+    {
+      "line": 2333,
+      "condition": "refined_trace is not None",
+      "calls": [
+        "trace.append"
+      ]
+    },
+    {
+      "line": 2335,
+      "condition": "target_lock.locked and (not competition_signal) and (route.category != target_lock.route.category or route.intent != target_lock.route.intent)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace",
+        "target_lock.as_dict"
+      ]
+    },
+    {
+      "line": 2350,
+      "condition": "semantic_route_locked is not None and (route.category != semantic_route_locked.category or route.intent != semantic_route_locked.intent)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 2374,
+      "condition": "semantic_route_locked is not None",
+      "calls": [
+        "trace.append",
+        "UniversalIntent",
+        "PipelineTrace",
+        "list"
+      ]
+    },
+    {
+      "line": 2430,
+      "condition": "self._deadline_is_exceeded(trace, 'after_universal_intent')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2439,
+      "condition": "is_specific_booking_policy_question(pre.clean_query, route)",
+      "calls": [
+        "is_specific_booking_policy_question",
+        "booking_policy_semantic_route",
+        "booking_policy_semantic_intent",
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 2464,
+      "condition": "english_deferred_for_intent and (not english_direct_general)",
+      "calls": [
+        "answer_english_supported",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 2496,
+      "condition": "route.intent in {'chatbot_greeting', 'chatbot_identity'}",
+      "calls": [
+        "self._try_deterministic",
+        "trace.append",
+        "self._build_result",
+        "answer_chatbot_identity",
+        "answer_chatbot_greeting",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 2530,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2531,
+      "call": "resolve_tool_routing"
+    },
+    {
+      "line": 2547,
+      "condition": "self._deadline_is_exceeded(trace, 'after_tool_router')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2556,
+      "condition": "tool_decision.action in {'retrieval', 'rag_llm', 'vector'} and route.category in {'general', 'unknown', 'no_answer'} and (tool_decision.confidence >= 0.68) and (tool_decision.domain in TOOL_ROUTER_DOMAIN_ROUTE_MAP)",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace",
+        "ValidationResult",
+        "time.perf_counter",
+        "build_candidate_decisions",
+        "self._build_result",
+        "min",
+        "_timing_trace"
+      ]
+    },
+    {
+      "line": 2615,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2616,
+      "call": "evaluate_ambiguity_gate"
+    },
+    {
+      "line": 2633,
+      "call": "resolve_competition_targets"
+    },
+    {
+      "line": 2638,
+      "condition": "not ambiguity.allows_answer and competition_ambiguity_veto",
+      "calls": [
+        "trace.append",
+        "PipelineTrace",
+        "PipelineRoute",
+        "ValidationResult",
+        "self._build_result",
+        "list",
+        "tuple"
+      ]
+    },
+    {
+      "line": 2675,
+      "condition": "self._deadline_is_exceeded(trace, 'after_ambiguity_gate')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2687,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2688,
+      "call": "build_question_frame"
+    },
+    {
+      "line": 2700,
+      "condition": "question_frame.domain == 'competition_rules' and route.category != 'competition_rules'",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2718,
+      "condition": "semantic_route_locked is not None",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_semantic_guarded",
+        "trace.append",
+        "answer_from_semantic_hits",
+        "_timing_trace",
+        "plan_rag_model_path",
+        "pack_evidence",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "compose_structured_answer",
+        "self._build_result",
+        "len",
+        "model_plan.as_dict"
+      ]
+    },
+    {
+      "line": 2826,
+      "condition": "booking_policy_original_route is not None and booking_policy_original_intent is not None",
+      "calls": [
+        "time.perf_counter",
+        "build_question_frame",
+        "trace.append",
+        "_timing_trace",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2848,
+      "condition": "not universal_intent.target and question_frame.target_status == 'exact' and (len(question_frame.targets) == 1)",
+      "calls": [
+        "UniversalIntent",
+        "trace.append",
+        "len",
+        "PipelineTrace",
+        "resolved_target.as_dict"
+      ]
+    },
+    {
+      "line": 2877,
+      "condition": "question_frame.domain == 'competition_rules' and question_frame.target_status == 'unknown_explicit'",
+      "calls": [
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2908,
+      "condition": "question_frame.domain == 'competition_rules' and question_frame.target_status == 'absent'",
+      "calls": [
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2943,
+      "condition": "question_frame.domain == 'games' and question_frame.target_required and question_frame.needs_clarification and (not is_known_unsupported_game_query(question))",
+      "calls": [
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "is_known_unsupported_game_query",
+        "PipelineTrace",
+        "int",
+        "question_frame.metadata.get"
+      ]
+    },
+    {
+      "line": 2995,
+      "condition": "(route.category in {'general', 'unknown', 'no_answer'} or question_frame.domain == 'competition_rules') and question_frame.domain in operation_route_map and (question_frame.confidence >= 0.85)",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace",
+        "min",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 3018,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3019,
+      "call": "build_candidate_decisions"
+    },
+    {
+      "line": 3030,
+      "call": "candidate_trace.metadata.get"
+    },
+    {
+      "line": 3031,
+      "condition": "selected_capability_id == 'retrieval.competition_fact_cards' and route.category != 'competition_rules' and (semantic_route_locked is None)",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3052,
+      "condition": "self._deadline_is_exceeded(trace, 'after_candidate_decisions')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 3060,
+      "condition": "not bool(selection.get('execution_allowed', True)) and question_frame.operation == 'unknown' and (not (route.category == 'general' and route.risk == 'low' and looks_like_clear_general_request(pre.clean_query)))",
+      "calls": [
+        "PipelineRoute",
+        "inspect_surface_input",
+        "current_locale_decision",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "bool",
+        "surface_input_clarification",
+        "PipelineTrace",
+        "selection.get",
+        "looks_like_clear_general_request",
+        "str",
+        "surface_recovery.as_dict"
+      ]
+    },
+    {
+      "line": 3101,
+      "condition": "route.category == 'service_fee' and entities.service and (universal_intent.operation in {'price_calculate', 'price_lookup'}) and (not has_explicit_game_hint(pre.clean_query)) and (selected_capability_id == 'fast.price_calculator')",
+      "calls": [
+        "time.perf_counter",
+        "self._try_deterministic",
+        "trace.append",
+        "has_explicit_game_hint",
+        "_timing_trace",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join",
+        "list",
+        "len"
+      ]
+    },
+    {
+      "line": 3178,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3179,
+      "call": "evaluate_structured_tool_precondition"
+    },
+    {
+      "line": 3198,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3200,
+      "condition": "structured_precondition.ok and selector_allows_structured",
+      "calls": [
+        "answer_with_structured_tool"
+      ]
+    },
+    {
+      "line": 3213,
+      "condition": "structured_precondition.ok and selector_allows_structured and (structured is None)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3221,
+      "condition": "structured is not None and structured.mode == 'structured_members_role_clarification'",
+      "calls": [
+        "self._route_for_structured_result",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 3233,
+      "condition": "structured is not None and structured.confidence >= 0.82",
+      "calls": [
+        "self._route_for_structured_result",
+        "time.perf_counter",
+        "compose_structured_answer",
+        "trace.append",
+        "format_answer",
+        "validate_answer",
+        "_timing_trace",
+        "PipelineTrace",
+        "self._build_result",
+        "str",
+        "'; '.join",
+        "list",
+        "len",
+        "structured.evidence.get"
+      ]
+    },
+    {
+      "line": 3324,
+      "condition": "not competition_signal and _looks_like_unclear_game_meta_query(pre.clean_query) and (not has_explicit_game_hint(pre.clean_query))",
+      "calls": [
+        "_looks_like_unclear_game_meta_query",
+        "PipelineRoute",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "has_explicit_game_hint",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3349,
+      "condition": "(looks_like_game_control_query(pre.clean_query) or _looks_like_game_play_followup(pre.clean_query)) and (not has_explicit_game_hint(pre.clean_query)) and (not _looks_like_equipment_location_query(pre.clean_query)) and (route.category not in {'rules', 'penalty'}) and (universal_intent.domain not in {'rules', 'penalty'})",
+      "calls": [
+        "_known_named_game_without_control_data",
+        "PipelineRoute",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "looks_like_game_control_query",
+        "_looks_like_game_play_followup",
+        "has_explicit_game_hint",
+        "_looks_like_equipment_location_query",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3397,
+      "condition": "route.category in {'games', 'equipment', 'general', 'unknown'} and looks_like_game_control_query(pre.clean_query) and (universal_intent.domain not in {'rules', 'penalty'})",
+      "calls": [
+        "looks_like_game_control_query",
+        "time.perf_counter",
+        "retrieve_vector_guarded",
+        "trace.append",
+        "answer_from_vector_hits",
+        "PipelineRoute",
+        "_timing_trace",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "self._build_result",
+        "hit.get",
+        "'; '.join",
+        "len"
+      ]
+    },
+    {
+      "line": 3449,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3466,
+      "condition": "deterministic is not None and deterministic.confidence >= 0.75",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_vector_guarded",
+        "trace.append",
+        "answer_from_vector_hits",
+        "format_answer",
+        "validate_answer",
+        "_timing_trace",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join",
+        "len"
+      ]
+    },
+    {
+      "line": 3553,
+      "call": "looks_like_broad_competition_rules_query"
+    },
+    {
+      "line": 3558,
+      "condition": "route.category == 'competition_rules' and question_frame.target_status == 'exact' and (not broad_competition_request) and (not question_frame.allows_multiple_targets)",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_curated",
+        "retrieve_competition_contract_rows",
+        "trace.append",
+        "assess_competition_evidence",
+        "answer_from_curated_hits",
+        "_timing_trace",
+        "self._build_result",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "ValidationResult",
+        "requested_pause_kind",
+        "pause_rows_for_query"
+      ]
+    },
+    {
+      "line": 3655,
+      "condition": "route.category == 'competition_rules' and question_frame.allows_multiple_targets",
+      "calls": [
+        "competition_query_for_target",
+        "retrieve_competition_contract_rows",
+        "trace.append",
+        "answer_from_curated_hits",
+        "assess_competition_evidence",
+        "comparison_parts.append",
+        "comparison_hits.extend",
+        "comparison_confidences.append",
+        "format_answer",
+        "validate_answer",
+        "retrieve_curated",
+        "PipelineTrace",
+        "len",
+        "'\\n'.join"
+      ]
+    },
+    {
+      "line": 3715,
+      "condition": "route.category == 'competition_rules' and (not broad_competition_request) and (not question_frame.allows_multiple_targets)",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_competition_fact_cards",
+        "trace.append",
+        "answer_from_competition_fact_hits",
+        "_timing_trace",
+        "format_answer",
+        "validate_answer",
+        "tuple",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join",
+        "question_frame.metadata.get",
+        "len"
+      ]
+    },
+    {
+      "line": 3770,
+      "condition": "should_use_hybrid_retrieval(route)",
+      "calls": [
+        "should_use_hybrid_retrieval",
+        "time.perf_counter",
+        "retrieve_hybrid_guarded",
+        "list",
+        "trace.append",
+        "(hybrid_timings or {}).items",
+        "answer_from_hybrid_hits",
+        "should_skip_legacy_curated_after_hybrid",
+        "_timing_trace",
+        "isinstance",
+        "hybrid_trace.metadata.get",
+        "bool",
+        "plan_rag_model_path",
+        "pack_evidence"
+      ]
+    },
+    {
+      "line": 3897,
+      "condition": "route.category == 'general' and has_semantic_domain_anchor(pre.clean_query)",
+      "calls": [
+        "has_semantic_domain_anchor",
+        "self._deadline_is_exceeded",
+        "time.perf_counter",
+        "retrieve_semantic_guarded",
+        "trace.append",
+        "answer_from_semantic_hits",
+        "max",
+        "self._timeout_result",
+        "_timing_trace",
+        "float",
+        "str",
+        "PipelineRoute",
+        "plan_rag_model_path",
+        "pack_evidence"
+      ]
+    },
+    {
+      "line": 4006,
+      "condition": "route.category == 'general' and (not has_semantic_domain_anchor(pre.clean_query))",
+      "calls": [
+        "trace.append",
+        "has_semantic_domain_anchor",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 4017,
+      "condition": "route.category == 'general'",
+      "calls": [
+        "format_no_answer",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "time.perf_counter",
+        "build_experimental_fallback",
+        "validate_answer",
+        "PipelineTrace",
+        "_timing_trace",
+        "PipelineRoute",
+        "'; '.join",
+        "tuple",
+        "dict.fromkeys"
+      ]
+    },
+    {
+      "line": 4083,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4084,
+      "call": "retrieve_curated"
+    },
+    {
+      "line": 4091,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4092,
+      "call": "answer_from_curated_hits"
+    },
+    {
+      "line": 4098,
+      "condition": "rag_answer and rag_confidence >= 0.65",
+      "calls": [
+        "format_answer",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join"
+      ]
+    },
+    {
+      "line": 4114,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4115,
+      "condition": "hybrid_retrieval_ran",
+      "calls": [
+        "PipelineTrace",
+        "retrieve_vector_guarded",
+        "len"
+      ]
+    },
+    {
+      "line": 4133,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4134,
+      "call": "answer_from_vector_hits"
+    },
+    {
+      "line": 4141,
+      "condition": "vector_answer and vector_confidence >= 0.68",
+      "calls": [
+        "format_answer",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join"
+      ]
+    },
+    {
+      "line": 4167,
+      "call": "format_no_answer"
+    },
+    {
+      "line": 4168,
+      "condition": "experimental_rag_fallback",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "time.perf_counter",
+        "build_experimental_fallback",
+        "trace.append",
+        "validate_answer",
+        "self._build_result",
+        "self._timeout_result",
+        "_timing_trace",
+        "PipelineRoute",
+        "ValidationResult",
+        "tuple",
+        "dict.fromkeys"
+      ]
+    },
+    {
+      "line": 4224,
+      "call": "ValidationResult"
+    }
+  ],
+  "common": [
+    {
+      "line": 1573,
+      "call": "ObservedTraceList"
+    },
+    {
+      "line": 1581,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1583,
+      "call": "answer_user_service_facts"
+    },
+    {
+      "line": 1584,
+      "condition": "bounded is None",
+      "calls": [
+        "answer_explicit_source_operation"
+      ]
+    },
+    {
+      "line": 1586,
+      "condition": "bounded is not None",
+      "calls": [
+        "self._build_result",
+        "EntityBundle",
+        "bounded.get"
+      ]
+    },
+    {
+      "line": 1591,
+      "call": "self._booking_navigation_result"
+    },
+    {
+      "line": 1592,
+      "condition": "navigation is not None",
+      "calls": []
+    },
+    {
+      "line": 1594,
+      "call": "self._named_game_guard"
+    },
+    {
+      "line": 1595,
+      "condition": "guarded is not None",
+      "calls": []
+    },
+    {
+      "line": 1598,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 1599,
+      "call": "strip_nonsemantic_preface"
+    },
+    {
+      "line": 1600,
+      "call": "preprocess_input"
+    },
+    {
+      "line": 1617,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 1618,
+      "call": "_select_active_preprocessed_query"
+    },
+    {
+      "line": 1629,
+      "condition": "pre.clean_query != original_pre.clean_query",
+      "calls": [
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 1659,
+      "condition": "self._deadline_is_exceeded(trace, 'after_route_selection')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 1668,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1670,
+      "call": "answer_user_service_facts"
+    },
+    {
+      "line": 1671,
+      "condition": "user_facts is not None",
+      "calls": [
+        "self._build_result"
+      ]
+    },
+    {
+      "line": 1675,
+      "condition": "locale is None or locale.effective == 'th'",
+      "calls": [
+        "main_question.strip",
+        "bool",
+        "re.fullmatch",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1692,
+      "call": "social_dialogue_reply"
+    },
+    {
+      "line": 1696,
+      "condition": "social_reply is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1709,
+      "condition": "locale is not None and locale.effective == 'en'",
+      "calls": [
+        "_ambiguous_game_pay_target",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1729,
+      "call": "answer_protected_intent"
+    },
+    {
+      "line": 1736,
+      "condition": "protected is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult",
+        "_hit_for_url"
+      ]
+    },
+    {
+      "line": 1765,
+      "call": "looks_like_competition_rule_query"
+    },
+    {
+      "line": 1767,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1768,
+      "call": "build_rulebook_catalog"
+    },
+    {
+      "line": 1769,
+      "condition": "catalog is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult",
+        "list"
+      ]
+    },
+    {
+      "line": 1773,
+      "call": "lock_explicit_game_target"
+    },
+    {
+      "line": 1774,
+      "condition": "target_lock.locked and (not competition_signal)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace",
+        "target_lock.as_dict"
+      ]
+    },
+    {
+      "line": 1806,
+      "call": "resolve_competition_targets"
+    },
+    {
+      "line": 1807,
+      "condition": "competition_signal and competition_target.status == 'absent'",
+      "calls": [
+        "current_locale_decision",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1815,
+      "condition": "not competition_signal and competition_target.status != 'unknown_explicit'",
+      "calls": [
+        "answer_live_booking_status"
+      ]
+    },
+    {
+      "line": 1817,
+      "condition": "live_booking is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 1845,
+      "call": "current_locale_decision"
+    },
+    {
+      "line": 1846,
+      "condition": "not competition_signal",
+      "calls": [
+        "answer_closed_query_improvement",
+        "PipelineRoute",
+        "UniversalIntent",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "list"
+      ]
+    },
+    {
+      "line": 1865,
+      "condition": "competition_signal and competition_target.status == 'exact'",
+      "calls": [
+        "build_full_rule_answer",
+        "trace.extend",
+        "self._build_result"
+      ]
+    },
+    {
+      "line": 1872,
+      "condition": "competition_signal and competition_target.status == 'exact'",
+      "calls": [
+        "time.perf_counter",
+        "lookup_competition_reply",
+        "trace.append",
+        "_timing_trace",
+        "{'no_answer': 'pipeline:competition_rule_detail_no_answer', 'partial': 'pipeline:competition_rule_detail_partial_source', 'conflict': 'pipeline:competition_rule_source_conflict'}.get",
+        "PipelineRoute",
+        "validate_answer",
+        "hit_from_curated",
+        "PipelineTrace",
+        "self._build_result",
+        "list"
+      ]
+    },
+    {
+      "line": 1891,
+      "condition": "competition_signal and looks_like_broad_competition_rules_query(pre.clean_query)",
+      "calls": [
+        "looks_like_broad_competition_rules_query",
+        "build_competition_overview",
+        "PipelineRoute",
+        "build_question_frame",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "list"
+      ]
+    },
+    {
+      "line": 1903,
+      "condition": "locale is not None and locale.effective == 'en'",
+      "calls": [
+        "answer_english_supported",
+        "looks_like_clear_general_request",
+        "trace.append",
+        "self._build_result",
+        "english_no_answer_needs_domain_recovery",
+        "PipelineTrace",
+        "requires_english_intent_review"
+      ]
+    },
+    {
+      "line": 1979,
+      "call": "exact_competition_intent"
+    },
+    {
+      "line": 1982,
+      "condition": "competition_closed_intent is not None",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "PipelineTrace",
+        "time.perf_counter",
+        "allow_stage",
+        "target_lock.as_dict",
+        "max",
+        "refine_route_with_semantic_evidence",
+        "initial_frame.as_dict",
+        "bool",
+        "_timing_trace",
+        "semantic_route_trace.metadata.get"
+      ]
+    },
+    {
+      "line": 2049,
+      "call": "evaluate_freshness_requirement"
+    },
+    {
+      "line": 2051,
+      "condition": "freshness.requires_live_evidence",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_semantic_guarded",
+        "trace.append",
+        "semantic_hits_have_current_evidence",
+        "_timing_trace",
+        "PipelineTrace",
+        "PipelineRoute",
+        "self._build_result",
+        "ValidationResult",
+        "len"
+      ]
+    },
+    {
+      "line": 2110,
+      "condition": "looks_like_missing_task_input(pre.clean_query)",
+      "calls": [
+        "looks_like_missing_task_input",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 2141,
+      "call": "evaluate_boundary"
+    },
+    {
+      "line": 2149,
+      "condition": "boundary.action != 'allow'",
+      "calls": [
+        "PipelineRoute",
+        "ValidationResult",
+        "self._build_result"
+      ]
+    },
+    {
+      "line": 2171,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2172,
+      "call": "guard_scope"
+    },
+    {
+      "line": 2175,
+      "condition": "guard_answer and guard_confidence >= 0.9",
+      "calls": [
+        "PipelineRoute",
+        "ValidationResult",
+        "self._build_result",
+        "build_experimental_fallback",
+        "trace.append"
+      ]
+    },
+    {
+      "line": 2208,
+      "condition": "locale is not None and locale.effective == 'th'",
+      "calls": [
+        "answer_equipment_availability",
+        "PipelineRoute",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 2226,
+      "condition": "self._deadline_is_exceeded(trace, 'before_universal_intent')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2234,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2235,
+      "call": "preflight_llm_allowed"
+    },
+    {
+      "line": 2236,
+      "condition": "english_deferred_for_intent and experimental_allow_llm and (not english_direct_general)",
+      "calls": []
+    },
+    {
+      "line": 2239,
+      "condition": "competition_closed_intent is not None",
+      "calls": []
+    },
+    {
+      "line": 2254,
+      "condition": "competition_closed_intent is not None",
+      "calls": [
+        "PipelineTrace",
+        "self._planned_task_matches_route",
+        "planned_task.to_universal_intent",
+        "resolve_universal_intent",
+        "trace.append"
+      ]
+    },
+    {
+      "line": 2299,
+      "condition": "has_thai_game_catalog_surface_variant(pre.clean_query)",
+      "calls": [
+        "has_thai_game_catalog_surface_variant",
+        "UniversalIntent",
+        "PipelineTrace",
+        "max"
+      ]
+    },
+    {
+      "line": 2338,
+      "call": "refine_route_with_universal_intent"
+    },
+    {
+      "line": 2339,
+      "condition": "refined_trace is not None",
+      "calls": [
+        "trace.append"
+      ]
+    },
+    {
+      "line": 2341,
+      "condition": "target_lock.locked and (not competition_signal) and (route.category != target_lock.route.category or route.intent != target_lock.route.intent)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace",
+        "target_lock.as_dict"
+      ]
+    },
+    {
+      "line": 2356,
+      "condition": "semantic_route_locked is not None and (route.category != semantic_route_locked.category or route.intent != semantic_route_locked.intent)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 2380,
+      "condition": "semantic_route_locked is not None",
+      "calls": [
+        "trace.append",
+        "UniversalIntent",
+        "PipelineTrace",
+        "list"
+      ]
+    },
+    {
+      "line": 2436,
+      "condition": "self._deadline_is_exceeded(trace, 'after_universal_intent')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2445,
+      "condition": "is_specific_booking_policy_question(pre.clean_query, route)",
+      "calls": [
+        "is_specific_booking_policy_question",
+        "booking_policy_semantic_route",
+        "booking_policy_semantic_intent",
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 2470,
+      "condition": "english_deferred_for_intent and (not english_direct_general)",
+      "calls": [
+        "answer_english_supported",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 2502,
+      "condition": "route.intent in {'chatbot_greeting', 'chatbot_identity'}",
+      "calls": [
+        "self._try_deterministic",
+        "trace.append",
+        "self._build_result",
+        "answer_chatbot_identity",
+        "answer_chatbot_greeting",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 2536,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2537,
+      "call": "resolve_tool_routing"
+    },
+    {
+      "line": 2553,
+      "condition": "self._deadline_is_exceeded(trace, 'after_tool_router')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2562,
+      "condition": "tool_decision.action in {'retrieval', 'rag_llm', 'vector'} and route.category in {'general', 'unknown', 'no_answer'} and (tool_decision.confidence >= 0.68) and (tool_decision.domain in TOOL_ROUTER_DOMAIN_ROUTE_MAP)",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace",
+        "ValidationResult",
+        "time.perf_counter",
+        "build_candidate_decisions",
+        "self._build_result",
+        "min",
+        "_timing_trace"
+      ]
+    },
+    {
+      "line": 2621,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2622,
+      "call": "evaluate_ambiguity_gate"
+    },
+    {
+      "line": 2639,
+      "call": "resolve_competition_targets"
+    },
+    {
+      "line": 2644,
+      "condition": "not ambiguity.allows_answer and competition_ambiguity_veto",
+      "calls": [
+        "trace.append",
+        "PipelineTrace",
+        "PipelineRoute",
+        "ValidationResult",
+        "self._build_result",
+        "list",
+        "tuple"
+      ]
+    },
+    {
+      "line": 2681,
+      "condition": "self._deadline_is_exceeded(trace, 'after_ambiguity_gate')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 2693,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 2694,
+      "call": "build_question_frame"
+    },
+    {
+      "line": 2706,
+      "condition": "question_frame.domain == 'competition_rules' and route.category != 'competition_rules'",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2724,
+      "condition": "semantic_route_locked is not None",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_semantic_guarded",
+        "trace.append",
+        "answer_from_semantic_hits",
+        "_timing_trace",
+        "plan_rag_model_path",
+        "pack_evidence",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "compose_structured_answer",
+        "self._build_result",
+        "len",
+        "model_plan.as_dict"
+      ]
+    },
+    {
+      "line": 2832,
+      "condition": "booking_policy_original_route is not None and booking_policy_original_intent is not None",
+      "calls": [
+        "time.perf_counter",
+        "build_question_frame",
+        "trace.append",
+        "_timing_trace",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2854,
+      "condition": "not universal_intent.target and question_frame.target_status == 'exact' and (len(question_frame.targets) == 1)",
+      "calls": [
+        "UniversalIntent",
+        "trace.append",
+        "len",
+        "PipelineTrace",
+        "resolved_target.as_dict"
+      ]
+    },
+    {
+      "line": 2883,
+      "condition": "question_frame.domain == 'competition_rules' and question_frame.target_status == 'unknown_explicit'",
+      "calls": [
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2914,
+      "condition": "question_frame.domain == 'competition_rules' and question_frame.target_status == 'absent'",
+      "calls": [
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 2949,
+      "condition": "question_frame.domain == 'games' and question_frame.target_required and question_frame.needs_clarification and (not is_known_unsupported_game_query(question))",
+      "calls": [
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "is_known_unsupported_game_query",
+        "PipelineTrace",
+        "int",
+        "question_frame.metadata.get"
+      ]
+    },
+    {
+      "line": 3001,
+      "condition": "(route.category in {'general', 'unknown', 'no_answer'} or question_frame.domain == 'competition_rules') and question_frame.domain in operation_route_map and (question_frame.confidence >= 0.85)",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace",
+        "min",
+        "question_frame.as_dict"
+      ]
+    },
+    {
+      "line": 3024,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3025,
+      "call": "build_candidate_decisions"
+    },
+    {
+      "line": 3036,
+      "call": "candidate_trace.metadata.get"
+    },
+    {
+      "line": 3037,
+      "condition": "selected_capability_id == 'retrieval.competition_fact_cards' and route.category != 'competition_rules' and (semantic_route_locked is None)",
+      "calls": [
+        "PipelineRoute",
+        "trace.append",
+        "max",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3058,
+      "condition": "self._deadline_is_exceeded(trace, 'after_candidate_decisions')",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "self._timeout_result"
+      ]
+    },
+    {
+      "line": 3066,
+      "condition": "not bool(selection.get('execution_allowed', True)) and question_frame.operation == 'unknown' and (not (route.category == 'general' and route.risk == 'low' and looks_like_clear_general_request(pre.clean_query)))",
+      "calls": [
+        "PipelineRoute",
+        "inspect_surface_input",
+        "current_locale_decision",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "bool",
+        "surface_input_clarification",
+        "PipelineTrace",
+        "selection.get",
+        "looks_like_clear_general_request",
+        "str",
+        "surface_recovery.as_dict"
+      ]
+    },
+    {
+      "line": 3107,
+      "condition": "route.category == 'service_fee' and entities.service and (universal_intent.operation in {'price_calculate', 'price_lookup'}) and (not has_explicit_game_hint(pre.clean_query)) and (selected_capability_id == 'fast.price_calculator')",
+      "calls": [
+        "time.perf_counter",
+        "self._try_deterministic",
+        "trace.append",
+        "has_explicit_game_hint",
+        "_timing_trace",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join",
+        "list",
+        "len"
+      ]
+    },
+    {
+      "line": 3184,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3185,
+      "call": "evaluate_structured_tool_precondition"
+    },
+    {
+      "line": 3204,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3206,
+      "condition": "structured_precondition.ok and selector_allows_structured",
+      "calls": [
+        "answer_with_structured_tool"
+      ]
+    },
+    {
+      "line": 3219,
+      "condition": "structured_precondition.ok and selector_allows_structured and (structured is None)",
+      "calls": [
+        "trace.append",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3227,
+      "condition": "structured is not None and structured.mode == 'structured_members_role_clarification'",
+      "calls": [
+        "self._route_for_structured_result",
+        "trace.append",
+        "self._build_result",
+        "PipelineTrace",
+        "ValidationResult"
+      ]
+    },
+    {
+      "line": 3239,
+      "condition": "structured is not None and structured.confidence >= 0.82",
+      "calls": [
+        "self._route_for_structured_result",
+        "time.perf_counter",
+        "compose_structured_answer",
+        "trace.append",
+        "format_answer",
+        "validate_answer",
+        "_timing_trace",
+        "PipelineTrace",
+        "self._build_result",
+        "str",
+        "'; '.join",
+        "list",
+        "len",
+        "structured.evidence.get"
+      ]
+    },
+    {
+      "line": 3330,
+      "condition": "not competition_signal and _looks_like_unclear_game_meta_query(pre.clean_query) and (not has_explicit_game_hint(pre.clean_query))",
+      "calls": [
+        "_looks_like_unclear_game_meta_query",
+        "PipelineRoute",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "has_explicit_game_hint",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3355,
+      "condition": "(looks_like_game_control_query(pre.clean_query) or _looks_like_game_play_followup(pre.clean_query)) and (not has_explicit_game_hint(pre.clean_query)) and (not _looks_like_equipment_location_query(pre.clean_query)) and (route.category not in {'rules', 'penalty'}) and (universal_intent.domain not in {'rules', 'penalty'})",
+      "calls": [
+        "_known_named_game_without_control_data",
+        "PipelineRoute",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "looks_like_game_control_query",
+        "_looks_like_game_play_followup",
+        "has_explicit_game_hint",
+        "_looks_like_equipment_location_query",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 3403,
+      "condition": "route.category in {'games', 'equipment', 'general', 'unknown'} and looks_like_game_control_query(pre.clean_query) and (universal_intent.domain not in {'rules', 'penalty'})",
+      "calls": [
+        "looks_like_game_control_query",
+        "time.perf_counter",
+        "retrieve_vector_guarded",
+        "trace.append",
+        "answer_from_vector_hits",
+        "PipelineRoute",
+        "_timing_trace",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "self._build_result",
+        "hit.get",
+        "'; '.join",
+        "len"
+      ]
+    },
+    {
+      "line": 3455,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 3472,
+      "condition": "deterministic is not None and deterministic.confidence >= 0.75",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_vector_guarded",
+        "trace.append",
+        "answer_from_vector_hits",
+        "format_answer",
+        "validate_answer",
+        "_timing_trace",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join",
+        "len"
+      ]
+    },
+    {
+      "line": 3559,
+      "call": "looks_like_broad_competition_rules_query"
+    },
+    {
+      "line": 3564,
+      "condition": "route.category == 'competition_rules' and question_frame.target_status == 'exact' and (not broad_competition_request) and (not question_frame.allows_multiple_targets)",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_curated",
+        "retrieve_competition_contract_rows",
+        "trace.append",
+        "assess_competition_evidence",
+        "answer_from_curated_hits",
+        "_timing_trace",
+        "self._build_result",
+        "format_answer",
+        "validate_answer",
+        "PipelineTrace",
+        "ValidationResult",
+        "requested_pause_kind",
+        "pause_rows_for_query"
+      ]
+    },
+    {
+      "line": 3661,
+      "condition": "route.category == 'competition_rules' and question_frame.allows_multiple_targets",
+      "calls": [
+        "competition_query_for_target",
+        "retrieve_competition_contract_rows",
+        "trace.append",
+        "answer_from_curated_hits",
+        "assess_competition_evidence",
+        "comparison_parts.append",
+        "comparison_hits.extend",
+        "comparison_confidences.append",
+        "format_answer",
+        "validate_answer",
+        "retrieve_curated",
+        "PipelineTrace",
+        "len",
+        "'\\n'.join"
+      ]
+    },
+    {
+      "line": 3721,
+      "condition": "route.category == 'competition_rules' and (not broad_competition_request) and (not question_frame.allows_multiple_targets)",
+      "calls": [
+        "time.perf_counter",
+        "retrieve_competition_fact_cards",
+        "trace.append",
+        "answer_from_competition_fact_hits",
+        "_timing_trace",
+        "format_answer",
+        "validate_answer",
+        "tuple",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join",
+        "question_frame.metadata.get",
+        "len"
+      ]
+    },
+    {
+      "line": 3776,
+      "condition": "should_use_hybrid_retrieval(route)",
+      "calls": [
+        "should_use_hybrid_retrieval",
+        "time.perf_counter",
+        "retrieve_hybrid_guarded",
+        "list",
+        "trace.append",
+        "(hybrid_timings or {}).items",
+        "answer_from_hybrid_hits",
+        "should_skip_legacy_curated_after_hybrid",
+        "_timing_trace",
+        "isinstance",
+        "hybrid_trace.metadata.get",
+        "bool",
+        "plan_rag_model_path",
+        "pack_evidence"
+      ]
+    },
+    {
+      "line": 3903,
+      "condition": "route.category == 'general' and has_semantic_domain_anchor(pre.clean_query)",
+      "calls": [
+        "has_semantic_domain_anchor",
+        "self._deadline_is_exceeded",
+        "time.perf_counter",
+        "retrieve_semantic_guarded",
+        "trace.append",
+        "answer_from_semantic_hits",
+        "max",
+        "self._timeout_result",
+        "_timing_trace",
+        "float",
+        "str",
+        "PipelineRoute",
+        "plan_rag_model_path",
+        "pack_evidence"
+      ]
+    },
+    {
+      "line": 4012,
+      "condition": "route.category == 'general' and (not has_semantic_domain_anchor(pre.clean_query))",
+      "calls": [
+        "trace.append",
+        "has_semantic_domain_anchor",
+        "PipelineTrace"
+      ]
+    },
+    {
+      "line": 4023,
+      "condition": "route.category == 'general'",
+      "calls": [
+        "format_no_answer",
+        "ValidationResult",
+        "trace.append",
+        "self._build_result",
+        "time.perf_counter",
+        "build_experimental_fallback",
+        "validate_answer",
+        "PipelineTrace",
+        "_timing_trace",
+        "PipelineRoute",
+        "'; '.join",
+        "tuple",
+        "dict.fromkeys"
+      ]
+    },
+    {
+      "line": 4089,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4090,
+      "call": "retrieve_curated"
+    },
+    {
+      "line": 4097,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4098,
+      "call": "answer_from_curated_hits"
+    },
+    {
+      "line": 4104,
+      "condition": "rag_answer and rag_confidence >= 0.65",
+      "calls": [
+        "format_answer",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join"
+      ]
+    },
+    {
+      "line": 4120,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4121,
+      "condition": "hybrid_retrieval_ran",
+      "calls": [
+        "PipelineTrace",
+        "retrieve_vector_guarded",
+        "len"
+      ]
+    },
+    {
+      "line": 4139,
+      "call": "time.perf_counter"
+    },
+    {
+      "line": 4140,
+      "call": "answer_from_vector_hits"
+    },
+    {
+      "line": 4147,
+      "condition": "vector_answer and vector_confidence >= 0.68",
+      "calls": [
+        "format_answer",
+        "validate_answer",
+        "trace.append",
+        "PipelineTrace",
+        "self._build_result",
+        "'; '.join"
+      ]
+    },
+    {
+      "line": 4173,
+      "call": "format_no_answer"
+    },
+    {
+      "line": 4174,
+      "condition": "experimental_rag_fallback",
+      "calls": [
+        "self._deadline_is_exceeded",
+        "time.perf_counter",
+        "build_experimental_fallback",
+        "trace.append",
+        "validate_answer",
+        "self._build_result",
+        "self._timeout_result",
+        "_timing_trace",
+        "PipelineRoute",
+        "ValidationResult",
+        "tuple",
+        "dict.fromkeys"
+      ]
+    },
+    {
+      "line": 4230,
+      "call": "ValidationResult"
+    }
+  ]
+}

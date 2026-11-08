@@ -1,0 +1,170 @@
+{
+  "question_key": "f4156d99d971486ffd99ce0fb39dbcb9d19780fd5405450181e539604046d5fc",
+  "example_sha256": "f27396e9d63a2088d59da9caf8e709bccb38051955eea296c07cf26769802821",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inclusion question selects the external/full-day Nintendo Switch Zone package.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/equipment_included is retained.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full package target; remove Nintendo Switch platform and zone-as-service inference while retaining external/full-day dimensions.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Visit planning supplies no game, group size, booking or other package period.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A source package name is not an independent console platform predicate.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_12 records its equipment inclusion, external organization and full_day fields separately.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": [
+        "package_12",
+        "audience_external_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Switch quantity, session duration, fee or game offering is taught.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 219,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "Nintendo Switch",
+      "ภายนอก",
+      "Nintendo Switch Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "Nintendo Switch Zone",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า แพ็กเกจ PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน มีอุปกรณ์อะไรให้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PSU Esports Studio - Phuket - Nintendo Switch Zone / ภายนอก / เต็มวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_12": {
+      "revision": 1,
+      "record_sha256": "06df277d541ca525de560d901e1dcebacc778feead7d9b748011c9c750d58c67"
+    },
+    "audience_external_org": {
+      "revision": 2,
+      "record_sha256": "15fc64bde64d0d5dad8a7470d59bccdf56f5ba932185ff4cfee6618ffea8a463"
+    }
+  }
+}

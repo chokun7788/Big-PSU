@@ -1,0 +1,100 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 273,
+  "question_key": "0a00000d589ff1289bde21138edaae2f4071c278c44887ef046325cb4e101ea6",
+  "raw_question": "What do you need to book to paly FINAL FANTASY XVI",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [
+      "FINAL FANTASY XVI"
+    ],
+    "tasks": [
+      {
+        "quote": "What do you need to book to paly FINAL FANTASY XVI",
+        "domain": "games",
+        "operation": "availability",
+        "facet": "studio_services",
+        "target": "FINAL FANTASY XVI",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "FINAL FANTASY XVI",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What do you need to book to paly FINAL FANTASY XVI",
+        "domain": "games",
+        "operation": "availability",
+        "facet": "studio_services",
+        "target": "FINAL FANTASY XVI",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "book",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One question asks what must be booked to play FINAL FANTASY XVI; paly is a typo.",
+    "intent_operation_facet": "games/availability/studio_services captures game-to-bookable-service lookup, not a request to book.",
+    "entities_and_slot_roles": "Retain game title target and add book as action; a game title is not itself a service slot.",
+    "local_shared_history_scope": "Remove duplicated context and false service constraint; no platform, resource, date or payment is supplied.",
+    "negation_and_ambiguity": "A game/service relation is not current availability, ownership, DLC entitlement or successful booking.",
+    "source_version_alignment": "Actual game_service revision1 links the FFXVI title to a PS5 service; source title/profile and linked service must retain separate identities.",
+    "no_business_answer_target": "No source service name, platform default, current free slot or booking confirmation enters labels."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "game_detail_final_fantasy_xvi",
+    "migrated_link_availability_ps5_01_02_game_detail_final_fantasy_xvi"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 274,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "game_detail_final_fantasy_xvi": {
+      "revision": 9,
+      "record_sha256": "142cf12318f4274d9850684037722342ffb765ff957e043a702427937a847529"
+    },
+    "migrated_link_availability_ps5_01_02_game_detail_final_fantasy_xvi": {
+      "revision": 1,
+      "record_sha256": "e2f867a04df27d41cafd352b70e5a8db4158c9936df922eb8e13af2f462c07c4"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

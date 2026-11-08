@@ -1,0 +1,205 @@
+[
+  {
+    "question": "คนนอกเข้าไปเล่นได้ทุกเกมเลยไหม",
+    "answer": "ยังยืนยันไม่ได้ว่าบุคคลภายนอกเล่นได้ทุกเกมครับ ข้อมูลสิทธิ์การใช้แต่ละเกมหรือรายการเกมที่ให้บริการยังไม่ครบ จึงไม่ควรสรุปว่าใช้ได้ทั้งหมด",
+    "failed_grades": [
+      {
+        "file": "data/eval/review_grounded_novel_20260925.jsonl",
+        "row": 24,
+        "variant": "question",
+        "id": "RG-NOVEL-TH-15",
+        "passed": false,
+        "failures": [
+          "route:knowledge expected:['no_answer']",
+          "status:answer expected:no_answer_expected",
+          "missing required: ยังยืนยันไม่ได้ว่าเล่นได้ทุกเกม",
+          "forbidden term present: เล่นได้ทุกเกมครับ"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "partitions": {
+          "protocol": [
+            "route:knowledge expected:['no_answer']"
+          ],
+          "outcome": [
+            "status:answer expected:no_answer_expected"
+          ],
+          "evidence": [],
+          "content": [
+            "missing required: ยังยืนยันไม่ได้ว่าเล่นได้ทุกเกม",
+            "forbidden term present: เล่นได้ทุกเกมครับ"
+          ],
+          "validation": [],
+          "performance": [],
+          "grader": []
+        },
+        "positive_text_contract": true,
+        "review_status": "scenario_curated_pending_review"
+      }
+    ],
+    "observed_model_http_calls": []
+  },
+  {
+    "question": "Can visitors use VR without booking?",
+    "answer": "Selected service/game: VR Station 30 minutes / VR Station 1 hour\n\n**Relevant information**\n• Confirmed information: Walk-in visitors must still book through the reservation system before using the service. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "failed_grades": [
+      {
+        "file": "data/eval/review_grounded_novel_20260925.jsonl",
+        "row": 12,
+        "variant": "question",
+        "id": "RG-NOVEL-EN-01",
+        "passed": false,
+        "failures": [
+          "route:knowledge expected:['reservation']",
+          "missing required: No, you cannot use the studio without booking first",
+          "missing required: one hour"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "partitions": {
+          "protocol": [
+            "route:knowledge expected:['reservation']"
+          ],
+          "outcome": [],
+          "evidence": [],
+          "content": [
+            "missing required: No, you cannot use the studio without booking first",
+            "missing required: one hour"
+          ],
+          "validation": [],
+          "performance": [],
+          "grader": []
+        },
+        "positive_text_contract": true,
+        "review_status": "scenario_curated_pending_review"
+      }
+    ],
+    "observed_model_http_calls": []
+  },
+  {
+    "question": "server กับ client ต่างกนยัวไง ตอบสั้น ๆ",
+    "answer": "ยังระบุข้อมูลจากชุดที่ย้ายมาให้ตรงคำถามนี้ไม่ได้ครับ กรุณาระบุชื่อเกม อุปกรณ์ หรือหัวข้อที่ต้องการทราบเพิ่มอีกนิด",
+    "failed_grades": [
+      {
+        "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+        "row": 94,
+        "variant": "noisy",
+        "id": "MASTER-GT-TH-04958",
+        "passed": false,
+        "failures": [
+          "status:clarification expected:no_answer_expected",
+          "missing all alternatives: ['server', 'client']"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "partitions": {
+          "protocol": [],
+          "outcome": [
+            "status:clarification expected:no_answer_expected"
+          ],
+          "evidence": [],
+          "content": [
+            "missing all alternatives: ['server', 'client']"
+          ],
+          "validation": [],
+          "performance": [],
+          "grader": []
+        },
+        "positive_text_contract": true,
+        "review_status": "inherited_gold_candidate"
+      }
+    ],
+    "observed_model_http_calls": [
+      {
+        "url": "http://127.0.0.1:11434/api/generate",
+        "transport_ok": true,
+        "elapsed_sec": 2.526548299996648
+      }
+    ]
+  },
+  {
+    "question": "Can I bring alcohol into the gaming area?",
+    "answer": "The following sources confirm consumption rules inside the studio. They do not separately confirm permission to bring the item into the studio.\n\n**Relevant information**\n• Confirmed information: Prohibited to smoke, use drugs or consume alcoholic beverages within the facility [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+    "failed_grades": [
+      {
+        "file": "data/eval/review_grounded_novel_20260925.jsonl",
+        "row": 15,
+        "variant": "question",
+        "id": "RG-NOVEL-EN-04",
+        "passed": false,
+        "failures": [
+          "route:knowledge expected:['rules']",
+          "missing required: alcohol consumption"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "partitions": {
+          "protocol": [
+            "route:knowledge expected:['rules']"
+          ],
+          "outcome": [],
+          "evidence": [],
+          "content": [
+            "missing required: alcohol consumption"
+          ],
+          "validation": [],
+          "performance": [],
+          "grader": []
+        },
+        "positive_text_contract": true,
+        "review_status": "scenario_curated_pending_review"
+      }
+    ],
+    "observed_model_http_calls": []
+  },
+  {
+    "question": "คนทั่วไปจอง PC ต้องจ่ายเท่าไหร่",
+    "answer": "**ค่าบริการ — PC #01-#02 / General Adult**\nยังยืนยันราคาปัจจุบันไม่ได้: แหล่งข้อมูลยังไม่มีช่วงมีผลที่ยืนยันแล้ว\n\n**ค่าบริการ — PC #01-#02 / PSU Alumni and General Student**\nยังยืนยันราคาปัจจุบันไม่ได้: แหล่งข้อมูลยังไม่มีช่วงมีผลที่ยืนยันแล้ว\n\n**ค่าบริการ — PC #01-#02 / PSU Student and Staff**\nยังยืนยันราคาปัจจุบันไม่ได้: แหล่งข้อมูลยังไม่มีช่วงมีผลที่ยืนยันแล้ว\n\n**ค่าบริการ — PC #03-#10 / General Adult**\nยังยืนยันราคาปัจจุบันไม่ได้: แหล่งข้อมูลยังไม่มีช่วงมีผลที่ยืนยันแล้ว\n\n**ค่าบริการ — PC #03-#10 / PSU Alumni and General Student**\nยังยืนยันราคาปัจจุบันไม่ได้: แหล่งข้อมูลยังไม่มีช่วงมีผลที่ยืนยันแล้ว\n\n**ค่าบริการ — PC #03-#10 / PSU Student and Staff**\nยังยืนยันราคาปัจจุบันไม่ได้: แหล่งข้อมูลยังไม่มีช่วงมีผลที่ยืนยันแล้ว",
+    "failed_grades": [
+      {
+        "file": "data/eval/review_grounded_novel_20260925.jsonl",
+        "row": 1,
+        "variant": "question",
+        "id": "RG-NOVEL-TH-02",
+        "passed": false,
+        "failures": [
+          "route:knowledge expected:['service_fee']",
+          "missing required: บาท"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "partitions": {
+          "protocol": [
+            "route:knowledge expected:['service_fee']"
+          ],
+          "outcome": [],
+          "evidence": [],
+          "content": [
+            "missing required: บาท"
+          ],
+          "validation": [],
+          "performance": [],
+          "grader": []
+        },
+        "positive_text_contract": true,
+        "review_status": "scenario_curated_pending_review"
+      }
+    ],
+    "observed_model_http_calls": []
+  }
+]

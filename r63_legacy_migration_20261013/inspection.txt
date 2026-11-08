@@ -1,0 +1,904 @@
+KIND center [('name', 'object', None), ('operator', 'object', None), ('description', 'object', None), ('address', 'object', None), ('building', 'string', None), ('floor', 'string', None), ('map_url', 'string', None), ('timezone', ['Asia/Bangkok'], None)]
+KIND contact [('channel', ['facebook', 'email', 'phone', 'website', 'onsite'], None), ('value', 'string', None), ('purpose', 'object', None), ('office_hours', 'object', None)]
+KIND facility [('name', 'object', None), ('location', 'object', None), ('usage_conditions', 'object', None), ('accessibility', 'object', None)]
+KIND zone [('name', 'object', None), ('description', 'object', None), ('location', 'object', None), ('room_seats', 'integer', None)]
+KIND equipment_model [('name', 'object', None), ('device_type', ['pc', 'console', 'vr', 'wheel', 'display', 'peripheral', 'furniture'], None), ('specifications', 'array', None), ('usage', 'object', None)]
+KIND resource [('name', 'object', None), ('zone_id', 'string', 'zone'), ('equipment_model_ids', 'array', 'equipment_model'), ('capacity_persons', 'integer', None), ('physical_pool_key', 'string', None), ('operational_status', ['in_service', 'out_of_service', 'retired'], None)]
+KIND service [('name', 'object', None), ('resource_ids', 'array', 'resource'), ('platform', 'string', None), ('session_minutes', 'integer', None), ('occupancy_minutes', 'integer', None), ('capacity_min', 'integer', None), ('capacity_max', 'integer', None), ('booking_product_key', 'string', None)]
+KIND game [('title', 'object', None), ('edition', 'string', None), ('genre', 'object', None), ('summary', 'object', None), ('how_to_play', 'object', None), ('publisher_url', 'string', None), ('supported_platforms', 'array', None), ('age_rating', 'object', None)]
+KIND game_service [('game_id', 'string', 'game'), ('service_id', 'string', 'service'), ('offered', 'boolean', None), ('installed_resource_ids', 'array', 'resource'), ('game_version', 'string', None), ('account_policy_id', 'string', 'policy')]
+KIND game_mode [('game_id', 'string', 'game'), ('mode_name', 'object', None), ('platform', 'string', None), ('players_min', 'integer', None), ('players_max', 'integer', None), ('network_requirement', 'object', None), ('studio_supported', 'boolean', None)]
+KIND control_set [('game_id', 'string', 'game'), ('platform', 'string', None), ('input_device', ['keyboard_mouse', 'gamepad', 'racing_wheel', 'vr_motion'], None), ('preset', 'string', None), ('game_version', 'string', None), ('bindings', 'array', None), ('limitations', 'object', None)]
+KIND audience [('name', 'object', None), ('eligibility', 'object', None), ('required_proofs', 'array', None)]
+KIND rate [('service_id', 'string', 'service'), ('audience_id', 'string', 'audience'), ('amount_minor', 'integer', None), ('currency', ['THB'], None), ('unit', ['per_session', 'per_hour', 'per_person', 'per_group'], None), ('duration_minutes', 'integer', None), ('persons_min', 'integer', None), ('persons_max', 'integer', None), ('calculation_rule', ['fixed', 'linear', 'no_extrapolation'], None), ('tax_note', 'object', None)]
+KIND rental_package [('name', 'object', None), ('zone_ids', 'array', 'zone'), ('audience_id', 'string', 'audience'), ('period_label', ['half_day', 'full_day', 'custom'], None), ('duration_minutes', 'integer', None), ('amount_minor', 'integer', None), ('currency', ['THB'], None), ('equipment_included', 'object', None), ('room_seats', 'integer', None), ('terms', 'object', None)]
+KIND schedule [('timezone', ['Asia/Bangkok'], None), ('zone_ids', 'array', 'zone'), ('weekday', 'integer', None), ('open_periods', 'array', None), ('bookable_periods', 'array', None), ('maintenance_periods', 'array', None), ('reason', 'object', None)]
+KIND closure [('local_date', 'string', None), ('zone_ids', 'array', 'zone'), ('state', ['closed', 'modified_hours', 'open_override'], None), ('open_periods', 'array', None), ('bookable_periods', 'array', None), ('reason', 'object', None), ('resolution_policy_id', 'string', 'policy')]
+KIND policy [('topic', 'string', None), ('subject', 'object', None), ('decision', ['allowed', 'prohibited', 'required', 'conditional'], None), ('conditions_all', 'array', None), ('exceptions', 'object', None), ('consequence', 'object', None), ('details', 'object', None), ('procedure_id', 'string', 'procedure')]
+KIND procedure [('topic', 'string', None), ('preconditions', 'array', None), ('steps', 'array', None), ('required_documents', 'array', None), ('deadline_minutes', 'integer', None), ('outcome', 'object', None)]
+KIND competition [('game_id', 'string', 'game'), ('event_name', 'object', None), ('division', 'object', None), ('rulebook_release', 'string', None), ('competition_dates', 'array', None), ('coverage', ['complete', 'partial', 'conflicted'], None), ('supersedes_id', 'string', 'competition')]
+KIND competition_rule [('competition_id', 'string', 'competition'), ('section_number', 'string', None), ('facet', ['identity', 'eligibility_registration', 'roster_composition', 'competition_format', 'match_configuration', 'pre_match_on_site', 'in_match_operations', 'fair_play_conduct', 'penalty_matrix', 'protest_dispute', 'references_change_history', 'game_specific'], None), ('heading', 'object', None), ('text', 'object', None), ('depends_on_ids', 'array', 'competition_rule'), ('completeness', ['complete', 'truncated', 'conflicted'], None)]
+KIND news [('title', 'object', None), ('body', 'object', None), ('event_start', 'string', None), ('event_end', 'string', None), ('audience_ids', 'array', 'audience'), ('contact_id', 'string', 'contact'), ('registration_url', 'string', None)]
+KIND person [('display_name', 'object', None), ('role', 'object', None), ('team', 'object', None), ('public_contact_id', 'string', 'contact'), ('public_scope', 'object', None)]
+KIND faq [('question', 'object', None), ('answer', 'object', None), ('related_ids', 'array', '*'), ('topic', 'string', None), ('scope_note', 'object', None)]
+KIND live_binding [('service_id', 'string', 'service'), ('provider', ['wordpress_booking'], None), ('external_resource_key', 'string', None), ('physical_pool_key', 'string', None), ('status_mapping', 'array', None), ('timezone', ['Asia/Bangkok'], None), ('freshness_policy', 'object', None)]
+SAMPLE competition_document {"path": "data/content/competition/competition_rules_cs2_psu_phuket_2026.json", "id": "competition.competition_rules_cs2_psu_phuket_2026", "category": "competition_rules", "kind": "competition_document", "facts": {"game": "Counter-Strike 2", "tournament": "PSU Phuket CS2 2026 Tournament", "document_id": "competition_rules_cs2_psu_phuket_2026"}, "th": {"status": "source", "fields": {"title": "Counter-Strike 2: ภาพรวมเอกสาร", "sections": [{"section_title": "ภาพรวมเอกสาร", "text": "กฎระเบียบและรูปแบบการแข่งขัน Counter-Strike 2", "section_index": 1}, {"section_title": "รายการ PSU Phuket CS2 2026 Tournament", "text": "รายการ PSU Phuket CS2 2026 Tournament", "section_index": 2}, {"section_title": "1. ข้อมูลทั่วไป (General Information)", "text": "1. ข้อมูลทั่วไป (General Information)", "section_index": 3}, {"section_title": "1. ขอบเขตการบังคับใช้ กฎระเบียบนี้ใช้กับผู้เล่น ทีม และเจ้าหน้าที่ทุกคนที่เข้าร่วมการแข่งขัน CS2 อย่างเป็นทางการที่จัดโดย PSU Esports Studio - Phuket", "text": "1. ขอบเขตการบังคับใช้ กฎระเบียบนี้ใช้กับผู้เล่น ทีม และเจ้าหน้าที่ทุกคนที่เข้าร่วมการแข่งขัน CS2 อย่างเป็นทางการที่จัดโดย PSU Esports Studio - Phuket", "section_index": 4}, {"section_title": "2. เวอร์ชันของเกม การแข่งขันทั้งหมดจะใช้เวอร์ชันล่าสุดของ CS2 บนแพลตฟอร์ม Steam ห้ามใช้การดัดแปลงตัวเกมที่ไม่ได้รับอนุญาตโดยเด็ดขาด", "text": "2. เวอร์ชันของเกม การแข่งขันทั้งหมดจะใช้เวอร์ชันล่าสุดของ CS2 บนแพลตฟอร์ม Steam ห้ามใช้การดัดแปลงตัวเกมที่ไม่ได้รับอนุญาตโดยเด็ดขาด", "section_index": 5}, {"section_title": "3. ภาษา ภาษาทางการของการแข่งขันคือ ภาษาไทย การสื่อสาร การประท้วง และการรายงานผลทั้งหมดต้องใช้ภาษาไทย เว้นแต่จะระบุไว้เป็นอย่างอื่น", "text": "3. ภาษา ภาษาทางการของการแข่งขันคือ ภาษาไทย การสื่อสาร การประท้วง และการรายงานผลทั้งหมดต้องใช้ภาษาไทย เว้นแต่จะระบุไว้เป็นอย่างอื่น", "section_index": 6}, {"section_title": "4. การจับฉลากและตารางเวลา", "text": "4. การจับฉลากและตารางเวลา", "section_index": 7}, {"section_title": "1. การแข่งขันจะแข่งขันทั้งหมด 1 วัน แข่งขัน ณ PSU Esports Studio - Phuket มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต", "text": "1. การแข่งขันจะแข่งขันทั้งหมด 1 วัน แข่งขัน ณ PSU Esports Studio - Phuket มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต", "section_index": 8}, {"section_title": "5. การสื่อสาร ผู้เข้าร่วมทุกคนต้องใช้เซิร์ฟเวอร์ Discord ที่ทางศูนย์เป็นผู้กำหนด", "text": "5. การสื่อสาร ผู้เข้าร่วมทุกคนต้องใช้เซิร์ฟเวอร์ Discord ที่ทางศูนย์เป็นผู้กำหนด", "section_index": 9}, {"section_title": "6. ข้อจำกัด", "text": "6. ข้อจำกัด", "section_index": 10}, {"section_title": "1. ต้องไม่มีการเปลี่ยนแปลงสมาชิกในทีมตลอดระยะเวลาการแข่งขัน", "text": "1. ต้องไม่มีการเปลี่ยนแปลงสมาชิกในทีมตลอดระยะเวลาการแข่งขัน", "section_index": 11}, {"section_title": "2. ไม่อนุญาตให้ลงทะเบียนผู้เล่น หลังจากปิดรับสมัคร", "text": "2. ไม่อนุญาตให้ลงทะเบียนผู้เล่น หลังจากปิดรับสมัคร", "section_index": 12}, {"section_title": "3. หากสมาชิกคนใดถอนตัว ทีมอาจถูกตัดสิทธิ์", "text": "3. หากสมาชิกคนใดถอนตัว ทีมอาจถูกตัดสิทธิ์", "section_index": 13}, {"section_title": "4. ผู้เล่นสามารถลงแข่งในนามของทีมได้ทีมเดียวเท่านั้น", "text": "4. ผู้เล่นสามารถลงแข่งในนามของทีมได้ทีมเดียวเท่านั้น", "section_index": 14}, {"section_title": "7. เวลาการแข่งขัน สายการแข่งขันจะประกาศล่วงหน้าอย่างน้อย 1 วัน ต้องยืนยันการเข้าแข่งขันก่อนเริ่มแมตช์ การมาสายอาจถูกตัดสิทธิ์", "text": "7. เวลาการแข่งขัน สายการแข่งขันจะประกาศล่วงหน้าอย่างน้อย 1 วัน ต้องยืนยันการเข้าแข่งขันก่อนเริ่มแมตช์ การมาสายอาจถูกตัดสิทธิ์", "section_index": 15}, {"section_title": "2. คุณสมบัติของทีมและผู้เล่น", "text": "2. คุณสมบัติของทีมและผู้เล่น", "section_index": 16}, {"section_title": "1. คุณสมบัติทั่วไป เปิดรับเฉพาะนักศึกษาที่กำลังศึกษาอยู่ในมหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ตเท่านั้น", "text": "1. คุณสมบัติทั่วไป เปิดรับเฉพาะนักศึกษาที่กำลังศึกษาอยู่ในมหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ตเท่านั้น", "section_index": 17}, {"section_title": "2. องค์ประกอบทีม แต่ละทีมประกอบด้วยผู้เล่น 5 คน", "text": "2. องค์ประกอบทีม แต่ละทีมประกอบด้วยผู้เล่น 5 คน", "section_index": 18}, {"section_title": "3. รูปแบบการแข่งขัน", "text": "3. รูปแบบการแข่งขัน", "section_index": 19}, {"section_title": "1. รูปแบบทัวร์นาเมนต์ Single Elimination", "text": "1. รูปแบบทัวร์นาเมนต์ Single Elimination", "section_index": 20}, {"section_title": "1. รอบรองชนะเลิศ และชิงชนะเลิศ: Best of 3 (BO3)", "text": "1. รอบรองชนะเลิศ และชิงชนะเลิศ: Best of 3 (BO3)", "section_index": 21}, {"section_title": "2. การตั้งค่าในเกม", "text": "2. การตั้งค่าในเกม", "section_index": 22}, {"section_title": "1. โหมด Competitive (5v5)", "text": "1. โหมด Competitive (5v5)", "section_index": 23}, {"section_title": "2. เวลาต่อรอบ 1:55 นาที | Freeze time: 15 วินาที", "text": "2. เวลาต่อรอบ 1:55 นาที | Freeze time: 15 วินาที", "section_index": 24}, {"section_title": "3. เงินเริ่มต้น $800 | เวลาของระเบิด: 40 วินาที", "text": "3. เงินเริ่มต้น $800 | เวลาของระเบิด: 40 วินาที", "section_index": 25}, {"section_title": "4. จำนวนรอบสูงสุด 24 รอบ (ฝั่งละ 12 รอบ) | ผู้ชนะคือทีมที่ได้ 13 รอบก่อน", "text": "4. จำนวนรอบสูงสุด 24 รอบ (ฝั่งละ 12 รอบ) | ผู้ชนะคือทีมที่ได้ 13 รอบก่อน", "section_index": 26}, {"section_title": "5. การต่อเวลา ฝั่งละ 3 รอบ (รวม 6) ใครได้ 4 ใน 6 รอบก่อนชนะ เงินเริ่มต้น $10,000 ต่อเวลาไม่จำกัดจำนวนครั้ง", "text": "5. การต่อเวลา ฝั่งละ 3 รอบ (รวม 6) ใครได้ 4 ใน 6 รอบก่อนชนะ เงินเริ่มต้น $10,000 ต่อเวลาไม่จำกัดจำนวนครั้ง", "section_index": 27}, {"section_title": "3. แผนที่ในการแข่งขัน", "text": "3. แผนที่ในการแข่งขัน", "section_index": 28}, {"section_title": "1. ANCIENT, ANUBIS, DUST 2, INFERNO, MIRAGE, NUKE, TRAIN", "text": "1. ANCIENT, ANUBIS, DUST 2, INFERNO, MIRAGE, NUKE, TRAIN", "section_index": 29}, {"section_title": "4. ขั้นตอนการดำเนินการแข่งขัน", "text": "4. ขั้นตอนการดำเนินการแข่งขัน", "section_index": 30}, {"section_title": "1. การเลือกแผนที่ ใช้ MAPBAN.GG", "text": "1. การเลือกแผนที่ ใช้ MAPBAN.GG", "section_index": 31}, {"section_title": "2. การเลือกฝั่ง ใช้การแข่งดวลมีดเพื่อเลือกฝั่ง", "text": "2. การเลือกฝั่ง ใช้การแข่งดวลมีดเพื่อเลือกฝั่ง", "section_index": 32}, {"section_title": "3. การหยุดเกมทางเทคนิค ทีมละ 2 ครั้ง ครั้งละไม่เกิ
+SAMPLE equipment {"path": "data/content/resources/equipment/equipment_driving_force_shifter.json", "id": "equipment_driving_force_shifter", "category": "resources", "kind": "equipment", "facts": {"zone": "Cockpit Zone", "quantity": "2 Units with Logitech G923", "source_url": "https://esports.phuket.psu.ac.th/home"}, "th": {"status": "source", "fields": {"item": "Driving Force Shifter", "what_th": "คันเกียร์เสริมสำหรับชุดพวงมาลัยขับรถ", "how_to_use_th": "ใช้งานร่วมกับ Logitech G923 และ Cockpit ในเกมขับรถ หากไม่คุ้นเคยควรให้เจ้าหน้าที่แนะนำก่อนเริ่มเล่น", "use_cases_th": ["เพิ่มความสมจริงให้เกมขับรถ เช่น Gran Turismo 7"]}}, "en": {"status": "missing", "fields": {}, "source_sha256": "dab4be3d22f4471c2e20e4c3056de750f21291b405e484dc3bf1678611fcf7ba", "approved_by": "", "approved_at": ""}, "source": {"path": "data/curated/equipment_item_details.jsonl", "url": "https://esports.phuket.psu.ac.th/home", "source_ids": [], "last_verified_at": ""}}
+SAMPLE member {"path": "data/content/members/member_0629f0033d3d9b24.json", "id": "member_0629f0033d3d9b24", "category": "members", "kind": "member", "facts": {"group": "PSU Phuket Esports Club - PSU Phuket", "source_url": "https://esports.phuket.psu.ac.th/about-us/Members"}, "th": {"status": "source", "fields": {"name": "นายธนชาติ เอ่งฉ้วน", "role": "ประชาสัมพันธ์"}}, "en": {"status": "missing", "fields": {}, "source_sha256": "2c8762e2ad6f55cb3d0b98bc42c1a069425d32860f6a6d8289a75167e5724c1a", "approved_by": "", "approved_at": ""}, "source": {"path": "data/curated/member_profiles.jsonl", "url": "https://esports.phuket.psu.ac.th/about-us/Members", "source_ids": [], "last_verified_at": ""}}
+SAMPLE policy_rule {"path": "data/content/booking/rule_booking_advance.json", "id": "rule_booking_advance", "category": "booking", "kind": "policy_rule", "facts": {"route_category": "reservation", "intent": "booking_advance_time", "patterns": ["จองล่วงหน้า", "ต้องจองก่อน", "จองก่อนกี่", "จอง.*กี่ชั่วโมง", "book.*ล่วงหน้า", "book.*กี่.*hr", "book.*กี่.*hour", "ล่วงหน้า.*กี่.*hr", "ล่วงหน้า.*กี่.*hour", "reserve.*advance", "booking.*advance", "book.*advance", "walk in.*จองก่อน", "walk-in.*จองก่อน"], "priority": 105}, "th": {"status": "source", "fields": {"answer": "ต้องจองล่วงหน้าผ่านระบบออนไลน์ก่อนเวลาใช้งานอย่างน้อย 1 ชั่วโมง"}}, "en": {"status": "legacy_unreviewed", "fields": {"answer": "Users must make a reservation through the online system at least 1 hour before the intended use time."}, "source_sha256": "81904539c4a86e8dcbb04b66597a11e4155bb77cdbf3149dd86ea9ae00532d6c", "approved_by": "", "approved_at": ""}, "source": {"path": "data/rules/reservation_rules.jsonl", "url": "https://esports.computing.psu.ac.th/", "source_ids": ["Reservation", "curated_reservation_advance_time"], "last_verified_at": ""}}
+AVAILABLE availability_cockpit_01_02 {"zone": "Cockpit Zone", "service_label": "Cockpit #01-#02", "machine_label": "Cockpit #01-#02", "machine_numbers": [1, 2], "duration_minutes": 60, "capacity_persons": "1 คน", "games": ["Gran Turismo 7"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+AVAILABLE availability_nintendo_1_2 {"zone": "Nintendo Switch Zone", "service_label": "Nintendo Switch (1-2 Persons)", "machine_label": "Nintendo Switch (1-2 Persons)", "duration_minutes": 60, "capacity_persons": "1-2 คน", "games": ["Pokémon Champions", "Animal Crossing: New Horizons", "It Takes Two", "Little Nightmares II", "Luigi's Mansion 3", "Mario Kart 8 Deluxe", "Mario Party Superstars", "Monster Hunter Rise", "Moving Out 2", "New Super Mario Bros. U Deluxe", "Nintendo Switch Sports", "Overcooked!", "Overcooked! 2", "Ring Fit Adventure", "Super Mario Odyssey", "Super Smash Bros Ultimate", "The Legend of Zelda: Breath of The Wild"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+AVAILABLE availability_nintendo_1_4 {"zone": "Nintendo Switch Zone", "service_label": "Nintendo Switch (1-4 Persons)", "machine_label": "Nintendo Switch (1-4 Persons)", "duration_minutes": 60, "capacity_persons": "1-4 คน", "games": ["Pokémon Champions", "Animal Crossing: New Horizons", "It Takes Two", "Little Nightmares II", "Luigi's Mansion 3", "Mario Kart 8 Deluxe", "Mario Party Superstars", "Monster Hunter Rise", "Moving Out 2", "New Super Mario Bros. U Deluxe", "Nintendo Switch Sports", "Overcooked!", "Overcooked! 2", "Ring Fit Adventure", "Super Mario Odyssey", "Super Smash Bros Ultimate", "The Legend of Zelda: Breath of The Wild"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+AVAILABLE availability_pc_01_02 {"zone": "PC Zone", "service_label": "PC #01-#02", "machine_label": "PC #01-#02", "machine_numbers": [1, 2], "duration_minutes": 60, "capacity_persons": "1 คน", "games": ["TEKKEN 8", "Counter-Strike 2", "League of Legends", "PUBG: BATTLEGROUNDS", "VALORANT"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+AVAILABLE availability_pc_03_10 {"zone": "PC Zone", "service_label": "PC #03-#10", "machine_label": "PC #03-#10", "machine_numbers": [3, 4, 5, 6, 7, 8, 9, 10], "duration_minutes": 60, "capacity_persons": "1 คน", "games": ["Call of Duty: Warzone", "Counter-Strike 2", "League of Legends", "PUBG: BATTLEGROUNDS", "VALORANT"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+AVAILABLE availability_ps5_01_02 {"zone": "PlayStation 5 Zone", "service_label": "PlayStation 5 #01-#02", "machine_label": "PlayStation 5 #01-#02", "machine_numbers": [1, 2], "duration_minutes": 60, "capacity_persons": "1-2 คน", "games": ["Call of Duty: Modern Warfare III", "Delta Force", "EA Sports FC 24", "eFootball", "FINAL FANTASY XVI", "Fortnite", "God of War Ragnarok", "Hogwarts Legacy", "Marvel's Spider-Man 2", "NARUTO X BORUTO Ultimate Ninja Storm Connections", "Resident Evil 4", "Resident Evil Village", "TEKKEN 8", "THE FINALS", "The Last of Us Part I", "The Last of Us Part II (Remastered)", "Uncharted: Legacy of Thieves Collection"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+AVAILABLE availability_vr_30 {"zone": "VR Zone", "service_label": "VR Station 30 นาที", "machine_label": "VR Station", "duration_minutes": 30, "capacity_persons": "1-5 คน", "games": ["Beat Saber", "Horizon Call of the Mountain", "Resident Evil 4", "Resident Evil Village"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+AVAILABLE availability_vr_60 {"zone": "VR Zone", "service_label": "VR Station 1 ชั่วโมง", "machine_label": "VR Station", "duration_minutes": 60, "capacity_persons": "1-5 คน", "games": ["Beat Saber", "Horizon Call of the Mountain", "Resident Evil 4", "Resident Evil Village"], "source_url": "https://esports.computing.psu.ac.th/", "source_ids": ["official_reservation_page_20260730", "user_confirmed_screenshot_20260730"], "last_verified_at": "2026-07-30", "verified_by": "official reservation page and user-provided screenshot"}
+EXTRA data/curated/zone_rental_fees_20261006.json {
+  "schema_version": 1,
+  "source_id": "zone_rental_fees_user_workbook_20261006",
+  "source_url": "local://service_fee/zone_rental_fees_20261006",
+  "source_file": "data/sources/zone_rental_fees_20261006.xlsx",
+  "source_original_filename": "ค่าบริการครึ่งวันและเต็มวัน PSU Esports Studio - Phuket (1).xlsx",
+  "source_sha256": "bbcc850c1b348e79b9c65577ebf2a284f26fc81674c1d44de9e8e846653b8894",
+  "source_sheet": "ค่าบริการเช่าห้อง PSU Esports S",
+  "received_on": "2026-10-06",
+  "effective_from": null,
+  "effective_until": null,
+  "price_scope": "zone_rental_for_organizations",
+  "currency": "THB",
+  "period_hours": {
+    "half_day": null,
+    "full_day": null
+  },
+  "customer_groups": {
+    "internal": "หน่วยงานภายใน",
+    "external": "หน่วยงานภายนอก"
+  },
+  "source_notes": [
+    {
+      "text_th": "ค่าตอบแทนของเจ้าหน้าที่ทำงานนอกเวลาเบิกตามระเบียบมหาวิทยาลัย",
+      "text_en": "Staff overtime compensation is reimbursed according to university regulations.",
+      "cell": "H3",
+      "scope": "all_zones_row"
+    }
+  ],
+  "rows": [
+    {
+      "id": "all_zones",
+      "label": "All Zones",
+      "original_label": "PSU Esports Studio - Phuket - All Zones",
+      "seats": 50,
+      "equipment_th": "อุปกรณ์เกมทั้งหมด",
+      "equipment_en": "All gaming equipment",
+      "prices_thb": {
+        "external": {
+          "full_day": 12000,
+          "half_day": 6000
+        },
+        "internal": {
+          "full_day": 6000,
+          "half_day": 3000
+        }
+      },
+      "source_row": 3,
+      "source_cells": {
+        "external_full_day": "B3",
+        "external_half_day": "C3",
+        "internal_full_day": "D3",
+        "internal_half_day": "E3",
+        "seats": "F3",
+        "equipment": "G3"
+      }
+    },
+    {
+      "id": "cockpit",
+      "label": "Cockpit Zone",
+      "original_label": "PSU Esports Studio - Phuket - Cockpit Zone",
+      "seats": 35,
+      "equipment_th": "Cockpit 2 เครื่อง",
+      "equipment_en": "2 Cockpit units",
+      "prices_thb": {
+        "external": {
+          "full_day": 2000,
+          "half_day": 1000
+        },
+        "internal": {
+          "full_day": 1000,
+          "half_day": 500
+        }
+      },
+      "source_row": 4,
+      "source_cells": {
+        "external_full_day": "B4",
+        "external_half_day": "C4",
+        "internal_full_day": "D4",
+        "internal_half_day": "E4",
+        "seats": "F4",
+        "equipment": "G4"
+      }
+    },
+    {
+      "id": "vr",
+      "label": "VR Zone",
+      "original_label": "PSU Esports Studio - Phuket - VR Zone",
+      "seats": 34,
+      "equipment_th": "VR 1 เครื่อง",
+      "equipment_en": "1 VR unit",
+      "prices_thb": {
+        "external": {
+          "full_day": 6000,
+          "half_day": 3000
+        },
+        "internal": {
+          "full_day": 3000,
+          "half_day": 1500
+        }
+      },
+      "source_row": 5,
+      "source_cells": {
+        "external_full_day": "B5",
+        "external_half_day": "C5",
+        "internal_full_day": "D5",
+        "internal_half_day": "E5",
+        "seats": "F5",
+        "equipment": "G5"
+      }
+    },
+    {
+      "id": "nintendo_switch",
+      "label": "Nintendo Switch Zone",
+      "original_label": "PSU Esports Studio - Phuket - Nintendo Switch Zone",
+      "seats": 37,
+      "equipment_th": "Nintendo Switch 1 เครื่อง",
+      "equipment_en": "1 Nintendo Switch unit",
+      "prices_thb": {
+        "external": {
+          "full_day": 2000,
+          "half_day": 1000
+        },
+        "internal": {
+          "full_day": 1000,
+          "half_day": 500
+        }
+      },
+      "source_row": 6,
+      "source_cells": {
+        "external_full_day": "B6",
+        "external_half_day": "C6",
+        "internal_full_day": "D6",
+        "internal_half_day": "E6",
+        "seats": "F6",
+        "equipment": "G6"
+      }
+    },
+    {
+      "id": "ps5",
+      "label": "PlayStation 5 Zone",
+      "original_label": "PSU Esports Studio - Phuket - PlayStation 5 Zone",
+      "seats": 37,
+      "equipment_th": "PlayStation 5 2 เครื่อง",
+      "equipment_en": "2 PlayStation 5 units",
+      "prices_thb": {
+        "external": {
+          "full_day": 2000,
+          "half_day": 1000
+        },
+        "internal": {
+          "full_day": 1000,
+          "half_day": 500
+        }
+      },
+      "source_row": 7,
+      "source_cells": {
+        "external_full_day": "B7",
+        "external_half_day": "C7",
+        "internal_full_day": "D7",
+        "internal_half_day": "E7",
+        "seats": "F7",
+        "equipment": "G7"
+      }
+    },
+    {
+      "id": "pc",
+      "label": "PC Zone",
+      "original_label": "PSU Esports Studio - Phuket - PC Zone",
+      "seats": 43,
+      "equipment_th": "PC 10 เครื่อง",
+      "equipment_en": "10 PC units",
+      "prices_thb": {
+        "external": {
+          "full_day": 4000,
+          "half_day": 2000
+        },
+        "internal": {
+          "full_day": 2000,
+          "half_day": 1000
+        }
+      },
+      "source_row": 8,
+      "source_cells": {
+        "external_full_day": "B8",
+        "external_half_day": "C8",
+        "internal_full_day": "D8",
+        "internal_half_day": "E8",
+        "seats": "F8",
+        "equipment": "G8"
+      }
+    }
+  ]
+}
+
+EXTRA data/curated/user_service_facts_20261008.json {
+  "schema_version": 1,
+  "source_id": "user_service_answers_20261008",
+  "source_url": "local://service_policy/user_answers_20261008",
+  "received_date": "2026-10-08",
+  "effective_date": null,
+  "basis": "user_provided_in_this_chat",
+  "raw_sha256": "fa4b56c4f87474e79b6a5fc9eb8aa76531a39554ac7e175f96ce4d0ba75d4d89",
+  "english_status": "agent_translation_from_user_confirmed_thai",
+  "claims": {
+    "university": {
+      "source_items": [
+        1
+      ],
+      "status": "user_confirmed",
+      "category": "overview",
+      "answers": {
+        "th": "PSU Esports Studio - Phuket เป็นศูนย์ของมหาวิทยาลัยสงขลานครินทร์ครับ",
+        "en": "PSU Esports Studio - Phuket is a university facility of Prince of Songkla University."
+      }
+    },
+    "membership": {
+      "source_items": [
+        2
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "ไม่ต้องเป็นสมาชิกก็สามารถใช้บริการได้ครับ",
+        "en": "Membership is not required to use the studio."
+      }
+    },
+    "spectators": {
+      "source_items": [
+        3
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "สามารถมานั่งดูเพื่อนเล่นได้ครับ",
+        "en": "You may sit and watch your friends play."
+      }
+    },
+    "walk_in": {
+      "source_items": [
+        4
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "Walk-in ได้ แต่ยังต้องจองผ่านระบบก่อนใช้บริการครับ",
+        "en": "Walk-in visitors must still book through the reservation system before using the service."
+      }
+    },
+    "location": {
+      "source_items": [
+        5,
+        6
+      ],
+      "status": "user_confirmed",
+      "category": "contact",
+      "answers": {
+        "th": "ศูนย์อยู่ที่อาคาร 5 ชั้น 1 มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต 80 หมู่ 1 ถ.วิชิตสงคราม อ.กะทู้ จ.ภูเก็ต 83120ครับ",
+        "en": "The studio is in Building 5, Floor 1, Prince of Songkla University, Phuket Campus, 80 Moo 1 Vichitsongkram Road, Kathu, Phuket 83120."
+      }
+    },
+    "map": {
+      "source_items": [
+        7
+      ],
+      "status": "user_confirmed",
+      "category": "contact",
+      "answers": {
+        "th": "ลิงก์แผนที่ศูนย์: https://maps.app.goo.gl/Ahst2vyFM4GDmC5s5",
+        "en": "Studio map: https://maps.app.goo.gl/Ahst2vyFM4GDmC5s5"
+      }
+    },
+    "parking": {
+      "source_items": [
+        9
+      ],
+      "status": "user_confirmed",
+      "category": "contact",
+      "answers": {
+        "th": "มีที่จอดรถหน้าตึก 5 สำหรับรถยนต์และมอเตอร์ไซค์ครับ",
+        "en": "Parking for cars and motorcycles is available in front of Building 5."
+      }
+    },
+    "contact": {
+      "source_items": [
+        10
+      ],
+      "status": "user_confirmed",
+      "category": "contact",
+      "answers": {
+        "th": "ติดต่อผ่านเพจศูนย์อีสปอร์ตได้ครับ: https://www.facebook.com/psuesportsphuket",
+        "en": "Contact the studio Facebook page: https://www.facebook.com/psuesportsphuket"
+      }
+    },
+    "four_people": {
+      "source_items": [
+        13
+      ],
+      "status": "user_confirmed",
+      "category": "equipment",
+      "answers": {
+        "th": "มากัน 4 คน แนะนำ Nintendo Switch ครับ",
+        "en": "For a group of four, the recommended service is Nintendo Switch."
+      }
+    },
+    "player_identity": {
+      "source_items": [
+        16
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "คนเล่นต้องเป็นคนที่จองหรือมีรายชื่ออยู่ในรายการจอง ไม่สามารถให้ผู้ที่ไม่มีรายชื่อมาใช้แทนได้ครับ",
+        "en": "The player must be the person who booked or be named in the booking. Someone not listed cannot use the booking instead."
+      }
+    },
+    "checkin_documents": {
+      "source_items": [
+        17
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "เมื่อมาถึงให้แสดงบัตรประชาชน บัตรนักศึกษา บัตรนักเรียน หรือ Passport อย่างใดอย่างหนึ่งครับ",
+        "en": "At arrival, present a national ID card, university student card, school student card, or passport."
+      }
+    },
+    "change_machine": {
+      "source_items": [
+        18
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "กรณีจองผิดเครื่อง ให้กดยกเลิกผ่านอีเมล แล้วจองเข้ามาใหม่ครับ",
+        "en": "If you booked the wrong machine, cancel through the email and make a new booking."
+      }
+    },
+    "change_time": {
+      "source_items": [
+        19
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "หากต้องการเปลี่ยนเวลาจอง ให้กดยกเลิกผ่านอีเมล แล้วจองเข้ามาใหม่ครับ",
+        "en": "To change the booking time, cancel through the email and make a new booking."
+      }
+    },
+    "personal_keyboard_mouse": {
+      "source_items": [
+        27
+      ],
+      "status": "user_confirmed",
+      "category": "rules",
+      "answers": {
+        "th": "ไม่อนุญาตให้นำคีย์บอร์ดหรือเมาส์ส่วนตัวมาใช้ครับ",
+        "en": "Personal keyboards and mice are not allowed for general studio use."
+      }
+    },
+    "wrong_slip": {
+      "source_items": [
+        43
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "กรณีแนบสลิปผิดรูป ให้ส่งสลิปมาทางเพจศูนย์อีสปอร์ตครับ: https://www.facebook.com/psuesportsphuket",
+        "en": "If you uploaded the wrong payment slip image, send the slip to the studio Facebook page: https://www.facebook.com/psuesportsphuket"
+      }
+    },
+    "combined_transfer": {
+      "source_items": [
+        44
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "จองหลายเครื่องสามารถโอนเงินครั้งเดียวได้ แต่ต้องเขียน Note ตอนจอง เพื่อให้ศูนย์ตรวจสอบครับ",
+        "en": "You may make one bank transfer for multiple machines, but you must add a note when booking so the studio can verify it."
+      }
+    },
+    "group_checkin": {
+      "source_items": [
+        49
+      ],
+      "status": "user_confirmed",
+      "category": "reservation",
+      "answers": {
+        "th": "เช็กอินแทนทั้งกลุ่มไม่ได้ ศูนย์ตรวจเป็นรายคน แต่คนที่มาก่อนสามารถเล่นได้ครับ",
+        "en": "You cannot check in for the whole group. Each person is checked individually, but those who arrive first may play."
+      }
+    },
+    "rest_seating": {
+      "source_items": [
+        50
+      ],
+      "status": "user_confirmed",
+      "category": "equipment",
+      "answers": {
+        "th": "มีที่นั่งพักตรงโซนกลางห้องครับ",
+        "en": "Rest seating is available in the central area of the room."
+      }
+    }
+  },
+  "pending_boundary": {
+    "items": [
+      45,
+      46
+    ],
+    "answers_th": {
+      "45": "ในกรณีที่มีการจ่ายเงินเรียบร้อย สามารถเปลี่ยนวันได้",
+      "46": "ไม่ได้"
+    },
+    "question": "Scope/exception and processing channel for paid-date change versus rescheduling instead of refund"
+  }
+}
+EXTRA data/sources/user_service_answers_20261008.json {
+  "schema_version": 1,
+  "source_id": "user_service_answers_20261008",
+  "received_date": "2026-10-08",
+  "effective_date": null,
+  "basis": "user_provided_in_this_chat",
+  "items": [
+    {
+      "number": 1,
+      "question": "เป็นร้านเกมทั่วไปหรือเป็นของมหาวิทยาลัย?",
+      "answer": "เป็นของมหาวิทยาลัย",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 2,
+      "question": "ต้องเป็นสมาชิกก่อนไหม?",
+      "answer": "ไม่ต้องเป็นสมาชิกก็สามารถใช้บริการได้",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 3,
+      "question": "ไปนั่งดูเพื่อนเล่นเฉย ๆ ได้ไหม?",
+      "answer": "ดูได้",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 4,
+      "question": "เดินเข้าไปใช้บริการเลยได้ไหม หรือต้องจอง?",
+      "answer": "ในกรณี walk in ก็ต้องจองผ่านระบบ",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 5,
+      "question": "ศูนย์อยู่ตรงไหน?",
+      "answer": "อาคาร 5 ชั้น 1 มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต 80 หมู่ 1 ถ.วิชิตสงคราม อ.กะทู้ จ.ภูเก็ต 83120",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 6,
+      "question": "อยู่ตึกอะไร ชั้นไหน?",
+      "answer": "อาคาร 5 ชั้น 1 มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต 80 หมู่ 1 ถ.วิชิตสงคราม อ.กะทู้ จ.ภูเก็ต 83120",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 7,
+      "question": "มีลิงก์แผนที่ไหม?",
+      "answer": "https://maps.app.goo.gl/Ahst2vyFM4GDmC5s5",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 8,
+      "question": "ไปถึงก่อนเวลาจองต้องรอตรงไหน?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 9,
+      "question": "มีที่จอดรถไหม?",
+      "answer": "มีที่ตอดรถหน้าตึก 5 สำหรับรถยนต์และมอเตอร์ไซค์",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 10,
+      "question": "ถ้าหาศูนย์ไม่เจอ ติดต่อใครได้?",
+      "answer": "ติดต่อผ่านเพจศูนย์อีสปอร์ต https://www.facebook.com/psuesportsphuket",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 11,
+      "question": "มีเกมไหนเล่นกับเพื่อนได้บ้าง?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 12,
+      "question": "มากันสองคน มีอะไรเล่นด้วยกันได้?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 13,
+      "question": "มากันสี่คน ควรเลือกเครื่องไหน?",
+      "answer": "Nintendo Swich",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 14,
+      "question": "มา4คนสามารถเล่นเครื่อง2คนได้ไหมแล้วสลับกัน",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 15,
+      "question": "ถ้าอยากเล่นเกมที่ไม่มีในรายการ ขอให้ลงเพิ่มได้ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 16,
+      "question": "คนจองเป็นคนนึงแต่คนเล่นเป็นอีกคนสามารถทำได้ไหม",
+      "answer": "ไม่ได้ คนเล่นต้องเป็นคนที่จองมาหรือมีรายชื่ออยู่ในรายการจอง",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 17,
+      "question": "ตอนมาถึงต้องแสดงหลักฐานอะไร?",
+      "answer": "บัตรประชาชน หรือบัตรนักศึกษา หรือบัตรนักเรียน หรือ passport",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 18,
+      "question": "จองผิดเครื่อง เปลี่ยนได้ไหม?",
+      "answer": "ให้กดยกเลิกผ่านอีเมล และจองเข้ามาใหม่",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 19,
+      "question": "เปลี่ยนเวลาจองได้ไหม?",
+      "answer": "ให้กดยกเลิกผ่านอีเมล และจองเข้ามาใหม่",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 20,
+      "question": "ไปสายสิบห้านาทียังเล่นได้หรือเปล่า?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 21,
+      "question": "ถ้าไปไม่ทัน ต้องแจ้งใคร?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 22,
+      "question": "เล่นอยู่แล้วอยากต่อเวลา ทำยังไง?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 23,
+      "question": "อยากเปลี่ยนจาก PC ไปเล่น PS5 ต้องจองใหม่ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 24,
+      "question": "ต้องใช้บัญชี Steam ของตัวเองไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 25,
+      "question": "เครื่องค้างหรือดับระหว่างเล่น เวลาที่เสียไปคิดยังไง?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 26,
+      "question": "ลืมออกจากบัญชีหลังเล่น ต้องติดต่อใคร?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 27,
+      "question": "เอาคีย์บอร์ดหรือเมาส์ตัวเองมาใช้ได้ไหม?",
+      "answer": "อันนี้ไม่ได้",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 28,
+      "question": "ถ่ายรูปหรืออัดวิดีโอได้ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 29,
+      "question": "สตรีมเกมจากเครื่องของศูนย์ได้ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 30,
+      "question": "ติดตั้งเกม โปรแกรม หรือ mod เองได้ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 31,
+      "question": "เด็กเข้าใช้บริการได้ไหม ต้องมีผู้ปกครองหรือเปล่า?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 32,
+      "question": "ที่นั่งที่ระบุคือจำนวนคนเล่นพร้อมกันหรือจำนวนที่นั่งในห้อง?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 33,
+      "question": "ขอใบเสนอราคาหรือใบเสร็จได้ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 34,
+      "question": "ศูนย์มีบัญชีเกมให้ยืมหรือเปล่า?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 35,
+      "question": "เกมอัปเดตเวอร์ชันล่าสุดแล้วหรือยัง?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 36,
+      "question": "ถ้าไปถึงแล้วเกมต้องอัปเดต เวลาจะเริ่มนับเลยไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 37,
+      "question": "เกมกำลังอัปเดต เปลี่ยนไปใช้เครื่องอื่นได้ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 38,
+      "question": "ต้องใช้ชื่อจริงตรงกับบัตรไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 39,
+      "question": "กรอกเบอร์โทรผิด ต้องจองใหม่ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 40,
+      "question": "จ่ายจากบัญชีของเพื่อนได้หรือเปล่า?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 41,
+      "question": "โอนเกินจำนวนที่ต้องจ่าย ทำยังไง?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 42,
+      "question": "โอนขาดไปนิดหนึ่ง ต้องโอนเพิ่มหรือจองใหม่?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 43,
+      "question": "แนบสลิปผิดรูป เปลี่ยนได้ไหม?",
+      "answer": "ให้ส่งสลิปมาทางเพจศูนย์อีสปอร์ต",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 44,
+      "question": "จองหลายเครื่อง โอนครั้งเดียวได้ไหม?",
+      "answer": "ได้ แต่ต้องเขียน note ตอนจองเข้ามา เพื่อให้ทางศูนย์ตรวจสอบ",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 45,
+      "question": "จองผิดวัน แต่จ่ายแล้ว แก้ได้ไหม?",
+      "answer": "ในกรณีที่มีการจ่ายเงินเรียบร้อย สามารถเปลี่ยนวันได้",
+      "status": "scope_confirmation_pending"
+    },
+    {
+      "number": 46,
+      "question": "ขอเลื่อนเป็นวันอื่นแทนคืนเงินได้ไหม?",
+      "answer": "ไม่ได้",
+      "status": "scope_confirmation_pending"
+    },
+    {
+      "number": 47,
+      "question": "ถ้าศูนย์ปิดพิเศษหลังจองแล้ว จะจัดการรายการยังไง?",
+      "answer": "ไม่เข้าใจคำถาม4",
+      "status": "needs_question_clarification"
+    },
+    {
+      "number": 48,
+      "question": "ฝนตกหนักเดินทางไม่ได้ ขอเปลี่ยนรอบได้ไหม?",
+      "answer": null,
+      "status": "unanswered"
+    },
+    {
+      "number": 49,
+      "question": "มาก่อนหนึ่งคน เช็กอินแทนทั้งกลุ่มได้ไหม?",
+      "answer": "ไม่ได้ จะเช็คเป็นรายคน แต่คนที่มาก่อนสามารถเล่นได้",
+      "status": "user_confirmed"
+    },
+    {
+      "number": 50,
+      "question": "มีที่นั่งพักไหม",
+      "answer": "มี ตรงโซนกลางห้อง",
+      "status": "user_confirmed"
+    }
+  ]
+}
+EXTRA data/curated/service_policy_answers.json {
+  "schema_version": 1,
+  "source_url": "https://esports.computing.psu.ac.th/",
+  "claims": {
+    "public_access": {
+      "source_id": "reservation_public_access_reviewed_20260924",
+      "basis": "reviewer_interpretation_with_site_context",
+      "source_section": "Booking of Services; Check-in and Use of Services; How to Use the Reservation System; Service Fee",
+      "evidence": "The booking form accepts Student ID/Staff ID/National ID, and a national ID card is accepted at check-in. The user's review confirms access for non-PSU visitors; exact rates still depend on service and user group.",
+      "answers": {
+        "general": {
+          "th": "ได้ครับ บุคคลทั่วไปสามารถจองใช้{service}ได้ ค่าบริการขึ้นกับประเภทบริการและกลุ่มผู้ใช้ ต้องจองผ่านระบบและแสดงบัตรประชาชนเมื่อเช็กอิน",
+          "en": "Yes. Public visitors can book and use {service}. Fees depend on the service and user group. Book through the reservation system and present a national ID card at check-in."
+        },
+        "booking": {
+          "th": "จองได้ครับ บุคคลทั่วไปสามารถจอง{service}ผ่านระบบออนไลน์ล่วงหน้าอย่างน้อย 1 ชั่วโมง ชำระค่าบริการตามที่ระบบแจ้งภายใน 10 นาที และแสดงบัตรประชาชนเมื่อเช็กอิน",
+          "en": "Yes. Public visitors can book {service} online at least one hour ahead, pay the displayed fee within 10 minutes, and present a national ID card at check-in."
+        },
+        "booking_required": {
+          "th": "เข้าใช้โดยไม่จองล่วงหน้าไม่ได้ครับ กฎการใช้บริการกำหนดให้จองออนไลน์ก่อนเวลาใช้งานอย่างน้อย 1 ชั่วโมง บุคคลทั่วไปจองได้โดยใช้ช่อง National ID และแสดงบัตรประชาชนตอนเช็กอิน",
+          "en": "No, you cannot use the studio without booking first. The published rule requires an online reservation at least one hour before use. Public visitors can book using the National ID field and present the card at check-in."
+        },
+        "documents": {
+          "th": "ใช้บัตรประชาชนครับ คนภายนอกจองได้โดยกรอกเลขในช่อง National ID ตอนจอง และแสดงบัตรประชาชนเมื่อเช็กอิน ไม่ต้องใช้รหัสนักศึกษา PSU",
+          "en": "Use a national ID card. Visitors can enter the number in the National ID field when booking and present the card at check-in; a PSU student ID is not required."
+        },
+        "membership": {
+          "th": "ไม่ต้องเป็นนักศึกษา PSU ครับ ขั้นตอนจองที่เผยแพร่ไม่ได้ระบุว่าต้องสมัครสมาชิกแยกก่อนจอง คนภายนอกใช้ช่อง National ID และแสดงบัตรประชาชนตอนเช็กอิน ค่าบริการขึ้นกับกลุ่มผู้ใช้และบริการ",
+          "en": "You do not need to be a PSU student. The published booking steps do not specify a separate membership sign-up. Visitors use the National ID field and present a national ID card at check-in; fees depend on the user group and service."
+        }
+      }
+    },
+    "checkin_required": {
+      "source_id": "reservation_rule_2_1_checkin_required",
+      "basis": "site_explicit",
+      "source_section": "Check-in and Use of Services, items 2.1-2.2",
+      "evidence": "Users must check in before the reserved slot begins; they can check in up to 30 minutes early and present a student, staff, or national ID card.",
+      "answers": {
+        "general": {
+          "th": "ต้องเช็กอินครับ ให้เช็กอินก่อนเวลาเริ่มรอบที่จอง โดยเช็กอินล่วงหน้าได้สูงสุด 30 นาที และแสดงบัตรนักศึกษา บัตรบุคลากร หรือบัตรประชาชน",
+          "en": "Yes, you must check in before your reserved slot starts. You can check in up to 30 minutes early and must present a student, staff, or national ID card."
+        }
+      }
+    },
+    "personal_power": {
+      "source_id": "reservation_rule_4_8_personal_electronics",
+      "basis": "site_explicit",
+      "source_section": "Rules and Regulations for Service Use, item 4.8",
+      "evidence": "Personal electronic devices must not be plugged into studio power outlets without permission.",
+      "answers": {
+        "general": {
+          "th": "ต้องขออนุญาตเจ้าหน้าที่ก่อนครับ กฎข้อ 4.8 ห้ามนำอุปกรณ์อิเล็กทรอนิกส์ส่วนตัวมาใช้ปลั๊กไฟโดยไม่ได้รับอนุญาต",
+          "en": "Ask staff for permission first. Rule 4.8 prohibits plugging personal electronic devices into the studio's power outlets without authorization."
+        }
+      }
+    },
+    "food_bring": {
+      "source_id": "food_bring_reviewed_20260924",
+      "basis": "reviewer_interpretation_with_site_context",
+      "source_section": "Rules and Regulations for Service Use, item 4.2",
+      "evidence": "The Thai rule restricts consumption to designated areas; the English rule says food and drinks are allowed only in designated areas. The user's review says carrying food or drinks inside is allowed.",
+      "answers": {
+        "general": {
+          "th": "นำอาหารหรือเครื่องดื่มเข้ามาได้ครับ แต่รับประทานหรือดื่มได้เฉพาะพื้นที่ที่ศูนย์กำหนด ไม่ใช่ทุกจุดในห้องเล่นเกม",
+          "en": "Yes, you may bring food or drinks inside. Eating and drinking are allowed only in the studio's designated areas, not throughout the gaming room."
+        }
+      }
+    }
+  }
+}
+
+EXTRA booking_dashboard/center_schedule.json {
+  "mode": "weekly_auto",
+  "default_hours": {
+    "start": "09:00",
+    "end": "16:00"
+  },
+  "weekly": {
+    "0": {
+      "open": true,
+      "open_periods": [
+        [
+          "12:00",
+          "16:00"
+        ]
+      ],
+      "reason": "Maintenance ช่วงเช้า 09:00-12:00"
+    },
+    "1": {
+      "open": true,
+      "open_periods": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "reason": ""
+    },
+    "2": {
+      "open": true,
+      "open_periods": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "reason": ""
+    },
+    "3": {
+      "open": true,
+      "open_periods": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "reason": ""
+    },
+    "4": {
+      "open": true,
+      "open_periods": [
+        [
+          "09:00",
+          "13:00"
+        ]
+      ],
+      "reason": "Maintenance ช่วงบ่าย 13:00-16:00"
+    },
+    "5": {
+      "open": false,
+      "open_periods": [],
+      "reason": "ปิดให้บริการวันเสาร์"
+    },
+    "6": {
+      "open": false,
+      "open_periods": [],
+      "reason": "ปิดให้บริการวันอาทิตย์"
+    }
+  },
+  "dates": {}
+}
+COMPETITION CARDS {"id":"cs2_team_size_players","category":"competition_rule_fact","game":"Counter-Strike 2","tournament":"PSU Phuket CS2 2026 Tournament","intent":"team_size","answer_type":"explicit_fact","question_patterns":["CS2 แข่งทีมละกี่คน","Counter-Strike 2 ทีมละกี่คน","CS2 สมาชิกทีมกี่คน","CS2 ผู้เล่นกี่คน","CS2 แข่งแบบทีม 5 คนใช่ไหม","CS2 ถ้าถามเรื่องจำนวนคนในทีมตอบว่าอะไร","CS2 จำนวนคนในทีมเท่าไหร่"],"answer":"CS2 แต่ละทีมประกอบด้วยผู้เล่น 5 คน","evidence":"เอกสารระบุว่าองค์ประกอบทีมแต่ละทีมประกอบด้วยผู้เล่น 5 คน","source_url":"local://competition_rules/competition_rules_cs2_psu_phuket_2026","source_ids":["competition_rules_cs2_psu_phuket_2026"],"tags":["competition_rules","cs2","team_size","players","5 คน"],"priority":165}

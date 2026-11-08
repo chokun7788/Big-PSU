@@ -1,0 +1,128 @@
+{
+  "question_key": "18fc26487e8e9fdff0edc5d4f056244fe984e5e0e302b9b80621c7b51aeb2b3d",
+  "example_sha256": "dcb175125d1eb68faab6846ba5e5cc5200d2d6483882d8cdf81f42881d9f6526",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inverse personnel lookup asks who holds the specified role.",
+      "raw_quotes": [
+        "Who is the PSU student in the Web & AI Developer internship role"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Use members/role_lookup/display_name, not facet role, because the requested result is a person.",
+      "raw_quotes": [
+        "Who is the PSU student in the Web & AI Developer internship role"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Web & AI Developer is role target/scope; PSU student is an affiliation condition, not a named person.",
+      "raw_quotes": [
+        "Who is the PSU student in the Web & AI Developer internship role"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Both qualifiers are local to one directory lookup; no preceding person is inherited.",
+      "raw_quotes": [
+        "Who is the PSU student in the Web & AI Developer internship role"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Internship wording must not fabricate a current placement or collapse another developer role into this one.",
+      "raw_quotes": [
+        "Who is the PSU student in the Web & AI Developer internship role"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "member_b71d33c7b6468ebc records Cooperative education student: Web & AI Developer with PSU affiliation and a stated period; retain that source wording.",
+      "raw_quotes": [
+        "Who is the PSU student in the Web & AI Developer internship role"
+      ],
+      "source_record_ids": [
+        "member_b71d33c7b6468ebc"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No person name or placement dates are supplied as training targets.",
+      "raw_quotes": [
+        "Who is the PSU student in the Web & AI Developer internship role"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 25,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Who is the PSU student in the Web & AI Developer internship role",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "role",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Who is the PSU student in the Web & AI Developer internship role",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "display_name",
+        "target": "Web & AI Developer",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "Web & AI Developer",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "PSU student",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "member_b71d33c7b6468ebc": {
+      "revision": 5,
+      "record_sha256": "a53532869fe375a6f3567153f7ea0a034f89479e138136bb779e14f49126efac"
+    }
+  }
+}

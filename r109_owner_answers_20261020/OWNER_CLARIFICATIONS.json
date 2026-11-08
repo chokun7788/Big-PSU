@@ -1,0 +1,204 @@
+{
+  "statements": [
+    {
+      "id": "owner109:R108_OPEN_16_18",
+      "kind": "scoped_owner_statement",
+      "topic": "เวลาเปิดพื้นที่",
+      "value": {
+        "weekdays": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "closed_interval": {
+          "start": "16:00",
+          "end": "18:00"
+        },
+        "timezone": "Asia/Bangkok"
+      },
+      "answer_th": "วันจันทร์–ศุกร์ ช่วง 16:00–18:00 ศูนย์ปิดแล้ว",
+      "source_question_id": "R108_OPEN_16_18",
+      "source_question": "วันจันทร์–ศุกร์ ช่วง 16:00–18:00 ศูนย์ยังเปิดให้เข้าพื้นที่หรือปิดแล้ว?",
+      "source_text": "ปิดแล้ว",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_OPEN_16_18"
+      },
+      "limits": "ไม่สร้างช่วงเปิด 09:00–16:00 ทุกนาทีจากคำตอบนี้; ตารางพัก/บำรุงรักษา/วันหยุดเดิมยังต้องแยก",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_RENT_HALF_HOURS",
+      "kind": "scoped_owner_statement",
+      "topic": "ระยะเหมาแบบครึ่งวัน",
+      "value": {
+        "duration_minutes": 180,
+        "period_options": [
+          {
+            "start": "09:00",
+            "end": "12:00"
+          },
+          {
+            "start": "13:00",
+            "end": "16:00"
+          }
+        ]
+      },
+      "answer_th": "เหมาครึ่งวัน 3 ชั่วโมง เลือกช่วง 09:00–12:00 หรือ 13:00–16:00",
+      "source_question_id": "R108_RENT_HALF_HOURS",
+      "source_question": "ราคาเหมาครึ่งวันครอบคลุมกี่ชั่วโมง?",
+      "source_text": "ตั้งแต่ 09:00-12:00 ทั้งหมด3ชม และ ตั้งแต่ 13:00-16:00 ทั้งหมด3ชม",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_RENT_HALF_HOURS"
+      },
+      "limits": "เงื่อนไขเหมา ไม่ใช่การเปิดจองเครื่องทั่วไปในช่วง maintenance; การจัดเวลาอื่นที่เคยบอกว่าเลือกได้ให้ประสานเพจ ไม่ยืนยันว่าทุกเวลาใช้ราคาเดิมอัตโนมัติ",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_RENT_FULL_HOURS",
+      "kind": "scoped_owner_statement",
+      "topic": "ระยะเหมาแบบเต็มวัน",
+      "value": {
+        "duration_minutes": 420,
+        "period": {
+          "start": "09:00",
+          "end": "16:00"
+        },
+        "includes_noon_interval": true
+      },
+      "answer_th": "เหมาเต็มวัน 09:00–16:00 รวม 7 ชั่วโมง ครอบคลุมช่วงเที่ยง",
+      "source_question_id": "R108_RENT_FULL_HOURS",
+      "source_question": "ราคาเหมาเต็มวันครอบคลุมกี่ชั่วโมง?",
+      "source_text": "ตั้งแต่ 09:00-16:00 ทั้งหมด7ชม รวม 12:00",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_RENT_FULL_HOURS"
+      },
+      "limits": "ไม่เปลี่ยนกฎจองเล่นรายชั่วโมงที่ 12:00–13:00 ไม่มีรอบ; ห้ามคำนวณเหลือ 6 ชั่วโมงหรือเดาเป็น 8 ชั่วโมง",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_PS5_CONTROLLERS",
+      "kind": "scoped_owner_statement",
+      "topic": "จำนวนจอย PS5",
+      "value": {
+        "controllers_per_console": 2
+      },
+      "answer_th": "PS5 หนึ่งเครื่องมีจอยให้ 2 จอย",
+      "source_question_id": "R108_PS5_CONTROLLERS",
+      "source_question": "PS5 หนึ่งเครื่องมีจอยให้ผู้ใช้กี่จอย?",
+      "source_text": "มี2จอย",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_PS5_CONTROLLERS"
+      },
+      "limits": "ไม่ยืนยันรุ่นจอยหรือจำนวนผู้เล่นสูงสุดของทุกเกม",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_MIXED_RATE",
+      "kind": "scoped_owner_statement",
+      "topic": "ผู้เล่นต่างกลุ่มราคา",
+      "value": {
+        "individual_rate_by_own_audience": true
+      },
+      "answer_th": "นักศึกษา PSU กับบุคคลภายนอกที่มาเล่นด้วยกัน แต่ละคนจ่ายตามกลุ่มราคาของตัวเอง",
+      "source_question_id": "R108_MIXED_RATE",
+      "source_question": "ถ้านักศึกษา PSU กับบุคคลภายนอกมาเล่นด้วยกัน แต่ละคนจ่ายตามกลุ่มราคาของตัวเองใช่ไหม?",
+      "source_text": "ใช่",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_MIXED_RATE"
+      },
+      "limits": "ขอบเขตราคาบริการรายคน ไม่ใช่ราคาเหมาโซน",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_PAYER",
+      "kind": "scoped_owner_statement",
+      "topic": "ผู้โอนเงิน",
+      "value": {
+        "payer_must_be_named_in_booking": true
+      },
+      "answer_th": "ผู้โอนเงินต้องเป็นผู้ที่มีชื่อลงไว้ในรายการจอง",
+      "source_question_id": "R108_PAYER",
+      "source_question": "ผู้เล่นร่วมที่มีชื่อในรายการจอง โอนเงินแทนผู้จองหลักได้หรือไม่?",
+      "source_text": "คนที่โอนต้องเป็นคนที่ลงชื่อเท่านั้น",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_PAYER"
+      },
+      "limits": "ใช้เงื่อนไขผู้มีชื่อ ไม่แต่งเพิ่มว่าต้องเป็นผู้จองหลักเท่านั้น; ไม่อนุญาตบุคคลนอกชื่อรายการ",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_TEKKEN_PAUSE",
+      "kind": "scoped_owner_statement",
+      "topic": "Tekken — อนุญาต Pause",
+      "value": {
+        "allowed_if_all_agree": true,
+        "appropriate_reason_required": true,
+        "event": "PSU Esports ปะทะมันส์ สนั่นจอ"
+      },
+      "answer_th": "Pause ได้เมื่อผู้เล่นทุกคนยินยอมและมีเหตุผลเหมาะสม",
+      "source_question_id": "R108_TEKKEN_PAUSE",
+      "source_question": "Tekken รายการ PSU Esports ปะทะมันส์ สนั่นจอ ให้ใช้กฎใด: ห้าม Pause ทุกกรณี หรือ Pause ได้เมื่อทุกคนยินยอมและมีเหตุเหมาะสม?",
+      "source_text": "Pause ได้เมื่อทุกคนยินยอมและมีเหตุเหมาะสม",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_TEKKEN_PAUSE"
+      },
+      "limits": "คำยืนยันเจ้าของเลือกกฎอนุญาตแบบมีเงื่อนไขเหนือข้อความห้ามทุกกรณี; ไม่ได้ยืนยันหน่วยบทลงโทษ",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_ROV_615",
+      "kind": "scoped_owner_statement",
+      "topic": "RoV — ข้อ 6.1.5",
+      "value": {
+        "owner_reaffirmed_original_wording": true
+      },
+      "answer_th": "6.1.5.ห้ามมิให้ผู้เข้าแข่งขันเสพ ค้า หรือดำเนินการใด ๆ อันเกี่ยวกับยาเสพติด บุหรี่ และอาวุธ และอื่น ๆ ที่ต้องห้ามตามกฎหมายการแข่งขันทันที",
+      "source_question_id": "R108_ROV_615",
+      "source_question": "RoV Blueket Games 2025 ข้อ 6.1.5 ลงท้ายว่า “และอื่น ๆ ที่ต้องห้ามตามกฎหมายการแข่งขันทันที” ต้องการให้แก้ประโยคนี้เป็นข้อความใด?",
+      "source_text": "6.1.5.ห้ามมิให้ผู้เข้าแข่งขันเสพ ค้า หรือดำเนินการใด ๆ อันเกี่ยวกับยาเสพติด บุหรี่ และอาวุธ และอื่น ๆ ที่ต้องห้ามตามกฎหมายการแข่งขันทันที\n",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_ROV_615"
+      },
+      "limits": "เจ้าของส่งถ้อยคำเดิมมาอีกครั้ง จึงคงข้อความตามต้นทาง ไม่อ้างว่าแก้ไวยากรณ์ที่กำกวมแล้ว และไม่สร้างบทลงโทษใหม่จากประโยคนี้",
+      "production_applied": false
+    },
+    {
+      "id": "owner109:R108_ROV_6151",
+      "kind": "scoped_owner_statement",
+      "topic": "RoV — ข้อ 6.1.5.1",
+      "value": {
+        "completion": "ออกจากการแข่งขันทันที"
+      },
+      "answer_th": "บทลงโทษ: ปรับแพ้ในเกมที่พบการกระทำผิดในทันทีและตัดสิทธิ์ทีมผู้เข้าแข่งขันดังกล่าวออกจากการแข่งขันทันที",
+      "source_question_id": "R108_ROV_6151",
+      "source_question": "RoV Blueket Games 2025 ข้อ 6.1.5.1 จบค้างที่ “ตัดสิทธิ์ทีมผู้เข้าแข่งขันดังกล่าวออกจาก” ข้อความต่อจากนี้คืออะไร?",
+      "source_text": "ออกจากการแข่งขันทันที",
+      "submitted_at": "2026-10-20T23:36:34.588621+07:00",
+      "source_ref": {
+        "path": "SOURCE_SUBMISSION.json",
+        "answer_id": "R108_ROV_6151"
+      },
+      "limits": "คำตอบเป็นข้อความท้ายที่มีคำว่าออกจากซ้ำ ต้องแทน suffix ไม่ต่อออกจากออกจาก",
+      "production_applied": false
+    }
+  ],
+  "production_applied": false
+}

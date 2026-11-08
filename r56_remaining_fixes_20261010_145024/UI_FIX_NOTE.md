@@ -1,0 +1,1 @@
+Node protocol test found elapsed timer was appended only to queued text due to conditional precedence. Fixed parentheses for running and queued messages. Failed assertion output preserved in tool history; protocol result is written only after passing.

@@ -1,0 +1,146 @@
+{
+  "question_key": "a5cb9450a1fe2c15e2ce0815499137d929bc7867aaeeb5370590496a3a1d3d60",
+  "example_sha256": "7a026335b9013ff95f655ba24994087953cdd1bf5f41e0b545266d62005a1f2c",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One document-availability question coordinates receipt, quotation and tax invoice alternatives.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy remains a single permission predicate with all three requested document types.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add ขอ as action and exact ใบเสร็จ/ใบเสนอราคา/ใบกำกับภาษี requested scopes.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No payment amount, completed purchase, tax exemption or outside invoice issuer is inherited.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Or does not make the three document types interchangeable or assert that any can be issued.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_q018 explicitly distinguishes tax invoice and historical quotation/receipt wording; answer version and completeness remain source obligations.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม"
+      ],
+      "source_record_ids": [
+        "r114_q018_owner_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No issuing/refusal verdict, tax advice or document content enters labels.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Document types and historical answer versions are not interchangeable.",
+      "handling": "Keep source/version scope for receipt, quotation and tax invoice; do not infer tax-document availability from another document."
+    }
+  ],
+  "historical_review_row": 220,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "ขอ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบเสร็จ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบเสนอราคา",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบกำกับภาษี",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q018_owner_policy": {
+      "revision": 1,
+      "record_sha256": "54da266ac52770fbdfcb3d7bdbe4d8093a30aa7ae6a0d39497e5d04ba810ade0"
+    }
+  }
+}

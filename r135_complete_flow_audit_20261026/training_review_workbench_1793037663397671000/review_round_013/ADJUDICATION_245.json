@@ -1,0 +1,121 @@
+{
+  "question_key": "f9602568c56d08ef45e32855fd2184c6fb12838670e53452aea8a151bb8aabdb",
+  "example_sha256": "6881866dc81c7408b7671f6d42cd9e13603a9467501ac897e10890c6d83b84de",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One English question requests the genre of the literal game alias Uncharted.",
+      "raw_quotes": [
+        "What genre is Uncharted?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/detail/genre with target Uncharted expresses exactly that single need.",
+      "raw_quotes": [
+        "What genre is Uncharted?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "There is no supplied platform, edition, player count, price or service-time constraint.",
+      "raw_quotes": [
+        "What genre is Uncharted?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No dialogue history is supplied and none is synthesized from the source title.",
+      "raw_quotes": [
+        "What genre is Uncharted?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The short alias is not a request for every franchise edition or permission to play.",
+      "raw_quotes": [
+        "What genre is Uncharted?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned game_detail_uncharted revision8 contains a genre field with mapped-source provenance, while edition remains unknown. Its collection title does not establish every Uncharted edition.",
+      "raw_quotes": [
+        "What genre is Uncharted?"
+      ],
+      "source_record_ids": [
+        "game_detail_uncharted"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Keep the existing language label; do not insert the genre answer, collection title, platform or claim of current factual verification.",
+      "raw_quotes": [
+        "What genre is Uncharted?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Genre field is mapped source with an explicit factual-review caveat; edition is unknown.",
+      "handling": "Do not extend collection evidence to the entire franchise."
+    }
+  ],
+  "historical_review_row": 245,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_description",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What genre is Uncharted?",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "genre",
+        "target": "Uncharted",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_description",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What genre is Uncharted?",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "genre",
+        "target": "Uncharted",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_uncharted": {
+      "revision": 8,
+      "record_sha256": "2d21004b74ee3311630ba6aac430204bde2e4eb2002ca7d2c64fc4ab21810932"
+    }
+  }
+}

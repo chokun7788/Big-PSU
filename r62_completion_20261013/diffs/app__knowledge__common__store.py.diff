@@ -1,0 +1,61 @@
+--- before/app/knowledge/common/store.py
++++ r62/app/knowledge/common/store.py
+@@ -4,7 +4,7 @@
+ from pathlib import Path
+ from app.knowledge.store import KnowledgeStore, Conflict
+ from app.knowledge.records import canonical_json,digest
+-from .registry import VERSION,now,validate,source_errors,release_errors,content_hash,CATALOG,aware
++from .registry import VERSION,now,validate,source_errors,release_errors,content_hash,CATALOG,aware,value
+ 
+ class CommonStore(KnowledgeStore):
+     def initialize(self,*,allow_demo=False):
+@@ -74,11 +74,23 @@
+     def list_heads(self):
+         with self.connect() as c:
+             rows=[]
++            heads=self.heads(c)
++            def linked_label(rid):
++                target=heads.get(rid,{})
++                for key in ('title','name','display_name','event_name','subject','question','heading'):
++                    field=target.get('fields',{}).get(key,{})
++                    if field.get('status')=='known' and isinstance(field.get('value'),dict):
++                        return field['value'].get('th') or field['value'].get('en') or rid
++                return rid or 'ยังไม่ระบุรายการ'
+             for row in c.execute('SELECT h.*,r.hash,r.payload,a.hash AS approved_hash FROM cc_heads h JOIN cc_revisions r ON h.record_id=r.record_id AND h.head=r.version LEFT JOIN cc_approvals a ON a.record_id=r.record_id AND a.version=r.version ORDER BY h.kind,h.record_id'):
+                 item=dict(row);record=json.loads(item.pop('payload'));item['label']=item['record_id']
+                 for key in ('title','name','display_name','event_name','subject','question','heading'):
+                     v=record['fields'].get(key,{})
+                     if v.get('status')=='known' and isinstance(v.get('value'),dict):item['label']=v['value'].get('th') or v['value'].get('en') or item['label'];break
++                if record['kind']=='rate':
++                    item['label']='ราคา: '+linked_label(value(record,'service_id'))+' — '+linked_label(value(record,'audience_id'))
++                elif record['kind'] in {'game_service','control_set'}:
++                    item['label']=('เกมกับบริการ: ' if record['kind']=='game_service' else 'ปุ่มควบคุม: ')+linked_label(value(record,'game_id'))
+                 rows.append(item)
+             return rows
+     def get(self,rid):
+@@ -135,10 +147,23 @@
+             if row and (digest(release)!=row['hash'] or release['schema_version']!=VERSION):raise ValueError('Release integrity/version mismatch')
+             withdrawn=[r[0] for r in c.execute('SELECT record_id FROM cc_heads WHERE withdrawn=1')]
+             retired_names={}
+-            if withdrawn and row:
++            historical_names={}
++            has_names=bool(c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='cc_names'").fetchone())
++            if has_names:
++                for name_row in c.execute('SELECT record_id,name FROM cc_names'):
++                    historical_names.setdefault(name_row['record_id'],[]).append(name_row['name'])
++            else:
++                # Older delivered databases acquire cc_names when the owner
++                # initializes the editor. Read-only chat must also work before that.
++                for historical in c.execute('SELECT payload FROM cc_releases'):
++                    for rid,aliases in json.loads(historical['payload']).get('names',{}).items():
++                        historical_names.setdefault(rid,[]).extend(aliases)
++                retired_names={rid:aliases for rid,aliases in historical_names.items() if rid in withdrawn}
++            if withdrawn and row and has_names:
+                 for name_row in c.execute('SELECT n.* FROM cc_names n JOIN cc_heads h USING(record_id) WHERE h.withdrawn=1'):
+                     retired_names.setdefault(name_row['record_id'],[]).append(name_row['name'])
+-            return {'active':meta['active'],'epoch':int(meta['epoch']),'release':release,'withdrawn':withdrawn,'retired_names':retired_names,'allow_demo':meta['demo']=='1'}
++            historical_kinds=dict(c.execute('SELECT record_id,kind FROM cc_heads'))
++            return {'active':meta['active'],'epoch':int(meta['epoch']),'release':release,'withdrawn':withdrawn,'retired_names':retired_names,'historical_names':historical_names,'historical_kinds':historical_kinds,'allow_demo':meta['demo']=='1'}
+     def publish(self,record_ids,*,actor,expected_active,request_key):
+         if not isinstance(record_ids,list) or not record_ids or len(record_ids)>500 or len(set(record_ids))!=len(record_ids):raise ValueError('Select unique records for publication')
+         if not isinstance(request_key,str) or not 1<=len(request_key)<=100:raise ValueError('Request key required')

@@ -1,0 +1,180 @@
+--- r77_qualified_confirmation_20261016/system/app/knowledge/common/answer.py
++++ r78_web_session_check_20261016/system/app/knowledge/common/answer.py
+@@ -206,6 +206,9 @@
+         from .profile_confirmation import resolve as resolve_confirmation,prompt as confirmation_prompt
+         current={rid:r for rid,r in records.items() if effective(r,at,records)}
+         confirmation=resolve_confirmation(question,history,current);confirmed_id=None;qualified_selected=False
++        if not confirmation:
++            from .followup_scope import profile_followup
++            confirmation=profile_followup(question,history,current)
+         if confirmation:
+             action=confirmation['action']
+             if action in {'selected','qualified_selected'}:
+@@ -230,6 +233,10 @@
+                     response='unconfirmed'
+                 plan={'record_ids':[],'requested_fields':[],'method':'qualified_profile_scope_unconfirmed','qualified_reply':confirmation,
+                     'profile_confirmation_closed':True,'source_answer_confirmed':False,'declined_profile_ids':sorted(self.declined_profile_ids)}
++                if audit.get('qualified_scope',{}).get('context')=='competition' and len(confirmation.get('blocked_unqualified_ids',[]))==1:
++                    origin=confirmation['blocked_unqualified_ids'][0]
++                    from .profile_confirmation import fingerprint
++                    plan['pending_competition_scope']={'version':1,'record_id':origin,'routing_sha256':fingerprint(current[origin]),'scope':audit['qualified_scope']}
+                 return self.finish(snap,started,msg,[],plan,[],response=response)
+             elif action=='prompt':
+                 plan={'record_ids':[],'requested_fields':[],'method':'profile_topic_clarification','profile_confirmation':confirmation['pending']}
+@@ -246,7 +253,10 @@
+         need_groups=role_groups(request_needs,records)
+         self.diagnostics.append({'stage':'request_needs','needs':request_needs})
+         names=derived_names(scoped_names(snap),records)
+-        q,ids,method=context_query(question,history,names,records)
++        from .followup_scope import price_selection
++        price_resume=price_selection(question,history,records,names)
++        if price_resume:q,ids,method=price_resume['query'],price_resume['record_ids'],price_resume['method']
++        else:q,ids,method=context_query(question,history,names,records)
+         self.diagnostics.append({'stage':'named_scope','record_ids':list(ids),'method':method})
+         from .identity_links import resolve as resolve_identity
+         ids,names,identity_audit=resolve_identity(question,ids,records,names)
+@@ -283,6 +293,9 @@
+             profile_id=confirmed_id;profile_audit={'method':'qualified_declared_profile' if qualified_selected else 'user_confirmed_question_profile','candidate_ids':[confirmed_id],
+                 'reason':confirmation.get('basis','explicit_user_topic_selection'),'routing_sha256':confirmation['routing_sha256'],'topic_selected_by_user':True,'owner_fact_approval_created':False}
+             if qualified_selected:profile_audit['qualification']=confirmation
++        if profile_id:
++            from .profile_confirmation import fingerprint
++            profile_audit['routing_sha256']=fingerprint(records[profile_id])
+         self.diagnostics.append({'stage':'question_profile','selection':profile_audit})
+         if profile_audit.get('reason')=='ambiguous_profiles':
+             msg='พบข้อมูลที่ตรงหัวข้อหลายรายการ กรุณาระบุขอบเขตเพิ่มเติมก่อนยืนยันคำตอบ' if lang=='th' else 'Several records match this topic. Please clarify the applicable scope before I confirm an answer.'
+@@ -292,6 +305,7 @@
+             return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'question_profile':profile_audit},[],response='clarification')
+         ids,query_operation=primary_ids(question,ids,records)
+         if method=='state_comparison_selection':query_operation='price'
++        if method=='price_scope_selection':query_operation='price'
+         roles={'price':{'service','resource','zone','game','audience','rate'},'rental':{'rental_package','zone','service','resource','audience'},'controls':{'game','control_set'},'games':{'game','service','resource','zone'},'equipment':{'equipment_model','resource','service','zone'},'booking':{'service','resource','zone','game'},'people':{'person'}}
+         if query_operation in roles and method!='state_comparison_selection':
+             role_ids,_=named(question,{rid:aliases for rid,aliases in names.items() if rid in records and records[rid]['kind'] in roles[query_operation]},allow_fuzzy=False)
+@@ -327,6 +341,14 @@
+                 if not audiences and audience_audit['concepts']:
+                     msg='ยังไม่พบกลุ่มผู้ใช้ที่ตรงคำถามในข้อมูลราคา กรุณาระบุกลุ่มที่ใช้บริการ' if lang=='th' else 'No matching audience group is recorded for this price question. Please specify the applicable group.'
+                     return self.finish(snap,started,msg,[],{'record_ids':ids,'audience_selection':audience_audit,'method':'unresolved_audience_scope'},[],response='clarification')
++        if query_operation=='price' and comparison_audit is None and not any(records[rid]['kind'] in {'service','resource','zone','game','rate'} for rid in ids):
++            from .followup_scope import priced_services
++            services=priced_services(records)
++            if services:
++                labels=list(dict.fromkeys(title(records[rid],lang) for rid in services))
++                msg=(('ต้องการทราบราคาบริการใดครับ: ' if lang=='th' else 'Which service price would you like: ')+', '.join(labels)+(' หรือพิมพ์ “ทั้งหมด” เพื่อดูราคาแยกทุกบริการและกลุ่มผู้ใช้ครับ' if lang=='th' else '? Reply “all” to see rates separated by service and audience group.'))
++                plan={'record_ids':[rid for rid in ids if records[rid]['kind']=='audience'],'requested_fields':['amount_minor'],'method':'price_missing_service_scope','price_scope_request':{'version':1,'audience_ids':[rid for rid in ids if records[rid]['kind']=='audience']},'source_answer_confirmed':False}
++                return self.finish(snap,started,msg,[],plan,[],response='clarification')
+         if live_query(question):return None
+         if query_operation=='game_presence':
+             from .game_presence import answer as game_presence_answer
+--- r77_qualified_confirmation_20261016/system/app/knowledge/common/dialogue.py
++++ r78_web_session_check_20261016/system/app/knowledge/common/dialogue.py
+@@ -7,7 +7,13 @@
+     minutes={c['requested_minutes'] for c in plan.get('price_calculations',[]) if type(c.get('requested_minutes')) is int and 0<c['requested_minutes']<=1440}
+     constraints={'duration_minutes':next(iter(minutes))} if len(minutes)==1 else {}
+     comparison=plan.get('price_comparison')
+-    return {'schema_version':1,'record_ids':list(plan.get('record_ids',[])),'requested_fields':list(plan.get('requested_fields',[])),'all_fields':bool(plan.get('all_fields')),'release_id':art.get('release_id'),'pending_selection':plan.get('pending_selection'),'profile_confirmation':plan.get('profile_confirmation'),'profile_confirmation_closed':bool(plan.get('profile_confirmation_closed')),'declined_profile_ids':list(plan.get('declined_profile_ids',[])),'scope_ids':plan.get('scope_ids',[]),'operation':'price_comparison' if comparison else plan.get('operation'),'platform':plan.get('platform'),'constraints':constraints,'price_comparison':{k:comparison[k] for k in ('scope_ids','audience_ids','missing','axis') if k in comparison} if isinstance(comparison,dict) else None}
++    result={'schema_version':1,'record_ids':list(plan.get('record_ids',[])),'requested_fields':list(plan.get('requested_fields',[])),'all_fields':bool(plan.get('all_fields')),'release_id':art.get('release_id'),'pending_selection':plan.get('pending_selection'),'profile_confirmation':plan.get('profile_confirmation'),'profile_confirmation_closed':bool(plan.get('profile_confirmation_closed')),'declined_profile_ids':list(plan.get('declined_profile_ids',[])),'scope_ids':plan.get('scope_ids',[]),'operation':'price_comparison' if comparison else plan.get('operation'),'platform':plan.get('platform'),'constraints':constraints,'price_comparison':{k:comparison[k] for k in ('scope_ids','audience_ids','missing','axis') if k in comparison} if isinstance(comparison,dict) else None}
++    for key in ('pending_competition_scope','price_scope_request'):
++        if plan.get(key):result[key]=plan[key]
++    p=plan.get('question_profile',{})
++    if p.get('routing_sha256') and len(plan.get('record_ids',[]))==1:
++        result['profile_read_scope']={'record_id':plan['record_ids'][0],'routing_sha256':p['routing_sha256']}
++    return result
+ def previous_state(history,records):
+     for turn in reversed((history or [])[-8:]):
+         s=turn.get('common_read_state') if isinstance(turn,dict) and turn.get('role')=='assistant' else None
+--- r77_qualified_confirmation_20261016/system/app/knowledge/common/followup_scope.py
++++ r78_web_session_check_20261016/system/app/knowledge/common/followup_scope.py
+@@ -0,0 +1,71 @@
++"""Resume typed, delivered scope only. No assistant prose or studio facts."""
++import re
++from .registry import value
++from .query_contract import normalize
++from .profile_confirmation import fingerprint
++
++def delivered_state(history):
++    for t in reversed((history or [])[-8:]):
++        if not isinstance(t,dict) or t.get('role')!='assistant':continue
++        if t.get('delivery_status') not in {'server_written','client_acknowledged'}:return None
++        s=t.get('common_read_state')
++        return s if isinstance(s,dict) and s.get('schema_version')==1 else None
++    return None
++
++def profile_followup(question,history,records):
++    s=delivered_state(history)
++    if not s or s.get('profile_confirmation') or s.get('profile_confirmation_closed'):return None
++    origin=s.get('profile_read_scope')
++    if not isinstance(origin,dict):return None
++    q=normalize(question)
++    if len(q)>160:return None
++    # Explicit follow-up framing; a complete new request uses the normal router.
++    start=re.match(r'^(?:and|also|what about|how about)\s+|^(?:แล้ว|ส่วน)',q)
++    end=re.search(r'(?:ด้วย(?:ได้ไหม|ได้มั้ย)?|ล่ะ)\s*[?!.,]*$',q)
++    if not start and not end:return None
++    tail=q[start.end():] if start else q
++    tail=re.sub(r'(?:ด้วย(?:ได้ไหม|ได้มั้ย)?|ล่ะ)\s*[?!.,]*$','',tail).strip()
++    rid=origin.get('record_id')
++    if rid not in records or fingerprint(records[rid])!=origin.get('routing_sha256'):return {'action':'expired'}
++    from .qualified_reply import scope_plan
++    ids,audit=scope_plan(tail,records[rid],records)
++    # No positive subject means e.g. "And when?": preserve its normal field flow.
++    from .question_profiles import phrase_match
++    if not any(phrase_match(tail,label) for r in records.values() for sub in (value(r,'query_profile') or {}).get('subjects',[]) for label in sub.values() if isinstance(label,str)):return None
++    base={'blocked_unqualified_ids':[rid],'qualification':{'qualifier':tail,'original_input':question},'audit':audit}
++    if ids and len(ids)==1:return {**base,'action':'qualified_selected','record_id':ids[0],'routing_sha256':fingerprint(records[ids[0]]),'basis':'delivered_declared_profile_followup'}
++    if ids and len(ids)>1:audit['reason']='ambiguous_qualified_profiles'
++    return {**base,'action':'qualification_unconfirmed'}
++
++def competition_question(question,history,records,names):
++    s=delivered_state(history);p=s.get('pending_competition_scope') if s else None
++    if not isinstance(p,dict) or p.get('version')!=1:return None
++    rid=p.get('record_id')
++    if rid not in records or fingerprint(records[rid])!=p.get('routing_sha256'):return {'expired':True}
++    q=normalize(question).strip(' ?!.,');games=[k for k,r in records.items() if r['kind']=='game' and any(normalize(a)==q for a in names.get(k,[]))]
++    comps=[k for k,r in records.items() if r['kind']=='competition' and (value(r,'game_id') in games or any(normalize(a)==q for a in names.get(k,[])))]
++    if not comps:return None
++    scope=p.get('scope',{});subjects=scope.get('subjects',[])
++    labels=[x.get('en') or x.get('th') for x in subjects]
++    owner={'personal':'personal ','studio':'studio-owned '}.get(scope.get('ownership'),'')
++    # A sourced rule lookup, not an assertion that ordinary studio policy applies.
++    return {'question':question+' tournament rules about '+owner+', '.join(labels),'competition_ids':comps,'inherited_scope':scope}
++
++def priced_services(records):
++    return sorted({value(r,'service_id') for r in records.values() if r['kind']=='rate' and value(r,'service_id') in records})
++
++def price_selection(question,history,records,names):
++    s=delivered_state(history);p=s.get('price_scope_request') if s else None
++    if not isinstance(p,dict) or p.get('version')!=1:return None
++    available=priced_services(records);q=normalize(question).strip(' ?!.,')
++    if q in {'ทั้งหมด','ทุกอัน','ทุกบริการ','all','all services','all of them','everything'}:roots=available
++    else:
++        roots=[rid for rid in available if any(normalize(a)==q for a in names.get(rid,[]))]
++        # Zone/resource labels may select several service options.
++        if not roots:
++            from .relations import related_rates
++            parents=[r for rid,r in records.items() if r['kind'] in {'zone','resource'} and any(normalize(a)==q for a in names.get(rid,[]))]
++            roots=sorted({value(rate,'service_id') for r in parents for rate in related_rates(records,r) if value(rate,'service_id') in available})
++    if not roots:return None
++    audiences=[rid for rid in p.get('audience_ids',[]) if rid in records and records[rid]['kind']=='audience']
++    return {'record_ids':roots+audiences,'query':'price','method':'price_scope_selection'}
+--- r77_qualified_confirmation_20261016/system/app/pipeline/migrated_chat.py
++++ r78_web_session_check_20261016/system/app/pipeline/migrated_chat.py
+@@ -32,6 +32,18 @@
+   return finish(message(text,'greeting'),'assistant_interface')
+  try:
+   view=MigratedView(database_path())
++  from app.knowledge.common.followup_scope import competition_question,delivered_state
++  resume=None
++  if (delivered_state(history) or {}).get('pending_competition_scope'):
++   from app.calendar.service_calendar import now_bangkok
++   snap_for_resume=view.snapshot();rs_for_resume=snap_for_resume['release']['records'];at_for_resume=now_bangkok()
++   resume=competition_question(question,history,{k:r for k,r in rs_for_resume.items() if effective(r,at_for_resume,rs_for_resume)},snap_for_resume['release']['names'])
++  if resume:
++   if resume.get('expired'):
++    return finish(message('ข้อมูลหัวข้อเปลี่ยนไป กรุณาระบุเรื่องที่ต้องการอีกครั้งครับ' if language=='th' else 'The topic scope has changed. Please specify your question again.'),'migrated_common')
++   result=answer(resume['question'],locale=locale,history=[],allow_llm=allow_llm)
++   art=dict(result.decision_artifact or {});art['dialogue_repair']={'method':'qualified_competition_game_selection','original_input':question,'active_query':resume['question'],'inherited_scope':resume['inherited_scope'],'candidate_competition_ids':resume['competition_ids'],'previous_answer_facts_used':False}
++   return finish(replace(result,decision_artifact=art),'migrated_common')
+   from app.knowledge.common.profile_confirmation import latest,resolve as resolve_confirmation
+   from app.knowledge.common.reply_repair import rejection,barrier,declined_from_history
+   from app.knowledge.common.qualified_reply import qualification

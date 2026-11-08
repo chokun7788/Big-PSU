@@ -1,0 +1,141 @@
+{
+  "all_passed": true,
+  "checks": {
+    "same_adapter_weights": true,
+    "same_base_revision": true,
+    "num_predict_honored": true,
+    "effective_input_hash_verified": true,
+    "actual_adapter_context_transport": true,
+    "actual_context_schema_checked": true,
+    "repeat_context_cached_without_generation": true
+  },
+  "health": {
+    "serving_protocol": "r128-bounded-context-v1",
+    "pid": 28544,
+    "url": "http://127.0.0.1:12421",
+    "profiles": {
+      "psu-r121-base:latest": false,
+      "psu-r121-trained:latest": true
+    },
+    "digests": {
+      "psu-r121-base:latest": "320b656c83f3de56b2ee6d9906df42405bac9a0996df1f1b53b55ac88085ab05",
+      "psu-r121-trained:latest": "5a5285d8a6cb1eec20d5eb710606cf03ac8313609da41e7769d33b54f6cbed50"
+    },
+    "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+    "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+    "quantization": "NF4 double quant, BF16 compute",
+    "training_complete_verified": true,
+    "production_installed": false
+  },
+  "one_token_probe": {
+    "model": "psu-r121-trained:latest",
+    "message": {
+      "role": "assistant",
+      "content": "{\""
+    },
+    "response": "{\"",
+    "done": true,
+    "eval_count": 1,
+    "provenance": {
+      "base_repository": "typhoon-ai/typhoon2.5-qwen3-4b",
+      "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+      "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+      "adapter_active": true,
+      "stage": "context",
+      "quantization": "NF4",
+      "profile_digest": "5a5285d8a6cb1eec20d5eb710606cf03ac8313609da41e7769d33b54f6cbed50",
+      "serving_protocol": "r128-bounded-context-v1",
+      "effective_input_sha256": "f75eb731d6dbad9397adf8a73c4234ba200297be6947745b8ada9620037cae26",
+      "effective_max_new_tokens": 1
+    }
+  },
+  "context": {
+    "version": "r117",
+    "accepted": true,
+    "reason": "validated_interpretation_proposal",
+    "tasks": [
+      {
+        "quote": "How do I request assistance for a game that stops responding?",
+        "domain": "rules",
+        "category": "C10",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "canonical_operation": ""
+      }
+    ],
+    "event": {
+      "id": "0124fb20acd2438eaff4d4b07982f2ce",
+      "stage": "context_understanding",
+      "model": "psu-r121-trained:latest",
+      "transport_ok": true,
+      "schema_ok": true,
+      "model_provenance": {
+        "base_repository": "typhoon-ai/typhoon2.5-qwen3-4b",
+        "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+        "adapter_sha256": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+        "adapter_active": true,
+        "stage": "context",
+        "quantization": "NF4",
+        "profile_digest": "5a5285d8a6cb1eec20d5eb710606cf03ac8313609da41e7769d33b54f6cbed50",
+        "serving_protocol": "r128-bounded-context-v1",
+        "effective_input_sha256": "14f34ec4c9833b9a6a9d327014212713599b24289455ced158ae069fb72c3026",
+        "effective_max_new_tokens": 512
+      },
+      "response_model": "psu-r121-trained:latest",
+      "identity_verified": true,
+      "effective_input_verified": true,
+      "raw_content": "{\"focus\":\"damage\",\"context_quotes\":[],\"tasks\":[{\"quote\":\"How do I request assistance for a game that stops responding?\",\"domain\":\"rules\",\"operation\":\"detail\",\"facet\":\"owner_policy\",\"target\":\"\",\"constraints\":[],\"ambiguous\":false}]}",
+      "context_focus": "damage",
+      "context_quotes": [],
+      "teaching_example_ids": [],
+      "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+      "reason": "validated_interpretation_proposal",
+      "elapsed_sec": 21.75,
+      "http_attempted": true,
+      "input_question": "How do I request assistance for a game that stops responding?",
+      "legacy_contrast": {
+        "domain": "general",
+        "operation": "how_to",
+        "needs": [
+          "steps",
+          "controls_if_game"
+        ],
+        "reason": "domain_terms=2; how-to terms found"
+      }
+    },
+    "factual_correctness_verified": false,
+    "legacy_answer_read": false
+  },
+  "cache": {
+    "version": "r117",
+    "accepted": true,
+    "reason": "validated_interpretation_proposal",
+    "tasks": [
+      {
+        "quote": "How do I request assistance for a game that stops responding?",
+        "domain": "rules",
+        "category": "C10",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "canonical_operation": ""
+      }
+    ],
+    "event": {
+      "method": "r128_index_bound_interpretation_cache",
+      "cache_hit": true,
+      "http_attempted": false,
+      "model_called": false,
+      "original_reason": "validated_interpretation_proposal"
+    },
+    "factual_correctness_verified": false,
+    "legacy_answer_read": false
+  },
+  "weights_changed": false,
+  "answer_accuracy_claimed": false
+}

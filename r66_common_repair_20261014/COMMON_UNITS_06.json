@@ -1,0 +1,22 @@
+{
+  "tests_run": 84,
+  "failures": [
+    {
+      "test": "test_planner_accepts_only_relevant_schema_fields (tests.test_common_content_r58.CommonTests.test_planner_accepts_only_relevant_schema_fields)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\tests\\test_common_content_r58.py\", line 175, in test_planner_accepts_only_relevant_schema_fields\n    for p in ({'requested_fields':['amount_minor'],'all_fields':False,'platform':None},{'requested_fields':['bindings'],'all_fields':False,'platform':'PS4'},{'requested_fields':['bindings'],'all_fields':'true','platform':None}):self.assertIsNone(checked_plan(p,ids,records))\n                                                                                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'requested_fields': ['amount_minor'], 'all_fields': False, 'platform': None, 'method': 'bounded_llm_schema_fields'} is not None\n"
+    },
+    {
+      "test": "test_long_query_two_bounded_batches (tests.test_common_r61.PureTests.test_long_query_two_bounded_batches)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\tests\\test_common_r61.py\", line 59, in test_long_query_two_bounded_batches\n    self.assertIsNotNone(result);self.assertEqual(fetch.call_count,2)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "test_r62_zone_regular_price_is_not_replaced_by_rental_price (tests.test_common_r62.FlowTests.test_r62_zone_regular_price_is_not_replaced_by_rental_price)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\tests\\test_common_r62.py\", line 92, in test_r62_zone_regular_price_is_not_replaced_by_rental_price\n    self.assertEqual(self.answer('Fixture zone price',locale='en').decision_artifact['response_type'],'withdrawn')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\tests\\test_common_content_r58.py\", line 55, in answer\n    def answer(self,q,**kw):return CommonAnswerer(self.store).answer(q,**kw)\n                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\system\\app\\knowledge\\common\\answer.py\", line 195, in answer\n    role_ids,_=named(question,{rid:aliases for rid,aliases in names.items() if records[rid]['kind'] in roles[query_operation]},allow_fuzzy=False)\n                                                                               ~~~~~~~^^^^^\nKeyError: 'fixture_rate'\n"
+    }
+  ],
+  "elapsed": 62.03316300000006,
+  "scope": "common_format_only",
+  "model_calls": "mocked where required"
+}

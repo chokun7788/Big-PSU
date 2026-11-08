@@ -1,0 +1,65 @@
+{
+  "key": "430a8b817d4ac5e5ac97e01eec7054e55b4437d6e056b966f094998e9e53a860",
+  "requested_locale": "en",
+  "question": "How many games are played in a Tekken 8 match?",
+  "r132_raw_result": {
+    "path": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+    "sha256": "156042af40fc5dd43249717d72a4fc87ee4525f598d2192d2f4fc9509cd14308"
+  },
+  "r132_answer": "A confirmed English translation is unavailable for some clauses; their Thai source text is retained below.\n**PSU Esports Tekken 8 event**\nในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ) [S1]",
+  "r132_sources": {
+    "competition_competition_rules_tekken8_psu_esports_section_002": {
+      "revision": 5,
+      "record_payload_sha256": "0c88562d29470399fc770fb22ab2e329f2a4130d3a34d2e427e3fbc304f1173a",
+      "relevant_field": "text",
+      "field": {
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/text",
+            "source_id": "r66_en_935aabc19087fc3216f81b22"
+          }
+        ],
+        "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: exact",
+        "status": "known",
+        "value": {
+          "en": "Competition rules\n* Offline competition.\n* PlayStation 5 is used.\n* Singles (1v1).\n* Competition format:\n* FT2: the winner is the first to win 2 games.\n* Each game uses R3 (3 rounds per game) and 60S (60 seconds per round).\n* At a 1-1 tie, a deciding game must be played.",
+          "th": "กติกาการแข่งขัน\n* แข่งขันแบบ ออฟไลน์ (Offline)\n* ใช้เครื่องเกม PlayStation 5\n* แข่งขันแบบ เดี่ยว (1v1)\n* รูปแบบการแข่งขัน:\n* FT2: ผู้ชนะคือผู้ที่ชนะครบ 2 เกมก่อน\n* ในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ)\n* หากเสมอกันที่ 1-1 จะต้องแข่งขัน เกมตัดสิน"
+        }
+      }
+    },
+    "r114_tekken_8_rule_clause": {
+      "revision": 1,
+      "record_payload_sha256": "f384fc584c59bcec35ae4435d1c5ca90ae32134ccd377c5ece19ea02c78fd6a8",
+      "relevant_field": "answer",
+      "field": {
+        "evidence_refs": [
+          {
+            "locator": "/fields/answer",
+            "source_id": "r114_import_791786f71fb0d0461eea9a0e"
+          }
+        ],
+        "note": "Imported source-backed candidate draft; not published",
+        "status": "known",
+        "value": {
+          "en": "ในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ)",
+          "th": "ในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ)"
+        }
+      }
+    }
+  },
+  "classification": {
+    "content": "The delivered source clause describes rounds per game, not games per match. A separate recorded event clause states first to two games and a deciding game at 1–1; its applicability and event scope remain qualified.",
+    "cause": "The returned R114 fact has an FT2 label but an R3-only answer field. Selection treated a heading as sufficient rather than verifying the requested games-per-match predicate against body.",
+    "grader_protocol": "Legacy route and evidence ID checks are separate from this source-supported omission.",
+    "latency": "Recorded 34.307 seconds exceeds the old 20-second threshold; no causal attribution or fresh latency comparison."
+  },
+  "candidate_source_only_reaudit": {
+    "path": "r135_complete_flow_audit_20261026\\root_tekken_format_reaudit_1793142215044863700\\DETAILS.json",
+    "sha256": "2004e21c77122785614dcefc7faab61d1203e8d85943d1d96e4ad7360f3e5746",
+    "answer": "Competition rules\n* Offline competition.\n* PlayStation 5 is used.\n* Singles (1v1).\n* Competition format:\n* FT2: the winner is the first to win 2 games.\n* Each game uses R3 (3 rounds per game) and 60S (60 seconds per round).\n* At a 1-1 tie, a deciding game must be played. [S1]\nThe source has not confirmed all linked rule clauses or that the text is complete. The recorded text is shown above.\n**PSU Esports ปะทะมันส์ สนั่นจอ**",
+    "inference_or_http": false,
+    "qualification": "Source-dispatch check only, no model wire or full request acceptance; source authority, event selection and rulebook completeness remain under review."
+  },
+  "semantic_status": "source_specific_mismatch_and_candidate_source_repair_observed_not_final_acceptance",
+  "created_at": 1793142236.8877244
+}

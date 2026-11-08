@@ -1,0 +1,279 @@
+--- R74/system/app/knowledge/common/answer.py
++++ R75/system/app/knowledge/common/answer.py
+@@ -170,6 +170,13 @@
+ 
+ class CommonAnswerer:
+     def __init__(self,store):self.store=store;self.diagnostics=[]
++    def confirm_profile(self,snap,started,question,lang,records,selection=None,preferred=None):
++        from .profile_confirmation import build,prompt
++        pending=build(question,records,preferred)
++        if not pending:return None
++        plan={'record_ids':[],'requested_fields':[],'method':'profile_topic_clarification',
++            'profile_confirmation':pending,'entity_selection':selection or {},'source_answer_confirmed':False}
++        return self.finish(snap,started,prompt(pending,records,lang),[],plan,[],response='clarification')
+     def unconfirmed(self,snap,started,question,lang,records,selection=None):
+         from .unconfirmed_request import topic,message
+         need=topic(question)
+@@ -194,6 +201,18 @@
+         lang='en' if locale=='en' else 'th';at=at or now_bangkok()
+         if at.tzinfo is None:raise ValueError('Query time needs timezone')
+         records={k:r for k,r in rel['records'].items() if k not in snap['withdrawn']}
++        from .profile_confirmation import resolve as resolve_confirmation,prompt as confirmation_prompt
++        current={rid:r for rid,r in records.items() if effective(r,at,records)}
++        confirmation=resolve_confirmation(question,history,current);confirmed_id=None
++        if confirmation:
++            action=confirmation['action']
++            if action=='selected':confirmed_id=confirmation['record_id']
++            elif action=='prompt':
++                plan={'record_ids':[],'requested_fields':[],'method':'profile_topic_clarification','profile_confirmation':confirmation['pending']}
++                return self.finish(snap,started,confirmation_prompt(confirmation['pending'],current,lang),[],plan,[],response='clarification')
++            else:
++                msg=(('รายการหรือขอบเขตข้อมูลเปลี่ยนไป กรุณาระบุหัวข้อที่ต้องการอีกครั้งครับ' if action=='expired' else 'เข้าใจครับ กรุณาระบุเรื่องหรือสิ่งที่ต้องการแก้เพิ่มเติม ผมจะไม่ใช้หัวข้อที่เสนอเมื่อกี้เป็นคำตอบครับ') if lang=='th' else ('The record or its scope has changed. Please specify the topic again.' if action=='expired' else 'Please specify the issue or item you mean so I can find the right topic.'))
++                return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'method':'profile_confirmation_'+action,'profile_confirmation_closed':True},[],response='clarification')
+         from .request_roles import analyze as analyze_roles,groups as role_groups
+         request_needs=analyze_roles(question)
+         if not request_needs and history:
+@@ -235,6 +254,9 @@
+         matched_ids=list(ids)
+         from .question_profiles import select as select_profile
+         profile_id,profile_audit=select_profile(question,records)
++        if confirmed_id:
++            profile_id=confirmed_id;profile_audit={'method':'user_confirmed_question_profile','candidate_ids':[confirmed_id],
++                'reason':'explicit_user_topic_selection','routing_sha256':confirmation['routing_sha256'],'topic_selected_by_user':True,'owner_fact_approval_created':False}
+         self.diagnostics.append({'stage':'question_profile','selection':profile_audit})
+         if profile_audit.get('reason')=='ambiguous_profiles':
+             msg='พบข้อมูลที่ตรงหัวข้อหลายรายการ กรุณาระบุขอบเขตเพิ่มเติมก่อนยืนยันคำตอบ' if lang=='th' else 'Several records match this topic. Please clarify the applicable scope before I confirm an answer.'
+@@ -321,7 +343,7 @@
+                 from .scoped_topics import lookup
+                 secondary_ids,secondary_audit=lookup(question,{rid:r for rid,r in records.items() if effective(r,at,records)},names,ids,allow_llm=planner is not None)
+                 if secondary_ids:ids=secondary_ids;method='declared_scoped_topic'
+-        if profile_id:ids=[profile_id];scope_ids=[];method='declared_question_profile';secondary_ids=[profile_id]
++        if profile_id:ids=[profile_id];scope_ids=[];method='user_confirmed_question_profile' if confirmed_id else 'declared_question_profile';secondary_ids=[profile_id]
+         procedure_ids=([rid for group in need_groups for rid in group['candidate_ids']] if need_groups else operation_faqs(procedure_query,records,query_operation)) if not secondary_ids else []
+         role_audit=[]
+         if need_groups and not procedure_ids and not secondary_ids:
+@@ -386,6 +408,8 @@
+             if choice is None and (entity_audit.get('availability_failure') or entity_audit.get('reason')=='model_busy' or entity_audit.get('error')):
+                 unresolved=self.unconfirmed(snap,started,question,lang,records,entity_audit)
+                 if unresolved is not None:return unresolved
++                clarification=self.confirm_profile(snap,started,question,lang,current,entity_audit)
++                if clarification is not None:return clarification
+                 failure=entity_audit.get('availability_failure')
+                 if failure=='transport':
+                     msg=('ขณะนี้ระบบเชื่อมต่อโมเดลเพื่อเลือกข้อมูลไม่ได้ กรุณาลองอีกครั้งครับ' if lang=='th' else 'The system cannot connect to the model to select the relevant data right now. Please try again.')
+@@ -398,12 +422,21 @@
+                 ids=choice;method='published_semantic_candidates'
+                 projections=entity_audit.get('profile_projections',{})
+                 if len(ids)==1 and ids[0] in projections:
+-                    profile_id=ids[0];method='semantic_question_profile'
+-                    profile_audit={'method':method,'candidate_ids':ids,'reason':'validated_model_profile_binding',
+-                        'projection':projections[profile_id],'human_intent_correctness_verified':False}
++                    unresolved=self.unconfirmed(snap,started,question,lang,records,entity_audit)
++                    if unresolved is not None:return unresolved
++                    clarification=self.confirm_profile(snap,started,question,lang,current,entity_audit,ids)
++                    if clarification is not None:return clarification
+             elif isinstance(choice,dict) and choice.get('ambiguous'):
+                 options=choice['ambiguous']
++                if entity_audit.get('profile_projections'):
++                    clarification=self.confirm_profile(snap,started,question,lang,current,entity_audit,[x['record_id'] for x in options])
++                    if clarification is not None:return clarification
+                 return self.finish(snap,started,('หมายถึงรายการไหน: ' if lang=='th' else 'Which record do you mean: ')+ ' / '.join(title(records[x['record_id']],lang) for x in options),[],{'pending_selection':{'record_ids':[x['record_id'] for x in options],'requested_fields':field_requests(question)},'entity_selection':entity_audit},[],response='clarification')
++            if choice is None:
++                unresolved=self.unconfirmed(snap,started,question,lang,records,entity_audit)
++                if unresolved is not None:return unresolved
++                clarification=self.confirm_profile(snap,started,question,lang,current,entity_audit)
++                if clarification is not None:return clarification
+         # A generic FAQ alias that is exactly an attribute word must not consume
+         # that attribute from an independently named typed entity's question.
+         typed_ids=[rid for rid in ids if records[rid]['kind']!='faq']
+@@ -471,7 +504,8 @@
+                 kind=next((k for field,k in [('address','center'),('value','contact'),('open_periods','schedule'),('bookable_periods','schedule')] if field in requested),None)
+             if not kind:
+                 self.diagnostics.append({'stage':'unresolved_scope','operation':query_operation,'entity_selection':entity_audit,'requested_fields':requested,'request_needs':request_needs})
+-                return self.unconfirmed(snap,started,question,lang,records,entity_audit)
++                unresolved=self.unconfirmed(snap,started,question,lang,records,entity_audit)
++                return unresolved if unresolved is not None else self.confirm_profile(snap,started,question,lang,current,entity_audit)
+             ids=[k for k,r in records.items() if r['kind']==kind and (kind=='rate' or effective(r,at,records))]
+             if not ids:return None
+             if listing:broad=not requested or broad_request(q)
+@@ -492,7 +526,7 @@
+         if method=='declared_scoped_topic':
+             defaults={'faq':['answer'],'policy':['decision','details','conditions_all','exceptions','consequence'],'procedure':['steps','preconditions','required_documents']}
+             requested=list(dict.fromkeys(f for rid in ids for f in defaults[records[rid]['kind']] if f in records[rid]['fields'] and (f in {'answer','decision','details','conditions_all','steps','preconditions'} or records[rid]['fields'][f]['status']=='known')));broad=False
+-        if method in {'declared_question_profile','semantic_question_profile'}:
++        if method in {'declared_question_profile','user_confirmed_question_profile'}:
+             from .question_profiles import DEFAULT_FIELDS
+             requested=[f for f in DEFAULT_FIELDS[records[profile_id]['kind']] if f in records[profile_id]['fields'] and (f in {'answer','steps','decision','details','conditions_all','preconditions'} or records[profile_id]['fields'][f]['status']=='known')];broad=False
+         if method=='exact' and not broad and requested in ([],['answer']) and all(records[rid]['kind']=='faq' for rid in ids) and re.fullmatch(r'(?:\s|[?!.,]|ทำ|ต้อง|การ|ยังไง|ยังงัย|อย่างไร|ติดต่อ|คือ|อะไร|ครับ|ค่ะ|คะ|อ่า+|หน่อย|please|what|is|it|how|do|i|the|tell|me)*',normal(q)):
+@@ -557,7 +591,7 @@
+         review=resolution_uncertain(q,field_kinds)
+         if query_operation=='rules' and plan.get('rule_content_all') is not None:
+             review=False;gaps=[]
+-        if method in {'common_calendar_date_scope','common_people_directory','common_procedure_topic','common_faq_topic','declared_scoped_topic','declared_question_profile','semantic_question_profile','common_named_faq_content','common_typed_attribute_scope','typed_price_duration_selection','state_audience_selection','common_price_comparison'}:review=False;gaps=[]
++        if method in {'common_calendar_date_scope','common_people_directory','common_procedure_topic','common_faq_topic','declared_scoped_topic','declared_question_profile','user_confirmed_question_profile','common_named_faq_content','common_typed_attribute_scope','typed_price_duration_selection','state_audience_selection','common_price_comparison'}:review=False;gaps=[]
+         plan['unresolved_clauses']=gaps if review and not broad and not overview else []
+         if method in {'common_calendar_date_scope','common_people_directory'}:review=False;gaps=[]
+         if method in {'common_procedure_topic','published_semantic_candidates'} and all(records[rid]['kind']=='faq' for rid in ids):plan['unresolved_clauses']=[];review=False
+--- R74/system/app/knowledge/common/dialogue.py
++++ R75/system/app/knowledge/common/dialogue.py
+@@ -7,11 +7,12 @@
+     minutes={c['requested_minutes'] for c in plan.get('price_calculations',[]) if type(c.get('requested_minutes')) is int and 0<c['requested_minutes']<=1440}
+     constraints={'duration_minutes':next(iter(minutes))} if len(minutes)==1 else {}
+     comparison=plan.get('price_comparison')
+-    return {'schema_version':1,'record_ids':list(plan.get('record_ids',[])),'requested_fields':list(plan.get('requested_fields',[])),'all_fields':bool(plan.get('all_fields')),'release_id':art.get('release_id'),'pending_selection':plan.get('pending_selection'),'scope_ids':plan.get('scope_ids',[]),'operation':'price_comparison' if comparison else plan.get('operation'),'platform':plan.get('platform'),'constraints':constraints,'price_comparison':{k:comparison[k] for k in ('scope_ids','audience_ids','missing','axis') if k in comparison} if isinstance(comparison,dict) else None}
++    return {'schema_version':1,'record_ids':list(plan.get('record_ids',[])),'requested_fields':list(plan.get('requested_fields',[])),'all_fields':bool(plan.get('all_fields')),'release_id':art.get('release_id'),'pending_selection':plan.get('pending_selection'),'profile_confirmation':plan.get('profile_confirmation'),'profile_confirmation_closed':bool(plan.get('profile_confirmation_closed')),'scope_ids':plan.get('scope_ids',[]),'operation':'price_comparison' if comparison else plan.get('operation'),'platform':plan.get('platform'),'constraints':constraints,'price_comparison':{k:comparison[k] for k in ('scope_ids','audience_ids','missing','axis') if k in comparison} if isinstance(comparison,dict) else None}
+ def previous_state(history,records):
+     for turn in reversed((history or [])[-8:]):
+         s=turn.get('common_read_state') if isinstance(turn,dict) and turn.get('role')=='assistant' else None
+         if not isinstance(s,dict) or s.get('schema_version')!=1:continue
++        if s.get('profile_confirmation') or s.get('profile_confirmation_closed'):return None
+         ids=s.get('record_ids');fields=s.get('requested_fields')
+         if not isinstance(ids,list) or not isinstance(fields,list) or len(ids)>100 or len(fields)>64 or any(not isinstance(x,str) for x in ids+fields):continue
+         if ids and all(rid in records for rid in ids):return s
+--- R74/system/app/knowledge/common/entity_search.py
++++ R75/system/app/knowledge/common/entity_search.py
+@@ -83,6 +83,7 @@
+   if profile.get('ownership')=='personal' and not re.search(r'ส่วนตัว|ตัวเอง|ของผม|ของฉัน|\b(?:own|personal|my|mine)\b',normalize(question)):continue
+   parts=names.get(rid,[])+[s for key,f in r['fields'].items() if key!='query_profile' and f['status']=='known' and not key.endswith(('_id','_ids')) for s in strings(f['value'])]
+   backstop.append({'record_id':rid,'kind':r['kind'],'text':excerpt(question,parts),'score':next((x['score'] for x in ranked if x['record_id']==rid),0.0),'retrieval_method':'declared_task_backstop','requires_semantic_selection':True})
++ backstop.sort(key=lambda row:(-row['score'],row['record_id']))
+  selected=backstop[:4]+[x for x in ranked if x['record_id'] not in {b['record_id'] for b in backstop[:4]}]
+  return selected[:8]
+ def select(question,records,names):
+@@ -100,6 +101,11 @@
+  if not MODEL_WORK.acquire(timeout=min(8,timeout_for_call(8))):return None,{'attempted':False,'reason':'model_busy','availability_failure':'busy'}
+  acquired=False;transport_ok=False;start=time.perf_counter();model=os.getenv('PSU_KNOWLEDGE_LLM_MODEL','scb10x/typhoon2.5-qwen3-4b')
+  audit={'candidate_ids':[x['record_id'] for x in rows],'candidate_scores':[x['score'] for x in rows],'intent_verified':False}
++ from .profile_confirmation import eligible
++ compatible=eligible(question,records)
++ audit['profile_retrieval_coverage']={'compatible_count':len(compatible),'included_count':sum(rid in audit['candidate_ids'] for rid in compatible),
++     'omitted_ids':[rid for rid in compatible if rid not in audit['candidate_ids']],
++     'all_compatible_topics_available_for_clarification':True,'semantic_recall_verified':False}
+  try:
+   acquired,gate=llm_call_allowed('common_entity_select',model)
+   if not acquired:return None,{**audit,'attempted':False,'reason':gate.get('llm_health_reason'),'availability_failure':'model_gate'}
+--- R74/system/app/knowledge/common/profile_confirmation.py
++++ R75/system/app/knowledge/common/profile_confirmation.py
+@@ -0,0 +1,95 @@
++"""Topic clarification for unverified semantic proposals, never policy approval.
++
++State stores source IDs and routing fingerprints, never answer text. Every
++compatible profile remains reachable by pagination, independently of top-k.
++"""
++import hashlib,json,re
++from .query_contract import normalize
++from .question_profiles import tasks,KINDS,phrase_match
++from .registry import value
++PAGE_SIZE=6
++
++def fingerprint(record):
++    raw={'kind':record['kind'],'profile':value(record,'query_profile')}
++    return hashlib.sha256(json.dumps(raw,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
++
++def eligible(question,records):
++    q=normalize(question);wanted=tasks(question)
++    if len(wanted)!=1:return []
++    competition=bool(re.search(r'แข่ง|กติกา|\b(?:competition|tournament|rulebook)\b',q))
++    found=[]
++    for rid,r in records.items():
++        p=value(r,'query_profile')
++        if r['kind'] not in KINDS or not isinstance(p,dict) or p.get('task') not in wanted:continue
++        if (p.get('context')=='competition')!=competition:continue
++        if p.get('ownership')=='personal' and (not re.search(r'ส่วนตัว|ตัวเอง|ของผม|ของฉัน|\b(?:own|personal|my|mine)\b',q) or re.search(r'ของศูนย์|\b(?:studio|center|venue)[’\x27]?s\b',q)):continue
++        found.append(rid)
++    # Stable independent of SQLite insertion order. This is a topic menu,
++    # not a ranking or assertion that each option answers the request.
++    return sorted(found)
++
++def build(question,records,preferred=None):
++    ids=eligible(question,records)
++    if not ids:return None
++    preferred=[rid for rid in (preferred or []) if rid in ids]
++    ids=list(dict.fromkeys(preferred+ids))
++    return {'version':1,'options':[{'record_id':rid,'routing_sha256':fingerprint(records[rid])} for rid in ids],
++        'page':0,'page_size':PAGE_SIZE,'reason':'unverified_meaning_requires_topic_selection'}
++
++def prompt(pending,records,lang):
++    from .answer import title
++    opts=pending['options'];start=pending['page']*PAGE_SIZE;page=opts[start:start+PAGE_SIZE]
++    if len(opts)==1:
++        label=title(records[opts[0]['record_id']],lang)
++        return ('คุณหมายถึงหัวข้อนี้ใช่ไหมครับ: '+label+'?\nตอบ “ใช่” หรือ “ไม่ใช่” ได้ครับ' if lang=='th' else 'Do you mean this topic: '+label+'?\nReply “yes” or “no”.')
++    lines=[str(i+1)+'. '+title(records[o['record_id']],lang) for i,o in enumerate(opts) if start<=i<start+PAGE_SIZE]
++    body=('ต้องการถามหัวข้อไหนครับ? กรุณาตอบเลขข้อหรือชื่อหัวข้อ\n' if lang=='th' else 'Which topic do you mean? Reply with its number or title.\n')+'\n'.join(lines)
++    body+=('\nพิมพ์ “ถัดไป” เพื่อดูหัวข้ออื่น หรือ “ไม่ใช่” เพื่อระบุเรื่องใหม่' if lang=='th' else '\nType “next” for more topics, or “no” to specify a different topic.') if len(opts)>PAGE_SIZE else ('\nถ้าไม่มีหัวข้อที่ต้องการ พิมพ์ “ไม่ใช่” ได้ครับ' if lang=='th' else '\nReply “no” if none of these topics match.')
++    return body
++
++def latest(history):
++    for turn in reversed((history or [])[-8:]):
++        if not isinstance(turn,dict) or turn.get('role')!='assistant':continue
++        if turn.get('delivery_status') not in {'server_written','client_acknowledged'}:return None
++        s=turn.get('common_read_state')
++        p=s.get('profile_confirmation') if isinstance(s,dict) and s.get('schema_version')==1 else None
++        if not isinstance(p,dict) or p.get('version')!=1:return None
++        opts=p.get('options');page=p.get('page')
++        if not isinstance(opts,list) or not opts or len(opts)>2000 or type(page) is not int or not 0<=page<(len(opts)+PAGE_SIZE-1)//PAGE_SIZE:return None
++        if any(not isinstance(o,dict) or set(o)!={'record_id','routing_sha256'} or not isinstance(o['record_id'],str) or not isinstance(o['routing_sha256'],str) for o in opts):return None
++        if len({o['record_id'] for o in opts})!=len(opts):return None
++        return p
++    return None
++
++def resolve(question,history,records):
++    p=latest(history)
++    if not p:return None
++    q=normalize(question).strip(' ?!.,');opts=p['options']
++    yes=bool(re.fullmatch(r'yes|yes please|yep|ใช่|ใช่ครับ|ใช่ค่ะ|ใช่เลย|ถูกต้อง',q))
++    no=bool(re.fullmatch(r'no|nope|not that|none of these|ไม่ใช่|ไม่ใช่ครับ|ไม่ใช่ค่ะ|ไม่มีในนี้|ไม่เอา',q))
++    next_page=q in {'next','more','ถัดไป','หน้าถัดไป','ดูเพิ่ม'}
++    index=int(q)-1 if re.fullmatch(r'[0-9]{1,4}',q) else None
++    chosen=opts[0] if yes and len(opts)==1 else None
++    if no:return {'action':'cancel'}
++    if next_page:
++        # Deleted/changed routing entries must not become selectable via a
++        # stale menu. Caller asks a fresh question rather than silently remaps.
++        if any(o['record_id'] not in records or fingerprint(records[o['record_id']])!=o['routing_sha256'] for o in opts):return {'action':'expired'}
++        return {'action':'prompt','pending':{**p,'page':(p['page']+1)%((len(opts)+PAGE_SIZE-1)//PAGE_SIZE)}}
++    if index is not None:
++        if not p['page']*PAGE_SIZE<=index<min(len(opts),(p['page']+1)*PAGE_SIZE):return {'action':'prompt','pending':p}
++        chosen=opts[index]
++    if not chosen and not yes:
++        from .answer import title
++        visible=opts[p['page']*PAGE_SIZE:(p['page']+1)*PAGE_SIZE]
++        exact=[o for o in visible if o['record_id'] in records and any(normalize(title(records[o['record_id']],lang)).strip(' ?!.,')==q for lang in ('th','en'))]
++        # Bare source-declared subject names are allowed; complete new
++        # questions do not inherit the old task just because they contain it.
++        subjects=[o for o in visible if o['record_id'] in records and any(normalize(t)==q for s in (value(records[o['record_id']],'query_profile') or {}).get('subjects',[]) for t in s.values() if isinstance(t,str) and t)]
++        matches={o['record_id']:o for o in exact+subjects}
++        if len(matches)==1:chosen=next(iter(matches.values()))
++    if yes and len(opts)>1:return {'action':'prompt','pending':p}
++    if not chosen:return None
++    rid=chosen['record_id']
++    if rid not in records or fingerprint(records[rid])!=chosen['routing_sha256']:return {'action':'expired'}
++    return {'action':'selected','record_id':rid,'routing_sha256':chosen['routing_sha256'],'basis':'explicit_user_topic_selection'}
+--- R74/system/app/knowledge/common/question_profiles.py
++++ R75/system/app/knowledge/common/question_profiles.py
+@@ -7,7 +7,11 @@
+ DEFAULT_FIELDS={'faq':['answer','scope_note'],'policy':['decision','details','conditions_all','exceptions','consequence'],'procedure':['steps','preconditions','required_documents']}
+ def tasks(question):
+  q=normalize(question);found=set()
+- if re.search(r'ผิด|แก้|\b(?:wrong|incorrect|mistak\w*|correct|correction)\b',q):found.add('correction')
++ # "The correct format" describes a property; "correct my record" is an
++ # action. A positive adjective must not activate a correction procedure.
++ error=bool(re.search(r'ผิด|แก้|\b(?:wrong|incorrect|mistak\w*|correction|correcting)\b',q))
++ correct_verb=bool(re.search(r'^correct\b|\b(?:to|please|i|we|you)\s+correct\b|\bcorrect\s+(?:it|them|my|our|this|that)\b',q))
++ if error or correct_verb:found.add('correction')
+  permission=bool(re.search(r'อนุญาต|ห้าม|\b(?:allowed|permitted|permission)\b|\b(?:can|may|could) i\s+(?:bring|use)\b',q)) or bool(re.search(r'ใช้|นำ|เอา',q) and re.search(r'ได้ไหม|ได้มั้ย|ได้หรือเปล่า',q))
+  if permission and not re.search(r'ซื้อ|ขาย|ซ่อม|เช่า|\b(?:buy|sell|repair|rent)\b',q):found.add('permission')
+  return found
+--- R74/system/app/knowledge/common/semantic_profile.py
++++ R75/system/app/knowledge/common/semantic_profile.py
+@@ -59,7 +59,8 @@
+     if not isinstance(binding,dict) or set(binding)!=required:return 'invalid_binding_shape'
+     if type(binding['index']) is not int or binding['index']!=index:return 'invalid_binding_index'
+     if binding['task']!=p['task'] or p['task'] not in tasks(question):return 'task_mismatch'
+-    if not quoted_span(question,binding['task_span']) or p['task'] not in tasks(binding['task_span']):return 'unsupported_task_span'
++    span_task=p['task'] in tasks(binding['task_span']) or (p['task']=='correction' and normalize(binding['task_span'])=='correct' and 'correction' in tasks(question))
++    if not quoted_span(question,binding['task_span']) or not span_task:return 'unsupported_task_span'
+     competition=bool(re.search(r'แข่ง|กติกา|\b(?:competition|tournament|rulebook)\b',q))
+     expected_context='competition' if competition else 'studio'
+     if binding['context']!=p['context'] or binding['context']!=expected_context:return 'context_mismatch'

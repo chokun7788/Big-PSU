@@ -1,0 +1,596 @@
+[
+  {
+    "id": "c058",
+    "q": "ราคา PC บุคคลทั่วไป",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c059",
+    "q": "PC prices for general adults",
+    "a": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c060",
+    "q": "เป็นบุคคลทั่วไป เล่น PC 2 ชั่วโมงเท่าไหร่",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\nระยะเวลาที่ถาม 120 นาที (2 ชั่วโมง) คิดเป็น 2 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ × 2 = 140 บาท\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c061",
+    "q": "General adult PC for two hours, how much?",
+    "a": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• General adults: 70 THB/package × 2 = 140 THB\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c062",
+    "q": "มี 100 บาท เป็นบุคคลทั่วไป เล่น PC ได้กี่ชั่วโมง",
+    "a": "งบ 100 บาท — บุคคลทั่วไป (คำนวณจากอัตราที่บันทึกไว้)\n•    PC (1 คน), 60 นาที/แพ็กเกจ: ได้ 1 แพ็กเกจเต็ม แพ็กเกจละ 70 บาท รวม 60 นาที เหลือ 30 บาท\nนี่เป็นการคำนวณงบ ไม่ใช่การจอง ยังต้องตรวจสิทธิ์ จำนวนรอบที่จองได้และสถานะรอบว่างจริงครับ\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:source_operation_affordability"
+  },
+  {
+    "id": "c063",
+    "q": "I am a general adult with 100 baht. What can I play?",
+    "a": "Budget: 100 THB — General adults (recorded package rates).\n• PC (1 people), 60 minutes/package: 1 whole package(s), 70 THB each, 60 minutes total; 30 THB left.\nOriginal non-PC fee table validity: 2026-03-31; current renewal is not confirmed.\nThis is an affordability calculation, not a reservation. Booking limits, eligibility and live slots still apply.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:source_operation_affordability"
+  },
+  {
+    "id": "c064",
+    "q": "มา4คนเล่น Nintendo 1 ชั่วโมง บุคคลทั่วไปเท่าไหร่",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\nระยะเวลาที่ถาม 60 นาที (1 ชั่วโมง) คิดเป็น 1 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c065",
+    "q": "ขอตารางราคาทุกบริการบุคคลภายนอก",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\n\nPlayStation 5 — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 150 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\n\nCockpit — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 200 บาท/แพ็กเกจ\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c066",
+    "q": "All service prices for external users",
+    "a": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 150 THB/package\n\nNintendo Switch — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 140 THB/package\n\nNintendo Switch — 60 minutes/package (3-4 people)\n• PSU alumni / students from other institutions: 100 THB/package\n• General adults: 280 THB/package\n\nCockpit — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\n\nVR — 30 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 190 THB/package\n• General adults: 525 THB/package\n\nVR — 60 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 375 THB/package\n• General adults: 1,050 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nPC rates use the local update dated 2026-07-27.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c067",
+    "q": "หน่วยงานภายนอกเหมา PC เต็มวันราคาเท่าไหร่",
+    "a": "ราคาเช่าเหมาโซนสำหรับหน่วยงาน\n\n**PC Zone**\n•    หน่วยงานภายนอก: เต็มวัน 4,000 บาท\n•    รองรับ: 43 ที่นั่ง; อุปกรณ์: PC 10 เครื่อง\n\nอัตรานี้เป็นราคาเช่าเหมาโซนของหน่วยงาน ไม่ใช่ราคาต่อผู้เล่น/เครื่อง ไฟล์ไม่ได้ระบุจำนวนชั่วโมงของช่วงเช่าหรือวันที่มีผลของอัตรา\n\nแหล่งข้อมูล: ไฟล์ค่าบริการครึ่งวันและเต็มวันที่ผู้ใช้ส่งให้\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c068",
+    "q": "PC whole-day rental price for external organizations",
+    "a": "Zone rental fees for organizations\n\n**PC Zone**\n• External organizations: full day 4,000 THB\n• Seating capacity: 43 seats; equipment: 10 PC units\n\nPrices are per zone for organizations, not per player or machine. The workbook does not define the rental hours or effective dates.\n\nSource: user-provided half/full-day rental workbook\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c069",
+    "q": "หน่วยงานภายนอกเหมาทุกโซน ครึ่งวันกับเต็มวันราคาเท่าไหร่",
+    "a": "ราคาเช่าเหมาโซนสำหรับหน่วยงาน\n\n**All Zones**\n•    หน่วยงานภายนอก: ครึ่งวัน 6,000 บาท / เต็มวัน 12,000 บาท\n•    รองรับ: 50 ที่นั่ง; อุปกรณ์: อุปกรณ์เกมทั้งหมด\n\nอัตรานี้เป็นราคาเช่าเหมาโซนของหน่วยงาน ไม่ใช่ราคาต่อผู้เล่น/เครื่อง ไฟล์ไม่ได้ระบุจำนวนชั่วโมงของช่วงเช่าหรือวันที่มีผลของอัตรา\nค่าตอบแทนของเจ้าหน้าที่ทำงานนอกเวลาเบิกตามระเบียบมหาวิทยาลัย\n\nแหล่งข้อมูล: ไฟล์ค่าบริการครึ่งวันและเต็มวันที่ผู้ใช้ส่งให้\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c070",
+    "q": "Compare PC full-day rental external organizations with VR half-day internal organizations",
+    "a": "Zone rental fees for organizations\n\n**VR Zone**\n• Internal organizations: half day 1,500 THB\n• Seating capacity: 34 seats; equipment: 1 VR unit\n\n**PC Zone**\n• External organizations: full day 4,000 THB\n• Seating capacity: 43 seats; equipment: 10 PC units\n\nPrices are per zone for organizations, not per player or machine. The workbook does not define the rental hours or effective dates.\n\nSource: user-provided half/full-day rental workbook\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c071",
+    "q": "เหมาครึ่งวันคือกี่ชั่วโมง",
+    "a": "ราคาเช่าเหมาโซนสำหรับหน่วยงาน\n\nไฟล์ไม่ได้ระบุว่าครึ่งวัน/เต็มวันนับกี่ชั่วโมงหรือเริ่ม–สิ้นสุดกี่โมง ต้องยืนยันช่วงเวลาเช่าเหมาจากศูนย์ครับ\n\nแหล่งข้อมูล: ไฟล์ค่าบริการครึ่งวันและเต็มวันที่ผู้ใช้ส่งให้\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c072",
+    "q": "Can I rent PS55 for a full day?",
+    "a": "Zone rental fees for organizations\n\nNo rental rate is recorded for these requested targets: ps55\n\nPrices are per zone for organizations, not per player or machine. The workbook does not define the rental hours or effective dates.\n\nSource: user-provided half/full-day rental workbook\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c073",
+    "q": "PC มีเกมอะไรบ้าง ขอทั้งหมด",
+    "a": "เกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c074",
+    "q": "What games are available on PC? List all of them.",
+    "a": "There are currently 6 verified games in PC Zone.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c075",
+    "q": "Nintendo มีเกมไรมั่ง",
+    "a": "เกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nNintendo Switch Zone (17 เกม)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c076",
+    "q": "What games can I play on Nintendo Switch?",
+    "a": "There are currently 17 verified games in Nintendo Switch Zone.\n\nNintendo Switch Zone (17 games)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c077",
+    "q": "PS5 มีเกมไรบ้าง",
+    "a": "เกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c078",
+    "q": "Cockpit เล่นเกมอะไร",
+    "a": "เกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nCockpit Zone (1 เกม)\n•    Gran Turismo 7\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c079",
+    "q": "VR มีเกมอะไรบ้าง",
+    "a": "เกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nVR Zone (4 เกม)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c080",
+    "q": "ที่ศูนย์มีเกมให้เล่นทั้งหมดกี่เกม",
+    "a": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 เกม)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 เกม)\n•    Gran Turismo 7\n\nVR Zone (4 เกม)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c081",
+    "q": "กฏตอนเเข่ง cs2 มีอะไรมั่ง",
+    "a": "สรุปกติกา Counter-Strike 2 บางประเด็นจากเอกสารที่มี:\nรายการ: PSU Phuket CS2 2026 Tournament\n\n**รูปแบบการแข่งขัน**\n•    1. รูปแบบทัวร์นาเมนต์ Single Elimination\n\n**ผู้เล่นและองค์ประกอบทีม**\n•    2. องค์ประกอบทีม แต่ละทีมประกอบด้วยผู้เล่น 5 คน\n\n**คุณสมบัติและการลงทะเบียน**\n•    2. ไม่อนุญาตให้ลงทะเบียนผู้เล่น หลังจากปิดรับสมัคร\n\n**อุปกรณ์การแข่งขัน**\n•    1. ผู้เล่นสามารถนำคีย์บอร์ด (มีสาย/ไร้สาย), เมาส์(มีสาย/ไร้สาย), ตัวยึดสายเมาส์ (mouse bungee), แผ่นรองเมาส์ หูฟังแบบ In-ear (มีสาย), Headset (มีสาย) มาเองได้\n\n**การตั้งค่าแมตช์**\n•    2. เวอร์ชันของเกม การแข่งขันทั้งหมดจะใช้เวอร์ชันล่าสุดของ CS2 บนแพลตฟอร์ม Steam ห้ามใช้การดัดแปลงตัวเกมที่ไม่ได้รับอนุญาตโดยเด็ดขาด\n\n**ก่อนแข่งและหน้างาน**\n•    2. ห้ามนำโทรศัพท์มือถือ แท็บเล็ต หรือสมาร์ทวอทช์ เข้าไปในพื้นที่แข่ง จนกว่าจะจบแมตช์\n\n**การหยุดเกมและเวลานอก**\n•    3. การหยุดเกมทางเทคนิค ทีมละ 2 ครั้ง ครั้งละไม่เกิน 10 นาที หากพบปัญหาต้องรีบแจ้งกรรมการทันที\n•    4. การขอเวลานอก ทีมละ 4 ครั้ง ครั้งละ 30 วินาที ใช้ได้ในช่วง Freeze time\n\nนี่เป็นสรุปบางข้อในเอกสาร หากต้องการรายละเอียด ถามหัวข้อ เช่น อุปกรณ์ การหยุดเกม หรือบทลงโทษได้ครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_cs2_psu_phuket_2026",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c082",
+    "q": "กฏตอนเเข่ง rov มีอะไรมั่ง",
+    "a": "สรุปกติกา Arena of Valor (RoV) บางประเด็นจากเอกสารที่มี:\nรายการ: Blueket Games 2025 ประเภททีมชาย\n\n**รูปแบบการแข่งขัน**\n•    เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3\n•    เวลา 10.00-11.30 รอบรองชนะเลิศ คู่ที่ 1 แข่งแบบ Single Elimination BO3\n\n**คุณสมบัติและการลงทะเบียน**\n•    6.1.3.ห้ามทีมผู้เข้าแข่งขันทุกทีมอนุญาตให้บุคคลอื่นที่ไม่ได้อยู่ในรายชื่อผู้เข้าแข่งขันในทีมของตนตามที่ได้ลงทะเบียนไว้เข้าแข่งขันโดยเด็ดขาด หากพบว่ามีชื่อผู้เข้าแข่งขันไม่ตรงตามที่ลงทะเบียนไว้ ให้ทำการบันทึกภาพหลักฐานและยุติการแข่งขันในทันที แต่หากมีการแข่งขันจนจบเกม จะถือว่าทั้งสองทีมยินยอมให้เกิดการแข่งขันขึ้น ทางทีมงานจะไม่รับฟังข้อโต้แย้งใด ๆ ทั้งสิ้น\n\n**อุปกรณ์การแข่งขัน**\n•    5.3. ไม่อนุญาตให้ใช้ Tablet หรือ iPad รวมถึงอุปกรณ์อื่นใดที่มิใช่โทรศัพท์มือถือ (Mobile Phone) ในการแข่งขัน หากตรวจสอบพบ ทีมงานจะตัดสิทธิ์ทันที\n\n**การหยุดเกมและเวลานอก**\n•    4.3.1.ในกรณีที่มีผู้เข้าแข่งขันหลุดออกจากเกม ให้ทำการหยุดเกมชั่วคราว โดยแต่ละทีมสามารถกดหยุดเกมได้ทีมละ 5 ครั้ง ครั้งละไม่เกิน 1 นาที ถ้าหากเกินเวลาดังกล่าว อีกทีมสามารถกด Resume ได้ทันทีและทำการแข่งขันต่อตามปกติ\n•    4.3.5.หากพบหลักฐานว่าผู้เข้าแข่งขันคนใดเจตนากดหยุดเกม ไม่ว่าจะในจังหวะสำคัญ หรือเพื่อการก่อกวน ปรับแพ้ในเกมที่พบการกระทำผิดในทันที และตัดสิทธิ์ทีมผู้เข้าแข่งขันดังกล่าวออกจากการแข่งขันทันที\n•    4.5.6.1. ผู้เข้าแข่งขันอาจหยุดพักเกมการแข่งขันได้ภายหลังจากเกิดเหตุการณ์ใดเหตุการณ์หนึ่งดังต่อไปนี้ โดยผู้เข้าแข่งขันดังกล่าวจะต้องส่งสัญญาณให้ผู้ตัดสินทราบโดยทันทีภายหลังจากการหยุดเกมและชี้แจงเหตุผลแห่งการหยุดเกมดังกล่าว\n\n**บทลงโทษ**\n•    4.6.3.1. ครั้งที่ 1: ตักเตือน\n\nนี่เป็นสรุปบางข้อในเอกสาร หากต้องการรายละเอียด ถามหัวข้อ เช่น อุปกรณ์ การหยุดเกม หรือบทลงโทษได้ครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_rov_blueket_2025_men",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c083",
+    "q": "กฏตอนเเข่ง tekken 8 มีอะไรมั่ง",
+    "a": "สรุปกติกา Tekken 8 บางประเด็นจากเอกสารที่มี:\nรายการ: PSU Esports ปะทะมันส์ สนั่นจอ\n\n**รูปแบบการแข่งขัน**\n•    แข่งขันแบบ เดี่ยว (1v1)\n•    FT2: ผู้ชนะคือผู้ที่ชนะครบ 2 เกมก่อน\n\n**การตั้งค่าแมตช์**\n•    จำนวนรอบต่อเกม (Round): 3\n•    เวลาแข่งขันต่อรอบ (Timer): 60 วินาที\n\n**การหยุดเกมและเวลานอก**\n•    เมื่อเริ่มเกมแล้ว ห้ามหยุดเกม ด้วยเหตุผลใด ๆ\n•    หากมีการกดหยุดเกมโดยเจตนา จะถูก ปรับแพ้ 1 รอบทันที\n•    การกดหยุดเกม (Pause) ทำได้เมื่อผู้เล่นทุกคนยินยอม และมีเหตุผลที่เหมาะสม เช่น อุปกรณ์ขัดข้องหรือเหตุฉุกเฉิน\n\n**ข้อห้ามและพฤติกรรม**\n•    ห้ามแสดงพฤติกรรมที่ขาดน้ำใจนักกีฬา เช่น การเยาะเย้ย ถากถาง หรือแสดงความไม่สุภาพทั้งทางวาจาและการกระทำต่อผู้อื่น ผู้ที่ฝ่าฝืนจะถูกปรับแพ้ทันทีโดยไม่มีข้อยกเว้น\n•    ผู้เข้าแข่งขันต้องให้เกียรติผู้ตัดสินและผู้เข้าแข่งขันคนอื่น ห้ามแสดงพฤติกรรมดูถูกหรือไม่ให้เกียรติในทุกกรณี ผู้ที่ฝ่าฝืนจะถูกปรับแพ้ทันทีโดยไม่มีข้อยกเว้น\n\nเอกสารมีทั้งข้อห้ามหยุดเกมและข้อยกเว้นกรณีฉุกเฉิน/ผู้เล่นเห็นพ้อง ต้องให้ผู้จัดยืนยันขอบเขตและบทลงโทษที่ใช้ครับ\n\nนี่เป็นสรุปบางข้อในเอกสาร หากต้องการรายละเอียด ถามหัวข้อ เช่น อุปกรณ์ การหยุดเกม หรือบทลงโทษได้ครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_tekken8_psu_esports",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c084",
+    "q": "กฏตอนแข่งวาโลมีอะไรมั่ง",
+    "a": "สรุปกติกา VALORANT บางประเด็นจากเอกสารที่มี:\nรายการ: PSU Phuket VALORANT 2026 Tournament\n\n**อุปกรณ์การแข่งขัน**\n•    ในการแข่งขันแบบ LAN ผู้เล่นต้องปฏิบัติตามข้อกำหนดเรื่องอุปกรณ์อย่างเคร่งครัดเพื่อความเท่าเทียม\n•    เทคโนโลยีคีย์บอร์ด อนุญาตให้ใช้ Snap Tap, SOCD หรือเทคโนโลยีที่เทียบเท่าได้ เว้นแต่เจ้าหน้าที่จะสั่งเป็นอย่างอื่น\n\n**ก่อนแข่งและหน้างาน**\n•    จำนวนบุคลากร ในช่วงเตรียมตัว (Match Prep) มีผู้เล่นได้ไม่เกิน 6 คน\n•    อุปกรณ์อิเล็กทรอนิกส์ ห้ามนำโทรศัพท์มือถือ, แท็บเล็ต หรือสมาร์ทวอทช์ เข้าไปในพื้นที่แข่ง จนกว่าจะจบแมตช์\n\n**การหยุดเกมและเวลานอก**\n\n**1. เวลานอกทางยุทธวิธี (Tactical Timeout)**\n•    ขอได้ 2 ครั้งต่อแผนที่ ในรอบปกติ (24 รอบแรก) ครั้งละ 60 วินาที\n•    เมื่อเข้าสู่ช่วงต่อเวลา (Overtime) จะได้เพิ่มอีกทีมละ 1 ครั้ง โดยที่โควตาจากรอบปกติจะไม่ถูกนำมาทบ\n\n**2. การหยุดเกมทางเทคนิค (Technical Pause)**\n•    ใช้เมื่อมีปัญหาอุปกรณ์ขัดข้อง, หลุดจากการเชื่อมต่อ หรือปัญหาซอฟต์แวร์\n•    ห้ามผู้เล่นสื่อสารกัน (ทั้งเสียงและข้อความ) เว้นแต่ได้รับอนุญาต\n\n**3. การหยุดกรณีฉุกเฉิน (Player Emergency Pause)**\n•    ขอได้ 1 ครั้งต่อแผนที่\n•    รวมเวลาทั้งหมดไม่เกิน 10 นาที ต่อหนึ่งแมตช์ หากเกินเวลาผู้เล่นรายนั้นอาจหมดสิทธิ์แข่งต่อและต้องใช้ตัวสำรองแทน\n\n**บทลงโทษ**\n•    3. การปรับแพ้ในรอบ (Round Loss) เมื่อพบว่าผู้เล่นหรือทีมมีเจตนาใช้ช่องโหว่เพื่อสร้างความได้เปรียบ\n\nนี่เป็นสรุปบางข้อในเอกสาร หากต้องการรายละเอียด ถามหัวข้อ เช่น อุปกรณ์ การหยุดเกม หรือบทลงโทษได้ครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_valorant_psu_phuket_2026",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c085",
+    "q": "ขอกฎการแข่งขัน CS2 ทั้งหมดทุกหัวข้อ",
+    "a": "กติกา Counter-Strike 2: รายละเอียดจากเอกสารที่บันทึกไว้ (แสดงแล้ว 8/56 ส่วน)\n\n•    ข้อมูลทั่วไป (General Information)\n\n•    ขอบเขตการบังคับใช้ กฎระเบียบนี้ใช้กับผู้เล่น ทีม และเจ้าหน้าที่ทุกคนที่เข้าร่วมการแข่งขัน CS2 อย่างเป็นทางการที่จัดโดย PSU Esports Studio - Phuket\n\n•    เวอร์ชันของเกม การแข่งขันทั้งหมดจะใช้เวอร์ชันล่าสุดของ CS2 บนแพลตฟอร์ม Steam ห้ามใช้การดัดแปลงตัวเกมที่ไม่ได้รับอนุญาตโดยเด็ดขาด\n\n•    ภาษา ภาษาทางการของการแข่งขันคือ ภาษาไทย การสื่อสาร การประท้วง และการรายงานผลทั้งหมดต้องใช้ภาษาไทย เว้นแต่จะระบุไว้เป็นอย่างอื่น\n\n•    การจับฉลากและตารางเวลา\n\n•    การแข่งขันจะแข่งขันทั้งหมด 1 วัน แข่งขัน ณ PSU Esports Studio - Phuket มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต\n\n•    การสื่อสาร ผู้เข้าร่วมทุกคนต้องใช้เซิร์ฟเวอร์ Discord ที่ทางศูนย์เป็นผู้กำหนด\n\n•    ข้อจำกัด\n\nยังเหลือ 48 ส่วน พิมพ์ “ต่อ” เพื่อดูหน้าถัดไปครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_cs2_psu_phuket_2026",
+    "mode": "pipeline:competition_rule_full_sections_source"
+  },
+  {
+    "id": "c086",
+    "q": "All documented competition rules for Tekken 8",
+    "a": "Tekken 8: detailed sections from the recorded rulebook (7/7 sections covered).\n\nCompetition Rules * Offline mode * PlayStation 5 console used * Singles (1v1) format * Match format: * FT2: Winner is the first to win two games * Each game uses R3 rules (3 rounds per game) and 60S rule (60 seconds per round) * If tied at 1-1, a deciding game will be played\n\nCharacters and Setup * Any character can be selected (except DLC characters) * No character customization allowed in any case (such as clothing, hairstyle, combat effects, aura, etc.) * Only standard skins are permitted * Assist buttons or special assist systems are allowed * No use of bugs or glitches that provide an advantage * Once the game starts, no game pausing for any reason is permitted * Any intentional game pause will result in a penalty of losing one round immediately\n\nGame settings\n* Rounds per game (Round): 3\n* Time per round (Timer): 60 seconds\n* Advantage: No advantage\n* Stage: Random\n\nCompetition etiquette\n* Unsportsmanlike behavior, such as mocking, taunting, or rude words or actions towards others, is prohibited. Violations result in an immediate forfeit without exception.\n* Competitors must respect referees and other competitors. Insulting or disrespectful behavior is prohibited in all cases. Violations result in an immediate forfeit without exception.\n\nAgreements and conduct\n* Competitors must accept and follow the rules, regulations, and referees' decisions unconditionally.\n* Organizers may change competition rules at any time without prior notice.\n* Referees' decisions are final.\n* Referees may reconsider decisions as appropriate to ensure fairness.\n\nGame Pause * Players must not leave the game before the competition ends unless authorized by the referees. * If a player leaves the game without authorization, they will be forfeited immediately. * The game may be paused only when all players agree and there is a valid reason, such as equipment malfunction or an emergency. * Pausing the game without necessity will result in the same penalty as leaving the game prematurely.\n\nDispute Resolution * Any issues must be reported to the competition organizer immediately. * In cases of disputes or protests, the decision of the supervisors or referees shall be final. Note: The competition organizer reserves the right to amend or modify these regulations without prior notice.\nAll readable recorded sections have been covered; this does not confirm rules for a new event.\nThe source has conflicting pause conditions; the organizer must confirm their application.\nSource: local://competition_rules/competition_rules_tekken8_psu_esports",
+    "mode": "pipeline:competition_rule_full_sections_source"
+  },
+  {
+    "id": "c087",
+    "q": "What are the ROV tournament rules?",
+    "a": "Selected Arena of Valor (RoV) competition rules from the recorded rulebook:\nTournament: Arena of Valor (RoV) / 2025\n\n\n**Competition format**\n•    08:40-10:00: round of 5 teams, Single Elimination BO3\n•    10:00-11:30: semifinal match 1, Single Elimination BO3\n\n**Competition equipment**\n•    5.3. Tablets, iPads and any devices other than mobile phones may not be used in competition. If detected, staff will immediately impose disqualification.\n\n**Pauses and timeouts**\n•    4.3.1. If a participant disconnects during the match, the game will be paused temporarily. Each team may pause the game up to five times, each pause not exceeding one minute. If the time limit is exceeded, the other team may immediately resume the game and continue playing normally.\n•    4.5.1.1. If a competitor intentionally disconnects from the game without informing the referee, the referee may deny the pause request.\n•    4.5.1.2 In cases where the game is paused due to technical issues, not caused by player actions, the event staff may order a pause and require players to rejoin the game after all disconnected players have reconnected.\n•    4.5.2 If the game is paused for more than 10 minutes, the event staff may order a restart of the game, unless one team has a significantly larger score than the other; in such cases, the event staff may use their discretion to declare the higher-scoring team as the winner of the interrupted game.\n\n**Penalties**\n•    6.2.4.1. Penalty: If staff verify such violations or receive complaints from others, staff will impose penalties on offending competitors by disqualifying them from the competition.\n\nThis is a summary of selected clauses. Ask about a specific topic for details.\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c088",
+    "q": "กฎแข่ง CS2 ปี 2030",
+    "a": "เอกสารกติกาที่มีระบุปี 2026 จึงยังยืนยันกติกาฉบับปี 2030 ที่ถามไม่ได้ ต้องขอเอกสารฉบับปีนั้นจากผู้จัดก่อนครับ",
+    "mode": "pipeline:competition_rule_detail_no_answer"
+  },
+  {
+    "id": "c089",
+    "q": "ตอนนี้ PC ว่างไหม",
+    "a": "วันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nโซน PC: ว่าง 0/10 รายการ ช่วง 03:39 น. เพราะศูนย์ปิดให้บริการ\n•    PC #01 (1 Person): ปิดให้บริการ\n•    PC #02 (1 Person): ปิดให้บริการ\n•    PC #03 (1 Person): ปิดให้บริการ\n•    PC #04 (1 Person): ปิดให้บริการ\n•    PC #05 (1 Person): ปิดให้บริการ\n•    PC #06 (1 Person): ปิดให้บริการ\n•    PC #07 (1 Person): ปิดให้บริการ\n•    PC #08 (1 Person): ปิดให้บริการ\n•    PC #09 (1 Person): ปิดให้บริการ\n•    PC #10 (1 Person): ปิดให้บริการ\nอัปเดต: 2026-10-10 03:39:46\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c090",
+    "q": "cockpik ว่างไหม",
+    "a": "วันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nโซน Cockpit: ว่าง 0/2 รายการ ช่วง 03:39 น. เพราะศูนย์ปิดให้บริการ\n•    Cockpit #1 (1 Person): ปิดให้บริการ\n•    Cockpit #2 (1 Person): ปิดให้บริการ\nอัปเดต: 2026-10-10 03:39:49\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c091",
+    "q": "วันนี้ตอนบ่าย3มีอุปกรณ์อะไรว่างให้เล่นบ้าง",
+    "a": "วันที่ 2026-10-10 ช่วง 15:00-16:00 น. (เวลาไทย): ศูนย์ไม่เปิดให้บริการ จึงไม่มีอุปกรณ์ที่เปิดให้จองในช่วงนี้ครับ\nอัปเดต: 2026-10-10 03:39:51\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c092",
+    "q": "Which equipment is free today at 3 pm?",
+    "a": "At 2026-10-10, 15:00-16:00 (Asia/Bangkok), the studio is closed; no equipment is bookable then.\nUpdated: 2026-10-10 03:39:53\nSource: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c093",
+    "q": "Is PC1 free today at 10 am?",
+    "a": "Date: 2026-10-10 (Asia/Bangkok)\nPC #01 (1 Person) is not bookable at 10:00-11:00 because the studio is not open then.\nUpdated: 2026-10-10 03:39:54\nSource: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c094",
+    "q": "วันนี้ VR 9:00-9:30 ว่างไหม",
+    "a": "วันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nโซน VR: ว่าง 0/1 รายการ ช่วง 09:00-10:00 น. เพราะศูนย์ปิดให้บริการ\n•    VR Station (Morning) (1-5 Persons) 30 Mins: ปิดให้บริการ\nอัปเดต: 2026-10-10 03:39:56\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c095",
+    "q": "เครื่องค้างระหว่างเล่น คืนเวลาให้ไหม",
+    "a": "กฎการจองที่บันทึกไว้เดิม: โดยทั่วไปไม่มีการคืนเงิน ยกเว้นกรณีที่ศูนย์เป็นฝ่ายผิดพลาด เช่น อุปกรณ์ขัดข้อง หรือมีเหตุสุดวิสัยที่ทำให้ศูนย์ต้องปิดให้บริการ\nhttps://esports.computing.psu.ac.th/\n\nยังไม่ได้ยืนยันวิธีคิดหรือชดเชยเวลาที่เสียไปเมื่อเครื่องค้างหรือดับครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c096",
+    "q": "Can I install a game that is not in your list?",
+    "a": "Permission to request additional games or install games, programs, or mods yourself has not been confirmed.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c097",
+    "q": "เอา Steam ตัวเองล็อกอินได้ไหม",
+    "a": "ยังไม่ได้ยืนยันว่าศูนย์มีบัญชีเกมให้ใช้หรือต้องใช้บัญชี Steam ของตนเองครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c098",
+    "q": "If I arrive 15 minutes late, can I still play?",
+    "a": "Recorded booking rule: If users fail to check in before the reserved time slot begins, the booking will be automatically cancelled with no refund.\nhttps://esports.computing.psu.ac.th/\n\n\n\nNo separate grace period or exception for arriving 15 minutes late has been confirmed.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c099",
+    "q": "เด็กอายุ10ขวบเล่นได้ไหม ต้องมีผู้ปกครองไหม",
+    "a": "ยังไม่ได้ยืนยันข้อกำหนดอายุและการมีผู้ปกครองสำหรับเด็กครับ การเปิดให้บุคคลทั่วไปใช้บริการยังใช้ยืนยันข้อนี้ไม่ได้\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c100",
+    "q": "May I stream from a studio computer?",
+    "a": "Permission to stream from the studio machines has not been confirmed.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c101",
+    "q": "จ่ายแล้วจองผิดวัน เปลี่ยนวันกับขอเลื่อนแทนคืนเงินได้ไหม",
+    "a": "ข้อมูลที่ให้มาระบุว่าจองผิดวันและจ่ายแล้วเปลี่ยนวันได้ แต่ระบุอีกข้อว่าเลื่อนวันแทนคืนเงินไม่ได้ จึงยังต้องยืนยันขอบเขตข้อยกเว้นและช่องทางดำเนินการครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c102",
+    "q": "เกมต้องอัปเดตตอนมาถึง เวลานับยังไง",
+    "a": "ยังไม่ได้ยืนยันว่าช่วงอัปเดตเกมคิดเวลาใช้บริการอย่างไรครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c103",
+    "q": "ราคาของบุคคลภายนอก",
+    "a": "ต้องการราคาของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? เลือกเครื่องเดียวหรือทุกบริการได้ครับ",
+    "mode": "pipeline:protected_price_missing_service"
+  },
+  {
+    "id": "c104",
+    "q": "PC",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c105",
+    "q": "ต้องการราคาของบุคคลภายนอก",
+    "a": "ต้องการราคาของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? เลือกเครื่องเดียวหรือทุกบริการได้ครับ",
+    "mode": "pipeline:protected_price_missing_service"
+  },
+  {
+    "id": "c106",
+    "q": "ทั้งหมด",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\n\nPlayStation 5 — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 150 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\n\nCockpit — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 200 บาท/แพ็กเกจ\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c107",
+    "q": "Service prices for external users",
+    "a": "Which service would you like the prices for: PC, PlayStation 5, Nintendo Switch, Cockpit or VR? You can also choose all services.",
+    "mode": "pipeline:protected_price_missing_service"
+  },
+  {
+    "id": "c108",
+    "q": "PC",
+    "a": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c109",
+    "q": "Service prices for external users",
+    "a": "Which service would you like the prices for: PC, PlayStation 5, Nintendo Switch, Cockpit or VR? You can also choose all services.",
+    "mode": "pipeline:protected_price_missing_service"
+  },
+  {
+    "id": "c110",
+    "q": "all of them",
+    "a": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 150 THB/package\n\nNintendo Switch — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 140 THB/package\n\nNintendo Switch — 60 minutes/package (3-4 people)\n• PSU alumni / students from other institutions: 100 THB/package\n• General adults: 280 THB/package\n\nCockpit — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\n\nVR — 30 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 190 THB/package\n• General adults: 525 THB/package\n\nVR — 60 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 375 THB/package\n• General adults: 1,050 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nPC rates use the local update dated 2026-07-27.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c111",
+    "q": "PC มีเกมอะไรบ้าง",
+    "a": "เกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c112",
+    "q": "ทั้งหมด",
+    "a": "เกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+    "mode": "pipeline:source_operation_game_list"
+  },
+  {
+    "id": "c113",
+    "q": "ขอกฎการแข่งขัน",
+    "a": "ต้องการดูกติกาของเกมใดครับ เช่น Counter-Strike 2, RoV, Tekken 8 หรือ VALORANT",
+    "mode": "pipeline:competition_target_clarification"
+  },
+  {
+    "id": "c114",
+    "q": "CS2",
+    "a": "สรุปกติกา Counter-Strike 2 บางประเด็นจากเอกสารที่มี:\nรายการ: PSU Phuket CS2 2026 Tournament\n\n**รูปแบบการแข่งขัน**\n•    1. รูปแบบทัวร์นาเมนต์ Single Elimination\n\n**ผู้เล่นและองค์ประกอบทีม**\n•    2. องค์ประกอบทีม แต่ละทีมประกอบด้วยผู้เล่น 5 คน\n\n**คุณสมบัติและการลงทะเบียน**\n•    2. ไม่อนุญาตให้ลงทะเบียนผู้เล่น หลังจากปิดรับสมัคร\n\n**อุปกรณ์การแข่งขัน**\n•    1. ผู้เล่นสามารถนำคีย์บอร์ด (มีสาย/ไร้สาย), เมาส์(มีสาย/ไร้สาย), ตัวยึดสายเมาส์ (mouse bungee), แผ่นรองเมาส์ หูฟังแบบ In-ear (มีสาย), Headset (มีสาย) มาเองได้\n\n**การตั้งค่าแมตช์**\n•    2. เวอร์ชันของเกม การแข่งขันทั้งหมดจะใช้เวอร์ชันล่าสุดของ CS2 บนแพลตฟอร์ม Steam ห้ามใช้การดัดแปลงตัวเกมที่ไม่ได้รับอนุญาตโดยเด็ดขาด\n\n**ก่อนแข่งและหน้างาน**\n•    2. ห้ามนำโทรศัพท์มือถือ แท็บเล็ต หรือสมาร์ทวอทช์ เข้าไปในพื้นที่แข่ง จนกว่าจะจบแมตช์\n\n**การหยุดเกมและเวลานอก**\n•    3. การหยุดเกมทางเทคนิค ทีมละ 2 ครั้ง ครั้งละไม่เกิน 10 นาที หากพบปัญหาต้องรีบแจ้งกรรมการทันที\n•    4. การขอเวลานอก ทีมละ 4 ครั้ง ครั้งละ 30 วินาที ใช้ได้ในช่วง Freeze time\n\nนี่เป็นสรุปบางข้อในเอกสาร หากต้องการรายละเอียด ถามหัวข้อ เช่น อุปกรณ์ การหยุดเกม หรือบทลงโทษได้ครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_cs2_psu_phuket_2026",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c115",
+    "q": "I want the competition rules",
+    "a": "Which game's competition rules would you like to check: Counter-Strike 2, RoV, Tekken 8, or VALORANT?",
+    "mode": "pipeline:competition_target_clarification_en"
+  },
+  {
+    "id": "c116",
+    "q": "Tekken 8",
+    "a": "Selected Tekken 8 competition rules from the recorded rulebook:\nTournament: Tekken 8\n\n\n**Competition format**\n•    Singles (1v1) format\n•    FT2: Winner is the first to win two games\n\n**Match settings**\n•    Rounds per game (Round): 3\n•    Time per round (Timer): 60 seconds\n\n**Pauses and timeouts**\n•    Once the game starts, no game pausing for any reason is permitted\n•    Any intentional game pause will result in a penalty of losing one round immediately\n•    The game may be paused only when all players agree and there is a valid reason, such as equipment malfunction or an emergency.\n•    Pausing the game without necessity will result in the same penalty as leaving the game prematurely.\n\n**Restrictions and conduct**\n•    Unsportsmanlike behavior, such as mocking, taunting, or rude words or actions towards others, is prohibited. Violations result in an immediate forfeit without exception.\n•    Competitors must respect referees and other competitors. Insulting or disrespectful behavior is prohibited in all cases. Violations result in an immediate forfeit without exception.\n\n**Disputes**\n•    In cases of disputes or protests, the decision of the supervisors or referees shall be final. Note: The competition organizer reserves the right to amend or modify these regulations without prior notice.\n\nThe recorded rulebook contains both a no-pause clause and an emergency/agreement exception. Ask the organizer to confirm which conditions and penalties apply.\n\nThis is a summary of selected clauses. Ask about a specific topic for details.\nSource: local://competition_rules/competition_rules_tekken8_psu_esports",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c117",
+    "q": "PC full-day rental price for external organizations",
+    "a": "Zone rental fees for organizations\n\n**PC Zone**\n• External organizations: full day 4,000 THB\n• Seating capacity: 43 seats; equipment: 10 PC units\n\nPrices are per zone for organizations, not per player or machine. The workbook does not define the rental hours or effective dates.\n\nSource: user-provided half/full-day rental workbook\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c118",
+    "q": "How many people can it accommodate?",
+    "a": "Zone rental fees for organizations\n\n**PC Zone**\n• Seating capacity: 43 seats; equipment: 10 PC units\n\nSource: user-provided half/full-day rental workbook\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c119",
+    "q": "PC full-day rental price for external organizations",
+    "a": "Zone rental fees for organizations\n\n**PC Zone**\n• External organizations: full day 4,000 THB\n• Seating capacity: 43 seats; equipment: 10 PC units\n\nPrices are per zone for organizations, not per player or machine. The workbook does not define the rental hours or effective dates.\n\nSource: user-provided half/full-day rental workbook\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c120",
+    "q": "How can I reserve it?",
+    "a": "Zone rental fees for organizations\n\nThe workbook lists rental fees but does not specify the rental booking procedure. Please confirm it with the studio.\n\nSource: user-provided half/full-day rental workbook\nlocal://service_fee/zone_rental_fees_20261006",
+    "mode": "pipeline:zone_rental_fee"
+  },
+  {
+    "id": "c121",
+    "q": "ราคา PC บุคคลทั่วไป",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c122",
+    "q": "แล้ว VR ล่ะ",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c123",
+    "q": "ราคา PC บุคคลทั่วไป",
+    "a": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:structured_service_fee_conversation"
+  },
+  {
+    "id": "c124",
+    "q": "กฎแข่ง ROV ล่ะ",
+    "a": "สรุปกติกา Arena of Valor (RoV) บางประเด็นจากเอกสารที่มี:\nรายการ: Blueket Games 2025 ประเภททีมชาย\n\n**รูปแบบการแข่งขัน**\n•    เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3\n•    เวลา 10.00-11.30 รอบรองชนะเลิศ คู่ที่ 1 แข่งแบบ Single Elimination BO3\n\n**คุณสมบัติและการลงทะเบียน**\n•    6.1.3.ห้ามทีมผู้เข้าแข่งขันทุกทีมอนุญาตให้บุคคลอื่นที่ไม่ได้อยู่ในรายชื่อผู้เข้าแข่งขันในทีมของตนตามที่ได้ลงทะเบียนไว้เข้าแข่งขันโดยเด็ดขาด หากพบว่ามีชื่อผู้เข้าแข่งขันไม่ตรงตามที่ลงทะเบียนไว้ ให้ทำการบันทึกภาพหลักฐานและยุติการแข่งขันในทันที แต่หากมีการแข่งขันจนจบเกม จะถือว่าทั้งสองทีมยินยอมให้เกิดการแข่งขันขึ้น ทางทีมงานจะไม่รับฟังข้อโต้แย้งใด ๆ ทั้งสิ้น\n\n**อุปกรณ์การแข่งขัน**\n•    5.3. ไม่อนุญาตให้ใช้ Tablet หรือ iPad รวมถึงอุปกรณ์อื่นใดที่มิใช่โทรศัพท์มือถือ (Mobile Phone) ในการแข่งขัน หากตรวจสอบพบ ทีมงานจะตัดสิทธิ์ทันที\n\n**การหยุดเกมและเวลานอก**\n•    4.3.1.ในกรณีที่มีผู้เข้าแข่งขันหลุดออกจากเกม ให้ทำการหยุดเกมชั่วคราว โดยแต่ละทีมสามารถกดหยุดเกมได้ทีมละ 5 ครั้ง ครั้งละไม่เกิน 1 นาที ถ้าหากเกินเวลาดังกล่าว อีกทีมสามารถกด Resume ได้ทันทีและทำการแข่งขันต่อตามปกติ\n•    4.3.5.หากพบหลักฐานว่าผู้เข้าแข่งขันคนใดเจตนากดหยุดเกม ไม่ว่าจะในจังหวะสำคัญ หรือเพื่อการก่อกวน ปรับแพ้ในเกมที่พบการกระทำผิดในทันที และตัดสิทธิ์ทีมผู้เข้าแข่งขันดังกล่าวออกจากการแข่งขันทันที\n•    4.5.6.1. ผู้เข้าแข่งขันอาจหยุดพักเกมการแข่งขันได้ภายหลังจากเกิดเหตุการณ์ใดเหตุการณ์หนึ่งดังต่อไปนี้ โดยผู้เข้าแข่งขันดังกล่าวจะต้องส่งสัญญาณให้ผู้ตัดสินทราบโดยทันทีภายหลังจากการหยุดเกมและชี้แจงเหตุผลแห่งการหยุดเกมดังกล่าว\n\n**บทลงโทษ**\n•    4.6.3.1. ครั้งที่ 1: ตักเตือน\n\nนี่เป็นสรุปบางข้อในเอกสาร หากต้องการรายละเอียด ถามหัวข้อ เช่น อุปกรณ์ การหยุดเกม หรือบทลงโทษได้ครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_rov_blueket_2025_men",
+    "mode": "pipeline:competition_rule_overview_source"
+  },
+  {
+    "id": "c125",
+    "q": "วันนี้ PC1 ตอน10โมงว่างไหม",
+    "a": "วันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nPC #01 (1 Person) ยังจองไม่ได้ช่วง 10:00-11:00 น. เพราะศูนย์ไม่เปิดให้บริการในเวลานั้นครับ\nอัปเดต: 2026-10-10 03:40:10\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c126",
+    "q": "แล้ว PC2 ล่ะ",
+    "a": "วันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nPC #02 (1 Person) ยังจองไม่ได้ช่วง 10:00-11:00 น. เพราะศูนย์ไม่เปิดให้บริการในเวลานั้นครับ\nอัปเดต: 2026-10-10 03:40:12\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c127",
+    "q": "เปิดกี่โมง ปิดกี่โมง",
+    "a": "วันและช่วงเวลาให้บริการตามตารางปกติ (ไม่ใช่สถานะเครื่องว่างแบบสด):\n•    วันจันทร์: เปิด 13:00-16:00; Maintenance 09:00-12:00\n•    วันอังคาร-พฤหัสบดี: เปิด 09:00-12:00, 13:00-16:00\n•    วันศุกร์: เปิด 09:00-12:00; Maintenance 13:00-16:00\n•    วันเสาร์-อาทิตย์: ไม่มีรอบให้บริการหรือจองตามตารางปกติ\nวันปิดพิเศษมีผลก่อนตารางปกติ และช่วงที่เปิดไม่ได้ยืนยันว่าเครื่องยังว่างครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:source_operation_schedule_query"
+  },
+  {
+    "id": "c128",
+    "q": "What are your opening hours?",
+    "a": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:source_operation_schedule_query"
+  },
+  {
+    "id": "c129",
+    "q": "วัน Maintenance ใช้บริการได้ไหม",
+    "a": "วันและช่วงเวลาให้บริการตามตารางปกติ (ไม่ใช่สถานะเครื่องว่างแบบสด):\n•    วันจันทร์: เปิด 13:00-16:00; Maintenance 09:00-12:00\n•    วันอังคาร-พฤหัสบดี: เปิด 09:00-12:00, 13:00-16:00\n•    วันศุกร์: เปิด 09:00-12:00; Maintenance 13:00-16:00\n•    วันเสาร์-อาทิตย์: ไม่มีรอบให้บริการหรือจองตามตารางปกติ\nวันปิดพิเศษมีผลก่อนตารางปกติ และช่วงที่เปิดไม่ได้ยืนยันว่าเครื่องยังว่างครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:source_operation_schedule_query"
+  },
+  {
+    "id": "c130",
+    "q": "Is the studio open on maintenance days?",
+    "a": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:source_operation_schedule_query"
+  },
+  {
+    "id": "c131",
+    "q": "วันอาทิตย์เปิดไหม",
+    "a": "วันและช่วงเวลาให้บริการตามตารางปกติ (ไม่ใช่สถานะเครื่องว่างแบบสด):\n•    วันจันทร์: เปิด 13:00-16:00; Maintenance 09:00-12:00\n•    วันอังคาร-พฤหัสบดี: เปิด 09:00-12:00, 13:00-16:00\n•    วันศุกร์: เปิด 09:00-12:00; Maintenance 13:00-16:00\n•    วันเสาร์-อาทิตย์: ไม่มีรอบให้บริการหรือจองตามตารางปกติ\nวันปิดพิเศษมีผลก่อนตารางปกติ และช่วงที่เปิดไม่ได้ยืนยันว่าเครื่องยังว่างครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:source_operation_schedule_query"
+  },
+  {
+    "id": "c132",
+    "q": "Where is the studio and when does it open?",
+    "a": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: Where is the studio\nThe studio is in Building 5, Floor 1, Prince of Songkla University, Phuket Campus, 80 Moo 1 Vichitsongkram Road, Kathu, Phuket 83120.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008\n\nQuestion 2: when does it open\nRegular service timetable (Asia/Bangkok):\n•    Monday: 09:00-12:00 is maintenance (no play or booking); 13:00-16:00 is open for play.\n•    Tuesday: 09:00-12:00 is open for play; 13:00-16:00 is open for play.\n•    Wednesday: 09:00-12:00 is open for play; 13:00-16:00 is open for play.\n•    Thursday: 09:00-12:00 is open for play; 13:00-16:00 is open for play.\n•    Friday: 09:00-12:00 is open for play; 13:00-16:00 is maintenance (no play or booking).\n•    Saturday: no regular service period is listed.\n•    Sunday: no regular service period is listed.\n•    12:00-13:00 is the lunch break; play and booking are unavailable.\nRecorded special closures override this regular timetable. A Thai public holiday alone does not automatically close the studio.\nThis is the regular timetable, not live device availability.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+    "mode": "pipeline:multi_question_splitter"
+  },
+  {
+    "id": "c133",
+    "q": "จองเครื่องยังไง ขอขั้นตอนทั้งหมด",
+    "a": "จองคิวเล่นเกม/ใช้อุปกรณ์ได้ผ่านระบบจองออนไลน์ครับ\nขั้นตอนโดยสรุปคือ 1) เลือกบริการหรือโซนที่ต้องการใช้ 2) เลือกวันและรอบเวลา 3) กรอก Student ID/Staff ID/National ID ชื่อ นามสกุล อีเมล และเบอร์โทรศัพท์ 4) ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง 5) แนบสลิปและยืนยันการจอง\nต้องจองล่วงหน้าอย่างน้อย 1 ชั่วโมง และหลังจองต้องชำระเงินภายใน 10 นาทีครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:source_operation_booking_how_to"
+  },
+  {
+    "id": "c134",
+    "q": "How do I book a PC? Give all the steps.",
+    "a": "Booking steps:\n• Select a service.\n• Choose a date and time.\n• Fill in your user information.\n• Review the details.\n• Pay by bank transfer.\n• Upload the payment slip.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)",
+    "mode": "pipeline:rule_en"
+  },
+  {
+    "id": "c135",
+    "q": "ชำระเงินยังไง จ่ายเงินสดได้ไหม",
+    "a": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: ชำระเงินยังไง\nชำระเงินโดยโอนผ่าน Siam Commercial Bank (ธนาคารไทยพาณิชย์) ชื่อบัญชี PSU Esports Studio - Phuket เลขบัญชี 795-276244-1 และต้องแนบสลิปการโอนเงิน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/\n\nคำถามที่ 2: จ่ายเงินสดได้ไหม\nยังไม่มีข้อมูลยืนยันว่าชำระเงินสดได้หรือไม่ครับ กรุณาตรวจสอบกับศูนย์ก่อนเลือกวิธีชำระนี้",
+    "mode": "pipeline:multi_question_splitter"
+  },
+  {
+    "id": "c136",
+    "q": "Can I pay cash when I arrive?",
+    "a": "Acceptance of cash has not been confirmed. Please check with the studio before choosing this payment method.",
+    "mode": "pipeline:source_operation_cash_policy_unconfirmed"
+  },
+  {
+    "id": "c137",
+    "q": "มี 100 บาท เล่น PC ได้กี่รอบ บุคคลทั่วไป",
+    "a": "งบ 100 บาท — บุคคลทั่วไป (คำนวณจากอัตราที่บันทึกไว้)\n•    PC (1 คน), 60 นาที/แพ็กเกจ: ได้ 1 แพ็กเกจเต็ม แพ็กเกจละ 70 บาท รวม 60 นาที เหลือ 30 บาท\nนี่เป็นการคำนวณงบ ไม่ใช่การจอง ยังต้องตรวจสิทธิ์ จำนวนรอบที่จองได้และสถานะรอบว่างจริงครับ\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:source_operation_affordability"
+  },
+  {
+    "id": "c138",
+    "q": "I have 100 THB and want to play PC as a general adult. How many sessions can I afford?",
+    "a": "Budget: 100 THB — General adults (recorded package rates).\n• PC (1 people), 60 minutes/package: 1 whole package(s), 70 THB each, 60 minutes total; 30 THB left.\nThis is an affordability calculation, not a reservation. Booking limits, eligibility and live slots still apply.\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:source_operation_affordability"
+  },
+  {
+    "id": "c139",
+    "q": "ปุ่มยิงกับรีโหลดใน CS2 คืออะไร",
+    "a": "Counter-Strike 2 ปุ่มที่ตรงกับคำถาม:\nPC\n•    Left Mouse Button: ยิง - ยิงอาวุธ\n•    R: รีโหลด - เปลี่ยนกระสุน\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://www.holy.gg/en/post/counter-strike-2-keyboard-mouse-controls-pc",
+    "mode": "pipeline:structured_game_controls"
+  },
+  {
+    "id": "c140",
+    "q": "How do I shoot and reload in CS2?",
+    "a": "Counter-Strike 2 controls:\n- Left Mouse Button: Fire\n- Right Mouse Button: Secondary Fire\n- R: Reload\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.holy.gg/en/post/counter-strike-2-keyboard-mouse-controls-pc",
+    "mode": "pipeline:source_operation_control_lookup"
+  },
+  {
+    "id": "c141",
+    "q": "ขอปุ่มควบคุม Tekken 8 ทั้งหมด",
+    "a": "TEKKEN 8 มีข้อมูลปุ่มควบคุมดังนี้:\nPlayStation / PS5\n•    Square: หมัดซ้าย / ต่อยซ้าย - ออกหมัดแย็บหรือโจมตีด้วยมือซ้าย เป็นปุ่มหลักในการเริ่มต้นเฟรมคอมโบที่รวดเร็ว\n•    Triangle: หมัดขวา / ต่อยขวา - ออกหมัดหนักหรือโจมตีด้วยมือขวา มักใช้ทำดาเมจแรงหรือสวนกลับ (Counter)\n•    Cross: ลูกเตะซ้าย - ใช้ขาซ้ายเตะสกัดหรือโจมตีเพื่อเปิดช่องว่างของศัตรู\n•    Circle: ลูกเตะขวา - ใช้ขาขวาหวดเตะอย่างรุนแรง มักเป็นท่าเคลียร์ระยะหรือตัดขาที่ทำดาเมจสูง\n•    D-Pad Up: กระโดด - ควบคุมให้ตัวละครกระโดดขึ้นด้านบนเพื่อหลบการโจมตีล่าง หรือใช้กดร่วมกับปุ่มโจมตีกลางอากาศ\n•    D-Pad Left: ถอยหลัง / บล็อก - บังคับตัวละครให้เดินถอยหลังเพื่อรักษาระยะ หรือใช้กดค้างเพื่อ \"บล็อก (Guard)\" การโจมตีระดับสูงและระดับกลางของศัตรู\n•    D-Pad Down: ย่อตัว / ก้มหลบ - สั่งให้ตัวละครย่อตัวต่ำ ใช้ก้มหลบหมัดหรือการโจมตีระดับสูง (High) และใช้บล็อกการโจมตีระดับต่ำ (Low)\n•    L (Left Stick): เคลื่อนที่ - ขยับทิศทางของตัวละครทั่วไป หรือใช้โยกทิศทางในการเคลื่อนที่และเดินหน้าถอยหลัง\n•    L1: สเปเชียลสไตล์ - กดเพื่อเปิด/ปิดโหมดช่วยเหลืออัจฉริยะ ช่วยให้กดคอมโบและท่าไม้ตายของตัวละครนั้น ๆ ได้ง่ายด้วยปุ่มเดียว\n•    R1: เปิดใช้งาน Heat - ระเบิดพลัง Heat System เข้าสู่สถานะโอเวอร์ไดรฟ์เพื่อบัฟการโจมตีและเพิ่มคุณสมบัติพิเศษให้ตัวละคร\n•    R1 (While in Heat): ฮีทสแมช - ปลดปล่อยท่าโจมตีเผด็จศึกอันทรงพลังปิดฉากคอมโบ โดยจะใช้เกจ Heat ที่เหลืออยู่ทั้งหมดทิ้งทันที\n•    Options: หยุดเกม - หยุดเกมชั่วคราวเพื่อเข้าสู่หน้าต่างเมนู เช่น การเช็ก Move List (รายการท่า) หรือการตั้งค่าอื่น ๆ\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://gameinputdatabase.com/game/83",
+    "mode": "pipeline:structured_game_controls"
+  },
+  {
+    "id": "c142",
+    "q": "What are the basic controls for Tekken 8?",
+    "a": "TEKKEN 8 controls:\n- Square: Left Punch\n- Triangle: Right Punch\n- Cross: Left Kick\n- Circle: Right Kick\n- D-Pad Up: Jump\n- D-Pad Left: Move Backward\n- D-Pad Down: Duck\n- L (Left Stick): Move\n- L1: Special Style\n- R1: Heat Activate\n- R1 (While in Heat): Heat Smash\n- Options: Pause\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://gameinputdatabase.com/game/83",
+    "mode": "pipeline:structured_game_controls_en"
+  },
+  {
+    "id": "c143",
+    "q": "คอมของศูนย์สเปคอะไร",
+    "a": "Gaming PC รุ่น MSI MAG Infinite S3 14th: เครื่องคอมพิวเตอร์เกมมิ่งของ PC Zone สำหรับเล่นเกมบนคอมและฝึกซ้อมอีสปอร์ต\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    เล่น VALORANT\n•    เล่น Counter-Strike 2\n•    เล่น PUBG: BATTLEGROUNDS\n•    เล่น Call of Duty: Warzone\n•    เล่น TEKKEN 8\n•    เล่น League of Legends\nหมายเหตุ: สเปกที่บันทึกไว้ในโปรเจกต์: Intel Core i5-14400, RAM DDR5 32GB, NVIDIA GeForce RTX 5060 8GB\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home",
+    "mode": "pipeline:structured_equipment_item"
+  },
+  {
+    "id": "c144",
+    "q": "What PC specifications does the studio have?",
+    "a": "Recorded PC specifications: Gaming PC model MSI MAG Infinite S3 14th 10 Units, CPU Intel Core i5-14400, RAM DDR5 32GB, GPU NVIDIA GeForce RTX 5060 8GB, Mainboard MSI PRO H610M-G PC Zone has 10 Gaming PCs\nSource: local hardware/CPU-Z specifications recorded in the project; the website Home inventory does not independently confirm these internal components.",
+    "mode": "pipeline:source_operation_equipment_spec_lookup"
+  },
+  {
+    "id": "c145",
+    "q": "ต้องเป็นสมาชิกไหม มีที่จอดรถไหม แล้วต้องเอาบัตรอะไรไป",
+    "a": "ไม่ต้องเป็นสมาชิกก็สามารถใช้บริการได้ครับ\n\nมีที่จอดรถหน้าตึก 5 สำหรับรถยนต์และมอเตอร์ไซค์ครับ\n\nเมื่อมาถึงให้แสดงบัตรประชาชน บัตรนักศึกษา บัตรนักเรียน หรือ Passport อย่างใดอย่างหนึ่งครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c146",
+    "q": "Do I need membership, is there parking, and what ID should I bring?",
+    "a": "Membership is not required to use the studio.\n\nParking for cars and motorcycles is available in front of Building 5.\n\nAt arrival, present a national ID card, university student card, school student card, or passport.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c147",
+    "q": "เอาเมาส์มาเองได้ไหม แล้วจองผิดเครื่องเปลี่ยนยังไง",
+    "a": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: เอาเมาส์มาเองได้ไหม\nไม่อนุญาตให้นำคีย์บอร์ดหรือเมาส์ส่วนตัวมาใช้ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008\n\nคำถามที่ 2: จองผิดเครื่องเปลี่ยนยังไง\nกรณีจองผิดเครื่อง ให้กดยกเลิกผ่านอีเมล แล้วจองเข้ามาใหม่ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:multi_question_splitter"
+  },
+  {
+    "id": "c148",
+    "q": "Can I bring my own keyboard, and can someone else use my booking?",
+    "a": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: Can I bring my own keyboard\nPersonal keyboards and mice are not allowed for general studio use.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008\n\nQuestion 2: can someone else use my booking\nThe player must be the person who booked or be named in the booking. Someone not listed cannot use the booking instead.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:multi_question_splitter"
+  },
+  {
+    "id": "c149",
+    "q": "วันนี้ VR เวลา 09:00 ถึง 09:30 ว่างไหม",
+    "a": "วันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nโซน VR: ว่าง 0/1 รายการ ช่วง 09:00-10:00 น. เพราะศูนย์ปิดให้บริการ\n•    VR Station (Morning) (1-5 Persons) 30 Mins: ปิดให้บริการ\nอัปเดต: 2026-10-10 03:40:42\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c150",
+    "q": "Is VR free today from 09:00 to 09:30?",
+    "a": "Date: 2026-10-10 (Asia/Bangkok)\nVR Zone: 0/1 resources are available at 09:00-10:00 because the studio is not open.\n•    VR Station (Morning) (1-5 Persons) 30 Mins: studio closed\nUpdated: 2026-10-10 03:40:45\nSource: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:live_booking_status_fast_path"
+  },
+  {
+    "id": "c151",
+    "q": "วันนี้ PC1 เวลา10โมง และ PC2 เวลา11โมงว่างไหม",
+    "a": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: วันนี้ PC1 เวลา 10 โมง ว่างไหม\nวันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nPC #01 (1 Person) ยังจองไม่ได้ช่วง 10:00-11:00 น. เพราะศูนย์ไม่เปิดให้บริการในเวลานั้นครับ\nอัปเดต: 2026-10-10 03:40:47\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation\n\nคำถามที่ 2: 2026-10-10 PC2 เวลา 11 โมงว่างไหม\nวันที่ตรวจสอบ: 2026-10-10 (เวลาไทย)\nPC #02 (1 Person) ยังจองไม่ได้ช่วง 11:00-12:00 น. เพราะศูนย์ไม่เปิดให้บริการในเวลานั้นครับ\nอัปเดต: 2026-10-10 03:40:48\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+    "mode": "pipeline:multi_question_splitter"
+  },
+  {
+    "id": "c152",
+    "q": "PC มีเกมอะไรบ้าง และคนทั่วไปเล่นสองชั่วโมงเท่าไหร่",
+    "a": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: PC มีเกมอะไรบ้าง\nเกมที่มีข้อมูลยืนยันในโซนที่ถาม\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games\n\nคำถามที่ 2: PC คนทั่วไปเล่นสองชั่วโมงเท่าไหร่\nราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\nระยะเวลาที่ถาม 120 นาที (2 ชั่วโมง) คิดเป็น 2 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ × 2 = 140 บาท\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:multi_question_splitter"
+  },
+  {
+    "id": "c153",
+    "q": "What games are on PC, and how much does two hours cost for a general adult?",
+    "a": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What games are on PC\nThere are currently 6 verified games in PC Zone.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)\n\nQuestion 2: PC how much does two hours cost for a general adult\nService prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• General adults: 70 THB/package × 2 = 140 THB\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+    "mode": "pipeline:multi_question_splitter"
+  },
+  {
+    "id": "c154",
+    "q": "คนจองกับคนเล่นต้องเป็นคนเดียวกันไหม",
+    "a": "คนเล่นต้องเป็นคนที่จองหรือมีรายชื่ออยู่ในรายการจอง ไม่สามารถให้ผู้ที่ไม่มีรายชื่อมาใช้แทนได้ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c155",
+    "q": "นั่งดูเพื่อนต้องเสียเงินไหม",
+    "a": "สามารถมานั่งดูเพื่อนเล่นได้ครับ\n\nยังไม่ได้ระบุค่าเข้าชมหรือยืนยันว่าเข้าดูเพื่อนฟรีครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  },
+  {
+    "id": "c156",
+    "q": "Is parking free?",
+    "a": "Parking for cars and motorcycles is available in front of Building 5.\n\nParking fees have not been specified.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+    "mode": "pipeline:user_service_facts"
+  }
+]

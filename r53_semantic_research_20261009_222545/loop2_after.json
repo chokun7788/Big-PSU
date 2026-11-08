@@ -1,0 +1,538 @@
+[
+  {
+    "name": "network_narrowed",
+    "question": "แปลประโยค Please check your network connection เป็นภาษาไทย",
+    "answer": "กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตครับ",
+    "locale": "th",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_term_or_unit_preservation",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "accuracy",
+            "reason": "term_or_unit_preservation",
+            "severity": "major"
+          },
+          {
+            "type": "accuracy",
+            "reason": "network_scope_narrowed",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "network_correct",
+    "question": "แปลประโยค Please check your network connection เป็นภาษาไทย",
+    "answer": "กรุณาตรวจสอบการเชื่อมต่อเครือข่ายของคุณ",
+    "locale": "th",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "internet_correct",
+    "question": "แปลประโยค Please check your internet connection เป็นภาษาไทย",
+    "answer": "กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ",
+    "locale": "th",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "number_changed",
+    "question": "Translate \"Wait 15 minutes.\" into Thai.",
+    "answer": "รอ 50 นาที",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_number_preservation",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "accuracy",
+            "reason": "number_preservation",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "number_correct",
+    "question": "Translate \"Wait 15 minutes.\" into Thai.",
+    "answer": "รอ 15 นาที",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "negation_lost",
+    "question": "Translate \"You cannot cancel the booking.\" into Thai.",
+    "answer": "คุณสามารถยกเลิกการจองได้",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_negation_preservation",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "accuracy",
+            "reason": "negation_preservation",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "negation_correct",
+    "question": "Translate \"You cannot cancel the booking.\" into Thai.",
+    "answer": "คุณไม่สามารถยกเลิกการจองได้",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "device_changed",
+    "question": "Translate \"Use PC1 for 60 minutes.\" into Thai.",
+    "answer": "ใช้ PC2 เป็นเวลา 60 นาที",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_entity_preservation",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "accuracy",
+            "reason": "entity_preservation",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "device_correct",
+    "question": "Translate \"Use PC1 for 60 minutes.\" into Thai.",
+    "answer": "ใช้ PC1 เป็นเวลา 60 นาที",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "unit_changed",
+    "question": "Translate \"Wait 15 minutes.\" into Thai.",
+    "answer": "รอ 15 ชั่วโมง",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_term_or_unit_preservation",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "accuracy",
+            "reason": "term_or_unit_preservation",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "quoted_note_valid",
+    "question": "Translate \"Note: Check your network.\" into Thai.",
+    "answer": "หมายเหตุ: ตรวจสอบเครือข่ายของคุณ",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": "explicit_source_target",
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "meta_leak",
+    "question": "Explain latency briefly.",
+    "answer": "Latency is a delay.\nNote: The term latency is preserved as it was part of the original query.",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_instruction_commentary",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "addition",
+            "reason": "instruction_commentary",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "question_tail",
+    "question": "Explain latency briefly.",
+    "answer": "Latency is a delay.\nClarifying question: Are you seeking a general explanation?",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_unnecessary_clarifying_tail",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "addition",
+            "reason": "unnecessary_clarifying_tail",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "greeting_only_sentence",
+    "question": "Write a friendly two-sentence invitation to a study session.",
+    "answer": "Hi everyone! Join our study session.",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_greeting_consumes_invitation_sentence",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "coverage",
+            "reason": "greeting_consumes_invitation_sentence",
+            "severity": "minor"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "invitation_content",
+    "question": "Write a friendly two-sentence invitation to a study session.",
+    "answer": "Join our study session. We can learn together.",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [],
+        "sources": [],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "ping_bandwidth",
+    "question": "Explain ping briefly.",
+    "answer": "Ping measures network bandwidth in Mbps.",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_ping_bandwidth_claim",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [
+          "ping"
+        ],
+        "sources": [
+          "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ping"
+        ],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "factuality",
+            "reason": "ping_bandwidth_claim",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ping_correct",
+    "question": "Explain ping briefly.",
+    "answer": "Ping tests reachability and round-trip time using ICMP.",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [
+          "ping"
+        ],
+        "sources": [
+          "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/ping"
+        ],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "http_unqualified",
+    "question": "Explain HTTP briefly.",
+    "answer": "HTTP always operates over TCP.",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_transport_version_qualifier_missing",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [
+          "http"
+        ],
+        "sources": [
+          "https://www.rfc-editor.org/rfc/rfc9114.html"
+        ],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "factuality",
+            "reason": "transport_version_qualifier_missing",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "http_exception",
+    "question": "Explain HTTP briefly.",
+    "answer": "HTTP/1.1 and HTTP/2 commonly use TCP; HTTP/3 uses QUIC.",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [
+          "http"
+        ],
+        "sources": [
+          "https://www.rfc-editor.org/rfc/rfc9114.html"
+        ],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  },
+  {
+    "name": "ram_nonvolatile",
+    "question": "Explain RAM and SSD briefly.",
+    "answer": "RAM retains its data after power is removed; SSD provides storage.",
+    "locale": "en",
+    "expected_accept": false,
+    "actual_accept": false,
+    "reason": "semantic_ram_nonvolatile_claim",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [
+          "memory"
+        ],
+        "sources": [
+          "https://www.corsair.com/uk/en/explorer/diy-builder/memory/volatile-vs-non-volatile-memory-whats-the-difference/"
+        ],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": [
+          {
+            "type": "factuality",
+            "reason": "ram_nonvolatile_claim",
+            "severity": "major"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ram_correct",
+    "question": "Explain RAM and SSD briefly.",
+    "answer": "Conventional RAM is volatile working memory; SSD is non-volatile storage.",
+    "locale": "en",
+    "expected_accept": true,
+    "actual_accept": true,
+    "reason": "ok",
+    "passed": true,
+    "metadata": {
+      "ollama_done_reason": "stop",
+      "llm_semantic_quality": {
+        "translation_extraction": null,
+        "evidence_ids": [
+          "memory"
+        ],
+        "sources": [
+          "https://www.corsair.com/uk/en/explorer/diy-builder/memory/volatile-vs-non-volatile-memory-whats-the-difference/"
+        ],
+        "semantic_verification": "bounded_constraints_only",
+        "all_claims_verified": false,
+        "errors": []
+      }
+    }
+  }
+]

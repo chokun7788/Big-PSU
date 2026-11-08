@@ -1,0 +1,143 @@
+{
+  "question_key": "a87e6d5866fea2f6741277c62836106d3b63f80fc9e787f9f094e3bedb00964e",
+  "example_sha256": "16d6068dc0666df667d0155f5005d21f4007c80c072071c56193b34b0dbece62",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One ordinary Cockpit play-price request; polite preface is style.",
+      "raw_quotes": [
+        "Could you please help me with this: How much does Cockpit cost"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount is retained, separate from onsite zone rental.",
+      "raw_quotes": [
+        "Could you please help me with this: How much does Cockpit cost"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Cockpit is the named service target/constraint.",
+      "raw_quotes": [
+        "Could you please help me with this: How much does Cockpit cost"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No audience, duration or number of users is supplied or inherited.",
+      "raw_quotes": [
+        "Could you please help me with this: How much does Cockpit cost"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A clear price need can still require input before a total; do not invent a student or adult identity.",
+      "raw_quotes": [
+        "Could you please help me with this: How much does Cockpit cost"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "The three Cockpit rates distinguish PSU staff/student, alumni/general student and general adult audiences for one recorded service.",
+      "raw_quotes": [
+        "Could you please help me with this: How much does Cockpit cost"
+      ],
+      "source_record_ids": [
+        "migrated_rate_cockpit_60_1_1_psu_student_staff",
+        "migrated_rate_cockpit_60_1_1_psu_alumni_general_student",
+        "migrated_rate_cockpit_60_1_1_general_adult"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No zero-price, adult price, session quantity or total is taught.",
+      "raw_quotes": [
+        "Could you please help me with this: How much does Cockpit cost"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 64,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "Cockpit"
+    ],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: How much does Cockpit cost",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "Cockpit"
+    ],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: How much does Cockpit cost",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Cockpit",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Cockpit",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_cockpit_60_1_1_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "7af8f489e2a8f16416e45b8eafd2fcd1a55298c0b6109fb3bf6cca6256cec055"
+    },
+    "migrated_rate_cockpit_60_1_1_psu_alumni_general_student": {
+      "revision": 2,
+      "record_sha256": "8e17ef75b09a1e846cac128eabbee966722287bb407ae1d09908ac91e977f07c"
+    },
+    "migrated_rate_cockpit_60_1_1_general_adult": {
+      "revision": 2,
+      "record_sha256": "2d3ce0f7d9ed9b6dd8051209f008c905dee62a8648e0c2bf32b5d8aeca26faa2"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "question_key": "16f6644813f53f2bbb0505cb450a34ac9f1169b893ada730093cb5118018a97c",
+  "example_sha256": "d4d900226923ffdc8b3d3a744ebb762b84bc6197c97451416b9cb5f722395906",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One PUBG:BATTLEGROUNDS studio-zone question.",
+      "raw_quotes": [
+        "Which studio zone has PUBG: BATTLEGROUNDS"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/detail/zone retains the studio relation.",
+      "raw_quotes": [
+        "Which studio zone has PUBG: BATTLEGROUNDS"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PUBG: BATTLEGROUNDS is the full game target, not a service; keep title punctuation.",
+      "raw_quotes": [
+        "Which studio zone has PUBG: BATTLEGROUNDS"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No mobile edition, tournament event or previous platform is inherited.",
+      "raw_quotes": [
+        "Which studio zone has PUBG: BATTLEGROUNDS"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The colon is inside the source game title, not a task separator.",
+      "raw_quotes": [
+        "Which studio zone has PUBG: BATTLEGROUNDS"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_pubg records the matching title and studio_zone_ids separately from its PC service links.",
+      "raw_quotes": [
+        "Which studio zone has PUBG: BATTLEGROUNDS"
+      ],
+      "source_record_ids": [
+        "game_detail_pubg"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No PC zone, live installation state or publisher platform claim is taught.",
+      "raw_quotes": [
+        "Which studio zone has PUBG: BATTLEGROUNDS"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 152,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "PUBG: BATTLEGROUNDS"
+    ],
+    "tasks": [
+      {
+        "quote": "Which studio zone has PUBG: BATTLEGROUNDS",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "PUBG: BATTLEGROUNDS",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "PUBG: BATTLEGROUNDS",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "PUBG: BATTLEGROUNDS"
+    ],
+    "tasks": [
+      {
+        "quote": "Which studio zone has PUBG: BATTLEGROUNDS",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "PUBG: BATTLEGROUNDS",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_pubg": {
+      "revision": 5,
+      "record_sha256": "34921ccb9628d29ccd0a4cd68fa1eda7dc518ea123b579d6b7fc65c8de05d10b"
+    }
+  }
+}

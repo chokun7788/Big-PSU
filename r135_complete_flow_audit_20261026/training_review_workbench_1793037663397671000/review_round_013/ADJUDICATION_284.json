@@ -1,0 +1,121 @@
+{
+  "question_key": "27541a305e44698636412bf6556e3a545bf91e52357a068b098c96e449f31157",
+  "example_sha256": "ae83daf731845365300d8568967b8b26e16151a27c724662e41ff2d6487094e5",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One game-location question uses unresolved it; verified information is framing.",
+      "raw_quotes": [
+        "Where can I play it? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/detail/zone with empty target and ambiguity preserves missing game identity.",
+      "raw_quotes": [
+        "Where can I play it? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add it as the explicit unresolved requested scope, not an entity value.",
+      "raw_quotes": [
+        "Where can I play it? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Allowed history is empty; do not import the preceding corpus question as dialogue context.",
+      "raw_quotes": [
+        "Where can I play it? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "No title, platform or studio zone can be resolved from wording alone.",
+      "raw_quotes": [
+        "Where can I play it? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "No specific owner game record is applicable until the missing referent is supplied; selecting any saved game would fabricate context.",
+      "raw_quotes": [
+        "Where can I play it? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No game name, zone answer, platform default or invented history enters targets.",
+      "raw_quotes": [
+        "Where can I play it? Please use verified information."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "No dialogue context exists for it.",
+      "handling": "Preserve unresolved reference rather than borrow a neighboring dataset row."
+    }
+  ],
+  "historical_review_row": 284,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Where can I play it? Please use verified information.",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Where can I play it? Please use verified information.",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "it",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {}
+}

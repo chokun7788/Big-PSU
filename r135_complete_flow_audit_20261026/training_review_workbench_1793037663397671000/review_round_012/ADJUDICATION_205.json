@@ -1,0 +1,150 @@
+{
+  "question_key": "123ced74a0c412574e602d69e95ce43ebac5ceedaf76c105a4ef90ce2c5634a8",
+  "example_sha256": "44255048b718fb9d87b68141b2116d4dadae7d329fe96d62dffdcb9f85adfdf5",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One permission need asks carrying a water bottle inside and explicitly excludes consumption.",
+      "raw_quotes": [
+        "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy remains, with food_bring focus rather than a consumption rule.",
+      "raw_quotes": [
+        "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ถือขวดน้ำเข้าไป is the requested action and ไม่ได้ถามเรื่องกิน the literal negative scope.",
+      "raw_quotes": [
+        "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No sealed-container property, designated consumption area or prior permission is inherited.",
+      "raw_quotes": [
+        "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Not asking about eating must not be converted to a denial of carrying or permission to drink throughout the room.",
+      "raw_quotes": [
+        "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "food_bring_general distinguishes bringing drinks from consumption restricted to designated areas.",
+      "raw_quotes": [
+        "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_food_bring_general",
+        "migrated_faq_rule_food_drink"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no permission, sealed-bottle rule or area answer is taught.",
+      "raw_quotes": [
+        "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Carrying and consuming have different scope; bottle sealing is not stated.",
+      "handling": "Do not force the consumption-only rule or invent a container condition."
+    }
+  ],
+  "historical_review_row": 205,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [
+      "ไม่ได้ถามเรื่องกิน"
+    ],
+    "tasks": [
+      {
+        "quote": "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ได้ถามเรื่องกิน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [
+      "ไม่ได้ถามเรื่องกิน"
+    ],
+    "tasks": [
+      {
+        "quote": "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "negation",
+            "quote": "ไม่ได้ถามเรื่องกิน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ถือขวดน้ำเข้าไป",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    },
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    }
+  }
+}

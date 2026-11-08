@@ -1,0 +1,166 @@
+{
+  "question_key": "758913de73192f8446660e0ac1e2987e5f99b3e6a8c4fa9576f559b734ede61d",
+  "example_sha256": "24d6dd19ab1c649877e1281200b2a47b3fb59ac6287e9ca5f58793e560b72c95",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One PSU-student VR thirty-minute price need.",
+      "raw_quotes": [
+        "How much does a PSU student pay to play VR for 30 minutes?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount is retained.",
+      "raw_quotes": [
+        "How much does a PSU student pay to play VR for 30 minutes?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "30 minutes is duration,PSU student audience and VR service.",
+      "raw_quotes": [
+        "How much does a PSU student pay to play VR for 30 minutes?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No extra party size, one-hour option or past eligibility is inherited.",
+      "raw_quotes": [
+        "How much does a PSU student pay to play VR for 30 minutes?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A clear duration must bind the appropriate source offer rather than treating all VR packages as identical because amounts happen to match.",
+      "raw_quotes": [
+        "How much does a PSU student pay to play VR for 30 minutes?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "VR30 andVR60 PSU-student rates have distinct session durations and session_ceil rules.",
+      "raw_quotes": [
+        "How much does a PSU student pay to play VR for 30 minutes?"
+      ],
+      "source_record_ids": [
+        "migrated_rate_vr_30_1_5_psu_student_staff",
+        "migrated_rate_vr_60_1_5_psu_student_staff"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No zero price, selected canonical offer ID or eligibility verdict is taught.",
+      "raw_quotes": [
+        "How much does a PSU student pay to play VR for 30 minutes?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 162,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "30 minutes",
+      "PSU student",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does a PSU student pay to play VR for 30 minutes?",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "30 minutes",
+      "PSU student",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does a PSU student pay to play VR for 30 minutes?",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_vr_30_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "cbb10c075112bf48345bdfd11b307d02ed5edfc120ef5c3644a97d924de3f823"
+    },
+    "migrated_rate_vr_60_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "3b937929a76c3c519ddfe1d1afdef0a6fa6e699b4e298b63f1aaac0d736ea0df"
+    }
+  }
+}

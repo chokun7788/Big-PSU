@@ -1,0 +1,180 @@
+{
+  "question_key": "50d3e66b415a18f6dc64ca38b50d5c633ad57d0f6d68e54acffac84e1d07d710",
+  "example_sha256": "0bcd212fc05dc8657c7f33212af189f663c382357273b90f07c6daf0372d74ce",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One VR price question contains two unassigned duration spans.",
+      "raw_quotes": [
+        "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount is retained, with ambiguity preserved.",
+      "raw_quotes": [
+        "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "30 นาที and 1 ชั่วโมง must both stay; neither is silently assigned as session versus total.",
+      "raw_quotes": [
+        "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "General Adult and VR are local audience/service, not shared context for another task.",
+      "raw_quotes": [
+        "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "ambiguous remains true because the raw text does not say comparison, per-session or additive duration roles.",
+      "raw_quotes": [
+        "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Current VR source periods cannot resolve the intended relationship of these two user-supplied durations.",
+      "raw_quotes": [
+        "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": [
+        "availability_vr_30",
+        "availability_vr_60"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No forty-five/ninety-minute reinterpretation, per-person count or total is invented.",
+      "raw_quotes": [
+        "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 12,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "30 นาที",
+      "1 ชั่วโมง",
+      "General Adult",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "1 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "General Adult",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "30 นาที",
+      "1 ชั่วโมง",
+      "General Adult",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "General Adult เล่น VR 30 นาที 1 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 นาที",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "1 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "General Adult",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_vr_30": {
+      "revision": 5,
+      "record_sha256": "684ca350ae5809737f1975682978283eca4dc308d432f694333d8261cec15d60"
+    },
+    "availability_vr_60": {
+      "revision": 5,
+      "record_sha256": "c3384985c72b8fa25a4bb9ec3ae5fd292dff804a0e93cb02ac5f82fe246f9913"
+    }
+  }
+}

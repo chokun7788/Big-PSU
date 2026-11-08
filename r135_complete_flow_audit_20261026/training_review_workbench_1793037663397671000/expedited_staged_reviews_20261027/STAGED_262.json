@@ -1,0 +1,101 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 262,
+  "question_key": "98a88bb46a86278f3df6da929b113d3b0571dc729388a0a818508ef0b9b6fa05",
+  "raw_question": "What does the R3 (Click Right Stick) button do in The Last of Us Part I on PlayStation / PS5",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "PlayStation / PS5"
+    ],
+    "tasks": [
+      {
+        "quote": "What does the R3 (Click Right Stick) button do in The Last of Us Part I on PlayStation / PS5",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "The Last of Us Part I",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PlayStation / PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What does the R3 (Click Right Stick) button do in The Last of Us Part I on PlayStation / PS5",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "The Last of Us Part I",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PlayStation / PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "R3 (Click Right Stick)",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One question requests a named R3 click binding in The Last of Us Part I.",
+    "intent_operation_facet": "Keep game_controls/control/input_bindings for Part I, not Part II.",
+    "entities_and_slot_roles": "Add full R3 (Click Right Stick) requested scope and retain PlayStation / PS5 platform.",
+    "local_shared_history_scope": "Remove duplicated platform context; no preset or current game version is given.",
+    "negation_and_ambiguity": "Click is explicit here; it must not become ordinary right-stick movement.",
+    "source_version_alignment": "The actual Part I control source revision6 records an R3 click binding; a similar Part II binding does not establish edition identity.",
+    "no_business_answer_target": "No flashlight answer, other-edition binding or default-preset claim is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "controls_ps5_the_last_of_us_part_i"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 263,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "controls_ps5_the_last_of_us_part_i": {
+      "revision": 6,
+      "record_sha256": "7c3b874a09f196d802242f94ef45103507c141437c1436663459ceb17b8ffff0"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

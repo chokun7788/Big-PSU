@@ -1,0 +1,163 @@
+{
+  "question_key": "501e0002c5370ef50e95156d6b84fc1477eecf38b0c37e96407a24bef4fc942b",
+  "example_sha256": "73e32cfe799a847850453a68f473040afcb82eb241ea8830f5ed0f6d9489cd2b",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inclusion question selects the external/full-day All Zones rental package.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/equipment_included is retained; no separate current inventory task is requested.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full package name is target; All Zones is package scope and external/full-day its quoted dimensions.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No per-machine availability, participant count or another rental period is inherited.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The words all equipment are source package terms, not proof of every physical item currently installed.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_0 records the All Zones inclusion text and separate room-seat/amount/duration fields.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": [
+        "package_0",
+        "audience_external_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No inventory enumeration, device quantity, price or availability answer is taught.",
+      "raw_quotes": [
+        "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 212,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "ภายนอก",
+      "All Zones"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "All Zones",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "All Zones",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนไปใช้บริการ เลยขอถามว่า PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน รวมเครื่องอะไรให้ใช้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PSU Esports Studio - Phuket - All Zones / ภายนอก / เต็มวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_0": {
+      "revision": 1,
+      "record_sha256": "65d40263de0d8df41281546ba6a2b53573f62cdcc58b67729e0385be17ecb495"
+    },
+    "audience_external_org": {
+      "revision": 2,
+      "record_sha256": "15fc64bde64d0d5dad8a7470d59bccdf56f5ba932185ff4cfee6618ffea8a463"
+    }
+  }
+}

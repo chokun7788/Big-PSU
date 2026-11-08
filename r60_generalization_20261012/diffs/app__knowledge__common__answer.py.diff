@@ -1,0 +1,120 @@
+--- before/app/knowledge/common/answer.py
++++ r60/app/knowledge/common/answer.py
+@@ -7,7 +7,7 @@
+ from app.pipeline.schemas import PipelineAnswer,PipelineRoute,PipelineTrace,EntityBundle,ValidationResult
+ from .store import CommonStore
+ from .registry import CATALOG,value,aware
+-from .query_contract import normalize,broad_request,live_request,strip_names,resolve_fields,unresolved_clauses
++from .query_contract import normalize,broad_request,live_request,strip_names,resolve_fields,unresolved_clauses,overview_request,bare_selector,focus_request,resolution_uncertain
+ 
+ ROOT=Path(__file__).resolve().parents[3]
+ # Kept for older diagnostic scripts only. Routing uses query_contract instead.
+@@ -123,7 +123,7 @@
+         role=turn.get('role');prior=turn.get('question') or (turn.get('text') or turn.get('content') if role=='user' else None)
+         if not prior:continue
+         previous,pm=named(str(prior),names)
+-        if previous and (len(question)<240 and (field_requests(question) or all_query(question) or re.search(r'อันนี้|เกมนี้|มัน|แล้ว|\b(?:and|also|it|this|that)\b',question,re.I))):return question,previous,'history_'+pm
++        if previous and (len(question)<240 and (field_requests(question) or all_query(question) or re.search(r'อันนี้|แบบนี้|เกมนี้|มัน|แล้ว|\b(?:and|also|so|then|it|this|that)\b',question,re.I))):return question,previous,'history_'+pm
+     ids,method=named(question,names)
+     return question,ids,method
+ 
+@@ -149,12 +149,15 @@
+                     for i in range(len(a)):
+                         if not a[i].isdigit():q=q.replace(a[:i]+a[i]+a[i:],' ')
+             q=normal(q)
++        current_kinds={records[k]['kind'] for k in ids}
++        q,focus=focus_request(q,current_kinds or None)
+         broad=all_query(q);requested=field_requests(q);kind=None
+-        if ids and not requested and not broad and len(q)<80:
++        if ids and not requested and not broad and bare_selector(q):
+             for turn in reversed((history or [])[-6:]):
+                 if not isinstance(turn,dict):continue
+                 prior=turn.get('question') or (turn.get('text') or turn.get('content') if turn.get('role')=='user' else '')
+-                inherited=field_requests(str(prior or ''))
++                prior_ids,_=named(str(prior or ''),names,allow_fuzzy=False)
++                inherited=field_requests(strip_names(str(prior or ''),prior_ids,names))
+                 if inherited:requested=inherited;method+=':pending_fields';break
+         if not ids:
+             listing=bool(re.search(r'อะไรบ้าง|มีอะไร|what .*games|which games|\blist\b',q,re.I))
+@@ -175,7 +178,8 @@
+             for turn in reversed((history or [])[-6:]):
+                 if not isinstance(turn,dict):continue
+                 prior=turn.get('question') or (turn.get('text') or turn.get('content') if turn.get('role')=='user' else '')
+-                requested=field_requests(str(prior or ''),field_kinds)
++                prior_ids,_=named(str(prior or ''),names,allow_fuzzy=False)
++                requested=field_requests(strip_names(str(prior or ''),prior_ids,names),field_kinds)
+                 if requested:break
+         rule_request=bool(re.search(r'กฎ|กฏ|กติกา|\brules\b',q,re.I)) and not re.search(r'เรต|\bage\b',q,re.I)
+         if any(records[k]['kind']=='game' for k in ids) and (rule_request or re.search(r'แข่ง|การแข่งขัน|\b(?:competition|tournament)\b',q,re.I)) and not re.search(r'ไม่.*แข่ง|\bnot\b.*\b(?:competition|tournament)\b',q,re.I):
+@@ -183,21 +187,26 @@
+             if competitions:
+                 ids=competitions;field_kinds={'competition','competition_rule'};requested=field_requests(q,field_kinds)
+             else:return None # Legacy rulebooks remain authoritative until migrated.
+-        plan={'record_ids':ids,'requested_fields':requested,'all_fields':broad,'method':method,'scope':'common_published','platform':None,'query_without_entity':q,'field_selection':resolve_fields(q,field_kinds)[1],'confidence_calibrated':False}
++        plan={'record_ids':ids,'requested_fields':requested,'all_fields':broad,'method':method,'scope':'common_published','platform':None,'query_without_entity':q,'field_selection':resolve_fields(q,field_kinds)[1],'confidence_calibrated':False,'request_focus':focus}
+         supported={records[k]['kind'] for k in ids}
+         if 'game' in supported:supported.update(('game_service','game_mode','control_set'))
+         if 'competition' in supported:supported.add('competition_rule')
+         schema_keys={f['key'] for k in supported for f in CATALOG[k]['fields']}
+-        overview=bool(re.search(r'รายละเอียด|ข้อมูล|\b(?:details|information|tell me about)\b',q,re.I))
++        overview=overview_request(q)
+         gaps=unresolved_clauses(q,field_kinds)
+-        plan['unresolved_clauses']=gaps
+-        if planner and not broad and not overview and (not requested or gaps):
++        review=resolution_uncertain(q,field_kinds)
++        plan['unresolved_clauses']=gaps if review and not broad and not overview else []
++        plan['semantic_review_needed']=review
++        plan['semantic_plan_accepted']=False
++        if planner and not broad and not overview and review:
+             proposed=planner(q,records,ids)
+             if proposed:
+                 from .planner import checked_plan
+                 clean=checked_plan({k:v for k,v in proposed.items() if k!='method'},ids,records)
+-                if clean and (not requested or set(requested)<=set(clean['requested_fields'])):
+-                    plan.update(clean);requested=plan['requested_fields'];plan['unresolved_clauses']=[]
++                if clean:
++                    semantic=getattr(proposed,'semantic_audit',{})
++                    plan.update(clean);requested=plan['requested_fields'];plan['unresolved_clauses']=semantic.get('unclear_clauses',[])
++                    plan['semantic_plan_accepted']=True;plan['planner_semantic_audit']=semantic
+             broad=plan['all_fields']
+         if not broad and not requested:
+             remainder=normal(q)
+@@ -262,11 +271,22 @@
+                 if broad or 'supported_platforms' in requested:wanted+=['game_service']
+                 if broad or 'bindings' in requested:wanted+=['control_set']
+                 if broad or set(requested)&{'players_min','players_max','mode_name','network_requirement','studio_supported'}:wanted+=['game_mode']
++                # The exposed child schema must also be readable. Project unique
++                # child fields through the verified game_id relationship.
++                shared={'game_id','platform','game_version'}
++                for childkind in ('game_service','control_set','game_mode'):
++                    unique={f['key'] for f in CATALOG[childkind]['fields']}-shared
++                    if set(requested)&unique:wanted.append(childkind)
++                if 'game_version' in requested:
++                    control_fields={f['key'] for f in CATALOG['control_set']['fields']}-shared
++                    wanted.append('control_set' if set(requested)&control_fields else 'game_service')
++                if 'platform' in requested and not wanted:wanted.append('game_service')
+                 for childkind in dict.fromkeys(wanted):
+                     children=[rr for rr in records.values() if rr['kind']==childkind and value(rr,'game_id')==rid and (not plan['platform'] or value(rr,'platform')==plan['platform'] or rr['kind']=='game_service' and value(records.get(value(rr,'service_id'),{'fields':{}}),'platform')==plan['platform'])]
+                     if childkind=='control_set' and len(children)>1 and not plan['platform']:
+                         blocks.append(('Choose a platform/control preset: ' if lang=='en' else 'กรุณาระบุแพลตฟอร์มหรือชุดปุ่ม: ')+', '.join(str(value(x,'platform'))+' / '+str(value(x,'preset')) for x in children))
+-                        obligations.append({'record_id':rid,'field':'bindings','status':'needs_clarification'});continue
++                        fields=set(requested)&{f['key'] for f in CATALOG['control_set']['fields']} or {'bindings'}
++                        obligations.extend({'record_id':rid,'field':key,'status':'needs_clarification'} for key in fields);continue
+                     if not children:
+                         blocks.append(('No confirmed '+childkind+' data for this scope.' if lang=='en' else 'ยังไม่มีข้อมูลยืนยันในส่วน '+CATALOG[childkind]['owner_form']+' สำหรับขอบเขตนี้'))
+                         obligations.append({'record_id':rid,'field':childkind,'status':'unknown'})
+@@ -297,11 +317,14 @@
+                 obligations.append({'record_id':None,'field':key,'status':'unsupported_scope'})
+                 blocks.append((key.replace('_',' ')+': This attribute is outside the selected record scope; please specify the related service or record.' if lang=='en' else key+': หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง'))
+         if any(records[rid]['localization']['en_status']=='agent_translated' for rid in ids) and lang=='en':blocks.append('English translation is machine generated and has not been reviewed by the owner.')
++        if plan.get('unresolved_clauses') and requested:
++            blocks.append(('Some parts of your question are still unclear; please specify: ' if lang=='en' else 'ยังตีความคำถามบางส่วนไม่ชัด กรุณาระบุเพิ่ม: ')+ ' / '.join(plan['unresolved_clauses']))
+         return self.finish(snap,started,'\n\n'.join(blocks),hits,plan,obligations)
+     def finish(self,snap,started,answer,hits,plan,obligations,response='answer'):
+         if not self.store.still_current(snap):answer='ข้อมูลเปลี่ยนระหว่างตอบ กรุณาถามใหม่ / Data changed; please retry.';hits=[];response='retry'
+         errors=[]
+         if response=='answer':
++            if plan.get('unresolved_clauses') and plan.get('requested_fields'):errors.append('unresolved_query_clause')
+             for key in plan.get('requested_fields',[]):
+                 obs=[o for o in obligations if o['field']==key and o.get('record_id') is not None]
+                 if not obs and not any(o['field']=='validity' and o['status']=='not_current' for o in obligations):errors.append('missing_requested_field:'+key)

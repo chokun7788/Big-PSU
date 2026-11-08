@@ -1,0 +1,162 @@
+{
+  "question_key": "f394611ec86146d0e14f990450402809189df0910c49aaee7531c8ec041bf00d",
+  "example_sha256": "a89508ed148ff13c5765947bafc8fec42b13b644a9ccf68ab57986e6fe073a9e",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One outsider permission need concerns using VR goggles.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy preserves eligibility rather than equipment location or VR price.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Use complete คนภายนอก actor quote; แว่น VR is equipment scope and เข้าไปใช้แว่น VR the action.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No Sony model, fee group, national ID or previous permission is inherited.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "An outside-user permission question does not establish tariff class or unrestricted access to every headset.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Public-access general/booking-required clauses are conditional service-access evidence; SonyVR2 is a separate equipment record, not actor eligibility authority.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_public_access_general",
+        "migrated_policy_text_public_access_booking_required",
+        "equipment_sony_playstation_vr2"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No permission verdict, tariff, headset model or booking/ID requirement is taught.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Public visitor service clauses do not exhaust every equipment-specific/actor exception.",
+      "handling": "Do not assert universal headset permission from a source equipment listing."
+    }
+  ],
+  "historical_review_row": 167,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [
+      "ภายนอก"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [
+      "คนภายนอก",
+      "แว่น VR"
+    ],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "คนภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "แว่น VR",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "เข้าไปใช้แว่น VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_public_access_general": {
+      "revision": 2,
+      "record_sha256": "df8c8a2d3c4b0fa505909395eb1bcaadfd832b630f1ecf9ced55d8fa1fa48f91"
+    },
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    },
+    "equipment_sony_playstation_vr2": {
+      "revision": 6,
+      "record_sha256": "efee99f16a13615294c7b0a006aa61173f798c58bb67b2c3af813c084bb310bb"
+    }
+  }
+}

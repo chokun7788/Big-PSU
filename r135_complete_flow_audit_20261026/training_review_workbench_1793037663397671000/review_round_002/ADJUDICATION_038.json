@@ -1,0 +1,144 @@
+{
+  "question_key": "104194c21fa2ded7f4d2e573457e1dbc6284cb6cb57e978bb6512df8c99a9147",
+  "example_sha256": "2183b541c42b745a5f6c9806889dde260699f7cd2b02ea095c1a273c265ae77b",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One VALORANT competition-penalties collection request despite the leading typo.",
+      "raw_quotes": [
+        "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/list/rule_clause preserves the penalties collection.",
+      "raw_quotes": [
+        "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "บทลงโทษ is requested_scope; the whole sentence should not be mislabeled as a condition.",
+      "raw_quotes": [
+        "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "VALORANT scopes this rule task; no particular event edition is quoted.",
+      "raw_quotes": [
+        "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Wanting to compete is context and not an admission of cheating or a cause for a specific penalty.",
+      "raw_quotes": [
+        "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_valorant_75/76/77 distinguish round loss, map forfeit and match forfeit under different causes; the collection must retain these distinctions.",
+      "raw_quotes": [
+        "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+      ],
+      "source_record_ids": [
+        "r114_valorant_75_rule_clause",
+        "r114_valorant_76_rule_clause",
+        "r114_valorant_77_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No penalty, exception or misconduct ruling enters the model target.",
+      "raw_quotes": [
+        "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 38,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [
+      "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ"
+    ],
+    "tasks": [
+      {
+        "quote": "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ",
+        "domain": "competition_rules",
+        "operation": "list",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [
+      "VALORANT",
+      "บทลงโทษ"
+    ],
+    "tasks": [
+      {
+        "quote": "หำลังจะลงแข่ง VALORANT อยากรู้เรื่องบทลงโทษ",
+        "domain": "competition_rules",
+        "operation": "list",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "บทลงโทษ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "r114_valorant_75_rule_clause": {
+      "revision": 1,
+      "record_sha256": "5378aba941105687e3074d5627965a8d91e147e0063ec3d800e4272cf0724696"
+    },
+    "r114_valorant_76_rule_clause": {
+      "revision": 1,
+      "record_sha256": "391b91728fab2fb664b0d68e88ce05a5a4b8e0975119a3c55751c8c3f8a47891"
+    },
+    "r114_valorant_77_rule_clause": {
+      "revision": 1,
+      "record_sha256": "a349440845af4bc4c969b24a621fbb0c6a11013b5b766475904d84b5cd62676e"
+    }
+  }
+}

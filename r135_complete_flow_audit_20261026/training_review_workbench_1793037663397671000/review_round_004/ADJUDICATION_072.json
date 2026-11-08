@@ -1,0 +1,124 @@
+{
+  "question_key": "e869467170e02fba6c045d82f418e6fde8729870e12377a453b4d40e407a5c42",
+  "example_sha256": "99223f66422f2164bd285e15e0f893d1e5e767ed98b2e3caea6e047e38d4cd23",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inverse personnel lookup asks who holds a named role; te is a typo.",
+      "raw_quotes": [
+        "Who holds te role of ประธาน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "members/role_lookup/display_name requests the person identity, not a role description.",
+      "raw_quotes": [
+        "Who holds te role of ประธาน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ประธาน is the quoted role target/requested scope.",
+      "raw_quotes": [
+        "Who holds te role of ประธาน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "There is no named person, previous team or role period to inherit.",
+      "raw_quotes": [
+        "Who holds te role of ประธาน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not match รองประธาน by substring or invent an English person-name transliteration.",
+      "raw_quotes": [
+        "Who holds te role of ประธาน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "member_1d884f11f3890dea records the exact ประธาน/Chair role and public display_name; the deputy has a different role.",
+      "raw_quotes": [
+        "Who holds te role of ประธาน"
+      ],
+      "source_record_ids": [
+        "member_1d884f11f3890dea"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No person name, phone or private data is taught as the planner target.",
+      "raw_quotes": [
+        "Who holds te role of ประธาน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 72,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Who holds te role of ประธาน",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "role",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [
+      "ประธาน"
+    ],
+    "tasks": [
+      {
+        "quote": "Who holds te role of ประธาน",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "display_name",
+        "target": "ประธาน",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ประธาน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "member_1d884f11f3890dea": {
+      "revision": 4,
+      "record_sha256": "fe5cf7fb85976a2e7af8e80061b58867f0a06fa28420427df653ade185e7fdc3"
+    }
+  }
+}

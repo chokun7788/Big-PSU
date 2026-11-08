@@ -1,0 +1,32 @@
+{
+  "question": "What are the studio service days and hours for reservations?",
+  "before_answer": "No confirmed source is available for the requested detail.",
+  "after_answer": "Recorded weekday periods, not live machine availability.\n**Monday**\n**bookable periods**: 13:00–16:00 [S1]\n**Tuesday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S2]\n**Wednesday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S3]\n**Thursday**\n**bookable periods**: 09:00–12:00; 13:00–16:00 [S4]\n**Friday**\n**bookable periods**: 09:00–12:00 [S5]\n**Saturday**\n**bookable periods**: ไม่มี / None [S6]\n**Sunday**\n**bookable periods**: ไม่มี / None [S7]\nUnconfirmed: effective date interval, applicable resource or zone",
+  "before_source": {
+    "path": "saved_clause_discovery_1793108869730145200\\DETAILS.json",
+    "sha256": "f4d467d67833d6e6c50cbc5b8c082147b17690690a912af0ded0363c3345d1ef"
+  },
+  "after_source": {
+    "path": "saved_clause_discovery_1793123703943377600\\DETAILS.json",
+    "sha256": "1aa5b4b2648eb7a07059568a891828dfc6ddaaf78aaed95dd03e4c6e554185ab"
+  },
+  "weekly_controls": {
+    "path": "weekly_calendar_1793123797783196600\\RESULT.json",
+    "sha256": "2854f77ccd821074e6facff5d18c2c358d288f56e5111e3ea5e3897b53c8b285",
+    "checks": 36
+  },
+  "window_regression": {
+    "path": "calendar_windows_1793123740666751200\\RESULT.json",
+    "sha256": "9515d8119bda7141507624a950333536a6c206e83a7055989a0e986dd6eab78f",
+    "checks": 26
+  },
+  "retained_initial_harness_failure": {
+    "path": "weekly_calendar_1793123740687008500\\RESULT.json",
+    "sha256": "fddd8d27e1d33f7a27f6887956fc1a24af497b62cfa703792d6e08ecc97a099e"
+  },
+  "harness_correction": "An initial negative assertion incorrectly rejected a legitimate compound plan with separate reservation-calendar and price tasks. The corrected control verifies that both tasks survive rather than rejecting all calendar tasks.",
+  "bounds": "Only the recorded weekday booking periods are represented. Effective date interval and applicable resource or zone remain explicitly unconfirmed; these facts do not prove live vacancy or physical opening hours.",
+  "actual_model_or_http_calls": 0,
+  "actual_owner_frozen_data_modified": false,
+  "whole_flow_complete": false
+}

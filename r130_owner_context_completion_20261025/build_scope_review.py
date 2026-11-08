@@ -1,0 +1,47 @@
+"""Record the complete owner50 source/scope review with saved read evidence."""
+import collections,hashlib,json,sqlite3
+from pathlib import Path
+R=Path(__file__).resolve().parent;P=R.parent/'r129_full_plan_completion_20261024'
+def load(p):return json.loads(Path(p).read_text('utf-8-sig'))
+audit=load(R/'OWNER50_SCOPE_AUDIT.json');mapping=load(R/'OWNER50_MAPPING.json');pointer=load(R/'OWNER_READ_AUDIT_LATEST.json')
+results=[json.loads(s) for s in (Path(pointer['output'])/'RESULTS.jsonl').read_text('utf8').splitlines()]
+assert len(results)==50 and {r['number'] for r in results}==set(range(1,51)) and not any('error' in r for r in results)
+assert all(r.get('validation_ok') for r in results)
+new={r['number']:r for r in mapping['mappings']}
+notes={
+ 1:'เป็นของมหาวิทยาลัย ไม่ตีความว่าเป็นร้านเอกชนทั่วไป',2:'ไม่บังคับสมาชิก แยกจากกลุ่มผู้ใช้สำหรับคิดราคา',3:'ดูเพื่อนได้ ไม่อนุมานจำนวนผู้ติดตามไม่จำกัด',4:'Walk-in ยังต้องจองผ่านระบบ ไม่เท่ากับมีเครื่องว่าง',
+ 5:'อ่านที่อยู่ที่ยืนยัน ไม่แทนด้วยพิกัดที่คาดเดา',6:'อาคาร/ชั้นเป็น typed fields ที่มีอยู่แล้ว ไม่ต้องย้ายซ้ำ',7:'คงลิงก์แผนที่เดิม',8:'อ่านคำยืนยันเพิ่ม Q001 เรื่องรอโซนกลางและห้ามเข้าเล่นก่อนเวลา',9:'มีที่จอดหน้าตึก ไม่ยืนยันจำนวนที่จอดว่างขณะนี้',10:'ติดต่อผ่านเพจ ไม่เปิดเผยเบอร์ส่วนตัว',
+ 11:'คำตอบเดิมว่าง ใช้คำแนะนำสำหรับมา 2 คนจากข้อ12เป็นข้อมูลบางส่วนอย่างมีเงื่อนไข ไม่ยืนยันทุกกลุ่ม/โหมด',12:'รายการแนะนำหลุดจาก projection เดิม เพิ่มรายการโดยแยก recommendation ออกจาก game_mode; PC/ชื่อย่อยังไม่ยืนยัน',13:'normalize สี่คน/4คนตรงกัน เป็นคำแนะนำ Nintendo ไม่ใช่ความจุทุกเกม',14:'ห้าม4คนหมุนเวียนรายการ2คน เก็บขอบเขตสถานการณ์ไว้',15:'ขอเพิ่มได้เป็นรายรายการ ไม่เท่ากับติดตั้งเองหรือรับประกันเพิ่มทุกเกม',
+ 16:'ผู้เล่นต้องมีชื่อในจอง ไม่บังคับว่ามีได้เพียงผู้จองคนเดียว',17:'ตัวเลือกหลักฐาน ไม่บังคับยื่นทุกชนิด',18:'จองผิดเครื่อง: ยกเลิกทางอีเมลแล้วจองใหม่',19:'เปลี่ยนเวลาจอง: ยกเลิกทางอีเมลแล้วจองใหม่',20:'ยังไม่มีข้อยืนยันการมาสาย15นาที ตอบข้อมูลติดต่อได้แต่ต้อง partial',21:'คำตอบเดิมมีช่องทางผู้จัดการ/Discord/เพจ ไม่ควรถูกย่อเหลือเพียงต้องแจ้ง',22:'จองรอบถัดไปได้ตามขั้นตอนเมื่อว่างและอยู่ในเวลาบริการ ไม่รับประกันว่างจริง',23:'ยกเลิกของเดิมแล้วจองใหม่; Q004 ระบุไม่คืนเงินของเดิม',24:'บัญชีSteamศูนย์หรือส่วนตัว ไม่เหมารวมทุกแพลตฟอร์ม',
+ 25:'ฟื้นเงื่อนไขต้นเหตุจากข้อ25; Q028ใช้หลักการเดียวกัน ไม่ใช่ค่าชดเชยที่สร้างเอง',26:'ถามติดต่อเมื่อลืมlogout ต้องตอบผู้จัดการ/Discord/เพจ ไม่เอาคำบอกการเก็บข้อมูลแทน',27:'เดิมย้ายข้อความห้ามผิดจากหัวคำถาม; คำตอบจริงและQ044ระบุใช้ได้แต่ต้องแจ้ง มีหลักฐานแก้สอง field/revision/hash เฉพาะบริการทั่วไป',28:'ยืนยันเฉพาะcaptureในเกมและลบเมื่อเสร็จ การถ่ายบุคคล/สถานที่ยังไม่ยืนยัน',29:'สตรีมได้/ไม่จำกัดโซน ไม่แปลว่าอนุญาตติดตั้งซอฟต์แวร์เอง',30:'ติดตั้งเองไม่ได้ คำขอเพิ่มเกมเป็นอีกสิทธิหนึ่ง',31:'คำแนะนำมีผู้ปกครอง/ยินยอมตามQ032 ไม่สร้างอายุขั้นต่ำหรือขยายสิทธิเด็กทุกวัย',
+ 32:'ความหมายจำนวนที่นั่งบริการคือคนเล่นพร้อมกัน ไม่ใช่จำนวนเก้าอี้หรือกลุ่มราคา',33:'ใบเสนอราคา/ใบเสร็จเดิมและใบกำกับภาษีที่ถามเพิ่มแยกชนิดเอกสารไว้',34:'บัญชีศูนย์เฉพาะใช้งานที่ศูนย์ ไม่อนุมานให้ยืมออกไป หรือมีPSN/Nintendoให้ทุกกรณี',35:'ตารางจันทร์เช้าเป็นข้อมูลเดิมที่ตกหล่น ไม่ใช่หลักฐานติดตั้งเวอร์ชันล่าสุด ต้อง partial และถามผู้ดูแลตรวจจริง',36:'เกิน5นาทีต่อเวลาให้ แต่ไม่ยืนยันจำนวนเวลาต่อ',37:'ห้ามเปลี่ยนเครื่องระหว่างอัปเดต แยกจาก Q026 ที่ถามเหตุอื่นและเปลี่ยนได้เมื่อเปิดเกมไม่ได้',38:'ข้อมูลตรงบัตรเป็นคำตอบเดิมที่หายไป; วิธีแก้ชื่อ Q011 เป็นอีกการกระทำ',39:'เบอร์ผิดไม่ต้องจองใหม่ แต่อีเมลถูกต้อง; ไม่สร้างวิธีแก้เบอร์ให้',40:'เพื่อนที่มีชื่อผู้เล่นร่วมเป็นข้อยกเว้น; คำยืนยันเพิ่มผู้โอนคนเดียว ไม่แปลว่าบัญชีใครก็ได้',
+ 41:'โอนเกินเก็บใช้sessionอนาคต ไม่คืนเงิน; Q014ช่องทาง/หลักฐาน ไม่สร้างวันหมดอายุเครดิต',42:'โอนขาดต้องโอนเพิ่ม; Q015ช่องทาง/หลักฐานไม่ควรทำให้คำว่าต้องโอนเพิ่มหาย',43:'ส่งสลิปถูกต้องทางเพจ ไม่รับรองอัตโนมัติว่าจ่ายแล้ว',44:'รวมโอนได้เมื่อระบุnote ไม่ใช่แบ่งจ่ายจากผู้ไม่มีชื่อ',45:'จองผิดวันจ่ายแล้ว: Q005ยกเลิกล่วงหน้าอย่างน้อย1ชั่วโมง/จองใหม่แนบสลิปเดิม เฉพาะกรณีนี้',46:'ห้ามเลื่อนวันแทนคืนเงิน แยกจากข้อ45 ไม่รวมนโยบายให้ขัดแย้งกัน',47:'คำตอบเดิมไม่เข้าใจ; Q010ยืนยันเพียงติดต่อGmail ยังไม่ยืนยันคืนเงิน/จัดการรายการ จึง partial',48:'เปลี่ยนได้แจ้งล่วงหน้าตามกฎ; Q009ช่องทาง/หลักฐาน ไม่ยืมตัวเลข1ชั่วโมงจากคนละกรณี',49:'เช็กอินรายคน คนมาก่อนเล่นได้ normalizeหนึ่งคนไม่พาไปอ่านการรอแทน',50:'ที่นั่งพักโซนกลางเป็น static facility ไม่เรียกlive occupancy'
+}
+rows=[];counts=collections.Counter()
+md=['# ตรวจคำตอบเจ้าของครบ 50 ข้อ — R130','','ผลนี้เป็นการตรวจการย้ายข้อมูล ขอบเขต และตัวอ่านกับคำถามที่เจ้าของให้ไว้แล้ว ไม่ใช่ชุดข้อสอบใหม่หรือคะแนนความแม่นยำของ Full Test','',
+ '## ข้อค้นพบหลัก','','สาเหตุมีทั้งข้อมูลตกจาก projection, คำตอบยืนยันถูกเก็บแต่ runtime อ่านไม่ได้, ตัวเลขภาษาไทยไม่ตรงคีย์ FAQ, การเลือกกฎทั่วไปทับสถานการณ์เฉพาะ และข้อมูลห้ามที่ย้ายผิดจริงในข้อ27 ไม่ใช่ปัญหาขาดข้อมูลทุกกรณี','',
+ f"เพิ่ม/จัดระเบียบ {mapping['appended_draft_cards']} ฉบับร่างใน candidate R130 ระเบียนเดิม 824 รายการและ approvals คงเดิม ไม่มีการติดตั้งทับ R78 ชุด R129 ที่กำลังเปรียบเทียบคงถูกตรึงไว้",'',
+ '## Flow หลังแก้','','```mermaid','flowchart TD',' A[ข้อความปัจจุบัน + บริบทที่ส่งถึงผู้ใช้แล้ว + เวลาอ้างอิง] --> B[ปรับรูปตัวเลขโดยเก็บที่มา]',' B --> C{คำถามเดี่ยวตรง source scope ที่ตรวจแล้วหรือไม่}',' C -->|ตรง| D[อ่าน FAQ ฉบับและเงื่อนไขที่ยืนยัน]',' C -->|ไม่ตรง/หลายเจตนา| E[Planner proposal + scope compiler]',' E --> F[แยกหมวด/operation/slots/obligations]',' F --> G[อ่าน typed sources ทุก need ก่อน fallback]',' G --> H[ใช้ selector แบบ base ภายใต้งบร่วมเมื่อจำเป็น]',' D --> I[ตรวจ source pointer/revision/hash และ correction]',' H --> I',' I --> J[เก็บส่วนยืนยันได้ แยกส่วนขาด/ขัดแย้ง/ชั่วคราว]',' J --> K[แสดงคำตอบสั้น ขั้นตอน รายการ หรือตารางตามงาน]','```','',
+ 'คำแนะนำเกมไม่กลายเป็นหลักฐาน game_mode; ตารางอัปเดตไม่กลายเป็นสถานะเวอร์ชันปัจจุบัน; การติดต่อศูนย์ไม่กลายเป็นการอนุมัติคืนเงิน; source pointer ที่ถูกไม่ใช่หลักฐานว่า semantic ถูกทั้งคำถาม','',
+ '## ตรวจทีละข้อครบ 50 ข้อ','']
+for source,result in zip(audit['items'],results):
+ n=source['number'];assert n==result['number'];state=result['response_type'];counts[state]+=1
+ row={'number':n,'source_scope_reviewed':True,'review':notes[n],'response_type':state,'read_output':str(Path(pointer['output'])/'RESULTS.jsonl'),'record_ids':(result.get('query_plan') or {}).get('record_ids',[]),'semantic_accuracy_not_scored':True}
+ rows.append(row)
+ md += [f'### {n}. {source["question"]}','','**คำตอบต้นทาง:** '+(source['original_answer'] or '(ไม่ได้ให้คำตอบในชุดแรก)'),'', '**การวิเคราะห์ขอบเขต:** '+notes[n],'', '**สถานะการอ่าน:** `'+str(state)+'`','', '**คำตอบที่บันทึกจริง:**','',result['answer'],'', '**แหล่งอ้างอิง:** `SOURCE_OWNER_50.json#/source_items/'+str(n-1)+'`; '+', '.join('`'+rid+'`' for rid in row['record_ids']),'']
+ if source['later_clarifications']:md+=['**คำยืนยันเพิ่มที่ตรวจ:**','',*[f'- {k}: {v.get("text", "") or "(ว่าง ไม่ใช่การถอนคำตอบเดิม)"}' for k,v in source['later_clarifications'].items()],'']
+md+=['## สิ่งที่ยังยืนยันแทนเจ้าของไม่ได้','','- โหมดเล่นพร้อมกัน/จำนวนผู้เล่นจริงของทุกเกม รายการPCสำหรับมา2คน และรุ่นของ SF6/Naruto จากชื่อย่อ','- สิทธิ์มาสาย15นาที ระยะเวลาแจ้งก่อนเปลี่ยนรอบเพราะฝน จำนวนเวลาชดเชยตายตัว และวิธีแก้เบอร์โทร','- การถ่ายบุคคล/สถานที่ อายุขั้นต่ำที่ไม่ได้กำหนด และผลคืนเงิน/เปลี่ยนรอบกรณีศูนย์ปิด','- เวอร์ชันติดตั้งล่าสุดและสถานะว่างจริง ต้องตรวจจากผู้ดูแล/provider ไม่อ้างจากตารางหรือ fixture','',
+ 'ข้อจำกัดเหล่านี้ไม่ใช่เหตุผลให้ทิ้งข้อมูลส่วนที่ตอบได้แล้ว และไม่ถูกนำไปนับเป็น actual content failure อัตโนมัติ','',
+ '## งานตรวจรับใหญ่ที่ยังต้องเดินต่อ','','- รอ raw ผลสามน้ำหนักที่กำลังรันเดิมให้ครบ330แถว ไม่รัน context inference ซ้ำ','- replay raw เหล่านั้นบน engine/data R130 ชุดเดียวกันทั้ง3แขน แล้วตรวจกรณี regression/source จริงก่อนเลือกน้ำหนัก','- ตรวจ API readiness และ Full Test เฉพาะ common R130 LLM ON จำนวน20,554 keys/55,811 grades','- เทียบ saved R64 legacy/R95 โดย keys/grade identities เดียวกัน แยก strict/literal/semantic review พร้อม source-version confounds','- อ่านทุกกลุ่ม failure แบบ streaming และเขียน root cause review พร้อม source evidence ก่อนประกาศงานเสร็จ','']
+(R/'OWNER50_REVIEW_TH.md').write_text('\n'.join(md)+'\n','utf8')
+result={'source_scope_review_complete':True,'items_reviewed':50,'items':rows,'response_states_not_accuracy':dict(counts),'read_evidence':pointer,'source_items_not_silently_dropped':True,'known_mode_and_current_state_gaps_explicit':True,'no_new_benchmark_questions':True,'full_test_complete':False,'overall_task_complete':False}
+(R/'OWNER50_REVIEW_FINAL.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),'utf8')
+# Trace all original requirements without treating a module's existence as a
+# measured acceptance pass or deleting the remaining full-test obligations.
+req=load(R/'REQUIREMENTS.json');assert len(req['requirements'])==76
+train=P/'training_v2/train01/TRAINING_COMPLETE.json';assert load(train)['complete']
+trace=[]
+for item in req['requirements']:
+ trace.append({**item,'scope_retained':True,'implementation_reference':str(P/'IMPLEMENTATION_REVIEW_TH.md'),'new_source_scope_reference':str(R/'OWNER50_REVIEW_TH.md'),'acceptance_state':'runtime_source_guards_passed_final_paired_and_full_acceptance_pending','training_evidence':str(train),'full_evaluation_complete':False})
+(R/'REQUIREMENTS_TRACEABILITY.json').write_text(json.dumps({'requirements':trace,'all_76_sections_accounted_for':True,'overall_complete':False,'completion_percent':None,'accuracy_percent':None},ensure_ascii=False,indent=2),'utf8')
+print(json.dumps({'owner_items_reviewed':50,'new_draft_cards':len(new),'response_states_not_accuracy':dict(counts),'original_requirements_retained':76,'full_test_complete':False}))

@@ -1,0 +1,21 @@
+test_claims_have_both_languages_and_preserved_conditions (test_user_service_facts_r48.UserServiceFactsTests.test_claims_have_both_languages_and_preserved_conditions) ... ok
+test_no_claim_of_immediate_walk_in_or_free_parking (test_user_service_facts_r48.UserServiceFactsTests.test_no_claim_of_immediate_walk_in_or_free_parking) ... ok
+test_no_implication_of_refund (test_user_service_facts_r48.UserServiceFactsTests.test_no_implication_of_refund) ... ok
+test_original_source_binding (test_user_service_facts_r48.UserServiceFactsTests.test_original_source_binding) ... ok
+test_separate_tournament_rental_and_unknown_policies (test_user_service_facts_r48.UserServiceFactsTests.test_separate_tournament_rental_and_unknown_policies) ... 
+  test_separate_tournament_rental_and_unknown_policies (test_user_service_facts_r48.UserServiceFactsTests.test_separate_tournament_rental_and_unknown_policies) (question='What maps are there in VALORANT?') ... FAIL
+test_unanswered_conditions_do_not_become_permission (test_user_service_facts_r48.UserServiceFactsTests.test_unanswered_conditions_do_not_become_permission) ... ok
+
+======================================================================
+FAIL: test_separate_tournament_rental_and_unknown_policies (test_user_service_facts_r48.UserServiceFactsTests.test_separate_tournament_rental_and_unknown_policies) (question='What maps are there in VALORANT?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data\tests\test_user_service_facts_r48.py", line 28, in test_separate_tournament_rental_and_unknown_policies
+    with self.subTest(question=q):self.assertIsNone(answer_user_service_facts(q,'en'))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'answer': 'Studio map: https://maps.app.goo.gl/Ahst2vyFM4GDmC5s5\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008', 'hits': [{'id': 'user_service_answers_20261008', 'metadata': {'source_url': 'local://service_policy/user_answers_20261008', 'category': 'knowledge', 'title': 'User-provided service answers 2026-10-08', 'source_ids': ['user_service_answers_20261008'], 'source_type': 'user_provided_answers', 'trust_level': 'user_confirmed', 'updated_at': '2026-10-08', 'origin': 'Answers supplied by the user in this chat; original archived under data/sources', 'description': 'Bounded studio access, location, parking, booking identity and payment handling facts. Blank answers and rescheduling boundaries are not inferred.'}}], 'route': PipelineRoute(category='contact', intent='user_service_facts', confidence=0.98, answer_type='fact', risk='low', reason='explicit user-supplied facts with bounded policy scope'), 'validation': ValidationResult(ok=True, errors=(), warnings=()), 'mode': 'pipeline:user_service_facts', 'trace': [PipelineTrace(stage='user_service_facts', decision='answered', confidence=0.98, detail='do not infer unanswered policies', metadata={'claim_ids': ['map'], 'source_items': [7], 'missing_fields': [], 'basis': 'user_provided_in_this_chat', 'english_status': 'agent_translation_from_user_confirmed_thai', 'outcome': 'answered_complete', 'recorded_rule_ids': []}), PipelineTrace(stage='task_answer_contract', decision='answered_complete', confidence=1.0, detail='known versus missing user-confirmed fields', metadata={'schema_version': 1, 'kind': 'single', 'status': 'answered', 'outcome': 'answered_complete', 'category': 'contact', 'intent': 'user_service_facts', 'source_count': 1, 'coverage_meaning': 'user_confirmed_fields_not_live_status'})]} is not None
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.079s
+
+FAILED (failures=1)

@@ -1,0 +1,109 @@
+[
+  {
+    "key": "1df6c21b27b541b338a3a7cef23e1e29c1974d5df3395022fa98fec4fd4abd02",
+    "question": "What is a mechanical keyboard like, short and not long?",
+    "locale": "en",
+    "domain": "[\"general\", \"knowledge\"]",
+    "mode": "pipeline:common_retry",
+    "answer": "The model exceeded the time limit while selecting the relevant data. Please specify the topic or try again.",
+    "old_answer": "The model exceeded the time limit while selecting the relevant data. Please specify the topic or try again.",
+    "has_positive_content_contract": false,
+    "all_positive_pass": null,
+    "old_all_positive_pass": null,
+    "signals": [
+      "model_availability_or_body_failure",
+      "model_http_open_failure"
+    ],
+    "query_plan": {
+      "entity_selection": {
+        "candidate_ids": [
+          "policy_personal_keyboard_mouse",
+          "migrated_owner_claim_personal_keyboard_mouse",
+          "migrated_faq_curated_home_equipment_pc_zone",
+          "equipment_gaming_keyboard"
+        ],
+        "candidate_scores": [
+          0.2918,
+          0.2877,
+          0.1872,
+          0.1803
+        ],
+        "intent_verified": false,
+        "retrieved_candidate_ids": [
+          "policy_personal_keyboard_mouse",
+          "migrated_owner_claim_personal_keyboard_mouse",
+          "migrated_faq_rule_en_payment_deadline_natural",
+          "game_detail_little_nightmares_2",
+          "migrated_faq_curated_home_equipment_pc_zone",
+          "equipment_gaming_keyboard",
+          "migrated_game_the_last_of_us_part_ii_remastered",
+          "migrated_faq_rule_equipment_pc_zone"
+        ],
+        "rejected_correction_subject_ids": [],
+        "candidate_pruning": {
+          "before_count": 8,
+          "after_count": 4,
+          "rejected_ids": [
+            "migrated_faq_rule_en_payment_deadline_natural",
+            "game_detail_little_nightmares_2",
+            "migrated_game_the_last_of_us_part_ii_remastered",
+            "migrated_faq_rule_equipment_pc_zone"
+          ],
+          "reason": "fails_existing_independent_topic_guard"
+        },
+        "timing_ms": {
+          "retrieval_ms": 167.897,
+          "model_work_wait_ms": 1412.764,
+          "admission_wait_ms": 0.528,
+          "http_wait_and_read_ms": 6011.452,
+          "total_ms": 7593.473
+        },
+        "profile_retrieval_coverage": {
+          "compatible_count": 0,
+          "included_count": 0,
+          "omitted_ids": [],
+          "all_compatible_topics_available_for_clarification": true,
+          "semantic_recall_verified": false
+        },
+        "profile_protocol": true,
+        "model_request": {
+          "timeout_cap_seconds": 6,
+          "effective_timeout_seconds": 6,
+          "payload_bytes": 4942,
+          "num_ctx": 3072,
+          "num_predict": 420
+        },
+        "attempted": true,
+        "transport_ok": false,
+        "schema_accepted": false,
+        "error": "TimeoutError",
+        "availability_failure": "timeout"
+      }
+    },
+    "need_ledger": {
+      "version": "common_need_ledger_v1",
+      "needs": [],
+      "total_needs": 0,
+      "answered_needs": 0,
+      "scope_limits": [],
+      "snapshot_consistent": false,
+      "semantic_correctness_verified": false,
+      "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+      "evidence_hits": 0,
+      "response_type": "retry"
+    },
+    "rejected_candidate": {},
+    "source_hits": [],
+    "failures": [],
+    "model_http": [
+      {
+        "url": "http://127.0.0.1:11434/api/generate",
+        "transport_ok": false,
+        "error_type": "TimeoutError",
+        "error": "timed out",
+        "elapsed_sec": 6.011429500002123
+      }
+    ],
+    "elapsed_sec": 8.382893499998318
+  }
+]

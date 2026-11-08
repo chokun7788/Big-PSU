@@ -1,0 +1,133 @@
+{
+  "question_key": "dcddcfd2f0b17833219d703b3e88d5a3f4c4dfaf9bde596cd0d3ef89e412600d",
+  "example_sha256": "45fb34b46598925088cb88176847f420d1dd80b6d760c3d36791bafb72554383",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks whether food must be eaten only in the designated area.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy and food_consume focus retain consumption rather than bringing.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "กิน is action; ในบริเวณที่จัดไว้เท่านั้น preserves the exclusive location condition.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No particular service zone or prior carrying permission is inherited.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "เท่านั้น is part of the questioned rule, not evidence that the model may assert its truth.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "food_drink and its English natural FAQ explicitly restrict consumption to designated areas.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_food_drink",
+        "migrated_faq_rule_en_food_drink_natural"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No affirmative exclusive-area rule, fine or room-wide ban is taught.",
+      "raw_quotes": [
+        "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 145,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_consume",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอถามเกี่ยวกับศูนย์หน่อยครับ: อาหารต้องกินในบริเวณที่จัดไว้เท่านั้นหรือเปล่า",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "กิน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "ในบริเวณที่จัดไว้เท่านั้น",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    },
+    "migrated_faq_rule_en_food_drink_natural": {
+      "revision": 4,
+      "record_sha256": "b92549f7779a022b48d982cbc767944e0169214b6c149c5bbc677bc76d20a405"
+    }
+  }
+}

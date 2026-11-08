@@ -1,0 +1,144 @@
+{
+  "result": {
+    "answer": "Do you mean this topic: Correct an incorrect payment-slip image?\nReply “yes” or “no”.",
+    "mode": "pipeline:common_clarification",
+    "hits": [],
+    "artifact": {
+      "response_type": "clarification",
+      "release_id": "migration-preview-r69",
+      "query_plan": {
+        "record_ids": [],
+        "requested_fields": [],
+        "method": "profile_topic_clarification",
+        "profile_confirmation": {
+          "version": 1,
+          "options": [
+            {
+              "record_id": "procedure_wrong_slip",
+              "routing_sha256": "a3041a370c0bbf361acf8147e29b8cccd6b33f93610fe4c0fc4c564ca07b3c02"
+            }
+          ],
+          "page": 0,
+          "page_size": 6,
+          "reason": "unverified_meaning_requires_topic_selection"
+        },
+        "entity_selection": {
+          "candidate_ids": [
+            "procedure_wrong_slip",
+            "migrated_owner_claim_group_checkin",
+            "game_detail_cs2"
+          ],
+          "candidate_scores": [
+            0.0,
+            0.2501,
+            0.2439
+          ],
+          "intent_verified": false,
+          "profile_retrieval_coverage": {
+            "compatible_count": 1,
+            "included_count": 1,
+            "omitted_ids": [],
+            "all_compatible_topics_available_for_clarification": true,
+            "semantic_recall_verified": false
+          },
+          "profile_protocol": true,
+          "attempted": true,
+          "transport_ok": false,
+          "schema_accepted": false,
+          "error": "URLError",
+          "availability_failure": "transport"
+        },
+        "source_answer_confirmed": false
+      },
+      "obligations": [],
+      "catalog_scope": "common_published",
+      "coverage_errors": [],
+      "confidence_calibrated": false,
+      "validation_scope": "selected fields and evidence, not human intent correctness",
+      "content_view": "evaluation_draft",
+      "production_publication_verified": false,
+      "migration": {
+        "profile": "r69-migration-preview",
+        "database": "common.sqlite",
+        "draft_preview_only": true,
+        "production_publication_verified": false,
+        "knowledge_source": "migrated_common",
+        "legacy_fallback_used": false
+      },
+      "planner_audits": [],
+      "query_resolution": [
+        {
+          "stage": "request_needs",
+          "needs": []
+        },
+        {
+          "stage": "named_scope",
+          "record_ids": [],
+          "method": "none"
+        },
+        {
+          "stage": "question_profile",
+          "selection": {
+            "method": "declared_question_profile",
+            "candidate_ids": [],
+            "matches": [],
+            "rejected": [],
+            "human_intent_correctness_verified": false,
+            "reason": "no_matching_profile"
+          }
+        }
+      ]
+    },
+    "validation_ok": true
+  },
+  "health": {
+    "enabled": true,
+    "failure_threshold": 2,
+    "failure_window_sec": 30.0,
+    "cooldown_sec": 90.0,
+    "states": [
+      {
+        "kind": "common_entity_select",
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "status": "degraded",
+        "failures": 1,
+        "successes": 0,
+        "cooldown_remaining_sec": 0.0,
+        "last_error_type": "URLError",
+        "last_error": "<urlopen error [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions>",
+        "last_elapsed_ms": 109.08,
+        "last_checked_at": 1792166747.8929758,
+        "last_success_at": 0.0,
+        "half_open_probe_in_flight": false,
+        "events": [
+          {
+            "event": "failure",
+            "kind": "common_entity_select",
+            "error_type": "URLError",
+            "error": "<urlopen error [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions>",
+            "elapsed_ms": 109.08,
+            "failures": 1,
+            "cooldown_until": 0.0,
+            "at": 1792166747.893
+          }
+        ]
+      },
+      {
+        "kind": "model",
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "status": "ok",
+        "failures": 0,
+        "successes": 0,
+        "cooldown_remaining_sec": 0.0,
+        "last_error_type": "",
+        "last_error": "",
+        "last_elapsed_ms": 0.0,
+        "last_checked_at": 0.0,
+        "last_success_at": 0.0,
+        "half_open_probe_in_flight": false,
+        "events": []
+      }
+    ]
+  },
+  "controlled_response": false
+}

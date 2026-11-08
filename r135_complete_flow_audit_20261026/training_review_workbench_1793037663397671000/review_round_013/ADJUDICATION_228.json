@@ -1,0 +1,139 @@
+{
+  "question_key": "eba19ca0001b2212b8142a5766d2d60b53df05a1bffc96f950352513037e5dab",
+  "example_sha256": "9a4145e9d93c6bb66d256ccba053cb40d86adb32c476457f4c21f3628a548d8e",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One underpayment follow-up asks how additional proof is supplied; the summary modifier is not another need.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy retains additional-proof procedure rather than a live payment-status operation.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ยอดที่โอนขาดไป is the local condition and ส่งหลักฐานเพิ่ม the requested action.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No shortfall amount, completed top-up, deadline, overpayment or new reservation is inherited.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The request for instructions does not authorize the assistant to transfer money or send documents.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_q015 contains additional-proof instructions without establishing the deadline mentioned in its source question; actual attested owner42 also explicitly scopes โอนขาด.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": [
+        "r114_q015_owner_policy",
+        "r130_owner_42_scoped"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Facebook destination, proof list, amount, deadline or business outcome enters labels.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The additional-payment source question mentions a deadline not established by its answer.",
+      "handling": "Do not invent a deadline; actual source owner42 has an explicit underpayment actor/purpose."
+    }
+  ],
+  "historical_review_row": 228,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ยอดที่โอนขาดไป ต้องส่งหลักฐานเพิ่มอย่างไร ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ยอดที่โอนขาดไป",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "ส่งหลักฐานเพิ่ม",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q015_owner_policy": {
+      "revision": 1,
+      "record_sha256": "e11e8001f94a8a984d5793caf7a8bf05835d908132e26a040069ec4da2380d3e"
+    },
+    "r130_owner_42_scoped": {
+      "revision": 2,
+      "record_sha256": "be4fc53eb9ecb1ad757181cf7bf9ecf0bf9a38a0861440d21f36e5ea25c10be4"
+    }
+  }
+}

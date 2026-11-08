@@ -1,0 +1,15 @@
+--- before/deployment_templates/Open-PSU-Esports-Background.ps1
++++ after/deployment_templates/Open-PSU-Esports-Background.ps1
+@@ -60,7 +60,11 @@
+     -RedirectStandardError (Join-Path $logs "chatbot_$runId.err.log")
+ Write-Host "Starting Chatbot in the background (process $($child.Id))."
+ Write-Host "Chatbot: $chatbotUrl"
+-Write-Host "Dashboard: http://127.0.0.1:$(if ($ownerDashboardAt8080) { 8080 } else { 8091 })/"
++if ($ownerDashboardAt8080) {
++    Write-Host "Booking source: owner Dashboard at http://127.0.0.1:8080/"
++} else {
++    Write-Host "Booking source: WordPress (read-only, fetched when a status question is asked)."
++}
+ Write-Host "Startup logs: $logs"
+ Write-Host "The window can now close. The computer must remain on for local answers."
+ for ($attempt = 0; $attempt -lt 60; $attempt++) {

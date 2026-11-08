@@ -1,0 +1,13 @@
+--- before/web_chat/app.js
++++ after/web_chat/app.js
+@@ -459,7 +459,9 @@
+   const english = runtime.english || {};
+   const rows = [
+     ["Profile", runtime.profile || "-"],
+-    ["Version", runtime.version || "-"],
++    [isEnglish ? "Version" : "รุ่น", runtime.version || "-"],
++    [isEnglish ? "Current page" : "หน้าที่กำลังเปิด", window.location.origin],
++    [isEnglish ? "Booking source" : "ข้อมูลจอง", (runtime.booking || {}).fetch_mode === "dashboard" ? "Booking Dashboard" : "WordPress"],
+     ["Local LLM", llm.enabled ? `${on}: ${llm.model || "-"}` : off],
+     ["Semantic RAG", rag.enabled ? `${on}: ${rag.embedding_model || "-"}` : off],
+     ["English", english.enabled ? on : off],

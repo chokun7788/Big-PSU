@@ -1,0 +1,625 @@
+{
+  "reviewed_at": 1793007518.3480947,
+  "candidate": "R135 working unfrozen uninstalled",
+  "whole_flow_complete": false,
+  "limits": [
+    "Controlled source/transport tests, not fresh model measurement",
+    "No baseline inference/regrade; no model/weights restart",
+    "No full semantic correctness claim; explicit unassessed clauses remain"
+  ],
+  "code_sha256": {
+    "app\\knowledge\\common\\flow_context.py": "779823d9d5a21fa8912fd9e542896dfa17e3c46c94acdf39e3be2d504485aba2",
+    "app\\knowledge\\common\\answer.py": "3099c752a97cb1b2d4b9649543a785f26a9f6ff18952d44cefe8caad1664f8db",
+    "app\\knowledge\\common\\complete_flow.py": "28fc615d998fa50f87c06af69879d9ca6938284cf500b4f16f9528a97eafef82",
+    "app\\knowledge\\common\\followup_scope.py": "180616319acac0001bb38283317760b938aa18dd7448ca9723e4111e5bd41064",
+    "app\\knowledge\\common\\domain_flow\\request_provenance.py": "bef953687e758a3ef5df6e89d30418d9409c70da1fd364961199791542b7b408",
+    "app\\knowledge\\common\\domain_flow\\input_derivation.py": "1e2eeafc16835ed2ce1652eaacb75fe18f955805d1ceabc2ce1494a754f140e5",
+    "app\\knowledge\\common\\domain_flow\\index.py": "2434a2d8253dffb19ee842c2774572fdd4a1d756bebfbf79b7a356869899bf1f",
+    "app\\knowledge\\common\\domain_flow\\integration.py": "75bf633f18e79a5a119fa90191f3225d08986da26aa016fff8596fa57e6e2c0f",
+    "app\\knowledge\\common\\domain_flow\\model_gateway.py": "63d47debe019b4eb70f4f40ec44471feef70373f5000b43d41fd97a5f9dd1ae1",
+    "app\\knowledge\\common\\domain_flow\\understanding.py": "c424f4f30a2b0a4121bef2b8e84f13c1dec69b3e3d0f4a38eb3bbb476ea0e544",
+    "app\\knowledge\\common\\domain_flow\\context_contract.py": "2379702fbcfb38e3818566f119e83afb5735809ba57504cc87dcd55f87e621f8",
+    "app\\knowledge\\common\\domain_flow\\context_guard.py": "e614ab492c8b904efd7d19495ccc5e7c7c315bfde1d6c2d246fe39444dcc6898",
+    "app\\knowledge\\common\\domain_flow\\context_bindings.py": "f2c4239b0cb45691d0e6bdb19dcb5d6ec9261ccbadfb773906a4197268f99c76",
+    "app\\knowledge\\common\\domain_flow\\plan_contract.py": "247fe4de301a8e35aab1e315d89336a0b25d0e3d75178397a90121817310dbf9",
+    "app\\knowledge\\common\\domain_flow\\task_execution.py": "0ab75c558451772aff3db8b0ac32b1afe31d2a344ae8198c23b967f7f1e9570d",
+    "app\\knowledge\\common\\domain_flow\\obligation_verifier.py": "51700e6fba5dbf4dfe113a98ffe24ef2b893d973341b1b0c1481383663e6b865",
+    "app\\knowledge\\common\\domain_flow\\named_spans.py": "f9acd094a299f0c45f62b1bcc9c15c76ba769d3a5b276e0cfcef2836e8ae2204",
+    "app\\knowledge\\common\\domain_flow\\style_scope.py": "322d0042c04feab6687700478fff4b9310d02fe1f248ee76eb4c612033620a1c",
+    "app\\knowledge\\common\\domain_flow\\dialogue_task.py": "a95395399fa8784e75127986ad7cc6ec99ae64f575003c4d14b982564b8a48a8",
+    "app\\knowledge\\common\\domain_flow\\meaning_reader.py": "9aef588642b30350a9336b3fb2c1b0a95b52a71957472918831a2b4d941b70a5",
+    "app\\knowledge\\common\\domain_flow\\request_verifier.py": "e4d1700fed5490bf07692173f405c496280cadb5313790b04ecd9a4555441ebd",
+    "app/session/conversation_store.py": "d401bd01f8c6579f12561fadac9d2346e5d81c8664ab293fb66b9505e019276d",
+    "app/pipeline/migrated_chat.py": "fc76fa6ac4363950e48504665f02c08abc44a155f13d1d4ee753319f450dab74"
+  },
+  "requirements": [
+    {
+      "requirement_id": "FLOW-09",
+      "original_text_sha256": "7a518c9ccf2266742d2aefef8837b7f992f597bf47d09fec668a025ee13551bd",
+      "criteria": [
+        {
+          "criterion": "readerที่ถูกreuseไม่ส่งdialogueเก่าเข้าrequestใหม่ และ requestblobที่ไม่ลงทะเบียนredirectไม่ได้",
+          "state": "passed_controlled_acceptance",
+          "evidence": "style_scope_1793007014856282200\\RESULT.json",
+          "evidence_sha256": "4cfe346a00d7f9c3f5740f4a3d3127c624759548b2e0b0181552571829caad2d",
+          "checks": [
+            "stale_reader_attribute_ignored_with_current_source_ids",
+            "unregistered_request_dialogue_blob_cannot_redirect_source"
+          ]
+        },
+        {
+          "criterion": "raw question immutable และ normalization map ไม่อ้าง transformed text เป็น exact raw quote",
+          "state": "passed_controlled_acceptance",
+          "evidence": "request_context_1792995955036815700\\RESULT.json",
+          "evidence_sha256": "0f3642c013b8efe72a9c3ab39a0d853b037c7d68bb6629cac8c45bff412680f7",
+          "checks": [
+            "raw_question_preserved_separately_from_normalization",
+            "normalization_range_does_not_forge_exact_raw_quote",
+            "item_rewrite_rejected",
+            "update_rewrite_rejected",
+            "whole_input_rewrite_rejected",
+            "raw_delete_rejected"
+          ]
+        },
+        {
+          "criterion": "request ID / Bangkok timestamp / source revisions / runtime identity ถูก pin แยกจาก model alias",
+          "state": "passed_controlled_acceptance",
+          "evidence": "request_identity_1793004103985346800\\RESULT.json",
+          "evidence_sha256": "34e66629d3a1ed72b54927edc19c853404e4d26cbc68b04f5681a947394d5d30",
+          "checks": [
+            "nested_readers_share_one_reference_timestamp",
+            "request_id_exists_and_stays_same",
+            "request_clock_includes_bangkok_timezone",
+            "snapshot_manifest_names_actual_record_revisions",
+            "snapshot_manifest_names_actual_source_digests",
+            "runtime_identity_recorded_without_model_name_inference",
+            "typed_request_does_not_claim_observed_model_assets"
+          ]
+        },
+        {
+          "criterion": "ประวัติมาจาก delivered same-session พร้อม server turn ref และไม่รับ assistant price เป็น fact",
+          "state": "passed_controlled_acceptance",
+          "evidence": "request_context_1792995955036815700\\RESULT.json",
+          "evidence_sha256": "0f3642c013b8efe72a9c3ab39a0d853b037c7d68bb6629cac8c45bff412680f7",
+          "checks": [
+            "prepared_but_not_written_response_not_trusted",
+            "stored_same_session_written_intent_available",
+            "trusted_history_inherits_user_slots_not_assistant_price",
+            "inherited_slot_links_actual_server_session_and_turn",
+            "client_forged_delivery_cannot_transfer_state_between_sessions",
+            "fallback_cannot_keep_server_history_reference",
+            "uncertain_delivery_not_reused"
+          ]
+        },
+        {
+          "criterion": "local override เก็บ superseded/excluded shared scope",
+          "state": "passed_controlled_acceptance",
+          "evidence": "graph_verification_1793007022160120000\\RESULT.json",
+          "evidence_sha256": "eea9cd20f091822f30b21aa0a9deff89fb8778b5a7a24914f877702ef2cff13a",
+          "checks": [
+            "local_audience_overrides_shared_prefix",
+            "local_override_records_excluded_shared_scope"
+          ]
+        },
+        {
+          "criterion": "Raw compound task text and offsets survive case/space changes and source-name separators, including Unicode casefold expansion",
+          "state": "passed_controlled_acceptance",
+          "evidence": "raw_compounds_1793069076920566900\\RESULT.json",
+          "evidence_sha256": "460b3679bb920adb6ee0bfa9c60df5403717e6cbe521d35ad3757d3e225afd2e",
+          "checks": [
+            "raw_Amber gameWhat genre is AMBER game?",
+            "raw_Amber gameWhat genre is Amber   gam",
+            "raw_Straße; GameWhat genre is STRASSE; Ga",
+            "known_siblings_literal_task_spans",
+            "source_separator_literal_task_spans"
+          ],
+          "iteration": "conditions_and_raw_compounds"
+        },
+        {
+          "criterion": "requested auto locale is preserved while typed and compatibility readers receive one resolved effective locale and deliver actual selected source-language values; explicit locale overrides remain effective",
+          "state": "passed_controlled_acceptance",
+          "evidence": "auto_locale_boundaries_1793074977493785500\\RESULT.json",
+          "evidence_sha256": "be46fbaf8ce2e70ad1a6f81c768f0381e53a5bb710b61baa37c6b711c5740662",
+          "checks": [
+            "compat_auto_english_resolved_before_helper_dispatch",
+            "compat_auto_english_original_requested_locale_preserved",
+            "compat_auto_english_actual_source_language_text_delivered",
+            "compat_explicit_thai_override_actual_source_language_text_delivered",
+            "typed_mixed_auto_thai_actual_source_language_text_delivered",
+            "typed_explicit_english_override_actual_source_language_text_delivered"
+          ],
+          "iteration": "auto_locale_and_quarantine",
+          "semantic_accuracy_claimed": false
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "FLOW-10",
+      "original_text_sha256": "aff7ade822bffaf365f235d75c920ac422fa370ab6273131e7deb5da0d181513",
+      "criteria": [
+        {
+          "criterion": "planner wire มี graph/tasks/exact quotes และไม่รับ business value หรือ confidence เป็นอำนาจ",
+          "state": "passed_controlled_acceptance",
+          "evidence": "planner_input_contract_1792992652705383900\\RESULT.json",
+          "evidence_sha256": "8bb5cbf7f9687c0fab11574d14e7f79a035d71fdea9de27f8f701c949af97a47",
+          "checks": [
+            "valid_exact_source_plan_accepted",
+            "business_value_rejected_without_exception",
+            "self_reported_confidence_not_a_root_authority",
+            "invented_source_id_rejected_without_exception"
+          ]
+        },
+        {
+          "criterion": "runtime ตรวจ operation-field pair ก่อน dispatch ไม่ประมาณเป็น detail",
+          "state": "passed_controlled_acceptance",
+          "evidence": "planner_input_contract_1792992652705383900\\RESULT.json",
+          "evidence_sha256": "8bb5cbf7f9687c0fab11574d14e7f79a035d71fdea9de27f8f701c949af97a47",
+          "checks": [
+            "registered_but_unsupported_pair_does_not_fall_back_to_detail"
+          ]
+        },
+        {
+          "criterion": "บังคับ generation schema เมื่อ backend รองรับ",
+          "state": "review_required",
+          "reason": "current model server ยังเป็น unconstrained HF; grammar controls ที่เตรียมไว้ไม่ใช่การ activate จริง ห้ามอ้าง parser ผ่านเท่ากับ constrained generation และห้ามเลี่ยง automatic kill rejection"
+        },
+        {
+          "criterion": "semantic consistency ของ planner ทุก factual need บน candidate สุดท้าย",
+          "state": "review_required",
+          "reason": "ยังต้อง frozen source replay/adjudication และ review changed answers; JSON/schema/controlled graph ไม่ใช่ semantic accuracy"
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "FLOW-11",
+      "original_text_sha256": "9f84f88d0b5b5d6440d18db515509389c43dd54f96c415dd96968ce294f521d0",
+      "criteria": [
+        {
+          "criterion": "task ID/version/type/operation/field/raw quotes และ payload limits ปฏิเสธ malformed proposals โดยไม่ exception",
+          "state": "passed_controlled_acceptance",
+          "evidence": "planner_input_contract_1792992652705383900\\RESULT.json",
+          "evidence_sha256": "8bb5cbf7f9687c0fab11574d14e7f79a035d71fdea9de27f8f701c949af97a47",
+          "checks": [
+            "domain_object_rejected_without_exception",
+            "domain_list_rejected_without_exception",
+            "wrong_schema_version_rejected_without_exception",
+            "duplicate_task_id_rejected",
+            "duplicate_root_key_rejected",
+            "deep_json_rejected_without_recursion_error",
+            "oversized_payload_rejected_before_parse",
+            "unbound_target_rejected_without_exception",
+            "unbound_slot_rejected_without_exception",
+            "dropped_numeric_condition_rejected"
+          ]
+        },
+        {
+          "criterion": "unsupported registered operation pair หยุดก่อน reader ไม่แปลงเป็น detail",
+          "state": "passed_controlled_acceptance",
+          "evidence": "planner_input_contract_1792992652705383900\\RESULT.json",
+          "evidence_sha256": "8bb5cbf7f9687c0fab11574d14e7f79a035d71fdea9de27f8f701c949af97a47",
+          "checks": [
+            "registered_but_unsupported_pair_does_not_fall_back_to_detail"
+          ]
+        },
+        {
+          "criterion": "public Engine/Common input boundary บังคับ exact normalization หรือ registered recomputation ไม่ใช้ audit tag/raw substring เป็นอำนาจ",
+          "state": "passed_controlled_acceptance",
+          "evidence": "execution_derivation_1792995955402425400\\RESULT.json",
+          "evidence_sha256": "55d990f5190d769f2390d96a4aa4a7b0d60908da672b97e7b54a213dd1fdc9c6",
+          "checks": [
+            "unattested_changed_field_cannot_deliver_source_claims",
+            "audit_receipt_alone_does_not_authorize_field_change",
+            "known_transform_name_without_valid_recomputation_rejected",
+            "common_reader_cannot_bypass_raw_input_guard",
+            "arbitrary_raw_substring_is_not_a_parent_task_receipt",
+            "validated_parent_span_and_shared_entity_still_work",
+            "actual_casefold_normalization_still_delivers",
+            "actual_delivered_task_resolution_recomputed_and_source_backed",
+            "source_epoch_change_invalidates_previous_derivation_receipt",
+            "empty_source_unverified_input_still_has_safe_uniform_result"
+          ]
+        },
+        {
+          "criterion": "A native compatibility proposal retains source-checked sibling tasks and explicitly ambiguous unknown parts instead of recovering one whole-question action",
+          "state": "passed_controlled_acceptance",
+          "evidence": "raw_compounds_1793069076920566900\\RESULT.json",
+          "evidence_sha256": "460b3679bb920adb6ee0bfa9c60df5403717e6cbe521d35ad3757d3e225afd2e",
+          "checks": [
+            "known_siblings_positive_sources_preserved",
+            "known_siblings_independent_task_count",
+            "unknown_middle_positive_sources_preserved",
+            "unknown_middle_independent_task_count",
+            "unresolved_sibling_explicit_and_no_invented_claim"
+          ],
+          "iteration": "conditions_and_raw_compounds"
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "FLOW-12",
+      "original_text_sha256": "18477fa87ffba5e988c99cca77b8091be5911bb9b0f01dcba69fde72439c2a64",
+      "criteria": [
+        {
+          "criterion": "prefix audience/date แชร์เฉพาะ relevant tasks และแยก semantic edge จาก execution dependency",
+          "state": "passed_controlled_acceptance",
+          "evidence": "graph_verification_1793007022160120000\\RESULT.json",
+          "evidence_sha256": "eea9cd20f091822f30b21aa0a9deff89fb8778b5a7a24914f877702ef2cff13a",
+          "checks": [
+            "shared_prefix_audience_reaches_both_relevant_tasks",
+            "shared_prefix_date_reaches_both_relevant_tasks",
+            "request_prefix_edges_have_request_source",
+            "shared_context_is_not_execution_dependency",
+            "local_override_records_excluded_shared_scope"
+          ]
+        },
+        {
+          "criterion": "หลาย antecedents คง ambiguity และไม่เอา comparison duration ไปใช้จอง",
+          "state": "passed_controlled_acceptance",
+          "evidence": "graph_verification_1793007022160120000\\RESULT.json",
+          "evidence_sha256": "eea9cd20f091822f30b21aa0a9deff89fb8778b5a7a24914f877702ef2cff13a",
+          "checks": [
+            "thai_multiple_antecedents_preserve_ambiguity",
+            "multiple_antecedents_do_not_choose_last_silently",
+            "booking_does_not_inherit_comparison_durations",
+            "booking_keeps_source_named_service"
+          ]
+        },
+        {
+          "criterion": "source-related service-game ellipsis ต้องมี actual relation ไม่ใช่ shared alias",
+          "state": "passed_controlled_acceptance",
+          "evidence": "shared_relation_binding_1792992169049404200\\RESULT.json",
+          "evidence_sha256": "515ade0ef9ea10d1aa1745e10ba1b9a05af9296bf01a2ed2c4fd8648979b815c",
+          "checks": [
+            "shared_alias_alone_not_a_validated_service_game_relation",
+            "actual_offering_relation_allows_ellipsis",
+            "shared_binding_preserves_relation_record_and_revision",
+            "withdrawn_relation_not_a_cached_shared_edge",
+            "unresolved_relation_keeps_independent_capacity_evidence"
+          ]
+        },
+        {
+          "criterion": "ชื่อเกมหรือเครื่องที่มีตัวเลข/คำจำนวนไม่กลายเป็น quantity และ quantityจริงนอกชื่อยังมี raw span ถูกตำแหน่ง",
+          "state": "passed_controlled_acceptance",
+          "evidence": "named_number_slots_1793007014800093900\\RESULT.json",
+          "evidence_sha256": "11b74179d49d40ebd059935c4445a1e53e5dccdd2c38a21ff05074258cc71457",
+          "checks": [
+            "One Hour_normal_source_answer",
+            "2 Players_no_phantom_verifier_quantity_or_extra_need",
+            "Two Sessions_title_not_quantity_slot",
+            "7 Minutes_dialogue_preserves_title",
+            "real_persons_outside_title_preserved",
+            "real_quantity_not_hidden_by_another_game_having_that_title",
+            "ordinary_duration_not_stolen_by_matching_game_title",
+            "same_unit_phrase_as_title_and_real_duration_keeps_both",
+            "repeated_quantity_quote_binds_outside_title",
+            "resource_number_not_person_or_session_quantity"
+          ]
+        },
+        {
+          "criterion": "styleไม่สร้างreferent/ambiguityในcompilerและdeliveredhistory แต่actualpronounยังทำงาน",
+          "state": "passed_controlled_acceptance",
+          "evidence": "style_scope_1793007014856282200\\RESULT.json",
+          "evidence_sha256": "4cfe346a00d7f9c3f5740f4a3d3127c624759548b2e0b0181552571829caad2d",
+          "checks": [
+            "style_does_not_create_target_0",
+            "style_does_not_create_target_1",
+            "style_does_not_create_target_5",
+            "style_does_not_manufacture_multiple_antecedent_ambiguity",
+            "delivered_style_does_not_inherit_game_0",
+            "delivered_factual_possessive_without_style_still_binds",
+            "source_title_resembling_style_normal_answer",
+            "public_integration_preserves_source_answer_with_style"
+          ]
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "CONTRACT-02",
+      "original_text_sha256": "94eb178da45eceb200c7b5d2b5ef176ab323686f4654335463bef4c6ba4c4fab",
+      "criteria": [
+        {
+          "criterion": "raw/normalized/offsets แยกกันและแก้ raw ไม่ได้",
+          "state": "passed_controlled_acceptance",
+          "evidence": "request_context_1792995955036815700\\RESULT.json",
+          "evidence_sha256": "0f3642c013b8efe72a9c3ab39a0d853b037c7d68bb6629cac8c45bff412680f7",
+          "checks": [
+            "raw_question_preserved_separately_from_normalization",
+            "normalization_range_does_not_forge_exact_raw_quote",
+            "whole_input_rewrite_rejected"
+          ]
+        },
+        {
+          "criterion": "pin locale/time/snapshot/source revisions รวม UTC conversion และปฏิเสธ clock drift",
+          "state": "passed_controlled_acceptance",
+          "evidence": "request_identity_1793004103985346800\\RESULT.json",
+          "evidence_sha256": "34e66629d3a1ed72b54927edc19c853404e4d26cbc68b04f5681a947394d5d30",
+          "checks": [
+            "locale_is_explicit_in_bound_request_context",
+            "nested_readers_share_one_reference_timestamp",
+            "explicit_utc_clock_converted_to_bangkok",
+            "timezone_free_reference_rejected",
+            "different_nested_clock_not_silently_accepted",
+            "snapshot_manifest_names_actual_record_revisions",
+            "snapshot_manifest_names_actual_source_digests"
+          ]
+        },
+        {
+          "criterion": "actual returned name/assets receipt แยกจาก requested alias; typed no-call ไม่อ้าง observed weights",
+          "state": "passed_controlled_acceptance",
+          "evidence": "request_identity_1793004103985346800\\RESULT.json",
+          "evidence_sha256": "34e66629d3a1ed72b54927edc19c853404e4d26cbc68b04f5681a947394d5d30",
+          "checks": [
+            "actual_returned_name_and_asset_receipt_kept_separate_from_alias",
+            "wrong_model_name_not_marked_verified",
+            "typed_request_does_not_claim_observed_model_assets"
+          ]
+        },
+        {
+          "criterion": "เปลี่ยน snapshot ต้อง retry และถอน root/need receipts ไม่ผสมรุ่น",
+          "state": "passed_controlled_acceptance",
+          "evidence": "snapshot_delivery_1793006571167049100\\RESULT.json",
+          "evidence_sha256": "139e0520bcfb77ab5b6e1804ca2d659d8a3fdc8eca82aaf5641054091f25cecd",
+          "checks": [
+            "changed_snapshot_requests_retry",
+            "no_top_level_delivered_claims",
+            "root_and_need_executor_proofs_both_withdrawn",
+            "verifier_no_stale_supported_certificate"
+          ]
+        },
+        {
+          "criterion": "budget เป็น request ledger รวมทุก model stage ไม่ใช่ business fact",
+          "state": "passed_controlled_acceptance",
+          "evidence": "gateway_verification_1792991683297578100\\RESULT.json",
+          "evidence_sha256": "982bba69d775114212659917122d5a72d200866312333d154ff3becf80087157",
+          "checks": [
+            "shared_budget_records_two_calls",
+            "third_call_rejected_before_http",
+            "non_context_always_base"
+          ]
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "CONTRACT-03",
+      "original_text_sha256": "4c3eb0bc09999243a3c9f811fa4da9550ae89e09e479651b2e8eb7305b1115c6",
+      "criteria": [
+        {
+          "criterion": "รับเฉพาะ source-quoted graph proposal ไม่รับ business/source/SQL operation ที่โมเดลสร้าง",
+          "state": "passed_controlled_acceptance",
+          "evidence": "planner_input_contract_1792992652705383900\\RESULT.json",
+          "evidence_sha256": "8bb5cbf7f9687c0fab11574d14e7f79a035d71fdea9de27f8f701c949af97a47",
+          "checks": [
+            "business_value_rejected_without_exception",
+            "invented_source_id_rejected_without_exception",
+            "unsupported_operation_rejected_without_exception",
+            "unbound_target_rejected_without_exception",
+            "self_reported_confidence_not_a_root_authority"
+          ]
+        },
+        {
+          "criterion": "cycles/invented quote ถูก reject และ ambiguityไม่เลือก antecedentสุดท้าย",
+          "state": "passed_controlled_acceptance",
+          "evidence": "graph_verification_1793007022160120000\\RESULT.json",
+          "evidence_sha256": "eea9cd20f091822f30b21aa0a9deff89fb8778b5a7a24914f877702ef2cff13a",
+          "checks": [
+            "self_cycle_rejected",
+            "invented_source_quote_rejected",
+            "multiple_antecedents_do_not_choose_last_silently"
+          ]
+        },
+        {
+          "criterion": "ครบ factual needs แยกจาก style และ binding semantics ทุกชนิด",
+          "state": "review_required",
+          "reason": "ต้อง request-specific semantic reviews; structural source quote validity ไม่รับประกัน plan ถูกทุกข้อ"
+        },
+        {
+          "criterion": "native-only service-period vocabulary stays separate from frozen model wire; wrong v2 label stays quarantined",
+          "state": "passed_controlled_acceptance",
+          "evidence": "named_periods_1793093672750153100\\RESULT.json",
+          "evidence_sha256": "29a89285c99811a52784673692387d2dd0690bde08836f0d916ef02fde0b8bc8",
+          "checks": [
+            "native_task_uses_service_not_bookable",
+            "wire_v2_unchanged_native_field_not_model_vocabulary",
+            "model_cannot_claim_native_only_facet",
+            "actual_row191_typed_source_not_faq"
+          ],
+          "iteration": "named_service_period_native_boundary",
+          "semantic_accuracy_claimed": false
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "CONTRACT-05",
+      "original_text_sha256": "83667da7aebdfd50defc882da25a8f8c161efb5041beedb445fbcada272da12b",
+      "criteria": [
+        {
+          "criterion": "จำนวนรอบ/จำนวนเครื่อง/คนและหน่วยกลุ่มแยกกัน ไม่เลือกfirst conflicting countหรือแต่งmulti-devicebilling",
+          "state": "passed_controlled_acceptance",
+          "evidence": "quantity_roles_1793007014869880200\\RESULT.json",
+          "evidence_sha256": "89d0bd61f488c5b0110c9aac92304adc7ad51b2bdeafb9d4d09c55cb05638e6e",
+          "checks": [
+            "sessions_not_persons",
+            "persons_not_sessions",
+            "persons_and_sessions_have_distinct_factors",
+            "group_rate_not_multiplied_by_members",
+            "total_duration_agrees_with_sessions",
+            "session_duration_not_total_duration",
+            "group_capacity_bound_not_ignored",
+            "invalid_or_conflicting_quantity_not_first_integer_2 sessions and 3 sessions",
+            "resource_count_has_distinct_compiled_owner_slot_2 machines",
+            "resource_billing_limitation_is_visible_2 machines",
+            "numeric_service_title_does_not_erase_identical_actual_duration"
+          ]
+        },
+        {
+          "criterion": "entity name มี unit ไม่ให้สร้าง quantity slot และ repeated identical quoteต้องเลือก actual quantity span",
+          "state": "passed_controlled_acceptance",
+          "evidence": "named_number_slots_1793007014800093900\\RESULT.json",
+          "evidence_sha256": "11b74179d49d40ebd059935c4445a1e53e5dccdd2c38a21ff05074258cc71457",
+          "checks": [
+            "One Hour_title_not_quantity_slot",
+            "2 Players_title_not_quantity_slot",
+            "Two Sessions_title_not_quantity_slot",
+            "7 Minutes_title_not_quantity_slot",
+            "real_persons_outside_title_preserved",
+            "repeated_quantity_quote_binds_outside_title",
+            "ordinary_duration_not_stolen_by_matching_game_title"
+          ]
+        },
+        {
+          "criterion": "slot provenance ของ inherited user intent มี server session/turn และไม่รับ assistant fact",
+          "state": "passed_controlled_acceptance",
+          "evidence": "request_context_1792995955036815700\\RESULT.json",
+          "evidence_sha256": "0f3642c013b8efe72a9c3ab39a0d853b037c7d68bb6629cac8c45bff412680f7",
+          "checks": [
+            "inherited_slot_links_actual_server_session_and_turn",
+            "adding_delivery_refs_does_not_rewrite_original_slot_state",
+            "trusted_history_inherits_user_slots_not_assistant_price"
+          ]
+        },
+        {
+          "criterion": "local/shared ownership และ comparison duration ไม่รั่วไป booking task",
+          "state": "passed_controlled_acceptance",
+          "evidence": "graph_verification_1793007022160120000\\RESULT.json",
+          "evidence_sha256": "eea9cd20f091822f30b21aa0a9deff89fb8778b5a7a24914f877702ef2cff13a",
+          "checks": [
+            "local_audience_overrides_shared_prefix",
+            "booking_does_not_inherit_comparison_durations",
+            "shared_context_is_not_execution_dependency"
+          ]
+        },
+        {
+          "criterion": "role semantics ของ per-audience counts, event editions, requested set, condition/exception ทุกกรณีในตารางต้นฉบับ",
+          "state": "review_required",
+          "reason": "numeric labelsและsessions/resourcesมีdedicatedcontrolsแล้ว ยังต้อง review/control ราย role ที่เหลือพร้อมsourceและscopeที่ตรงกัน ไม่ใช้ enum presence เป็น behavior proof"
+        },
+        {
+          "criterion": "Input-device model is a quoted input_device role rather than console/service; repeated platform words outside the device phrase and validated shared prefix preserve raw task ownership",
+          "state": "passed_controlled_acceptance",
+          "evidence": "controller_catalog_1793054647714910500\\RESULT.json",
+          "evidence_sha256": "7b9df7846214efcc1633a8ea4da526a73a00228f45c3fb49394da2c36aa3470e",
+          "checks": [
+            "device_model_not_compiled_as_platform_or_service",
+            "same_word_outside_device_keeps_platform_raw_span",
+            "shared_prefix_device_role_and_origin",
+            "shared_prefix_device_does_not_broadcast_console_to_price"
+          ],
+          "iteration": "controller_and_policy_dates"
+        },
+        {
+          "criterion": "Multiple date formats or separate scalar times require explicit roles; single requested time uses the actual hour-level policy interval and final constraint proof",
+          "state": "passed_controlled_acceptance",
+          "evidence": "policy_reference_dates_1793055275990192400\\RESULT.json",
+          "evidence_sha256": "e60b57eb1f480699f2fe3ba759fa789c860227a82d1fad5b9698d3714d45adad",
+          "checks": [
+            "multiple_date_roles_On July 1, 2026 or December 15, 2026",
+            "multiple_date_roles_On 2026-07-01 or December 15, 2026",
+            "multiple_date_roles_วันนี้หรือพรุ่งนี้",
+            "policy_time_inside",
+            "policy_time_before",
+            "policy_time_after",
+            "policy_time_invalid",
+            "policy_time_multiple",
+            "final_policy_time_constraint_supported"
+          ],
+          "iteration": "controller_and_policy_dates"
+        },
+        {
+          "criterion": "Negation in a source-output price condition reverses only that predicate, preserves unresolved additional conditions and never turns absent source into permission",
+          "state": "passed_controlled_acceptance",
+          "evidence": "condition_boundaries_1793069028430936300\\RESULT.json",
+          "evidence_sha256": "83940e95afda6ee743c72015b81dbb37a22c490583375d2d6ebdcb21f1ea3320",
+          "checks": [
+            "source_condition_Unless it is equal to 100 THB",
+            "source_condition_Unless it is equal to 150 THB",
+            "source_condition_เว้นแต่ราคามากกว่า 50 บาท",
+            "unresolved_condition_withheld_Unless the price is affordable",
+            "unresolved_condition_withheld_How do I book Amber service if I pay cash, only if the price is below 150 THB?",
+            "unknown_price_not_negated_into_true"
+          ],
+          "iteration": "conditions_and_raw_compounds"
+        }
+      ],
+      "all_listed_clauses_controlled_passed": false,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    },
+    {
+      "requirement_id": "CONTRACT-06",
+      "original_text_sha256": "7a5ed802ddf6a7dfd8d72cdf88dead7179cea6bcc6ce50e92909aebfc0dcef0b",
+      "criteria": [
+        {
+          "criterion": "shared prefix มี request source/target scope และ override exclusion",
+          "state": "passed_controlled_acceptance",
+          "evidence": "graph_verification_1793007022160120000\\RESULT.json",
+          "evidence_sha256": "eea9cd20f091822f30b21aa0a9deff89fb8778b5a7a24914f877702ef2cff13a",
+          "checks": [
+            "request_prefix_edges_have_request_source",
+            "local_override_records_excluded_shared_scope",
+            "shared_context_is_not_execution_dependency"
+          ]
+        },
+        {
+          "criterion": "source-related edge มี entity/ref/revision/outcome และ independent verifierตรวจซ้ำ",
+          "state": "passed_controlled_acceptance",
+          "evidence": "shared_relation_binding_1792992169049404200\\RESULT.json",
+          "evidence_sha256": "515ade0ef9ea10d1aa1745e10ba1b9a05af9296bf01a2ed2c4fd8648979b815c",
+          "checks": [
+            "shared_binding_preserves_relation_record_and_revision",
+            "shared_binding_preserves_source_entity_refs_and_validation",
+            "root_shared_binding_keeps_typed_relation_proof",
+            "forged_shared_relation_revision_rejected"
+          ]
+        },
+        {
+          "criterion": "หลาย antecedents ไม่เลือกเงียบและ sourceถอนแล้ว edgeเดิมใช้ต่อไม่ได้",
+          "state": "passed_controlled_acceptance",
+          "evidence": "graph_verification_1793007022160120000\\RESULT.json",
+          "evidence_sha256": "eea9cd20f091822f30b21aa0a9deff89fb8778b5a7a24914f877702ef2cff13a",
+          "checks": [
+            "thai_multiple_antecedents_preserve_ambiguity",
+            "multiple_antecedents_do_not_choose_last_silently"
+          ]
+        },
+        {
+          "criterion": "style-onlyไม่สร้างsharedentity; compiler/wireไม่แยกcomplete styleเป็นfactualtask และsource titleที่เหมือนstyleยังอ่านได้",
+          "state": "passed_controlled_acceptance",
+          "evidence": "style_scope_1793007014856282200\\RESULT.json",
+          "evidence_sha256": "4cfe346a00d7f9c3f5740f4a3d3127c624759548b2e0b0181552571829caad2d",
+          "checks": [
+            "style_has_no_factual_shared_edge_0",
+            "style_has_no_factual_shared_edge_1",
+            "style_has_no_factual_shared_edge_5",
+            "actual_pronoun_outside_style_still_binds",
+            "actual_wire_drops_separate_general_style_task",
+            "compiler_drops_style_misclassified_as_factual_task",
+            "source_title_resembling_style_not_masked",
+            "source_title_resembling_style_normal_answer",
+            "factual_suffix_not_discarded_as_style"
+          ]
+        }
+      ],
+      "all_listed_clauses_controlled_passed": true,
+      "final_revision_api_and_installation_reaudit_pending": true,
+      "whole_semantic_accuracy_claimed": false
+    }
+  ]
+}

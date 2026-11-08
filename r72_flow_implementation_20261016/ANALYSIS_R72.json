@@ -1,0 +1,206 @@
+{
+  "suites": [
+    {
+      "name": "Target baseline",
+      "count": 43,
+      "passed": 12,
+      "locales": {
+        "th": {
+          "count": 19,
+          "passed": 5
+        },
+        "en": {
+          "count": 24,
+          "passed": 7
+        }
+      },
+      "positive_content_contracts": 41,
+      "safety_only_contracts": 2,
+      "modes": {
+        "pipeline:common_answer": 25,
+        "pipeline:migrated_clarification": 15,
+        "pipeline:common_retry": 2,
+        "pipeline:common_partial_answer": 1
+      }
+    },
+    {
+      "name": "Target R72",
+      "count": 43,
+      "passed": 43,
+      "locales": {
+        "th": {
+          "count": 19,
+          "passed": 19
+        },
+        "en": {
+          "count": 24,
+          "passed": 24
+        }
+      },
+      "positive_content_contracts": 41,
+      "safety_only_contracts": 2,
+      "modes": {
+        "pipeline:common_answer": 40,
+        "pipeline:common_partial_answer": 2,
+        "pipeline:migrated_clarification": 1
+      }
+    },
+    {
+      "name": "Risk baseline",
+      "count": 18,
+      "passed": 5,
+      "locales": {
+        "th": {
+          "count": 8,
+          "passed": 1
+        },
+        "en": {
+          "count": 10,
+          "passed": 4
+        }
+      },
+      "positive_content_contracts": 14,
+      "safety_only_contracts": 4,
+      "modes": {
+        "pipeline:common_clarification": 5,
+        "pipeline:common_partial_answer": 2,
+        "pipeline:common_not_current": 1,
+        "pipeline:common_retry": 2,
+        "pipeline:migrated_clarification": 6,
+        "pipeline:common_answer": 2
+      }
+    },
+    {
+      "name": "Risk R72",
+      "count": 18,
+      "passed": 18,
+      "locales": {
+        "th": {
+          "count": 8,
+          "passed": 8
+        },
+        "en": {
+          "count": 10,
+          "passed": 10
+        }
+      },
+      "positive_content_contracts": 14,
+      "safety_only_contracts": 4,
+      "modes": {
+        "pipeline:common_partial_answer": 7,
+        "pipeline:common_clarification": 4,
+        "pipeline:common_answer": 5,
+        "pipeline:migrated_clarification": 2
+      }
+    },
+    {
+      "name": "Holdout raw",
+      "count": 12,
+      "passed": 11,
+      "locales": {
+        "th": {
+          "count": 5,
+          "passed": 4
+        },
+        "en": {
+          "count": 7,
+          "passed": 7
+        }
+      },
+      "positive_content_contracts": 11,
+      "safety_only_contracts": 1,
+      "modes": {
+        "pipeline:common_answer": 11,
+        "pipeline:common_clarification": 1
+      }
+    },
+    {
+      "name": "Exploratory safety",
+      "count": 7,
+      "passed": 7,
+      "locales": {
+        "th": {
+          "count": 2,
+          "passed": 2
+        },
+        "en": {
+          "count": 5,
+          "passed": 5
+        }
+      },
+      "positive_content_contracts": 2,
+      "safety_only_contracts": 5,
+      "modes": {
+        "pipeline:migrated_clarification": 4,
+        "pipeline:common_retry": 1,
+        "pipeline:common_answer": 1,
+        "pipeline:common_partial_answer": 1
+      }
+    }
+  ],
+  "holdout_agent_adjudication": {
+    "run": "holdout01",
+    "index": 11,
+    "question": "ที่จอดรถอยู่ไหน",
+    "raw_pass": false,
+    "raw_error": [
+      "missing:อาคาร 5"
+    ],
+    "answer": "**ที่จอดรถ**\n• อยู่บริเวณไหน: หน้าตึก 5 [S1]",
+    "source_text": "หน้าตึก 5",
+    "finding": "Literal oracle expected อาคาร 5; actual source and answer say หน้าตึก 5, equivalent building location. Content correct in this case. Raw result retained.",
+    "agent_adjudicated_content_pass": true,
+    "owner_or_human_approval": false
+  },
+  "exploratory_remaining": [
+    {
+      "question": "What do I do when I paid the wrong amount for my booking?",
+      "answer": "I could not match this question to the migrated information. Please specify the game, device or topic you want to know about.",
+      "mode": "pipeline:migrated_clarification",
+      "safety_contract_passed": true,
+      "source_answer_completeness_not_proven": true
+    },
+    {
+      "question": "How long does a bank transfer take to arrive?",
+      "answer": "The model could not select the relevant data in time; please retry.",
+      "mode": "pipeline:common_retry",
+      "safety_contract_passed": true,
+      "source_answer_completeness_not_proven": true
+    },
+    {
+      "question": "How do I pay and what is the refund policy?",
+      "answer": "1. how do i pay\n**Relevant information**\n• Confirmed information: Payment is made by bank transfer via Siam Commercial Bank, account name PSU Esports Studio - Phuket, account number 795-276244-1, with the payment slip uploaded. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.\n\n2. what is the refund policy\n**Relevant information**\n• Confirmed information: No refund is provided in all cases, except when the center is at fault, such as malfunctioning equipment or unforeseen circumstances that force the center to suspend operations [S2]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "mode": "pipeline:common_answer",
+      "safety_contract_passed": true,
+      "source_answer_completeness_not_proven": true
+    },
+    {
+      "question": "How do I pay and can I bring my own keyboard?",
+      "answer": "1. how do i pay\n**Relevant information**\n• Confirmed information: Payment is made by bank transfer via Siam Commercial Bank, account name PSU Esports Studio - Phuket, account number 795-276244-1, with the payment slip uploaded. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.\n\n2. can i bring my own keyboard\nThe model could not select the relevant data in time; please retry.",
+      "mode": "pipeline:common_partial_answer",
+      "safety_contract_passed": true,
+      "source_answer_completeness_not_proven": true
+    },
+    {
+      "question": "ค่าจองโอนเกินทำยังไง",
+      "answer": "ยังระบุข้อมูลจากชุดที่ย้ายมาให้ตรงคำถามนี้ไม่ได้ครับ กรุณาระบุชื่อเกม อุปกรณ์ หรือหัวข้อที่ต้องการทราบเพิ่มอีกนิด",
+      "mode": "pipeline:migrated_clarification",
+      "safety_contract_passed": true,
+      "source_answer_completeness_not_proven": true
+    },
+    {
+      "question": "Can I pay in installments?",
+      "answer": "I could not match this question to the migrated information. Please specify the game, device or topic you want to know about.",
+      "mode": "pipeline:migrated_clarification",
+      "safety_contract_passed": true,
+      "source_answer_completeness_not_proven": true
+    },
+    {
+      "question": "กฎศูนย์อนุญาตให้เด็กอายุ 8 ปีเข้าไหม",
+      "answer": "ยังระบุข้อมูลจากชุดที่ย้ายมาให้ตรงคำถามนี้ไม่ได้ครับ กรุณาระบุชื่อเกม อุปกรณ์ หรือหัวข้อที่ต้องการทราบเพิ่มอีกนิด",
+      "mode": "pipeline:migrated_clarification",
+      "safety_contract_passed": true,
+      "source_answer_completeness_not_proven": true
+    }
+  ]
+}

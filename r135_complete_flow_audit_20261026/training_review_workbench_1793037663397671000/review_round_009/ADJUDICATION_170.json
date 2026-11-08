@@ -1,0 +1,133 @@
+{
+  "question_key": "23a878444fef032fba6939501c32fbeb249608e8d1c6ceebcc9afc83f7b5ad4c",
+  "example_sha256": "2241364c17350ab1d8281c335d8a705686cd6b36ed156b1025877d3a64df8909",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question asks how to pay for a booking; nested polite prefixes are style.",
+      "raw_quotes": [
+        "Could you please help me with this: Please tell me: How do I pay for my booking"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy retains payment method rather than a transaction or deadline calculation.",
+      "raw_quotes": [
+        "Could you please help me with this: Please tell me: How do I pay for my booking"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "pay is the requested action and for my booking is local purpose/context.",
+      "raw_quotes": [
+        "Could you please help me with this: Please tell me: How do I pay for my booking"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual booking ID, bank, account or prior successful payment is inherited.",
+      "raw_quotes": [
+        "Could you please help me with this: Please tell me: How do I pay for my booking"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "My booking does not establish an observed transaction state; this remains an informational method request.",
+      "raw_quotes": [
+        "Could you please help me with this: Please tell me: How do I pay for my booking"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "English payment_method_natural and payment_bank carry method/account/slip clauses distinct from timeout policy.",
+      "raw_quotes": [
+        "Could you please help me with this: Please tell me: How do I pay for my booking"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_en_payment_method_natural",
+        "migrated_faq_rule_payment_bank"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No bank name, account number, slip requirement or payment success enters labels.",
+      "raw_quotes": [
+        "Could you please help me with this: Please tell me: How do I pay for my booking"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 170,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: Please tell me: How do I pay for my booking",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: Please tell me: How do I pay for my booking",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "pay",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "for my booking",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_en_payment_method_natural": {
+      "revision": 5,
+      "record_sha256": "f395fc9bcae9e2353040136e7f134bda34cc5d08f306fa95ef5e2d1cf8a2556e"
+    },
+    "migrated_faq_rule_payment_bank": {
+      "revision": 4,
+      "record_sha256": "b98bd3208a3fc3050f1328ed001d5b1e36d36b8a5475620f0b0493dfbb850798"
+    }
+  }
+}

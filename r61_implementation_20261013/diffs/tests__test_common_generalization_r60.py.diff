@@ -1,0 +1,11 @@
+--- before/tests/test_common_generalization_r60.py
++++ r61/tests/test_common_generalization_r60.py
+@@ -70,7 +70,7 @@
+         q=' and '.join(['unfamiliar need '+str(n) for n in range(7)])
+         self.assertEqual(len(semantic_clauses(q)),7)
+         audits=[];gate=Mock();gate.acquire.return_value=True
+-        with patch.object(planner,'MODEL_WORK',gate),patch.object(planner,'llm_call_allowed',return_value=(True,{})),patch.object(planner,'release_llm_slot'),patch.object(planner.urllib.request,'urlopen') as fetch:
++        with patch.dict('os.environ',{'PSU_COMMON_PLAN_MAX_BATCHES':'1'}),patch.object(planner,'MODEL_WORK',gate),patch.object(planner,'llm_call_allowed',return_value=(True,{})),patch.object(planner,'release_llm_slot'),patch.object(planner.urllib.request,'urlopen') as fetch:
+             self.assertIsNone(planner.plan_fields(q,{'a':{'kind':'game','fields':{}}},['a'],diagnostic=audits.append))
+             fetch.assert_not_called();self.assertEqual(audits[-1]['gate_reason'],'too_many_clauses')
+     def test_owner_preview_respects_chat_feature_setting(self):

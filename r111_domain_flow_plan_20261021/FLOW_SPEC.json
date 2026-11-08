@@ -1,0 +1,159 @@
+{
+  "status": "proposal_not_implemented",
+  "client_date": "2026-10-21",
+  "runtime_base_proposed": "R106 isolated candidate",
+  "behavior_references": [
+    "Legacy retained",
+    "R95 retained",
+    "R97 design"
+  ],
+  "source_of_facts": "selected common snapshot only",
+  "capabilities": [
+    {
+      "adapter": "equipment",
+      "predicates": [
+        "inventory",
+        "specifications",
+        "physical_quantity",
+        "controllers_per_console",
+        "equipment_location",
+        "resource_capacity",
+        "room_seats"
+      ]
+    },
+    {
+      "adapter": "games",
+      "predicates": [
+        "offered_catalog",
+        "game_summary",
+        "how_to_play",
+        "offering_location",
+        "player_modes"
+      ]
+    },
+    {
+      "adapter": "controls",
+      "predicates": [
+        "input_binding_by_action"
+      ]
+    },
+    {
+      "adapter": "pricing",
+      "predicates": [
+        "rate_table",
+        "quoted_amount",
+        "calculated_total"
+      ]
+    },
+    {
+      "adapter": "rental",
+      "predicates": [
+        "package_amount",
+        "duration",
+        "included_equipment",
+        "rental_terms"
+      ]
+    },
+    {
+      "adapter": "booking",
+      "predicates": [
+        "booking_required",
+        "booking_steps",
+        "cancellation",
+        "reschedule",
+        "payment_policy",
+        "checkin"
+      ]
+    },
+    {
+      "adapter": "calendar",
+      "predicates": [
+        "day_open",
+        "open_at_time",
+        "bookable_period",
+        "maintenance_period"
+      ]
+    },
+    {
+      "adapter": "live",
+      "predicates": [
+        "resource_occupancy",
+        "reservation_status"
+      ]
+    },
+    {
+      "adapter": "rules",
+      "predicates": [
+        "event_metadata",
+        "selected_clause",
+        "dependency_closure",
+        "rulebook_catalog"
+      ]
+    },
+    {
+      "adapter": "public_information",
+      "predicates": [
+        "center_location",
+        "public_contact",
+        "public_name_and_role",
+        "facility"
+      ]
+    }
+  ],
+  "need_fields": [
+    "need_id",
+    "source_span",
+    "subject_ids",
+    "subject_kinds",
+    "predicate",
+    "qualifiers",
+    "scope",
+    "required_claims",
+    "dependencies",
+    "slot_origin"
+  ],
+  "packet_statuses": [
+    "answered",
+    "partial",
+    "missing_input",
+    "missing_source",
+    "conflict",
+    "not_current",
+    "unavailable",
+    "unsupported"
+  ],
+  "constraints": [
+    "one pinned snapshot and reference time",
+    "one shared request budget",
+    "one bounded semantic planning attempt",
+    "one bounded corrective interpretation quota",
+    "no legacy factual fallback",
+    "required fields per predicate",
+    "field-level owner evidence and visibility",
+    "no repeated customer tests in this planning turn"
+  ],
+  "owner_sources": [
+    "r108_owner_intake_20261020",
+    "r109_owner_answers_20261020"
+  ],
+  "current_runtime_changed": false,
+  "new_tests_run": 0,
+  "new_model_calls": 0,
+  "code_references": {
+    "intent": "[การอนุมาน task/predicate](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/intent_contracts.py:13)",
+    "needs": "[การแยกหลายความต้องการ](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/request_plan.py:51)",
+    "entry": "[ลำดับทางออกและ fallback](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/complete_flow.py:280)",
+    "required": "[ชุดฟิลด์บังคับตาม task](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/read_graph.py:25)",
+    "graph": "[การตรวจฟิลด์และ dependency](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/read_graph.py:124)",
+    "rules": "[gate ข้อกติกา](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/rules_reader.py:62)",
+    "catalog": "[การเลือก catalog จาก scope](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/catalog_reader.py:19)",
+    "claims": "[การตรวจ predicate coverage](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/claim_coverage.py:9)",
+    "render": "[renderer ฟิลด์ทั่วไป](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/source_rows.py:5)",
+    "validity": "[การกั้นราคาจาก validity](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/financial_scope.py:18)",
+    "dates": "[ตัวจำแนกวันเปิด/ปิด](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/open_day.py:20)",
+    "rental": "[adapter ราคาเหมาที่อ่าน common อยู่แล้ว](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/rental_bridge.py:11)",
+    "scope": "[public_scope ของบุคลากร](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/read_graph.py:145)",
+    "compatible": "[ตัวอ่านข้อกติกาที่ใช้ภาษาเดิมกับข้อมูลกลาง](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/competition_bridge.py:10)",
+    "budget": "[budget และ snapshot ร่วมที่มีแล้ว](C:/Users/Chokhun/Documents/Codex/2026-09-25/psu-esports-studio-phuket-chatbot-c-2/r106_complete_flow_20261020/system/app/knowledge/common/flow_context.py:10)"
+  }
+}

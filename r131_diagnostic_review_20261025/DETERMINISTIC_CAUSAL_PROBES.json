@@ -1,0 +1,691 @@
+{
+  "source_logical_digest": "6db199b4251f1805b2698d359efcf290254072665fafa394dceab32dec760480",
+  "source_before_matches": true,
+  "model_http_calls": 0,
+  "assistant_end_to_end_queries": 0,
+  "probes": [
+    {
+      "case": "gpu_binding",
+      "key": "f6a75fef639e6062b4104422c8dc20ff0bd56e3f6401a12a6d2e48e4b65e3433",
+      "question": "เครื่อง PC ใช้การ์ดจอรุ่นอะไร",
+      "returned_plan": {
+        "ids": [],
+        "status": "missing_source",
+        "reason": "requested_hardware_component_not_recorded",
+        "category": "C03",
+        "facets": [],
+        "candidates": [],
+        "ambiguous": false,
+        "locked": true,
+        "metadata": {}
+      },
+      "bound_facts": [
+        [
+          "equipment_gaming_monitor",
+          "name"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "device_type"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "specifications"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "usage"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "location"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "quantity"
+        ],
+        [
+          "availability_pc_01_02",
+          "service_capacity"
+        ],
+        [
+          "availability_pc_03_10",
+          "service_capacity"
+        ]
+      ],
+      "matched_subject_labels": [],
+      "matched_entity_labels": [
+        {
+          "label": "จอ",
+          "records": [
+            "equipment_gaming_monitor"
+          ]
+        },
+        {
+          "label": "pc",
+          "records": [
+            "availability_pc_01_02",
+            "availability_pc_03_10",
+            "equipment_gaming_pc"
+          ]
+        },
+        {
+          "label": "เครื่อง pc",
+          "records": [
+            "availability_pc_01_02",
+            "availability_pc_03_10"
+          ]
+        }
+      ],
+      "correct_record_has_gpu": true,
+      "correct_record_in_bound_pool": false,
+      "code": "domain_flow/index.py FactIndex.bind; precision.py equipment: fallback only if pool empty"
+    },
+    {
+      "case": "native_and_rule_source_selection",
+      "key": "eede3e9bc31a8a8dd94a6153a507abdce4b351478660c74791cbdc2f6c8968a5",
+      "question": "กติกา CS2 ปรับ Brightness Resolution Crosshair ได้ไหมและปรับที่ไหน",
+      "native_proposal": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "canonical_source_rule_clause",
+        "tasks": [
+          {
+            "quote": "กติกา CS2 ปรับ Brightness Resolution Crosshair ได้ไหมและปรับที่ไหน",
+            "domain": "competition_rules",
+            "category": "C13",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": "competition.source_clause"
+          }
+        ],
+        "event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          }
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "rule_plan": {
+        "ids": [
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_045:rule_clause"
+        ],
+        "status": "answer",
+        "reason": "event_clause_dependency_read",
+        "category": "C13",
+        "facets": [
+          "rule_clause"
+        ],
+        "candidates": [],
+        "ambiguous": false,
+        "locked": false,
+        "metadata": {
+          "dependency_scope": "all_declared_dependencies"
+        }
+      },
+      "selected_rule_facts": [
+        {
+          "fact_id": "C13:competition_competition_rules_cs2_psu_phuket_2026_section_045:rule_clause",
+          "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_045",
+          "label": {
+            "th": "1. ผู้เล่นสามารถปรับแต่งความสว่าง (Brightness), ความละเอียดหน้าจอ (Resolution) และเป้าเล็ง (Crosshair) เฉพาะในเกม และหน้าจอคอมพิวเตอร์เท่านั้น",
+            "en": "1. Players may customize brightness, resolution, and crosshair settings exclusively within the game and computer screen only"
+          },
+          "value": {
+            "th": "1. ผู้เล่นสามารถปรับแต่งความสว่าง (Brightness), ความละเอียดหน้าจอ (Resolution) และเป้าเล็ง (Crosshair) เฉพาะในเกม และหน้าจอคอมพิวเตอร์เท่านั้น",
+            "en": "1. Players may customize brightness, resolution, and crosshair settings only within the game and computer screen exclusively."
+          },
+          "record_facet": "eligibility_registration"
+        }
+      ],
+      "heading_value_equal_in_any_locale": [
+        "C13:competition_competition_rules_cs2_psu_phuket_2026_section_045:rule_clause"
+      ],
+      "code": "native_intents.propose policy fallback after nonmatching rule source; obligation_verifier.assess substantive heuristic lines130-132"
+    },
+    {
+      "case": "native_and_rule_source_selection",
+      "key": "06563f1ae9408da58022051f3e726807ac1c5a10ef93d93b6c5c0822c9d9ba17",
+      "question": "Under CS2 tournament rules, are scripts or macros allowed?",
+      "native_proposal": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "canonical_source_rule_clause",
+        "tasks": [
+          {
+            "quote": "Under CS2 tournament rules, are scripts or macros allowed?",
+            "domain": "competition_rules",
+            "category": "C13",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": "competition.source_clause"
+          }
+        ],
+        "event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          }
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "rule_plan": {
+        "ids": [
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_046:rule_clause"
+        ],
+        "status": "answer",
+        "reason": "event_clause_dependency_read",
+        "category": "C13",
+        "facets": [
+          "rule_clause"
+        ],
+        "candidates": [],
+        "ambiguous": false,
+        "locked": false,
+        "metadata": {
+          "dependency_scope": "all_declared_dependencies"
+        }
+      },
+      "selected_rule_facts": [
+        {
+          "fact_id": "C13:competition_competition_rules_cs2_psu_phuket_2026_section_046:rule_clause",
+          "record_id": "competition_competition_rules_cs2_psu_phuket_2026_section_046",
+          "label": {
+            "th": "3. ห้ามใช้สคริปต์ หรือมาโคร โดยเด็ดขาด",
+            "en": "3. Strictly prohibited to use scripts or macros."
+          },
+          "value": {
+            "th": "3. ห้ามใช้สคริปต์ หรือมาโคร โดยเด็ดขาด",
+            "en": "3. Strictly prohibited to use scripts or macros."
+          },
+          "record_facet": "fair_play_conduct"
+        }
+      ],
+      "heading_value_equal_in_any_locale": [
+        "C13:competition_competition_rules_cs2_psu_phuket_2026_section_046:rule_clause"
+      ],
+      "code": "native_intents.propose policy fallback after nonmatching rule source; obligation_verifier.assess substantive heuristic lines130-132"
+    },
+    {
+      "case": "native_and_rule_source_selection",
+      "key": "cc40820b512274fd674eee1547618e99260a40f3f5815beadc1afb9d06bf75e8",
+      "question": "Please retrieve the official TEKKEN 8 rulebook evidence for the competition format",
+      "native_proposal": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "canonical_source_rule_clause",
+        "tasks": [
+          {
+            "quote": "Please retrieve the official TEKKEN 8 rulebook evidence for the competition format",
+            "domain": "competition_rules",
+            "category": "C13",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": "competition.source_clause"
+          }
+        ],
+        "event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          }
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "rule_plan": {
+        "ids": [
+          "C13:competition_competition_rules_tekken8_psu_esports_section_001:rule_clause"
+        ],
+        "status": "answer",
+        "reason": "event_clause_dependency_read",
+        "category": "C13",
+        "facets": [
+          "rule_clause"
+        ],
+        "candidates": [],
+        "ambiguous": false,
+        "locked": false,
+        "metadata": {
+          "dependency_scope": "all_declared_dependencies"
+        }
+      },
+      "selected_rule_facts": [
+        {
+          "fact_id": "C13:competition_competition_rules_tekken8_psu_esports_section_001:rule_clause",
+          "record_id": "competition_competition_rules_tekken8_psu_esports_section_001",
+          "label": {
+            "th": "ภาพรวมเอกสาร",
+            "en": "Overview of Documents"
+          },
+          "value": {
+            "th": "กฎระเบียบและรูปแบบการแข่งขัน Tekken 8 รายการ PSU Esports ปะทะมันส์ สนั่นจอ",
+            "en": "Competition rules and format for the Tekken 8 event at PSU Esports: Intense clashes, electrifying screens"
+          },
+          "record_facet": "identity"
+        }
+      ],
+      "heading_value_equal_in_any_locale": [],
+      "code": "native_intents.propose policy fallback after nonmatching rule source; obligation_verifier.assess substantive heuristic lines130-132"
+    },
+    {
+      "case": "native_and_rule_source_selection",
+      "key": "0c25d981c16244f8fe17020eaa9c404ed3481cb7c21cd832073e36db18f420d5",
+      "question": "กติกา CS2 ใช้บัคแผนที่ได้ไหม แล้วดูสตรีมสดระหว่างแข่งได้ไหม",
+      "native_proposal": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "canonical_policy_action",
+        "tasks": [
+          {
+            "quote": "กติกา CS2 ใช้บัคแผนที่ได้ไหม แล้วดูสตรีมสดระหว่างแข่งได้ไหม",
+            "domain": "rules",
+            "category": "C10",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": "policy.streaming"
+          }
+        ],
+        "event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          }
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "rule_plan": {
+        "ids": [],
+        "status": "missing_source",
+        "reason": "clause_semantics_needed",
+        "category": "C13",
+        "facets": [],
+        "candidates": [
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_001:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_002:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_003:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_004:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_005:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_006:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_007:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_008:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_009:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_010:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_011:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_012:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_013:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_014:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_015:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_016:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_017:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_018:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_019:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_020:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_021:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_022:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_023:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_024:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_025:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_026:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_027:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_028:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_029:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_030:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_031:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_032:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_033:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_034:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_035:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_036:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_037:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_038:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_039:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_040:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_041:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_042:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_043:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_044:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_045:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_046:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_047:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_048:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_049:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_050:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_051:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_052:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_053:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_054:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_055:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_056:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_057:rule_clause",
+          "C13:competition_competition_rules_cs2_psu_phuket_2026_section_058:rule_clause",
+          "C13:migrated_faq_curated_news_cs2_2026:owner_policy"
+        ],
+        "ambiguous": true,
+        "locked": false,
+        "metadata": {}
+      },
+      "selected_rule_facts": [],
+      "heading_value_equal_in_any_locale": [],
+      "code": "native_intents.propose policy fallback after nonmatching rule source; obligation_verifier.assess substantive heuristic lines130-132"
+    },
+    {
+      "case": "native_and_rule_source_selection",
+      "key": "21fe7ed0bd93155810d8d86f323dd7aaeb803b1d731e3b144c9e0c11b515f3dc",
+      "question": "Under VALORANT tournamment ruls, are macros permitted and what food or beverages are allowed?",
+      "native_proposal": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "canonical_compound_operations",
+        "tasks": [
+          {
+            "quote": "Under VALORANT tournamment ruls, are macros permitted",
+            "domain": "competition_rules",
+            "category": "C13",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": "competition.source_clause"
+          },
+          {
+            "quote": "what food or beverages are allowed?",
+            "domain": "rules",
+            "category": "C10",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": "policy.food_consumption"
+          }
+        ],
+        "event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          }
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "rule_plan": {
+        "ids": [],
+        "status": "missing_source",
+        "reason": "clause_semantics_needed",
+        "category": "C13",
+        "facets": [],
+        "candidates": [
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_001:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_002:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_003:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_004:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_005:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_006:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_007:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_008:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_009:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_010:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_011:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_012:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_013:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_014:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_015:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_016:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_017:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_018:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_019:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_020:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_021:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_022:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_023:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_024:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_025:rule_clause",
+          "C13:competition_competition_rules_valorant_psu_phuket_2026_section_026:rule_clause",
+          "C13:r114_valorant_2_rule_clause:rule_clause",
+          "C13:r114_valorant_6_rule_clause:rule_clause",
+          "C13:r114_valorant_7_rule_clause:rule_clause",
+          "C13:r114_valorant_8_rule_clause:rule_clause",
+          "C13:r114_valorant_9_rule_clause:rule_clause",
+          "C13:r114_valorant_11_rule_clause:rule_clause",
+          "C13:r114_valorant_12_rule_clause:rule_clause",
+          "C13:r114_valorant_13_rule_clause:rule_clause",
+          "C13:r114_valorant_15_rule_clause:rule_clause",
+          "C13:r114_valorant_16_rule_clause:rule_clause",
+          "C13:r114_valorant_17_rule_clause:rule_clause",
+          "C13:r114_valorant_18_rule_clause:rule_clause",
+          "C13:r114_valorant_20_rule_clause:rule_clause",
+          "C13:r114_valorant_21_rule_clause:rule_clause",
+          "C13:r114_valorant_23_rule_clause:rule_clause",
+          "C13:r114_valorant_24_rule_clause:rule_clause",
+          "C13:r114_valorant_26_rule_clause:rule_clause",
+          "C13:r114_valorant_27_rule_clause:rule_clause",
+          "C13:r114_valorant_28_rule_clause:rule_clause",
+          "C13:r114_valorant_41_rule_clause:rule_clause",
+          "C13:r114_valorant_42_rule_clause:rule_clause",
+          "C13:r114_valorant_46_rule_clause:rule_clause",
+          "C13:r114_valorant_47_rule_clause:rule_clause",
+          "C13:r114_valorant_49_rule_clause:rule_clause",
+          "C13:r114_valorant_50_rule_clause:rule_clause",
+          "C13:r114_valorant_51_rule_clause:rule_clause",
+          "C13:r114_valorant_53_rule_clause:rule_clause",
+          "C13:r114_valorant_55_rule_clause:rule_clause",
+          "C13:r114_valorant_56_rule_clause:rule_clause",
+          "C13:r114_valorant_57_rule_clause:rule_clause",
+          "C13:r114_valorant_58_rule_clause:rule_clause",
+          "C13:r114_valorant_60_rule_clause:rule_clause",
+          "C13:r114_valorant_61_rule_clause:rule_clause",
+          "C13:r114_valorant_62_rule_clause:rule_clause",
+          "C13:r114_valorant_64_rule_clause:rule_clause",
+          "C13:r114_valorant_66_rule_clause:rule_clause",
+          "C13:r114_valorant_67_rule_clause:rule_clause",
+          "C13:r114_valorant_68_rule_clause:rule_clause",
+          "C13:r114_valorant_69_rule_clause:rule_clause",
+          "C13:r114_valorant_71_rule_clause:rule_clause",
+          "C13:r114_valorant_78_rule_clause:rule_clause",
+          "C13:r114_valorant_79_rule_clause:rule_clause",
+          "C13:migrated_faq_curated_news_valorant_2026:owner_policy"
+        ],
+        "ambiguous": true,
+        "locked": false,
+        "metadata": {}
+      },
+      "selected_rule_facts": [],
+      "heading_value_equal_in_any_locale": [],
+      "code": "native_intents.propose policy fallback after nonmatching rule source; obligation_verifier.assess substantive heuristic lines130-132"
+    },
+    {
+      "case": "target_words_overrode_requested_action",
+      "key": "934b6162fa5dd7fe4221bd6d5fe8d639f6e39a9000f4f2f4d1f9db2912f18b04",
+      "question": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: แขกจากมหาวิทยาลัยอื่นมีสิทธิ์จองไหม",
+      "bound_equipment_facts": [
+        [
+          "equipment_gaming_monitor",
+          "name"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "device_type"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "specifications"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "usage"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "location"
+        ],
+        [
+          "equipment_gaming_monitor",
+          "quantity"
+        ]
+      ],
+      "matching_equipment_aliases": [
+        {
+          "label": "จอ",
+          "records": [
+            "equipment_gaming_monitor"
+          ]
+        }
+      ],
+      "native_proposal": null,
+      "legacy_profile_plan": null,
+      "saved_understanding": {
+        "version": "r117",
+        "accepted": true,
+        "reason": "independent_context_frame",
+        "tasks": [
+          {
+            "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: แขกจากมหาวิทยาลัยอื่นมีสิทธิ์จองไหม",
+            "domain": "equipment",
+            "category": "C03",
+            "operation": "detail",
+            "facet": "usage",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false,
+            "canonical_operation": ""
+          }
+        ],
+        "event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "native_inventory_presence_record",
+            "model_plan_accepted": false,
+            "model_reason": "native_source_frame_before_model",
+            "prior_tasks": [],
+            "business_facts_added": false
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "code": "scope.contains ASCII-only boundary; native_inventory_presence_record / legacy_profile plan ignores request predicate"
+    },
+    {
+      "case": "target_words_overrode_requested_action",
+      "key": "9749c57fb492f9b003462acb9a482e6b10c85e2761e243e5a13535e80233bd41",
+      "question": "Before visiting, I need to know: Would I owe compensation for damaging a gaming mouse?",
+      "bound_equipment_facts": [
+        [
+          "equipment_gaming_mouse",
+          "name"
+        ],
+        [
+          "equipment_gaming_mouse",
+          "device_type"
+        ],
+        [
+          "equipment_gaming_mouse",
+          "specifications"
+        ],
+        [
+          "equipment_gaming_mouse",
+          "usage"
+        ],
+        [
+          "equipment_gaming_mouse",
+          "location"
+        ]
+      ],
+      "matching_equipment_aliases": [
+        {
+          "label": "gaming mouse",
+          "records": [
+            "equipment_gaming_mouse",
+            "migrated_faq_rule_equipment_pc_zone"
+          ]
+        },
+        {
+          "label": "mouse",
+          "records": [
+            "equipment_gaming_mouse"
+          ]
+        }
+      ],
+      "native_proposal": null,
+      "legacy_profile_plan": {
+        "ids": [
+          "C03:migrated_faq_rule_equipment_pc_zone:owner_policy"
+        ],
+        "status": "answer",
+        "reason": "declared_legacy_query_profile",
+        "category": "C03",
+        "facets": [
+          "owner_policy"
+        ],
+        "candidates": [],
+        "ambiguous": false,
+        "locked": true,
+        "metadata": {
+          "matched_profile_fact_ids": [
+            "C03:migrated_faq_rule_equipment_pc_zone:owner_policy"
+          ]
+        }
+      },
+      "saved_understanding": {
+        "version": "r117",
+        "accepted": false,
+        "reason": "meaning_transport_or_protocol_failure",
+        "tasks": [],
+        "event": {
+          "id": "a10a0901fa4c4395a0c01d13bdc7e29b",
+          "stage": "context_understanding",
+          "model": "psu-r129:latest",
+          "transport_ok": false,
+          "schema_ok": false,
+          "error": "OSError: model_admission_unavailable",
+          "teaching_example_ids": [],
+          "distillation_method": "r121_profiled_context_planner_see_model_provenance",
+          "reason": "meaning_transport_or_protocol_failure",
+          "elapsed_sec": 0.234,
+          "http_attempted": false,
+          "input_question": "before visiting, i need to know: would i owe compensation for damaging a gaming mouse?",
+          "legacy_contrast": {
+            "domain": "equipment",
+            "operation": "unknown",
+            "needs": [],
+            "reason": "known equipment item alias found; no clear operation terms"
+          }
+        },
+        "factual_correctness_verified": false,
+        "legacy_answer_read": false
+      },
+      "code": "scope.contains ASCII-only boundary; native_inventory_presence_record / legacy_profile plan ignores request predicate"
+    }
+  ],
+  "scope": "deterministic mechanism reproduction on existing saved questions; no runtime/source change"
+}

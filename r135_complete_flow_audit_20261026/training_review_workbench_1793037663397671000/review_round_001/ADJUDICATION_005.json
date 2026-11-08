@@ -1,0 +1,122 @@
+{
+  "question_key": "0bd555eb83c1580cf23802590f5a47f6f9ecc503f5459cc653abff2f4977d4eb",
+  "example_sha256": "31625b63005e0e15e103d4a2b6bddcd6c5b415ced50d09f338d9d9adc3272d4c",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One request asks which button switches camera angle.",
+      "raw_quotes": [
+        "In The Last of Us Part I, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings retains action-to-button lookup.",
+      "raw_quotes": [
+        "In The Last of Us Part I, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "The Last of Us Part I is game target; switch the camera angle is an explicit action span.",
+      "raw_quotes": [
+        "In The Last of Us Part I, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Action and game are local; a platform is not quoted and must not be fabricated.",
+      "raw_quotes": [
+        "In The Last of Us Part I, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The interrogative asks for a mapping, not a claim any particular button is correct.",
+      "raw_quotes": [
+        "In The Last of Us Part I, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "controls_ps5_the_last_of_us_part_i supplies actual camera/control bindings with source scope.",
+      "raw_quotes": [
+        "In The Last of Us Part I, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": [
+        "controls_ps5_the_last_of_us_part_i"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "The label contains the action phrase but no learned button answer.",
+      "raw_quotes": [
+        "In The Last of Us Part I, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 5,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "In The Last of Us Part I, what button do you press to switch the camera angle?",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "The Last of Us Part I",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "In The Last of Us Part I, what button do you press to switch the camera angle?",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "The Last of Us Part I",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "switch the camera angle",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_ps5_the_last_of_us_part_i": {
+      "revision": 6,
+      "record_sha256": "7c3b874a09f196d802242f94ef45103507c141437c1436663459ceb17b8ffff0"
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "question_key": "3941c1c09cc45f26cd2716d7313c0adb6fe802225d9618ac3be5b5fada56a2e6",
+  "example_sha256": "e64e62e080abebd0c6b01f8a57c7803e22bdf09f8a1bf580cfe53d469e2a4ea5",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One zone inventory list; official-answer suffix is style.",
+      "raw_quotes": [
+        "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "equipment/list/name asks all recorded equipment in the named zone.",
+      "raw_quotes": [
+        "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Nintendo Switch Zone is the full zone target; Nintendo Switch alone is only platform context.",
+      "raw_quotes": [
+        "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The zone scope is local and explicit, not a global equipment collection.",
+      "raw_quotes": [
+        "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "No count or live availability is requested; avoid turning the list into one-console presence.",
+      "raw_quotes": [
+        "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "zone_nintendo and equipment_nintendo_switch_oled support the actual zone/name relationship.",
+      "raw_quotes": [
+        "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer"
+      ],
+      "source_record_ids": [
+        "zone_nintendo",
+        "equipment_nintendo_switch_oled"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No inventory count or equipment specification is learned as a target.",
+      "raw_quotes": [
+        "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 18,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "Please tell me: What equipment is in the Nintendo Switch Zone? I need the official answer",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "Nintendo Switch Zone",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "Nintendo Switch Zone",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "zone_nintendo": {
+      "revision": 2,
+      "record_sha256": "f78fe5cea4411df1a4160bcb15f130c597699db4c8e2c3ea5ef7a31c61951b8e"
+    },
+    "equipment_nintendo_switch_oled": {
+      "revision": 6,
+      "record_sha256": "934fa7ba2e18d1eb641a6e7d9478cc134a607a431276bbf0cc15da702c788f07"
+    }
+  }
+}

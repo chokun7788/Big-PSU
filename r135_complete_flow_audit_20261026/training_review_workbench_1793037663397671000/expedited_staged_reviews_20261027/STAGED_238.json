@@ -1,0 +1,77 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 238,
+  "question_key": "a1d42abdedd4ccb503c104469ccd8505fb74870bcc3a36186e7228a800b21139",
+  "raw_question": "ถามจากข้อมูลที่ศูนย์ให้ไว้ งาน กิจกรรมจำลองทดสอบ 01 ยังสมัครได้ไหม",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "news",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ งาน กิจกรรมจำลองทดสอบ 01 ยังสมัครได้ไหม",
+        "domain": "news",
+        "operation": "detail",
+        "facet": "status",
+        "target": "กิจกรรมจำลองทดสอบ 01",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "news",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ งาน กิจกรรมจำลองทดสอบ 01 ยังสมัครได้ไหม",
+        "domain": "news",
+        "operation": "detail",
+        "facet": "status",
+        "target": "กิจกรรมจำลองทดสอบ 01",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One question asks whether event01 is still accepting applications; source-verification framing is style.",
+    "intent_operation_facet": "news/detail/status remains a registration-state query rather than a source list or competition-rule task.",
+    "entities_and_slot_roles": "กิจกรรมจำลองทดสอบ 01 is literal target and ยังสมัครได้ไหม the predicate.",
+    "local_shared_history_scope": "Asking from studio data does not establish that an event01 owner record exists or supply a clock.",
+    "negation_and_ambiguity": "Neither open nor closed state is asserted, and no application submission is authorized.",
+    "source_version_alignment": "The pinned owner source has zero news records including event01; keep unknown source rather than certify this fixture as real.",
+    "no_business_answer_target": "No business registration state, deadline or source URL enters targets."
+  },
+  "decision": "accepted",
+  "source_record_ids": [],
+  "source_answer_issues": [
+    [
+      "This literal event name comes from an exposed synthetic corpus family, while the pinned owner snapshot contains no news records.",
+      "Review the language target only; keep business status/date/link unconfirmed and do not treat this as actual C14 source/category acceptance."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 239,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {},
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

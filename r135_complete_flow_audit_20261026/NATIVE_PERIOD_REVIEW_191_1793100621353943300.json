@@ -1,0 +1,309 @@
+{
+  "question_key": "703523faaabe601a65578894f204ea56f4c7d676501fa35c8e5b6b3ab13441cd",
+  "raw_question": "Please tell me: What time is the afternoon session",
+  "prior_adjudication": {
+    "path": "training_review_workbench_1793037663397671000\\review_round_010\\ADJUDICATION_191.json",
+    "sha256": "eac9b8ce42287d9e7e77ac09997e1bc5e68e002aced70e38cba1798f6331c536",
+    "status": "quarantined"
+  },
+  "native_semantic_review": {
+    "requested_need": "start/end times of the named afternoon play-service period",
+    "operation": "list",
+    "domain": "schedule",
+    "facet": "service_periods",
+    "canonical_operation": "calendar.named_play_period",
+    "period_quote": "afternoon",
+    "day_scope": "No weekday/date stated: retain all current recorded weekdays and source applicability caveats.",
+    "why_not_bookable": "Friday retains the afternoon play-service slot as maintenance while the afternoon booking window is absent. These source fields are not equivalent.",
+    "why_not_live": "No machine vacancy, booking occupancy or live availability is asked.",
+    "source_identity": "Current retained source-only typed execution, seven schedule record revisions; no FAQ-only result used as operation proof.",
+    "native_task": {
+      "quote": "Please tell me: What time is the afternoon session",
+      "domain": "schedule",
+      "category": "C11",
+      "operation": "list",
+      "facet": "service_periods",
+      "target": "",
+      "constraints": [
+        {
+          "slot": "time",
+          "quote": "afternoon",
+          "source_record_id": ""
+        }
+      ],
+      "ambiguous": false,
+      "canonical_operation": "calendar.named_play_period"
+    },
+    "source_claims": [
+      {
+        "fact_id": "C11:migrated_schedule_0:service_periods",
+        "record_id": "migrated_schedule_0",
+        "facet": "service_periods",
+        "value": "09:00–12:00 maintenance; 13:00–16:00 open for play",
+        "numeric": null,
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/service_slots",
+            "source_id": "r119_f603c2010874442cef87f3d422ee"
+          }
+        ],
+        "fixture": false,
+        "status": "answer"
+      },
+      {
+        "fact_id": "C11:migrated_schedule_1:service_periods",
+        "record_id": "migrated_schedule_1",
+        "facet": "service_periods",
+        "value": "09:00–12:00 open for play; 13:00–16:00 open for play",
+        "numeric": null,
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/service_slots",
+            "source_id": "r119_894b92f0a7840a44223c83a6324b"
+          }
+        ],
+        "fixture": false,
+        "status": "answer"
+      },
+      {
+        "fact_id": "C11:migrated_schedule_2:service_periods",
+        "record_id": "migrated_schedule_2",
+        "facet": "service_periods",
+        "value": "09:00–12:00 open for play; 13:00–16:00 open for play",
+        "numeric": null,
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/service_slots",
+            "source_id": "r119_62eb78d6057b7cba29a54d3c2f4a"
+          }
+        ],
+        "fixture": false,
+        "status": "answer"
+      },
+      {
+        "fact_id": "C11:migrated_schedule_3:service_periods",
+        "record_id": "migrated_schedule_3",
+        "facet": "service_periods",
+        "value": "09:00–12:00 open for play; 13:00–16:00 open for play",
+        "numeric": null,
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/service_slots",
+            "source_id": "r119_29076de9874532a9e0e114619c8a"
+          }
+        ],
+        "fixture": false,
+        "status": "answer"
+      },
+      {
+        "fact_id": "C11:migrated_schedule_4:service_periods",
+        "record_id": "migrated_schedule_4",
+        "facet": "service_periods",
+        "value": "09:00–12:00 open for play; 13:00–16:00 maintenance",
+        "numeric": null,
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/service_slots",
+            "source_id": "r119_469008c95e51b537e25e630b4b9a"
+          }
+        ],
+        "fixture": false,
+        "status": "answer"
+      },
+      {
+        "fact_id": "C11:migrated_schedule_5:service_periods",
+        "record_id": "migrated_schedule_5",
+        "facet": "service_periods",
+        "value": "Closed for play under the regular timetable",
+        "numeric": null,
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/service_slots",
+            "source_id": "r119_33f75ed44ada56b678b30e146abb"
+          }
+        ],
+        "fixture": false,
+        "status": "answer"
+      },
+      {
+        "fact_id": "C11:migrated_schedule_6:service_periods",
+        "record_id": "migrated_schedule_6",
+        "facet": "service_periods",
+        "value": "Closed for play under the regular timetable",
+        "numeric": null,
+        "evidence_refs": [
+          {
+            "locator": "/mapped_fields/service_slots",
+            "source_id": "r119_71946c26d16898b73041525bdd30"
+          }
+        ],
+        "fixture": false,
+        "status": "answer"
+      }
+    ],
+    "receipt": {
+      "version": "native-service-period-v1",
+      "wire_boundary": "native_only_not_r129_plan_v2",
+      "request": {
+        "periods": [
+          "afternoon"
+        ],
+        "spans": [
+          {
+            "code": "afternoon",
+            "start": 33,
+            "end": 42,
+            "text": "afternoon"
+          }
+        ]
+      },
+      "scope": {
+        "requested_weekdays": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "local_date": null,
+        "scope_clock": "2026-10-26T10:00:00+07:00",
+        "date_basis": "recorded_weekday_set"
+      },
+      "rows": [
+        {
+          "fact_id": "C11:migrated_schedule_0:service_periods",
+          "record_id": "migrated_schedule_0",
+          "record_revision": 4,
+          "weekday": 0,
+          "service_closed": false,
+          "slots": [
+            {
+              "code": "afternoon",
+              "end": "16:00",
+              "label": "Afternoon",
+              "note": "เปิดให้บริการ",
+              "start": "13:00",
+              "state": "open",
+              "time_range": "13:00-16:00"
+            }
+          ],
+          "unidentified_periods": false
+        },
+        {
+          "fact_id": "C11:migrated_schedule_1:service_periods",
+          "record_id": "migrated_schedule_1",
+          "record_revision": 3,
+          "weekday": 1,
+          "service_closed": false,
+          "slots": [
+            {
+              "code": "afternoon",
+              "end": "16:00",
+              "label": "Afternoon",
+              "note": "เปิดให้บริการ",
+              "start": "13:00",
+              "state": "open",
+              "time_range": "13:00-16:00"
+            }
+          ],
+          "unidentified_periods": false
+        },
+        {
+          "fact_id": "C11:migrated_schedule_2:service_periods",
+          "record_id": "migrated_schedule_2",
+          "record_revision": 3,
+          "weekday": 2,
+          "service_closed": false,
+          "slots": [
+            {
+              "code": "afternoon",
+              "end": "16:00",
+              "label": "Afternoon",
+              "note": "เปิดให้บริการ",
+              "start": "13:00",
+              "state": "open",
+              "time_range": "13:00-16:00"
+            }
+          ],
+          "unidentified_periods": false
+        },
+        {
+          "fact_id": "C11:migrated_schedule_3:service_periods",
+          "record_id": "migrated_schedule_3",
+          "record_revision": 3,
+          "weekday": 3,
+          "service_closed": false,
+          "slots": [
+            {
+              "code": "afternoon",
+              "end": "16:00",
+              "label": "Afternoon",
+              "note": "เปิดให้บริการ",
+              "start": "13:00",
+              "state": "open",
+              "time_range": "13:00-16:00"
+            }
+          ],
+          "unidentified_periods": false
+        },
+        {
+          "fact_id": "C11:migrated_schedule_4:service_periods",
+          "record_id": "migrated_schedule_4",
+          "record_revision": 4,
+          "weekday": 4,
+          "service_closed": false,
+          "slots": [
+            {
+              "code": "afternoon",
+              "end": "16:00",
+              "label": "Afternoon",
+              "note": "วันศุกร์ช่วงบ่ายเป็น Maintenance",
+              "start": "13:00",
+              "state": "maintenance",
+              "time_range": "13:00-16:00"
+            }
+          ],
+          "unidentified_periods": false
+        },
+        {
+          "fact_id": "C11:migrated_schedule_5:service_periods",
+          "record_id": "migrated_schedule_5",
+          "record_revision": 4,
+          "weekday": 5,
+          "service_closed": true,
+          "slots": [],
+          "unidentified_periods": false
+        },
+        {
+          "fact_id": "C11:migrated_schedule_6:service_periods",
+          "record_id": "migrated_schedule_6",
+          "record_revision": 4,
+          "weekday": 6,
+          "service_closed": true,
+          "slots": [],
+          "unidentified_periods": false
+        }
+      ],
+      "missing_weekdays": [],
+      "conflicting_weekdays": []
+    }
+  },
+  "evidence": {
+    "path": "named_periods_1793093672750153100\\RESULT.json",
+    "sha256": "29a89285c99811a52784673692387d2dd0690bde08836f0d916ef02fde0b8bc8",
+    "checks": 47,
+    "passed": true
+  },
+  "experimental_v3_codec_evidence": {
+    "path": "period_wire_v3_1793095633257850200\\RESULT.json",
+    "sha256": "0d9000c7d929ea4e7a2d86e72db6260234f88fbbd309d5c9060fb474386d2bb3",
+    "checks": 22,
+    "passed": true
+  },
+  "model_wire_acceptance": false,
+  "old_v2_training_label_readmitted": false,
+  "reason_quarantine_remains": "The trained v2 wire has no service_periods facet. This artifact describes retained-v2 quarantine only. Any separately admitted v3 cohort needs its own migration/adjudication artifacts and must not be inferred from native registration or codec validation. Neither native registration nor dataset admission is actual model learning or teacher provenance.",
+  "actual_training_or_generation": false
+}

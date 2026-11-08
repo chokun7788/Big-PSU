@@ -1,0 +1,708 @@
+{
+  "status": "design_only_not_implemented",
+  "version": "r97-flow-v2",
+  "timezone": "Asia/Bangkok",
+  "stages": [
+    {
+      "id": "S00",
+      "name": "receive"
+    },
+    {
+      "id": "S01",
+      "name": "pin_context"
+    },
+    {
+      "id": "S02",
+      "name": "scope_and_normalize"
+    },
+    {
+      "id": "S03",
+      "name": "state_and_task_hypotheses"
+    },
+    {
+      "id": "S04",
+      "name": "candidate_discovery"
+    },
+    {
+      "id": "S05",
+      "name": "plan_proposal"
+    },
+    {
+      "id": "S06",
+      "name": "validate_plan"
+    },
+    {
+      "id": "S07",
+      "name": "compile_read_graph"
+    },
+    {
+      "id": "S08",
+      "name": "read_sources"
+    },
+    {
+      "id": "S09",
+      "name": "bounded_corrective_read"
+    },
+    {
+      "id": "S10",
+      "name": "evaluate_evidence"
+    },
+    {
+      "id": "S11",
+      "name": "execute_dependencies"
+    },
+    {
+      "id": "S12",
+      "name": "resolve_unanswered_needs"
+    },
+    {
+      "id": "S13",
+      "name": "render"
+    },
+    {
+      "id": "S14",
+      "name": "verify_claims"
+    },
+    {
+      "id": "S15",
+      "name": "safe_deterministic_output"
+    },
+    {
+      "id": "S16",
+      "name": "deliver_and_commit_state"
+    },
+    {
+      "id": "S17",
+      "name": "terminal"
+    }
+  ],
+  "edges": [
+    {
+      "from": "S00",
+      "to": "S01",
+      "condition": "received"
+    },
+    {
+      "from": "S01",
+      "to": "S02",
+      "condition": "coherent_context"
+    },
+    {
+      "from": "S02",
+      "to": "S03",
+      "condition": "in_scope"
+    },
+    {
+      "from": "S02",
+      "to": "S12",
+      "condition": "out_of_scope_or_uncertain_input"
+    },
+    {
+      "from": "S03",
+      "to": "S04",
+      "condition": "hypotheses_available"
+    },
+    {
+      "from": "S04",
+      "to": "S05",
+      "condition": "candidate_descriptors_or_explicit_empty_scope"
+    },
+    {
+      "from": "S05",
+      "to": "S06",
+      "condition": "proposal_or_typed_plan"
+    },
+    {
+      "from": "S06",
+      "to": "S07",
+      "condition": "accepted_plan_or_supported_independent_needs"
+    },
+    {
+      "from": "S06",
+      "to": "S12",
+      "condition": "invalid_ambiguous_or_budget_unavailable"
+    },
+    {
+      "from": "S07",
+      "to": "S08",
+      "condition": "valid_read_graph"
+    },
+    {
+      "from": "S07",
+      "to": "S12",
+      "condition": "unsupported_or_broken_read_graph"
+    },
+    {
+      "from": "S08",
+      "to": "S09",
+      "condition": "unread_declared_path_and_budget_remaining"
+    },
+    {
+      "from": "S08",
+      "to": "S10",
+      "condition": "no_corrective_pass_needed"
+    },
+    {
+      "from": "S09",
+      "to": "S10",
+      "condition": "one_additional_read_completed_or_failed"
+    },
+    {
+      "from": "S10",
+      "to": "S11",
+      "condition": "need_results_available"
+    },
+    {
+      "from": "S11",
+      "to": "S12",
+      "condition": "calculated_or_dependency_blocked"
+    },
+    {
+      "from": "S12",
+      "to": "S13",
+      "condition": "all_needs_have_explicit_result"
+    },
+    {
+      "from": "S13",
+      "to": "S14",
+      "condition": "localized_output"
+    },
+    {
+      "from": "S14",
+      "to": "S16",
+      "condition": "claims_verified"
+    },
+    {
+      "from": "S14",
+      "to": "S15",
+      "condition": "output_not_safe_to_assert"
+    },
+    {
+      "from": "S15",
+      "to": "S16",
+      "condition": "supported_independent_claims_or_explicit_temporary_failure"
+    },
+    {
+      "from": "S16",
+      "to": "S17",
+      "condition": "delivery_status_recorded_state_commit_only_if_contract_allows"
+    }
+  ],
+  "terminal_stages": [
+    "S17"
+  ],
+  "invariants": {
+    "I01": "Every user need has an explicit terminal result; fields do not define the need set",
+    "I02": "No supported derived claim has an unmet hard dependency",
+    "I03": "Claims use authorized common facts or approved live observations, not legacy factual fallback",
+    "I04": "Material qualifiers and explicit targets retain their meaning and binding",
+    "I05": "Unknown is not false, closed, zero, free or allowed without evidence",
+    "I06": "Complete lists require exhaustive scope receipts and stable pagination scope",
+    "I07": "Ranking and model confidence do not override authority, applicability or validity",
+    "I08": "Critical numbers, units, negation and exceptions survive normalization and localization",
+    "I09": "State preserves intent references; facts are read again against current coherent snapshot",
+    "I10": "Live mapping, freshness and observed_at are explicit; static data cannot replace live truth",
+    "I11": "All branches share one deadline and attempt ledger",
+    "I12": "Kind/task readiness is distinct from verified NLU and answer correctness"
+  },
+  "kind_families": {
+    "public_information": [
+      "center",
+      "contact",
+      "facility",
+      "person"
+    ],
+    "inventory": [
+      "zone",
+      "equipment_model",
+      "resource",
+      "service",
+      "game_service"
+    ],
+    "gameplay": [
+      "game",
+      "game_mode",
+      "control_set"
+    ],
+    "fees": [
+      "audience",
+      "rate",
+      "rental_package"
+    ],
+    "calendar": [
+      "schedule",
+      "closure"
+    ],
+    "policy_and_procedure": [
+      "policy",
+      "procedure",
+      "faq"
+    ],
+    "competition": [
+      "competition",
+      "competition_rule"
+    ],
+    "news": [
+      "news"
+    ],
+    "live": [
+      "live_binding"
+    ]
+  },
+  "budgets": {
+    "semantic_model_attempts_proposed": 1,
+    "additional_corrective_read_passes_proposed": 1,
+    "shared_request_deadline": true,
+    "values_verified_in_runtime": false
+  },
+  "cases": [
+    {
+      "id": "C01",
+      "group": "all_scope",
+      "utterance": "ขอราคาบุคคลภายนอกทั้งหมด",
+      "fixture_precondition": "Published offered-service scope and rates have explicit evidence",
+      "expected_behavior": "price table uses service set and preserves audience",
+      "required_invariants": [
+        "I01",
+        "I06",
+        "I07"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C02",
+      "group": "follow_up",
+      "utterance": "PC",
+      "fixture_precondition": "Pending price/service slot and previously stated audience exist",
+      "expected_behavior": "fills service slot; preserves price intent and audience",
+      "required_invariants": [
+        "I04",
+        "I09"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C03",
+      "group": "follow_up",
+      "utterance": "ทั้งหมด",
+      "fixture_precondition": "Pending task has a delivered candidate scope",
+      "expected_behavior": "selects full declared scope without inventing a new task",
+      "required_invariants": [
+        "I06",
+        "I09"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C04",
+      "group": "paraphrase",
+      "utterance": "Please tell me: Can I get a refund",
+      "fixture_precondition": "Source policy matches the action and actor",
+      "expected_behavior": "wrapper does not cause blanket rejection of supported policy",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C05",
+      "group": "temporal",
+      "utterance": "ตอนเย็นเปิดถึงกี่โมง",
+      "fixture_precondition": "Schedule has explicit day-specific closing periods",
+      "expected_behavior": "uses temporal meaning; shows day differences or asks only material day slot",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C06",
+      "group": "relation",
+      "utterance": "VALORANT ใช้ผู้เล่นกี่คน",
+      "fixture_precondition": "Linked game_mode has count facts",
+      "expected_behavior": "reads mode relation; does not require unrelated optional fields",
+      "required_invariants": [
+        "I01",
+        "I03"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C07",
+      "group": "ambiguity",
+      "utterance": "ROV ถ้าเกมหลุดทำยังไง",
+      "fixture_precondition": "General-play and competition contexts give materially different actions; no prior context",
+      "expected_behavior": "asks which context, not a generic topic menu",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C08",
+      "group": "competition",
+      "utterance": "ROV",
+      "fixture_precondition": "Pending competition disconnect topic exists",
+      "expected_behavior": "inherits rule topic and resolves the selected game",
+      "required_invariants": [
+        "I04",
+        "I09"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C09",
+      "group": "target_lock",
+      "utterance": "กฎ CS2",
+      "fixture_precondition": "CS2 requested; only VALORANT rule is in first candidates",
+      "expected_behavior": "does not answer another game; tries declared CS2 scope or reports exact gap",
+      "required_invariants": [
+        "I03",
+        "I04"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C10",
+      "group": "all_scope",
+      "utterance": "ขอเกมทั้งหมด",
+      "fixture_precondition": "Declared complete offering set is larger than retrieval top K",
+      "expected_behavior": "enumerates full offering set or labels pagination",
+      "required_invariants": [
+        "I06"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C11",
+      "group": "all_scope",
+      "utterance": "มีเกมใน PS5 กับ Switch อะไรบ้าง",
+      "fixture_precondition": "Same game is offered in both scopes",
+      "expected_behavior": "deduplicates or groups by requested offering scope explicitly",
+      "required_invariants": [
+        "I04",
+        "I06"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C12",
+      "group": "partial",
+      "utterance": "ราคาและวิธีจอง PC",
+      "fixture_precondition": "Current rate unavailable; booking procedure supported",
+      "expected_behavior": "does not calculate price; answers independent booking need",
+      "required_invariants": [
+        "I01",
+        "I02",
+        "I07"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C13",
+      "group": "dependency",
+      "utterance": "มี 100 บาทเล่นได้นานแค่ไหน",
+      "fixture_precondition": "No current eligible rate or billing rule",
+      "expected_behavior": "no derived play time from missing or expired rate",
+      "required_invariants": [
+        "I02",
+        "I05",
+        "I07"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C14",
+      "group": "tuple_binding",
+      "utterance": "PC 2 ชั่วโมง กับ VR 30 นาทีสำหรับบุคคลภายนอก",
+      "fixture_precondition": "Eligible rate facts exist for requested tuples",
+      "expected_behavior": "does not create unintended audience/service/duration cross product",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C15",
+      "group": "rental",
+      "utterance": "เหมาเต็มวันราคาเท่าไร",
+      "fixture_precondition": "Published rental package exists; no hourly-to-day conversion policy",
+      "expected_behavior": "reads package; does not infer rental price by multiplying hourly rate",
+      "required_invariants": [
+        "I03",
+        "I07",
+        "I08"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C16",
+      "group": "calendar",
+      "utterance": "วันนี้เปิดไหม",
+      "fixture_precondition": "Opening predicate is explicitly confirmed for request local date",
+      "expected_behavior": "date plus confirmed opening status in concise answer",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C17",
+      "group": "calendar",
+      "utterance": "วันนี้เปิดไหม",
+      "fixture_precondition": "Only empty bookable periods are known; physical opening unknown",
+      "expected_behavior": "does not infer physical closure from empty booking slots",
+      "required_invariants": [
+        "I05",
+        "I07"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C18",
+      "group": "live",
+      "utterance": "ตอนบ่ายสามมีเครื่องไหนว่างบ้าง",
+      "fixture_precondition": "Fresh read-only provider observation with known mapping exists",
+      "expected_behavior": "lists verified free resources within requested scope",
+      "required_invariants": [
+        "I06",
+        "I10"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C19",
+      "group": "live",
+      "utterance": "PC ว่างไหมแล้วจองยังไง",
+      "fixture_precondition": "Live provider unavailable; static booking procedure supported",
+      "expected_behavior": "reports live limitation and answers independent procedure",
+      "required_invariants": [
+        "I01",
+        "I02",
+        "I10"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C20",
+      "group": "same_task_multi_subject",
+      "utterance": "เกม A กับเกม B คือเกมอะไร",
+      "fixture_precondition": "Both games have source-backed summaries",
+      "expected_behavior": "two subject-bound overview needs even though operation is the same",
+      "required_invariants": [
+        "I01",
+        "I04"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C21",
+      "group": "rules",
+      "utterance": "ก่อนกับหลัง First Blood ต่างกันยังไง",
+      "fixture_precondition": "Relevant rule clauses with different conditions and dependencies exist",
+      "expected_behavior": "preserves both conditions and required exceptions",
+      "required_invariants": [
+        "I01",
+        "I04",
+        "I08"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C22",
+      "group": "negation",
+      "utterance": "ไม่ใช่บุคลากร PSU ใช้ราคาไหน",
+      "fixture_precondition": "Audience information and eligibility rules exist",
+      "expected_behavior": "negation is preserved; does not pick PSU staff rate by substring",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C23",
+      "group": "authority",
+      "utterance": "ราคานี้ใช่ไหม",
+      "fixture_precondition": "FAQ and structured rate disagree without resolved claim authority",
+      "expected_behavior": "reports or resolves conflict only with applicable source-backed policy",
+      "required_invariants": [
+        "I03",
+        "I07"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C24",
+      "group": "lifecycle",
+      "utterance": "ราคา PC",
+      "fixture_precondition": "Same service selected previously; rate has new published revision",
+      "expected_behavior": "re-reads amount from new release without asking service again",
+      "required_invariants": [
+        "I03",
+        "I09"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C25",
+      "group": "lifecycle",
+      "utterance": "ราคา PC",
+      "fixture_precondition": "Selected service or rate was withdrawn after previous answer",
+      "expected_behavior": "does not resurrect value from history, alias or cache",
+      "required_invariants": [
+        "I03",
+        "I09"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C26",
+      "group": "lifecycle",
+      "utterance": "PC",
+      "fixture_precondition": "Unrelated contact record changed epoch; service task unchanged",
+      "expected_behavior": "revalidates dependencies and preserves valid task slots",
+      "required_invariants": [
+        "I09"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C27",
+      "group": "known_empty",
+      "utterance": "มีอุปกรณ์ไหม",
+      "fixture_precondition": "Explicit complete inventory is empty",
+      "expected_behavior": "may assert empty within that exact scope",
+      "required_invariants": [
+        "I05",
+        "I06"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C28",
+      "group": "unknown",
+      "utterance": "มีอุปกรณ์ไหม",
+      "fixture_precondition": "Inventory completeness and members unknown",
+      "expected_behavior": "does not assert that no equipment exists",
+      "required_invariants": [
+        "I05"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C29",
+      "group": "relation",
+      "utterance": "เกม A เล่นที่ไหน",
+      "fixture_precondition": "Game supported_platforms exists but studio offering relation does not",
+      "expected_behavior": "does not equate supported platform with installed studio offering",
+      "required_invariants": [
+        "I03",
+        "I05"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C30",
+      "group": "localization",
+      "utterance": "Explain the booking exception in English",
+      "fixture_precondition": "Source permission and exception are supported; translation mode permitted",
+      "expected_behavior": "critical decision, amounts and exception remain unchanged",
+      "required_invariants": [
+        "I04",
+        "I08"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C31",
+      "group": "failure",
+      "utterance": "ขอข้อมูลกติกา",
+      "fixture_precondition": "Model returns body that is not valid plan JSON",
+      "expected_behavior": "temporary/plan failure is not reported as absence of source facts",
+      "required_invariants": [
+        "I01",
+        "I11"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C32",
+      "group": "failure",
+      "utterance": "ขอราคาและกติกา",
+      "fixture_precondition": "Shared budget exhausted while waiting for model",
+      "expected_behavior": "no recursive budget reset; finalizer reserve preserved",
+      "required_invariants": [
+        "I01",
+        "I11"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C33",
+      "group": "lifecycle",
+      "utterance": "เกมใหม่เล่นยังไง",
+      "fixture_precondition": "New game uses supported kind with valid how_to_play source",
+      "expected_behavior": "data-only addition works without new name-specific regex",
+      "required_invariants": [
+        "I03",
+        "I12"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C34",
+      "group": "capability",
+      "utterance": "ขอสูตรโปรโมชั่นแบบใหม่",
+      "fixture_precondition": "New record describes an unsupported billing operator",
+      "expected_behavior": "does not execute a model-invented business formula",
+      "required_invariants": [
+        "I03",
+        "I12"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C35",
+      "group": "broken_relation",
+      "utterance": "เกม A เล่นได้กี่คน",
+      "fixture_precondition": "game_mode references a missing game or invalid platform",
+      "expected_behavior": "reports broken relation rather than guessing count",
+      "required_invariants": [
+        "I03",
+        "I05"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C36",
+      "group": "scope_reset",
+      "utterance": "ไม่ใช่ ขอวิธีจอง",
+      "fixture_precondition": "Pending service-price clarification exists",
+      "expected_behavior": "replaces task explicitly instead of answering abandoned price intent",
+      "required_invariants": [
+        "I04",
+        "I09"
+      ],
+      "executed": false
+    },
+    {
+      "id": "C37",
+      "group": "partial_ambiguity",
+      "utterance": "ศูนย์อยู่ที่ไหน แล้วราคาเท่าไร",
+      "fixture_precondition": "Address supported; price has a material unresolved service/audience scope",
+      "expected_behavior": "reads and answers address while asking only necessary price slot",
+      "required_invariants": [
+        "I01",
+        "I02",
+        "I04"
+      ],
+      "executed": false
+    }
+  ]
+}

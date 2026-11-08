@@ -1,0 +1,132 @@
+{
+  "question_key": "f683a42cb3ba63c5f215900a88eb9a00791cc40073305efffd6fd66cf19d93be",
+  "example_sha256": "2350b2c89436e20bd51ad62899f168acb6be24d0bf49435a0a2a5e4453a45060",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One platform/device-compatibility question names Animal Crossing: New Horizons.",
+      "raw_quotes": [
+        "On which device can Animal Crossing: New Horizons be played"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/detail/supported_platforms is retained; it is not a studio equipment inventory question.",
+      "raw_quotes": [
+        "On which device can Animal Crossing: New Horizons be played"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "The exact game title is target; remove the service constraint that repeated the game title.",
+      "raw_quotes": [
+        "On which device can Animal Crossing: New Horizons be played"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No studio zone or console name is inherited from the source.",
+      "raw_quotes": [
+        "On which device can Animal Crossing: New Horizons be played"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Clear requested platform information can be missing in source without making the question ambiguous.",
+      "raw_quotes": [
+        "On which device can Animal Crossing: New Horizons be played"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_animal_crossing has supported_platforms unknown and a studio-zone relation; the latter alone is not global compatibility proof.",
+      "raw_quotes": [
+        "On which device can Animal Crossing: New Horizons be played"
+      ],
+      "source_record_ids": [
+        "game_detail_animal_crossing"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Nintendo platform answer or affirmative availability enters labels.",
+      "raw_quotes": [
+        "On which device can Animal Crossing: New Horizons be played"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "supported_platforms is unknown; a studio-zone relation is recorded separately.",
+      "handling": "Do not teach global platform compatibility from a venue offering."
+    }
+  ],
+  "historical_review_row": 74,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_platform",
+    "context_quotes": [
+      "Animal Crossing: New Horizons"
+    ],
+    "tasks": [
+      {
+        "quote": "On which device can Animal Crossing: New Horizons be played",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "supported_platforms",
+        "target": "Animal Crossing: New Horizons",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Animal Crossing: New Horizons",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_platform",
+    "context_quotes": [
+      "Animal Crossing: New Horizons"
+    ],
+    "tasks": [
+      {
+        "quote": "On which device can Animal Crossing: New Horizons be played",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "supported_platforms",
+        "target": "Animal Crossing: New Horizons",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_animal_crossing": {
+      "revision": 9,
+      "record_sha256": "aac6a811034bd41d34a80a38645557cb37a667f2480e4854453219d59f655d32"
+    }
+  }
+}

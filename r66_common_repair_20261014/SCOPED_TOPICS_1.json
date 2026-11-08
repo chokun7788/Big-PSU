@@ -1,0 +1,20 @@
+{
+  "tests_run": 8,
+  "llm_enabled": false,
+  "synthetic_fixture_only": true,
+  "failures": [
+    {
+      "test": "test_new_scoped_faq_is_read_in_both_languages (__main__.ScopedTopics.test_new_scoped_faq_is_read_in_both_languages)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\test_scoped_topics.py\", line 28, in test_new_scoped_faq_is_read_in_both_languages\n    r=self.read(q,lang);self.assertIsNotNone(r);self.assertIn('sample A' if lang=='en' else 'ตัวอย่าง A',r.answer);self.assertNotIn('sample B',r.answer);self.assertEqual(r.decision_artifact['query_plan']['method'],'declared_scoped_topic');self.assertTrue(r.validation.ok)\n                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'sample A' not found in 'The requested topic is unclear. Which part of Neon Rig do you need: question / Confirmed information / topic / Service?'\n"
+    },
+    {
+      "test": "test_other_scope_does_not_leak (__main__.ScopedTopics.test_other_scope_does_not_leak)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\test_scoped_topics.py\", line 30, in test_other_scope_does_not_leak\n    r=self.read('May I install additional games on Coral Rig?');self.assertIn('sample B',r.answer);self.assertNotIn('sample A',r.answer)\n                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'sample B' not found in 'The requested topic is unclear. Which part of May I install additional games? do you need: question / Confirmed information / topic / Service?'\n"
+    },
+    {
+      "test": "test_root_validity_is_not_bypassed (__main__.ScopedTopics.test_root_validity_is_not_bypassed)",
+      "stack": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r66_common_repair_20261014\\test_scoped_topics.py\", line 49, in test_root_validity_is_not_bypassed\n    r=self.read('May I install additional games on Neon Rig?');self.assertNotIn('sample A',r.answer);self.assertIn('not effective',r.answer)\n                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'not effective' not found in 'The requested topic is unclear. Which part of Neon Rig do you need: question / Confirmed information / topic / Service?'\n"
+    }
+  ],
+  "errors": []
+}

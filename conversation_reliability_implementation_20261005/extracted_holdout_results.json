@@ -1,0 +1,925 @@
+{
+  "extracted_root": "C:\\Users\\Chokhun\\Documents\\Codex\\psu_r38_archive_check_20261005\\PSU_Esports_Chatbot_Local",
+  "cases": 8,
+  "passed": 6,
+  "records": [
+    {
+      "question": "คอมพิวเตอร์ที่เป็น PC ครับ",
+      "locale": "th",
+      "expected_targets": [
+        "pc"
+      ],
+      "actual_targets": [
+        "pc"
+      ],
+      "expected_rows": 2,
+      "metadata": {
+        "request_plan": {
+          "schema_version": 1,
+          "original_query": "คอมพิวเตอร์ที่เป็น PC ครับ",
+          "resolved_query": "ค่าบริการ PC บุคคลภายนอก",
+          "act": "fill_slot",
+          "tasks": [
+            {
+              "task_id": "fee-1",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [
+                "pc"
+              ],
+              "scope": {
+                "entity_selection": "explicit",
+                "detail_level": "package_rates"
+              },
+              "filters": {
+                "customer_scope": "external_unspecified",
+                "customer_group_ids": [
+                  "general_student",
+                  "general_adult"
+                ],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "per_target_filters": {},
+              "excluded_targets": [],
+              "pending_slots": [],
+              "offered_option_ids": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "provenance": {
+                "operation": "explicit_user",
+                "targets": "explicit_user",
+                "filters": "explicit_user"
+              }
+            }
+          ],
+          "context_used": true,
+          "needs_review": false
+        },
+        "source_release": "ad08219f3ba1bd36",
+        "expected_ids": [
+          "pc:general_student",
+          "pc:general_adult"
+        ],
+        "returned_ids": [
+          "pc:general_student",
+          "pc:general_adult"
+        ],
+        "missing_ids": [],
+        "missing_targets": [],
+        "rows": [
+          {
+            "id": "pc:general_student",
+            "package_id": "pc",
+            "group_id": "general_student",
+            "unit_price": 25,
+            "sessions": 1,
+            "total": 25
+          },
+          {
+            "id": "pc:general_adult",
+            "package_id": "pc",
+            "group_id": "general_adult",
+            "unit_price": 70,
+            "sessions": 1,
+            "total": 70
+          }
+        ],
+        "temporal_validity": "recorded_rates",
+        "recorded_expiry": null,
+        "task_outcomes": [
+          {
+            "task_id": "fee-1",
+            "outcome": "answered_complete"
+          }
+        ],
+        "outcome": "answered_complete"
+      },
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+      "passed": true
+    },
+    {
+      "question": "ขอ VR แทน ไม่เอา PC",
+      "locale": "th",
+      "expected_targets": [
+        "vr"
+      ],
+      "actual_targets": [
+        "vr"
+      ],
+      "expected_rows": 4,
+      "metadata": {
+        "request_plan": {
+          "schema_version": 1,
+          "original_query": "ขอ VR แทน ไม่เอา PC",
+          "resolved_query": "ค่าบริการ VR บุคคลภายนอก",
+          "act": "fill_slot",
+          "tasks": [
+            {
+              "task_id": "fee-1",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [
+                "vr"
+              ],
+              "scope": {
+                "entity_selection": "explicit",
+                "detail_level": "package_rates"
+              },
+              "filters": {
+                "customer_scope": "external_unspecified",
+                "customer_group_ids": [
+                  "general_student",
+                  "general_adult"
+                ],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "per_target_filters": {},
+              "excluded_targets": [
+                "pc"
+              ],
+              "pending_slots": [],
+              "offered_option_ids": [
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "provenance": {
+                "operation": "explicit_user",
+                "targets": "explicit_user",
+                "filters": "explicit_user"
+              }
+            }
+          ],
+          "context_used": true,
+          "needs_review": false
+        },
+        "source_release": "ad08219f3ba1bd36",
+        "expected_ids": [
+          "vr_30:general_student",
+          "vr_30:general_adult",
+          "vr_60:general_student",
+          "vr_60:general_adult"
+        ],
+        "returned_ids": [
+          "vr_30:general_student",
+          "vr_30:general_adult",
+          "vr_60:general_student",
+          "vr_60:general_adult"
+        ],
+        "missing_ids": [],
+        "missing_targets": [],
+        "rows": [
+          {
+            "id": "vr_30:general_student",
+            "package_id": "vr_30",
+            "group_id": "general_student",
+            "unit_price": 190,
+            "sessions": 1,
+            "total": 190
+          },
+          {
+            "id": "vr_30:general_adult",
+            "package_id": "vr_30",
+            "group_id": "general_adult",
+            "unit_price": 525,
+            "sessions": 1,
+            "total": 525
+          },
+          {
+            "id": "vr_60:general_student",
+            "package_id": "vr_60",
+            "group_id": "general_student",
+            "unit_price": 375,
+            "sessions": 1,
+            "total": 375
+          },
+          {
+            "id": "vr_60:general_adult",
+            "package_id": "vr_60",
+            "group_id": "general_adult",
+            "unit_price": 1050,
+            "sessions": 1,
+            "total": 1050
+          }
+        ],
+        "temporal_validity": "source_not_current",
+        "recorded_expiry": "2026-03-31",
+        "task_outcomes": [
+          {
+            "task_id": "fee-1",
+            "outcome": "answered_complete"
+          }
+        ],
+        "outcome": "answered_complete"
+      },
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "passed": true
+    },
+    {
+      "question": "เอาบริการครบทุกโซนเลยครับ",
+      "locale": "th",
+      "expected_targets": [
+        "pc",
+        "ps5",
+        "nintendo_switch",
+        "cockpit",
+        "vr"
+      ],
+      "actual_targets": [
+        "pc",
+        "ps5",
+        "nintendo_switch",
+        "cockpit",
+        "vr"
+      ],
+      "expected_rows": 14,
+      "metadata": {
+        "request_plan": {
+          "schema_version": 1,
+          "original_query": "เอาบริการครบทุกโซนเลยครับ",
+          "resolved_query": "ตารางราคาทุกบริการ บุคคลภายนอก",
+          "act": "fill_slot",
+          "tasks": [
+            {
+              "task_id": "fee-1",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "scope": {
+                "entity_selection": "all",
+                "detail_level": "package_rates"
+              },
+              "filters": {
+                "customer_scope": "external_unspecified",
+                "customer_group_ids": [
+                  "general_student",
+                  "general_adult"
+                ],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "per_target_filters": {},
+              "excluded_targets": [],
+              "pending_slots": [],
+              "offered_option_ids": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "provenance": {
+                "operation": "explicit_user",
+                "targets": "explicit_user_scope",
+                "filters": "explicit_user"
+              }
+            }
+          ],
+          "context_used": true,
+          "needs_review": false
+        },
+        "source_release": "ad08219f3ba1bd36",
+        "expected_ids": [
+          "pc:general_student",
+          "pc:general_adult",
+          "ps5:general_student",
+          "ps5:general_adult",
+          "nintendo_switch_1_2:general_student",
+          "nintendo_switch_1_2:general_adult",
+          "nintendo_switch_3_4:general_student",
+          "nintendo_switch_3_4:general_adult",
+          "cockpit:general_student",
+          "cockpit:general_adult",
+          "vr_30:general_student",
+          "vr_30:general_adult",
+          "vr_60:general_student",
+          "vr_60:general_adult"
+        ],
+        "returned_ids": [
+          "pc:general_student",
+          "pc:general_adult",
+          "ps5:general_student",
+          "ps5:general_adult",
+          "nintendo_switch_1_2:general_student",
+          "nintendo_switch_1_2:general_adult",
+          "nintendo_switch_3_4:general_student",
+          "nintendo_switch_3_4:general_adult",
+          "cockpit:general_student",
+          "cockpit:general_adult",
+          "vr_30:general_student",
+          "vr_30:general_adult",
+          "vr_60:general_student",
+          "vr_60:general_adult"
+        ],
+        "missing_ids": [],
+        "missing_targets": [],
+        "rows": [
+          {
+            "id": "pc:general_student",
+            "package_id": "pc",
+            "group_id": "general_student",
+            "unit_price": 25,
+            "sessions": 1,
+            "total": 25
+          },
+          {
+            "id": "pc:general_adult",
+            "package_id": "pc",
+            "group_id": "general_adult",
+            "unit_price": 70,
+            "sessions": 1,
+            "total": 70
+          },
+          {
+            "id": "ps5:general_student",
+            "package_id": "ps5",
+            "group_id": "general_student",
+            "unit_price": 50,
+            "sessions": 1,
+            "total": 50
+          },
+          {
+            "id": "ps5:general_adult",
+            "package_id": "ps5",
+            "group_id": "general_adult",
+            "unit_price": 150,
+            "sessions": 1,
+            "total": 150
+          },
+          {
+            "id": "nintendo_switch_1_2:general_student",
+            "package_id": "nintendo_switch_1_2",
+            "group_id": "general_student",
+            "unit_price": 50,
+            "sessions": 1,
+            "total": 50
+          },
+          {
+            "id": "nintendo_switch_1_2:general_adult",
+            "package_id": "nintendo_switch_1_2",
+            "group_id": "general_adult",
+            "unit_price": 140,
+            "sessions": 1,
+            "total": 140
+          },
+          {
+            "id": "nintendo_switch_3_4:general_student",
+            "package_id": "nintendo_switch_3_4",
+            "group_id": "general_student",
+            "unit_price": 100,
+            "sessions": 1,
+            "total": 100
+          },
+          {
+            "id": "nintendo_switch_3_4:general_adult",
+            "package_id": "nintendo_switch_3_4",
+            "group_id": "general_adult",
+            "unit_price": 280,
+            "sessions": 1,
+            "total": 280
+          },
+          {
+            "id": "cockpit:general_student",
+            "package_id": "cockpit",
+            "group_id": "general_student",
+            "unit_price": 65,
+            "sessions": 1,
+            "total": 65
+          },
+          {
+            "id": "cockpit:general_adult",
+            "package_id": "cockpit",
+            "group_id": "general_adult",
+            "unit_price": 200,
+            "sessions": 1,
+            "total": 200
+          },
+          {
+            "id": "vr_30:general_student",
+            "package_id": "vr_30",
+            "group_id": "general_student",
+            "unit_price": 190,
+            "sessions": 1,
+            "total": 190
+          },
+          {
+            "id": "vr_30:general_adult",
+            "package_id": "vr_30",
+            "group_id": "general_adult",
+            "unit_price": 525,
+            "sessions": 1,
+            "total": 525
+          },
+          {
+            "id": "vr_60:general_student",
+            "package_id": "vr_60",
+            "group_id": "general_student",
+            "unit_price": 375,
+            "sessions": 1,
+            "total": 375
+          },
+          {
+            "id": "vr_60:general_adult",
+            "package_id": "vr_60",
+            "group_id": "general_adult",
+            "unit_price": 1050,
+            "sessions": 1,
+            "total": 1050
+          }
+        ],
+        "temporal_validity": "source_not_current",
+        "recorded_expiry": "2026-03-31",
+        "task_outcomes": [
+          {
+            "task_id": "fee-1",
+            "outcome": "answered_complete"
+          }
+        ],
+        "outcome": "answered_complete"
+      },
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\n\nPlayStation 5 — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 150 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\n\nCockpit — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 200 บาท/แพ็กเกจ\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+      "passed": true
+    },
+    {
+      "question": "I'd like the cockpit rate instead",
+      "locale": "en",
+      "expected_targets": [
+        "cockpit"
+      ],
+      "actual_targets": [
+        "cockpit"
+      ],
+      "expected_rows": 2,
+      "metadata": {
+        "request_plan": {
+          "schema_version": 1,
+          "original_query": "I'd like the cockpit rate instead",
+          "resolved_query": "Service prices Cockpit",
+          "act": "new_task",
+          "tasks": [
+            {
+              "task_id": "fee-1",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [
+                "cockpit"
+              ],
+              "scope": {
+                "entity_selection": "explicit",
+                "detail_level": "package_rates"
+              },
+              "filters": {
+                "customer_scope": "unspecified",
+                "customer_group_ids": [],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "per_target_filters": {},
+              "excluded_targets": [],
+              "pending_slots": [],
+              "offered_option_ids": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "provenance": {
+                "operation": "explicit_user",
+                "targets": "explicit_user",
+                "filters": "explicit_user"
+              }
+            }
+          ],
+          "context_used": false,
+          "needs_review": false
+        },
+        "source_release": "ad08219f3ba1bd36",
+        "expected_ids": [
+          "cockpit:psu_student_staff",
+          "cockpit:general_student",
+          "cockpit:general_adult"
+        ],
+        "returned_ids": [
+          "cockpit:psu_student_staff",
+          "cockpit:general_student",
+          "cockpit:general_adult"
+        ],
+        "missing_ids": [],
+        "missing_targets": [],
+        "rows": [
+          {
+            "id": "cockpit:psu_student_staff",
+            "package_id": "cockpit",
+            "group_id": "psu_student_staff",
+            "unit_price": 0,
+            "sessions": 1,
+            "total": 0
+          },
+          {
+            "id": "cockpit:general_student",
+            "package_id": "cockpit",
+            "group_id": "general_student",
+            "unit_price": 65,
+            "sessions": 1,
+            "total": 65
+          },
+          {
+            "id": "cockpit:general_adult",
+            "package_id": "cockpit",
+            "group_id": "general_adult",
+            "unit_price": 200,
+            "sessions": 1,
+            "total": 200
+          }
+        ],
+        "temporal_validity": "source_not_current",
+        "recorded_expiry": "2026-03-31",
+        "task_outcomes": [
+          {
+            "task_id": "fee-1",
+            "outcome": "answered_complete"
+          }
+        ],
+        "outcome": "answered_complete"
+      },
+      "answer": "Service prices (recorded package rates):\n\nCockpit — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "passed": false
+    },
+    {
+      "question": "Show me each service",
+      "locale": "en",
+      "expected_targets": [
+        "pc",
+        "ps5",
+        "nintendo_switch",
+        "cockpit",
+        "vr"
+      ],
+      "actual_targets": [
+        "pc",
+        "ps5",
+        "nintendo_switch",
+        "cockpit",
+        "vr"
+      ],
+      "expected_rows": 14,
+      "metadata": {
+        "request_plan": {
+          "schema_version": 1,
+          "original_query": "Show me each service",
+          "resolved_query": "All service prices external users",
+          "act": "fill_slot",
+          "tasks": [
+            {
+              "task_id": "fee-1",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "scope": {
+                "entity_selection": "all",
+                "detail_level": "package_rates"
+              },
+              "filters": {
+                "customer_scope": "external_unspecified",
+                "customer_group_ids": [
+                  "general_student",
+                  "general_adult"
+                ],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "per_target_filters": {},
+              "excluded_targets": [],
+              "pending_slots": [],
+              "offered_option_ids": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "provenance": {
+                "operation": "explicit_user",
+                "targets": "explicit_user_scope",
+                "filters": "explicit_user"
+              }
+            }
+          ],
+          "context_used": true,
+          "needs_review": false
+        },
+        "source_release": "ad08219f3ba1bd36",
+        "expected_ids": [
+          "pc:general_student",
+          "pc:general_adult",
+          "ps5:general_student",
+          "ps5:general_adult",
+          "nintendo_switch_1_2:general_student",
+          "nintendo_switch_1_2:general_adult",
+          "nintendo_switch_3_4:general_student",
+          "nintendo_switch_3_4:general_adult",
+          "cockpit:general_student",
+          "cockpit:general_adult",
+          "vr_30:general_student",
+          "vr_30:general_adult",
+          "vr_60:general_student",
+          "vr_60:general_adult"
+        ],
+        "returned_ids": [
+          "pc:general_student",
+          "pc:general_adult",
+          "ps5:general_student",
+          "ps5:general_adult",
+          "nintendo_switch_1_2:general_student",
+          "nintendo_switch_1_2:general_adult",
+          "nintendo_switch_3_4:general_student",
+          "nintendo_switch_3_4:general_adult",
+          "cockpit:general_student",
+          "cockpit:general_adult",
+          "vr_30:general_student",
+          "vr_30:general_adult",
+          "vr_60:general_student",
+          "vr_60:general_adult"
+        ],
+        "missing_ids": [],
+        "missing_targets": [],
+        "rows": [
+          {
+            "id": "pc:general_student",
+            "package_id": "pc",
+            "group_id": "general_student",
+            "unit_price": 25,
+            "sessions": 1,
+            "total": 25
+          },
+          {
+            "id": "pc:general_adult",
+            "package_id": "pc",
+            "group_id": "general_adult",
+            "unit_price": 70,
+            "sessions": 1,
+            "total": 70
+          },
+          {
+            "id": "ps5:general_student",
+            "package_id": "ps5",
+            "group_id": "general_student",
+            "unit_price": 50,
+            "sessions": 1,
+            "total": 50
+          },
+          {
+            "id": "ps5:general_adult",
+            "package_id": "ps5",
+            "group_id": "general_adult",
+            "unit_price": 150,
+            "sessions": 1,
+            "total": 150
+          },
+          {
+            "id": "nintendo_switch_1_2:general_student",
+            "package_id": "nintendo_switch_1_2",
+            "group_id": "general_student",
+            "unit_price": 50,
+            "sessions": 1,
+            "total": 50
+          },
+          {
+            "id": "nintendo_switch_1_2:general_adult",
+            "package_id": "nintendo_switch_1_2",
+            "group_id": "general_adult",
+            "unit_price": 140,
+            "sessions": 1,
+            "total": 140
+          },
+          {
+            "id": "nintendo_switch_3_4:general_student",
+            "package_id": "nintendo_switch_3_4",
+            "group_id": "general_student",
+            "unit_price": 100,
+            "sessions": 1,
+            "total": 100
+          },
+          {
+            "id": "nintendo_switch_3_4:general_adult",
+            "package_id": "nintendo_switch_3_4",
+            "group_id": "general_adult",
+            "unit_price": 280,
+            "sessions": 1,
+            "total": 280
+          },
+          {
+            "id": "cockpit:general_student",
+            "package_id": "cockpit",
+            "group_id": "general_student",
+            "unit_price": 65,
+            "sessions": 1,
+            "total": 65
+          },
+          {
+            "id": "cockpit:general_adult",
+            "package_id": "cockpit",
+            "group_id": "general_adult",
+            "unit_price": 200,
+            "sessions": 1,
+            "total": 200
+          },
+          {
+            "id": "vr_30:general_student",
+            "package_id": "vr_30",
+            "group_id": "general_student",
+            "unit_price": 190,
+            "sessions": 1,
+            "total": 190
+          },
+          {
+            "id": "vr_30:general_adult",
+            "package_id": "vr_30",
+            "group_id": "general_adult",
+            "unit_price": 525,
+            "sessions": 1,
+            "total": 525
+          },
+          {
+            "id": "vr_60:general_student",
+            "package_id": "vr_60",
+            "group_id": "general_student",
+            "unit_price": 375,
+            "sessions": 1,
+            "total": 375
+          },
+          {
+            "id": "vr_60:general_adult",
+            "package_id": "vr_60",
+            "group_id": "general_adult",
+            "unit_price": 1050,
+            "sessions": 1,
+            "total": 1050
+          }
+        ],
+        "temporal_validity": "source_not_current",
+        "recorded_expiry": "2026-03-31",
+        "task_outcomes": [
+          {
+            "task_id": "fee-1",
+            "outcome": "answered_complete"
+          }
+        ],
+        "outcome": "answered_complete"
+      },
+      "answer": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 150 THB/package\n\nNintendo Switch — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 140 THB/package\n\nNintendo Switch — 60 minutes/package (3-4 people)\n• PSU alumni / students from other institutions: 100 THB/package\n• General adults: 280 THB/package\n\nCockpit — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\n\nVR — 30 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 190 THB/package\n• General adults: 525 THB/package\n\nVR — 60 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 375 THB/package\n• General adults: 1,050 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nPC rates use the local update dated 2026-07-27.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nSource: local://service_fee/pc_price_update_20260727",
+      "passed": true
+    },
+    {
+      "question": "the Nintendo Switch option thanks",
+      "locale": "en",
+      "expected_targets": [
+        "nintendo_switch"
+      ],
+      "actual_targets": [
+        "nintendo_switch"
+      ],
+      "expected_rows": 4,
+      "metadata": {
+        "request_plan": {
+          "schema_version": 1,
+          "original_query": "the Nintendo Switch option thanks",
+          "resolved_query": "Service prices Nintendo Switch external users",
+          "act": "fill_slot",
+          "tasks": [
+            {
+              "task_id": "fee-1",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [
+                "nintendo_switch"
+              ],
+              "scope": {
+                "entity_selection": "explicit",
+                "detail_level": "package_rates"
+              },
+              "filters": {
+                "customer_scope": "external_unspecified",
+                "customer_group_ids": [
+                  "general_student",
+                  "general_adult"
+                ],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "per_target_filters": {},
+              "excluded_targets": [],
+              "pending_slots": [],
+              "offered_option_ids": [
+                "pc",
+                "ps5",
+                "nintendo_switch",
+                "cockpit",
+                "vr"
+              ],
+              "provenance": {
+                "operation": "explicit_user",
+                "targets": "explicit_user",
+                "filters": "explicit_user"
+              }
+            }
+          ],
+          "context_used": true,
+          "needs_review": false
+        },
+        "source_release": "ad08219f3ba1bd36",
+        "expected_ids": [
+          "nintendo_switch_1_2:general_student",
+          "nintendo_switch_1_2:general_adult",
+          "nintendo_switch_3_4:general_student",
+          "nintendo_switch_3_4:general_adult"
+        ],
+        "returned_ids": [
+          "nintendo_switch_1_2:general_student",
+          "nintendo_switch_1_2:general_adult",
+          "nintendo_switch_3_4:general_student",
+          "nintendo_switch_3_4:general_adult"
+        ],
+        "missing_ids": [],
+        "missing_targets": [],
+        "rows": [
+          {
+            "id": "nintendo_switch_1_2:general_student",
+            "package_id": "nintendo_switch_1_2",
+            "group_id": "general_student",
+            "unit_price": 50,
+            "sessions": 1,
+            "total": 50
+          },
+          {
+            "id": "nintendo_switch_1_2:general_adult",
+            "package_id": "nintendo_switch_1_2",
+            "group_id": "general_adult",
+            "unit_price": 140,
+            "sessions": 1,
+            "total": 140
+          },
+          {
+            "id": "nintendo_switch_3_4:general_student",
+            "package_id": "nintendo_switch_3_4",
+            "group_id": "general_student",
+            "unit_price": 100,
+            "sessions": 1,
+            "total": 100
+          },
+          {
+            "id": "nintendo_switch_3_4:general_adult",
+            "package_id": "nintendo_switch_3_4",
+            "group_id": "general_adult",
+            "unit_price": 280,
+            "sessions": 1,
+            "total": 280
+          }
+        ],
+        "temporal_validity": "source_not_current",
+        "recorded_expiry": "2026-03-31",
+        "task_outcomes": [
+          {
+            "task_id": "fee-1",
+            "outcome": "answered_complete"
+          }
+        ],
+        "outcome": "answered_complete"
+      },
+      "answer": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nNintendo Switch — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 140 THB/package\n\nNintendo Switch — 60 minutes/package (3-4 people)\n• PSU alumni / students from other institutions: 100 THB/package\n• General adults: 280 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "passed": true
+    },
+    {
+      "question": "ขออ่านกติกา CS2 ทุกหัวข้อแบบละเอียด",
+      "locale": "th",
+      "answer": "กติกา Counter-Strike 2: รายละเอียดจากเอกสารที่บันทึกไว้ (แสดงแล้ว 8/56 ส่วน)\n\n1. ข้อมูลทั่วไป (General Information)\n\n1. ขอบเขตการบังคับใช้ กฎระเบียบนี้ใช้กับผู้เล่น ทีม และเจ้าหน้าที่ทุกคนที่เข้าร่วมการแข่งขัน CS2 อย่างเป็นทางการที่จัดโดย PSU Esports Studio - Phuket\n\n2. เวอร์ชันของเกม การแข่งขันทั้งหมดจะใช้เวอร์ชันล่าสุดของ CS2 บนแพลตฟอร์ม Steam ห้ามใช้การดัดแปลงตัวเกมที่ไม่ได้รับอนุญาตโดยเด็ดขาด\n\n3. ภาษา ภาษาทางการของการแข่งขันคือ ภาษาไทย การสื่อสาร การประท้วง และการรายงานผลทั้งหมดต้องใช้ภาษาไทย เว้นแต่จะระบุไว้เป็นอย่างอื่น\n\n4. การจับฉลากและตารางเวลา\n\n1. การแข่งขันจะแข่งขันทั้งหมด 1 วัน แข่งขัน ณ PSU Esports Studio - Phuket มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต\n\n5. การสื่อสาร ผู้เข้าร่วมทุกคนต้องใช้เซิร์ฟเวอร์ Discord ที่ทางศูนย์เป็นผู้กำหนด\n\n6. ข้อจำกัด\n\nยังเหลือ 48 ส่วน พิมพ์ “ต่อ” เพื่อดูหน้าถัดไปครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_cs2_psu_phuket_2026",
+      "passed": true
+    },
+    {
+      "question": "Please show every section of the CS2 tournament rulebook",
+      "locale": "en",
+      "answer": null,
+      "passed": false
+    }
+  ]
+}

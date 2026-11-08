@@ -1,0 +1,26 @@
+--- before/app/web_api/pipeline_supervisor.py
++++ after/app/web_api/pipeline_supervisor.py
+@@ -189,6 +189,7 @@
+                     global_timeout_sec=float(task.get("pipeline_timeout_sec", 9.0)),
+                     locale=str(task.get("locale") or "auto"),
+                     locale_decision=task.get("locale_decision"),
++                    recent_history=task.get("recent_history"),
+                 )
+                 emit_performance_event("request_finished", "pipeline", status="completed", attributes={"mode": result.mode})
+                 results.put({"task_id": task_id, "status": "ok", "result": result})
+@@ -284,6 +285,7 @@
+         request_id: str = "",
+         locale: str = "auto",
+         locale_decision: dict[str, Any] | None = None,
++        recent_history: list[dict[str, Any]] | None = None,
+     ) -> SupervisedCall:
+         started = time.perf_counter()
+         self.start()
+@@ -325,6 +327,7 @@
+                     "experimental_allow_llm": experimental_allow_llm,
+                     "locale": locale,
+                     "locale_decision": locale_decision or {},
++                    "recent_history": list(recent_history or [])[-10:],
+                     # The child must respect queue time already consumed in
+                     # the parent; otherwise a burst could exceed the HTTP SLA.
+                     "pipeline_timeout_sec": max(0.1, remaining_timeout_sec - 0.15),

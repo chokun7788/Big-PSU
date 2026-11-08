@@ -1,0 +1,128 @@
+{
+  "question_key": "d8b3d77d8bb29bf24b9f7e8bb344c07ab11e81deffd6dcdccfe05df64d49645f",
+  "example_sha256": "075cc6f8e83edfa057e9bd48ac3d6a0e1df72bde29267ddb68d69c5fedaf8aa9",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One VALORANT tournament question asks the minimum age to enter.",
+      "raw_quotes": [
+        "What is the minimum age requirement to enter this VALORANT tournament"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Keep competition_rules/rule_lookup/rule_clause with VALORANT target, not general studio eligibility or game age-rating.",
+      "raw_quotes": [
+        "What is the minimum age requirement to enter this VALORANT tournament"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add minimum age requirement as exact requested scope.",
+      "raw_quotes": [
+        "What is the minimum age requirement to enter this VALORANT tournament"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual age, date of birth, applicant, tournament edition or guardian consent is supplied.",
+      "raw_quotes": [
+        "What is the minimum age requirement to enter this VALORANT tournament"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The question does not prove an age rule exists or allow a game-rating threshold to replace tournament criteria.",
+      "raw_quotes": [
+        "What is the minimum age requirement to enter this VALORANT tournament"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Inspection of pinned Valorant rule texts found no explicit age threshold; competition overview identity cannot establish one.",
+      "raw_quotes": [
+        "What is the minimum age requirement to enter this VALORANT tournament"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_valorant_psu_phuket_2026_section_001"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No invented age, rating, eligibility result or source-completeness claim is taught.",
+      "raw_quotes": [
+        "What is the minimum age requirement to enter this VALORANT tournament"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "No explicit age threshold found in the pinned Valorant rule text.",
+      "handling": "Do not import a game-rating threshold or another tournament age."
+    }
+  ],
+  "historical_review_row": 275,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What is the minimum age requirement to enter this VALORANT tournament",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "What is the minimum age requirement to enter this VALORANT tournament",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "VALORANT",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "minimum age requirement",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_valorant_psu_phuket_2026_section_001": {
+      "revision": 5,
+      "record_sha256": "94354379a8c330da25bea7fdf728350c19e3401c2d0be95a27d1ac2be1776d99"
+    }
+  }
+}

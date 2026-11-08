@@ -1,0 +1,152 @@
+{
+  "question_key": "ef5c0b5af4c6794d174d9a9d329fe7e2535c1fac26b3cf0fd1d69f084d64ca96",
+  "example_sha256": "b94880bb4eec342822bff5dad0f259c2d7ca1a075db2b3100972d4a3ac3d1b3f",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One CS2 tournament-rule query asks permission to change three named settings and the allowed location of those changes.",
+      "raw_quotes": [
+        "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause retains one compound rule purpose; Resolution is a display-setting noun here, not dispute resolution.",
+      "raw_quotes": [
+        "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add Brightness, Resolution, Crosshair, may I change and where as exact requested scopes to preserve every predicate.",
+      "raw_quotes": [
+        "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual setting values, device model, prior dispute, operating-system permission or date is supplied.",
+      "raw_quotes": [
+        "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The permission question does not assert that modifications are allowed in every application or outside the game.",
+      "raw_quotes": [
+        "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual CS2 section045 revision4 explicitly restricts these three settings to game/computer-screen scope, but its primary facet is eligibility_registration; that mapping cannot stand as independent semantic proof of correct settings retrieval.",
+      "raw_quotes": [
+        "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_cs2_psu_phuket_2026_section_045"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no permission, setting values, allowed-location answer, dispute procedure or source authority verdict is taught.",
+      "raw_quotes": [
+        "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Actual settings clause has a misleading primary eligibility facet.",
+      "handling": "Verify exact clause and predicate scope; do not substitute dispute-resolution evidence."
+    }
+  ],
+  "historical_review_row": 260,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Under CS2 tournamment ruls, may I change Brightness, Resolution and Crosshair, and where?",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "Brightness",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "Resolution",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "Crosshair",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "may I change",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "where",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_cs2_psu_phuket_2026_section_045": {
+      "revision": 4,
+      "record_sha256": "8d4644d087248600402f95e3743b1a21ef1b7d74a5a6d02354134383523a2c17"
+    }
+  }
+}

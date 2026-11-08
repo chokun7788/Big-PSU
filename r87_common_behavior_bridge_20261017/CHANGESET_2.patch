@@ -1,0 +1,123 @@
+--- before_stage2/app/knowledge/common/answer.py
++++ after_stage2/app/knowledge/common/answer.py
+@@ -662,6 +662,10 @@
+         if audience_audit:plan['audience_selection']=audience_audit
+         if comparison_audit:plan['price_comparison']=comparison_audit
+         plan['field_authority']=field_ownership(snap,ids,requested)
++        if query_operation=='rules':
++            from .competition_bridge import answer as competition_clause_answer
++            competition_result=competition_clause_answer(self,snap,started,raw_query,lang,records,ids,at,plan)
++            if competition_result is not None:return competition_result
+         if discovery:plan['discovery']=discovery
+         if budget is not None:plan['budget']=budget
+         supported={records[k]['kind'] for k in ids}
+--- before_stage2/app/knowledge/common/competition_bridge.py
++++ after_stage2/app/knowledge/common/competition_bridge.py
+@@ -0,0 +1,107 @@
++"""Reuse clause interpretation, while reading only the current common rulebook.
++
++Bounded summaries are selected excerpts, never a completeness claim. Explicit
++all-rules and unrecognized/mixed detail requests stay with the common reader.
++"""
++import re
++from .registry import value
++
++
++def answer(reader,snap,started,question,lang,records,ids,at,base_plan):
++    from .answer import effective,text,title
++    from app.pipeline.competition_overview import substantive_lines,_FACETS,_LABELS
++    from app.pipeline.competition_presentation import clause_supports_facet,source_clause_lines
++    from app.pipeline.competition_taxonomy import detect_competition_facet
++    from app.pipeline.competition_detail import requested_detail_concepts
++    from app.pipeline.competition_request_contract import request_requirements
++    parents=[records[rid] for rid in ids if records[rid]['kind']=='competition']
++    if len(parents)!=1 or len(ids)!=1:return None
++    parent=parents[0];pid=parent['record_id']
++    if not effective(parent,at,records):return None
++    # Preserve requested whole-document coverage instead of applying a limit.
++    if re.search(r'ทั้งหมด|ทุกข้อ|ครบทุก|\b(?:all|entire|complete|every)\b',question,re.I):return None
++    children=sorted((r for r in records.values() if r['kind']=='competition_rule' and value(r,'competition_id')==pid and effective(r,at,records)),key=lambda r:(value(r,'source_order') or 0,r['record_id']))
++    usable=[r for r in children if r['fields']['text']['status']=='known' and r['fields']['text']['evidence_refs'] and isinstance(value(r,'text'),dict) and value(r,'text').get(lang)]
++    if not usable:return None
++    q=question.casefold();summary=bool(re.search(r'สรุป|ภาพรวม|สั้น|คร่าว|\b(?:summar\w*|overview|brief\w*)\b',q))
++    from .query_scope import derived_names
++    names=derived_names(snap['release']['names'],records)
++    chosen=[];method=None
++    if summary and not detect_competition_facet(question):
++        # Strip only current entity names and interpretation vocabulary. Do not
++        # let an extra requested proposition disappear inside a generic summary.
++        residue=q
++        game=records.get(value(parent,'game_id'))
++        for record in [parent]+([game] if game else []):
++            aliases=[s for values in record.get('aliases',{}).values() for s in values]
++            aliases += list(names.get(record['record_id'],[]))
++            aliases += [s for key in ['name','event_name','source_title'] for s in (value(record,key) or {}).values() if isinstance(s,str)]
++            for alias in sorted(aliases,key=len,reverse=True):residue=residue.replace(alias.casefold(),' ')
++        residue=re.sub(r'สรุป|ภาพรวม|กฎ|กฏ|กติกา|การแข่งขัน|แข่งขัน|แข่ง|สั้นๆ|สั้น|คร่าวๆ|คร่าว|ให้|ขอ|หน่อย|ครับ|ค่ะ|มีอะไรบ้าง|มีอะไรมั่ง|\b(?:summar\w*|overview|brief\w*|rules?|rulebook|competition|tournament|please|give|me|a|an|the|of|for|in|short)\b|[\s?!.,:ๆ]','',residue)
++        if residue:return None
++        emitted=set()
++        for facet in _FACETS:
++            candidates=[]
++            for r in usable:
++                declared=set(value(r,'facets') or [])
++                clauses=[line for line in substantive_lines(text(value(r,'text'),lang)) if (clause_supports_facet(line,facet) or declared=={facet}) and line not in emitted
++                         and not re.search(r'(?:occurrence|ครั้งที่)\s*\d+\s*[:.)-]',line,re.I)]
++                if clauses:candidates.append((r,clauses))
++            if not candidates:continue
++            # One complete source clause per facet. No character slicing or
++            # rewriting a condition to meet a display-length target.
++            r,clauses=candidates[0];line=clauses[0]
++            chosen.append((r,[line],facet));emitted.add(line)
++            if len(chosen)>=6:break
++        if not chosen:return None
++        method='common_legacy_clause_overview'
++    elif not summary:
++        game=records.get(value(parent,'game_id'));aliases=[] if not game else [s.casefold() for values in game.get('aliases',{}).values() for s in values]
++        # The old detail vocabulary supplies query/source predicates only. It
++        # cannot supply the legacy record, answer, number, or source URL.
++        from app.pipeline.competition_detail import CONCEPTS
++        game_ids={g for concept in CONCEPTS for g in concept.games if g in aliases}
++        if len(game_ids)!=1:return None
++        game_id=next(iter(game_ids));concepts=requested_detail_concepts(question,game_id)
++        if [c.name for c in concepts]!=['protest'] or request_requirements(question,game_id):return None
++        # Mixed language/authority/penalty requests must retain their other
++        # obligations in the ordinary common reader.
++        if re.search(r'ภาษา|อำนาจ|บทลงโทษ|\b(?:language|authority|penalt\w*|final decision)\b',question,re.I):return None
++        residue=str(base_plan.get('query_without_entity') or question).casefold()
++        for alias in sorted(names.get(pid,[])+names.get(value(parent,'game_id'),[]),key=len,reverse=True):residue=residue.replace(alias.casefold(),' ')
++        residue=re.sub(r'กฎ|กฏ|กติกา|การแข่งขัน|แข่งขัน|แข่ง|เรื่อง|การประท้วง|ประท้วง|ข้อพิพาท|และ|ว่าอย่างไร|อย่างไร|ยังไง|ต้อง|ยื่น|ภายใน|กี่นาที|ใคร|ได้|เมื่อไหร่|แล้ว|ครับ|ค่ะ|ขอ|หน่อย|\b(?:competition|tournament|rules?|rulebook|who|can|submit|file|a|the|protests?|objections?|disputes?|and|when|how|to|do|i|within|many|minutes|deadline|please)\b|[\s?!.,:]','',residue)
++        if residue:return None
++        concept=concepts[0]
++        for r in usable:
++            clauses=[line for line in source_clause_lines(text(value(r,'text'),lang)) if re.search(concept.source,line,re.I) or (lang=='en' and re.search(r'\bobjections? must be submitted\b',line,re.I))]
++            if clauses:chosen.append((r,list(dict.fromkeys(clauses)),'dispute'))
++        if not chosen:return None
++        # Choose the complete matching source row, as the pure legacy detail
++        # interpreter does, rather than dumping every row with the same facet.
++        chosen=[max(chosen,key=lambda entry:len(entry[1]))]
++        method='common_legacy_proposition_detail'
++    if not chosen:return None
++    # Explicit dependency rows remain visible in full; a dependent clause must
++    # not be presented without its stored qualifier.
++    queue=[r for r,_,_ in chosen];seen={r['record_id'] for r in queue}
++    for r in queue:
++        for dep in value(r,'depends_on_ids') or []:
++            linked=records.get(dep)
++            if not linked or dep in seen:continue
++            if linked not in usable:return None
++            chosen.append((linked,[text(value(linked,'text'),lang)],'other'));queue.append(linked);seen.add(dep)
++    hits=[];obs=[];lines=[];projection=[];selection=[]
++    caption=('สรุปกติกาบางประเด็นจากเอกสารที่มี' if lang=='th' else 'Selected rulebook clauses') if summary else ('ข้อกติกาตามประเด็นที่ถาม' if lang=='th' else 'Requested rulebook clause')
++    lines.extend([caption+' — '+text(value(parent,'event_name'),lang),''])
++    for r,clauses,facet in chosen:
++        rid=r['record_id'];f=r['fields']['text'];labels=[]
++        for ref in f['evidence_refs']:
++            src=snap['release']['sources'][ref['source_id']];label='S'+str(len(hits)+1);labels.append('['+label+']')
++            hits.append({'id':rid+':text:'+label,'record_id':rid,'field':'text','title':title(parent,lang),'text':'\n'.join(clauses),'source_id':ref['source_id'],'snapshot_sha256':src['sha256'],'locator':ref['locator'],'source_url':src.get('public_url') or '', 'citation_label':label})
++        heading=_LABELS.get(facet,_LABELS['other'])[lang=='en']
++        lines.append('**'+heading+'**\n'+'\n'.join('• '+line for line in clauses)+' '+' '.join(labels))
++        obs.append({'record_id':rid,'field':'text','status':'known','evidence_refs':f['evidence_refs']});projection.append({'record_id':rid,'fields':{'text':'explicit'}})
++        selection.append({'record_id':rid,'facet':facet,'clauses':clauses})
++    if summary:lines.extend(['','เป็นสรุปบางข้อ ถ้าต้องการครบทุกข้อ ให้ถามกติกาทั้งหมด หรือระบุหัวข้อที่ต้องการรายละเอียด' if lang=='th' else 'These are selected clauses. Ask for all rules or name a topic for details.'])
++    plan={**base_plan,'record_ids':[pid],'scope_ids':[pid],'requested_fields':['text'],'all_fields':False,'operation':'rules','method':method,'rule_content_all':False,'response_projection':projection,'clause_selection':selection,'legacy_fact_fallback_used':False,'summary_is_complete':False if summary else None,'source_answer_confirmed':True}
++    return reader.finish(snap,started,'\n\n'.join(lines),hits,plan,obs)

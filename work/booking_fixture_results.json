@@ -1,0 +1,118 @@
+{
+  "fixture_type": "synthetic_csv_rows_with_independent_expected_outcomes",
+  "project_file_sha256": {
+    "dashboard_server": "462418cf8c76b0223d8e36beec455e11f526fce9adadd347c70718110cd5ecae",
+    "chatbot_adapter": "9518c7d98686356598435e67cb5d262e113df26e683f09a258b30ab78d42cbbf"
+  },
+  "owner_confirmed": false,
+  "api_connection_tested": false,
+  "adapter_accepted_aggregate_payload": true,
+  "slot_results": {
+    "PC #01/13:00": {
+      "expected": [
+        "busy",
+        1,
+        0,
+        0
+      ],
+      "actual": [
+        "busy",
+        1,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    "PC #01/14:00": {
+      "expected": [
+        "available",
+        0,
+        0,
+        1
+      ],
+      "actual": [
+        "available",
+        0,
+        0,
+        1
+      ],
+      "pass": true
+    },
+    "PC #02/13:00": {
+      "expected": [
+        "available",
+        0,
+        0,
+        1
+      ],
+      "actual": [
+        "available",
+        0,
+        0,
+        1
+      ],
+      "pass": true
+    },
+    "PC #02/15:00": {
+      "expected": [
+        "no_show",
+        1,
+        1,
+        0
+      ],
+      "actual": [
+        "no_show",
+        1,
+        1,
+        0
+      ],
+      "pass": true
+    }
+  },
+  "answers": {
+    "th_booked": {
+      "pass": true,
+      "body": "PC #01 ไม่ว่างตลอดช่วง 13:00-14:00 น. (เวลาไทย) ครับ"
+    },
+    "en_booked": {
+      "pass": true,
+      "body": "PC #01 is not available for the full period 13:00-14:00 (Asia/Bangkok)."
+    },
+    "th_cancelled_free": {
+      "pass": true,
+      "body": "PC #01 ว่างตลอดช่วง 14:00-15:00 น. (เวลาไทย) ครับ"
+    },
+    "en_cancelled_free": {
+      "pass": true,
+      "body": "PC #01 is available for the full period 14:00-15:00 (Asia/Bangkok)."
+    },
+    "th_no_show_hold": {
+      "pass": true,
+      "body": "PC #02 ไม่ว่างตลอดช่วง 15:00-16:00 น. (เวลาไทย) ครับ"
+    },
+    "en_no_show_hold": {
+      "pass": true,
+      "body": "PC #02 is not available for the full period 15:00-16:00 (Asia/Bangkok)."
+    }
+  },
+  "aggregate_privacy_pass": true,
+  "short_booking_gap": {
+    "fixture_booking": "09:00-09:30",
+    "independently_expected_0930_1000": "free_by_booked_interval",
+    "dashboard_slot": {
+      "start": "09:00",
+      "end": "10:00",
+      "status": "busy",
+      "booked_count": 1,
+      "available_count": 0
+    },
+    "dashboard_marks_entire_hour_busy": true,
+    "english_answer_body": "VR Zone: 0/1 resources are available for the full period 09:30-10:00."
+  },
+  "empty_remote_data_gap": {
+    "synthetic_condition": "both HTTP CSV reads succeed but neither yields a service row",
+    "dashboard_source": "remote_csv_live",
+    "adapter_ok": true,
+    "resource_count": 0
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 274,
+  "question_key": "644c55c5200510dffc9ab1cb5a160f9d121869e034970f7f7e867f8646bf31b2",
+  "raw_question": "Please answer from verified studio information: Can I get a refund? Could you check this for me",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Can I get a refund? Could you check this for me",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Can I get a refund? Could you check this for me",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "refund",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One general refund eligibility/policy question includes repeated verification framing.",
+    "intent_operation_facet": "payment/detail/owner_policy is a policy inquiry, not transaction execution or evidence of entitlement.",
+    "entities_and_slot_roles": "Add refund as the literal requested scope.",
+    "local_shared_history_scope": "No cancellation, payment, booking ID, equipment fault or closure cause is supplied.",
+    "negation_and_ambiguity": "Do not infer the user qualifies for an exception or authorize a transfer.",
+    "source_version_alignment": "Pinned refund policy revisions4/3 distinguish general no-refund policy from center-fault exceptions; actual case qualification and effective interval need independent evidence.",
+    "no_business_answer_target": "No refund verdict, deadline, amount, exception qualification or transaction outcome is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_faq_rule_refund_policy",
+    "migrated_faq_curated_refund_policy"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 275,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_faq_rule_refund_policy": {
+      "revision": 4,
+      "record_sha256": "3dcbd45456748859e360eacc4a1f6fa87ccfb869e53a4238ab107434ef3304ae"
+    },
+    "migrated_faq_curated_refund_policy": {
+      "revision": 3,
+      "record_sha256": "2281d56ddb69c6a1b6ccc6d6a0c48a33046c588f6004fb918b54d70a9db5629f"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

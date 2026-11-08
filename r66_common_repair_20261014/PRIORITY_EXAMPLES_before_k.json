@@ -1,0 +1,1456 @@
+{
+  "tag": "before_k",
+  "llm_enabled": false,
+  "common_config": true,
+  "clock": "2026-10-14T12:00:00+07:00",
+  "new_actual_wordpress_oracle": false,
+  "reader_examples": [
+    {
+      "question": "ถ้าทำ PS5 เสียหาย ต้องเสียค่าปรับกี่บาท",
+      "locale": "th",
+      "common_result": {
+        "answer": "**ค่าบริการ — PlayStation 5 #01-#02 / General Adult**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — PlayStation 5 #01-#02 / PSU Alumni and General Student**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — PlayStation 5 #01-#02 / PSU Student and Staff**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\nราคาปัจจุบันยังยืนยันไม่ได้จากอัตราที่หมดอายุแล้ว",
+        "hits": [],
+        "elapsed": 0.13171909999800846,
+        "mode": "pipeline:common_not_current",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "not_current",
+          "risk": "medium",
+          "reason": "approved common content"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "not_current",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "not_current",
+              "release_id": "EVAL_DRAFT_ONLY",
+              "query_plan": {
+                "record_ids": [
+                  "availability_ps5_01_02"
+                ],
+                "requested_fields": [
+                  "amount_minor"
+                ],
+                "all_fields": false,
+                "method": "exact",
+                "scope": "common_published",
+                "platform": "PS5",
+                "query_without_entity": "ถ้าทำ เสียหาย ต้องเสียค่าปรับกี่บาท",
+                "operation": "price",
+                "scope_ids": [
+                  "availability_ps5_01_02"
+                ],
+                "field_selection": [
+                  {
+                    "field": "amount_minor",
+                    "cue": "กี่บาท",
+                    "method": "schema_attribute"
+                  }
+                ],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "availability_ps5_01_02"
+                  ],
+                  "release_id": "EVAL_DRAFT_ONLY",
+                  "epoch": 1103
+                },
+                "audience_selection": {
+                  "concepts": [],
+                  "negated_group_removed": false,
+                  "selected_ids": [],
+                  "matched_spans": [],
+                  "source": "existing_audience_labels_only"
+                },
+                "field_authority": [],
+                "unresolved_clauses": [],
+                "semantic_review_needed": false,
+                "semantic_plan_accepted": false,
+                "read_contract": {
+                  "schema_version": "common_read_plan_v1",
+                  "needs": [
+                    {
+                      "id": "n1",
+                      "field_refs": [],
+                      "source_span": "ถ้าทำ ps5 เสียหาย ต้องเสียค่าปรับกี่บาท",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    }
+                  ],
+                  "unresolved_spans": [],
+                  "semantic_correctness_verified": false
+                },
+                "response_projection": [
+                  {
+                    "record_id": "availability_ps5_01_02",
+                    "fields": {}
+                  },
+                  {
+                    "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  }
+                ]
+              },
+              "obligations": [
+                {
+                  "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "availability_ps5_01_02",
+                  "field": "amount_minor",
+                  "status": "not_current",
+                  "evidence_refs": [],
+                  "reason": "declared_rate_outside_validity"
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "not_current",
+          "release_id": "EVAL_DRAFT_ONLY",
+          "query_plan": {
+            "record_ids": [
+              "availability_ps5_01_02"
+            ],
+            "requested_fields": [
+              "amount_minor"
+            ],
+            "all_fields": false,
+            "method": "exact",
+            "scope": "common_published",
+            "platform": "PS5",
+            "query_without_entity": "ถ้าทำ เสียหาย ต้องเสียค่าปรับกี่บาท",
+            "operation": "price",
+            "scope_ids": [
+              "availability_ps5_01_02"
+            ],
+            "field_selection": [
+              {
+                "field": "amount_minor",
+                "cue": "กี่บาท",
+                "method": "schema_attribute"
+              }
+            ],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "availability_ps5_01_02"
+              ],
+              "release_id": "EVAL_DRAFT_ONLY",
+              "epoch": 1103
+            },
+            "audience_selection": {
+              "concepts": [],
+              "negated_group_removed": false,
+              "selected_ids": [],
+              "matched_spans": [],
+              "source": "existing_audience_labels_only"
+            },
+            "field_authority": [],
+            "unresolved_clauses": [],
+            "semantic_review_needed": false,
+            "semantic_plan_accepted": false,
+            "read_contract": {
+              "schema_version": "common_read_plan_v1",
+              "needs": [
+                {
+                  "id": "n1",
+                  "field_refs": [],
+                  "source_span": "ถ้าทำ ps5 เสียหาย ต้องเสียค่าปรับกี่บาท",
+                  "resolution": "typed_supported",
+                  "ambiguous_kind": false
+                }
+              ],
+              "unresolved_spans": [],
+              "semantic_correctness_verified": false
+            },
+            "response_projection": [
+              {
+                "record_id": "availability_ps5_01_02",
+                "fields": {}
+              },
+              {
+                "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              },
+              {
+                "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              },
+              {
+                "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              }
+            ]
+          },
+          "obligations": [
+            {
+              "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "availability_ps5_01_02",
+              "field": "amount_minor",
+              "status": "not_current",
+              "evidence_refs": [],
+              "reason": "declared_rate_outside_validity"
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false
+        },
+        "language": null
+      }
+    },
+    {
+      "question": "If I damage a PS5, how much is the fine?",
+      "locale": "en",
+      "common_result": {
+        "answer": "**Service rate — PlayStation 5 #01-#02 / General Adult**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — PlayStation 5 #01-#02 / PSU Alumni and General Student**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — PlayStation 5 #01-#02 / PSU Student and Staff**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\nThe current price cannot be confirmed from expired rates.",
+        "hits": [],
+        "elapsed": 0.06127240000205347,
+        "mode": "pipeline:common_not_current",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "not_current",
+          "risk": "medium",
+          "reason": "approved common content"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "not_current",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "not_current",
+              "release_id": "EVAL_DRAFT_ONLY",
+              "query_plan": {
+                "record_ids": [
+                  "availability_ps5_01_02"
+                ],
+                "requested_fields": [
+                  "amount_minor"
+                ],
+                "all_fields": false,
+                "method": "exact",
+                "scope": "common_published",
+                "platform": "PS5",
+                "query_without_entity": "if i damage a , how much is the fine?",
+                "operation": "price",
+                "scope_ids": [
+                  "availability_ps5_01_02"
+                ],
+                "field_selection": [
+                  {
+                    "field": "amount_minor",
+                    "cue": "how much",
+                    "method": "schema_attribute"
+                  }
+                ],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "availability_ps5_01_02"
+                  ],
+                  "release_id": "EVAL_DRAFT_ONLY",
+                  "epoch": 1103
+                },
+                "audience_selection": {
+                  "concepts": [],
+                  "negated_group_removed": false,
+                  "selected_ids": [],
+                  "matched_spans": [],
+                  "source": "existing_audience_labels_only"
+                },
+                "field_authority": [],
+                "unresolved_clauses": [],
+                "semantic_review_needed": false,
+                "semantic_plan_accepted": false,
+                "read_contract": {
+                  "schema_version": "common_read_plan_v1",
+                  "needs": [
+                    {
+                      "id": "n1",
+                      "field_refs": [],
+                      "source_span": "if i damage a ps5, how much is the fine",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    }
+                  ],
+                  "unresolved_spans": [],
+                  "semantic_correctness_verified": false
+                },
+                "response_projection": [
+                  {
+                    "record_id": "availability_ps5_01_02",
+                    "fields": {}
+                  },
+                  {
+                    "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  }
+                ]
+              },
+              "obligations": [
+                {
+                  "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "availability_ps5_01_02",
+                  "field": "amount_minor",
+                  "status": "not_current",
+                  "evidence_refs": [],
+                  "reason": "declared_rate_outside_validity"
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "not_current",
+          "release_id": "EVAL_DRAFT_ONLY",
+          "query_plan": {
+            "record_ids": [
+              "availability_ps5_01_02"
+            ],
+            "requested_fields": [
+              "amount_minor"
+            ],
+            "all_fields": false,
+            "method": "exact",
+            "scope": "common_published",
+            "platform": "PS5",
+            "query_without_entity": "if i damage a , how much is the fine?",
+            "operation": "price",
+            "scope_ids": [
+              "availability_ps5_01_02"
+            ],
+            "field_selection": [
+              {
+                "field": "amount_minor",
+                "cue": "how much",
+                "method": "schema_attribute"
+              }
+            ],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "availability_ps5_01_02"
+              ],
+              "release_id": "EVAL_DRAFT_ONLY",
+              "epoch": 1103
+            },
+            "audience_selection": {
+              "concepts": [],
+              "negated_group_removed": false,
+              "selected_ids": [],
+              "matched_spans": [],
+              "source": "existing_audience_labels_only"
+            },
+            "field_authority": [],
+            "unresolved_clauses": [],
+            "semantic_review_needed": false,
+            "semantic_plan_accepted": false,
+            "read_contract": {
+              "schema_version": "common_read_plan_v1",
+              "needs": [
+                {
+                  "id": "n1",
+                  "field_refs": [],
+                  "source_span": "if i damage a ps5, how much is the fine",
+                  "resolution": "typed_supported",
+                  "ambiguous_kind": false
+                }
+              ],
+              "unresolved_spans": [],
+              "semantic_correctness_verified": false
+            },
+            "response_projection": [
+              {
+                "record_id": "availability_ps5_01_02",
+                "fields": {}
+              },
+              {
+                "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              },
+              {
+                "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              },
+              {
+                "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              }
+            ]
+          },
+          "obligations": [
+            {
+              "record_id": "migrated_rate_playstation_5_60_1_2_general_adult",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "migrated_rate_playstation_5_60_1_2_psu_student_staff",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "availability_ps5_01_02",
+              "field": "amount_minor",
+              "status": "not_current",
+              "evidence_refs": [],
+              "reason": "declared_rate_outside_validity"
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false
+        },
+        "language": null
+      }
+    },
+    {
+      "question": "How do I cancel a paid booking?",
+      "locale": "en",
+      "common_result": {
+        "answer": "**Pay after booking**\n• Confirmed information: Users must pay the service fee immediately upon successful booking. If payment is not made within 10 minutes, the booking will be canceled. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+        "hits": [
+          {
+            "id": "migrated_faq_curated_payment_10_minutes:answer:S1",
+            "record_id": "migrated_faq_curated_payment_10_minutes",
+            "field": "answer",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "source_url": "",
+            "text": "Users must pay the service fee immediately upon successful booking. If payment is not made within 10 minutes, the booking will be canceled.",
+            "source_id": "r66_en_7bb7e5ded9539f458ae483fe",
+            "snapshot_sha256": "7bb7e5ded9539f458ae483fe5d965e8e436327192c43f8f9305a29eb790e25c7",
+            "citation_label": "S1",
+            "locator": "/mapped_fields/answer",
+            "metadata": {
+              "common_record_id": "migrated_faq_curated_payment_10_minutes",
+              "common_field": "answer",
+              "common_revision": 2,
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "EVAL_DRAFT_ONLY"
+            }
+          }
+        ],
+        "elapsed": 0.3078477000017301,
+        "mode": "pipeline:common_answer",
+        "confidence": 0.8,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.8,
+          "answer_type": "answer",
+          "risk": "medium",
+          "reason": "approved common content"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "answer",
+            "confidence": 0.8,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "answer",
+              "release_id": "EVAL_DRAFT_ONLY",
+              "query_plan": {
+                "record_ids": [
+                  "migrated_faq_curated_payment_10_minutes"
+                ],
+                "requested_fields": [
+                  "answer"
+                ],
+                "all_fields": false,
+                "method": "common_procedure_topic",
+                "scope": "common_published",
+                "platform": null,
+                "query_without_entity": "how do i cancel a paid booking?",
+                "operation": "booking",
+                "scope_ids": [],
+                "field_selection": [],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "migrated_faq_curated_payment_10_minutes"
+                  ],
+                  "release_id": "EVAL_DRAFT_ONLY",
+                  "epoch": 1103
+                },
+                "field_authority": [
+                  {
+                    "record_id": "migrated_faq_curated_payment_10_minutes",
+                    "field": "answer",
+                    "authority": "common",
+                    "status": "known",
+                    "revision": 2
+                  }
+                ],
+                "unresolved_clauses": [],
+                "semantic_review_needed": false,
+                "semantic_plan_accepted": false,
+                "read_contract": {
+                  "schema_version": "common_read_plan_v1",
+                  "needs": [
+                    {
+                      "id": "n1",
+                      "field_refs": [
+                        {
+                          "kind": "faq",
+                          "key": "answer"
+                        }
+                      ],
+                      "source_span": "How do I cancel a paid booking?",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    }
+                  ],
+                  "unresolved_spans": [],
+                  "semantic_correctness_verified": false
+                },
+                "response_projection": [
+                  {
+                    "record_id": "migrated_faq_curated_payment_10_minutes",
+                    "fields": {
+                      "answer": "explicit"
+                    }
+                  }
+                ]
+              },
+              "obligations": [
+                {
+                  "record_id": "migrated_faq_curated_payment_10_minutes",
+                  "field": "answer",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/answer",
+                      "source_id": "r66_en_7bb7e5ded9539f458ae483fe"
+                    }
+                  ]
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "answer",
+          "release_id": "EVAL_DRAFT_ONLY",
+          "query_plan": {
+            "record_ids": [
+              "migrated_faq_curated_payment_10_minutes"
+            ],
+            "requested_fields": [
+              "answer"
+            ],
+            "all_fields": false,
+            "method": "common_procedure_topic",
+            "scope": "common_published",
+            "platform": null,
+            "query_without_entity": "how do i cancel a paid booking?",
+            "operation": "booking",
+            "scope_ids": [],
+            "field_selection": [],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "migrated_faq_curated_payment_10_minutes"
+              ],
+              "release_id": "EVAL_DRAFT_ONLY",
+              "epoch": 1103
+            },
+            "field_authority": [
+              {
+                "record_id": "migrated_faq_curated_payment_10_minutes",
+                "field": "answer",
+                "authority": "common",
+                "status": "known",
+                "revision": 2
+              }
+            ],
+            "unresolved_clauses": [],
+            "semantic_review_needed": false,
+            "semantic_plan_accepted": false,
+            "read_contract": {
+              "schema_version": "common_read_plan_v1",
+              "needs": [
+                {
+                  "id": "n1",
+                  "field_refs": [
+                    {
+                      "kind": "faq",
+                      "key": "answer"
+                    }
+                  ],
+                  "source_span": "How do I cancel a paid booking?",
+                  "resolution": "typed_supported",
+                  "ambiguous_kind": false
+                }
+              ],
+              "unresolved_spans": [],
+              "semantic_correctness_verified": false
+            },
+            "response_projection": [
+              {
+                "record_id": "migrated_faq_curated_payment_10_minutes",
+                "fields": {
+                  "answer": "explicit"
+                }
+              }
+            ]
+          },
+          "obligations": [
+            {
+              "record_id": "migrated_faq_curated_payment_10_minutes",
+              "field": "answer",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/answer",
+                  "source_id": "r66_en_7bb7e5ded9539f458ae483fe"
+                }
+              ]
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false
+        },
+        "language": null
+      }
+    },
+    {
+      "question": "Is PC #03 available for Warzone today at 15:00?",
+      "locale": "en",
+      "common_result": {
+        "answer": "Confirmed game records: Call of Duty: Warzone\n\n• Confirmed source scope: PC #03-#10 — PC #03, PC #04, PC #05, PC #06, PC #07, PC #08, PC #09, PC #10 [S1][S2][S3][S4]\n\nThis confirms game offerings/installations, not live booking availability.",
+        "hits": [
+          {
+            "id": "migrated_link_availability_pc_03_10_game_detail_warzone:game_id:S1",
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "game_id",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "text": "game_detail_warzone",
+            "source_id": "r63_392f2f4315446262b149d025a813",
+            "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+            "locator": "/mapped_fields/game_id",
+            "citation_label": "S1",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "common_field": "game_id",
+              "common_revision": 1,
+              "common_game_id": "game_detail_warzone",
+              "game": "Call of Duty: Warzone",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "EVAL_DRAFT_ONLY"
+            }
+          },
+          {
+            "id": "migrated_link_availability_pc_03_10_game_detail_warzone:service_id:S2",
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "service_id",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "text": "availability_pc_03_10",
+            "source_id": "r63_392f2f4315446262b149d025a813",
+            "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+            "locator": "/mapped_fields/service_id",
+            "citation_label": "S2",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "common_field": "service_id",
+              "common_revision": 1,
+              "common_game_id": "game_detail_warzone",
+              "game": "Call of Duty: Warzone",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "EVAL_DRAFT_ONLY"
+            }
+          },
+          {
+            "id": "migrated_link_availability_pc_03_10_game_detail_warzone:offered:S3",
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "offered",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "text": "Yes",
+            "source_id": "r63_392f2f4315446262b149d025a813",
+            "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+            "locator": "/mapped_fields/offered",
+            "citation_label": "S3",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "common_field": "offered",
+              "common_revision": 1,
+              "common_game_id": "game_detail_warzone",
+              "game": "Call of Duty: Warzone",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "EVAL_DRAFT_ONLY"
+            }
+          },
+          {
+            "id": "migrated_link_availability_pc_03_10_game_detail_warzone:installed_resource_ids:S4",
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "installed_resource_ids",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "text": "• resource_pc_03\n• resource_pc_04\n• resource_pc_05\n• resource_pc_06\n• resource_pc_07\n• resource_pc_08\n• resource_pc_09\n• resource_pc_10",
+            "source_id": "r63_392f2f4315446262b149d025a813",
+            "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+            "locator": "/mapped_fields/installed_resource_ids",
+            "citation_label": "S4",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "common_field": "installed_resource_ids",
+              "common_revision": 1,
+              "common_game_id": "game_detail_warzone",
+              "game": "Call of Duty: Warzone",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "EVAL_DRAFT_ONLY"
+            }
+          }
+        ],
+        "elapsed": 0.043297300006088335,
+        "mode": "pipeline:common_partial_answer",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "partial_answer",
+          "risk": "medium",
+          "reason": "approved common content"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "partial_answer",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "partial_answer",
+              "release_id": "EVAL_DRAFT_ONLY",
+              "query_plan": {
+                "record_ids": [
+                  "game_detail_warzone",
+                  "resource_pc_03"
+                ],
+                "scope_ids": [
+                  "resource_pc_03"
+                ],
+                "operation": "game_presence",
+                "requested_fields": [],
+                "all_fields": false,
+                "method": "declared_game_installation_scope",
+                "negative_from_absence": false,
+                "live_availability_asserted": false
+              },
+              "obligations": [
+                {
+                  "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                  "field": "game_id",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/game_id",
+                      "source_id": "r63_392f2f4315446262b149d025a813"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                  "field": "service_id",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/service_id",
+                      "source_id": "r63_392f2f4315446262b149d025a813"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                  "field": "offered",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/offered",
+                      "source_id": "r63_392f2f4315446262b149d025a813"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                  "field": "installed_resource_ids",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/installed_resource_ids",
+                      "source_id": "r63_392f2f4315446262b149d025a813"
+                    }
+                  ]
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "partial_answer",
+          "release_id": "EVAL_DRAFT_ONLY",
+          "query_plan": {
+            "record_ids": [
+              "game_detail_warzone",
+              "resource_pc_03"
+            ],
+            "scope_ids": [
+              "resource_pc_03"
+            ],
+            "operation": "game_presence",
+            "requested_fields": [],
+            "all_fields": false,
+            "method": "declared_game_installation_scope",
+            "negative_from_absence": false,
+            "live_availability_asserted": false
+          },
+          "obligations": [
+            {
+              "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "field": "game_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/game_id",
+                  "source_id": "r63_392f2f4315446262b149d025a813"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "field": "service_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/service_id",
+                  "source_id": "r63_392f2f4315446262b149d025a813"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "field": "offered",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/offered",
+                  "source_id": "r63_392f2f4315446262b149d025a813"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+              "field": "installed_resource_ids",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/installed_resource_ids",
+                  "source_id": "r63_392f2f4315446262b149d025a813"
+                }
+              ]
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false
+        },
+        "language": null
+      }
+    }
+  ],
+  "live_pipeline_example": {
+    "key": "r66_priority_capture",
+    "question": "Is PC #03 available for Warzone today at 15:00?",
+    "requested_locale": "en",
+    "effective_locale": "en",
+    "elapsed_wall": 0.9103221999976085,
+    "result": {
+      "answer": "Confirmed game records: Call of Duty: Warzone\n\n• Confirmed source scope: PC #03-#10 — PC #03, PC #04, PC #05, PC #06, PC #07, PC #08, PC #09, PC #10 [S1][S2][S3][S4]\n\nThis confirms game offerings/installations, not live booking availability.",
+      "hits": [
+        {
+          "id": "migrated_link_availability_pc_03_10_game_detail_warzone:game_id:S1",
+          "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+          "field": "game_id",
+          "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+          "text": "game_detail_warzone",
+          "source_id": "r63_392f2f4315446262b149d025a813",
+          "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+          "locator": "/mapped_fields/game_id",
+          "citation_label": "S1",
+          "source_url": "",
+          "metadata": {
+            "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "common_field": "game_id",
+            "common_revision": 1,
+            "common_game_id": "game_detail_warzone",
+            "game": "Call of Duty: Warzone",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "EVAL_DRAFT_ONLY"
+          }
+        },
+        {
+          "id": "migrated_link_availability_pc_03_10_game_detail_warzone:service_id:S2",
+          "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+          "field": "service_id",
+          "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+          "text": "availability_pc_03_10",
+          "source_id": "r63_392f2f4315446262b149d025a813",
+          "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+          "locator": "/mapped_fields/service_id",
+          "citation_label": "S2",
+          "source_url": "",
+          "metadata": {
+            "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "common_field": "service_id",
+            "common_revision": 1,
+            "common_game_id": "game_detail_warzone",
+            "game": "Call of Duty: Warzone",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "EVAL_DRAFT_ONLY"
+          }
+        },
+        {
+          "id": "migrated_link_availability_pc_03_10_game_detail_warzone:offered:S3",
+          "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+          "field": "offered",
+          "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+          "text": "Yes",
+          "source_id": "r63_392f2f4315446262b149d025a813",
+          "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+          "locator": "/mapped_fields/offered",
+          "citation_label": "S3",
+          "source_url": "",
+          "metadata": {
+            "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "common_field": "offered",
+            "common_revision": 1,
+            "common_game_id": "game_detail_warzone",
+            "game": "Call of Duty: Warzone",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "EVAL_DRAFT_ONLY"
+          }
+        },
+        {
+          "id": "migrated_link_availability_pc_03_10_game_detail_warzone:installed_resource_ids:S4",
+          "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+          "field": "installed_resource_ids",
+          "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+          "text": "• resource_pc_03\n• resource_pc_04\n• resource_pc_05\n• resource_pc_06\n• resource_pc_07\n• resource_pc_08\n• resource_pc_09\n• resource_pc_10",
+          "source_id": "r63_392f2f4315446262b149d025a813",
+          "snapshot_sha256": "62828c762e8f399ccee3b6c17cff1ea42bf466af5de1491f41fc19c8c95b4cd1",
+          "locator": "/mapped_fields/installed_resource_ids",
+          "citation_label": "S4",
+          "source_url": "",
+          "metadata": {
+            "common_record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "common_field": "installed_resource_ids",
+            "common_revision": 1,
+            "common_game_id": "game_detail_warzone",
+            "game": "Call of Duty: Warzone",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "EVAL_DRAFT_ONLY"
+          }
+        }
+      ],
+      "elapsed": 0.03605079999397276,
+      "mode": "pipeline:common_partial_answer",
+      "confidence": 0.0,
+      "route": {
+        "category": "knowledge",
+        "intent": "common_read",
+        "confidence": 0.0,
+        "answer_type": "partial_answer",
+        "risk": "medium",
+        "reason": "approved common content"
+      },
+      "entities": {
+        "day": null,
+        "time_slots": [],
+        "service": null,
+        "user_group": null,
+        "duration": null,
+        "price_intent": false,
+        "short_answer": false,
+        "comparison_intent": false,
+        "raw": {}
+      },
+      "validation": {
+        "ok": true,
+        "errors": [],
+        "warnings": []
+      },
+      "trace": [
+        {
+          "stage": "common_content",
+          "decision": "partial_answer",
+          "confidence": 0.0,
+          "detail": "typed fields and source-backed joins; uncalibrated confidence",
+          "metadata": {
+            "response_type": "partial_answer",
+            "release_id": "EVAL_DRAFT_ONLY",
+            "query_plan": {
+              "record_ids": [
+                "game_detail_warzone",
+                "resource_pc_03"
+              ],
+              "scope_ids": [
+                "resource_pc_03"
+              ],
+              "operation": "game_presence",
+              "requested_fields": [],
+              "all_fields": false,
+              "method": "declared_game_installation_scope",
+              "negative_from_absence": false,
+              "live_availability_asserted": false
+            },
+            "obligations": [
+              {
+                "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                "field": "game_id",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/game_id",
+                    "source_id": "r63_392f2f4315446262b149d025a813"
+                  }
+                ]
+              },
+              {
+                "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                "field": "service_id",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/service_id",
+                    "source_id": "r63_392f2f4315446262b149d025a813"
+                  }
+                ]
+              },
+              {
+                "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                "field": "offered",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/offered",
+                    "source_id": "r63_392f2f4315446262b149d025a813"
+                  }
+                ]
+              },
+              {
+                "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+                "field": "installed_resource_ids",
+                "status": "known",
+                "evidence_refs": [
+                  {
+                    "locator": "/mapped_fields/installed_resource_ids",
+                    "source_id": "r63_392f2f4315446262b149d025a813"
+                  }
+                ]
+              }
+            ],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "content_view": "evaluation_draft",
+            "production_publication_verified": false
+          }
+        }
+      ],
+      "universal_intent": null,
+      "decision_artifact": {
+        "response_type": "partial_answer",
+        "release_id": "EVAL_DRAFT_ONLY",
+        "query_plan": {
+          "record_ids": [
+            "game_detail_warzone",
+            "resource_pc_03"
+          ],
+          "scope_ids": [
+            "resource_pc_03"
+          ],
+          "operation": "game_presence",
+          "requested_fields": [],
+          "all_fields": false,
+          "method": "declared_game_installation_scope",
+          "negative_from_absence": false,
+          "live_availability_asserted": false
+        },
+        "obligations": [
+          {
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "game_id",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/game_id",
+                "source_id": "r63_392f2f4315446262b149d025a813"
+              }
+            ]
+          },
+          {
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "service_id",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/service_id",
+                "source_id": "r63_392f2f4315446262b149d025a813"
+              }
+            ]
+          },
+          {
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "offered",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/offered",
+                "source_id": "r63_392f2f4315446262b149d025a813"
+              }
+            ]
+          },
+          {
+            "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+            "field": "installed_resource_ids",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/installed_resource_ids",
+                "source_id": "r63_392f2f4315446262b149d025a813"
+              }
+            ]
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false
+      },
+      "language": null,
+      "evaluation": {
+        "mode": "common",
+        "llm_enabled": false,
+        "common_draft_only": true,
+        "no_actual_publication": true,
+        "booking_fixture": "unavailable",
+        "worker_supervisor": false
+      }
+    },
+    "input_quality": {
+      "action": "continue",
+      "detected_action": "continue",
+      "applied_action": "continue",
+      "should_retype": false,
+      "flags": [],
+      "layout_score": 0.006912,
+      "repeat_score": 0.0,
+      "guard_status": "passed",
+      "guard_mode": "enforce",
+      "repeat_policy": "warn_and_continue",
+      "profile_version": "keyboard-profile-v1:2a863a4176572043",
+      "guard_elapsed_ms": 3.868
+    },
+    "grades": []
+  }
+}

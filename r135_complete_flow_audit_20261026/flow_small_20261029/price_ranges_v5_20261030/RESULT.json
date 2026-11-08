@@ -1,0 +1,26 @@
+{
+  "status": "isolated experimental candidate only; not complete",
+  "candidate_hashes": {
+    "engine.py": "a7bb49fc2be4edc0d5e4c146123ba1dcf45c8212ed6a2a37ca0eeefde6595947",
+    "customer_render.py": "d1c06b863e9746ec95b1c2003d7fe29909e45d8b14d001149861e32bb3911716",
+    "obligation_verifier.py": "db6736a2f91a03e115a93735e6d9b01e65b3a85c746720debcf90184ae79c321",
+    "projection.py": "2ca9a7c7d9764fa179f87537ae435fe345d5c9c8e5f2bf799886f4676d55a924",
+    "rate_scope_conflict.py": "4d2bf0ae90dfb4bffaff6ad52a4a80e2cafc0785ca82a58fb885d7f0aa6a7cf0"
+  },
+  "evidence": {
+    "rate_person_bounds_1793302063010934800/RESULT.json": "dcf81e0662c8e9de5487b9c46b1fea46957875f408561e51fc130f2df5910bbd",
+    "rate_bounds_missing_overlap_probe_1793302063007321800/DETAILS.json": "5895161057af9529532d6990e9816c9fd7e7b468fe2dfec2c90d1c7860e67f40",
+    "price_currency_1793302063323482900/RESULT.json": "fe0f86a889188bab95017f2eca86ed327f92b98661f9990f7ca1e9caee7a8f63",
+    "rate_bounds_independent_1793302094388455800/RESULT.json": "98a7b7a9c0a72d10b295f5225d0266793324061e9fb84252fa9d76d291916e22",
+    "exact_rate_duration_controls_1793302094973496700/RESULT.json": "9bf89dd7dccbf94cebf470eb6c134829d0d70eb2ba8945dab6109336cfaf39de",
+    "booking_compound_controls_1793302094974496200/RESULT.json": "f512a18cfb1e19b4b12f800908345587d993f50a90279a3b46b989cf0621d3fa",
+    "price_overlap_direct_verifier_1793302124060842100/RESULT.json": "b78b9fc39b1c17475ee552bb1187dddce9ac9ff394dd4121a99d581f2550a355"
+  },
+  "findings": "known bounds with source refs shown; multi-person total withheld and grouped billing terms unconfirmed; overlap actual owner edit withheld and direct verifier injection rejected; missing bound partial. bounded tests6/6+6/6+12+5+9+2 passed; probe observations only",
+  "limits": [
+    "overlap checker groups source by platform+audience+duration: can overblock unrelated same-platform services and ignore same-range conflicting amounts; no semantic billing proof",
+    "missing platform, source conflict with unknown bounds, explicit billing_lines and multiple services, numeric forged snapshot/revision need tests",
+    "source helpers shared between selection and verifier; direct injection tests rule but not independent implementation",
+    "no authority/model/HTTP/actual transaction/install"
+  ]
+}

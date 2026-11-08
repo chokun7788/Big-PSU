@@ -1,0 +1,164 @@
+--- before/app\pipeline\bilingual_english.py
++++ after/app\pipeline\bilingual_english.py
+@@ -2675,7 +2675,8 @@
+     route: PipelineRoute,
+     matcher: RuleMatcher,
+ ) -> EnglishSupportResult | None:
+-    if route.intent == "chatbot_identity" and re.search(r"\b(?:who\s+are\s+you|what\s+(?:are|can)\s+you|your\s+name)\b", query, re.I):
++    from app.pipeline.chatbot_identity import is_chatbot_identity_query
++    if route.intent == "chatbot_identity" and is_chatbot_identity_query(query):
+         return _result(
+             "I am PSU Esports Assistant, the chatbot for PSU Esports Studio - Phuket. I can help with verified information about games, equipment, booking, opening hours, service fees, rules, competitions, and studio contacts.",
+             category="knowledge",
+--- before/app\pipeline\chatbot_identity.py
++++ after/app\pipeline\chatbot_identity.py
+@@ -159,6 +159,9 @@
+             r"|\bwhat\s+is\s+this\s+(?:chat\s+)?(?:bot|assistant|chatbot)\s+called\b",
+             query,
+         ))
++        en_capabilities = bool(re.fullmatch(
++            r"(?:what\s+(?:can|could)\s+(?:you|u)\s+help\s+(?:me\s+)?with|how\s+(?:can|could)\s+(?:you|u)\s+help\s*(?:me)?|what\s+topics\s+can\s+i\s+ask\s+about)[?!. ]*",
++            query, re.I))
+         en_answering = bool(re.search(r"\bwho\s+is\s+answering\s+me\b", query))
+         th_subject = bool(re.search(
+             r"(?<![ก-๙])(?:นาย|คุณ|คุน|แก|เธอ)(?=(?:เป็น|เปน|คือ|นี่|นี|ทำ|ช่วย|ตอบ|ชื่อ|ไคร|ใคร))",
+@@ -167,7 +170,7 @@
+             r"ผู้ช่วย(?:นี้|แชท|ของศูนย์|\s*ai)", query,
+         ))
+         th_predicate = any(token in query for token in ("ใคร", "ไคร", "เปน", "เป็น", "หน้าที่", "ชื่อ", "คนหรือบอท", "ตอบอยู่"))
+-        if en_identity or en_answering or (th_subject and th_predicate):
++        if en_identity or en_capabilities or en_answering or (th_subject and th_predicate):
+             return True
+     if any(term in query for term in _IDENTITY_TERMS):
+         return True
+--- before/app\pipeline\engine.py
++++ after/app\pipeline\engine.py
+@@ -861,34 +861,22 @@
+             )
+             set_current_locale_decision(resolved_locale)
+             entry_timings = [_timing_trace("locale_resolution", locale_started, metadata=deadline_metadata())]
++            from app.pipeline.studio_scope import is_explicit_unrelated_task
++            if is_explicit_unrelated_task(question):
++                from app.pipeline.experimental_fallback import build_studio_scope_fallback
++                result = build_studio_scope_fallback(question, reason='explicit_unrelated_task_before_studio_routing')
++                return self._build_result(result.answer, [], started, 'pipeline:' + result.mode, result.confidence,
++                    PipelineRoute('no_answer', 'studio_information_scope', .99, 'no_answer', 'low', 'studio information only'),
++                    EntityBundle(), ValidationResult(ok=True), [*entry_timings, result.trace])
+             from app.pipeline.semantic_quality import translation_request
+             translation = translation_request(question)
+-            if translation and translation['source']:
+-                from app.pipeline.experimental_fallback import _general_llm_fallback, _general_disabled_answer
+-                allow_llm = env_experimental_llm_default() if experimental_allow_llm is None else experimental_allow_llm
+-                target_locale=resolve_locale(question,requested=translation['target'])
+-                set_current_locale_decision(target_locale)
+-                route=PipelineRoute('general','translation',1.0,'fact','low','explicit translation source is data, not a studio operation')
+-                trace=[*entry_timings,PipelineTrace('translation_task','explicit_source_target',1.0,
+-                       'route translation before interpreting words inside its source',
+-                       {'source_chars':len(translation['source']),'target_language':translation['target'],'request_language':resolved_locale.effective})]
+-                if allow_llm:
+-                    result=_general_llm_fallback(question,details=('explicit_translation_task',),mode='general_llm_direct',decision='general_llm_direct')
+-                    return self._build_result(result.answer,result.hits,started,'pipeline:'+result.mode,result.confidence,
+-                        route,EntityBundle(),ValidationResult(ok=True),[*trace,result.trace])
+-                return self._build_result(_general_disabled_answer(),[],started,'pipeline:general_llm_disabled',1.0,
+-                    route,EntityBundle(),ValidationResult(ok=True),trace)
+             from app.pipeline.query_signals import looks_like_explicit_creation_request
+-            if looks_like_explicit_creation_request(question):
+-                from app.pipeline.experimental_fallback import _general_llm_fallback, _general_disabled_answer
+-                allow_llm = env_experimental_llm_default() if experimental_allow_llm is None else experimental_allow_llm
+-                route = PipelineRoute('general','creative_writing',1.0,'fact','low','explicit creation task; game vocabulary does not request studio inventory')
+-                if allow_llm:
+-                    result = _general_llm_fallback(question,details=('explicit_creation_task',),mode='general_llm_direct',decision='general_llm_direct')
+-                    return self._build_result(result.answer,result.hits,started,'pipeline:'+result.mode,result.confidence,
+-                        route,EntityBundle(),ValidationResult(ok=True),[*entry_timings,result.trace])
+-                return self._build_result(_general_disabled_answer(),[],started,'pipeline:general_llm_disabled',1.0,
+-                    route,EntityBundle(),ValidationResult(ok=True),entry_timings)
++            if (translation and translation['source']) or looks_like_explicit_creation_request(question):
++                from app.pipeline.experimental_fallback import build_studio_scope_fallback
++                result = build_studio_scope_fallback(question, reason='generic_translation_or_creation_outside_studio_operations')
++                return self._build_result(result.answer, [], started, 'pipeline:' + result.mode, result.confidence,
++                    PipelineRoute('no_answer', 'studio_information_scope', .99, 'no_answer', 'low', 'studio information only'),
++                    EntityBundle(), ValidationResult(ok=True), [*entry_timings, result.trace])
+             from app.pipeline.request_focus import explicit_request_focus
+             focused_question, focus = explicit_request_focus(question)
+             if focus:
+--- before/app\pipeline\experimental_fallback.py
++++ after/app\pipeline\experimental_fallback.py
+@@ -983,6 +983,17 @@
+     )
+ 
+ 
++def build_studio_scope_fallback(question: str, *, reason: str = 'outside_supported_studio_information') -> ExperimentalFallback:
++    """Product boundary: no unsourced general-purpose generation."""
++    answer = (
++        'I answer questions about PSU Esports Studio - Phuket using the available studio information: games, equipment, prices, bookings, opening hours, service policies and competition rules.'
++        if effective_locale() == 'en' else
++        'ผมช่วยตอบข้อมูลของ PSU Esports Studio - Phuket จากข้อมูลที่มีครับ เช่น เกม อุปกรณ์ ราคา การจอง เวลาเปิดบริการ ข้อกำหนดการใช้บริการ และกฎการแข่งขัน')
++    return ExperimentalFallback(answer, [], 'studio_scope_no_answer', .99,
++        PipelineTrace('studio_information_scope', 'no_unverified_general_generation', .99, reason,
++            {'allow_llm': False, 'llm_attempted': False, 'source_policy': 'available_studio_information_only'}))
++
++
+ def _general_llm_fallback(
+     question: str,
+     *,
+@@ -1059,39 +1070,16 @@
+     question_frame: "QuestionFrame | None" = None,
+     locale: str | None = None,
+ ) -> ExperimentalFallback:
++    # General writing/knowledge is outside this studio product, even when it
++    # mentions games. Verified studio requests may still retrieve evidence.
++    if route.category == 'general' and (
++        looks_like_clear_general_request(question) or not _looks_like_psu_specific_question(question)
++    ):
++        return build_studio_scope_fallback(question)
++
+     soft = _soft_related_fallback(question)
+     if soft is not None:
+         return soft
+-
+-    # General concepts, translations, and short writing requests do not gain
+-    # evidence from a PSU-only index.  Retrieve first only when the wording
+-    # could still refer to a studio fact; otherwise the old path paid for a
+-    # guaranteed RAG miss and then made the same Local LLM answer call.
+-    if (
+-        route.category == "general"
+-        and looks_like_clear_general_request(question)
+-        and not _looks_like_psu_specific_question(question)
+-    ):
+-        if allow_llm:
+-            return _general_llm_fallback(
+-                question,
+-                details=("clear_non_psu_general_request", "skipped_unanchored_rag"),
+-                mode="general_llm_direct",
+-                decision="general_llm_direct",
+-            )
+-        return ExperimentalFallback(
+-            _general_disabled_answer(),
+-            [],
+-            "general_llm_disabled",
+-            0.60,
+-            PipelineTrace(
+-                "experimental_rag_fallback",
+-                "general_llm_disabled",
+-                0.60,
+-                "clear_non_psu_general_request; skipped_unanchored_rag; request did not allow LLM",
+-                {"allow_llm": False, "llm_attempted": False},
+-            ),
+-        )
+ 
+     # A miss from Rule/Fast/Structured must search verified knowledge before a
+     # generative answer is considered. This also lets a broad initial route be
+@@ -1119,12 +1107,7 @@
+                         {"allow_llm": False, "llm_attempted": False, "reason": "PSU-specific request requires verified evidence"},
+                     ),
+                 )
+-            return _general_llm_fallback(
+-                question,
+-                details=tuple((*details, "no_verified_rag_context")),
+-                mode="general_llm_after_rag_miss",
+-                decision="general_llm_after_rag_miss",
+-            )
++            return build_studio_scope_fallback(question, reason='no_verified_studio_context')
+         trace = PipelineTrace("experimental_rag_fallback", "no_context", 0.42, "; ".join(details), {"allow_llm": allow_llm})
+         return ExperimentalFallback(
+             _no_context_answer(route),

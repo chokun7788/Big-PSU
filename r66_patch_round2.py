@@ -1,0 +1,16 @@
+from pathlib import Path
+S=Path(__file__).resolve().parent/'r66_common_repair_20261014/system'
+def patch(path,old,new):
+ p=S/path;t=p.read_text(encoding='utf-8');assert t.count(old)==1,(path,t.count(old),old[:60]);p.write_text(t.replace(old,new),encoding='utf-8')
+# Explicit all-information asks for readable fields, not a policy field named details.
+patch('app/knowledge/common/answer.py',"        if any(records[rid]['kind']=='competition' for rid in ids):", "        if broad and not kind:requested=[];plan['requested_fields']=[]\n        if any(records[rid]['kind']=='competition' for rid in ids):")
+patch('app/knowledge/common/answer.py',"            if detect_competition_facet(raw_query) or query_operation=='rules':", "            if (detect_competition_facet(raw_query) or query_operation=='rules') and not (broad and not re.search(r'กฎ|กฏ|กติกา|\\b(?:rules|rulebook)\\b',q)):")
+# A literal supplied duration is a constraint, not an extra question to answer.
+patch('app/knowledge/common/answer.py',"        plan['authority']=authority_decision(raw_query,snap,ids)", "        if 'amount_minor' in requested and re.search(r'\\d+\\s*(?:นาที|minutes?|mins?|ชั่วโมง|hours?)',raw_query,re.I):\n            plan['duration_constraint_supplied']=True\n            requested=[f for f in requested if f!='duration_minutes'];plan['requested_fields']=requested\n        plan['authority']=authority_decision(raw_query,snap,ids)")
+# Calendar's typed domain interpretation makes leftover 'open tomorrow' resolved.
+patch('app/knowledge/common/answer.py',"        plan['unresolved_clauses']=gaps if review and not broad and not overview else []", "        if method in {'common_calendar_date_scope','common_people_directory','common_procedure_topic'}:review=False;gaps=[]\n        plan['unresolved_clauses']=gaps if review and not broad and not overview else []")
+patch('app/knowledge/common/answer.py',"        selected={k:records[k] for k in ids};obligations=[];blocks=[];hits=[];rendered_fields=set()", "        selected={k:records[k] for k in ids};obligations=[];blocks=[];hits=[];rendered_fields=set()\n        for r in selected.values():\n            if r['kind']=='competition':\n                game=records.get(value(r,'game_id'));name=title(game,lang) if game else title(r,lang)\n                blocks.append(('กติกา ' if lang=='th' else 'Competition rules: ')+name+' — '+title(r,lang))")
+patch('app/knowledge/common/answer.py',"                        if not children:\n", "                        if not children:\n") if False else None
+# Keep unsupported field labels user-facing and record the technical reason in audit.
+patch('app/knowledge/common/answer.py',"                blocks.append((key.replace('_',' ')+': This attribute is outside the selected record scope; please specify the related service or record.' if lang=='en' else key+': หัวข้อนี้อยู่นอกขอบเขตรายการที่เลือก กรุณาระบุบริการหรือรายการที่เกี่ยวข้อง'))", "                shown=next((label(k,key,lang) for k in sorted(field_kinds) if any(f['key']==key for f in CATALOG[k]['fields'])),key.replace('_',' '))\n                blocks.append((shown+': No confirmed answer for this detail in the selected scope.' if lang=='en' else shown+': ยังไม่มีคำตอบที่ยืนยันได้สำหรับรายละเอียดนี้ในขอบเขตที่เลือก'))")
+print('Round 2: explicit-all, duration constraints, calendar coverage and primary titles')

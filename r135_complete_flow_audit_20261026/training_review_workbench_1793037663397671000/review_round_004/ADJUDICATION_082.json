@@ -1,0 +1,127 @@
+{
+  "question_key": "9808537ea605c655273d77104b69611b3ff5f87d345da11c3779f1b705a5636d",
+  "example_sha256": "61ae340f052557c38cc13ae21c790e91fedee44d1726376af47e4a615faa2455",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One permission question asks to record video in the studio; usin typo/preface adds no need.",
+      "raw_quotes": [
+        "Could you check this usin verified information: May I record video inside the studio"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains the recording permission request.",
+      "raw_quotes": [
+        "Could you check this usin verified information: May I record video inside the studio"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "record video is the action and inside the studio is the literal premises scope.",
+      "raw_quotes": [
+        "Could you check this usin verified information: May I record video inside the studio"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No game, tournament, streaming service or past consent is inherited.",
+      "raw_quotes": [
+        "Could you check this usin verified information: May I record video inside the studio"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not replace premises filming with game screenshot permission or infer consent from a clear interrogative.",
+      "raw_quotes": [
+        "Could you check this usin verified information: May I record video inside the studio"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned source search finds gameplay screenshot/photo-mode bindings but no applicable premises-video policy record; this is an answer-source gap, not unclear language.",
+      "raw_quotes": [
+        "Could you check this usin verified information: May I record video inside the studio"
+      ],
+      "source_record_ids": []
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes, blanket prohibition or screenshot policy is taught.",
+      "raw_quotes": [
+        "Could you check this usin verified information: May I record video inside the studio"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "No applicable premises-video permission clause was found in the pinned typed policy/FAQ/service source fields.",
+      "handling": "Keep source missing; gameplay screenshot bindings do not establish premises filming permission."
+    }
+  ],
+  "historical_review_row": 82,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you check this usin verified information: May I record video inside the studio",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you check this usin verified information: May I record video inside the studio",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "record video",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "inside the studio",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {}
+}

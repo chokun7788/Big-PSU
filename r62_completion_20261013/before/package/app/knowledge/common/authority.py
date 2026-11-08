@@ -1,0 +1,17 @@
+"""Release ownership decisions. Draft heads never become answer authority."""
+from .registry import value
+from .query_contract import live_request,normalize
+import re
+def classify(question,snapshot,ids):
+    if live_request(question):return {'decision':'defer','reason':'live_adapter_authority'}
+    release=snapshot.get('release')
+    if not release:return {'decision':'defer','reason':'no_published_common_release'}
+    records=release['records'];withdrawn=set(snapshot['withdrawn'])
+    if any(rid in withdrawn or rid not in records for rid in ids):return {'decision':'blocked','reason':'retired_published_target','record_ids':ids}
+    if not ids:return {'decision':'defer','reason':'no_resolved_common_target'}
+    q=normalize(question)
+    competition=bool(re.search(r'แข่ง|การแข่งขัน|กติกา|กฎ|กฏ|\b(?:rules|competition|tournament)\b',q))
+    games=[rid for rid in ids if records[rid]['kind']=='game']
+    if games and competition and not any(r['kind']=='competition' and value(r,'game_id') in games for r in records.values()):
+        return {'decision':'defer','reason':'competition_scope_not_migrated','record_ids':games}
+    return {'decision':'common','reason':'published_target_owned','record_ids':ids,'release_id':snapshot['active'],'epoch':snapshot['epoch']}

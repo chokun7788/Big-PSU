@@ -1,0 +1,568 @@
+--- before/app/pipeline/bilingual_english.py
++++ after/app/pipeline/bilingual_english.py
+@@ -580,15 +580,23 @@
+ 
+ 
+ def _schedule_summary(weekday: int) -> str:
+-    if weekday == 0:
+-        return "Monday: 09:00-12:00 is maintenance; the studio is open for play from 13:00-16:00."
+-    if weekday in {1, 2, 3}:
+-        name = ("Tuesday", "Wednesday", "Thursday")[weekday - 1]
+-        return f"{name}: the studio is open from 09:00-12:00 and 13:00-16:00."
+-    if weekday == 4:
+-        return "Friday: the studio is open from 09:00-12:00; 13:00-16:00 is maintenance."
+-    name = "Saturday" if weekday == 5 else "Sunday"
+-    return f"{name}: no regular service period is listed. Please confirm with the studio before travelling."
++    # A fixed reference week selects a weekday, not a date-specific closure.
++    slots = regular_service_slots(date(2026, 1, 5) + timedelta(days=weekday))
++    name = _WEEKDAY_NAMES_EN[weekday]
++    if not slots:
++        return f"{name}: no regular service period is listed."
++    periods = [f"{slot['time_range']} {'is open for play' if slot['state'] == 'open' else 'is maintenance (no play or booking)'}" for slot in slots]
++    return f"{name}: " + "; ".join(periods) + "."
++
++
++def _regular_week_summary_en() -> str:
++    return "\n".join([
++        "Regular service timetable (Asia/Bangkok):",
++        *[f"•    {_schedule_summary(day)}" for day in range(7)],
++        "•    12:00-13:00 is the lunch break; play and booking are unavailable.",
++        "Recorded special closures override this regular timetable. A Thai public holiday alone does not automatically close the studio.",
++        "This is the regular timetable, not live device availability.",
++    ])
+ 
+ 
+ _WEEKDAY_NAMES_EN = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+@@ -649,10 +657,7 @@
+         _english_holiday_context(target),
+         "",
+         "Regular schedule details:",
+-        "•    Monday 09:00-12:00 is maintenance; 13:00-16:00 is open for play.",
+-        "•    Tuesday-Thursday are open from 09:00-12:00 and 13:00-16:00.",
+-        "•    Friday 09:00-12:00 is open; 13:00-16:00 is maintenance.",
+-        "•    Only a recorded studio closure overrides the regular schedule; a Thai public holiday alone does not automatically close the studio.",
++        _regular_week_summary_en(),
+     ]
+     return "\n".join(line for line in lines if line)
+ 
+@@ -719,10 +724,7 @@
+     elif weekday is None and "afternoon" in tokens:
+         text = "The afternoon service period is 13:00-16:00. Friday afternoon is reserved for maintenance."
+     elif weekday is None:
+-        text = (
+-            "Regular service hours are Monday-Friday. Monday morning and Friday afternoon are maintenance periods. "
+-            "Please specify a day for the exact play window."
+-        )
++        text = _regular_week_summary_en()
+     else:
+         text = _schedule_summary(weekday)
+         if "morning" in tokens:
+--- before/app/web_api/server.py
++++ after/app/web_api/server.py
+@@ -5,6 +5,7 @@
+ import json
+ import mimetypes
+ import os
++import struct
+ import sys
+ import threading
+ import time
+@@ -105,6 +106,35 @@
+     return max(0.1, _product_backend_timeout_sec() - reserve)
+ 
+ 
++def _system_memory_status() -> dict[str, Any]:
++    """Diagnostic snapshot, not a promise that the next allocation will succeed."""
++    if sys.platform != 'win32':
++        return {"available": False}
++    try:
++        import ctypes
++
++        class MemoryStatus(ctypes.Structure):
++            _fields_ = [("length", ctypes.c_uint32), ("load", ctypes.c_uint32)] + [
++                (name, ctypes.c_uint64) for name in (
++                    "total_physical", "available_physical", "total_commit", "available_commit",
++                    "total_virtual", "available_virtual", "extended_virtual",
++                )
++            ]
++
++        status = MemoryStatus()
++        status.length = ctypes.sizeof(status)
++        if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(status)):
++            return {"available": False}
++        return {
++            "available": True,
++            "physical_load_percent": status.load,
++            "available_physical_mb": round(status.available_physical / (1024 * 1024), 1),
++            "available_commit_mb": round(status.available_commit / (1024 * 1024), 1),
++        }
++    except (OSError, AttributeError):
++        return {"available": False}
++
++
+ def _runtime_status() -> dict[str, Any]:
+     """Return non-sensitive runtime facts so local testers know which profile is live."""
+     semantic_rag = semantic_retrieval_enabled()
+@@ -113,6 +143,13 @@
+         "version": os.getenv("PSU_RUNTIME_VERSION", "dev"),
+         "installation_id": hashlib.sha256(os.path.normcase(str(PROJECT_ROOT.resolve())).encode('utf-8')).hexdigest()[:16],
+         "started_at": SERVER_STARTED_AT.isoformat(),
++        "system_memory": _system_memory_status(),
++        "python": {
++            "executable_id": hashlib.sha256(os.path.normcase(os.path.realpath(sys.executable)).encode('utf-8')).hexdigest()[:16],
++            "version": list(sys.version_info[:3]),
++            "bits": struct.calcsize('P') * 8,
++            "pid": os.getpid(),
++        },
+         "answer_timeout_sec": _product_backend_timeout_sec(),
+         "pipeline_timeout_sec": _env_float("PSU_PIPELINE_GLOBAL_TIMEOUT_SEC", 9.0, minimum=1.0),
+         "intent_timeout_sec": _env_float("PSU_INTENT_LLM_TIMEOUT_SEC", 5.5, minimum=0.1),
+--- before/deployment_templates/Open-PSU-Esports-Background.ps1
++++ after/deployment_templates/Open-PSU-Esports-Background.ps1
+@@ -1,16 +1,23 @@
+-param([switch]$NoBrowser)
++param([switch]$NoBrowser, [string]$PythonPath = '', [int]$Port = 0)
+ $ErrorActionPreference = "Stop"
++if ($Port -ne 0 -and ($Port -lt 1024 -or $Port -gt 65535)) { throw 'Port must be between 1024 and 65535.' }
+ $packageRoot = $PSScriptRoot
++. (Join-Path $packageRoot 'Runtime-Readiness.ps1')
++$python = Get-ChatbotPython $packageRoot $PythonPath
+ . (Join-Path $packageRoot "Booking-Dashboard-Probe.ps1")
+ $ownerDashboardAt8080 = Test-BookingDashboardIdentity -BaseUrl "http://127.0.0.1:8080"
+ $manifestPath = Join-Path $packageRoot 'package_manifest.json'
+ if (-not (Test-Path -LiteralPath $manifestPath)) { throw 'Missing package_manifest.json. Use a complete Chatbot package.' }
+ $expectedVersion = (Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json).runtime_version
+-$hasher = [System.Security.Cryptography.SHA256]::Create()
+-try {
+-    $rootBytes = [System.Text.Encoding]::UTF8.GetBytes(([System.IO.Path]::GetFullPath($packageRoot)).ToLowerInvariant())
+-    $expectedInstallation = ([System.BitConverter]::ToString($hasher.ComputeHash($rootBytes))).Replace('-','').ToLowerInvariant().Substring(0,16)
+-} finally { $hasher.Dispose() }
++$expectedInstallation = Get-ChatbotInstallationId $packageRoot
++$logs = Join-Path $packageRoot 'data\logs\launcher'
++New-Item -ItemType Directory -Force -Path $logs | Out-Null
++$runId = [DateTime]::UtcNow.ToString('yyyyMMdd_HHmmss_fff', [Globalization.CultureInfo]::InvariantCulture) + '_' + [guid]::NewGuid().ToString('N').Substring(0,8)
++$diagnosticPath = Join-Path $logs "readiness_$runId.json"
++function Save-Readiness($Result, [string]$Action) {
++    @{ action=$Action; python=$python; url=$chatbotUrl; checked_at=[DateTime]::UtcNow.ToString('o'); result=$Result } |
++        ConvertTo-Json -Depth 16 | Set-Content -LiteralPath $diagnosticPath -Encoding UTF8
++}
+ 
+ function Test-LocalPortInUse([int]$ListenPort) {
+     $client = [System.Net.Sockets.TcpClient]::new()
+@@ -28,17 +35,21 @@
+     return ($Health.service -eq 'psu-esports-chat-web' -and $Health.runtime.version -eq $expectedVersion -and $Health.runtime.installation_id -eq $expectedInstallation)
+ }
+ $chatbotPort = $null
+-foreach ($candidatePort in 8090..8099) {
++$candidatePorts = if ($Port) { @($Port) } else { 8090..8099 }
++foreach ($candidatePort in $candidatePorts) {
+     if (Test-LocalPortInUse $candidatePort) {
+         try {
+             $health = Invoke-RestMethod -Uri "http://127.0.0.1:$candidatePort/health" -TimeoutSec 1
+-            if (Test-ThisPackage $health) {
+-                $chatbotUrl = "http://127.0.0.1:$candidatePort/"
+-                Write-Host "This Chatbot package is already running: $chatbotUrl"
+-                if (-not $NoBrowser) { Start-Process $chatbotUrl }
+-                return
+-            }
+-        } catch { }
++        } catch { $health = $null }
++        if ($health -and (Test-ThisPackage $health)) {
++            $chatbotUrl = "http://127.0.0.1:$candidatePort/"
++            $readiness = Invoke-ChatbotReadiness $chatbotUrl.TrimEnd('/') $expectedVersion $expectedInstallation $python.Identity
++            Save-Readiness $readiness 'reuse'
++            if (-not $readiness.Ready) { throw "This package is running but not ready: $($readiness.Reasons -join ', '). Read $diagnosticPath. Existing processes were preserved; retry after resolving the recorded failure." }
++            Write-Host "This Chatbot package is already running and answered the readiness question: $chatbotUrl"
++            if (-not $NoBrowser) { Start-Process $chatbotUrl }
++            return
++        }
+     } elseif ($null -eq $chatbotPort) {
+         $chatbotPort = $candidatePort
+     }
+@@ -46,15 +57,12 @@
+ if ($null -eq $chatbotPort) { throw 'Ports 8090..8099 are in use. Close an unused Chatbot instance first.' }
+ $chatbotUrl = "http://127.0.0.1:$chatbotPort/"
+ 
+-$logs = Join-Path $packageRoot "data\logs\launcher"
+-New-Item -ItemType Directory -Force -Path $logs | Out-Null
+-$runId = (Get-Date -Format "yyyyMMdd_HHmmss_fff") + "_" + [guid]::NewGuid().ToString("N").Substring(0, 8)
+ $scriptPath = Join-Path $packageRoot "Open-PSU-Esports-Chatbot.ps1"
+ if (-not (Test-Path -LiteralPath $scriptPath)) {
+     throw "Missing package launcher: $scriptPath"
+ }
+ $child = Start-Process -FilePath "PowerShell.exe" `
+-    -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ('"' + $scriptPath + '"'), "-Port", "$chatbotPort", "-NoBrowser") `
++    -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ('"' + $scriptPath + '"'), "-Port", "$chatbotPort", "-NoBrowser", "-PythonPath", ('"' + $python.Path + '"')) `
+     -WorkingDirectory $packageRoot -WindowStyle Hidden -PassThru `
+     -RedirectStandardOutput (Join-Path $logs "chatbot_$runId.out.log") `
+     -RedirectStandardError (Join-Path $logs "chatbot_$runId.err.log")
+@@ -66,16 +74,24 @@
+     Write-Host "Booking source: WordPress (read-only, fetched when a status question is asked)."
+ }
+ Write-Host "Startup logs: $logs"
+-Write-Host "The window can now close. The computer must remain on for local answers."
+-for ($attempt = 0; $attempt -lt 60; $attempt++) {
+-    if ($child.HasExited) { throw "Chatbot stopped during startup. Read the startup logs in $logs." }
++Write-Host "Checking readiness before opening the browser. Python: $($python.Path)"
++for ($attempt = 0; $attempt -lt 90; $attempt++) {
++    if ($child.HasExited) {
++        Save-Readiness @{Ready=$false;Stage='process';Reasons=@('launcher_exited');ExitCode=$child.ExitCode} 'startup'
++        throw "Chatbot stopped during startup. Read the startup logs in $logs."
++    }
+     try {
+         $health = Invoke-RestMethod -Uri "http://127.0.0.1:$chatbotPort/health" -TimeoutSec 1
+-        if (Test-ThisPackage $health) {
+-            if (-not $NoBrowser) { Start-Process $chatbotUrl }
+-            return
+-        }
+-    } catch { }
++    } catch { $health = $null }
++    if ($health -and (Test-ThisPackage $health)) {
++        $readiness = Invoke-ChatbotReadiness $chatbotUrl.TrimEnd('/') $expectedVersion $expectedInstallation $python.Identity
++        Save-Readiness $readiness 'startup'
++        if (-not $readiness.Ready) { throw "Chatbot is not ready: $($readiness.Reasons -join ', '). Read $diagnosticPath and startup logs. The browser was not opened." }
++        Write-Host "Chatbot answered the readiness question. The computer must remain on for local answers."
++        if (-not $NoBrowser) { Start-Process $chatbotUrl }
++        return
++    }
+     Start-Sleep -Seconds 1
+ }
+-throw "Chatbot did not become ready within 60 seconds. Read the startup logs in $logs."
++Save-Readiness @{Ready=$false;Stage='startup_timeout';Reasons=@('health_not_ready')} 'startup'
++throw "Chatbot did not become ready within the startup wait. Read $diagnosticPath and startup logs in $logs."
+--- before/deployment_templates/Open-PSU-Esports-Chatbot.ps1
++++ after/deployment_templates/Open-PSU-Esports-Chatbot.ps1
+@@ -1,6 +1,7 @@
+ param(
+     [int]$Port = 8090,
+-    [switch]$NoBrowser
++    [switch]$NoBrowser,
++    [string]$PythonPath = ''
+ )
+ 
+ $ErrorActionPreference = "Stop"
+@@ -12,15 +13,12 @@
+     throw "Port must be between 1024 and 65535."
+ }
+ 
+-$python = Get-Command python -ErrorAction SilentlyContinue
+-if (-not $python) {
+-    $codexPython = Join-Path $env:USERPROFILE ".cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+-    if (Test-Path -LiteralPath $codexPython) {
+-        $python = [pscustomobject]@{ Source = $codexPython }
+-    }
+-}
+-if (-not $python) {
+-    throw "Python was not found. Install Python 3.11 or newer, select Add Python to PATH, then open this file again."
++. (Join-Path $projectRoot 'Runtime-Readiness.ps1')
++$python = Get-ChatbotPython $projectRoot $PythonPath
++Write-Host "Python: $($python.Path) ($($python.Identity.version -join '.'))"
++if (-not $NoBrowser) {
++    & (Join-Path $projectRoot 'Open-PSU-Esports-Background.ps1') -Port $Port -PythonPath $python.Path
++    return
+ }
+ 
+ function Test-OllamaReady {
+@@ -65,4 +63,4 @@
+     }
+ }
+ 
+-& (Join-Path $projectRoot "Start-PSU-Esports-Chatbot.ps1") -Port $Port -OpenBrowser:(!$NoBrowser)
++& (Join-Path $projectRoot "Start-PSU-Esports-Chatbot.ps1") -Port $Port -PythonPath $python.Path -OpenBrowser:(!$NoBrowser)
+--- before/deployment_templates/README_TH.md
++++ after/deployment_templates/README_TH.md
+@@ -17,10 +17,10 @@
+ 
+ 1. ดับเบิลคลิก `Open-PSU-Esports-Chatbot.cmd` เพียงไฟล์เดียว
+ 2. ตัวเปิดเบื้องหลังเลือกพอร์ตว่างในช่วง `8090..8099` และตรวจทั้งรุ่นกับรหัสชุดก่อนใช้เว็บที่เปิดค้างอยู่ ดู URL จริงจากข้อความตอนเปิดและแถบข้อมูลบนหน้าเว็บ; ตัวเปิดแบบหน้าต่างใช้พอร์ต 8090 เป็นค่าเริ่มต้นและกำหนด `-Port` ได้
+-3. เก็บหน้าต่าง PowerShell ที่เปิดอยู่ไว้ตลอดเวลาที่ใช้งาน Chatbot
++3. รอการตรวจความพร้อมและคำตอบทดลองผ่านก่อนเปิดเว็บ เมื่อใช้ตัวเปิดปกติหรือแบบ Background สามารถปิดหน้าต่างคำสั่งได้ ระบบยังรันเบื้องหลัง; ถ้าเรียก `Start-PSU-Esports-Chatbot.ps1` แบบ foreground โดยไม่ใช้ `-OpenBrowser` ต้องเก็บหน้าต่างนั้นไว้
+ 4. เมื่อถามสถานะว่าง/ถูกจองหรือรอบที่จองได้ Chatbot จะดึง WordPress CSV สดให้เอง โดยใช้ตัวคำนวณ Slot และปฏิทินที่บันทึกไว้ของ Dashboard ไม่ต้องเปิด `start-dashboard.bat` สำหรับชุด Chatbot อย่างเดียว ถ้าเปิด Dashboard เจ้าของบน D: ที่พอร์ต 8080 ก่อน Chatbot จะอ่านจากตัวนั้นเพื่อคงปฏิทินที่เจ้าของแก้ไว้
+ 
+-หากต้องการปิดหน้าต่างคำสั่งหลังเปิดระบบ ให้ใช้ `Open-PSU-Esports-Background.cmd` แทน ระบบจะรันเบื้องหลังและเก็บ log การเริ่มครั้งใหม่ไว้ใน `data\logs\launcher\` Chatbot ใช้ 8090 และดึง Booking เมื่อมีคำถามสถานะ หากเปิด Dashboard บน D: ก่อนจะอ่านจากพอร์ต 8080 วิธีนี้ยังไม่เริ่มเองหลังเข้าสู่ Windows; หากต้องการแบบนั้นให้ตั้ง Windows Task Scheduler บนเครื่องเจ้าของ
++ใช้ `Open-PSU-Esports-Background.cmd` เมื่อต้องการเลือกพอร์ตว่าง 8090..8099 อัตโนมัติ ระบบเก็บ log การเริ่มครั้งใหม่ไว้ใน `data\logs\launcher\` และดึง Booking เมื่อมีคำถามสถานะ หากเปิด Dashboard บน D: ก่อนจะอ่านจากพอร์ต 8080 วิธีนี้ยังไม่เริ่มเองหลังเข้าสู่ Windows; หากต้องการแบบนั้นให้ตั้ง Windows Task Scheduler บนเครื่องเจ้าของ
+ 
+ Dashboard ต้นฉบับที่เปิดด้วย `start-dashboard.bat` ใช้พอร์ต 8080 ถ้าเปิด **ก่อน Chatbot** ตัวเปิดจะเลือกข้อมูลจาก D: และลองอ่านข้อมูลใหม่เมื่อมีคำถามสถานะทุกครั้ง ไม่ปิดความสามารถนี้ถาวรเพราะอินเทอร์เน็ตล่มตอนเปิดระบบ หากไม่ได้เปิด D: ก่อน Chatbot จะดึง WordPress เองพร้อมใช้ปฏิทินของแพ็กเกจ ถ้าเปิด D: ภายหลัง ให้ปิดแล้วเปิด Chatbot ใหม่เพื่อสลับแหล่งสถานะ การแก้ตารางใน D: ไม่ถูกคัดลอกไปอีกชุดโดยอัตโนมัติ
+ 
+@@ -81,3 +81,11 @@
+ - Check Slot แบบอ่านอย่างเดียวรวมอยู่แล้ว: ตัวเชื่อมต่อ Booking อ่าน WordPress CSV สดแล้วตัดชื่อผู้จอง รหัสนัดหมาย อีเมล เบอร์โทร และ token ก่อนคำนวณสถานะ ส่งเข้าระบบตอบเฉพาะสถานะเปิด-ปิดและจำนวน Slot ว่าง/ถูกจอง ไม่บันทึก CSV ดิบลง log
+ - ชุดนี้ยังไม่สร้าง Booking, Hold Slot, ยกเลิกการจอง หรือยืนยันการจ่ายเงิน เพราะงานเหล่านี้ต้องใช้ WordPress write API และผู้ให้บริการชำระเงินจริงก่อน
+ - อ่านรายละเอียดการใช้งานและนโยบายข้อมูลที่ `LOCAL_OPERATION_AND_DATA_POLICY_TH.md` และขอบเขต feature ที่ `OWNER_HANDOFF_AND_SCOPE_TH.md`
++# การตรวจความพร้อมก่อนเปิดเว็บ
++
++ตัวเปิดจะเลือก Python ครั้งเดียวแล้วส่งตัวเดิมผ่านทุกขั้นตอน รองรับ `-PythonPath` หรือ `PSU_PYTHON_EXE` เพื่อระบุไฟล์โดยตรง และตรวจ Python 64-bit รุ่น 3.11 ขึ้นไป หากไม่ระบุ จะใช้ runtime ที่มากับชุดก่อน จากนั้นใช้ `python_runtime.path` ใน manifest แล้วจึงค้นจาก PATH เมื่อ path ที่ระบุไม่มีอยู่จะรายงานข้อผิดพลาด ไม่เปลี่ยนไปใช้ Python ตัวอื่นเงียบ ๆ ค่า manifest ที่เป็น absolute path ใช้ได้เฉพาะเครื่องที่มี path นั้น ส่วนชุดสำหรับแจกต้องมี bundled runtime หรือเลือก Python บนเครื่องปลายทาง
++
++ก่อนเปิด browser หรือใช้เว็บของชุดเดียวกันซ้ำ จะตรวจรุ่นชุด ตำแหน่งติดตั้ง ตัว Python ผล warmup/preflight และ worker แล้วส่งคำถามทดลองเรื่องการจองล่วงหน้าที่มีคำตอบในข้อมูลต้นฉบับ ตรวจว่าตอบ **อย่างน้อย 1 ชั่วโมง** จริง HTTP 200 หรือ health ok อย่างเดียวไม่ถือว่าพร้อม ผลตรวจแต่ละครั้งอยู่ใน `data\logs\launcher\readiness_*.json` พร้อม stdout/stderr สำหรับ startup ใหม่ ถ้าเว็บเดิมไม่พร้อมจะบอกสาเหตุและเก็บ process เดิมไว้ให้ตรวจสอบ
++
++คำถามทดลองใช้ Session ID ขึ้นต้น `startup-probe-` แยกจากบทสนทนาผู้ใช้ และบันทึกใน log ตามปกติ การตรวจนี้ยืนยันเพียงคำถามต้นฉบับหนึ่งข้อ ไม่รับรองทุกคำถาม ความว่างจองสด หรือโหลดหลายคนพร้อมกัน คอมพิวเตอร์และระบบที่รันเบื้องหลังต้องเปิดอยู่ระหว่างใช้
++
+--- before/deployment_templates/Start-PSU-Esports-Chatbot.ps1
++++ after/deployment_templates/Start-PSU-Esports-Chatbot.ps1
+@@ -1,6 +1,7 @@
+ param(
+     [int]$Port = 8090,
+-    [switch]$OpenBrowser
++    [switch]$OpenBrowser,
++    [string]$PythonPath = ''
+ )
+ 
+ $ErrorActionPreference = "Stop"
+@@ -11,15 +12,11 @@
+     throw "Port must be between 1024 and 65535."
+ }
+ 
+-$python = Get-Command python -ErrorAction SilentlyContinue
+-if (-not $python) {
+-    $codexPython = Join-Path $env:USERPROFILE ".cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe"
+-    if (Test-Path -LiteralPath $codexPython) {
+-        $python = [pscustomobject]@{ Source = $codexPython }
+-    }
+-}
+-if (-not $python) {
+-    throw "Python was not found. Install Python 3.11 or newer, then run this file again."
++. (Join-Path $projectRoot 'Runtime-Readiness.ps1')
++$python = Get-ChatbotPython $projectRoot $PythonPath
++if ($OpenBrowser) {
++    & (Join-Path $projectRoot 'Open-PSU-Esports-Background.ps1') -Port $Port -PythonPath $python.Path
++    return
+ }
+ 
+ try {
+@@ -110,8 +107,4 @@
+ Write-Host "Open: $url"
+ Write-Host "Keep this window open while the chatbot is in use."
+ 
+-if ($OpenBrowser) {
+-    Start-Process $url
+-}
+-
+-& $python.Source -m app.web_api.server --host 127.0.0.1 --port $Port
++& $python.Path -m app.web_api.server --host 127.0.0.1 --port $Port
+--- before/deployment_templates/Runtime-Readiness.ps1
++++ after/deployment_templates/Runtime-Readiness.ps1
+@@ -0,0 +1,83 @@
++# Shared by all launchers. No global PATH changes and no process termination.
++function Get-ChatbotPython([string]$PackageRoot, [string]$PythonPath = '') {
++    $binding = $null
++    $manifest = Join-Path $PackageRoot 'package_manifest.json'
++    if (Test-Path -LiteralPath $manifest) {
++        $binding = (Get-Content -LiteralPath $manifest -Raw | ConvertFrom-Json).python_runtime
++    }
++    $origin = 'explicit'
++    if (-not $PythonPath) { $PythonPath = $env:PSU_PYTHON_EXE; $origin = 'environment' }
++    if (-not $PythonPath) {
++        $bundled = Join-Path $PackageRoot 'runtime\python\python.exe'
++        if (Test-Path -LiteralPath $bundled) { $PythonPath = $bundled; $origin = 'bundled' }
++        elseif ($binding.path) { $PythonPath = [string]$binding.path; $origin = 'manifest' }
++        else {
++            $command = Get-Command python -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
++            if ($command) { $PythonPath = $command.Source; $origin = 'path' }
++            else { $PythonPath = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'; $origin = 'fallback' }
++        }
++    }
++    if (-not [System.IO.Path]::IsPathRooted($PythonPath)) { $PythonPath = Join-Path $PackageRoot $PythonPath }
++    if (-not (Test-Path -LiteralPath $PythonPath -PathType Leaf)) { throw "Selected Python does not exist ($origin): $PythonPath. No silent fallback was used." }
++    # Single quoted Python literals survive native argument forwarding in both
++    # Windows PowerShell 5.1 and PowerShell 7 (5.1 strips embedded double quotes).
++    $code = 'import sys,os,struct,json,hashlib;print(json.dumps(dict(path=sys.executable,version=list(sys.version_info[:3]),bits=struct.calcsize(''P'')*8,executable_id=hashlib.sha256(os.path.normcase(os.path.realpath(sys.executable)).encode(''utf-8'')).hexdigest()[:16])))'
++    $raw = & $PythonPath -B -c $code
++    if ($LASTEXITCODE -ne 0) { throw "Selected Python could not run: $PythonPath" }
++    $identity = $raw | ConvertFrom-Json
++    if ($identity.version[0] -ne 3 -or $identity.version[1] -lt 11 -or $identity.bits -ne 64) { throw 'Chatbot requires 64-bit Python 3.11 or newer.' }
++    return [pscustomobject]@{ Path = $identity.path; Identity = $identity; Origin = $origin }
++}
++
++function Get-ChatbotInstallationId([string]$PackageRoot) {
++    $hasher = [System.Security.Cryptography.SHA256]::Create()
++    try {
++        $bytes = [System.Text.Encoding]::UTF8.GetBytes(([System.IO.Path]::GetFullPath($PackageRoot)).TrimEnd('\').ToLowerInvariant())
++        return ([System.BitConverter]::ToString($hasher.ComputeHash($bytes))).Replace('-','').ToLowerInvariant().Substring(0,16)
++    } finally { $hasher.Dispose() }
++}
++
++function Test-ChatbotHealth($Health, [string]$Version, [string]$InstallationId, $PythonIdentity) {
++    $reasons = @()
++    if ($Health.ok -ne $true -or $Health.service -ne 'psu-esports-chat-web') { $reasons += 'health_service' }
++    if ($Health.runtime.version -ne $Version -or $Health.runtime.installation_id -ne $InstallationId) { $reasons += 'package_identity' }
++    if ($Health.runtime.python.executable_id -ne $PythonIdentity.executable_id -or
++        ($Health.runtime.python.version -join '.') -ne ($PythonIdentity.version -join '.') -or
++        $Health.runtime.python.bits -ne $PythonIdentity.bits) { $reasons += 'python_identity' }
++    if ($Health.warmup.ok -ne $true) { $reasons += 'warmup_failed_or_missing' }
++    if ($Health.runtime.local_llm.enabled -ne $true -or $Health.llm_preflight.ok -ne $true) { $reasons += 'llm_preflight_failed_or_missing' }
++    $workers = @($Health.pipeline_workers.workers)
++    if ($Health.pipeline_workers.enabled -ne $true -or $Health.pipeline_workers.started -ne $true -or
++        $workers.Count -lt 1 -or @($workers | Where-Object { $_.alive -ne $true -or $_.ready -ne $true }).Count -gt 0) { $reasons += 'worker_not_ready' }
++    return [pscustomobject]@{ Ready = ($reasons.Count -eq 0); Reasons = $reasons }
++}
++
++function Test-ChatbotAnswer($Response) {
++    $reasons = @()
++    if ($Response.ok -ne $true -or $Response.timed_out -eq $true -or $Response.error) { $reasons += 'request_failed' }
++    # A successful transport can contain a timeout or a wrong answer. Validate this
++    # static source oracle only; it is not a live occupancy or whole-corpus gate.
++    if ($Response.validation_ok -ne $true -or $Response.route_category -ne 'reservation' -or $Response.route_intent -ne 'booking_advance_time' -or
++        $Response.mode -ne 'pipeline:rule_en' -or $Response.answer -notmatch '\bat least 1 hour\b' -or
++        $Response.answer -notmatch 'https://esports\.computing\.psu\.ac\.th/') { $reasons += 'answer_oracle' }
++    return [pscustomobject]@{ Ready = ($reasons.Count -eq 0); Reasons = $reasons }
++}
++
++function Invoke-ChatbotReadiness([string]$BaseUrl, [string]$Version, [string]$InstallationId, $PythonIdentity) {
++    $started = [System.Diagnostics.Stopwatch]::StartNew()
++    try {
++        $health = Invoke-RestMethod -Uri "$BaseUrl/health" -TimeoutSec 3
++        $gate = Test-ChatbotHealth $health $Version $InstallationId $PythonIdentity
++        if (-not $gate.Ready) { return [pscustomobject]@{ Ready=$false; Stage='health'; Reasons=$gate.Reasons; Health=$health } }
++        # Isolated synthetic session; this audit exchange is kept in local logs.
++        $body = @{ question='How far ahead must I book?'; locale='en'; debug=$false;
++            client_session_id=('startup-probe-'+[guid]::NewGuid().ToString('N')); client_turn_id='readiness-1' } | ConvertTo-Json
++        $response = Invoke-RestMethod -Uri "$BaseUrl/api/chat" -Method Post -ContentType 'application/json; charset=utf-8' `
++            -Body ([System.Text.Encoding]::UTF8.GetBytes($body)) -TimeoutSec 25
++        $gate = Test-ChatbotAnswer $response
++        return [pscustomobject]@{ Ready=$gate.Ready; Stage='answer'; Reasons=$gate.Reasons; Health=$health;
++            Response=$response; ElapsedMs=$started.ElapsedMilliseconds }
++    } catch {
++        return [pscustomobject]@{ Ready=$false; Stage='transport'; Reasons=@($_.Exception.Message); ElapsedMs=$started.ElapsedMilliseconds }
++    }
++}
+--- before/tests/test_runtime_readiness_r43.py
++++ after/tests/test_runtime_readiness_r43.py
+@@ -0,0 +1,95 @@
++"""Exercise Windows launcher behavior against a local HTTP oracle, not Ollama."""
++import copy,hashlib,json,os,struct,subprocess,sys,tempfile,threading,unittest
++from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
++from pathlib import Path
++from contextlib import contextmanager
++
++ROOT=Path(__file__).resolve().parents[1]
++HELPER=ROOT/'deployment_templates/Runtime-Readiness.ps1'
++IDENTITY=dict(executable_id=hashlib.sha256(os.path.normcase(os.path.realpath(sys.executable)).encode()).hexdigest()[:16],version=list(sys.version_info[:3]),bits=struct.calcsize('P')*8)
++ANSWER=dict(ok=True,validation_ok=True,timed_out=False,route_category='reservation',route_intent='booking_advance_time',mode='pipeline:rule_en',answer='Users must book at least 1 hour before use. Source: https://esports.computing.psu.ac.th/')
++TEST_DIR=Path(os.getenv('PSU_CHAT_LOG_DIR') or tempfile.gettempdir())/'launcher_fixtures'
++TEST_DIR.mkdir(parents=True,exist_ok=True)
++def quote(value):return "'"+str(value).replace("'","''")+"'"
++def health(installation='fixture'):
++    return dict(ok=True,service='psu-esports-chat-web',runtime=dict(version='r43-fixture',installation_id=installation,python=IDENTITY,local_llm=dict(enabled=True)),warmup=dict(ok=True),llm_preflight=dict(ok=True),pipeline_workers=dict(enabled=True,started=True,workers=[dict(alive=True,ready=True)]))
++def ps(code,check=True):
++    p=subprocess.run(['powershell.exe','-NoProfile','-ExecutionPolicy','Bypass','-Command',"$ErrorActionPreference='Stop'; . "+quote(HELPER)+'; '+code],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=40)
++    if check and p.returncode:raise AssertionError(p.stdout+p.stderr)
++    return p
++@contextmanager
++def fixture(h,b=None,status=200):
++    events=[]
++    class Handler(BaseHTTPRequestHandler):
++        def log_message(self,*args):pass
++        def do_GET(self):self.send(h,200)
++        def do_POST(self):
++            events.append(json.loads(self.rfile.read(int(self.headers['Content-Length']))));self.send(b or ANSWER,status)
++        def send(self,body,status):
++            raw=json.dumps(body).encode();self.send_response(status);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(raw)));self.end_headers();self.wfile.write(raw)
++    s=ThreadingHTTPServer(('127.0.0.1',0),Handler);t=threading.Thread(target=s.serve_forever,daemon=True);t.start()
++    try:yield s.server_port,events
++    finally:s.shutdown();s.server_close();t.join()
++
++@unittest.skipUnless(os.name=='nt','Windows launcher')
++class RuntimeReadinessR43Tests(unittest.TestCase):
++    def test_server_reports_actual_interpreter_and_memory_snapshot(self):
++        from app.web_api.server import _runtime_status
++        r=_runtime_status();self.assertEqual(r['python']['executable_id'],IDENTITY['executable_id']);self.assertEqual(r['python']['version'],IDENTITY['version']);self.assertEqual(r['python']['pid'],os.getpid())
++        if r['system_memory']['available']:
++            self.assertGreaterEqual(r['system_memory']['available_physical_mb'],0);self.assertGreaterEqual(r['system_memory']['available_commit_mb'],0)
++    def probe(self,h,b=None,status=200):
++        with fixture(h,b,status) as (port,events):
++            code=f"$p=Get-ChatbotPython {quote(ROOT)} {quote(sys.executable)}; Invoke-ChatbotReadiness 'http://127.0.0.1:{port}' 'r43-fixture' 'fixture' $p.Identity | ConvertTo-Json -Depth 12 -Compress"
++            return json.loads(ps(code).stdout),events
++    def test_success_requires_real_post_and_isolated_probe_session(self):
++        r,e=self.probe(health());self.assertTrue(r['Ready']);self.assertEqual(len(e),1);self.assertTrue(e[0]['client_session_id'].startswith('startup-probe-'))
++    def test_health_ok_but_http_500_does_not_become_ready(self):
++        r,e=self.probe(health(),dict(error='server_error'),500);self.assertFalse(r['Ready']);self.assertEqual(r['Stage'],'transport');self.assertEqual(len(e),1)
++    def test_http_200_timeout_does_not_become_ready(self):
++        r,_=self.probe(health(),{**ANSWER,'timed_out':True});self.assertFalse(r['Ready'])
++    def test_http_200_wrong_quantity_does_not_become_ready(self):
++        r,_=self.probe(health(),{**ANSWER,'answer':'Book at least 3 hours before use.'});self.assertFalse(r['Ready']);self.assertIn('answer_oracle',r['Reasons'])
++    def test_invalid_validation_does_not_become_ready(self):
++        r,_=self.probe(health(),{**ANSWER,'validation_ok':False});self.assertFalse(r['Ready'])
++    def test_wrong_package_or_interpreter_blocks_post(self):
++        for field in ('installation_id','python'):
++            h=health();h['runtime'][field]='wrong' if field=='installation_id' else {**IDENTITY,'executable_id':'wrong'}
++            with self.subTest(field=field):r,e=self.probe(h);self.assertFalse(r['Ready']);self.assertEqual(e,[])
++    def test_failed_warmup_preflight_and_dead_worker_block_post(self):
++        for stage in ('warmup','llm_preflight','worker'):
++            h=health()
++            if stage=='worker':h['pipeline_workers']['workers'][0]['alive']=False
++            else:h[stage]['ok']=False
++            with self.subTest(stage=stage):r,e=self.probe(h);self.assertFalse(r['Ready']);self.assertEqual(e,[])
++    def test_explicit_python_overrides_bad_environment_and_manifest(self):
++        with tempfile.TemporaryDirectory(dir=TEST_DIR) as tmp:
++            Path(tmp,'package_manifest.json').write_text(json.dumps(dict(python_runtime=dict(path='missing.exe'))))
++            p=ps(f"$env:PSU_PYTHON_EXE='also-missing.exe';Get-ChatbotPython {quote(tmp)} {quote(sys.executable)} | ConvertTo-Json -Depth 4 -Compress")
++            r=json.loads(p.stdout);self.assertEqual(r['Origin'],'explicit');self.assertEqual(r['Identity']['executable_id'],IDENTITY['executable_id'])
++    def test_missing_selected_python_never_silently_falls_back(self):
++        p=ps(f"Get-ChatbotPython {quote(ROOT)} 'missing-python.exe'",False);self.assertNotEqual(p.returncode,0);self.assertIn('No silent fallback',p.stderr)
++    def test_manifest_binding_is_used_without_path_change(self):
++        with tempfile.TemporaryDirectory(dir=TEST_DIR) as tmp:
++            Path(tmp,'package_manifest.json').write_text(json.dumps(dict(python_runtime=dict(path=sys.executable))))
++            r=json.loads(ps(f"$env:PSU_PYTHON_EXE='';Get-ChatbotPython {quote(tmp)} | ConvertTo-Json -Depth 4 -Compress").stdout)
++            self.assertEqual(r['Origin'],'manifest');self.assertEqual(r['Identity']['executable_id'],IDENTITY['executable_id'])
++    def test_background_reuses_only_after_oracle_and_keeps_old_logs(self):self.background_case(ANSWER,True)
++    def test_background_rejects_bad_existing_answer_and_preserves_process(self):self.background_case({**ANSWER,'answer':'no answer'},False)
++    def background_case(self,body,ready):
++        with tempfile.TemporaryDirectory(dir=TEST_DIR) as tmp:
++            package=Path(tmp)
++            for name in ('Runtime-Readiness.ps1','Booking-Dashboard-Probe.ps1','Open-PSU-Esports-Background.ps1'):
++                (package/name).write_bytes((ROOT/'deployment_templates'/name).read_bytes())
++            (package/'package_manifest.json').write_text(json.dumps(dict(runtime_version='r43-fixture',python_runtime=dict(path=sys.executable))))
++            installation=hashlib.sha256(os.path.normcase(str(package.resolve())).encode()).hexdigest()[:16]
++            logs=package/'data/logs/launcher';logs.mkdir(parents=True);old=logs/'old.log';old.write_text('preserve')
++            with fixture(health(installation),body) as (port,events):
++                p=ps(f"& {quote(package/'Open-PSU-Esports-Background.ps1')} -Port {port} -NoBrowser",False)
++                self.assertEqual(p.returncode==0,ready,p.stdout+p.stderr);self.assertEqual(len(events),1)
++                self.assertEqual(old.read_text(),'preserve');records=list(logs.glob('readiness_*.json'));self.assertEqual(len(records),1)
++                record=json.loads(records[0].read_text(encoding='utf-8-sig'));self.assertEqual(record['result']['Ready'],ready);self.assertEqual(record['action'],'reuse')
++                # The HTTP fixture remains reachable after a failed gate.
++                self.assertTrue(ps(f"(Invoke-RestMethod 'http://127.0.0.1:{port}/health').ok").stdout.strip()=='True')
++
++if __name__=='__main__':unittest.main()
+--- before/tests/test_schedule_completeness_r43.py
++++ after/tests/test_schedule_completeness_r43.py
+@@ -0,0 +1,41 @@
++import os,sys,unittest
++from datetime import date
++from pathlib import Path
++from unittest.mock import patch
++sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
++os.environ.update(PSU_BILINGUAL_EN_ENABLED='1',PSU_SEMANTIC_RETRIEVAL='0',PSU_CANONICAL_KNOWLEDGE='0')
++from app.pipeline.bilingual_english import _answer_schedule,_regular_week_summary_en
++from app.pipeline.schemas import EntityBundle
++from app.calendar.service_calendar import ClosureInfo
++from app.pipeline.engine import answer_question_pipeline_debug
++
++class ScheduleCompletenessR43Tests(unittest.TestCase):
++    def test_generic_opening_questions_include_every_day_and_lunch(self):
++        for q in ('What are the studio opening hours?','When is the studio open?','Opening timetable please','What is the service schedule?','What days are available?'):
++            with self.subTest(q=q):
++                r=answer_question_pipeline_debug(q,locale='en',experimental_allow_llm=False)
++                for name in ('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'):
++                    self.assertIn(name+':',r.answer)
++                self.assertIn('12:00-13:00',r.answer);self.assertIn('not live device availability',r.answer);self.assertEqual(r.route.category,'schedule')
++    def test_monday_and_friday_maintenance_have_correct_windows(self):
++        text=_regular_week_summary_en();m=next(s for s in text.splitlines() if 'Monday:' in s);f=next(s for s in text.splitlines() if 'Friday:' in s)
++        self.assertIn('09:00-12:00 is maintenance',m);self.assertIn('13:00-16:00 is open',m)
++        self.assertIn('09:00-12:00 is open',f);self.assertIn('13:00-16:00 is maintenance',f)
++    def test_changed_calendar_fixture_is_reflected_without_hardcoded_windows(self):
++        slots=[dict(time_range='10:00-11:00',state='open')]
++        with patch('app.pipeline.bilingual_english.regular_service_slots',return_value=slots):
++            text=_regular_week_summary_en();self.assertEqual(text.count('10:00-11:00 is open'),7);self.assertNotIn('09:00-12:00',text)
++    def test_specific_day_is_not_replaced_with_whole_week(self):
++        r=_answer_schedule('Monday opening hours',EntityBundle());self.assertIn('09:00-12:00 is maintenance',r.answer);self.assertNotIn('Tuesday:',r.answer)
++    def test_monday_morning_and_friday_afternoon_stay_unavailable(self):
++        for q in ('Monday morning opening hours','Friday afternoon opening hours'):
++            r=_answer_schedule(q,EntityBundle());self.assertIn('maintenance',r.answer);self.assertIn('not a regular play session',r.answer)
++    def test_special_closure_still_overrides_regular_day(self):
++        closed=ClosureInfo('2026-10-06','fixture closed','closed','fixture','fixture')
++        with patch('app.pipeline.bilingual_english.closure_for',return_value=closed):
++            r=_answer_schedule('Opening hours on 2026-10-06',EntityBundle());self.assertIn('closed due to a registered special closure',r.answer);self.assertIn('overrides',r.answer)
++    def test_public_holiday_not_automatically_closure(self):
++        text=_regular_week_summary_en();self.assertIn('public holiday alone does not automatically close',text)
++    def test_weather_not_routed_as_schedule(self):self.assertIsNone(_answer_schedule('weather tomorrow',EntityBundle()))
++
++if __name__=='__main__':unittest.main()

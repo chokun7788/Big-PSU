@@ -1,0 +1,3285 @@
+{
+  "label": "round_H_boundary_before_fix",
+  "model_enabled": false,
+  "semantic_retrieval": false,
+  "planned_cases": 8,
+  "executed_cases": 8,
+  "passed": 4,
+  "failed": 4,
+  "raw_file": "round_H_boundary_before_fix_20261006_024636_29d7ff_raw.jsonl",
+  "results": [
+    {
+      "id": "limit-five-controls",
+      "kind": "selection_limit",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "safe_limit": false,
+        "explicit_limit": false
+      },
+      "mode": "pipeline:structured_game_availability_en",
+      "answer": "Mario Kart 8 Deluxe is available on: Nintendo Switch (1-2 Persons), Nintendo Switch (1-4 Persons). Studio zone(s): Nintendo Switch Zone.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+      "latency": [
+        0.0618,
+        0.311
+      ],
+      "records": [
+        {
+          "case_id": "limit-five-controls",
+          "payload": {
+            "question": "Show me the game controls",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Which game do you want controls for? Please provide the game title.",
+            "mode": "pipeline:game_control_missing_game_context_en",
+            "route_category": "games",
+            "route_intent": "game_control_lookup",
+            "request_id": "0",
+            "resolved_question": "Show me the game controls",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.07,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "closed_control_request",
+                "decision": "missing_game",
+                "confidence": 0.99,
+                "detail": "ask the necessary game slot before intent/semantic model calls",
+                "metadata": {
+                  "operation": "control_lookup",
+                  "missing_slots": [
+                    "game"
+                  ],
+                  "model_calls": 0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:game_control_missing_game_context_en",
+                "metadata": {
+                  "elapsed_ms": 18.29,
+                  "elapsed_sec": 0.0183,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 22.24,
+                  "total_elapsed_sec": 0.0222
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.0618,
+          "context": {
+            "original_question": "Show me the game controls",
+            "resolved_question": "Show me the game controls",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        },
+        {
+          "case_id": "limit-five-controls",
+          "payload": {
+            "question": "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Mario Kart 8 Deluxe is available on: Nintendo Switch (1-2 Persons), Nintendo Switch (1-4 Persons). Studio zone(s): Nintendo Switch Zone.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+            "mode": "pipeline:structured_game_availability_en",
+            "route_category": "games",
+            "route_intent": "game_availability",
+            "request_id": "1",
+            "resolved_question": "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.08,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 48.85,
+                  "elapsed_sec": 0.0488,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.02,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7",
+                  "candidate": "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 17.69,
+                  "elapsed_sec": 0.0177,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0,
+                  "entry_to_split_ms": 56.21,
+                  "parts": [
+                    "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "experimental_allow_llm is false; single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": false
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "valorant, beat saber, mario kart 8 deluxe, tekken 8 and gran turismo 7",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 21.98,
+                  "elapsed_sec": 0.022
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 22.03,
+                  "elapsed_sec": 0.022
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "games/games_lookup",
+                "metadata": {
+                  "elapsed_ms": 96.87,
+                  "elapsed_sec": 0.0969,
+                  "route_category": "games",
+                  "route_intent": "games_lookup",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": "general_student",
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.88,
+                "detail": "game_resolution_ambiguous",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "games",
+                  "route_intent": "games_lookup",
+                  "reason": "game_resolution_ambiguous",
+                  "resolution": {
+                    "status": "ambiguous",
+                    "entity_type": "game",
+                    "top_candidate": {
+                      "entity_id": "mariokart8deluxe",
+                      "title": "Mario Kart 8 Deluxe",
+                      "score": 1.0,
+                      "match_type": "exact_alias",
+                      "matched_alias": "Mario Kart 8 Deluxe",
+                      "sources": [
+                        "availability_nintendo_1_2",
+                        "availability_nintendo_1_4"
+                      ],
+                      "zones": [
+                        "Nintendo Switch Zone"
+                      ],
+                      "has_controls": true,
+                      "reasons": []
+                    },
+                    "candidates": [
+                      {
+                        "entity_id": "mariokart8deluxe",
+                        "title": "Mario Kart 8 Deluxe",
+                        "score": 1.0,
+                        "match_type": "exact_alias",
+                        "matched_alias": "Mario Kart 8 Deluxe",
+                        "sources": [
+                          "availability_nintendo_1_2",
+                          "availability_nintendo_1_4"
+                        ],
+                        "zones": [
+                          "Nintendo Switch Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": []
+                      },
+                      {
+                        "entity_id": "granturismo7",
+                        "title": "Gran Turismo 7",
+                        "score": 1.0,
+                        "match_type": "exact_alias",
+                        "matched_alias": "Gran Turismo 7",
+                        "sources": [
+                          "availability_cockpit_01_02"
+                        ],
+                        "zones": [
+                          "Cockpit Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": []
+                      },
+                      {
+                        "entity_id": "beatsaber",
+                        "title": "Beat Saber",
+                        "score": 1.0,
+                        "match_type": "exact_alias",
+                        "matched_alias": "Beat Saber",
+                        "sources": [
+                          "availability_vr_30",
+                          "availability_vr_60"
+                        ],
+                        "zones": [
+                          "VR Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": []
+                      },
+                      {
+                        "entity_id": "valorant",
+                        "title": "VALORANT",
+                        "score": 1.0,
+                        "match_type": "exact_alias",
+                        "matched_alias": "VALORANT",
+                        "sources": [
+                          "availability_pc_01_02",
+                          "availability_pc_03_10"
+                        ],
+                        "zones": [
+                          "PC Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": []
+                      },
+                      {
+                        "entity_id": "tekken8",
+                        "title": "TEKKEN 8",
+                        "score": 1.0,
+                        "match_type": "exact_alias",
+                        "matched_alias": "TEKKEN 8",
+                        "sources": [
+                          "availability_pc_01_02",
+                          "availability_ps5_01_02"
+                        ],
+                        "zones": [
+                          "PC Zone",
+                          "PlayStation 5 Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": []
+                      }
+                    ],
+                    "top_score": 1.0,
+                    "margin": 0.0,
+                    "reason": "direct_alias_ambiguous",
+                    "operation": "detail",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "exact",
+                    "candidate_count": 5,
+                    "comparison_count": 0,
+                    "elapsed_ms": 9.012,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_game_availability_en",
+                "confidence": 0.99,
+                "detail": "exact game title matched shared availability records",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "games",
+                  "route_intent": "game_availability",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_game_availability_en",
+                "metadata": {
+                  "elapsed_ms": 1.07,
+                  "elapsed_sec": 0.0011,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 310.55,
+                  "total_elapsed_sec": 0.3105
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.311,
+          "context": {
+            "original_question": "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7",
+            "resolved_question": "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8 and Gran Turismo 7",
+            "used_context": false,
+            "context_game": "Mario Kart 8 Deluxe",
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "question_has_explicit_game",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "limit-five-zones",
+      "kind": "selection_limit",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "safe_limit": false,
+        "explicit_limit": false
+      },
+      "mode": "pipeline:structured_game_detail_en",
+      "answer": "Verified English information:\nNintendo Switch Sports\nGenre: Motion control sports game\nOverview: Nintendo Switch Sports is a sports game that uses Joy-Con motion controls to simulate playing various sports.\nHow to play: Hold the Joy-Con and move it according to the selected sport, such as swing, throw, or gesture motions in the game.\nAvailable at: Nintendo Switch Zone\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+      "latency": [
+        0.6265,
+        0.1923
+      ],
+      "records": [
+        {
+          "case_id": "limit-five-zones",
+          "payload": {
+            "question": "What games can I play?",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "There are currently 42 verified games available.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 games)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 games)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 game)\n•    Gran Turismo 7\n\nVR Zone (4 games)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+            "mode": "pipeline:structured_games_catalog_en",
+            "route_category": "games",
+            "route_intent": "games_lookup",
+            "request_id": "0",
+            "resolved_question": "What games can I play?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.04,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 11.35,
+                  "elapsed_sec": 0.0113,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.01,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What games can I play?",
+                  "candidate": "What games can I play?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 11.18,
+                  "elapsed_sec": 0.0112,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0,
+                  "entry_to_split_ms": 21.96,
+                  "parts": [
+                    "What games can I play?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "experimental_allow_llm is false; single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": false
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what games can i play?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What games can I play?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 527.25,
+                  "elapsed_sec": 0.5273
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 527.29,
+                  "elapsed_sec": 0.5273
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "games/game_catalog_lookup",
+                "metadata": {
+                  "elapsed_ms": 5.01,
+                  "elapsed_sec": 0.005,
+                  "route_category": "games",
+                  "route_intent": "game_catalog_lookup",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": null,
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.96,
+                "detail": "game_resolution_unknown",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "games",
+                  "route_intent": "game_catalog_lookup",
+                  "reason": "game_resolution_unknown",
+                  "resolution": {
+                    "status": "unknown",
+                    "entity_type": "game",
+                    "top_candidate": null,
+                    "candidates": [],
+                    "top_score": 0.0,
+                    "margin": 0.0,
+                    "reason": "shortlist_below_threshold",
+                    "operation": "availability",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "trigram_fuzzy",
+                    "candidate_count": 7,
+                    "comparison_count": 35,
+                    "elapsed_ms": 6.921,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_games_catalog_en",
+                "confidence": 0.98,
+                "detail": "shared game availability records rendered by English template",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "games",
+                  "route_intent": "games_lookup",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "validation_final",
+                "confidence": 1.0,
+                "detail": "ok",
+                "metadata": {
+                  "elapsed_ms": 1.46,
+                  "elapsed_sec": 0.0015,
+                  "added_error_count": 0,
+                  "added_warning_count": 1,
+                  "added_errors": [],
+                  "added_warnings": [
+                    "fact_answer_may_be_too_verbose"
+                  ],
+                  "merged_error_count": 0,
+                  "merged_warning_count": 1
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_games_catalog_en",
+                "metadata": {
+                  "elapsed_ms": 1.52,
+                  "elapsed_sec": 0.0015,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 626.2,
+                  "total_elapsed_sec": 0.6262
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.6265,
+          "context": {
+            "original_question": "What games can I play?",
+            "resolved_question": "What games can I play?",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        },
+        {
+          "case_id": "limit-five-zones",
+          "payload": {
+            "question": "PC, PS5, Nintendo Switch, Cockpit and VR",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Verified English information:\nNintendo Switch Sports\nGenre: Motion control sports game\nOverview: Nintendo Switch Sports is a sports game that uses Joy-Con motion controls to simulate playing various sports.\nHow to play: Hold the Joy-Con and move it according to the selected sport, such as swing, throw, or gesture motions in the game.\nAvailable at: Nintendo Switch Zone\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+            "mode": "pipeline:structured_game_detail_en",
+            "route_category": "games",
+            "route_intent": "game_detail_lookup",
+            "request_id": "1",
+            "resolved_question": "PC, PS5, Nintendo Switch, Cockpit and VR",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.04,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 10.08,
+                  "elapsed_sec": 0.0101,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.0,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "PC, PS5, Nintendo Switch, Cockpit and VR",
+                  "candidate": "PC, PS5, Nintendo Switch, Cockpit and VR",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 11.51,
+                  "elapsed_sec": 0.0115,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0,
+                  "entry_to_split_ms": 20.5,
+                  "parts": [
+                    "PC, PS5, Nintendo Switch, Cockpit and VR"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "experimental_allow_llm is false; single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": false
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "pc, ps5, nintendo switch sports and vr",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "PC, PS5, Nintendo Switch Sports and VR",
+                    "PC, PS5, Nintendo Switch, Cockpit and VR",
+                    "PC, PS5, Nintendo Switch, Cockpit and VR Nintendo Switch Sports"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 29.93,
+                  "elapsed_sec": 0.0299
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 29.95,
+                  "elapsed_sec": 0.03
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "games/games_lookup",
+                "metadata": {
+                  "elapsed_ms": 52.71,
+                  "elapsed_sec": 0.0527,
+                  "route_category": "games",
+                  "route_intent": "games_lookup",
+                  "variant_count": 2
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "kept_original_query",
+                "confidence": 0.88,
+                "detail": "PC, PS5, Nintendo Switch Sports and VR",
+                "metadata": {
+                  "candidates": [
+                    {
+                      "query": "PC, PS5, Nintendo Switch, Cockpit and VR",
+                      "category": "games",
+                      "intent": "games_lookup",
+                      "confidence": 0.88
+                    },
+                    {
+                      "query": "PC, PS5, Nintendo Switch, Cockpit and VR Nintendo Switch Sports",
+                      "category": "games",
+                      "intent": "games_lookup",
+                      "confidence": 0.88
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": "ps5",
+                  "user_group": null,
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "exact_game_target_locked",
+                "confidence": 0.94,
+                "detail": "exact_known_game_target",
+                "metadata": {
+                  "locked": true,
+                  "route_category": "games",
+                  "route_intent": "game_detail_lookup",
+                  "reason": "exact_known_game_target",
+                  "resolution": {
+                    "status": "exact",
+                    "entity_type": "game",
+                    "top_candidate": {
+                      "entity_id": "nintendoswitchsports",
+                      "title": "Nintendo Switch Sports",
+                      "score": 1.0,
+                      "match_type": "exact_alias",
+                      "matched_alias": "Nintendo Switch Sports",
+                      "sources": [
+                        "availability_nintendo_1_2",
+                        "availability_nintendo_1_4"
+                      ],
+                      "zones": [
+                        "Nintendo Switch Zone"
+                      ],
+                      "has_controls": true,
+                      "reasons": []
+                    },
+                    "candidates": [
+                      {
+                        "entity_id": "nintendoswitchsports",
+                        "title": "Nintendo Switch Sports",
+                        "score": 1.0,
+                        "match_type": "exact_alias",
+                        "matched_alias": "Nintendo Switch Sports",
+                        "sources": [
+                          "availability_nintendo_1_2",
+                          "availability_nintendo_1_4"
+                        ],
+                        "zones": [
+                          "Nintendo Switch Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": []
+                      }
+                    ],
+                    "top_score": 1.0,
+                    "margin": 1.0,
+                    "reason": "direct_alias_match",
+                    "operation": "detail",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "exact",
+                    "candidate_count": 1,
+                    "comparison_count": 0,
+                    "elapsed_ms": 7.15,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_game_detail_en",
+                "confidence": 0.98,
+                "detail": "approved localization overlay matched current Thai source hash",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "games",
+                  "route_intent": "game_detail_lookup",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_game_detail_en",
+                "metadata": {
+                  "elapsed_ms": 1.11,
+                  "elapsed_sec": 0.0011,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 191.98,
+                  "total_elapsed_sec": 0.192
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.1923,
+          "context": {
+            "original_question": "PC, PS5, Nintendo Switch, Cockpit and VR",
+            "resolved_question": "PC, PS5, Nintendo Switch, Cockpit and VR",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "four-control-targets",
+      "kind": "multi_controls",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "control_operation": true,
+        "all_targets": true,
+        "not_missing_target": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for VALORANT?\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings\n\nQuestion 2: What are the controls for Beat Saber?\nBeat Saber controls:\n- Left PS VR2 Sense controller motion: Left-hand saber slash\n- Right PS VR2 Sense controller motion: Right-hand saber slash\n- Head/body movement: Dodge and position body\nSource: https://www.playstation.com/en-us/games/beat-saber/\n\nQuestion 3: What are the controls for Mario Kart 8 Deluxe?\nMario Kart 8 Deluxe controls:\n- L (Left Stick): Steer\n- A: Accelerate\n- B: Brake\n- X: Look Backward\n- ZL: Use Item / Horn\n- ZR: Drift\n- + (Plus): Pause\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://gameinputdatabase.com/game/57\n\nQuestion 4: What are the controls for TEKKEN 8?\nTEKKEN 8 controls:\n- Square: Left Punch\n- Triangle: Right Punch\n- Cross: Left Kick\n- Circle: Right Kick\n- D-Pad Up: Jump\n- D-Pad Left: Move Backward\n- D-Pad Down: Duck\n- L (Left Stick): Move\n- L1: Special Style\n- R1: Heat Activate\n- R1 (While in Heat): Heat Smash\n- Options: Pause\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://gameinputdatabase.com/game/83",
+      "latency": [
+        0.0017,
+        0.5563
+      ],
+      "records": [
+        {
+          "case_id": "four-control-targets",
+          "payload": {
+            "question": "Show me the game controls",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Which game do you want controls for? Please provide the game title.",
+            "mode": "pipeline:game_control_missing_game_context_en",
+            "route_category": "games",
+            "route_intent": "game_control_lookup",
+            "request_id": "0",
+            "resolved_question": "Show me the game controls",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.04,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "closed_control_request",
+                "decision": "missing_game",
+                "confidence": 0.99,
+                "detail": "ask the necessary game slot before intent/semantic model calls",
+                "metadata": {
+                  "operation": "control_lookup",
+                  "missing_slots": [
+                    "game"
+                  ],
+                  "model_calls": 0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:game_control_missing_game_context_en",
+                "metadata": {
+                  "elapsed_ms": 0.79,
+                  "elapsed_sec": 0.0008,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 1.52,
+                  "total_elapsed_sec": 0.0015
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.0017,
+          "context": {
+            "original_question": "Show me the game controls",
+            "resolved_question": "Show me the game controls",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        },
+        {
+          "case_id": "four-control-targets",
+          "payload": {
+            "question": "VALORANT, Beat Saber, Mario Kart 8 Deluxe and TEKKEN 8",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for VALORANT?\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings\n\nQuestion 2: What are the controls for Beat Saber?\nBeat Saber controls:\n- Left PS VR2 Sense controller motion: Left-hand saber slash\n- Right PS VR2 Sense controller motion: Right-hand saber slash\n- Head/body movement: Dodge and position body\nSource: https://www.playstation.com/en-us/games/beat-saber/\n\nQuestion 3: What are the controls for Mario Kart 8 Deluxe?\nMario Kart 8 Deluxe controls:\n- L (Left Stick): Steer\n- A: Accelerate\n- B: Brake\n- X: Look Backward\n- ZL: Use Item / Horn\n- ZR: Drift\n- + (Plus): Pause\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://gameinputdatabase.com/game/57\n\nQuestion 4: What are the controls for TEKKEN 8?\nTEKKEN 8 controls:\n- Square: Left Punch\n- Triangle: Right Punch\n- Cross: Left Kick\n- Circle: Right Kick\n- D-Pad Up: Jump\n- D-Pad Left: Move Backward\n- D-Pad Down: Duck\n- L (Left Stick): Move\n- L1: Special Style\n- R1: Heat Activate\n- R1 (While in Heat): Heat Smash\n- Options: Pause\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://gameinputdatabase.com/game/83",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "request_id": "1",
+            "resolved_question": "What are the controls for VALORANT?; What are the controls for Beat Saber?; What are the controls for Mario Kart 8 Deluxe?; What are the controls for TEKKEN 8?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.12,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "dialogue_selection",
+                "decision": "selected_targets",
+                "confidence": 0.99,
+                "detail": "execute explicit pending selections as bounded independent requests",
+                "metadata": {
+                  "request_plan": {
+                    "schema_type": "dialogue_selection_v1",
+                    "schema_version": 1,
+                    "act": "select_multiple_targets",
+                    "context_used": true,
+                    "domain": "game_controls",
+                    "operation": "control_lookup",
+                    "targets": [
+                      "VALORANT",
+                      "Beat Saber",
+                      "Mario Kart 8 Deluxe",
+                      "TEKKEN 8"
+                    ],
+                    "requests": [
+                      "What are the controls for VALORANT?",
+                      "What are the controls for Beat Saber?",
+                      "What are the controls for Mario Kart 8 Deluxe?",
+                      "What are the controls for TEKKEN 8?"
+                    ],
+                    "resolved_query": "What are the controls for VALORANT?; What are the controls for Beat Saber?; What are the controls for Mario Kart 8 Deluxe?; What are the controls for TEKKEN 8?",
+                    "selection_errors": [],
+                    "provenance": "explicit_user_selection_of_pending_task"
+                  },
+                  "expected_targets": [
+                    "VALORANT",
+                    "Beat Saber",
+                    "Mario Kart 8 Deluxe",
+                    "TEKKEN 8"
+                  ]
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "complex",
+                "confidence": 1.0,
+                "detail": "three_or_more_parts",
+                "metadata": {
+                  "level": "complex",
+                  "score": 1.0,
+                  "signals": [
+                    "three_or_more_parts"
+                  ],
+                  "can_parallelize": false,
+                  "requires_planner": true,
+                  "max_workers": 2,
+                  "reason": "three_or_more_parts"
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "ordered_dependency_chain",
+                "confidence": 1.0,
+                "detail": "three_or_more_parts",
+                "metadata": {
+                  "profile": {
+                    "level": "complex",
+                    "score": 1.0,
+                    "signals": [
+                      "three_or_more_parts"
+                    ],
+                    "can_parallelize": false,
+                    "requires_planner": true,
+                    "max_workers": 2,
+                    "reason": "three_or_more_parts"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "What are the controls for VALORANT?",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "What are the controls for Beat Saber?",
+                      "depends_on": [
+                        1
+                      ]
+                    },
+                    {
+                      "index": 3,
+                      "question": "What are the controls for Mario Kart 8 Deluxe?",
+                      "depends_on": [
+                        2
+                      ]
+                    },
+                    {
+                      "index": 4,
+                      "question": "What are the controls for TEKKEN 8?",
+                      "depends_on": [
+                        3
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "ordered_sequential",
+                "confidence": 0.92,
+                "detail": "dependency, broad query, planner output, or non-deterministic child requires ordered execution",
+                "metadata": {
+                  "children": 4,
+                  "max_workers": 1,
+                  "child_llm_allowed": false,
+                  "child_llm_policy": "disabled_after_complex_planner_attempt"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=4",
+                "metadata": {
+                  "elapsed_ms": 481.53,
+                  "elapsed_sec": 0.4815,
+                  "child_elapsed_sec": [
+                    0.1269,
+                    0.0484,
+                    0.1117,
+                    0.1912
+                  ],
+                  "child_modes": [
+                    "pipeline:structured_game_controls_en",
+                    "pipeline:structured_game_controls_en",
+                    "pipeline:structured_game_controls_en",
+                    "pipeline:structured_game_controls_en"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 65.17,
+                  "elapsed_sec": 0.0652
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 3.93,
+                  "elapsed_sec": 0.0039
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=4",
+                "metadata": {
+                  "parts": [
+                    "What are the controls for VALORANT?",
+                    "What are the controls for Beat Saber?",
+                    "What are the controls for Mario Kart 8 Deluxe?",
+                    "What are the controls for TEKKEN 8?"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for VALORANT?",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.1269,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for Beat Saber?",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.0484,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for Mario Kart 8 Deluxe?",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.1117,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for TEKKEN 8?",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.1912,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 0.55,
+                  "elapsed_sec": 0.0005,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 555.85,
+                  "total_elapsed_sec": 0.5559
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "controls_secondary_needs_manual_verify",
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.5563,
+          "context": {
+            "original_question": "VALORANT, Beat Saber, Mario Kart 8 Deluxe and TEKKEN 8",
+            "resolved_question": "What are the controls for VALORANT?; What are the controls for Beat Saber?; What are the controls for Mario Kart 8 Deluxe?; What are the controls for TEKKEN 8?",
+            "used_context": true,
+            "context_game": null,
+            "context_domain": "game_controls",
+            "context_operation": "control_lookup",
+            "context_topic": "VALORANT, Beat Saber, Mario Kart 8 Deluxe, TEKKEN 8",
+            "reason": "selected_multiple_control_games",
+            "selected_requests": [
+              "What are the controls for VALORANT?",
+              "What are the controls for Beat Saber?",
+              "What are the controls for Mario Kart 8 Deluxe?",
+              "What are the controls for TEKKEN 8?"
+            ],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "family-select-both-controls",
+      "kind": "multi_controls",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "control_operation": true,
+        "all_targets": true,
+        "not_missing_target": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for Call of Duty: Warzone?\nCall of Duty: Warzone controls:\n- Cross: Jump/Mantle\n- Circle: Crouch/Prone/Slide\n- Square: Use/Reload\n- Triangle: Switch Weapon\n- D-Pad: Campaign, Multiplayer or Co-Op specific\n- Touch Pad: Scoreboard\n- Options: Pause\n- L1: Use Tactical Equipment\n- R1: Use Lethal Equipment\n- L2: Aim Down Sight Behavior\n- R2: Fire Weapon\n- L3: Sprint/Tactical Sprint/Steady Aim\n- R3: Melee\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://gameaccess.info/call-of-duty-warzone-battle-royale-mode-controls/\n\nQuestion 2: What are the controls for Call of Duty: Modern Warfare III?\nCall of Duty: Modern Warfare III controls:\n- L1: Jump/Mantle\n- R3: Change Stance/Slide/Dive\n- Cross: Use Tactical Equipment\n- Circle: Melee\n- L2: Aim Down Sight\n- R2: Fire Weapon\n- R1: Use Lethal Equipment\n- Square: Interact/Reload\n- Triangle: Switch Weapon\n- L3: Sprint/Tactical Sprint/Focus\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.gamepur.com/guides/best-modern-warfare-3-controller-settings-aim-assist-deadzones-button-layout",
+      "latency": [
+        0.0932,
+        0.3579
+      ],
+      "records": [
+        {
+          "case_id": "family-select-both-controls",
+          "payload": {
+            "question": "What are the controls for Call of Duty?",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Which game do you mean: Call of Duty: Modern Warfare III, Call of Duty: Warzone? Please name the exact title so I can check its controls.",
+            "mode": "pipeline:game_family_clarification_en",
+            "route_category": "clarification",
+            "route_intent": "ambiguous_game_controls",
+            "request_id": "0",
+            "resolved_question": "What are the controls for Call of Duty?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.04,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 7.42,
+                  "elapsed_sec": 0.0074,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.01,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the controls for Call of Duty?",
+                  "candidate": "What are the controls for Call of Duty?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 9.39,
+                  "elapsed_sec": 0.0094,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0,
+                  "entry_to_split_ms": 8.31,
+                  "parts": [
+                    "What are the controls for Call of Duty?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "experimental_allow_llm is false; single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": false
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what are the controls for call of duty?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What are the controls for Call of Duty?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 8.58,
+                  "elapsed_sec": 0.0086
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 8.6,
+                  "elapsed_sec": 0.0086
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "games/game_control_lookup",
+                "metadata": {
+                  "elapsed_ms": 3.86,
+                  "elapsed_sec": 0.0039,
+                  "route_category": "games",
+                  "route_intent": "game_control_lookup",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": null,
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.97,
+                "detail": "game_resolution_ambiguous",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "games",
+                  "route_intent": "game_control_lookup",
+                  "reason": "game_resolution_ambiguous",
+                  "resolution": {
+                    "status": "ambiguous",
+                    "entity_type": "game",
+                    "top_candidate": {
+                      "entity_id": "callofdutymodernwarfareiii",
+                      "title": "Call of Duty: Modern Warfare III",
+                      "score": 0.82,
+                      "match_type": "family",
+                      "matched_alias": "Call of Duty",
+                      "sources": [
+                        "availability_ps5_01_02"
+                      ],
+                      "zones": [
+                        "PlayStation 5 Zone"
+                      ],
+                      "has_controls": true,
+                      "reasons": [
+                        "family_candidate"
+                      ]
+                    },
+                    "candidates": [
+                      {
+                        "entity_id": "callofdutymodernwarfareiii",
+                        "title": "Call of Duty: Modern Warfare III",
+                        "score": 0.82,
+                        "match_type": "family",
+                        "matched_alias": "Call of Duty",
+                        "sources": [
+                          "availability_ps5_01_02"
+                        ],
+                        "zones": [
+                          "PlayStation 5 Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": [
+                          "family_candidate"
+                        ]
+                      },
+                      {
+                        "entity_id": "callofdutywarzone",
+                        "title": "Call of Duty: Warzone",
+                        "score": 0.82,
+                        "match_type": "family",
+                        "matched_alias": "Call of Duty",
+                        "sources": [
+                          "availability_pc_03_10"
+                        ],
+                        "zones": [
+                          "PC Zone"
+                        ],
+                        "has_controls": true,
+                        "reasons": [
+                          "family_candidate"
+                        ]
+                      }
+                    ],
+                    "top_score": 0.82,
+                    "margin": 0.0,
+                    "reason": "family_name_has_multiple_current_candidates",
+                    "operation": "controls",
+                    "family": "Call of Duty",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "family",
+                    "candidate_count": 2,
+                    "comparison_count": 0,
+                    "elapsed_ms": 2.709,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:game_family_clarification_en",
+                "confidence": 0.98,
+                "detail": "control request refers to multiple verified titles in the same family",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "clarification",
+                  "route_intent": "ambiguous_game_controls",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:game_family_clarification_en",
+                "metadata": {
+                  "elapsed_ms": 5.47,
+                  "elapsed_sec": 0.0055,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 92.82,
+                  "total_elapsed_sec": 0.0928
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.0932,
+          "context": {
+            "original_question": "What are the controls for Call of Duty?",
+            "resolved_question": "What are the controls for Call of Duty?",
+            "used_context": false,
+            "context_game": "Call of Duty: Modern Warfare III",
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "question_has_explicit_game",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        },
+        {
+          "case_id": "family-select-both-controls",
+          "payload": {
+            "question": "Call of Duty: Warzone and Call of Duty: Modern Warfare III",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for Call of Duty: Warzone?\nCall of Duty: Warzone controls:\n- Cross: Jump/Mantle\n- Circle: Crouch/Prone/Slide\n- Square: Use/Reload\n- Triangle: Switch Weapon\n- D-Pad: Campaign, Multiplayer or Co-Op specific\n- Touch Pad: Scoreboard\n- Options: Pause\n- L1: Use Tactical Equipment\n- R1: Use Lethal Equipment\n- L2: Aim Down Sight Behavior\n- R2: Fire Weapon\n- L3: Sprint/Tactical Sprint/Steady Aim\n- R3: Melee\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://gameaccess.info/call-of-duty-warzone-battle-royale-mode-controls/\n\nQuestion 2: What are the controls for Call of Duty: Modern Warfare III?\nCall of Duty: Modern Warfare III controls:\n- L1: Jump/Mantle\n- R3: Change Stance/Slide/Dive\n- Cross: Use Tactical Equipment\n- Circle: Melee\n- L2: Aim Down Sight\n- R2: Fire Weapon\n- R1: Use Lethal Equipment\n- Square: Interact/Reload\n- Triangle: Switch Weapon\n- L3: Sprint/Tactical Sprint/Focus\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.gamepur.com/guides/best-modern-warfare-3-controller-settings-aim-assist-deadzones-button-layout",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "request_id": "1",
+            "resolved_question": "What are the controls for Call of Duty: Warzone?; What are the controls for Call of Duty: Modern Warfare III?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.07,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "dialogue_selection",
+                "decision": "selected_targets",
+                "confidence": 0.99,
+                "detail": "execute explicit pending selections as bounded independent requests",
+                "metadata": {
+                  "request_plan": {
+                    "schema_type": "dialogue_selection_v1",
+                    "schema_version": 1,
+                    "act": "select_multiple_targets",
+                    "context_used": true,
+                    "domain": "game_controls",
+                    "operation": "control_lookup",
+                    "targets": [
+                      "Call of Duty: Warzone",
+                      "Call of Duty: Modern Warfare III"
+                    ],
+                    "requests": [
+                      "What are the controls for Call of Duty: Warzone?",
+                      "What are the controls for Call of Duty: Modern Warfare III?"
+                    ],
+                    "resolved_query": "What are the controls for Call of Duty: Warzone?; What are the controls for Call of Duty: Modern Warfare III?",
+                    "selection_errors": [],
+                    "provenance": "explicit_user_selection_of_pending_task"
+                  },
+                  "expected_targets": [
+                    "Call of Duty: Warzone",
+                    "Call of Duty: Modern Warfare III"
+                  ]
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.36,
+                  "signals": [],
+                  "can_parallelize": true,
+                  "requires_planner": false,
+                  "max_workers": 2,
+                  "reason": "independent child operations"
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "bounded_parallel_candidate",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "profile": {
+                    "level": "simple",
+                    "score": 0.36,
+                    "signals": [],
+                    "can_parallelize": true,
+                    "requires_planner": false,
+                    "max_workers": 2,
+                    "reason": "independent child operations"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "What are the controls for Call of Duty: Warzone?",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "What are the controls for Call of Duty: Modern Warfare III?",
+                      "depends_on": []
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "bounded_parallel",
+                "confidence": 0.92,
+                "detail": "deterministic child preflight passed; child LLM paths disabled",
+                "metadata": {
+                  "children": 2,
+                  "max_workers": 2
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=2",
+                "metadata": {
+                  "elapsed_ms": 290.78,
+                  "elapsed_sec": 0.2908,
+                  "child_elapsed_sec": [
+                    0.2118,
+                    0.2155
+                  ],
+                  "child_modes": [
+                    "pipeline:structured_game_controls_en",
+                    "pipeline:structured_game_controls_en"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 57.9,
+                  "elapsed_sec": 0.0579
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 3.53,
+                  "elapsed_sec": 0.0035
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=2",
+                "metadata": {
+                  "parts": [
+                    "What are the controls for Call of Duty: Warzone?",
+                    "What are the controls for Call of Duty: Modern Warfare III?"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for Call of Duty: Warzone?",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.2118,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for Call of Duty: Modern Warfare III?",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.2155,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 1.33,
+                  "elapsed_sec": 0.0013,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 356.8,
+                  "total_elapsed_sec": 0.3568
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "controls_secondary_needs_manual_verify",
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.3579,
+          "context": {
+            "original_question": "Call of Duty: Warzone and Call of Duty: Modern Warfare III",
+            "resolved_question": "What are the controls for Call of Duty: Warzone?; What are the controls for Call of Duty: Modern Warfare III?",
+            "used_context": true,
+            "context_game": null,
+            "context_domain": "game_controls",
+            "context_operation": "control_lookup",
+            "context_topic": "Call of Duty: Warzone, Call of Duty: Modern Warfare III",
+            "reason": "selected_multiple_control_games",
+            "selected_requests": [
+              "What are the controls for Call of Duty: Warzone?",
+              "What are the controls for Call of Duty: Modern Warfare III?"
+            ],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "unknown-edition-first-child",
+      "kind": "partial_controls",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "known_target_answered": true,
+        "partial_explicit": true,
+        "not_substituted_edition": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for tekken ix?\nI do not have verified information for tekken ix in the recorded studio catalog. Please confirm the game title and edition.\nSource: https://esports.phuket.psu.ac.th/Services/our-games\n\nQuestion 2: What are the controls for VALORANT?\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "latency": [
+        0.0018,
+        0.2807
+      ],
+      "records": [
+        {
+          "case_id": "unknown-edition-first-child",
+          "payload": {
+            "question": "Show me the game controls",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Which game do you want controls for? Please provide the game title.",
+            "mode": "pipeline:game_control_missing_game_context_en",
+            "route_category": "games",
+            "route_intent": "game_control_lookup",
+            "request_id": "0",
+            "resolved_question": "Show me the game controls",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.04,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "closed_control_request",
+                "decision": "missing_game",
+                "confidence": 0.99,
+                "detail": "ask the necessary game slot before intent/semantic model calls",
+                "metadata": {
+                  "operation": "control_lookup",
+                  "missing_slots": [
+                    "game"
+                  ],
+                  "model_calls": 0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:game_control_missing_game_context_en",
+                "metadata": {
+                  "elapsed_ms": 1.08,
+                  "elapsed_sec": 0.0011,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 1.6,
+                  "total_elapsed_sec": 0.0016
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.0018,
+          "context": {
+            "original_question": "Show me the game controls",
+            "resolved_question": "Show me the game controls",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        },
+        {
+          "case_id": "unknown-edition-first-child",
+          "payload": {
+            "question": "TEKKEN IX and VALORANT",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for tekken ix?\nI do not have verified information for tekken ix in the recorded studio catalog. Please confirm the game title and edition.\nSource: https://esports.phuket.psu.ac.th/Services/our-games\n\nQuestion 2: What are the controls for VALORANT?\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "request_id": "1",
+            "resolved_question": "What are the controls for tekken ix?; What are the controls for VALORANT?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.07,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "dialogue_selection",
+                "decision": "selected_targets",
+                "confidence": 0.99,
+                "detail": "execute explicit pending selections as bounded independent requests",
+                "metadata": {
+                  "request_plan": {
+                    "schema_type": "dialogue_selection_v1",
+                    "schema_version": 1,
+                    "act": "select_multiple_targets",
+                    "context_used": true,
+                    "domain": "game_controls",
+                    "operation": "control_lookup",
+                    "targets": [
+                      "tekken ix",
+                      "VALORANT"
+                    ],
+                    "requests": [
+                      "What are the controls for tekken ix?",
+                      "What are the controls for VALORANT?"
+                    ],
+                    "resolved_query": "What are the controls for tekken ix?; What are the controls for VALORANT?",
+                    "selection_errors": [],
+                    "provenance": "explicit_user_selection_of_pending_task"
+                  },
+                  "expected_targets": [
+                    "tekken ix",
+                    "VALORANT"
+                  ]
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.36,
+                  "signals": [],
+                  "can_parallelize": true,
+                  "requires_planner": false,
+                  "max_workers": 2,
+                  "reason": "independent child operations"
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "bounded_parallel_candidate",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "profile": {
+                    "level": "simple",
+                    "score": 0.36,
+                    "signals": [],
+                    "can_parallelize": true,
+                    "requires_planner": false,
+                    "max_workers": 2,
+                    "reason": "independent child operations"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "What are the controls for tekken ix?",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "What are the controls for VALORANT?",
+                      "depends_on": []
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "bounded_parallel",
+                "confidence": 0.92,
+                "detail": "deterministic child preflight passed; child LLM paths disabled",
+                "metadata": {
+                  "children": 2,
+                  "max_workers": 2
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=2",
+                "metadata": {
+                  "elapsed_ms": 218.98,
+                  "elapsed_sec": 0.219,
+                  "child_elapsed_sec": [
+                    0.0012,
+                    0.1374
+                  ],
+                  "child_modes": [
+                    "pipeline:game_edition_unconfirmed",
+                    "pipeline:structured_game_controls_en"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 54.97,
+                  "elapsed_sec": 0.055
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 2.3,
+                  "elapsed_sec": 0.0023
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=2",
+                "metadata": {
+                  "parts": [
+                    "What are the controls for tekken ix?",
+                    "What are the controls for VALORANT?"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_edition_unconfirmed",
+                "confidence": 0.99,
+                "detail": "What are the controls for tekken ix?",
+                "metadata": {
+                  "mode": "pipeline:game_edition_unconfirmed",
+                  "answer_type": "no_answer",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.0012,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for VALORANT?",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.1374,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 0.46,
+                  "elapsed_sec": 0.0005,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 280.28,
+                  "total_elapsed_sec": 0.2803
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "game_edition_unconfirmed",
+                "controls_secondary_needs_manual_verify",
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.2807,
+          "context": {
+            "original_question": "TEKKEN IX and VALORANT",
+            "resolved_question": "What are the controls for tekken ix?; What are the controls for VALORANT?",
+            "used_context": true,
+            "context_game": null,
+            "context_domain": "game_controls",
+            "context_operation": "control_lookup",
+            "context_topic": "tekken ix, VALORANT",
+            "reason": "selected_multiple_control_games",
+            "selected_requests": [
+              "What are the controls for tekken ix?",
+              "What are the controls for VALORANT?"
+            ],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "retry-unresolved-zone",
+      "kind": "resume_catalog",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "selected_zones": true,
+        "no_extra_zone": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What games are available in PC?\nThere are currently 6 verified games in PC Zone.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)\n\nQuestion 2: What games are available in VR?\nThere are currently 4 verified games in VR Zone.\n\nVR Zone (4 games)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+      "latency": [
+        0.1837,
+        0.0054,
+        0.1813
+      ],
+      "records": [
+        {
+          "case_id": "retry-unresolved-zone",
+          "payload": {
+            "question": "What games can I play?",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "There are currently 42 verified games available.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 games)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 games)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 game)\n•    Gran Turismo 7\n\nVR Zone (4 games)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+            "mode": "pipeline:structured_games_catalog_en",
+            "route_category": "games",
+            "route_intent": "games_lookup",
+            "request_id": "0",
+            "resolved_question": "What games can I play?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.06,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 9.75,
+                  "elapsed_sec": 0.0097,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.01,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What games can I play?",
+                  "candidate": "What games can I play?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=1",
+                "metadata": {
+                  "elapsed_ms": 13.52,
+                  "elapsed_sec": 0.0135,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0,
+                  "entry_to_split_ms": 24.42,
+                  "parts": [
+                    "What games can I play?"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.0,
+                "detail": "single question",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.0,
+                  "signals": [],
+                  "can_parallelize": false,
+                  "requires_planner": false,
+                  "max_workers": 1,
+                  "reason": "single question"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "experimental_allow_llm is false; single clear operation does not need planner",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": false
+                }
+              },
+              {
+                "stage": "preprocess",
+                "decision": "normalized",
+                "confidence": 1.0,
+                "detail": "what games can i play?",
+                "metadata": {
+                  "language_hint": "en",
+                  "nonsemantic_preface_removed": false,
+                  "query_variants": [
+                    "What games can I play?"
+                  ],
+                  "competition_name_recovery": [],
+                  "elapsed_ms": 17.05,
+                  "elapsed_sec": 0.017
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 17.08,
+                  "elapsed_sec": 0.0171
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "active_route_selection",
+                "confidence": 1.0,
+                "detail": "games/game_catalog_lookup",
+                "metadata": {
+                  "elapsed_ms": 5.59,
+                  "elapsed_sec": 0.0056,
+                  "route_category": "games",
+                  "route_intent": "game_catalog_lookup",
+                  "variant_count": 0
+                }
+              },
+              {
+                "stage": "entities",
+                "decision": "extracted",
+                "confidence": 0.9,
+                "detail": "",
+                "metadata": {
+                  "day": null,
+                  "time_slots": [],
+                  "service": null,
+                  "user_group": null,
+                  "duration": null,
+                  "price_intent": false
+                }
+              },
+              {
+                "stage": "target_lock",
+                "decision": "not_locked",
+                "confidence": 0.96,
+                "detail": "game_resolution_unknown",
+                "metadata": {
+                  "locked": false,
+                  "route_category": "games",
+                  "route_intent": "game_catalog_lookup",
+                  "reason": "game_resolution_unknown",
+                  "resolution": {
+                    "status": "unknown",
+                    "entity_type": "game",
+                    "top_candidate": null,
+                    "candidates": [],
+                    "top_score": 0.0,
+                    "margin": 0.0,
+                    "reason": "shortlist_below_threshold",
+                    "operation": "availability",
+                    "resolver": "bounded_trigram_v1",
+                    "catalog_version": "bacdf919d5e4323c",
+                    "method": "trigram_fuzzy",
+                    "candidate_count": 7,
+                    "comparison_count": 35,
+                    "elapsed_ms": 9.463,
+                    "request_cache_hit": false,
+                    "budget_exceeded": false,
+                    "reranker": {
+                      "enabled": false,
+                      "action": "skipped",
+                      "reason": "disabled"
+                    }
+                  }
+                }
+              },
+              {
+                "stage": "bilingual_route",
+                "decision": "pipeline:structured_games_catalog_en",
+                "confidence": 0.98,
+                "detail": "shared game availability records rendered by English template",
+                "metadata": {
+                  "effective_locale": "en",
+                  "route_category": "games",
+                  "route_intent": "games_lookup",
+                  "runtime_translation": false
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "validation_final",
+                "confidence": 1.0,
+                "detail": "ok",
+                "metadata": {
+                  "elapsed_ms": 1.68,
+                  "elapsed_sec": 0.0017,
+                  "added_error_count": 0,
+                  "added_warning_count": 1,
+                  "added_errors": [],
+                  "added_warnings": [
+                    "fact_answer_may_be_too_verbose"
+                  ],
+                  "merged_error_count": 0,
+                  "merged_warning_count": 1
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_games_catalog_en",
+                "metadata": {
+                  "elapsed_ms": 1.81,
+                  "elapsed_sec": 0.0018,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 183.15,
+                  "total_elapsed_sec": 0.1831
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.1837,
+          "context": {
+            "original_question": "What games can I play?",
+            "resolved_question": "What games can I play?",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        },
+        {
+          "case_id": "retry-unresolved-zone",
+          "payload": {
+            "question": "PC and washing machine",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "I could not match these choices to a studio zone: washing machine. Please specify all the zones you want, such as PC and VR.",
+            "mode": "pipeline:games_catalog_selection_clarification",
+            "route_category": "games",
+            "route_intent": "games_lookup",
+            "request_id": "1",
+            "resolved_question": "PC and washing machine",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.06,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "dialogue_selection",
+                "decision": "unresolved_targets",
+                "confidence": 0.99,
+                "detail": "the whole selected scope requires confirmation",
+                "metadata": {
+                  "request_plan": {
+                    "schema_type": "dialogue_selection_v1",
+                    "schema_version": 1,
+                    "act": "select_multiple_targets",
+                    "context_used": true,
+                    "domain": "games",
+                    "operation": "list",
+                    "targets": [
+                      "pc"
+                    ],
+                    "requests": [],
+                    "resolved_query": "PC and washing machine",
+                    "selection_errors": [
+                      "washing machine"
+                    ],
+                    "provenance": "explicit_user_selection_of_pending_task"
+                  }
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:games_catalog_selection_clarification",
+                "metadata": {
+                  "elapsed_ms": 4.65,
+                  "elapsed_sec": 0.0046,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 5.14,
+                  "total_elapsed_sec": 0.0051
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.0054,
+          "context": {
+            "original_question": "PC and washing machine",
+            "resolved_question": "PC and washing machine",
+            "used_context": true,
+            "context_game": null,
+            "context_domain": "games",
+            "context_operation": "list",
+            "context_topic": "pc",
+            "reason": "unresolved_multiple_catalog_services",
+            "selected_requests": [],
+            "selection_errors": [
+              "washing machine"
+            ]
+          }
+        },
+        {
+          "case_id": "retry-unresolved-zone",
+          "payload": {
+            "question": "PC and VR",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What games are available in PC?\nThere are currently 6 verified games in PC Zone.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)\n\nQuestion 2: What games are available in VR?\nThere are currently 4 verified games in VR Zone.\n\nVR Zone (4 games)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "request_id": "2",
+            "resolved_question": "What games are available in PC?; What games are available in VR?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.09,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "dialogue_selection",
+                "decision": "selected_targets",
+                "confidence": 0.99,
+                "detail": "execute explicit pending selections as bounded independent requests",
+                "metadata": {
+                  "request_plan": {
+                    "schema_type": "dialogue_selection_v1",
+                    "schema_version": 1,
+                    "act": "select_multiple_targets",
+                    "context_used": true,
+                    "domain": "games",
+                    "operation": "list",
+                    "targets": [
+                      "pc",
+                      "vr"
+                    ],
+                    "requests": [
+                      "What games are available in PC?",
+                      "What games are available in VR?"
+                    ],
+                    "resolved_query": "What games are available in PC?; What games are available in VR?",
+                    "selection_errors": [],
+                    "provenance": "explicit_user_selection_of_pending_task"
+                  },
+                  "expected_targets": [
+                    "pc",
+                    "vr"
+                  ]
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.36,
+                  "signals": [],
+                  "can_parallelize": true,
+                  "requires_planner": false,
+                  "max_workers": 2,
+                  "reason": "independent child operations"
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "bounded_parallel_candidate",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "profile": {
+                    "level": "simple",
+                    "score": 0.36,
+                    "signals": [],
+                    "can_parallelize": true,
+                    "requires_planner": false,
+                    "max_workers": 2,
+                    "reason": "independent child operations"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "What games are available in PC?",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "What games are available in VR?",
+                      "depends_on": []
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "bounded_parallel",
+                "confidence": 0.92,
+                "detail": "deterministic child preflight passed; child LLM paths disabled",
+                "metadata": {
+                  "children": 2,
+                  "max_workers": 2
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=2",
+                "metadata": {
+                  "elapsed_ms": 153.95,
+                  "elapsed_sec": 0.154,
+                  "child_elapsed_sec": [
+                    0.0763,
+                    0.0803
+                  ],
+                  "child_modes": [
+                    "pipeline:structured_games_catalog_en",
+                    "pipeline:structured_games_catalog_en"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 19.65,
+                  "elapsed_sec": 0.0197
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 2.84,
+                  "elapsed_sec": 0.0028
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=2",
+                "metadata": {
+                  "parts": [
+                    "What games are available in PC?",
+                    "What games are available in VR?"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/games_lookup",
+                "confidence": 0.98,
+                "detail": "What games are available in PC?",
+                "metadata": {
+                  "mode": "pipeline:structured_games_catalog_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.0763,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/games_lookup",
+                "confidence": 0.98,
+                "detail": "What games are available in VR?",
+                "metadata": {
+                  "mode": "pipeline:structured_games_catalog_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.0803,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 1.03,
+                  "elapsed_sec": 0.001,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 180.8,
+                  "total_elapsed_sec": 0.1808
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.1813,
+          "context": {
+            "original_question": "PC and VR",
+            "resolved_question": "What games are available in PC?; What games are available in VR?",
+            "used_context": true,
+            "context_game": null,
+            "context_domain": "games",
+            "context_operation": "list",
+            "context_topic": "pc, vr",
+            "reason": "selected_multiple_catalog_services",
+            "selected_requests": [
+              "What games are available in PC?",
+              "What games are available in VR?"
+            ],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "mixed-booking-navigation-price",
+      "kind": "selected_requests",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "expected_requests": false,
+        "no_dropped_parts": false
+      },
+      "mode": "pipeline:booking_navigation",
+      "answer": "Open the studio booking page using the link below. I cannot confirm the current button position on that page.\nBooking page: https://esports.computing.psu.ac.th/reservation",
+      "latency": [
+        0.0016
+      ],
+      "records": [
+        {
+          "case_id": "mixed-booking-navigation-price",
+          "payload": {
+            "question": "Where is the booking button and what are the PC prices?",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Open the studio booking page using the link below. I cannot confirm the current button position on that page.\nBooking page: https://esports.computing.psu.ac.th/reservation",
+            "mode": "pipeline:booking_navigation",
+            "route_category": "reservation",
+            "route_intent": "booking_navigation",
+            "request_id": "0",
+            "resolved_question": "Where is the booking button and what are the PC prices?",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.04,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "booking_navigation",
+                "decision": "source_link_only",
+                "confidence": 0.99,
+                "detail": "use the recorded booking URL without inventing current button placement",
+                "metadata": {}
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:booking_navigation",
+                "metadata": {
+                  "elapsed_ms": 1.03,
+                  "elapsed_sec": 0.001,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 1.38,
+                  "total_elapsed_sec": 0.0014
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.0016,
+          "context": {
+            "original_question": "Where is the booking button and what are the PC prices?",
+            "resolved_question": "Where is the booking button and what are the PC prices?",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "english_context_preserved_without_rewrite",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "mixed-booking-navigation-price-th",
+      "kind": "selected_requests",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "expected_requests": false,
+        "no_dropped_parts": false
+      },
+      "mode": "pipeline:booking_navigation",
+      "answer": "เปิดหน้าจองของศูนย์ได้จากลิงก์ด้านล่างครับ ยังไม่มีข้อมูลยืนยันตำแหน่งปุ่มในหน้าเว็บฉบับปัจจุบัน\nหน้าจอง: https://esports.computing.psu.ac.th/reservation",
+      "latency": [
+        0.0139
+      ],
+      "records": [
+        {
+          "case_id": "mixed-booking-navigation-price-th",
+          "payload": {
+            "question": "ปุ่มจองอยู่ไหนและราคาของ PC เท่าไหร่",
+            "locale": "th"
+          },
+          "response": {
+            "ok": true,
+            "answer": "เปิดหน้าจองของศูนย์ได้จากลิงก์ด้านล่างครับ ยังไม่มีข้อมูลยืนยันตำแหน่งปุ่มในหน้าเว็บฉบับปัจจุบัน\nหน้าจอง: https://esports.computing.psu.ac.th/reservation",
+            "mode": "pipeline:booking_navigation",
+            "route_category": "reservation",
+            "route_intent": "booking_navigation",
+            "request_id": "0",
+            "resolved_question": "ปุ่มจองอยู่ไหนและราคาของ PC เท่าไหร่",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.06,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "booking_navigation",
+                "decision": "source_link_only",
+                "confidence": 0.99,
+                "detail": "use the recorded booking URL without inventing current button placement",
+                "metadata": {}
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:booking_navigation",
+                "metadata": {
+                  "elapsed_ms": 13.53,
+                  "elapsed_sec": 0.0135,
+                  "format_response_style_ms": 5.31,
+                  "answer_language": "th",
+                  "total_elapsed_ms": 13.62,
+                  "total_elapsed_sec": 0.0136
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": []
+            },
+            "universal_intent": null
+          },
+          "status": 200,
+          "elapsed_sec": 0.0139,
+          "context": {
+            "original_question": "ปุ่มจองอยู่ไหนและราคาของ PC เท่าไหร่",
+            "resolved_question": "ปุ่มจองอยู่ไหนและราคาของ PC เท่าไหร่",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": null,
+            "context_operation": null,
+            "context_topic": null,
+            "reason": "topic_shift",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    }
+  ]
+}

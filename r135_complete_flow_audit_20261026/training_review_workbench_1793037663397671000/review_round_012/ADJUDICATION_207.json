@@ -1,0 +1,134 @@
+{
+  "question_key": "1b61384a121a56d3ce75cb4a1a9fb69a0b4849ae371680ff3d6cbc2a76c938b4",
+  "example_sha256": "d60b14c772e1fd1d4f4f8ed86c42352645620d4e8ebbec8f29f6c17b2334fcaf",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One permission question asks plugging in a visitors own laptop.",
+      "raw_quotes": [
+        "Can a visitor plug in their own laptop?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains personal-power policy; replace generic eligibility focus with studio_rules.",
+      "raw_quotes": [
+        "Can a visitor plug in their own laptop?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "visitor is the local actor/audience and plug in their own laptop the literal action.",
+      "raw_quotes": [
+        "Can a visitor plug in their own laptop?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No PSU affiliation, prior authorization, offsite rental or studio-owned laptop is inherited.",
+      "raw_quotes": [
+        "Can a visitor plug in their own laptop?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A possible visitor is not automatically authorized to use outlets, nor asking whether all visitors may enter.",
+      "raw_quotes": [
+        "Can a visitor plug in their own laptop?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "personal_power_general cites authorization under rule4.8 and staff permission before personal-device outlet use.",
+      "raw_quotes": [
+        "Can a visitor plug in their own laptop?"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_personal_power_general"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No permission verdict, staff decision or electrical-use answer is taught.",
+      "raw_quotes": [
+        "Can a visitor plug in their own laptop?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Personal power requires authorization; visitor status alone is not permission.",
+      "handling": "Keep staff-authorization scope and do not answer a general entry-eligibility question instead."
+    }
+  ],
+  "historical_review_row": 207,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "eligibility",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can a visitor plug in their own laptop?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can a visitor plug in their own laptop?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "visitor",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "plug in their own laptop",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_personal_power_general": {
+      "revision": 2,
+      "record_sha256": "64ca103d93969d6f8d80221c0766ccd6941259db12dc6c1206032be544a8dd3c"
+    }
+  }
+}

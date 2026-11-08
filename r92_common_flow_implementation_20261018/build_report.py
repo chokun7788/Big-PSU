@@ -1,0 +1,192 @@
+"""Summarize retained checks and preservation after the final installed smoke."""
+import hashlib,json,difflib,statistics
+from pathlib import Path
+B=Path(__file__).resolve().parent;ROOT=B.parent;S=ROOT/'r78_web_session_check_20261016/system'
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def link(label,p):return f'[{label}](<{p.as_posix()}>)'
+def write(name,text):
+ with (B/name).open('x',encoding='utf-8',newline='\n') as f:f.write(text)
+install=json.loads((B/'INSTALLATION_3.json').read_text('utf-8'))
+baseline=json.loads((B/'BASELINE_MANIFEST.json').read_text('utf-8'))
+unexpected=[rel for rel,h in {**baseline,**install['installed_files']}.items() if sha(S/rel)!=h]
+historic=json.loads((ROOT/'r90_full_flow_analysis_20261018/SOURCE_MANIFEST.json').read_text('utf-8'))
+old_checks={}
+for arm,files in historic['files'].items():
+ root=Path(historic['roots'][arm]);bad=[rel for rel,h in files.items() if sha(root/rel)!=h]
+ old_checks[arm]={'tracked_files':len(files),'changed':bad}
+preservation={'tracked_installed_files_before':len(baseline),'intentional_application_changes':len(install['installed_files']),
+ 'unexpected_installed_changes':unexpected,'database_sha256':sha(S/'data/knowledge/common.sqlite'),
+ 'database_unchanged':sha(S/'data/knowledge/common.sqlite')==baseline['data/knowledge/common.sqlite'],
+ 'frozen_historical_sources':old_checks,'real_owner_approvals_created':False,
+ 'old_logs_overwritten':False,'full_test_executed':False}
+assert not unexpected and preservation['database_unchanged'] and not any(x['changed'] for x in old_checks.values())
+write('PRESERVATION_FINAL.json',json.dumps(preservation,ensure_ascii=False,indent=2)+'\n')
+tags=['candidate_release','owner_2','existing_fixture','competition_fixture','flow_3','owner_http','live_2','installed_web_2']
+results={tag:json.loads((B/'verification'/tag/'SUMMARY.json').read_text('utf-8')) for tag in tags}
+assert all(r['passed']==r.get('asserted',r.get('count')) and not r.get('failed') for r in results.values())
+write('VERIFICATION_FINAL.json',json.dumps(results,ensure_ascii=False,indent=2)+'\n')
+diff=[]
+for rel in install['installed_files']:
+ p=B/'before'/rel;old=p.read_text('utf-8').splitlines(True) if p.exists() else []
+ diff.extend(difflib.unified_diff(old,(S/rel).read_text('utf-8').splitlines(True),fromfile='before/'+rel,tofile='installed/'+rel))
+write('FINAL_CHANGESET.diff',''.join(diff))
+table=[]
+captions={'candidate_release':'คำถามที่เคยพลาด + strong negatives','owner_2':'วงจรเพิ่ม/แก้/เผยแพร่/ถอน ข้อมูลจำลอง','existing_fixture':'ราคาเหมา/FAQ ใหม่/แก้ข้อมูล/ไม่ fallback facts เดิม','competition_fixture':'แก้กฎ/เพิ่ม clause/ถอนข้อมูลใหม่ ไทย–อังกฤษ','flow_3':'สำนวนใหม่ / readiness / preview parity / compound / snapshot','owner_http':'Owner API + assets + สิทธิ์ + read-only checks','live_2':'Local model เปิดจริง + คำตอบที่มี assertions','installed_web_2':'เว็บ R78 ที่ติดตั้งใหม่ เปิด LLM'}
+for tag,r in results.items():table.append(f"| {captions[tag]} | {r['passed']}/{r.get('asserted',r.get('count'))} | {link(tag,B/'verification'/tag/'SUMMARY.json')} |")
+web=[json.loads(x) for x in (B/'verification/installed_web_2/TURNS.jsonl').read_text('utf-8').splitlines()]
+timings=' / '.join(f"{r['case']}: {r['elapsed_seconds']:.3f}s" for r in web)
+report='''# ผลพัฒนา Flow กลาง R92 และขอบเขตที่ใช้งานได้แล้ว
+
+วันที่ 18 ตุลาคม 2026 (เวลาไทย)
+
+## 1. คำตอบต่อคำถามว่า ดีกว่า Flow กลางเดิมหรือไม่
+
+ดีขึ้นในพฤติกรรมที่มีหลักฐานตรวจในรอบนี้: จาก common เดิมที่ผ่าน 24/49 คำถามในชุดเฉพาะจุด R91 baseline เป็น 49/49 คำถามชุดเดียวกันหลังแก้ โดยมี strong negative checks เพิ่มอีก 12 ข้อ รวม suite 61/61 ไม่ใช่คะแนน full corpus ใหม่ และไม่ได้ใช้ตัวเลขนี้แทนการเทียบ legacy ทั้งระบบ
+
+ความต่างที่จับต้องได้คือชื่อเกมถูกแล้วต้องเลือกงานถูกด้วย วิธีเล่นไม่ถูกแปลงเป็นรายชื่อบริการ คำถามต่อใช้บริบทที่ส่งจริง และคำถามหลายส่วนยังตอบส่วนที่มีข้อมูลได้ รายการใหม่ในหมวดเหล่านี้ใช้ตัวตีความร่วมโดยไม่ต้องเพิ่มโค้ดชื่อเกม/คำตอบราย record
+
+ได้ติดตั้งการแก้ใน R78 จำนวน 12 application/UI files แล้ว และยืนยัน build `common-r92-task-contracts` ผ่าน health/fingerprint ของเว็บจริง ชุด portable เดิมยังเป็นคนละ artifact และยังไม่ได้ rebuild ในรอบนี้
+
+## 2. สิ่งที่เปลี่ยนแล้ว
+
+### 2.1 Shared task interpretation ก่อนเลือก fields
+
+- task families ที่เสริมตรงจุด: game overview, game how-to, equipment list และ FAQ content
+- ชื่อและ IDs มาจาก snapshot ปัจจุบัน ไม่มี business facts/ราคา/ชื่อเกมรายตัวใน profiles
+- คำถามถูกจับทั้ง task span; มี bounded typo recovery และ grammar สำหรับคำแนะนำ/ภาพรวม/วิธีเล่นไทย–อังกฤษ
+- ป้องกัน negation, ปี/เลข, เงื่อนไข, คำถามหลายงาน และ valid English words เช่น pay/name/time จากการถูกแก้เป็นอีกงาน
+- ภาพรวมใช้ summary เป็นแกนและ genre ที่มีข้อมูล; ไม่บังคับมีวิธีเล่นหรือ metadata ทุกช่องจึงตอบได้
+- reused explicit request-focus helper ของเดิมสำหรับ rejected-task prefixes โดยไม่อ่าน facts เดิม
+
+### 2.2 Context ต้องเลือก semantic role ให้ถูก
+
+เมื่อประวัติมีทั้ง game, service และ control_set ระบบเลือกกลุ่ม records ที่เข้ากับ task ก่อน ตัวอย่าง “Beat Saber game overview and price” ต้องอ่านภาพรวมจาก game แล้วเลือก rates ผ่าน game-service relations ไม่เอา generic overview ของศูนย์มาแทน
+
+ไม่เก็บตัวเลขราคา/คำตอบเก่าเป็น facts ใน state; คำถามต่ออ่าน current snapshot อีกครั้ง ขอบเขตที่ถอนหรือเปลี่ยนต้องผ่าน current checks
+
+### 2.3 Owner preview และแชทใช้ dispatcher ร่วมกัน
+
+owner preview เรียก common chat dispatcher แล้วฉีด provider ที่ชัดเจน: draft view หรือ CommonStore published view แทนการเรียก CommonAnswerer ตรงอีกทางหนึ่ง Metadata บอก draft/published ตาม provider และไม่เปลี่ยน approval ใด ๆ
+
+หน้าทดลองข้อมูลยังไม่อ่าน live booking provider และบอกข้อจำกัดนั้นตรง ๆ การเชื่อมสถานะสดยังใช้หน้าแชทจริงตามเดิม ส่วนการตีความ/เลือกข้อมูล/ตรวจคำตอบ/ถามต่อใช้แกนเดียวกัน
+
+### 2.4 หน้ากรอกแสดง readiness แยกตามงาน ครบ 24 kinds
+
+เพิ่ม endpoint อ่านอย่างเดียว `/api/readiness` ภายใต้ capability authentication เดิม และแสดงผลในหน้า owner เช่น “ภาพรวมเกม — มีข้อมูลที่ต้องใช้แล้ว” กับ “ปุ่มควบคุม — ยังขาดรายการที่เชื่อมโยง”
+
+required-to-publish ของ schema กับ required-for-task แยกกัน การมีข้อมูลพร้อมไม่ได้ถือเป็น factual approval หรือการรับรองว่าแชทเข้าใจทุกสำนวน ข้อมูลราคาที่วันมีผลไม่ชัดแสดง needs_effective_dates ไม่ยกเป็นราคาปัจจุบันเอง
+
+ชื่อ revision ใน UI เปลี่ยนเป็น “ฉบับเผยแพร่” และอธิบายว่าแชททดลองที่อ่าน draft อาจเห็นค่าที่บันทึกทันที เพื่อไม่ให้เข้าใจว่าหน้า R78 preview เป็น production published reader
+
+### 2.5 Compound answer และ Need ledger
+
+คำตอบผสมเก็บผลต่อ clause: answered/partial/missing_fact/not_current/ambiguous ฯลฯ พร้อม fields/evidence refs และส่วนที่ยังไม่ครบ แต่ละ child อ่าน revision set เดียวกับ parent
+
+ถ้า child validation ไม่ผ่าน จะไม่เอาข้อความและ hits ของ candidate ที่ไม่ผ่านมารวมเป็นคำตอบยืนยัน แต่แสดงส่วนที่ยังต้องตรวจได้ ข้อที่ตอบได้อิสระยังคงอยู่
+
+Ledger เป็น coverage ของ selected fields/clauses ไม่ใช่หลักฐานว่าระบบเข้าใจทุกเจตนาของมนุษย์ ต้องอ่าน semantic_correctness_verified=False ตามจริง
+
+### 2.6 Snapshot consistency
+
+ตรึง records/sources/names/references/epoch ต่อคำขอ รวม child clauses และ dialogue repair หาก owner แก้ข้อมูลระหว่างตอบยังตรวจ epoch และคืน retry ได้ ไม่ประกอบราคาเก่ากับเงื่อนไขใหม่
+
+## 3. Flow ที่มีการเปลี่ยนจริงในรอบนี้
+
+```mermaid
+flowchart TD
+ A[Raw input + delivered common state] --> B[Explicit focus + current names/context]
+ B --> C[Whole task contract + role selection]
+ C --> D[Existing typed domain readers / bounded planner]
+ D --> E[Current common fields + relations + evidence]
+ E --> F[Per-need coverage + final validation]
+ F --> G[Task-oriented answer or targeted clarification]
+ G --> H[Delivered state / trace / source revision]
+ P[Owner draft or published snapshot] --> D
+ O[Owner form input] --> R[Data readiness by task]
+ S[Pinned request snapshot] --> D
+```
+
+ตัวตีความและ renderer ของหมวดอื่นที่ทำงานอยู่ยังใช้ของเดิมใน common ไม่ได้เปลี่ยนทั้งต้นไม้เป็น LLM task planner ใหม่ทุกหมวด
+
+## 4. ผลตรวจที่เก็บไว้
+
+| ชุดตรวจ | ผ่าน/ที่ตรวจยืนยัน | หลักฐาน |
+|---|---:|---|
+'''+ '\n'.join(table)+'''
+
+แต่ละ suite ใช้หน่วยคนละแบบ เช่น assertions, owner lifecycle checks, readiness checks และ HTTP turns หลายข้อมีโจทย์ซ้ำกันเพื่อเช็กคนละ surface จึงไม่รวมเป็น accuracy ของผู้ใช้ทั้งหมด
+
+Local model smoke มี 6 requests: 5 ข้อมี answer assertions และอีก 1 ข้อสังเกตพฤติกรรม broad PC question มี actual model preflight ที่สร้าง response จบแล้ว และ chat HTTP model call 1 ครั้งที่ transport/schema ผ่านแต่ semantic plan ไม่รับ เพราะ PC broad request ยังไม่ชัด ระบบจึงถามเลือกหัวข้อ งานที่ task ชัดใช้ source-backed path โดยไม่เรียกโมเดล ไม่ใช่การทดสอบให้ LLM generate คำตอบทั้ง 6 ข้อ
+
+Owner API checks ใช้ฐานจำลองและยืนยันว่า readiness/preview ไม่เขียน DB ความถูกต้องของการเพิ่ม/แก้/withdraw และ approval revision ผูก hash ตรวจด้วย simulated approvals ในฐานแยก ไม่ใช่เจ้าของอนุมัติ production data แล้ว
+
+เวลาที่พบใน HTTP smoke รอบสุดท้าย (การสังเกตบนเครื่องนี้ ไม่ใช่ concurrency SLA):
+
+'''+timings+'''
+
+## 5. ปัญหาที่พบระหว่างลงมือและแก้อย่างไร
+
+1. **Overlay resource dependency:** การแยก candidate ของ planner ต้องมี schema_descriptions.json ด้วย รอบแรกจึงขึ้น FileNotFoundError ก่อนอ่านคำถาม แก้การประกอบ candidate resources และเก็บ failed results ไว้ ไม่ใช่สรุปว่าข้อมูล production หาย
+2. **Compound สูญเสีย context ของ game overview:** bare task ไม่เข้า context resolver เดิม จึงเพิ่ม whole-task continuation ที่ผูกกับ trusted prior IDs
+3. **ฐานจริงมี aliases หลาย semantic roles:** เกมเดียวจับได้ทั้ง game/service/control_set ทำให้ continuation ยังเลือกไม่ได้และ generic LLM retrieval ตอบ overview ของศูนย์ แก้การเลือกกลุ่มชนิด records ตาม task และเพิ่ม regression จาก actual dataset; HTTP รอบแรก 6/7 ถูกเก็บไว้ต่างหาก
+4. **Ollama ไม่ได้เปิดก่อน smoke:** model preflight ครั้งแรกได้ WinError10061 ยังไม่ได้ส่ง chat requests เริ่ม installed local Ollama แบบ background และลองใหม่เมื่อ listener พร้อม ไม่ดาวน์โหลดโมเดลและไม่เปลี่ยน Windows settings ความผิด transport ไม่ถูกนับเป็น content failure
+5. **ป้าย published/draft ชวนเข้าใจผิด:** เปลี่ยนป้ายใน owner UI ให้กล่าวถึงฉบับเผยแพร่ และบอกข้อแตกต่างของแชททดลองที่อ่าน draft
+
+หลักฐานรอบที่ไม่ผ่านยังอยู่ใน verification/candidate_1, owner_1, flow_1, installed_web และ live_1; ผลล่าสุดเป็นคนละ directory ไม่เขียนทับ
+
+## 6. ความคืบหน้าตาม Flow A–I
+
+| ช่วง | สถานะที่มีหลักฐาน | งานที่ยังไม่ครบ |
+|---|---|---|
+| A inventory/provenance | ใช้ R90/R91 inventory; มี baseline/backups/final diff และ source hashes | behavior contracts ของ long-tail capabilities ยังไม่ครบทุกสำนวน |
+| B task/need contracts | มี four task families, role-aware continuation, explicit focus และ need ledger | generic LLM TaskPlan ที่ตรวจ semantic paraphrases ได้ทุกหมวดยังไม่ได้แทน field planner เดิม |
+| C games/equipment/FAQ | แก้ targeted regressions, new wording, short follow-up และ data-only addition ที่ตรวจ | ไม่รับรอง arbitrary wording ทั้งหมด |
+| D fee/rental | รักษา typed calculator/bridges ปัจจุบัน; isolated update/validity/no-fallback checks ผ่าน | current price validity ของข้อมูลจริงยังต้องใช้เอกสารที่มีผล; ไม่แก้ expiry เพื่อคะแนน |
+| E rules/policy/compound | รักษา rule-clause logic; modified/new/withdraw clause checks ผ่าน; compound coverage เพิ่ม | general proposition coverage และ dependent multi-task ทุกแบบยังไม่ครบ |
+| F calendar/live | คง paths เดิมและ semantics ที่ผู้ใช้ยืนยัน; content preview ไม่อ้าง live | ไม่ตรวจสถานะจริงใหม่และไม่ทำ live_binding cutover |
+| G shared preview/chat | ใช้ shared dispatcher และ provider ชัด; owner API + web verified | preview live-disabled/budget ต่างจาก public chat โดยตั้งใจ ไม่ใช่ deployment equivalence ทุกส่วน |
+| H owner lifecycle/readiness | readiness 24 kinds + existing version/approval/publish/withdraw exercised in isolated DB | future scheduling, relation remediation บางชุด, language review และ publish readiness จริงทั้งฐาน |
+| I observability/evaluation/delivery | need ledger, source revisions, loaded build, retained failures, installed web checks | ไม่รัน full corpus, calibrate scores, load test หรือ rebuild portable |
+
+## 7. สิ่งที่ยังต้องพัฒนาต่อและยังไม่ต้องเดาข้อมูล
+
+1. ขยาย shared task contracts ไป policy/procedure/controls/price slots และ qualifiers ที่ยังไม่ครอบคลุม โดยใช้ records ใหม่ในหมวดเดิม ไม่เพิ่ม per-record aliases
+2. เพิ่ม semantic binding/acceptance ของ LLM สำหรับ paraphrases ที่ grammar ยังไม่รู้จัก พร้อม strong negatives และ held-out questions; การเปิดรับ JSON ทุกแผนยังไม่ใช่วิธีแก้
+3. ปรับ retrieval/topic guard ที่ไม่มี subject/context ให้ไม่เลือก source ใกล้คำแต่คนละงาน และเก็บ candidate recall diagnostics
+4. เพิ่ม per-record/per-need evidence/cardinality ที่ละเอียดขึ้น โดยเฉพาะ “กติกาทั้งหมด”, ปุ่มทั้งหมด และหลายเงื่อนไขที่พึ่งกัน
+5. เชื่อมข้อมูล relation ที่ยืนยันได้ให้เป็น explicit references, ตรวจ task readiness ของข้อมูลจริง และแยก optional unknown จากข้อที่บล็อกงาน
+6. ตรวจ workflow published production ของข้อมูลจริงตามสิทธิ์เจ้าของ; profile R78 ปัจจุบันยังเป็น migration preview ไม่แอบเปลี่ยนเป็น approved/published
+7. เมื่อ correctness พร้อมและผู้ใช้สั่งจึงทำ full common LLM ON, วัด concurrent performance และ rebuild package ให้ตรง build
+
+ประเด็นข้อมูลที่ไม่ควรเดา: ราคาใหม่หลังวันสิ้นสุด, duration/terms ของแพ็กเกจที่ไม่ระบุ, conflicts ที่ไม่มีหลักฐานตัดสิน, การยืนยันปุ่มจากเครื่องจริง และ owner factual approval ที่ยังไม่ได้ทำ ส่วนช่วงเที่ยงไม่เปิดให้จอง/VR30 กินชั่วโมงเต็ม/สถานะสดถูกต้อง ใช้คำยืนยันเดิมของผู้ใช้ตามขอบเขตนั้น ไม่ขอซ้ำ
+
+## 8. การรักษางานเดิม
+
+ฐานข้อมูลจริงมี SHA256 เดิม ไม่แก้ production facts หรือ approval ในงานนี้ Frozen R64/R88 ตรวจเทียบ manifest เดิมแล้วไม่เปลี่ยน ไฟล์ก่อนแก้และแต่ละ revision ของการติดตั้งอยู่แยก และ log/ผลที่ไม่ผ่านยังเก็บอยู่
+
+กำลังให้บริการเว็บจาก R78 ที่ http://127.0.0.1:8115/; เปิด owner editor ของชุดเดียวกันด้วย Open-Data-Editor.cmd ที่ R78 เพื่อใช้หน้า readiness ใหม่ การเปิด owner editor บน path ของแพ็กเกจอื่นยังใช้โค้ดของแพ็กเกจนั้น
+
+## 9. ไฟล์อ้างอิง
+
+'''
+report += '\n'.join('- '+link(label,path) for label,path in [
+ ('Flow ที่ใช้อ้างอิง',ROOT/'r91_common_task_flow_20261018/01_PROPOSED_COMMON_FLOW_TH.md'),
+ ('Final installation manifest',B/'INSTALLATION_3.json'),('Final source diff',B/'FINAL_CHANGESET.diff'),
+ ('ผลตรวจทุกชุด',B/'VERIFICATION_FINAL.json'),('Preservation และ hashes',B/'PRESERVATION_FINAL.json'),
+ ('เปิดเว็บแชท',ROOT/'r78_web_session_check_20261016/Open-New-Chat.cmd'),
+ ('เปิดหน้าจัดการข้อมูล',ROOT/'r78_web_session_check_20261016/Open-Data-Editor.cmd')])+'\n'
+write('IMPLEMENTATION_REPORT_TH.md',report)
+readme='''# R92 — พัฒนา Flow กลางและตรวจเฉพาะจุด
+
+ติดตั้ง application/UI changes ใน R78 แล้ว 12 files ฐานข้อมูลจริงคงเดิม ไม่ใช่ full test หรือ production publication approval
+
+'''+ '\n'.join('- '+link(label,p) for label,p in [('รายงานการพัฒนา ผลตรวจ และสิ่งที่ยังเหลือ',B/'IMPLEMENTATION_REPORT_TH.md'),('หลักฐานผลตรวจ',B/'VERIFICATION_FINAL.json'),('Source diff',B/'FINAL_CHANGESET.diff'),('หลักฐานรักษาไฟล์เดิม',B/'PRESERVATION_FINAL.json')])+'''
+
+เว็บลองใช้: [เปิดแชท](http://127.0.0.1:8115/)
+
+ตัวอย่าง: `The Legend of Zelda: Breath of the Wild คือกมอะๆร` / `Could you please give me a beginner-friendly introduction to Beat Saber?` / `Beat Saber game overview and price` / `PC มีอะไรบ้าง` แล้วตอบ `อุปกรณ์`
+
+candidate/ คือ source ที่แก้; before/ และ before_revision_2/3 เก็บต้นฉบับ/ฉบับระหว่างทาง ผลทุก iteration อยู่ verification/ แยก directory ผลเก่าไม่ถูกเขียนทับ อย่าเอาฐาน ISOLATED_NOT_PRODUCTION.sqlite จาก verification ไปแทนฐานจริง
+'''
+write('README_TH.md',readme)
+print(json.dumps({'report':str(B/'IMPLEMENTATION_REPORT_TH.md'),'unexpected_changes':unexpected,'historical_sources_changed':any(x['changed'] for x in old_checks.values()),'final_web_passed':results['installed_web_2']['passed']},ensure_ascii=False))

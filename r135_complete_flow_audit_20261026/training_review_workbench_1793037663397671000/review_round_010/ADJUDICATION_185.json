@@ -1,0 +1,133 @@
+{
+  "question_key": "839a24018c7106f1e760cba4250acd1fd6476dc1eb4a58bee2604f25b3efbdb2",
+  "example_sha256": "e194abe4d961179daf91ee730577ca5a1c0abac85cc79f4e3d8ef0ffe4d75dd9",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One question explicitly asks a studio policy concerning Facebook despite policy spelling.",
+      "raw_quotes": [
+        "Could you please help me with this: What is the studio pollicy for facebook"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Correct contact/value to rules/detail/owner_policy; a channel name cannot erase the policy predicate.",
+      "raw_quotes": [
+        "Could you please help me with this: What is the studio pollicy for facebook"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "facebook is requested scope rather than a supplied URL or person.",
+      "raw_quotes": [
+        "Could you please help me with this: What is the studio pollicy for facebook"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No contact-page request, posting action, account ownership or earlier policy is inherited.",
+      "raw_quotes": [
+        "Could you please help me with this: What is the studio pollicy for facebook"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A broad policy topic can be clear while its facts are missing; do not invent a contact request or an affirmative permission.",
+      "raw_quotes": [
+        "Could you please help me with this: What is the studio pollicy for facebook"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "contact_studio_facebook and contact FAQs provide a page/channel value, not a general Facebook-use policy; procedural Facebook mentions do not settle this question.",
+      "raw_quotes": [
+        "Could you please help me with this: What is the studio pollicy for facebook"
+      ],
+      "source_record_ids": [
+        "contact_studio_facebook",
+        "migrated_faq_curated_contact_facebook"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No page URL, posting permission, moderation policy or account instruction is taught.",
+      "raw_quotes": [
+        "Could you please help me with this: What is the studio pollicy for facebook"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Recorded Facebook channel values and procedural contact mentions do not establish a general Facebook-use policy.",
+      "handling": "Keep the policy source gap; do not answer an unrequested page URL."
+    }
+  ],
+  "historical_review_row": 185,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "contact",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: What is the studio pollicy for facebook",
+        "domain": "contact",
+        "operation": "detail",
+        "facet": "value",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: What is the studio pollicy for facebook",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "facebook",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "contact_studio_facebook": {
+      "revision": 2,
+      "record_sha256": "4d3ce0e7221d39021f018ce351579fef3799203153074b6514ea4b70725884b0"
+    },
+    "migrated_faq_curated_contact_facebook": {
+      "revision": 3,
+      "record_sha256": "3938e4f5271ed6d9459ee144ec4e1d017ad4473096978a8452b2e8ea7797118f"
+    }
+  }
+}

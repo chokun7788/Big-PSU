@@ -1,0 +1,149 @@
+{
+  "question_key": "a9dbc235d6277c6b5f7ce52653ff2c6bf581fb41e911d68d11637ca104bac22a",
+  "example_sha256": "01bd9f1a3d6a73d8bd3bc41d510714d869d396ab798661d69d4de428932e8314",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One PC Zone equipment inventory need; polite framing is style.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "equipment/list/name retains an equipment collection rather than a game catalogue or scalar quantity.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PC Zone is the complete local location target; PC inside that zone name is not an independent platform restriction.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Replace the truncated PC context with the full quoted PC Zone scope; inherit no individual station or device.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The requested collection is clear; source completeness and actual device quantities are separate executor obligations.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "The retained pc_zone_equipment FAQ enumerates peripherals and computers; equipment_gaming_pc usage binds its PC Zone purpose, without proving every physical item.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_equipment_pc_zone",
+        "migrated_faq_curated_home_equipment_pc_zone",
+        "equipment_gaming_pc"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No device list, ten-unit count, specification or stock status enters the planner target.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Recorded FAQ inventory does not certify a complete current physical stock set or every typed equipment relation.",
+      "handling": "Keep completeness and quantity scope separate from the language list operation."
+    }
+  ],
+  "historical_review_row": 195,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [
+      "PC"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "PC Zone",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [
+      "PC Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "PC Zone",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "PC Zone",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_equipment_pc_zone": {
+      "revision": 4,
+      "record_sha256": "f72a270cd0c52ef7d0898e07799f13d4b8b9b9a756840e33906e67da8cdcd43d"
+    },
+    "migrated_faq_curated_home_equipment_pc_zone": {
+      "revision": 2,
+      "record_sha256": "79806549927667f6cf9422696a3b9ec3a2d25da15f54683a66570465633ef9fd"
+    },
+    "equipment_gaming_pc": {
+      "revision": 11,
+      "record_sha256": "75d28be7ff6714faff153e6aac7de920ecccccad8bb428b1188f8f70e5c38044"
+    }
+  }
+}

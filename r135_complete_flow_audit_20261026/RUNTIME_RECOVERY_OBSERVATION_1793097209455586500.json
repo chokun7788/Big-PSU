@@ -1,0 +1,88 @@
+{
+  "checked_at": 1793097209.4575882,
+  "installed_bundle": "R134",
+  "initial_observation": "SOURCE_PRESERVATION_OBSERVATION_1793092913804508200.json",
+  "initial_ports_listening": [],
+  "old_recorded_process_ids_no_longer_existed": [
+    37660,
+    45088,
+    42136
+  ],
+  "normal_entrypoint_first_failure": "Bundled Python cannot import torch; no existing process stopped. Failure reproduced by normal Start-New-Chat invoking Start-Model and one explicit Start-Model retry.",
+  "error_logs": [
+    {
+      "path": "PSU_Esports_Chat_Current_R134\\runtime\\model-start\\model_r132_retained_25691027162209222.err.log",
+      "sha256": "50793e8bd906a3016e181e7f96fb944273c0e1baa1c6c3a9e9b82ed128ae7eb3",
+      "tail": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r129_full_plan_completion_20261024\\serve_model.py\", line 11, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'\n"
+    },
+    {
+      "path": "PSU_Esports_Chat_Current_R134\\runtime\\model-start\\model_r132_retained_25691027162225364.err.log",
+      "sha256": "50793e8bd906a3016e181e7f96fb944273c0e1baa1c6c3a9e9b82ed128ae7eb3",
+      "tail": "Traceback (most recent call last):\n  File \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r129_full_plan_completion_20261024\\serve_model.py\", line 11, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'\n"
+    },
+    {
+      "path": "PSU_Esports_Chat_Current_R134\\runtime\\model-start\\model_r132_retained_25691027162535103.err.log",
+      "sha256": "e1d09f047d43538dab8829d2ae74ce20ef86043a8306f762dca8a8e8a33b3469",
+      "tail": "`torch_dtype` is deprecated! Use `dtype` instead!\n\nLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\nLoading checkpoint shards:  50%|█████     | 1/2 [00:13<00:13, 13.23s/it]\nLoading checkpoint shards: 100%|██████████| 2/2 [00:21<00:00, 10.38s/it]\nLoading checkpoint shards: 100%|██████████| 2/2 [00:21<00:00, 10.81s/it]\n"
+    }
+  ],
+  "recovery": "Existing selected D:/CodexTraining/psu-r121-20261022/venv/Lib/site-packages supplied to the normal Start-New-Chat process through process-local PYTHONPATH; normal editor entrypoint NoBrowser. No installed/frozen launcher or model source edited.",
+  "existing_environment_probe": {
+    "python": "3.12.14",
+    "torch": "2.7.1+cu128",
+    "cuda": "12.8",
+    "cuda_available": true,
+    "transformers": "4.56.2",
+    "peft": "0.17.1"
+  },
+  "current_processes": [
+    {
+      "ProcessId": 46356,
+      "CommandLine": "\"C:\\Users\\Chokhun\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe\" -B -u \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r129_full_plan_completion_20261024\\serve_model.py\" --port 12921 --output-name model_r132_retained_25691027162535103"
+    },
+    {
+      "ProcessId": 42420,
+      "CommandLine": "\"C:\\Users\\Chokhun\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe\" -B -m app.knowledge.common.owner_server --db \"C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\PSU_Esports_Chat_Current_R134\\system\\data\\knowledge\\common.sqlite\" --port 8116 --no-browser"
+    },
+    {
+      "ProcessId": 34236,
+      "CommandLine": "\"C:\\Users\\Chokhun\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe\" -B -m app.web_api.server --host 127.0.0.1 --port 8115"
+    }
+  ],
+  "current_model_health": {
+    "serving_protocol": "r129-multi-profile-v2",
+    "pid": 46356,
+    "model": "psu-r129:latest",
+    "profiles": {
+      "base": null,
+      "retained": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+      "new": "2b06494ba249b2f09edb27340e0a4e7a89801017de8f0336ea125566b65764dc"
+    },
+    "profile_digests": {
+      "base": "d7fd41965185024bd2bbe699364511fd4b61d0f275ccbd17287cf5c467894ffd",
+      "retained": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+      "new": "400558c1f53991fba16401446e0b5d6c6b8615cb84c58bd7fb23f99c67c465f3"
+    },
+    "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+    "quantization": "NF4 double quant BF16",
+    "url": "http://127.0.0.1:12921",
+    "other_stages": "base",
+    "actual_weight_updates_verified": true,
+    "production_installed": false
+  },
+  "source_preservation": "SOURCE_PRESERVATION_OBSERVATION_1793096809923447300.json",
+  "actual_customer_or_benchmark_questions_restarted": 0,
+  "actual_new_inferences_or_training": 0,
+  "process_stop_or_kill": false,
+  "candidate_bootstrap_fix": {
+    "launcher": "Start-Model.ps1",
+    "sha256": "8498d9ca205b9083d0ef4c66036c76e68b2286a8acb4307fdf91742ff03854a5",
+    "evidence": {
+      "path": "model_environment_1793094124412383900\\RESULT.json",
+      "sha256": "3c115d68a800c845bdeeee027075596ba801915b72a84c86bdd3f6bcd7bf63fe",
+      "checks": 7,
+      "passed": true
+    }
+  },
+  "remaining_bootstrap_issue": "Candidate explicitly selects and validates the existing local venv; final package/normal-entrypoint/API acceptance remains. Installed R134 launcher unchanged; current model is kept running."
+}

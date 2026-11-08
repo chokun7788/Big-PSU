@@ -1,0 +1,91 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 254,
+  "question_key": "395964569143417a7bd468743cf59db151c077404be7adacc8635e8cd577cc16",
+  "raw_question": "Fortnite ใช้จอยยังไง",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Fortnite ใช้จอยยังไง",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Fortnite",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Fortnite ใช้จอยยังไง",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Fortnite",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "จอย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One Thai question asks how to use a controller in Fortnite.",
+    "intent_operation_facet": "game_controls/list/input_bindings keeps a game-specific control request, without adding general equipment usage.",
+    "entities_and_slot_roles": "Add exact จอย as the requested input-device scope; the protocol has no input_device slot, so requested_scope preserves the literal.",
+    "local_shared_history_scope": "No PS5, Xbox, preset, custom layout, game version, button or dialogue history is supplied.",
+    "negation_and_ambiguity": "A generic controller question cannot certify a platform or default binding layout from the only available source.",
+    "source_version_alignment": "Pinned controls_ps5_fortnite revision7 is PlayStation-specific partial_official evidence about menu/preset selection, explicitly not detailed layouts for every preset; input_device, game_version and preset fields are unknown.",
+    "no_business_answer_target": "No invented platform quote, full-layout claim, preset choice or button-action business answer is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "controls_ps5_fortnite"
+  ],
+  "source_answer_issues": [
+    [
+      "Only partial PlayStation menu/preset information is recorded.",
+      "Disclose source/platform limits instead of inventing a complete controller layout."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 255,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "controls_ps5_fortnite": {
+      "revision": 7,
+      "record_sha256": "291988987c8f1d8f434fe25e655a8e915783bd8b44ddfdcae9fac66808b63859"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

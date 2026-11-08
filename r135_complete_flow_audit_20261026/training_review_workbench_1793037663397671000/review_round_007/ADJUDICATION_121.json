@@ -1,0 +1,133 @@
+{
+  "question_key": "26c6669ed457f8e72c8e79a8e00046accd59a0d2bea5bc7b6314530cb84cb220",
+  "example_sha256": "5a3a717edbc2d25916c7bd438edf18ea46cedce905e14ca5d701e60592025c1a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One controller-usage request for Overcooked 2.",
+      "raw_quotes": [
+        "Overcooked 2 ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/list/input_bindings requests controls, not games compatible with a particular controller.",
+      "raw_quotes": [
+        "Overcooked 2 ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Overcooked 2 is target and จอย is a local requested device scope.",
+      "raw_quotes": [
+        "Overcooked 2 ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No PS5, Nintendo controller model or previous button is inherited.",
+      "raw_quotes": [
+        "Overcooked 2 ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A generic controller noun does not resolve platform/model compatibility.",
+      "raw_quotes": [
+        "Overcooked 2 ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "The exact-sequel recovered control set is PS5-scoped while the game offering is Nintendo-scoped; those source relations cannot be silently joined.",
+      "raw_quotes": [
+        "Overcooked 2 ใช้จอยยังไง"
+      ],
+      "source_record_ids": [
+        "recovered_controls_ps5_overcooked_2",
+        "game_detail_overcooked_2"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No button layout, compatibility or physical controller model enters labels.",
+      "raw_quotes": [
+        "Overcooked 2 ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Source controller platform and recorded studio offering platform differ.",
+      "handling": "No compatibility/installation inference across unrelated platform relations."
+    }
+  ],
+  "historical_review_row": 121,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Overcooked 2 ใช้จอยยังไง",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Overcooked 2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Overcooked 2 ใช้จอยยังไง",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Overcooked 2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "จอย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "recovered_controls_ps5_overcooked_2": {
+      "revision": 2,
+      "record_sha256": "2228bd823d40260c3b2ff81d527e2aa3e223bf1c5d04fa5124e7f1f2797c9246"
+    },
+    "game_detail_overcooked_2": {
+      "revision": 5,
+      "record_sha256": "017b988edeb50d906ab9270fb4c25c1e4f6631c6f70f1b1e519f8c6d8e1f40ad"
+    }
+  }
+}

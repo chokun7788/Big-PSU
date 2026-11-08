@@ -1,0 +1,206 @@
+--- before/app/pipeline/engine.py
++++ after/app/pipeline/engine.py
+@@ -1600,7 +1600,7 @@
+ 
+         locale = current_locale_decision()
+         from app.pipeline.user_service_facts import answer_user_service_facts
+-        user_facts = answer_user_service_facts(main_question, locale.effective if locale is not None else 'th')
++        user_facts = answer_user_service_facts(main_question, locale.effective if locale is not None else 'th',recent_history=recent_history)
+         if user_facts is not None:
+             return self._build_result(user_facts['answer'], user_facts['hits'], started,
+                 user_facts['mode'], .98, user_facts['route'], entities, user_facts['validation'],
+--- before/app/pipeline/user_service_facts.py
++++ after/app/pipeline/user_service_facts.py
+@@ -19,17 +19,29 @@
+ 
+ def _has(q,pattern):return bool(re.search(pattern,q,re.I))
+ 
+-def answer_user_service_facts(question,locale='th'):
+-    q=normalize_text(question);en=locale=='en'
++def answer_user_service_facts(question,locale='th',recent_history=None):
++    from app.pipeline.service_fact_query import recover_service_fact_query
++    q,recoveries=recover_service_fact_query(question);en=locale=='en'
++    from app.session.service_fact_dialogue import ambiguous_fee_followup
++    ambiguous=ambiguous_fee_followup(question,recent_history)
++    if ambiguous:
++        labels={'parking':('ที่จอดรถ','parking'),'spectators':('การนั่งดูเพื่อน','watching friends'),'membership':('สมาชิก','membership')}
++        offered=[labels[k][en] for k in ambiguous['claim_ids'] if k in labels]
++        subject=' / '.join(offered)
++        answer=(f'Which item do you mean is free: {subject}?' if en else f'ต้องการถามว่าอะไรฟรีครับ: {subject}?') if len(offered)>1 else ('The previous answer covered more than one condition. Which item do you mean is free?' if en else 'คำตอบก่อนหน้ามีหลายเรื่องหรือเงื่อนไข ต้องการถามค่าใช้จ่ายเรื่องใดครับ?')
++        return dict(answer=answer,hits=[],mode='pipeline:service_fact_scope_clarification',route=PipelineRoute('clarification','ambiguous_service_fee',.98,'clarification','low','multiple prior service subjects'),validation=ValidationResult(True,(),('ambiguous_service_fee',)),trace=[PipelineTrace('service_fact_scope_guard','clarification',.98,'do not choose the first prior subject',{'service_fact_state':ambiguous})])
+     # Tournament rules and zone-hire contracts are separate sources/scopes.
+     if _has(q,r'แข่งขัน|ลงแข่ง|ตอนแข่ง|กฎแข่ง|กติกา|\b(?:competition|tournament|esports event|rental|hire)\b|เหมา'):return None
+     if _has(q,r'แผนที่.*(?:เกม|valorant|cs2)|(?:เกม|valorant|cs2).*แผนที่|\b(?:game map|map in|maps?.*(?:valorant|cs2))\b'):return None
++    if _has(q,r'สมาชิก|\b(?:membership|members?)\b') and _has(q,r'steam|สมาชิกทีม|\b(?:team|xbox live|nintendo online)\b'):
++        answer=('Studio membership requirements do not establish game-account or team membership requirements. Please specify the account service or competition rule you want to check.' if en else 'เงื่อนไขสมาชิกของศูนย์ใช้แทนข้อกำหนดบัญชีเกมหรือสมาชิกทีมไม่ได้ครับ ต้องตรวจข้อกำหนดของบัญชีเกมหรือรายการแข่งขันนั้นแยกกัน')
++        return dict(answer=answer,hits=[],mode='pipeline:service_fact_scope_clarification',route=PipelineRoute('clarification','external_membership_scope',.98,'clarification','low','studio access is not game account or team membership'),validation=ValidationResult(True,(),('external_membership_scope',)),trace=[PipelineTrace('service_fact_scope_guard','clarification',.98,'separate studio membership from account and team membership',{})])
+     keys=[];missing=[]
+     if _has(q,r'เป็นของ.{0,12}มหาวิทยาลัย|ร้านเกมทั่วไป|ศูนย์.*ของมหา(?:ลัย|วิทยาลัย)|\b(?:university[- ](?:facility|owned)|regular gaming (?:cafe|shop)|owned by.*university|who owns (?:the )?studio)\b'):keys.append('university')
+-    if _has(q,r'สมาชิก|\b(?:membership|member)\b') and not _has(q,r'ทีมงาน|บุคลากร|\bstaff\b'):keys.append('membership')
+-    if _has(q,r'ดูเพื่อน|นั่งดู|\b(?:watch (?:my |our |your )?friends|spectat\w*|just watch)\b'):keys.append('spectators')
+-    if _has(q,r'walk[ -]?in|เดินเข้า|เดินไปใช้|ไม่จอง.{0,10}(?:ไป|เข้า|เล่น)'):keys.append('walk_in')
+-    if _has(q,r'ที่จอด|จอดรถ|\bparking\b'):keys.append('parking')
++    if _has(q,r'สมาชิก|\b(?:membership|members?|nonmembers?)\b') and not _has(q,r'ทีมงาน|บุคลากร|\bstaff\b'):keys.append('membership')
++    if _has(q,r'ดูเพื่อน|นั่งดู|\b(?:watch (?:my |our |your |a )?friends?|spectat\w*|just watch)\b'):keys.append('spectators')
++    if _has(q,r'walk[ -]?in|เดินเข้า|เดินไปใช้|ไปหน้าร้าน|ไม่จอง.{0,10}(?:ไป|เข้า|เล่น)|\bturn up\b'):keys.append('walk_in')
++    if _has(q,r'ที่จอด|จอดรถ|(?:รถ|มอไซค์|มอเตอร์ไซค์).*จอด|\b(?:parking|park.*(?:car|motorcycle))\b'):keys.append('parking')
+     if _has(q,r'แผนที่|\b(?:map|maps)\b'):keys.append('map')
+     if _has(q,r'ตึก|อาคาร|ชั้นไหน|อยู่ตรงไหน|ที่อยู่ศูนย์|ศูนย์อยู่ที่ไหน|ศูนย์อยู่ไหน|ศูนย์อยู่ที่ใด|ที่ตั้ง.*(?:ศูนย์|psu)|\b(?:building|floor|studio (?:address|location)|(?:venue|studio|centre|center) address|address of.*(?:studio|psu esports)|where (?:is|can i find) (?:the )?(?:venue|studio|centre|center|psu esports)|how do i get to the venue)\b'):
+         if not _has(q,r'ทีวี|จอ|คีย์บอร์ด|เมาส์|\b(?:tv|monitor|screen|keyboard|mouse|xbox|bangkok|floor plan|game map|floor price)\b'):keys.append('location')
+@@ -37,16 +49,17 @@
+         if not _has(q,r'อีเมล|เบอร์|โทร|\b(?:email|phone|telephone)\b'):keys.append('contact')
+     if _has(q,r'(?:มา|กัน|กลุ่ม|มี).{0,8}(?:4|สี่)\s*คน|\b(?:four|4) (?:of us|people|friends)\b') and _has(q,r'เลือก|เล่นอะไร|แนะนำ|\b(?:choose|recommend|which service)\b') and not _has(q,r'สลับ|2คน|2 คน|\b(?:swap|take turns|two people)\b'):keys.append('four_people')
+     if _has(q,r'คนจอง.*คนเล่น|คนเล่น.*คนจอง|จองแทน|ใช้แทน|รายชื่อ.*จอง|\b(?:someone.*(?:booking|instead)|not listed|transfer.*booking|play instead|named in)\b'):keys.append('player_identity')
+-    if _has(q,r'หลักฐาน|แสดง.*บัตร|ใช้.*passport|เอกสาร.*(?:มาถึง|เช็คอิน|เช็กอิน)|\b(?:identification|passport|id card|student card|documents?.*(?:arrive|check.?in))\b') and not _has(q,r'สลิป|โอน|ชื่อจริง|ตรงกับบัตร|\b(?:slip|transfer|name.*match|real name)\b'):keys.append('checkin_documents')
+-    wrong_machine=_has(q,r'ผิดเครื่อง|จองผิดอุปกรณ์|\b(?:wrong machine|wrong device|wrong equipment)\b')
++    if _has(q,r'หลักฐาน|แสดง.*บัตร|บัตร.*แสดง|ใช้.*(?:passport|พาสปอร์ต)|เอกสาร.*(?:มาถึง|เช็คอิน|เช็กอิน)|\b(?:identification|passport|id(?: card)?|student card|documents?.*(?:arrive|check.?in))\b') and not _has(q,r'สลิป|โอน|ชื่อจริง|ตรงกับบัตร|\b(?:slip|transfer|name.*match|real name)\b'):keys.append('checkin_documents')
++    wrong_machine=_has(q,r'ผิดเครื่อง|เครื่องผิด|จองผิดอุปกรณ์|\b(?:wrong machine|wrong device|wrong equipment|wrong console)\b')
+     active_session=_has(q,r'เล่นอยู่|ระหว่างเล่น|อัปเดต|อัพเดต|\b(?:while playing|during.*(?:play|update)|updat\w*)\b')
+     if wrong_machine or (_has(q,r'เปลี่ยน.{0,8}(?:เครื่อง|อุปกรณ์)|\bchange.*machine\b') and not active_session):keys.append('change_machine')
+-    if _has(q,r'เปลี่ยน.{0,8}เวลา|เลื่อน.{0,8}(?:เวลา|รอบ)|\b(?:change.*booking time|change.*time|reschedul\w*.*time)\b'):keys.append('change_time')
+-    if _has(q,r'คีย์บอร์ด|เมาส์|\b(?:keyboard|mouse)\b') and _has(q,r'ตัวเอง|ส่วนตัว|เอา|นำ|\b(?:own|personal|bring)\b'):keys.append('personal_keyboard_mouse')
+-    if _has(q,r'สลิป|\b(?:slip|payment image)\b') and _has(q,r'ผิด|เปลี่ยน|\b(?:wrong|incorrect|replace)\b'):keys.append('wrong_slip')
+-    if _has(q,r'โอน|\btransfer\b') and _has(q,r'ครั้งเดียว|รวม|\b(?:one|single|combined)\b') and _has(q,r'หลายเครื่อง|หลายรายการ|\b(?:multiple|several|machines|bookings)\b'):keys.append('combined_transfer')
+-    if _has(q,r'เช[็ค็กค]+อิน|check[ -]?in') and _has(q,r'ทั้งกลุ่ม|แทน|รายคน|\b(?:whole group|on behalf|individually|first person|everyone)\b'):keys.append('group_checkin')
+-    if _has(q,r'ที่นั่งพัก|นั่งพัก|โซนกลาง|\b(?:sit and rest|rest seating|rest area|place to rest)\b'):keys.append('rest_seating')
++    if _has(q,r'(?:เปลี่ยน|ย้าย).{0,8}เวลา|เลื่อน.{0,8}(?:เวลา|รอบ)|\b(?:change.*booking time|change.*time|reschedul\w*.*time|move.*reservation.*time)\b'):keys.append('change_time')
++    if _has(q,r'คีย์บอร์ด|เมาส์|เม้าส์|\b(?:keyboard|mouse)\b') and _has(q,r'ตัวเอง|ส่วนตัว|ของผม|เอา|นำ|\b(?:own|personal|bring)\b'):keys.append('personal_keyboard_mouse')
++    payment_image=_has(q,r'หลักฐานโอน.*(?:ผิด|รูป)|\b(?:transfer|payment).*(?:receipt|proof).*(?:image|picture|photo)\b')
++    if (_has(q,r'สลิป|\b(?:slip|payment image)\b') or payment_image) and _has(q,r'ผิด|เปลี่ยน|\b(?:wrong|incorrect|replace)\b'):keys.append('wrong_slip')
++    if _has(q,r'โอน|จ่าย|\b(?:transfer|pay)\b') and _has(q,r'ครั้งเดียว|รวม|\b(?:one|single|combined)\b') and _has(q,r'หลายเครื่อง|หลายรายการ|\d+\s*เครื่อง|\b(?:multiple|several|machines|bookings)\b'):keys.append('combined_transfer')
++    if _has(q,r'เช[็ค็กค]+อิน|check(?:[ -]?in| everyone in)') and _has(q,r'ทั้งกลุ่ม|แทน|รายคน|\b(?:whole group|on behalf|individually|first person|everyone)\b'):keys.append('group_checkin')
++    if _has(q,r'ที่นั่งพัก|นั่งพัก|นั่งรอพัก|โซนกลาง|\b(?:sit and rest|rest seating|rest area|re(?:st)? area|place to rest|waiting area.*rest)\b'):keys.append('rest_seating')
+     if _has(q,r'ก่อนเวลาจอง.*รอ|รอ.*ก่อนเวลา|\bwhere.*wait.*(?:booking|booked|slot)\b'):
+         keys.append('rest_seating');missing.append('designated_waiting_point')
+     date_boundary=_has(q,r'ผิดวัน|เปลี่ยนวัน|เลื่อน.{0,10}(?:วัน|คืนเงิน)|\b(?:wrong date|change.*date|reschedul\w*.*(?:day|date)|another day.*refund)\b')
+@@ -58,13 +71,19 @@
+     else:explanation=''
+     # A similar word does not establish a policy for an unanswered condition.
+     pending_conditions=[
++        ('personal_controller_permission',r'จอย|\bcontroller\b',r'ตัวเอง|ส่วนตัว|เอา|\b(?:own|personal|bring)\b',
++         'ข้อมูลที่ยืนยันห้ามเฉพาะคีย์บอร์ดและเมาส์ส่วนตัว ยังไม่ได้ยืนยันสิทธิ์นำจอยส่วนตัวมาใช้ครับ',
++         'The confirmed restriction covers personal keyboards and mice. Permission to bring a personal controller has not been confirmed.'),
++        ('combined_transfer_note_format',r'note|โน้ต',r'เขียนอะไร|ใส่อะไร|\bwhat.*(?:write|put)\b',
++         'ยืนยันว่าต้องเขียน Note ตอนจองเพื่อให้ศูนย์ตรวจสอบ แต่ยังไม่ได้กำหนดข้อความหรือรูปแบบ Note ที่ต้องเขียนครับ',
++         'A note is required at booking for studio verification, but the exact wording or note format has not been specified.'),
+         ('multiplayer_game_modes',r'เกม|\bgames?\b',r'เล่นกับเพื่อน|เล่นด้วยกัน|\b(?:with friends|multiplayer|play together)\b',
+          'มีรายการเกมของศูนย์ แต่ยังไม่ได้ยืนยันโหมดเล่นร่วมกันและจำนวนผู้เล่นของแต่ละเกมครับ ต้องการเล่นเกมหรือโซนไหน?',
+          'The studio has a game catalog, but multiplayer modes and supported player counts have not been verified for each game. Which game or zone would you like?'),
+         ('two_person_recommendation',r'สองคน|2\s*คน|\b(?:two|2) (?:of us|people)\b',r'เล่นด้วยกัน|เล่นอะไร|\b(?:play together|what.*play|choose)\b',
+          'ยังไม่ได้ยืนยันคำแนะนำเกมสำหรับเล่นพร้อมกันสองคนครับ ต้องการเล่นเกมหรือโซนไหน?',
+          'A recommendation for two people playing together has not been confirmed. Which game or zone would you like?'),
+-        ('game_installation_permission',r'ลงเพิ่ม|ติดตั้ง.{0,40}(?:เอง|ได้ไหม)|\b(?:can|may).*(?:install|add)\b|\b(?:install|add).*(?:myself|allowed)\b',r'เกม|โปรแกรม|mod|\b(?:game|program|mod)\b',
++        ('game_installation_permission',r'ลงเพิ่ม|โหลดเกม.*เอง|ติดตั้ง.{0,40}(?:เอง|ได้ไหม)|\b(?:can|may).*(?:install|add)\b|\b(?:install|add).*(?:myself|allowed)\b',r'เกม|โปรแกรม|mod|\b(?:game|program|mod)\b',
+          'ยังไม่ได้ยืนยันว่าให้ขอลงเกมเพิ่มหรือติดตั้งเกม โปรแกรม หรือ mod เองได้หรือไม่ครับ',
+          'Permission to request additional games or install games, programs, or mods yourself has not been confirmed.'),
+         ('session_extension',r'ต่อเวลา|\b(?:extend|extension)\b',r'เล่น|เวลา|\b(?:play|time|session)\b',
+@@ -94,7 +113,7 @@
+         ('seat_capacity_definition',r'ที่นั่ง|\bseats?|seating\b',r'จำนวนคนเล่น|พร้อมกัน|ในห้อง|\b(?:players|simultaneous|room)\b',
+          'ข้อมูลจำนวนที่นั่งกับจำนวนเครื่องเป็นคนละช่องข้อมูล ยังไม่ได้ยืนยันว่าจำนวนที่นั่งหมายถึงผู้เล่นพร้อมกันครับ',
+          'Seat counts and equipment counts are separate fields; seats have not been confirmed as simultaneous player capacity.'),
+-        ('quotation_receipt_procedure',r'ใบเสนอราคา|ใบเสร็จ|\b(?:quotation|receipt)\b',r'ขอ|ได้ไหม|\b(?:can|request|get|issue)\b',
++        ('quotation_receipt_procedure',r'ใบเสนอราคา|ใบเสร็จ|\bquotation\b|^(?!.*(?:payment|transfer).*image).*\breceipt\b',r'ขอ|ได้ไหม|\b(?:can|request|get|issue)\b',
+          'ยังไม่ได้ยืนยันขั้นตอนขอใบเสนอราคาหรือใบเสร็จครับ',
+          'The procedure for obtaining a quotation or receipt has not been confirmed.'),
+         ('game_version_status',r'อัปเดต|อัพเดต|\b(?:updat\w*|version)\b',r'ล่าสุด|เวอร์ชัน|\b(?:latest|version|up.to.date)\b',
+@@ -124,7 +143,7 @@
+         ('active_session_machine_change',r'เปลี่ยน.{0,10}(?:เครื่อง|อุปกรณ์)|\bchange.*machines?\b',r'เล่นอยู่|ระหว่างเล่น|อัปเดต|อัพเดต|\b(?:while playing|during.*play|updat\w*)\b',
+          'ยังไม่ได้ยืนยันขั้นตอนเปลี่ยนเครื่องระหว่างเล่นหรือระหว่างเกมอัปเดตครับ',
+          'The procedure for changing machines during play or a game update has not been confirmed.'),
+-        ('payer_identity',r'บัญชี.*เพื่อน|\b(?:friend\W*s (?:bank )?account|someone else\W*s (?:bank )?account)\b',r'จ่าย|โอน|\b(?:pay|transfer)\b',
++        ('payer_identity',r'บัญชี.*เพื่อน|\b(?:friend\W*s (?:bank )?account|someone else\W*s (?:bank )?account|friend.*their account)\b',r'จ่าย|โอน|\b(?:pay|transfer)\b',
+          'ยังไม่ได้ยืนยันว่าใช้บัญชีธนาคารของเพื่อนชำระเงินได้หรือไม่ครับ ข้อมูลการโอนรวมหลายเครื่องไม่ครอบคลุมเรื่องเจ้าของบัญชี',
+          'Payment from a friend\'s bank account has not been confirmed. Permission for one transfer covering multiple machines does not establish who may pay.'),
+         ('name_matches_id',r'ชื่อจริง|ตรงกับบัตร|\b(?:real name|name.*match.*(?:id|card))\b',r'ชื่อ|\bname\b',
+@@ -160,8 +179,10 @@
+         missing.append('refund_conditions');lines.append('The recorded general refund rule does not confirm eligibility or processing for this particular booking.' if en else 'กฎคืนเงินทั่วไปที่บันทึกไว้ยังใช้รับรองว่ารายการจองนี้จะได้รับเงินคืนหรือดำเนินการอย่างไรไม่ได้ครับ')
+     if 'parking' in keys and _has(q,r'ฟรี|ราคา|ค่าจอด|\b(?:free|fee|cost|charge)\b'):
+         missing.append('parking_fee');lines.append('Parking fees have not been specified.' if en else 'ยังไม่ได้ระบุค่าจอดรถ จึงยืนยันว่าจอดฟรีไม่ได้ครับ')
+-    if 'membership' in keys and _has(q,r'ค่าสมาชิก|ราคา|\b(?:fee|cost|paid|price)\b'):
++    if 'membership' in keys and _has(q,r'ค่าสมาชิก|ราคา|ฟรี|\b(?:fee|cost|paid|price|free)\b'):
+         missing.append('membership_fee');lines.append('A membership fee has not been specified; membership is not required for access.' if en else 'ยังไม่ได้ระบุเรื่องค่าสมาชิก แต่การเข้าใช้บริการไม่จำเป็นต้องเป็นสมาชิกครับ')
++    if 'spectators' in keys and _has(q,r'ฟรี|ราคา|ค่าเข้า|\b(?:free|fee|cost|charge|price)\b'):
++        missing.append('spectator_fee');lines.append('A spectator fee or free admission has not been confirmed.' if en else 'ยังไม่ได้ระบุค่าเข้าชมหรือยืนยันว่าเข้าดูเพื่อนฟรีครับ')
+     if 'walk_in' in keys and _has(q,r'ทันที|ตอนนี้|\b(?:immediately|right now)\b'):
+         missing.append('immediate_walk_in_slot');lines.append('This does not confirm an immediately available slot or waive the booking lead time.' if en else 'ข้อมูลนี้ยังไม่ยืนยันว่ามีรอบว่างให้เล่นทันทีหรือยกเว้นเวลาจองล่วงหน้าครับ')
+     lines+=['Source: user-provided service answers (2026-10-08)' if en else 'แหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)',data['source_url']]
+@@ -175,4 +196,6 @@
+         trust_level='curated',description='Previously recorded booking rule; grace exceptions are unconfirmed'))
+         for rule in supplemental]
+     meta['recorded_rule_ids']=[rule['id'] for rule in supplemental]
++    meta['lexical_recoveries']=recoveries
++    meta['normalized_service_question']=q
+     return dict(answer='\n\n'.join(lines).strip(),hits=hits,route=route,validation=ValidationResult(True,(),tuple(missing)),mode='pipeline:user_service_facts',trace=[PipelineTrace('user_service_facts',status,.98,'do not infer unanswered policies',meta),PipelineTrace('task_answer_contract',meta['outcome'],1.0,'known versus missing user-confirmed fields',dict(schema_version=1,kind='single',status=status,outcome=meta['outcome'],category=category,intent='user_service_facts',source_count=len(hits),coverage_meaning='user_confirmed_fields_not_live_status'))])
+--- before/app/session/context_resolver.py
++++ after/app/session/context_resolver.py
+@@ -874,6 +874,11 @@
+     if not original:
+         return ResolvedQuestion(original, original, False, reason="empty")
+ 
++    from app.session.service_fact_dialogue import resolve_service_fact_followup
++    service_followup=resolve_service_fact_followup(original,recent_history,locale)
++    if service_followup is not None:
++        return service_followup
++
+     # An explicit rejection followed by a complete new request changes the
+     # task. Removing only this bounded preface prevents its rule word from
+     # routing the new game-identity request back into a competition rulebook.
+--- before/app/session/conversation_store.py
++++ after/app/session/conversation_store.py
+@@ -82,7 +82,7 @@
+                 r['turns'].popitem(last=False)
+             return copy.deepcopy(turn)
+ 
+-    def complete(self, session_id, turn_id, revision, response, *, plan=None):
++    def complete(self, session_id, turn_id, revision, response, *, plan=None, fact_state=None):
+         with self._guard:
+             r=self._record(session_id)
+             turn=r['turns'].get(turn_id)
+@@ -111,13 +111,15 @@
+                 intent=response.get('universal_intent')
+                 if is_dataclass(intent):
+                     intent=asdict(intent)
++                from app.session.service_fact_dialogue import service_fact_state
+                 r['history'].extend([
+                     {'role':'user','text':turn['question']},
+                     {'role':'assistant','text':response.get('answer',''),'route_category':response.get('route_category',''),
+                      'mode':response.get('mode',''),
+                      'route_intent':response.get('route_intent',''),'resolved_text':(turn['plan'] or {}).get('resolved_query',response.get('resolved_question',turn['question'])),
+                      'universal_intent':intent,'request_plan':turn['plan'],'request_id':response.get('request_id',''),
+-                     'rule_coverage':copy.deepcopy(response.get('rule_coverage'))},
++                     'rule_coverage':copy.deepcopy(response.get('rule_coverage')),
++                     'service_fact_state':copy.deepcopy(fact_state) if fact_state is not None else service_fact_state(response)},
+                 ])
+                 r['history']=r['history'][-16:]
+             return True
+--- before/app/web_api/server.py
++++ after/app/web_api/server.py
+@@ -768,7 +768,9 @@
+                 response['conversation_outcome'] = contract.get('outcome', task_contract.get('outcome','delegated_existing_pipeline'))
+                 response['coverage'] = {k: contract.get(k) for k in ('expected_ids', 'returned_ids', 'missing_ids', 'temporal_validity', 'task_outcomes') if k in contract}
+                 if not response['timed_out']:
+-                    STORE.complete(client_session_id, client_turn_id, turn['revision'], response, plan=actual_plan)
++                    from app.session.service_fact_dialogue import service_fact_state
++                    fact_state=service_fact_state({'mode':result.mode,'trace':result.trace})
++                    STORE.complete(client_session_id, client_turn_id, turn['revision'], response, plan=actual_plan, fact_state=fact_state)
+                 response['conversation_state'] = STORE.snapshot(client_session_id)
+                 log_record = {
+                     "event_type": "chat_exchange",
+--- before/tests/test_user_service_facts_r48.py
++++ after/tests/test_user_service_facts_r48.py
+@@ -21,7 +21,6 @@
+                   'Where is the RoV competition venue?',
+                   'Nintendo Switch rental for four people',
+                   'ขอเหมาอุปกรณ์พร้อมที่นั่งพัก',
+-                  'เอาจอยตัวเองมาได้ไหม','Can I bring my own controller?',
+                   'What maps are there in VALORANT?',
+                   'Where is the 65-inch TV located?',
+                   'Where is the Xbox studio in Bangkok?']:
+@@ -39,6 +38,7 @@
+                         ('โอนเกินทำยังไง','overpayment_resolution'),
+                         ('โอนขาดต้องจ่ายเพิ่มไหม','underpayment_resolution'),
+                         ('เด็กเข้าใช้บริการได้ไหม ต้องมีผู้ปกครองไหม','minor_guardian_policy'),
++                        ('เอาจอยตัวเองมาได้ไหม','personal_controller_permission'),
+                         ('ที่นั่งคือจำนวนคนเล่นพร้อมกันหรือในห้อง','seat_capacity_definition')]:
+             with self.subTest(question=q):
+                 r=answer_user_service_facts(q)

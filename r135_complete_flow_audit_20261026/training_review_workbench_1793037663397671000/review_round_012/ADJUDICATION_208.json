@@ -1,0 +1,163 @@
+{
+  "question_key": "8bbfc4101201e7ff2cd0344e50d05fa336e6b1dfde30cff3530e517367d40158",
+  "example_sha256": "f78c5c1a3af275d4f096ff243b692c528f4a0fc48812a1d8d773a65d82f5a588",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One room-seat question selects a fully named external/full-day VR rental package.",
+      "raw_quotes": [
+        "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/room_seats is retained rather than gameplay participant capacity or controller quantity.",
+      "raw_quotes": [
+        "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "The complete literal package name is the target; audience and full-day are package dimensions, VR Zone is not an independent play-service slot.",
+      "raw_quotes": [
+        "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No personal visitor status, individual VR session or private booking is inherited.",
+      "raw_quotes": [
+        "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "External means the named organization package category; room seats cannot be inferred from the number of VR machines.",
+      "raw_quotes": [
+        "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_8 explicitly links external organization/full_day and records room_seats separately from equipment_included.",
+      "raw_quotes": [
+        "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่"
+      ],
+      "source_record_ids": [
+        "package_8",
+        "audience_external_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No seat count, machine count, price or admission right enters labels.",
+      "raw_quotes": [
+        "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 208,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "ภายนอก",
+      "VR Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "room_seats",
+        "target": "VR Zone",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "ห้อง PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน มีที่นั่งกี่ที่",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "room_seats",
+        "target": "PSU Esports Studio - Phuket - VR Zone / ภายนอก / เต็มวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายนอก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_8": {
+      "revision": 1,
+      "record_sha256": "76660b0526462aa11c9fe9d75849bd9cc4c14cb68374057cbeb67c77cfdcc3a1"
+    },
+    "audience_external_org": {
+      "revision": 2,
+      "record_sha256": "15fc64bde64d0d5dad8a7470d59bccdf56f5ba932185ff4cfee6618ffea8a463"
+    }
+  }
+}

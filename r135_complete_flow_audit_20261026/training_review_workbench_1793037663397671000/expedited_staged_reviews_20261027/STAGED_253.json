@@ -1,0 +1,117 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 253,
+  "question_key": "1e48171bc6215d3060026dcf5d0bdb6a9911a8239a468693d9594452553e7fb0",
+  "raw_question": "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ กติกา CS2 เรื่องข้อกำหนดก่อนแข่งและหน้างาน ว่าอย่างไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ข้อกำหนดก่อนแข่ง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "หน้างาน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One CS2 rule lookup asks for before-match and on-site requirements; polite introduction is not another task.",
+    "intent_operation_facet": "competition_rules/rule_lookup/rule_clause retains CS2 and the combined preparation/on-site purpose.",
+    "entities_and_slot_roles": "Add exact ข้อกำหนดก่อนแข่ง and หน้างาน scopes rather than a generic whole-rulebook retrieval.",
+    "local_shared_history_scope": "No player count, arrival time, team roster, device, document or competition date is supplied by the user.",
+    "negation_and_ambiguity": "The question does not authorize entry, certify registration or establish a breach.",
+    "source_version_alignment": "Actual CS2 sections049-053 distinguish venue heading, prep personnel, prohibited electronics, document exception and refreshments; source facets are mixed, so matching only primary eligibility_registration or only pre_match_on_site cannot prove complete coverage.",
+    "no_business_answer_target": "No six-player limit, exception, device prohibition, drink permission, arrival deadline or source answer is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "competition_competition_rules_cs2_psu_phuket_2026_section_049",
+    "competition_competition_rules_cs2_psu_phuket_2026_section_050",
+    "competition_competition_rules_cs2_psu_phuket_2026_section_051",
+    "competition_competition_rules_cs2_psu_phuket_2026_section_052",
+    "competition_competition_rules_cs2_psu_phuket_2026_section_053"
+  ],
+  "source_answer_issues": [
+    [
+      "Related on-site clauses have mixed source facet mappings.",
+      "Read source section ordering and completeness independently of primary facet tags."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 254,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "competition_competition_rules_cs2_psu_phuket_2026_section_049": {
+      "revision": 4,
+      "record_sha256": "80230e5496a4b8eeee6f14c08023dc80f151006bd4aaf3a542b68eb18bbfc4be"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_050": {
+      "revision": 4,
+      "record_sha256": "1a4de1910127eb1eab4b0d30d53fc81c0635076638d724ff802a013215bbaf24"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_051": {
+      "revision": 4,
+      "record_sha256": "b1e3c15f05994ce9c9fa4c9c578506a1b6490bffdb0ff984bdccbe86d79bb48f"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_052": {
+      "revision": 4,
+      "record_sha256": "efa6b18e2e534014f20a14a6ba615e3d8014fc7956a08d5b86fccc0e7c055b0d"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_053": {
+      "revision": 5,
+      "record_sha256": "6c9c2cae6f7a9a2f34286e278ca6dac6d948d8dde9f426cc074ab6df263719b8"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

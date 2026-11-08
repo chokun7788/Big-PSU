@@ -1,0 +1,585 @@
+{
+  "answer": "This part could not be completed within the request budget. Supported parts are retained separately.\n\nMultiple recorded versions of the booking steps follow. They are retained separately rather than merged into a single policy.\nHow to book: The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip. [S1]\nBooking steps: The booking procedure is: select the desired service, choose the date and time, enter customer information, verify the details, pay by transferring funds to a bank account, and attach the transfer slip. [S2]",
+  "status": "partial",
+  "claims": [
+    {
+      "fact_id": "C08:migrated_faq_rule_booking_steps:owner_policy",
+      "record_id": "migrated_faq_rule_booking_steps",
+      "facet": "owner_policy",
+      "value": "The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip.",
+      "numeric": null,
+      "evidence_refs": [
+        {
+          "locator": "/mapped_fields/answer",
+          "source_id": "r63_28d8b06c8474f485536eced83b1b"
+        }
+      ],
+      "fixture": false,
+      "status": "answer"
+    },
+    {
+      "fact_id": "C08:migrated_faq_curated_booking_steps:owner_policy",
+      "record_id": "migrated_faq_curated_booking_steps",
+      "facet": "owner_policy",
+      "value": "The booking procedure is: select the desired service, choose the date and time, enter customer information, verify the details, pay by transferring funds to a bank account, and attach the transfer slip.",
+      "numeric": null,
+      "evidence_refs": [
+        {
+          "locator": "/mapped_fields/answer",
+          "source_id": "r66_en_240dd7619c2cdce6429ad607"
+        }
+      ],
+      "fixture": false,
+      "status": "answer"
+    }
+  ],
+  "needs": [
+    {
+      "answer": "This part could not be completed within the request budget. Supported parts are retained separately.",
+      "status": "missing_source",
+      "claims": [],
+      "category": "C06",
+      "reason": "request_model_budget_exhausted",
+      "fixture": false,
+      "english_translation_missing": false,
+      "selection_basis": "request_model_budget_exhausted",
+      "computations": [],
+      "plan": {
+        "facets": [],
+        "locked": true,
+        "metadata": {
+          "execution_notice": {
+            "th": "ยังตรวจส่วนนี้ไม่ครบภายในงบของคำขอนี้ ส่วนที่มีหลักฐานแล้วแสดงไว้แยกกัน",
+            "en": "This part could not be completed within the request budget. Supported parts are retained separately."
+          },
+          "evidence_identity_checked": true
+        }
+      },
+      "question": "how is vr for 30 minutes different from vr for 1 hour",
+      "execution_query": "how is vr for 30 minutes different from vr for 1 hour ",
+      "execution_contract": {
+        "version": "r123-obligation-verifier-v1",
+        "task_id": "t1",
+        "terminal_state": "budget_exhausted",
+        "reason_codes": [
+          "request_model_budget_exhausted"
+        ],
+        "obligations": [
+          {
+            "id": "t1:answer",
+            "kind": "task_completion",
+            "task_id": "t1",
+            "expected": "duration_minutes",
+            "fulfilled": false,
+            "reason": "request_model_budget_exhausted",
+            "claim_refs": []
+          },
+          {
+            "id": "t1:duration:30.0",
+            "kind": "duration_option",
+            "task_id": "t1",
+            "expected": 30.0,
+            "fulfilled": false,
+            "reason": "comparison_option_not_delivered",
+            "claim_refs": []
+          },
+          {
+            "id": "t1:duration:60.0",
+            "kind": "duration_option",
+            "task_id": "t1",
+            "expected": 60.0,
+            "fulfilled": false,
+            "reason": "comparison_option_not_delivered",
+            "claim_refs": []
+          }
+        ],
+        "receipts": [],
+        "fatal": [],
+        "source_refs_checked": true,
+        "all_obligations_fulfilled": false,
+        "whole_question_semantics_verified": false,
+        "planned_task_coverage_only": true
+      }
+    },
+    {
+      "answer": "Multiple recorded versions of the booking steps follow. They are retained separately rather than merged into a single policy.\nHow to book: The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip. [S1]\nBooking steps: The booking procedure is: select the desired service, choose the date and time, enter customer information, verify the details, pay by transferring funds to a bank account, and attach the transfer slip. [S2]",
+      "status": "partial",
+      "claims": [
+        {
+          "fact_id": "C08:migrated_faq_rule_booking_steps:owner_policy",
+          "record_id": "migrated_faq_rule_booking_steps",
+          "facet": "owner_policy",
+          "value": "The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip.",
+          "numeric": null,
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/answer",
+              "source_id": "r63_28d8b06c8474f485536eced83b1b"
+            }
+          ],
+          "fixture": false,
+          "status": "answer"
+        },
+        {
+          "fact_id": "C08:migrated_faq_curated_booking_steps:owner_policy",
+          "record_id": "migrated_faq_curated_booking_steps",
+          "facet": "owner_policy",
+          "value": "The booking procedure is: select the desired service, choose the date and time, enter customer information, verify the details, pay by transferring funds to a bank account, and attach the transfer slip.",
+          "numeric": null,
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/answer",
+              "source_id": "r66_en_240dd7619c2cdce6429ad607"
+            }
+          ],
+          "fixture": false,
+          "status": "answer"
+        }
+      ],
+      "category": "C08",
+      "reason": "recorded_booking_procedure_variants",
+      "fixture": false,
+      "english_translation_missing": false,
+      "selection_basis": "recorded_booking_procedure_variants",
+      "computations": [],
+      "plan": {
+        "facets": [
+          "owner_policy"
+        ],
+        "locked": true,
+        "metadata": {
+          "policy_intents": [
+            "booking_steps"
+          ],
+          "policy_source_variants": true,
+          "evidence_identity_checked": true
+        }
+      },
+      "question": "how do i book it",
+      "execution_query": "how do i book it vr",
+      "execution_contract": {
+        "version": "r123-obligation-verifier-v1",
+        "task_id": "t2",
+        "terminal_state": "partial",
+        "reason_codes": [
+          "recorded_booking_procedure_variants"
+        ],
+        "obligations": [
+          {
+            "id": "t2:answer",
+            "kind": "task_completion",
+            "task_id": "t2",
+            "expected": "owner_policy",
+            "fulfilled": true,
+            "reason": null,
+            "claim_refs": [
+              "C08:migrated_faq_rule_booking_steps:owner_policy",
+              "C08:migrated_faq_curated_booking_steps:owner_policy"
+            ]
+          }
+        ],
+        "receipts": [
+          {
+            "fact_id": "C08:migrated_faq_rule_booking_steps:owner_policy",
+            "record_id": "migrated_faq_rule_booking_steps",
+            "facet": "owner_policy",
+            "record_revision": 4,
+            "snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 2403,
+              "reference_time": "2026-10-21T12:00:00+07:00"
+            },
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/answer",
+                "source_id": "r63_28d8b06c8474f485536eced83b1b"
+              }
+            ],
+            "support_level": "projected_source_refs_checked",
+            "value_validation": "exact_source_value",
+            "semantic_entailment_verified": false
+          },
+          {
+            "fact_id": "C08:migrated_faq_curated_booking_steps:owner_policy",
+            "record_id": "migrated_faq_curated_booking_steps",
+            "facet": "owner_policy",
+            "record_revision": 3,
+            "snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 2403,
+              "reference_time": "2026-10-21T12:00:00+07:00"
+            },
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/answer",
+                "source_id": "r66_en_240dd7619c2cdce6429ad607"
+              }
+            ],
+            "support_level": "projected_source_refs_checked",
+            "value_validation": "exact_source_value",
+            "semantic_entailment_verified": false
+          }
+        ],
+        "fatal": [],
+        "source_refs_checked": true,
+        "all_obligations_fulfilled": true,
+        "whole_question_semantics_verified": false,
+        "planned_task_coverage_only": true
+      }
+    }
+  ],
+  "model_events": [],
+  "understanding": {
+    "version": "r117",
+    "accepted": true,
+    "reason": "validated_interpretation_proposal",
+    "tasks": [
+      {
+        "quote": "how is vr for 30 minutes different from vr for 1 hour",
+        "domain": "service_fee",
+        "category": "C06",
+        "operation": "compare",
+        "facet": "duration_minutes",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": ""
+          },
+          {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": ""
+          }
+        ],
+        "ambiguous": false
+      },
+      {
+        "quote": "how do i book it",
+        "domain": "reservation",
+        "category": "C08",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "vr",
+        "constraints": [],
+        "ambiguous": false
+      }
+    ],
+    "event": {
+      "raw_content": "{\"focus\":\"multiple\",\"context_quotes\":[],\"tasks\":[{\"quote\":\"how is vr for 30 minutes different from vr for 1 hour\",\"domain\":\"service_fee\",\"operation\":\"compare\",\"facet\":\"duration_minutes\",\"target\":\"\",\"constraints\":[],\"ambiguous\":false},{\"quote\":\"how do i book it\",\"domain\":\"reservation\",\"operation\":\"detail\",\"facet\":\"owner_policy\",\"target\":\"\",\"constraints\":[],\"ambiguous\":false}]}",
+      "context_scope_review": [
+        {
+          "action": "unique_previous_source_named_referent",
+          "task_quote": "how do i book it",
+          "source_quote": "vr"
+        }
+      ],
+      "context_scope_version": "r122"
+    },
+    "factual_correctness_verified": false,
+    "legacy_answer_read": false
+  },
+  "elapsed_sec": 0.030999999959021807,
+  "fixture": false,
+  "english_translation_missing": false,
+  "selection_basis": "r123_typed_first_adapters",
+  "effective_locale": "en",
+  "release_id": "migration-preview-r69",
+  "epoch": 2403,
+  "execution_contract": {
+    "version": "r123",
+    "path": "compiled_legacy_wire",
+    "request_plan": {
+      "question": "how is vr for 30 minutes different from vr for 1 hour, and how do i book it?",
+      "snapshot": {
+        "release_id": "migration-preview-r69",
+        "epoch": 2403,
+        "reference_time": "2026-10-21T12:00:00+07:00"
+      },
+      "tasks": [
+        {
+          "id": "t1",
+          "source_span": {
+            "start": 0,
+            "end": 53,
+            "text": "how is vr for 30 minutes different from vr for 1 hour"
+          },
+          "category": "C06",
+          "operation": "compare",
+          "facet": "duration_minutes",
+          "capability": {
+            "version": "r123-capabilities-v1",
+            "category": "C06",
+            "legacy_operation": "compare",
+            "operation": "compare_durations",
+            "field": "duration_minutes",
+            "status": "adapter_available",
+            "executor": "native_domain_reader",
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false
+          },
+          "target_span": null,
+          "target_scope": "none",
+          "bound_record_ids": [],
+          "slots": [
+            {
+              "id": "t1s1",
+              "kind": "duration",
+              "role": "comparison_duration",
+              "source_span": {
+                "start": 14,
+                "end": 24,
+                "text": "30 minutes"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": 30.0,
+              "normalized_unit": "minute",
+              "origin": "current_user",
+              "scope": "local",
+              "source_record_id": ""
+            },
+            {
+              "id": "t1s2",
+              "kind": "duration",
+              "role": "comparison_duration",
+              "source_span": {
+                "start": 47,
+                "end": 53,
+                "text": "1 hour"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": 60.0,
+              "normalized_unit": "minute",
+              "origin": "current_user",
+              "scope": "local",
+              "source_record_id": ""
+            }
+          ],
+          "bindings": [],
+          "obligations": [
+            {
+              "id": "t1:answer",
+              "kind": "task_completion",
+              "task_id": "t1",
+              "expected": "duration_minutes"
+            },
+            {
+              "id": "t1:duration:30.0",
+              "kind": "duration_option",
+              "task_id": "t1",
+              "expected": 30.0
+            },
+            {
+              "id": "t1:duration:60.0",
+              "kind": "duration_option",
+              "task_id": "t1",
+              "expected": 60.0
+            }
+          ],
+          "ambiguities": [],
+          "errors": []
+        },
+        {
+          "id": "t2",
+          "source_span": {
+            "start": 59,
+            "end": 75,
+            "text": "how do i book it"
+          },
+          "category": "C08",
+          "operation": "detail",
+          "facet": "owner_policy",
+          "capability": {
+            "version": "r123-capabilities-v1",
+            "category": "C08",
+            "legacy_operation": "detail",
+            "operation": "condition_lookup",
+            "field": "owner_policy",
+            "status": "adapter_available",
+            "executor": "native_domain_reader",
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false
+          },
+          "target_span": {
+            "start": 7,
+            "end": 9,
+            "text": "vr"
+          },
+          "target_scope": "shared",
+          "bound_record_ids": [],
+          "slots": [],
+          "bindings": [
+            {
+              "id": "b2",
+              "source_task_id": "t1",
+              "target_task_id": "t2",
+              "source_span": {
+                "start": 7,
+                "end": 9,
+                "text": "vr"
+              },
+              "basis": "unique_previous_source_named_referent",
+              "inherited_slots": [],
+              "execution_dependency": false
+            }
+          ],
+          "obligations": [
+            {
+              "id": "t2:answer",
+              "kind": "task_completion",
+              "task_id": "t2",
+              "expected": "owner_policy"
+            }
+          ],
+          "ambiguities": [],
+          "errors": []
+        }
+      ],
+      "compiler_events": [],
+      "version": "r123-plan-ir-v1",
+      "wire_version": "r121-meaning-wire",
+      "wire_adapter": "validated_meaning_task_adapter",
+      "whole_question_semantics_verified": false,
+      "input_basis": "engine_question_after_native_normalization",
+      "raw_request_offset_mapping_implemented": false
+    },
+    "tasks": [
+      {
+        "version": "r123-obligation-verifier-v1",
+        "task_id": "t1",
+        "terminal_state": "budget_exhausted",
+        "reason_codes": [
+          "request_model_budget_exhausted"
+        ],
+        "obligations": [
+          {
+            "id": "t1:answer",
+            "kind": "task_completion",
+            "task_id": "t1",
+            "expected": "duration_minutes",
+            "fulfilled": false,
+            "reason": "request_model_budget_exhausted",
+            "claim_refs": []
+          },
+          {
+            "id": "t1:duration:30.0",
+            "kind": "duration_option",
+            "task_id": "t1",
+            "expected": 30.0,
+            "fulfilled": false,
+            "reason": "comparison_option_not_delivered",
+            "claim_refs": []
+          },
+          {
+            "id": "t1:duration:60.0",
+            "kind": "duration_option",
+            "task_id": "t1",
+            "expected": 60.0,
+            "fulfilled": false,
+            "reason": "comparison_option_not_delivered",
+            "claim_refs": []
+          }
+        ],
+        "receipts": [],
+        "fatal": [],
+        "source_refs_checked": true,
+        "all_obligations_fulfilled": false,
+        "whole_question_semantics_verified": false,
+        "planned_task_coverage_only": true
+      },
+      {
+        "version": "r123-obligation-verifier-v1",
+        "task_id": "t2",
+        "terminal_state": "partial",
+        "reason_codes": [
+          "recorded_booking_procedure_variants"
+        ],
+        "obligations": [
+          {
+            "id": "t2:answer",
+            "kind": "task_completion",
+            "task_id": "t2",
+            "expected": "owner_policy",
+            "fulfilled": true,
+            "reason": null,
+            "claim_refs": [
+              "C08:migrated_faq_rule_booking_steps:owner_policy",
+              "C08:migrated_faq_curated_booking_steps:owner_policy"
+            ]
+          }
+        ],
+        "receipts": [
+          {
+            "fact_id": "C08:migrated_faq_rule_booking_steps:owner_policy",
+            "record_id": "migrated_faq_rule_booking_steps",
+            "facet": "owner_policy",
+            "record_revision": 4,
+            "snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 2403,
+              "reference_time": "2026-10-21T12:00:00+07:00"
+            },
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/answer",
+                "source_id": "r63_28d8b06c8474f485536eced83b1b"
+              }
+            ],
+            "support_level": "projected_source_refs_checked",
+            "value_validation": "exact_source_value",
+            "semantic_entailment_verified": false
+          },
+          {
+            "fact_id": "C08:migrated_faq_curated_booking_steps:owner_policy",
+            "record_id": "migrated_faq_curated_booking_steps",
+            "facet": "owner_policy",
+            "record_revision": 3,
+            "snapshot": {
+              "release_id": "migration-preview-r69",
+              "epoch": 2403,
+              "reference_time": "2026-10-21T12:00:00+07:00"
+            },
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/answer",
+                "source_id": "r66_en_240dd7619c2cdce6429ad607"
+              }
+            ],
+            "support_level": "projected_source_refs_checked",
+            "value_validation": "exact_source_value",
+            "semantic_entailment_verified": false
+          }
+        ],
+        "fatal": [],
+        "source_refs_checked": true,
+        "all_obligations_fulfilled": true,
+        "whole_question_semantics_verified": false,
+        "planned_task_coverage_only": true
+      }
+    ],
+    "schedule": [
+      {
+        "phase": "typed_read_complete",
+        "task_id": "t1",
+        "reason": "no_confirmed_source",
+        "model_calls_used": 0
+      },
+      {
+        "phase": "typed_read_complete",
+        "task_id": "t2",
+        "reason": "recorded_booking_procedure_variants",
+        "model_calls_used": 0
+      },
+      {
+        "phase": "bounded_fallback",
+        "task_id": "t1",
+        "reason": "request_model_budget_exhausted",
+        "model_calls_used": 0
+      }
+    ],
+    "typed_reads_before_fallback": true,
+    "whole_question_semantics_verified": false,
+    "full_r123_architecture_implemented": false
+  }
+}

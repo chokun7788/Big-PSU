@@ -1,0 +1,18 @@
+--- before/app/web_api/server.py
++++ r61/app/web_api/server.py
+@@ -32,6 +32,7 @@
+ )
+ from app.pipeline.input_recovery import inspect_surface_input
+ from app.pipeline.llm_health import llm_health_snapshot, llm_preflight_enabled, preflight_ollama
++from app.knowledge.common.build_info import LOADED_BUILD as COMMON_LOADED_BUILD
+ from app.pipeline.request_deadline import deadline_metadata, request_deadline
+ from app.pipeline.semantic_embeddings import embedding_model_name, semantic_retrieval_enabled
+ from app.pipeline.warmup import WarmupResult, pipeline_warmup_enabled, warm_pipeline_caches
+@@ -423,6 +424,7 @@
+                 "llm_preflight": STARTUP_LLM_PREFLIGHT,
+                 "input_quality_guard": STARTUP_INPUT_QUALITY_GUARD,
+                 "llm_health": llm_health_snapshot(),
++                "common_loaded_build": COMMON_LOADED_BUILD,
+                 "pipeline_workers": PIPELINE_SUPERVISOR.health() if PIPELINE_SUPERVISOR else {"enabled": False},
+                 "runtime": {**_runtime_status(), 'queue_ttl_sec': getattr(self.server,'job_ttl_sec',None)},
+                 "features": {

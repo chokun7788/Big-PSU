@@ -1,0 +1,1301 @@
+--- R72/app/knowledge/common/answer.py
++++ R73/app/knowledge/common/answer.py
+@@ -170,6 +170,23 @@
+ 
+ class CommonAnswerer:
+     def __init__(self,store):self.store=store;self.diagnostics=[]
++    def unconfirmed(self,snap,started,question,lang,records,selection=None):
++        from .unconfirmed_request import topic,message
++        need=topic(question)
++        if not need:return None
++        from app.calendar.service_calendar import now_bangkok
++        body=message(need,lang);hits=[];obs=[]
++        contacts=[r for r in records.values() if r['kind']=='contact' and value(r,'channel')=='facebook' and value(r,'value') and effective(r,now_bangkok(),records)]
++        if len(contacts)==1:
++            contact=contacts[0];field=contact['fields']['value'];rid=contact['record_id']
++            for ref in field['evidence_refs']:
++                source=snap['release']['sources'][ref['source_id']];label='S'+str(len(hits)+1)
++                hits.append({'id':rid+':value:'+label,'record_id':rid,'field':'value','title':title(contact,lang),'text':str(field['value']),'source_id':ref['source_id'],'snapshot_sha256':source['sha256'],'locator':ref['locator'],'citation_label':label,'source_url':source.get('public_url') or ''})
++            if hits:
++                body+='\n'+('เพจศูนย์: ' if lang=='th' else 'Studio page: ')+str(field['value'])+' [S1]'
++                obs=[{'record_id':rid,'field':'value','status':'known','evidence_refs':field['evidence_refs']}]
++        plan={'record_ids':[],'requested_fields':[],'method':'specific_unconfirmed_request','unconfirmed_topic':need,'source_answer_confirmed':False,'entity_selection':selection or {}}
++        return self.finish(snap,started,body,hits,plan,obs,response='unconfirmed')
+     def answer(self,question,*,locale='th',history=None,at=None,planner=None,_composing=False):
+         started=time.perf_counter();snap=self.store.snapshot();rel=snap['release']
+         if not rel:return None
+@@ -208,13 +225,23 @@
+         raw_query=question
+         if not _composing:
+             from .composition import parts,compose
++            from .question_profiles import composed_parts
+             entity_ids=[rid for rid in ids if records[rid]['kind'] not in {'faq','policy','procedure'}]
+-            clauses=parts(strip_names(question,entity_ids,names))
++            clauses=composed_parts(question,records) or parts(strip_names(question,entity_ids,names))
+             if not clauses and request_needs:
+                 from .request_roles import uncovered_parts
+                 clauses=uncovered_parts(question)
+-            if clauses and (ids or request_needs):return compose(self,snap,started,clauses,ids,lang=lang,history=history,at=at,planner=planner)
++            if clauses and (ids or request_needs or composed_parts(question,records)):return compose(self,snap,started,clauses,ids,lang=lang,history=history,at=at,planner=planner)
+         matched_ids=list(ids)
++        from .question_profiles import select as select_profile
++        profile_id,profile_audit=select_profile(question,records)
++        self.diagnostics.append({'stage':'question_profile','selection':profile_audit})
++        if profile_audit.get('reason')=='ambiguous_profiles':
++            msg='พบข้อมูลที่ตรงหัวข้อหลายรายการ กรุณาระบุขอบเขตเพิ่มเติมก่อนยืนยันคำตอบ' if lang=='th' else 'Several records match this topic. Please clarify the applicable scope before I confirm an answer.'
++            return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'question_profile':profile_audit},[],response='clarification')
++        if profile_audit.get('rejected') and not profile_id:
++            msg='คำถามมีหลายสิ่งที่ต้องตรวจ ข้อมูลที่ตรงครอบคลุมเพียงบางสิ่ง กรุณาแยกถามแต่ละอุปกรณ์หรือหัวข้อเพื่อยืนยันให้ครบ' if lang=='th' else 'This question covers several items, but the matching information covers only some of them. Please ask about each item or topic separately so I can confirm each one.'
++            return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'question_profile':profile_audit},[],response='clarification')
+         ids,query_operation=primary_ids(question,ids,records)
+         if method=='state_comparison_selection':query_operation='price'
+         roles={'price':{'service','resource','zone','game','audience','rate'},'rental':{'rental_package','zone','service','resource','audience'},'controls':{'game','control_set'},'games':{'game','service','resource','zone'},'equipment':{'equipment_model','resource','service','zone'},'booking':{'service','resource','zone','game'},'people':{'person'}}
+@@ -288,12 +315,13 @@
+             centers=[rid for rid,r in records.items() if r['kind']=='center' and effective(r,at,records)]
+             if len(centers)==1:ids=centers;scope_ids=list(ids);method='common_typed_attribute_scope'
+         secondary_audit=None;secondary_ids=None
+-        if ids and query_operation in {None,'policy'} and not all_query(question) and all(records[rid]['kind'] in {'game','resource','service','zone','equipment_model'} for rid in ids):
++        if ids and not profile_id and query_operation in {None,'policy'} and not all_query(question) and all(records[rid]['kind'] in {'game','resource','service','zone','equipment_model'} for rid in ids):
+             owned=field_requests(strip_names(question,ids,names),scope_kinds({records[rid]['kind'] for rid in ids}))
+             if not owned and all(effective(records[rid],at,records) for rid in ids):
+                 from .scoped_topics import lookup
+                 secondary_ids,secondary_audit=lookup(question,{rid:r for rid,r in records.items() if effective(r,at,records)},names,ids,allow_llm=planner is not None)
+                 if secondary_ids:ids=secondary_ids;method='declared_scoped_topic'
++        if profile_id:ids=[profile_id];scope_ids=[];method='declared_question_profile';secondary_ids=[profile_id]
+         procedure_ids=([rid for group in need_groups for rid in group['candidate_ids']] if need_groups else operation_faqs(procedure_query,records,query_operation)) if not secondary_ids else []
+         role_audit=[]
+         if need_groups and not procedure_ids and not secondary_ids:
+@@ -356,6 +384,8 @@
+             from .entity_search import select
+             choice,entity_audit=select(q,{rid:r for rid,r in records.items() if effective(r,at,records)},names)
+             if choice is None and (entity_audit.get('reason')=='model_busy' or entity_audit.get('error')):
++                unresolved=self.unconfirmed(snap,started,question,lang,records,entity_audit)
++                if unresolved is not None:return unresolved
+                 return self.finish(snap,started,('ระบบยังเลือกข้อมูลให้คำถามนี้ไม่ทัน กรุณาลองอีกครั้ง' if lang=='th' else 'The model could not select the relevant data in time; please retry.'),[],{'entity_selection':entity_audit},[],response='retry')
+             if isinstance(choice,list):ids=choice;method='published_semantic_candidates'
+             elif isinstance(choice,dict) and choice.get('ambiguous'):
+@@ -428,7 +458,7 @@
+                 kind=next((k for field,k in [('address','center'),('value','contact'),('open_periods','schedule'),('bookable_periods','schedule')] if field in requested),None)
+             if not kind:
+                 self.diagnostics.append({'stage':'unresolved_scope','operation':query_operation,'entity_selection':entity_audit,'requested_fields':requested,'request_needs':request_needs})
+-                return None
++                return self.unconfirmed(snap,started,question,lang,records,entity_audit)
+             ids=[k for k,r in records.items() if r['kind']==kind and (kind=='rate' or effective(r,at,records))]
+             if not ids:return None
+             if listing:broad=not requested or broad_request(q)
+@@ -449,6 +479,9 @@
+         if method=='declared_scoped_topic':
+             defaults={'faq':['answer'],'policy':['decision','details','conditions_all','exceptions','consequence'],'procedure':['steps','preconditions','required_documents']}
+             requested=list(dict.fromkeys(f for rid in ids for f in defaults[records[rid]['kind']] if f in records[rid]['fields'] and (f in {'answer','decision','details','conditions_all','steps','preconditions'} or records[rid]['fields'][f]['status']=='known')));broad=False
++        if method=='declared_question_profile':
++            from .question_profiles import DEFAULT_FIELDS
++            requested=[f for f in DEFAULT_FIELDS[records[profile_id]['kind']] if f in records[profile_id]['fields'] and (f in {'answer','steps','decision','details','conditions_all','preconditions'} or records[profile_id]['fields'][f]['status']=='known')];broad=False
+         if method=='exact' and not broad and requested in ([],['answer']) and all(records[rid]['kind']=='faq' for rid in ids) and re.fullmatch(r'(?:\s|[?!.,]|ทำ|ต้อง|การ|ยังไง|ยังงัย|อย่างไร|ติดต่อ|คือ|อะไร|ครับ|ค่ะ|คะ|อ่า+|หน่อย|please|what|is|it|how|do|i|the|tell|me)*',normal(q)):
+             requested=['answer'];method='common_named_faq_content'
+         if not requested and not broad and method=='exact' and all(records[rid]['kind']=='faq' for rid in ids):requested=['answer']
+@@ -472,6 +505,7 @@
+         plan={'record_ids':ids,'requested_fields':requested,'all_fields':broad,'method':method,'scope':'common_published','platform':None,'query_without_entity':q,'operation':query_operation,'scope_ids':scope_ids,'field_selection':resolve_fields(q,field_kinds)[1],'confidence_calibrated':False,'request_focus':focus,'schema_language_recoveries':schema_recoveries}
+         if request_needs:plan['request_needs']=request_needs;plan['role_selection']=role_audit
+         if identity_audit:plan['identity_links']=identity_audit
++        if profile_id:plan['question_profile']=profile_audit
+         billing_query=raw_query
+         if 'amount_minor' in requested and method.startswith(('state_audience_selection','state_service_selection','typed_price_duration_selection','typed_common_state','state_comparison_selection','common_price_comparison')):
+             from .dialogue import previous_state
+@@ -510,7 +544,7 @@
+         review=resolution_uncertain(q,field_kinds)
+         if query_operation=='rules' and plan.get('rule_content_all') is not None:
+             review=False;gaps=[]
+-        if method in {'common_calendar_date_scope','common_people_directory','common_procedure_topic','common_faq_topic','declared_scoped_topic','common_named_faq_content','common_typed_attribute_scope','typed_price_duration_selection','state_audience_selection','common_price_comparison'}:review=False;gaps=[]
++        if method in {'common_calendar_date_scope','common_people_directory','common_procedure_topic','common_faq_topic','declared_scoped_topic','declared_question_profile','common_named_faq_content','common_typed_attribute_scope','typed_price_duration_selection','state_audience_selection','common_price_comparison'}:review=False;gaps=[]
+         plan['unresolved_clauses']=gaps if review and not broad and not overview else []
+         if method in {'common_calendar_date_scope','common_people_directory'}:review=False;gaps=[]
+         if method in {'common_procedure_topic','published_semantic_candidates'} and all(records[rid]['kind']=='faq' for rid in ids):plan['unresolved_clauses']=[];review=False
+@@ -638,7 +672,11 @@
+                         if key=='zone_ids' and r['kind'] in {'schedule','closure'} and v==[]:out='All zones' if lang=='en' else 'ทุกโซน'
+                         elif v==[]:out='No linked records in this field (confirmed)' if lang=='en' else 'ไม่มีรายการที่เชื่อมในช่องนี้ (ยืนยันแล้ว)'
+                     elif key in {'open_periods','bookable_periods','maintenance_periods'} and v:out=' / '.join(period['start']+'–'+period['end'] for period in v)
+-                    elif key=='conditions_all':out=conditions_text(v,lang,text)
++                    elif key in {'conditions_all','preconditions'}:
++                        topic=value(r,'topic')
++                        if r['kind']=='procedure' and v and all(c['field']=='issue' and c['operator']=='eq' and c['value']==topic for c in v):
++                            out=('กรณี: ' if lang=='th' else 'Applies to: ')+title(r,lang)
++                        else:out=conditions_text(v,lang,text)
+                     elif isinstance(v,list) and not v:out='No entries in this field (confirmed)' if lang=='en' else 'ไม่มีรายการในช่องนี้ (ยืนยันแล้ว)'
+                     else:out=enum_text(key,v,lang) or text(v,lang)
+                     if isinstance(v,dict) and set(v)=={'th','en'} and not v.get(lang) and v.get('th' if lang=='en' else 'en'):
+@@ -782,6 +820,11 @@
+                 blocks.append('ข้อมูลที่มีระบุพื้นที่รับประทานอาหารและเครื่องดื่ม แต่ยังไม่ได้ระบุแยกว่าการนำอาหารจากภายนอกเข้ามามีเงื่อนไขเพิ่มเติมหรือไม่' if lang=='th' else 'The source specifies where food and drinks may be consumed. It does not separately confirm whether bringing outside food has additional conditions.')
+                 plan['uncovered_source_scope']='outside_food_conditions'
+                 plan.setdefault('scope_limits',[]).append({'requested':'outside_food_conditions','status':'not_confirmed','reason':'source_only_covers_consumption_area'})
++        if plan.get('unresolved_clauses'):
++            unresolved=self.unconfirmed(snap,started,raw_query,lang,records,entity_audit)
++            if unresolved is not None:
++                unresolved.decision_artifact['rejected_scope_plan']=plan
++                return unresolved
+         return self.finish(snap,started,'\n\n'.join(blocks),hits,plan,obligations)
+     def finish(self,snap,started,answer,hits,plan,obligations,response='answer'):
+         if not self.store.still_current(snap):answer='ข้อมูลเปลี่ยนระหว่างตอบ กรุณาถามใหม่ / Data changed; please retry.';hits=[];response='retry'
+--- R72/app/knowledge/common/build_info.py
++++ R73/app/knowledge/common/build_info.py
+@@ -9,5 +9,5 @@
+  files.extend(root.glob('*.ps1'))
+  for p in sorted(files):
+   digest.update(p.relative_to(root).as_posix().encode());digest.update(p.read_bytes())
+- return {'build_id':'common-r72-flow-repair','loaded_source_sha256':digest.hexdigest(),'fingerprint_scope':'application, web UI and launchers at module import'}
++ return {'build_id':'common-r73-question-scope','loaded_source_sha256':digest.hexdigest(),'fingerprint_scope':'application, web UI and launchers at module import'}
+ LOADED_BUILD=_capture()
+--- R72/app/knowledge/common/catalog.json
++++ R73/app/knowledge/common/catalog.json
+@@ -3340,6 +3340,84 @@
+           "type": "string",
+           "minLength": 1
+         }
++      },
++      {
++        "key": "query_profile",
++        "meaning_th": "ช่วยเลือกคำตอบ: ประเภทคำถาม เรื่อง และขอบเขต",
++        "value_schema": {
++          "type": "object",
++          "properties": {
++            "task": {
++              "type": "string",
++              "enum": [
++                "permission",
++                "correction"
++              ]
++            },
++            "subjects": {
++              "type": "array",
++              "minItems": 1,
++              "maxItems": 12,
++              "items": {
++                "type": "object",
++                "properties": {
++                  "th": {
++                    "type": "string",
++                    "maxLength": 120
++                  },
++                  "en": {
++                    "type": "string",
++                    "maxLength": 120
++                  }
++                },
++                "required": [
++                  "th",
++                  "en"
++                ],
++                "additionalProperties": false,
++                "anyOf": [
++                  {
++                    "properties": {
++                      "th": {
++                        "minLength": 1
++                      }
++                    }
++                  },
++                  {
++                    "properties": {
++                      "en": {
++                        "minLength": 1
++                      }
++                    }
++                  }
++                ]
++              }
++            },
++            "ownership": {
++              "type": "string",
++              "enum": [
++                "any",
++                "personal"
++              ]
++            },
++            "context": {
++              "type": "string",
++              "enum": [
++                "studio",
++                "competition"
++              ]
++            }
++          },
++          "required": [
++            "task",
++            "subjects",
++            "ownership",
++            "context"
++          ],
++          "additionalProperties": false
++        },
++        "reference_kind": null,
++        "publish_core": false
+       }
+     ]
+   },
+@@ -3583,6 +3661,84 @@
+             }
+           ]
+         }
++      },
++      {
++        "key": "query_profile",
++        "meaning_th": "ช่วยเลือกคำตอบ: ประเภทคำถาม เรื่อง และขอบเขต",
++        "value_schema": {
++          "type": "object",
++          "properties": {
++            "task": {
++              "type": "string",
++              "enum": [
++                "permission",
++                "correction"
++              ]
++            },
++            "subjects": {
++              "type": "array",
++              "minItems": 1,
++              "maxItems": 12,
++              "items": {
++                "type": "object",
++                "properties": {
++                  "th": {
++                    "type": "string",
++                    "maxLength": 120
++                  },
++                  "en": {
++                    "type": "string",
++                    "maxLength": 120
++                  }
++                },
++                "required": [
++                  "th",
++                  "en"
++                ],
++                "additionalProperties": false,
++                "anyOf": [
++                  {
++                    "properties": {
++                      "th": {
++                        "minLength": 1
++                      }
++                    }
++                  },
++                  {
++                    "properties": {
++                      "en": {
++                        "minLength": 1
++                      }
++                    }
++                  }
++                ]
++              }
++            },
++            "ownership": {
++              "type": "string",
++              "enum": [
++                "any",
++                "personal"
++              ]
++            },
++            "context": {
++              "type": "string",
++              "enum": [
++                "studio",
++                "competition"
++              ]
++            }
++          },
++          "required": [
++            "task",
++            "subjects",
++            "ownership",
++            "context"
++          ],
++          "additionalProperties": false
++        },
++        "reference_kind": null,
++        "publish_core": false
+       }
+     ]
+   },
+@@ -4635,6 +4791,84 @@
+             "additionalProperties": false
+           }
+         }
++      },
++      {
++        "key": "query_profile",
++        "meaning_th": "ช่วยเลือกคำตอบ: ประเภทคำถาม เรื่อง และขอบเขต",
++        "value_schema": {
++          "type": "object",
++          "properties": {
++            "task": {
++              "type": "string",
++              "enum": [
++                "permission",
++                "correction"
++              ]
++            },
++            "subjects": {
++              "type": "array",
++              "minItems": 1,
++              "maxItems": 12,
++              "items": {
++                "type": "object",
++                "properties": {
++                  "th": {
++                    "type": "string",
++                    "maxLength": 120
++                  },
++                  "en": {
++                    "type": "string",
++                    "maxLength": 120
++                  }
++                },
++                "required": [
++                  "th",
++                  "en"
++                ],
++                "additionalProperties": false,
++                "anyOf": [
++                  {
++                    "properties": {
++                      "th": {
++                        "minLength": 1
++                      }
++                    }
++                  },
++                  {
++                    "properties": {
++                      "en": {
++                        "minLength": 1
++                      }
++                    }
++                  }
++                ]
++              }
++            },
++            "ownership": {
++              "type": "string",
++              "enum": [
++                "any",
++                "personal"
++              ]
++            },
++            "context": {
++              "type": "string",
++              "enum": [
++                "studio",
++                "competition"
++              ]
++            }
++          },
++          "required": [
++            "task",
++            "subjects",
++            "ownership",
++            "context"
++          ],
++          "additionalProperties": false
++        },
++        "reference_kind": null,
++        "publish_core": false
+       }
+     ]
+   },
+--- R72/app/knowledge/common/entity_search.py
++++ R73/app/knowledge/common/entity_search.py
+@@ -71,7 +71,20 @@
+   score=max(sum(1/frequencies[x] for x in variant&g)/max(1,sum(1/frequencies[x] for x in variant if frequencies[x])) for variant in qgs)
+   if score<.16:continue
+   rows.append({'record_id':rid,'kind':kind,'text':excerpt(variants[-1],parts),'score':round(score,4),'indexed_characters':sum(map(len,parts))})
+- return sorted(rows,key=lambda x:-x['score'])[:8]
++ ranked=sorted(rows,key=lambda x:-x['score'])
++ # Task metadata is a recall backstop, not permission to answer without a
++ # matching subject. Only the bounded selector may resolve an unseen wording.
++ from .question_profiles import tasks
++ wanted=tasks(question);competition=bool(re.search(r'แข่ง|\b(?:competition|tournament|rulebook)\b',normalize(question)))
++ backstop=[]
++ for rid,r in records.items():
++  profile=value(r,'query_profile')
++  if not isinstance(profile,dict) or profile.get('task') not in wanted or competition!=(profile.get('context')=='competition'):continue
++  if profile.get('ownership')=='personal' and not re.search(r'ส่วนตัว|ตัวเอง|ของผม|ของฉัน|\b(?:own|personal|my|mine)\b',normalize(question)):continue
++  parts=names.get(rid,[])+[s for key,f in r['fields'].items() if key!='query_profile' and f['status']=='known' and not key.endswith(('_id','_ids')) for s in strings(f['value'])]
++  backstop.append({'record_id':rid,'kind':r['kind'],'text':excerpt(question,parts),'score':next((x['score'] for x in ranked if x['record_id']==rid),0.0),'retrieval_method':'declared_task_backstop','requires_semantic_selection':True})
++ selected=backstop[:4]+[x for x in ranked if x['record_id'] not in {b['record_id'] for b in backstop[:4]}]
++ return selected[:8]
+ def select(question,records,names):
+  from .query_scope import operation
+  if operation(question)=='price':return None,{'attempted':False,'reason':'price_requires_explicit_or_inherited_target','intent_verified':False}
+--- R72/app/knowledge/common/planner.py
++++ R73/app/knowledge/common/planner.py
+@@ -20,6 +20,7 @@
+     kinds={records[k]['kind'] for k in record_ids}
+     kinds=scope_kinds(kinds)
+     keys={f['key'] for k in kinds for f in CATALOG[k]['fields']}
++    keys.discard('query_profile')
+     if kinds&{'resource','service','game','audience','zone'}:
+         from .relations import related_rates
+         if any(related_rates(records,records[rid]) for rid in record_ids):keys.add('amount_minor')
+--- R72/app/knowledge/common/question_profiles.py
++++ R73/app/knowledge/common/question_profiles.py
+@@ -0,0 +1,56 @@
++"""Declarative, optional task/subject/scope selection. Facts stay in records."""
++import re
++from .query_contract import normalize,matches
++from .registry import value
++
++KINDS={'faq','policy','procedure'}
++DEFAULT_FIELDS={'faq':['answer','scope_note'],'policy':['decision','details','conditions_all','exceptions','consequence'],'procedure':['steps','preconditions','required_documents']}
++def tasks(question):
++ q=normalize(question);found=set()
++ if re.search(r'ผิด|แก้|\b(?:wrong|incorrect|mistak\w*|correct|correction)\b',q):found.add('correction')
++ permission=bool(re.search(r'อนุญาต|ห้าม|\b(?:allowed|permitted|permission)\b|\b(?:can|may|could) i\s+(?:bring|use)\b',q)) or bool(re.search(r'ใช้|นำ|เอา',q) and re.search(r'ได้ไหม|ได้มั้ย|ได้หรือเปล่า',q))
++ if permission and not re.search(r'ซื้อ|ขาย|ซ่อม|เช่า|\b(?:buy|sell|repair|rent)\b',q):found.add('permission')
++ return found
++def phrase_match(question,term):
++ # Standard English inflections only; Thai marks/numbers stay unchanged.
++ if not term:return False
++ if matches(question,term):return True
++ if normalize(term)=='mouse':return matches(question,'mice')
++ return False
++def select(question,records):
++ q=normalize(question);wanted=tasks(q)
++ if not wanted:return None,{'method':'declared_question_profile','reason':'no_supported_task','candidate_ids':[]}
++ competition=bool(re.search(r'แข่ง|กติกา|\b(?:competition|tournament|rulebook)\b',q))
++ personal=bool(re.search(r'ส่วนตัว|ตัวเอง|ของผม|ของฉัน|\b(?:own|personal|mine)\b',q))
++ studio_owned=bool(re.search(r'ของศูนย์|\b(?:studio|center|venue)(?:.s)?\s+(?:keyboard|mouse|equipment)\b',q))
++ candidates=[];rejected=[]
++ for rid,r in records.items():
++  profile=value(r,'query_profile')
++  if r['kind'] not in KINDS or not isinstance(profile,dict) or profile.get('task') not in wanted:continue
++  if competition!=(profile.get('context')=='competition'):continue
++  subjects=[s for s in profile.get('subjects',[]) if any(phrase_match(q,term) for term in s.values() if isinstance(term,str))]
++  if not subjects:continue
++  my_subject=any(re.search(r'\bmy\s+(?:own\s+|personal\s+|gaming\s+|wireless\s+)*'+re.escape(normalize(s.get('en','')))+r'(?:s)?\b',q) for s in subjects if s.get('en'))
++  if profile.get('ownership')=='personal' and (studio_owned or not (personal or my_subject)):continue
++  # Do not answer unknown coordinated objects from a matched first object.
++  clauses=[c.strip() for c in re.split(r'และ|กับ|\band\b',q) if c.strip()]
++  extra=[c for c in clauses[1:] if not any(phrase_match(c,term) for subject in profile['subjects'] for term in subject.values() if isinstance(term,str))]
++  if extra:
++   rejected.append({'record_id':rid,'reason':'uncovered_coordinated_subject','uncovered_spans':extra});continue
++  candidates.append({'record_id':rid,'task':profile['task'],'matched_subjects':subjects,'ownership':profile['ownership'],'context':profile['context']})
++ audit={'method':'declared_question_profile','candidate_ids':[x['record_id'] for x in candidates],'matches':candidates,'rejected':rejected,'human_intent_correctness_verified':False}
++ if len(candidates)!=1:
++  return None,{**audit,'reason':'ambiguous_profiles' if candidates else 'no_matching_profile'}
++ return candidates[0]['record_id'],{**audit,'reason':'unique_declared_task_subject_scope'}
++
++def composed_parts(question,records):
++ """Only independently requested tasks; don't split noun coordinations."""
++ from .query_contract import semantic_clauses
++ from .request_roles import analyze
++ from .unconfirmed_request import topic
++ clauses=semantic_clauses(question)
++ if not 2<=len(clauses)<=4:return []
++ topics=[topic(c) for c in clauses]
++ if all(topics) and len(set(topics))==1:return []
++ tagged=[bool(analyze(c) or topic(c) or select(c,records)[0]) for c in clauses]
++ return clauses if all(tagged) else []
+--- R72/app/knowledge/common/request_roles.py
++++ R73/app/knowledge/common/request_roles.py
+@@ -9,6 +9,8 @@
+ LABELS={'payment_method':('วิธีชำระเงิน','Payment method'),'payment_deadline':('กำหนดชำระเงิน','Payment deadline'),'booking_quota':('จำนวนรอบต่อการจอง','Sessions per booking'),'studio_rules':('กฎศูนย์','Studio rules')}
+ def exceptional_payment(question):
+  q=normalize(question)
++ from .unconfirmed_request import topic
++ if topic(q) in {'overpayment','underpayment','wrong_amount','installments','transfer_processing'}:return True
+  return bool(re.search(r'โอนเกิน|โอนขาด|จ่ายเกิน|จ่ายขาด|สลิปผิด|(?:จ่าย|ชำระ|โอน).{0,15}ผิด|\b(?:wrong|incorrect|overpaid|underpaid|overpay|underpay|installments?)\b|\b(?:transfer|payment)\b.{0,35}\b(?:arrive|arrives|processing|clear|clears)\b',q))
+ def analyze(question):
+  q=normalize(question)
+--- R72/app/knowledge/common/schemas/faq.schema.json
++++ R73/app/knowledge/common/schemas/faq.schema.json
+@@ -1278,6 +1278,215 @@
+               "additionalProperties": false
+             }
+           ]
++        },
++        "query_profile": {
++          "description": "ข้อมูลช่วยเลือกคำตอบตาม task/subject/scope ไม่ใช่ข้อเท็จจริงใหม่",
++          "oneOf": [
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "const": "known"
++                },
++                "value": {
++                  "type": "object",
++                  "properties": {
++                    "task": {
++                      "type": "string",
++                      "enum": [
++                        "permission",
++                        "correction"
++                      ]
++                    },
++                    "subjects": {
++                      "type": "array",
++                      "minItems": 1,
++                      "maxItems": 12,
++                      "items": {
++                        "type": "object",
++                        "properties": {
++                          "th": {
++                            "type": "string",
++                            "maxLength": 120
++                          },
++                          "en": {
++                            "type": "string",
++                            "maxLength": 120
++                          }
++                        },
++                        "required": [
++                          "th",
++                          "en"
++                        ],
++                        "additionalProperties": false,
++                        "anyOf": [
++                          {
++                            "properties": {
++                              "th": {
++                                "minLength": 1
++                              }
++                            }
++                          },
++                          {
++                            "properties": {
++                              "en": {
++                                "minLength": 1
++                              }
++                            }
++                          }
++                        ]
++                      }
++                    },
++                    "ownership": {
++                      "type": "string",
++                      "enum": [
++                        "any",
++                        "personal"
++                      ]
++                    },
++                    "context": {
++                      "type": "string",
++                      "enum": [
++                        "studio",
++                        "competition"
++                      ]
++                    }
++                  },
++                  "required": [
++                    "task",
++                    "subjects",
++                    "ownership",
++                    "context"
++                  ],
++                  "additionalProperties": false
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "minItems": 1
++                },
++                "note": {
++                  "type": "string"
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "type": "string",
++                  "enum": [
++                    "unknown",
++                    "not_applicable"
++                  ]
++                },
++                "value": {
++                  "type": "null"
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "maxItems": 0
++                },
++                "note": {
++                  "type": "string",
++                  "minLength": 1
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "const": "conflicted"
++                },
++                "value": {
++                  "type": "null"
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "minItems": 2
++                },
++                "note": {
++                  "type": "string",
++                  "minLength": 1
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            }
++          ]
+         }
+       },
+       "required": [
+@@ -1307,4 +1516,4 @@
+   "$schema": "https://json-schema.org/draft/2020-12/schema",
+   "title": "คำถามเสริมและเอกสารทั่วไปของศูนย์",
+   "description": "Common content schema loaded by the registry; publication requires source, validity and review checks."
+-}
++}--- R72/app/knowledge/common/schemas/policy.schema.json
++++ R73/app/knowledge/common/schemas/policy.schema.json
+@@ -1462,6 +1462,215 @@
+               "additionalProperties": false
+             }
+           ]
++        },
++        "query_profile": {
++          "description": "ข้อมูลช่วยเลือกคำตอบตาม task/subject/scope ไม่ใช่ข้อเท็จจริงใหม่",
++          "oneOf": [
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "const": "known"
++                },
++                "value": {
++                  "type": "object",
++                  "properties": {
++                    "task": {
++                      "type": "string",
++                      "enum": [
++                        "permission",
++                        "correction"
++                      ]
++                    },
++                    "subjects": {
++                      "type": "array",
++                      "minItems": 1,
++                      "maxItems": 12,
++                      "items": {
++                        "type": "object",
++                        "properties": {
++                          "th": {
++                            "type": "string",
++                            "maxLength": 120
++                          },
++                          "en": {
++                            "type": "string",
++                            "maxLength": 120
++                          }
++                        },
++                        "required": [
++                          "th",
++                          "en"
++                        ],
++                        "additionalProperties": false,
++                        "anyOf": [
++                          {
++                            "properties": {
++                              "th": {
++                                "minLength": 1
++                              }
++                            }
++                          },
++                          {
++                            "properties": {
++                              "en": {
++                                "minLength": 1
++                              }
++                            }
++                          }
++                        ]
++                      }
++                    },
++                    "ownership": {
++                      "type": "string",
++                      "enum": [
++                        "any",
++                        "personal"
++                      ]
++                    },
++                    "context": {
++                      "type": "string",
++                      "enum": [
++                        "studio",
++                        "competition"
++                      ]
++                    }
++                  },
++                  "required": [
++                    "task",
++                    "subjects",
++                    "ownership",
++                    "context"
++                  ],
++                  "additionalProperties": false
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "minItems": 1
++                },
++                "note": {
++                  "type": "string"
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "type": "string",
++                  "enum": [
++                    "unknown",
++                    "not_applicable"
++                  ]
++                },
++                "value": {
++                  "type": "null"
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "maxItems": 0
++                },
++                "note": {
++                  "type": "string",
++                  "minLength": 1
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "const": "conflicted"
++                },
++                "value": {
++                  "type": "null"
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "minItems": 2
++                },
++                "note": {
++                  "type": "string",
++                  "minLength": 1
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            }
++          ]
+         }
+       },
+       "required": [
+@@ -1494,4 +1703,4 @@
+   "$schema": "https://json-schema.org/draft/2020-12/schema",
+   "title": "นโยบายและกฎศูนย์",
+   "description": "Common content schema loaded by the registry; publication requires source, validity and review checks."
+-}
++}--- R72/app/knowledge/common/schemas/procedure.schema.json
++++ R73/app/knowledge/common/schemas/procedure.schema.json
+@@ -1308,6 +1308,215 @@
+               "additionalProperties": false
+             }
+           ]
++        },
++        "query_profile": {
++          "description": "ข้อมูลช่วยเลือกคำตอบตาม task/subject/scope ไม่ใช่ข้อเท็จจริงใหม่",
++          "oneOf": [
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "const": "known"
++                },
++                "value": {
++                  "type": "object",
++                  "properties": {
++                    "task": {
++                      "type": "string",
++                      "enum": [
++                        "permission",
++                        "correction"
++                      ]
++                    },
++                    "subjects": {
++                      "type": "array",
++                      "minItems": 1,
++                      "maxItems": 12,
++                      "items": {
++                        "type": "object",
++                        "properties": {
++                          "th": {
++                            "type": "string",
++                            "maxLength": 120
++                          },
++                          "en": {
++                            "type": "string",
++                            "maxLength": 120
++                          }
++                        },
++                        "required": [
++                          "th",
++                          "en"
++                        ],
++                        "additionalProperties": false,
++                        "anyOf": [
++                          {
++                            "properties": {
++                              "th": {
++                                "minLength": 1
++                              }
++                            }
++                          },
++                          {
++                            "properties": {
++                              "en": {
++                                "minLength": 1
++                              }
++                            }
++                          }
++                        ]
++                      }
++                    },
++                    "ownership": {
++                      "type": "string",
++                      "enum": [
++                        "any",
++                        "personal"
++                      ]
++                    },
++                    "context": {
++                      "type": "string",
++                      "enum": [
++                        "studio",
++                        "competition"
++                      ]
++                    }
++                  },
++                  "required": [
++                    "task",
++                    "subjects",
++                    "ownership",
++                    "context"
++                  ],
++                  "additionalProperties": false
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "minItems": 1
++                },
++                "note": {
++                  "type": "string"
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "type": "string",
++                  "enum": [
++                    "unknown",
++                    "not_applicable"
++                  ]
++                },
++                "value": {
++                  "type": "null"
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "maxItems": 0
++                },
++                "note": {
++                  "type": "string",
++                  "minLength": 1
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            },
++            {
++              "type": "object",
++              "properties": {
++                "status": {
++                  "const": "conflicted"
++                },
++                "value": {
++                  "type": "null"
++                },
++                "evidence_refs": {
++                  "type": "array",
++                  "items": {
++                    "type": "object",
++                    "properties": {
++                      "source_id": {
++                        "type": "string",
++                        "minLength": 1
++                      },
++                      "locator": {
++                        "type": "string",
++                        "minLength": 1
++                      }
++                    },
++                    "required": [
++                      "source_id",
++                      "locator"
++                    ],
++                    "additionalProperties": false
++                  },
++                  "minItems": 2
++                },
++                "note": {
++                  "type": "string",
++                  "minLength": 1
++                }
++              },
++              "required": [
++                "status",
++                "value",
++                "evidence_refs",
++                "note"
++              ],
++              "additionalProperties": false
++            }
++          ]
+         }
+       },
+       "required": [
+--- R72/app/knowledge/common/semantics.py
++++ R73/app/knowledge/common/semantics.py
+@@ -16,7 +16,7 @@
+     fields=record['fields'];kind=record['kind']
+     if full:
+         # These fields support search/order/review rather than customer facts.
+-        hidden={'source_order','facets','intent_key','source_variants','profile_role'}
++        hidden={'source_order','facets','intent_key','source_variants','profile_role','query_profile'}
+         if kind=='procedure' and fields.get('name',{}).get('status')=='known':hidden.add('topic')
+         keys=[k for k in fields if k not in hidden]
+         if kind=='control_set' and fields.get('bindings',{}).get('status')=='known' and fields.get('limitations',{}).get('status')=='known':
+--- R72/app/knowledge/common/templates/faq.draft.json
++++ R73/app/knowledge/common/templates/faq.draft.json
+@@ -66,6 +66,12 @@
+       "value": null,
+       "evidence_refs": [],
+       "note": "ใช้เมื่อแหล่งเดิมมีความต่าง ไม่เลือกนโยบายแทนเจ้าของ"
++    },
++    "query_profile": {
++      "status": "unknown",
++      "value": null,
++      "evidence_refs": [],
++      "note": "ข้อมูลช่วยค้น ไม่ใช่ข้อเท็จจริงหรือนโยบายใหม่"
+     }
+   }
+-}
++}--- R72/app/knowledge/common/templates/policy.draft.json
++++ R73/app/knowledge/common/templates/policy.draft.json
+@@ -72,6 +72,12 @@
+       "value": null,
+       "evidence_refs": [],
+       "note": "ยังไม่มีข้อมูลยืนยันสำหรับช่องนี้"
++    },
++    "query_profile": {
++      "status": "unknown",
++      "value": null,
++      "evidence_refs": [],
++      "note": "ข้อมูลช่วยค้น ไม่ใช่ข้อเท็จจริงหรือนโยบายใหม่"
+     }
+   }
+-}
++}--- R72/app/knowledge/common/templates/procedure.draft.json
++++ R73/app/knowledge/common/templates/procedure.draft.json
+@@ -66,6 +66,12 @@
+       "value": null,
+       "evidence_refs": [],
+       "note": "กรอกชื่อเรื่องที่คนอ่านเข้าใจได้"
++    },
++    "query_profile": {
++      "status": "unknown",
++      "value": null,
++      "evidence_refs": [],
++      "note": "ข้อมูลช่วยค้น ไม่ใช่ข้อเท็จจริงหรือนโยบายใหม่"
+     }
+   }
+ }--- R72/app/knowledge/common/ui/owner.js
++++ R73/app/knowledge/common/ui/owner.js
+@@ -17,6 +17,15 @@
+ async function task(fn){let controls=Array.from(document.querySelectorAll('button,input,select,textarea')).map(e=>[e,e.disabled]);controls.forEach(([e])=>e.disabled=true);try{await fn();}catch(e){message(userError(e.message),true);}finally{controls.forEach(([e,was])=>{if(e.isConnected)e.disabled=was;});}}
+ Object.assign(SUB_LABELS,{button_label:'ชื่อปุ่มตามต้นฉบับ เช่น A / B',notes:'คำอธิบายเพิ่มเติม',section:'หมวดในชุดปุ่ม',source_order:'ลำดับจากต้นฉบับ'});
+ function defaults(s){let t=Array.isArray(s.type)?s.type.find(x=>x!=='null'):s.type;if(s.enum)return s.enum[0];if(t==='object')return Object.fromEntries(Object.entries(s.properties||{}).map(([k,v])=>[k,defaults(v)]));if(t==='array')return [];if(t==='boolean')return false;if(t==='integer')return s.minimum||0;return '';}
++
++// Routing metadata is optional and never supplies an answer or approval.
++SIMPLE_FIELD_LABELS.query_profile='ช่วยแชทเลือกหัวข้อคำตอบ (กรอกเพิ่มได้)';
++Object.assign(SUB_LABELS,{task:'ผู้ใช้ถามเรื่องลักษณะไหน',subjects:'เรื่องหรือสิ่งของที่คำตอบนี้ครอบคลุม',ownership:'เป็นของส่วนตัวหรือไม่',context:'ใช้กับบริการทั่วไปหรือการแข่งขัน'});
++Object.assign(OPTION_LABELS,{permission:'ถามว่าใช้/นำมาได้ไหม',correction:'ถามวิธีแก้สิ่งที่ทำผิด',any:'ไม่จำกัดเจ้าของสิ่งของ',personal:'ของส่วนตัวของผู้ใช้',studio:'บริการทั่วไปของศูนย์',competition:'เฉพาะการแข่งขัน'});
++for (const kind of ['faq','policy','procedure']) {
++ FIELD_HELP[kind].query_profile={hint:'ไม่ต้องเขียนคำถามทุกแบบ เลือกชนิดคำถาม ใส่ชื่อเรื่องไทย/อังกฤษ เช่น คีย์บอร์ด / keyboard แล้วเลือกขอบเขตให้ตรง คำตอบจริงยังอ่านจากเนื้อหาด้านบน ถ้ายังไม่แน่ใจให้คงสถานะยังไม่ทราบ',example:{task:'permission',subjects:[{th:'อุปกรณ์ตัวอย่าง',en:'example equipment'}],ownership:'personal',context:'studio'}};
++}
++
+ function valueEditor(schema,val,refKind=null,key=""){
+  let root=node('div'),get;let t=Array.isArray(schema.type)?schema.type.find(x=>x!=='null'):schema.type;
+  if(refKind&&t==='string'){let s=node('select');s.append(new Option('เลือกชื่อรายการที่สร้างไว้',''));s.setAttribute('aria-label',SUB_LABELS[key]||'เลือกรายการที่เชื่อม');for(let r of status.records.filter(r=>!r.withdrawn&&(refKind==='*'||r.kind===refKind)))s.append(new Option((r.label||r.record_id)+' ['+r.record_id+']',r.record_id));s.value=val||'';root.append(s);if(s.options.length===1)root.append(node('p','ยังไม่มีรายการให้เลือก กรุณาสร้างหมวดที่เกี่ยวข้องก่อน (ดู “ต้องมีข้อมูลไหนก่อน” ด้านบน)'));get=()=>s.value;}
+@@ -39,7 +48,7 @@
+ function localTime(v){if(!v)return '';return new Date(new Date(v).getTime()+7*3600000).toISOString().slice(0,16);}
+ function render(r,revision=null){record=r;saved=revision;dirty=false;editors={};$('welcome').hidden=true;$('editor').hidden=false;$('fields').replaceChildren();$('heading').textContent=OWNER_HELP[r.kind].label;$('rid').value=r.record_id;$('rid').disabled=!!revision;$('alias_th').value=r.aliases.th.join('\n');$('alias_en').value=r.aliases.en.join('\n');$('validity').value=r.validity.state;$('from').value=localTime(r.validity.effective_from);$('until').value=localTime(r.validity.effective_until);$('source_lang').value=r.localization.source_language;$('en_status').value=r.localization.en_status;$('attest').checked=false;
+  $('translation_reviewed').checked=false;
+- for(let f of catalog[r.kind].fields){let unit=r.fields[f.key]||{status:'unknown',value:null,evidence_refs:[],note:''};let box=node('div');box.className='field';box.append(node('h3',(f.publish_core?'★ ต้องมี: ':'')+fieldLabel(f,r.kind)));let s=node('select');s.className='status';for(let [v,l] of Object.entries({unknown:'ไม่ทราบ / ยังไม่มีข้อมูล',known:'มีข้อมูลยืนยัน',not_applicable:'ไม่เกี่ยวข้อง',conflicted:'ข้อมูลขัดกัน'}))s.append(new Option(l,v));s.value=unit.status;let ed=valueEditor(f.value_schema,f.key==='amount_minor'?unit.value:(unit.value??defaults(f.value_schema)),f.reference_kind,f.key);ed.root.setAttribute('aria-label',fieldLabel(f,r.kind));box.dataset.field=f.key;s.setAttribute('aria-label','สถานะ: '+fieldLabel(f,r.kind));let h=FIELD_HELP[r.kind]?.[f.key]||{hint:f.meaning_th+' — กรอกเฉพาะที่มีหลักฐาน เว้นส่วนที่ไม่ทราบไว้',example:null};box.append(node('p',h.hint));let ex=node('details');ex.className='field-example';ex.append(node('summary','ดูตัวอย่างการกรอก: '+fieldLabel(f,r.kind)),(f.key==='amount_minor'?node('p',(h.example/100).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})+' บาท — ใส่จำนวนบาทนี้ในช่องราคา'):exampleView(h.example)),node('small','ตัวอย่างสมมุติสำหรับอธิบายช่องกรอก ไม่ใช่ข้อมูลจริงของศูนย์ และไม่ถูกใส่ลงในช่องอัตโนมัติ'));box.append(ex);let note=node('textarea');note.placeholder='หมายเหตุ / ขอบเขต / ข้อมูลที่ยังต้องยืนยัน';note.value=unit.note||'';note.setAttribute('aria-label','หมายเหตุ: '+fieldLabel(f,r.kind));ed.root.hidden=s.value!=='known';s.onchange=()=>{ed.root.hidden=s.value!=='known';dirty=true;};box.append(s,ed.root,note);$('fields').append(box);editors[f.key]={s,ed,note};}
++ for(let f of catalog[r.kind].fields){let unit=r.fields[f.key]||{status:'unknown',value:null,evidence_refs:[],note:'ยังไม่กำหนดข้อมูลสำหรับช่องทางเลือกนี้'};let box=node('div');box.className='field';box.append(node('h3',(f.publish_core?'★ ต้องมี: ':'')+fieldLabel(f,r.kind)));let s=node('select');s.className='status';for(let [v,l] of Object.entries({unknown:'ไม่ทราบ / ยังไม่มีข้อมูล',known:'มีข้อมูลยืนยัน',not_applicable:'ไม่เกี่ยวข้อง',conflicted:'ข้อมูลขัดกัน'}))s.append(new Option(l,v));s.value=unit.status;let ed=valueEditor(f.value_schema,f.key==='amount_minor'?unit.value:(unit.value??defaults(f.value_schema)),f.reference_kind,f.key);ed.root.setAttribute('aria-label',fieldLabel(f,r.kind));box.dataset.field=f.key;s.setAttribute('aria-label','สถานะ: '+fieldLabel(f,r.kind));let h=FIELD_HELP[r.kind]?.[f.key]||{hint:f.meaning_th+' — กรอกเฉพาะที่มีหลักฐาน เว้นส่วนที่ไม่ทราบไว้',example:null};box.append(node('p',h.hint));let ex=node('details');ex.className='field-example';ex.append(node('summary','ดูตัวอย่างการกรอก: '+fieldLabel(f,r.kind)),(f.key==='amount_minor'?node('p',(h.example/100).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})+' บาท — ใส่จำนวนบาทนี้ในช่องราคา'):exampleView(h.example)),node('small','ตัวอย่างสมมุติสำหรับอธิบายช่องกรอก ไม่ใช่ข้อมูลจริงของศูนย์ และไม่ถูกใส่ลงในช่องอัตโนมัติ'));box.append(ex);let note=node('textarea');note.placeholder='หมายเหตุ / ขอบเขต / ข้อมูลที่ยังต้องยืนยัน';note.value=unit.note||'';note.setAttribute('aria-label','หมายเหตุ: '+fieldLabel(f,r.kind));ed.root.hidden=s.value!=='known';s.onchange=()=>{ed.root.hidden=s.value!=='known';dirty=true;};box.append(s,ed.root,note);$('fields').append(box);editors[f.key]={s,ed,note};}
+  showGuide(r.kind);updateReadiness();renderEditTools();$('state').textContent=revision?'ฉบับ '+revision.version+' • '+(revision.approved_hash===revision.hash?'อนุมัติแล้ว':'ร่างยังไม่อนุมัติ'):'รายการใหม่ ยังไม่บันทึก';
+ }
+ function collect(){let r=structuredClone(record);r.record_id=$('rid').value.trim();r.aliases={th:$('alias_th').value.split('\n').map(x=>x.trim()).filter(Boolean),en:$('alias_en').value.split('\n').map(x=>x.trim()).filter(Boolean)};r.validity={state:$('validity').value,effective_from:$('from').value?$('from').value+':00+07:00':null,effective_until:$('until').value?$('until').value+':00+07:00':null};r.localization={source_language:$('source_lang').value,en_status:$('en_status').value,source_revision_hash:null};for(let [k,x] of Object.entries(editors)){if(x.s.value==='conflicted')throw Error('ข้อมูลขัดกัน: เก็บหลักฐานแยกในฉบับร่าง JSON และตัดสินใจก่อนเผยแพร่');r.fields[k]={status:x.s.value,value:x.s.value==='known'?x.ed.get():null,evidence_refs:[],note:x.note.value||null};}return r;}
+--- R72/app/knowledge/common/unconfirmed_request.py
++++ R73/app/knowledge/common/unconfirmed_request.py
+@@ -0,0 +1,25 @@
++"""Describe an unresolved need precisely; never infer a missing owner policy."""
++import re
++from .query_contract import normalize
++def topic(question):
++ q=normalize(question)
++ if re.search(r'โอนเกิน|จ่ายเกิน|\b(?:overpaid|overpay|paid too much)\b|\b(?:payment|amount)\s+(?:was|is)\s+too\s+high\b',q):return 'overpayment'
++ if re.search(r'โอนขาด|จ่ายขาด|(?:โอน|จ่าย|ชำระ).{0,15}ไม่ครบ|\b(?:underpaid|underpay|paid too little)\b|\b(?:payment|amount)\s+(?:was|is)\s+too\s+low\b',q):return 'underpayment'
++ if re.search(r'(?:จ่าย|ชำระ|โอน).{0,20}(?:ยอดผิด|จำนวนผิด)|\b(?:wrong|incorrect)\s+(?:payment\s+)?amount\b',q):return 'wrong_amount'
++ if re.search(r'ผ่อน(?:จ่าย|ชำระ)?|\binstallments?\b',q):return 'installments'
++ if re.search(r'(?:โอน|เงิน).{0,30}(?:ถึงบัญชี|เข้าบัญชี|กี่วัน)|\b(?:transfer|payment)\b.{0,45}\b(?:arrive|processing|clear)\b',q):return 'transfer_processing'
++ if re.search(r'อายุ|ผู้ปกครอง|\b(?:minimum age|age limit|years? old|guardian|parental)\b',q):return 'age_guardian'
++ return None
++LABELS={
++ 'overpayment':('วิธีจัดการเมื่อโอนเกิน','how overpayments are handled'),
++ 'underpayment':('วิธีจัดการเมื่อโอนขาด','how underpayments are handled'),
++ 'wrong_amount':('วิธีแก้ไขเมื่อชำระยอดผิด','how to correct an incorrect payment amount'),
++ 'installments':('เงื่อนไขการผ่อนชำระ','whether installment payments are permitted'),
++ 'transfer_processing':('ระยะเวลาที่เงินโอนเข้าถึงบัญชี','how long a transfer takes to reach the account'),
++ 'age_guardian':('เงื่อนไขอายุและผู้ปกครองสำหรับเข้าใช้ศูนย์','the age and guardian requirements for using the studio'),
++}
++def message(key,lang):
++ label=LABELS[key][lang=='en']
++ body=('จากข้อมูลที่อ่านได้ ยังยืนยัน'+label+'ไม่ได้ครับ กรุณาติดต่อเจ้าหน้าที่เพื่อยืนยันก่อนดำเนินการ' if lang=='th' else 'The information I could read does not confirm '+label+'. Please contact the studio staff to confirm before proceeding.')
++ if key=='wrong_amount':body+=('\nยอดที่ชำระเกินหรือขาดจากยอดจองครับ? ตอนนี้ยังยืนยันวิธีแก้รายการหรือเงื่อนไขคืนเงินให้ไม่ได้' if lang=='th' else '\nWas the payment above or below the booking amount? I cannot yet confirm a correction or refund procedure.')
++ return body
+--- R72/web_chat/index.html
++++ R73/web_chat/index.html
+@@ -3,7 +3,7 @@
+   <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+-    <title>PSU Esports — แชทข้อมูลชุดใหม่ R72</title>
++    <title>PSU Esports — แชทข้อมูลชุดใหม่ R73</title>
+     <link rel="stylesheet" href="/styles.css" />
+   </head>
+   <body>
+@@ -28,7 +28,7 @@
+           </div>
+         </header>
+ 
+-        <div class="migration-banner" role="status">ข้อมูลชุดย้าย R72 — กำลังตรวจสอบก่อนเผยแพร่<br><span lang="en">Migrated data preview — not yet published</span></div>
++        <div class="migration-banner" role="status">ข้อมูลชุดย้าย R73 — กำลังตรวจสอบก่อนเผยแพร่<br><span lang="en">Migrated data preview — not yet published</span></div>
+         <div class="demo-layout">
+           <aside class="side-panel" aria-label="ตัวอย่างคำถามและข้อมูลระบบ">
+             <section class="side-section">

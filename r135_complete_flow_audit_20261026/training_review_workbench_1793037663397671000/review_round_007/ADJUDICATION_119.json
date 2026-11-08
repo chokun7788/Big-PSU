@@ -1,0 +1,122 @@
+{
+  "question_key": "90a565b2ff823f91fec2e54b32d819555f60b3be8028c0ce983178330f1ca956",
+  "example_sha256": "0601fa1df926c2cf3280444f50fcde21df2acbac67af41bd490b59d745188f73",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One walk-in policy question; help-me prefix is style.",
+      "raw_quotes": [
+        "Could you please help me with this: Can I walk in"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy retains the booking-policy need.",
+      "raw_quotes": [
+        "Could you please help me with this: Can I walk in"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "walk in is the explicit local requested action.",
+      "raw_quotes": [
+        "Could you please help me with this: Can I walk in"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No service, booked slot or previous reservation is supplied.",
+      "raw_quotes": [
+        "Could you please help me with this: Can I walk in"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Asking permission to walk in does not assert permission to bypass the reservation system.",
+      "raw_quotes": [
+        "Could you please help me with this: Can I walk in"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_owner_claim_walk_in explicitly distinguishes arrival from required reservation before service.",
+      "raw_quotes": [
+        "Could you please help me with this: Can I walk in"
+      ],
+      "source_record_ids": [
+        "migrated_owner_claim_walk_in"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No affirmative permission, advance-time deadline or booking steps enter labels.",
+      "raw_quotes": [
+        "Could you please help me with this: Can I walk in"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 119,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: Can I walk in",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: Can I walk in",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "walk in",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_owner_claim_walk_in": {
+      "revision": 2,
+      "record_sha256": "c0502aca471cd10a3eafd61396d71ec7577022174d80dfc964a21898b847c3bf"
+    }
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "health": {
+    "ok": true,
+    "service": "psu-esports-chat-web",
+    "time": "2026-10-09T10:37:49.244850+00:00",
+    "warmup": {
+      "ok": true,
+      "elapsed_sec": 21.6276,
+      "warmed": [
+        "game_title_aliases",
+        "structured_tools",
+        "game_resolver",
+        "routing_data",
+        "retrieval_data",
+        "probe_queries",
+        "semantic_embedding"
+      ],
+      "errors": [],
+      "timings": {
+        "game_title_aliases": 0.959,
+        "structured_tools": 1.7615,
+        "game_resolver": 0.4982,
+        "routing_data": 0.3922,
+        "retrieval_data": 5.2207,
+        "probe_queries": 12.6744,
+        "semantic_embedding": 0.1215
+      }
+    },
+    "llm_preflight": {
+      "ok": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "kind": "preflight",
+      "elapsed_ms": 165.03,
+      "response_chars": 2,
+      "done_reason": "length",
+      "num_ctx": 3072,
+      "load_duration": 8899600,
+      "prompt_eval_duration": 121972000,
+      "eval_duration": 1000,
+      "health": {
+        "llm_health_enabled": true,
+        "llm_health_status": "ok",
+        "llm_health_failures": 0,
+        "llm_health_failure_scope": "model_and_kind"
+      }
+    },
+    "input_quality_guard": {
+      "enabled": true,
+      "mode": "enforce",
+      "repeat_policy": "warn_and_continue",
+      "layout_threshold": 0.39,
+      "repeat_threshold": 0.55,
+      "corpus_size": 4023,
+      "profile_version": "keyboard-profile-v1:2a863a4176572043"
+    },
+    "llm_health": {
+      "enabled": true,
+      "failure_threshold": 2,
+      "failure_window_sec": 30.0,
+      "cooldown_sec": 90.0,
+      "states": [
+        {
+          "kind": "model",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 165.03,
+          "last_checked_at": 1791540815.9335296,
+          "last_success_at": 1791540815.9335296,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 165.03,
+              "detail": "preflight_ok",
+              "at": 1791540815.934
+            }
+          ]
+        },
+        {
+          "kind": "preflight",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 165.03,
+          "last_checked_at": 1791540815.9335296,
+          "last_success_at": 1791540815.9335296,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 165.03,
+              "detail": "preflight_ok",
+              "at": 1791540815.934
+            }
+          ]
+        }
+      ]
+    },
+    "pipeline_workers": {
+      "enabled": true,
+      "started": true,
+      "worker_count": 1,
+      "workers": [
+        {
+          "worker_id": 0,
+          "pid": 35632,
+          "alive": true,
+          "ready": true,
+          "completed_requests": 77,
+          "busy": false,
+          "replacement_warming": false
+        }
+      ],
+      "performance": {
+        "run_id": "20261009T101311Z",
+        "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r50_flow_load_20261009_66d96bb7\\release_r50_2\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261009T101311Z.jsonl",
+        "events_written": 4643,
+        "events_dropped": 0
+      }
+    },
+    "runtime": {
+      "profile": "owner-local-rag-assist",
+      "version": "2026.10.09-flow-r50.2",
+      "installation_id": "4389ce37fbbc1423",
+      "started_at": "2026-10-09T10:13:10.519767+00:00",
+      "system_memory": {
+        "available": true,
+        "physical_load_percent": 86,
+        "available_physical_mb": 2176.1,
+        "available_commit_mb": 6415.0
+      },
+      "python": {
+        "executable_id": "16a5fdffbda88a30",
+        "version": [
+          3,
+          12,
+          14
+        ],
+        "bits": 64,
+        "pid": 6564
+      },
+      "answer_timeout_sec": 20.0,
+      "pipeline_timeout_sec": 19.0,
+      "intent_timeout_sec": 14.0,
+      "local_llm": {
+        "enabled": true,
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "intent_timeout_sec": 14.0,
+        "planner_timeout_sec": 1.2,
+        "general_timeout_sec": 4.0,
+        "high_assist_profile": true
+      },
+      "semantic_rag": {
+        "enabled": true,
+        "embedding_model": "psu-bge-m3:q8_0"
+      },
+      "english": {
+        "enabled": true,
+        "draft_preview": false
+      },
+      "booking": {
+        "enabled": true,
+        "fetch_mode": "wordpress",
+        "cache_seconds": 0.0,
+        "dashboard_required": false,
+        "read_only": true
+      },
+      "input_quality": {
+        "mode": "enforce",
+        "keyboard_layout": "request_retype",
+        "repeated_characters": "warn_and_continue"
+      }
+    },
+    "features": {
+      "bilingual_english": true,
+      "local_llm_assist": true,
+      "semantic_rag": true,
+      "embedding_model": "psu-bge-m3:q8_0",
+      "live_booking_status": true
+    }
+  },
+  "ollama_ps": {
+    "models": [
+      {
+        "name": "scb10x/typhoon2.5-qwen3-4b:latest",
+        "model": "scb10x/typhoon2.5-qwen3-4b:latest",
+        "size": 2798041169,
+        "digest": "b1f251ef835962b270ba48266d4e32e6f90b29f10930d0712ef5eaabec773a05",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "4.0B",
+          "quantization_level": "Q4_K_M"
+        },
+        "expires_at": "2026-10-09T17:46:59.9125301+07:00",
+        "size_vram": 2798041169,
+        "context_length": 1536
+      },
+      {
+        "name": "psu-bge-m3:q8_0",
+        "model": "psu-bge-m3:q8_0",
+        "size": 632542985,
+        "digest": "d717a1a50e2df72ace00e789bbefe70ff25900807e585fbcd244911b62de763f",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "bert",
+          "families": [
+            "bert"
+          ],
+          "parameter_size": "566.70M",
+          "quantization_level": "F16"
+        },
+        "expires_at": "2026-10-09T17:46:27.3819651+07:00",
+        "size_vram": 632542985,
+        "context_length": 1024
+      }
+    ]
+  },
+  "models": {
+    "models": [
+      {
+        "name": "bge-m3:latest",
+        "model": "bge-m3:latest",
+        "modified_at": "2026-09-16T23:34:52.5570068+07:00",
+        "size": 1157672605,
+        "digest": "7907646426070047a77226ac3e684fbbe8410524f7b4a74d02837e43f2146bab",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "bert",
+          "families": [
+            "bert"
+          ],
+          "parameter_size": "566.70M",
+          "quantization_level": "F16",
+          "context_length": 8192,
+          "embedding_length": 1024
+        },
+        "capabilities": [
+          "embedding"
+        ]
+      },
+      {
+        "name": "psu-bge-m3:q8_0",
+        "model": "psu-bge-m3:q8_0",
+        "modified_at": "2026-09-16T23:34:52.7617145+07:00",
+        "size": 1157672434,
+        "digest": "d717a1a50e2df72ace00e789bbefe70ff25900807e585fbcd244911b62de763f",
+        "details": {
+          "parent_model": "bge-m3:latest",
+          "format": "gguf",
+          "family": "bert",
+          "families": [
+            "bert"
+          ],
+          "parameter_size": "566.70M",
+          "quantization_level": "F16",
+          "context_length": 8192,
+          "embedding_length": 1024
+        },
+        "capabilities": [
+          "embedding"
+        ]
+      },
+      {
+        "name": "scb10x/typhoon2.5-qwen3-4b:latest",
+        "model": "scb10x/typhoon2.5-qwen3-4b:latest",
+        "modified_at": "2026-09-16T23:34:51.4617117+07:00",
+        "size": 2497289434,
+        "digest": "b1f251ef835962b270ba48266d4e32e6f90b29f10930d0712ef5eaabec773a05",
+        "details": {
+          "parent_model": "/usr/share/ollama/.ollama/models/blobs/sha256-b365302922688f3a3c9ac8e3c00ab97a152cac0cdbf4eb5a734ecb483ae3e511",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "4.0B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 2560
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      },
+      {
+        "name": "psu-bge-m3:q4_k_m",
+        "model": "psu-bge-m3:q4_k_m",
+        "modified_at": "2026-08-23T23:19:45.2622746+07:00",
+        "size": 437779733,
+        "digest": "d8353b626ed366a7f6276235ee6d365a1cb2211d57d89c4948615be189850c12",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "bert",
+          "families": [
+            "bert"
+          ],
+          "parameter_size": "566.70M",
+          "quantization_level": "Q4_K_M",
+          "context_length": 8192,
+          "embedding_length": 1024
+        },
+        "capabilities": [
+          "embedding"
+        ]
+      },
+      {
+        "name": "supachai/llama-3-typhoon-v1.5:8b-instruct",
+        "model": "supachai/llama-3-typhoon-v1.5:8b-instruct",
+        "modified_at": "2026-07-21T17:09:54.592651+07:00",
+        "size": 4921248088,
+        "digest": "3e00010a12ad53de707c65b4486104882521802a7bedad664b7378e3bbdd73e4",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "llama",
+          "families": [
+            "llama"
+          ],
+          "parameter_size": "8.0B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 8192,
+          "embedding_length": 4096
+        },
+        "capabilities": [
+          "completion"
+        ]
+      },
+      {
+        "name": "qwen2.5:3b",
+        "model": "qwen2.5:3b",
+        "modified_at": "2026-06-29T17:44:51.2875575+07:00",
+        "size": 1929912432,
+        "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen2",
+          "families": [
+            "qwen2"
+          ],
+          "parameter_size": "3.1B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 32768,
+          "embedding_length": 2048
+        },
+        "capabilities": [
+          "completion",
+          "tools"
+        ]
+      },
+      {
+        "name": "qwen3:4b",
+        "model": "qwen3:4b",
+        "modified_at": "2026-06-29T15:21:28.3403306+07:00",
+        "size": 2497293931,
+        "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "4.0B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 2560
+        },
+        "capabilities": [
+          "completion",
+          "tools",
+          "thinking"
+        ]
+      }
+    ]
+  }
+}

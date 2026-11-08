@@ -1,0 +1,139 @@
+{
+  "question_key": "4b0fb4a4344134b1f575032bdf52be169e19f555edfefbda347310760b6c859d",
+  "example_sha256": "cd52512a8fc20f41c2407299103322e6f0b12b75c2105cac7802387315a53275",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One tournament equipment/device-policy need; preparing for a match is context.",
+      "raw_quotes": [
+        "I am preparing for a AOV match. What is the policy for competition equipment and devices"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause retains the competition scope.",
+      "raw_quotes": [
+        "I am preparing for a AOV match. What is the policy for competition equipment and devices"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "AOV is game target; competition equipment and devices is requested_scope rather than the whole sentence as condition.",
+      "raw_quotes": [
+        "I am preparing for a AOV match. What is the policy for competition equipment and devices"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No event year, mens edition or studio equipment is inherited.",
+      "raw_quotes": [
+        "I am preparing for a AOV match. What is the policy for competition equipment and devices"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A game alias does not authorize applying ordinary studio policy or selecting an unstated event edition.",
+      "raw_quotes": [
+        "I am preparing for a AOV match. What is the policy for competition equipment and devices"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_rov_72 and74 contain event-specific phone/internet and tablet/device clauses for a recorded RoV men event; edition remains a reader/source-selection obligation.",
+      "raw_quotes": [
+        "I am preparing for a AOV match. What is the policy for competition equipment and devices"
+      ],
+      "source_record_ids": [
+        "r114_rov_72_rule_clause",
+        "r114_rov_74_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No allowed device, disqualification or internet permission is taught.",
+      "raw_quotes": [
+        "I am preparing for a AOV match. What is the policy for competition equipment and devices"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 49,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [
+      "I am preparing for a AOV match"
+    ],
+    "tasks": [
+      {
+        "quote": "I am preparing for a AOV match. What is the policy for competition equipment and devices",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "AOV",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "I am preparing for a AOV match",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [
+      "AOV",
+      "competition equipment and devices"
+    ],
+    "tasks": [
+      {
+        "quote": "I am preparing for a AOV match. What is the policy for competition equipment and devices",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "AOV",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "competition equipment and devices",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_rov_72_rule_clause": {
+      "revision": 1,
+      "record_sha256": "cb2f8ffaf01879d81c4d45f54adc0b5274a5ee52f8bf15bf9c805112c9061d8c"
+    },
+    "r114_rov_74_rule_clause": {
+      "revision": 1,
+      "record_sha256": "7ea6003d80147da783ac5c39bf209b805a2e0a4d088eee1b16c9057ed86992d1"
+    }
+  }
+}

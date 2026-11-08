@@ -1,0 +1,161 @@
+{
+  "question_key": "0d05eaf601eadf916bc92c4e43a8a10ce1897c3412ccc9c1534782cda7c52ef7",
+  "example_sha256": "fb1bd2a7087caa56d0b06e2858e39467406e9d0697e919963c86ab6822082b4d",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One VR ordinary-play price request for an adult for one hour.",
+      "raw_quotes": [
+        "How much does it cost for an adult to play VR for one hour?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount preserves the calculation need.",
+      "raw_quotes": [
+        "How much does it cost for an adult to play VR for one hour?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "adult is audience; one hour is requested duration; VR is service, not a game title.",
+      "raw_quotes": [
+        "How much does it cost for an adult to play VR for one hour?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "All quotes are local to this one calculation.",
+      "raw_quotes": [
+        "How much does it cost for an adult to play VR for one hour?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "No number of people or sessions is explicit; do not substitute the source 1-5 capacity for a user count.",
+      "raw_quotes": [
+        "How much does it cost for an adult to play VR for one hour?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_rate_vr_60_1_5_general_adult binds the sixty-minute VR service, general-adult audience and session_ceil rule.",
+      "raw_quotes": [
+        "How much does it cost for an adult to play VR for one hour?"
+      ],
+      "source_record_ids": [
+        "migrated_rate_vr_60_1_5_general_adult"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No amount_minor value or computed total enters the plan.",
+      "raw_quotes": [
+        "How much does it cost for an adult to play VR for one hour?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 36,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "one hour",
+      "adult",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does it cost for an adult to play VR for one hour?",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "one hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "adult",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "one hour",
+      "adult",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does it cost for an adult to play VR for one hour?",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "one hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "adult",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "migrated_rate_vr_60_1_5_general_adult": {
+      "revision": 2,
+      "record_sha256": "3b73c2cf3c8046d275fa0eb80a10f6ff163e7eb94ac340799448280aec477a5b"
+    }
+  }
+}

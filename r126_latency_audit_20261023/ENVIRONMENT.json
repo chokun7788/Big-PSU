@@ -1,0 +1,37 @@
+{
+  "captured_at": 1792765501.3815138,
+  "read_only": true,
+  "settings_changed": false,
+  "queries": {
+    "power_scheme": {
+      "command": [
+        "powercfg",
+        "/getactivescheme"
+      ],
+      "exit_code": 0,
+      "stdout": "Power Scheme GUID: 64a64f24-65b9-4b56-befd-5ec1eaced9b3  (Silent)",
+      "stderr": ""
+    },
+    "gpu": {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=name,pstate,power.draw,power.limit,clocks.current.sm,clocks.max.sm,memory.used,memory.total,memory.free",
+        "--format=csv,noheader"
+      ],
+      "exit_code": 0,
+      "stdout": "NVIDIA GeForce RTX 4050 Laptop GPU, P4, 10.53 W, [N/A], 630 MHz, 3105 MHz, 4334 MiB, 6141 MiB, 1586 MiB",
+      "stderr": ""
+    },
+    "battery": {
+      "command": [
+        "pwsh",
+        "-NoProfile",
+        "-Command",
+        "Get-CimInstance -Namespace root/wmi -ClassName BatteryStatus | Select-Object PowerOnline,Discharging,Charging | ConvertTo-Json"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"PowerOnline\": true,\n  \"Discharging\": false,\n  \"Charging\": false\n}",
+      "stderr": ""
+    }
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "question_key": "60b3ef4fccb64f41f8e70cd8ada2ee5abc75ba788f4fce2224c3233d11e29f50",
+  "example_sha256": "a13a0791a9e9764717697a9b0c253c226657f7ef90d6fbf63ebb7155ad06478b",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs request a general visitor PS5 thirty-minute price and booking procedure.",
+      "raw_quotes": [
+        "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount plus reservation/detail/owner_policy preserve both.",
+      "raw_quotes": [
+        "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "30 minutes,PS5,general visitor retain duration/service/platform/audience roles.",
+      "raw_quotes": [
+        "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Add missing PS5 service/platform shared edges to t2; keep audience/duration local.",
+      "raw_quotes": [
+        "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "General visitor does not prove adulthood or nonstudent status, and30 minutes does not imply half an hourly tariff.",
+      "raw_quotes": [
+        "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "PS5 general-adult and alumni/general-student source rates are distinct session_ceil audience bands; booking_steps is independent.",
+      "raw_quotes": [
+        "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?"
+      ],
+      "source_record_ids": [
+        "migrated_rate_playstation_5_60_1_2_general_adult",
+        "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student",
+        "migrated_faq_rule_booking_steps"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No150THB/50THB amount, adult classification, half tariff or actual booking is taught.",
+      "raw_quotes": [
+        "How much does it cost for a general visitor to play PS5 for 30 minutes and how do I book?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "General visitor is not an explicit adult/nonstudent classification.",
+      "handling": "Resolve source audience scope before a tariff; do not default to general adult."
+    }
+  ],
+  "historical_review_row": 141,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 minutes",
+      "PS5",
+      "general visitor"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does it cost for a general visitor to play PS5 for 30 minutes",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "general visitor",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "how do I book",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "PS5",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "30 minutes",
+      "PS5",
+      "general visitor"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does it cost for a general visitor to play PS5 for 30 minutes",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "30 minutes",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "general visitor",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "how do I book",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "PS5",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "shared"
+          },
+          {
+            "slot": "service",
+            "quote": "PS5",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "PS5",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "PS5",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "platform",
+        "quote": "PS5",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_playstation_5_60_1_2_general_adult": {
+      "revision": 2,
+      "record_sha256": "849e90ceb622b1877aff3f0f31ff11233a989df3e3527c6fae081a2971cc7523"
+    },
+    "migrated_rate_playstation_5_60_1_2_psu_alumni_general_student": {
+      "revision": 2,
+      "record_sha256": "3be03ebae1bb4eab7d6dd3ead2f857800221febbe876deadea760edb55fb1092"
+    },
+    "migrated_faq_rule_booking_steps": {
+      "revision": 4,
+      "record_sha256": "3d46ed93710725b42212be78cc05d7197ba3043e04ade3b26ae2890e897dd846"
+    }
+  }
+}

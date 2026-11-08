@@ -1,0 +1,136 @@
+{
+  "question_key": "aa19dcc37fac3592f9dc23db626b803a30bc8d0d75e31a537ead4b4e2e31338e",
+  "example_sha256": "5d127494ed98149112d2a5e09e39c3806aa4a27e32beaece4b55c0e321639c16",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One game-to-bookable-service relation need asks what to book for Mario Party Superstars.",
+      "raw_quotes": [
+        "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/detail/studio_services retains service selection rather than generic booking steps or a transaction.",
+      "raw_quotes": [
+        "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Mario Party Superstars is game target,not a service; remove its false service slot.",
+      "raw_quotes": [
+        "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No party count, Nintendo machine or live slot is inherited.",
+      "raw_quotes": [
+        "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "ถ้าจะเล่น states intended activity,not a source-output dependency that requires an actual game result.",
+      "raw_quotes": [
+        "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_mario_party has Nintendo-zone and offered-service relations; game controls alone do not prove booking availability.",
+      "raw_quotes": [
+        "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร"
+      ],
+      "source_record_ids": [
+        "game_detail_mario_party",
+        "migrated_link_availability_nintendo_1_2_game_detail_mario_party",
+        "migrated_link_availability_nintendo_1_4_game_detail_mario_party"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No service name, zone, group band or actual reservation is taught.",
+      "raw_quotes": [
+        "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 189,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [
+      "Mario Party Superstars"
+    ],
+    "tasks": [
+      {
+        "quote": "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "studio_services",
+        "target": "Mario Party Superstars",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Mario Party Superstars",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_availability",
+    "context_quotes": [
+      "Mario Party Superstars"
+    ],
+    "tasks": [
+      {
+        "quote": "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "studio_services",
+        "target": "Mario Party Superstars",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_mario_party": {
+      "revision": 9,
+      "record_sha256": "8719cb4afd81bf1582007a654f93e65248f58329b22a4b1fea5ac8570f80ad72"
+    },
+    "migrated_link_availability_nintendo_1_2_game_detail_mario_party": {
+      "revision": 1,
+      "record_sha256": "6e82c3e093bdc7253bccf6afd50177ee4620019a66362104b6d1daac3e181314"
+    },
+    "migrated_link_availability_nintendo_1_4_game_detail_mario_party": {
+      "revision": 1,
+      "record_sha256": "0bbe37eaac15cf233c441672bceb9e32933cea3db370a1872dd818fddeab6210"
+    }
+  }
+}

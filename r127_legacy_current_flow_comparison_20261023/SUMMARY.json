@@ -1,0 +1,114 @@
+{
+  "matched_single": 34,
+  "unique_single_questions": 31,
+  "conversations": 8,
+  "turns_per_arm": 19,
+  "retained_current_single": 34,
+  "fresh_http_requests": 72,
+  "legacy_single": {
+    "requests": 34,
+    "median_sec": 0.6842940999995335,
+    "p95_nearest_rank_sec": 6.247441600000457,
+    "max_sec": 9.7292137000004,
+    "http_errors": 0
+  },
+  "current_retained_single": {
+    "requests": 34,
+    "median_sec": 20.703195299998697,
+    "p95_nearest_rank_sec": 49.30643560000317,
+    "max_sec": 74.24079350000102,
+    "http_errors": 0
+  },
+  "legacy_conversation": {
+    "requests": 19,
+    "median_sec": 0.7452401000009559,
+    "p95_nearest_rank_sec": 16.943516700001055,
+    "max_sec": 16.943516700001055,
+    "http_errors": 0
+  },
+  "current_conversation": {
+    "requests": 19,
+    "median_sec": 6.846637599999667,
+    "p95_nearest_rank_sec": 40.01884179999979,
+    "max_sec": 40.01884179999979,
+    "http_errors": 0
+  },
+  "full_test": false,
+  "overall_accuracy_estimated": false,
+  "client_model_transport": {
+    "legacy": {
+      "pipeline_calls": 53,
+      "attempts": 8,
+      "completed": 6,
+      "failures": [
+        {
+          "question": "แล้วถ้าต้องการยกเลิกล่ะ",
+          "kind": "model",
+          "url": "http://127.0.0.1:12421/api/embed",
+          "start_sec": 15.070313399999577,
+          "parent": null,
+          "request_bytes": 181,
+          "options": {
+            "num_ctx": 1024
+          },
+          "requested_model": "psu-bge-m3:q8_0",
+          "message_characters": 0,
+          "total_sec": 0.025059799998416565,
+          "transport_ok": false,
+          "error": "HTTPError: HTTP Error 404: Not Found"
+        },
+        {
+          "question": "แล้วถ้าต้องการยกเลิกล่ะ",
+          "kind": "model",
+          "url": "http://127.0.0.1:12421/api/generate",
+          "start_sec": 15.096914599998854,
+          "parent": null,
+          "request_bytes": 4723,
+          "options": {
+            "temperature": 0.15,
+            "top_p": 0.8,
+            "num_predict": 96,
+            "num_ctx": 3072
+          },
+          "requested_model": "psu-r121-base:latest",
+          "message_characters": 0,
+          "total_sec": 1.5077229999988049,
+          "transport_ok": false,
+          "error": "TimeoutError: timed out"
+        }
+      ]
+    },
+    "current": {
+      "pipeline_calls": 19,
+      "attempts": 11,
+      "completed": 11,
+      "failures": []
+    }
+  },
+  "verification": {
+    "legacy": {
+      "files_checked": 1504,
+      "missing": [],
+      "changed": [],
+      "source_unchanged": true
+    },
+    "current": {
+      "files_checked": 996,
+      "missing": [],
+      "changed": [],
+      "source_unchanged": true
+    },
+    "r125_frozen": {
+      "files_checked": 1145,
+      "missing": [],
+      "changed": [],
+      "source_unchanged": true
+    },
+    "legacy_original": {
+      "files_checked": 1505,
+      "missing": [],
+      "changed": [],
+      "source_unchanged": true
+    }
+  }
+}

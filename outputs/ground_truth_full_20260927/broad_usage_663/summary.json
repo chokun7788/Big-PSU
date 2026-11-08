@@ -1,0 +1,653 @@
+{
+  "generated_at": "2026-09-27T00:38:37",
+  "case_count": 679,
+  "turn_count": 691,
+  "passed": 653,
+  "failed": 38,
+  "pass_rate": 0.945,
+  "total_wall_sec": 312.188,
+  "allow_llm": false,
+  "rag_fallback": false,
+  "group_counts": {
+    "service_fee": {
+      "total": 88,
+      "pass": 87,
+      "fail": 1
+    },
+    "games": {
+      "total": 158,
+      "pass": 150,
+      "fail": 8
+    },
+    "game_controls": {
+      "total": 171,
+      "pass": 157,
+      "fail": 14
+    },
+    "equipment": {
+      "total": 58,
+      "pass": 57,
+      "fail": 1
+    },
+    "reservation": {
+      "total": 20,
+      "pass": 20,
+      "fail": 0
+    },
+    "schedule": {
+      "total": 10,
+      "pass": 10,
+      "fail": 0
+    },
+    "members": {
+      "total": 47,
+      "pass": 47,
+      "fail": 0
+    },
+    "competition_rules": {
+      "total": 75,
+      "pass": 61,
+      "fail": 14
+    },
+    "compound": {
+      "total": 15,
+      "pass": 15,
+      "fail": 0
+    },
+    "ambiguity_no_answer": {
+      "total": 25,
+      "pass": 25,
+      "fail": 0
+    },
+    "session_followup": {
+      "total": 24,
+      "pass": 24,
+      "fail": 0
+    }
+  },
+  "strategy_counts": {
+    "fast/rule": 68,
+    "structured": 474,
+    "clarification": 42,
+    "pipeline": 2,
+    "rag/retrieval": 89,
+    "compound": 15,
+    "no_answer": 1
+  },
+  "mode_counts": {
+    "pipeline:deterministic_calculator_fast": 59,
+    "pipeline:structured_service_fee_by_game": 29,
+    "pipeline:english_clarification": 20,
+    "pipeline:structured_game_detail": 104,
+    "pipeline:structured_service_game_availability": 44,
+    "pipeline:structured_game_controls": 152,
+    "pipeline:structured_games_catalog": 5,
+    "pipeline:structured_game_zone_ranking": 1,
+    "pipeline:structured_games_genre_list": 4,
+    "pipeline:structured_games_family": 1,
+    "pipeline:structured_game_controls_no_data": 2,
+    "pipeline:game_control_missing_game_context": 11,
+    "pipeline:ambiguity_clarification": 21,
+    "pipeline:structured_equipment_catalog": 8,
+    "pipeline:structured_equipment_item": 48,
+    "pipeline:structured_reservation_fact": 16,
+    "pipeline:structured_booking_selection": 3,
+    "pipeline:booking_howto_fast_path": 1,
+    "pipeline:booking_fast_path": 1,
+    "pipeline:checkin_fast_path": 1,
+    "pipeline:mixed_reservation_fast": 1,
+    "pipeline:rag_direct_curated": 1,
+    "pipeline:structured_schedule": 7,
+    "pipeline:calendar_schedule_fast_path": 2,
+    "pipeline:calendar_upcoming_holidays_fast_path": 1,
+    "pipeline:structured_members_group_list": 5,
+    "pipeline:structured_members_group_count": 3,
+    "pipeline:structured_members_person_lookup": 25,
+    "pipeline:structured_members_role_lookup": 16,
+    "pipeline:competition_source_rag": 39,
+    "pipeline:competition_facet_not_covered_no_answer": 15,
+    "pipeline:protected_checkin_required": 5,
+    "pipeline:hybrid_guarded_rerank": 6,
+    "pipeline:no_answer": 4,
+    "pipeline:multi_question_splitter": 15,
+    "pipeline:guard_no_answer": 5,
+    "pipeline:game_target_unknown": 2,
+    "pipeline:games_known_unsupported_fast_path": 2,
+    "pipeline:boundary_no_answer_sensitive": 1,
+    "pipeline:freshness_live_source_required": 2,
+    "pipeline:general_input_clarification": 1,
+    "pipeline:structured_booking_game_service_selection": 1,
+    "pipeline:service_game_availability_fast_path": 1
+  },
+  "problem_counts": {
+    "route_category expected ['service_fee'], got clarification": 1,
+    "missing 'The Last of Us Part I'": 2,
+    "route_category expected ['games'], got clarification": 21,
+    "missing any of ['Horizon Call of the Mountain', 'วิธีเล่น', 'เล่นได้ที่']": 1,
+    "missing 'The Last of Us Part I / Part II'": 1,
+    "missing any of ['The Last of Us Part I / Part II', 'วิธีเล่น', 'เล่นได้ที่']": 1,
+    "missing any of ['แนวเกม', 'เกม Action-Adventure']": 1,
+    "missing 'The Legend of Zelda'": 2,
+    "missing any of ['Nintendo Switch', 'เล่นได้ที่']": 1,
+    "missing any of ['The Legend of Zelda', 'วิธีเล่น', 'เล่นได้ที่']": 1,
+    "missing any of ['แนวเกม', 'เกม Open-world Adventure']": 1,
+    "missing any of ['Horizon Call of the Mountain', 'ปุ่ม', 'จอย', 'คอนโทรล']": 1,
+    "mode expected prefix ['pipeline": 10,
+    "missing 'Pokémon Champions'": 1,
+    "missing 'ปุ่ม'": 2,
+    "missing any of ['The Last of Us Part I', 'ปุ่ม', 'จอย', 'คอนโทรล']": 1,
+    "missing any of ['L (Left Stick)', 'เคลื่อนที่']": 2,
+    "missing any of ['L3 (Click Left Stick)', 'หันมองจุดสนใจ']": 2,
+    "missing any of ['The Last of Us Part II (Remastered)', 'ปุ่ม', 'จอย', 'คอนโทรล']": 1,
+    "missing any of ['The Legend of Zelda', 'ปุ่ม', 'จอย', 'คอนโทรล']": 1,
+    "missing any of ['L (Left Stick)', 'เคลื่อนที่ / เดินสไลด์ข้าง']": 1,
+    "missing any of ['L3 (Click Left Stick)', 'ย่อตัว']": 1,
+    "route_category expected ['equipment', 'clarification'], got games": 1,
+    "route_category expected ['competition_rules'], got clarification": 3,
+    "route_category expected ['competition_rules'], got games": 6,
+    "route_category expected ['competition_rules'], got reservation": 5,
+    "missing any of ['VALORANT', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']": 1,
+    "missing any of ['CS2', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']": 1,
+    "missing any of ['Counter-Strike', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']": 1,
+    "missing any of ['TEKKEN', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']": 1,
+    "missing any of ['ROV', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']": 1
+  },
+  "top_failures": [
+    {
+      "case_id": "SF-078",
+      "group": "service_fee",
+      "question": "The Last of Us Part I / Part II ราคาเท่าไหร่",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['service_fee'], got clarification",
+        "missing 'The Last of Us Part I'"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-043",
+      "group": "games",
+      "question": "Horizon Call of the Mountain เล่นยังไง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['Horizon Call of the Mountain', 'วิธีเล่น', 'เล่นได้ที่']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-077",
+      "group": "games",
+      "question": "The Last of Us Part I / Part II คือเกมอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing 'The Last of Us Part I / Part II'"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-079",
+      "group": "games",
+      "question": "The Last of Us Part I / Part II เล่นยังไง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['The Last of Us Part I / Part II', 'วิธีเล่น', 'เล่นได้ที่']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-080",
+      "group": "games",
+      "question": "The Last of Us Part I / Part II เป็นเกมแนวไหน",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['แนวเกม', 'เกม Action-Adventure']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-137",
+      "group": "games",
+      "question": "The Legend of Zelda: Breath of the Wild คือเกมอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing 'The Legend of Zelda'"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-138",
+      "group": "games",
+      "question": "The Legend of Zelda: Breath of the Wild เล่นได้ที่ไหน",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['Nintendo Switch', 'เล่นได้ที่']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-139",
+      "group": "games",
+      "question": "The Legend of Zelda: Breath of the Wild เล่นยังไง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['The Legend of Zelda', 'วิธีเล่น', 'เล่นได้ที่']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "G-140",
+      "group": "games",
+      "question": "The Legend of Zelda: Breath of the Wild เป็นเกมแนวไหน",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['แนวเกม', 'เกม Open-world Adventure']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-048",
+      "group": "game_controls",
+      "question": "Horizon Call of the Mountain ใช้จอยยังไง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['Horizon Call of the Mountain', 'ปุ่ม', 'จอย', 'คอนโทรล']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-111",
+      "group": "game_controls",
+      "question": "Pokémon Champions ปุ่มทั้งหมดมีอะไรบ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:game_control_missing_game_context",
+      "route": "games/game_control_lookup",
+      "problems": [
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:game_control_missing_game_context",
+        "missing 'Pokémon Champions'"
+      ],
+      "answer_preview": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน ตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III เช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 De"
+    },
+    {
+      "case_id": "GC-141",
+      "group": "game_controls",
+      "question": "The Last of Us Part I ปุ่มทั้งหมดมีอะไรบ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:english_clarification",
+        "missing 'The Last of Us Part I'",
+        "missing 'ปุ่ม'"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-142",
+      "group": "game_controls",
+      "question": "The Last of Us Part I ใช้จอยยังไง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['The Last of Us Part I', 'ปุ่ม', 'จอย', 'คอนโทรล']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-143",
+      "group": "game_controls",
+      "question": "The Last of Us Part I ปุ่มเคลื่อนที่กดอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:english_clarification",
+        "missing any of ['L (Left Stick)', 'เคลื่อนที่']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-144",
+      "group": "game_controls",
+      "question": "The Last of Us Part I ปุ่มหันมองจุดสนใจกดอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:english_clarification",
+        "missing any of ['L3 (Click Left Stick)', 'หันมองจุดสนใจ']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-145",
+      "group": "game_controls",
+      "question": "The Last of Us Part II (Remastered) ปุ่มทั้งหมดมีอะไรบ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:ambiguity_clarification",
+      "route": "clarification/ambiguity_gate_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:ambiguity_clarification"
+      ],
+      "answer_preview": "คำถามนี้ยังไม่ชัดว่าหมายถึงเกมไหนครับ เพราะมีหลายเกมที่ตรงกับคำถาม ถ้าต้องการถามเรื่องปุ่ม/วิธีควบคุม ขอเลือกเกมก่อน: •    The Last of Us Part II (Remastered) (PlayStation 5 Zone) •    The Last of Us Part I (PlayStation 5 Zone)  พิมพ์ต่อได้"
+    },
+    {
+      "case_id": "GC-146",
+      "group": "game_controls",
+      "question": "The Last of Us Part II (Remastered) ใช้จอยยังไง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['The Last of Us Part II (Remastered)', 'ปุ่ม', 'จอย', 'คอนโทรล']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-147",
+      "group": "game_controls",
+      "question": "The Last of Us Part II (Remastered) ปุ่มเคลื่อนที่กดอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:ambiguity_clarification",
+      "route": "clarification/ambiguity_gate_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:ambiguity_clarification",
+        "missing any of ['L (Left Stick)', 'เคลื่อนที่']"
+      ],
+      "answer_preview": "คำถามนี้ยังไม่ชัดว่าหมายถึงเกมไหนครับ เพราะมีหลายเกมที่ตรงกับคำถาม ถ้าต้องการถามเรื่องปุ่ม/วิธีควบคุม ขอเลือกเกมก่อน: •    The Last of Us Part II (Remastered) (PlayStation 5 Zone) •    The Last of Us Part I (PlayStation 5 Zone)  พิมพ์ต่อได้"
+    },
+    {
+      "case_id": "GC-148",
+      "group": "game_controls",
+      "question": "The Last of Us Part II (Remastered) ปุ่มหันมองจุดสนใจกดอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:english_clarification",
+        "missing any of ['L3 (Click Left Stick)', 'หันมองจุดสนใจ']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-149",
+      "group": "game_controls",
+      "question": "The Legend of Zelda: Breath of the Wild ปุ่มทั้งหมดมีอะไรบ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:english_clarification",
+        "missing 'The Legend of Zelda'",
+        "missing 'ปุ่ม'"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-150",
+      "group": "game_controls",
+      "question": "The Legend of Zelda: Breath of the Wild ใช้จอยยังไง",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "missing any of ['The Legend of Zelda', 'ปุ่ม', 'จอย', 'คอนโทรล']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-151",
+      "group": "game_controls",
+      "question": "The Legend of Zelda: Breath of the Wild ปุ่มเคลื่อนที่ / เดินสไลด์ข้างกดอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:english_clarification",
+        "missing any of ['L (Left Stick)', 'เคลื่อนที่ / เดินสไลด์ข้าง']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "GC-152",
+      "group": "game_controls",
+      "question": "The Legend of Zelda: Breath of the Wild ปุ่มย่อตัวกดอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:english_clarification",
+      "route": "clarification/missing_target_clarification",
+      "problems": [
+        "route_category expected ['games'], got clarification",
+        "mode expected prefix ['pipeline:structured_game_controls'], got pipeline:english_clarification",
+        "missing any of ['L3 (Click Left Stick)', 'ย่อตัว']"
+      ],
+      "answer_preview": "I could not reliably understand that input. It may use the wrong keyboard layout. Please type the question again in Thai or English."
+    },
+    {
+      "case_id": "E-006",
+      "group": "equipment",
+      "question": "Nintendo Switch Zone มีอะไรให้ใช้บ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:structured_games_genre_list",
+      "route": "games/game_detail_lookup",
+      "problems": [
+        "route_category expected ['equipment', 'clarification'], got games"
+      ],
+      "answer_preview": "เกมแนว Sports / เกมกีฬา ที่พบในรายการเกมที่ยืนยันได้:  EA Sports FC 24 •    แนวเกม: เกมฟุตบอล •    เล่นได้ที่: PlayStation 5 Zone  Nintendo Switch Sports •    แนวเกม: เกมกีฬา Motion Control •    เล่นได้ที่: Nintendo Switch Zone แหล่งข้อมูล:"
+    },
+    {
+      "case_id": "CR-008",
+      "group": "competition_rules",
+      "question": "VALORANT รอบชิงเล่นกี่เกม",
+      "resolved_question": "",
+      "mode": "pipeline:ambiguity_clarification",
+      "route": "clarification/ambiguity_gate_clarification",
+      "problems": [
+        "route_category expected ['competition_rules'], got clarification"
+      ],
+      "answer_preview": "คำถามนี้มีได้หลายความหมายครับ ขอระบุเพิ่มนิดหนึ่งว่าต้องการถามเรื่องไหน: รายชื่อเกม/ข้อมูลเกม, กติกาการแข่งขัน"
+    },
+    {
+      "case_id": "CR-011",
+      "group": "competition_rules",
+      "question": "VALORANT ถ้าใช้ bug จะโดนอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:structured_game_detail",
+      "route": "games/game_detail_lookup",
+      "problems": [
+        "route_category expected ['competition_rules'], got games"
+      ],
+      "answer_preview": "VALORANT: VALORANT คือเกมยิงเชิงกลยุทธ์ที่ผู้เล่นเลือก Agent ที่มีสกิลเฉพาะ แล้วเล่นเป็นฝ่ายบุก/รับในแต่ละรอบ แนวเกม: เกมยิง Tactical FPS แบบทีม 5v5 วิธีเล่นโดยสรุป: ฝ่ายบุกต้องวาง Spike ส่วนฝ่ายรับต้องป้องกันพื้นที่หรือกู้ Spike การเล่นเน้"
+    },
+    {
+      "case_id": "CR-012",
+      "group": "competition_rules",
+      "question": "VALORANT ต้องเช็คอินก่อนแข่งไหม",
+      "resolved_question": "",
+      "mode": "pipeline:protected_checkin_required",
+      "route": "reservation/checkin_required",
+      "problems": [
+        "route_category expected ['competition_rules'], got reservation",
+        "missing any of ['VALORANT', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']"
+      ],
+      "answer_preview": "ต้องเช็กอินครับ ให้เช็กอินก่อนเวลาเริ่มรอบที่จอง โดยเช็กอินล่วงหน้าได้สูงสุด 30 นาที และแสดงบัตรนักศึกษา บัตรบุคลากร หรือบัตรประชาชน แหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "case_id": "CR-014",
+      "group": "competition_rules",
+      "question": "VALORANT แผนที่มีอะไรบ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:structured_games_catalog",
+      "route": "games/list",
+      "problems": [
+        "route_category expected ['competition_rules'], got games"
+      ],
+      "answer_preview": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ  PC Zone (6 เกม) •    Call of Duty: Warzone •    Counter-Strike 2 •    League of Legends •    PUBG: BATTLEGROUNDS •    TEKKEN 8 •    VALORANT  PlayStation 5 Zone (17 เกม) •    Call of Duty: Modern W"
+    },
+    {
+      "case_id": "CR-027",
+      "group": "competition_rules",
+      "question": "CS2 ต้องเช็คอินก่อนแข่งไหม",
+      "resolved_question": "",
+      "mode": "pipeline:protected_checkin_required",
+      "route": "reservation/checkin_required",
+      "problems": [
+        "route_category expected ['competition_rules'], got reservation",
+        "missing any of ['CS2', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']"
+      ],
+      "answer_preview": "ต้องเช็กอินครับ ให้เช็กอินก่อนเวลาเริ่มรอบที่จอง โดยเช็กอินล่วงหน้าได้สูงสุด 30 นาที และแสดงบัตรนักศึกษา บัตรบุคลากร หรือบัตรประชาชน แหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "case_id": "CR-038",
+      "group": "competition_rules",
+      "question": "Counter-Strike 2 รอบชิงเล่นกี่เกม",
+      "resolved_question": "",
+      "mode": "pipeline:ambiguity_clarification",
+      "route": "clarification/ambiguity_gate_clarification",
+      "problems": [
+        "route_category expected ['competition_rules'], got clarification"
+      ],
+      "answer_preview": "คำถามนี้มีได้หลายความหมายครับ ขอระบุเพิ่มนิดหนึ่งว่าต้องการถามเรื่องไหน: รายชื่อเกม/ข้อมูลเกม, กติกาการแข่งขัน"
+    },
+    {
+      "case_id": "CR-041",
+      "group": "competition_rules",
+      "question": "Counter-Strike 2 ถ้าใช้ bug จะโดนอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:no_answer",
+      "route": "games/game_detail_lookup",
+      "problems": [
+        "route_category expected ['competition_rules'], got games"
+      ],
+      "answer_preview": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+    },
+    {
+      "case_id": "CR-042",
+      "group": "competition_rules",
+      "question": "Counter-Strike 2 ต้องเช็คอินก่อนแข่งไหม",
+      "resolved_question": "",
+      "mode": "pipeline:protected_checkin_required",
+      "route": "reservation/checkin_required",
+      "problems": [
+        "route_category expected ['competition_rules'], got reservation",
+        "missing any of ['Counter-Strike', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']"
+      ],
+      "answer_preview": "ต้องเช็กอินครับ ให้เช็กอินก่อนเวลาเริ่มรอบที่จอง โดยเช็กอินล่วงหน้าได้สูงสุด 30 นาที และแสดงบัตรนักศึกษา บัตรบุคลากร หรือบัตรประชาชน แหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "case_id": "CR-044",
+      "group": "competition_rules",
+      "question": "Counter-Strike 2 แผนที่มีอะไรบ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:no_answer",
+      "route": "games/game_detail_lookup",
+      "problems": [
+        "route_category expected ['competition_rules'], got games"
+      ],
+      "answer_preview": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ"
+    },
+    {
+      "case_id": "CR-053",
+      "group": "competition_rules",
+      "question": "TEKKEN 8 รอบชิงเล่นกี่เกม",
+      "resolved_question": "",
+      "mode": "pipeline:ambiguity_clarification",
+      "route": "clarification/ambiguity_gate_clarification",
+      "problems": [
+        "route_category expected ['competition_rules'], got clarification"
+      ],
+      "answer_preview": "คำถามนี้มีได้หลายความหมายครับ ขอระบุเพิ่มนิดหนึ่งว่าต้องการถามเรื่องไหน: รายชื่อเกม/ข้อมูลเกม, กติกาการแข่งขัน"
+    },
+    {
+      "case_id": "CR-056",
+      "group": "competition_rules",
+      "question": "TEKKEN 8 ถ้าใช้ bug จะโดนอะไร",
+      "resolved_question": "",
+      "mode": "pipeline:structured_game_detail",
+      "route": "games/game_detail_lookup",
+      "problems": [
+        "route_category expected ['competition_rules'], got games"
+      ],
+      "answer_preview": "TEKKEN 8: TEKKEN 8 คือเกมต่อสู้แบบตัวต่อตัว ผู้เล่นเลือกตัวละครแล้วใช้คอมโบ การป้องกัน และจังหวะสวนกลับเพื่อชนะคู่แข่ง แนวเกม: เกมต่อสู้ 1v1 วิธีเล่นโดยสรุป: เล่นเป็นรอบ เลือกตัวละคร ฝึกท่าพื้นฐาน/คอมโบ อ่านจังหวะคู่ต่อสู้ และทำให้พลังชีวิต"
+    },
+    {
+      "case_id": "CR-057",
+      "group": "competition_rules",
+      "question": "TEKKEN 8 ต้องเช็คอินก่อนแข่งไหม",
+      "resolved_question": "",
+      "mode": "pipeline:protected_checkin_required",
+      "route": "reservation/checkin_required",
+      "problems": [
+        "route_category expected ['competition_rules'], got reservation",
+        "missing any of ['TEKKEN', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']"
+      ],
+      "answer_preview": "ต้องเช็กอินครับ ให้เช็กอินก่อนเวลาเริ่มรอบที่จอง โดยเช็กอินล่วงหน้าได้สูงสุด 30 นาที และแสดงบัตรนักศึกษา บัตรบุคลากร หรือบัตรประชาชน แหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "case_id": "CR-059",
+      "group": "competition_rules",
+      "question": "TEKKEN 8 แผนที่มีอะไรบ้าง",
+      "resolved_question": "",
+      "mode": "pipeline:structured_games_catalog",
+      "route": "games/list",
+      "problems": [
+        "route_category expected ['competition_rules'], got games"
+      ],
+      "answer_preview": "ตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ  PC Zone (6 เกม) •    Call of Duty: Warzone •    Counter-Strike 2 •    League of Legends •    PUBG: BATTLEGROUNDS •    TEKKEN 8 •    VALORANT  PlayStation 5 Zone (17 เกม) •    Call of Duty: Modern W"
+    },
+    {
+      "case_id": "CR-072",
+      "group": "competition_rules",
+      "question": "ROV ต้องเช็คอินก่อนแข่งไหม",
+      "resolved_question": "",
+      "mode": "pipeline:protected_checkin_required",
+      "route": "reservation/checkin_required",
+      "problems": [
+        "route_category expected ['competition_rules'], got reservation",
+        "missing any of ['ROV', 'กติกา', 'แข่งขัน', 'ยังไม่พบ']"
+      ],
+      "answer_preview": "ต้องเช็กอินครับ ให้เช็กอินก่อนเวลาเริ่มรอบที่จอง โดยเช็กอินล่วงหน้าได้สูงสุด 30 นาที และแสดงบัตรนักศึกษา บัตรบุคลากร หรือบัตรประชาชน แหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+    }
+  ],
+  "bank_jsonl": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\outputs\\ground_truth_full_20260927\\broad_usage_663\\bank.jsonl",
+  "bank_json": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\outputs\\ground_truth_full_20260927\\broad_usage_663\\bank.json"
+}

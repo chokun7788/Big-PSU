@@ -1,0 +1,12 @@
+--- before/app/web_api/server.py
++++ r62/app/web_api/server.py
+@@ -819,6 +819,9 @@
+                     if debug:
+                         response['context_resolution'] = resolved.to_dict()
+                 response['resolved_question'] = resolved.resolved_question
++                from app.knowledge.common.dialogue import state_from_answer
++                common_state=state_from_answer(result)
++                if common_state:response['common_read_state']=common_state
+                 response['rule_coverage'] = next((t.metadata for t in reversed(result.trace) if t.stage == 'competition_full_coverage'), None)
+                 response['client_turn_id'] = client_turn_id
+                 response['request_plan'] = actual_plan

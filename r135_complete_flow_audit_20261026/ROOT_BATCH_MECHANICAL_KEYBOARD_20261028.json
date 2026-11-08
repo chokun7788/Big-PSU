@@ -1,0 +1,84 @@
+{
+  "batch": 4,
+  "question_keys": [
+    "64329f8f2fcaa5aefce710374edd9961a523860dfc863f12b222ab3e2a91c0d0",
+    "26d646f6e42273dab12b64ac5f47c80732c74cfb3bb83dcdcd453b6bcd748d52",
+    "c5f1d4052a4ce7a1ccc33626065b9b607008d2b1d2cb50985ae4d3c13156fe54",
+    "bc0997b3d84da145300551919823f28701f4887752da9bc04ce53679642e3f20",
+    "0af584de02534ae1b5b2237d41465724617c6bf17a041266b430ea0bf957fded",
+    "067c4d7ba7b89672f1d3111ca0e86647a45fa0373f8c79180e2a95e1244f9b15",
+    "cc486b3c64a99c8d55f25215f4084b1ac54c20c742034658c0b295849c742dbb",
+    "c819fcacd1d587e78313e52a2c24d9eddc0d22eb3bda1ddd9ceeaa1f1af47c77",
+    "3bed92691f38cca4e0ffe6e3488091e7e5ded0d4a741642c6ba90d168b307974"
+  ],
+  "questions": [
+    "What is a mechanical keyboard? Explain it simply.",
+    "What is a mechanical keyboard like",
+    "คีย์บอร์ด mechanical คืออะไรแบบสั้น ตอบเป็นภาษาไทย",
+    "คีย์บอร์ด mechanical คืออะไรแบบสั้น ให้คำจำกัดความแบบสั้น",
+    "คีย์บอร์ด mechanical คืออะไรแบบสั้น ตอบแบบประโยคเดียว",
+    "คีย์บอร์ด mechanical คืออะไรแบบสั้น ขอ 1 ย่อหน้า",
+    "What is a mechanical keyboard? Short answer, bullet points only",
+    "คีย์บอร์ด mechanical คืออะไรแบบสั้น ไม่ต้องยาว",
+    "คีย์บอร์ด mechanical คืออะไรแบบสั้น อธิบายข้อดีข้อเสียสั้น ๆ"
+  ],
+  "classification": "partial_review_required",
+  "finding": "All nine ask what a mechanical keyboard is; the last also asks advantages and disadvantages. The delivered generic Gaming Keyboard usage, type and location do not define mechanical switches or answer advantages/disadvantages. Identical source and reordered lines do not establish requested definition or equipment identity.",
+  "source_revision": 6,
+  "source_record_path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\mechanical_keyboard_batch_probe_1793168198043778800\\SOURCE_RECORD.json",
+  "source_record_sha256": "f2a337b4662a4fab69fe765af99d9313446471485039f0cd8ab5381871147b99",
+  "recorded_source_locators": [
+    [
+      "equipment_gaming_keyboard",
+      "device_type",
+      "r68_url_003b11379e22a4b3eeef3e36",
+      "/mapped_fields/device_type"
+    ],
+    [
+      "equipment_gaming_keyboard",
+      "location",
+      "r63_0d4513c308153752dd234ccd5b9f",
+      "/mapped_fields/specifications"
+    ],
+    [
+      "equipment_gaming_keyboard",
+      "usage",
+      "r66_en_d1f3019e5c5c67d5bcd9441d",
+      "/mapped_fields/usage"
+    ]
+  ],
+  "candidate_probe": "mechanical_keyboard_batch_probe_1793168198043778800/DETAILS.json",
+  "source_authority_or_completeness": "unconfirmed",
+  "review_scope": "Question and delivered content compared; source identity and candidate behavior examined, correction and negative controls pending. No regrade or semantic acceptance.",
+  "http_or_model_inference": false,
+  "snapshot_search": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71",
+    "record_count": 847,
+    "literal_terms": [
+      "mechanical keyboard",
+      "mechanical switch",
+      "คีย์บอร์ดแมคคานิค"
+    ],
+    "matching_record_ids": [],
+    "limitation": "Literal search is not proof no relevant paraphrase or other source exists."
+  },
+  "diagnosis": "meaning_review maps equipment definition to usage; meaning_reader emits equipment_definition_card containing usage/device_type/location and marks task supported, despite no definition entailment. Aliased generic keyboard target is treated as verified target although mechanical subtype is not established.",
+  "candidate_interim_guard": {
+    "implementation": "system/app/knowledge/common/domain_flow/meaning_reader.py",
+    "scope": "Mechanical keyboard definition requests are explicitly unverified until a typed subtype definition reader is implemented. Ordinary equipment usage remains source-driven.",
+    "controls": "mechanical_definition_scope_1793170904777559500/RESULT.json",
+    "before_failed": "mechanical_definition_scope_1793170003345003700/RESULT.json",
+    "compound_observation": "mechanical_compound_probe_1793170933815627900/DETAILS.json",
+    "dependency_controls": [
+      "equipment_dimensions_1793170954782467000/RESULT.json",
+      "request_coverage_verification_1793170957657936200"
+    ],
+    "limitations": [
+      "Specific scoped abstention; not a generic solution to subtype definitions.",
+      "A future owner-provided definition is not yet consumed by this guard.",
+      "Compound observations are two cases, not a complete coverage proof.",
+      "No actual model or HTTP run; source authority remains unresolved."
+    ]
+  }
+}

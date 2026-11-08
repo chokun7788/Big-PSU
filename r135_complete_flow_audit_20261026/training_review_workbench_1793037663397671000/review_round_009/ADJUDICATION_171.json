@@ -1,0 +1,140 @@
+{
+  "question_key": "158d4a2a3553fe431342dea2a5a90492381436b1126993c7031add0910bb6f10",
+  "example_sha256": "62a263843d2e72b736f3be5b0c6112c285423fc28eeaa627efa2ee64324dd86f",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One CS2 tournament-rule permission question concerns watching live streams.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause retains event-rule scope.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "CS2 is game target,players actor scope,watch live streams action and during the match condition.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No event year, division, broadcast-rights role or ordinary venue policy is inherited.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A permission question does not imply allowed streaming; watching differs from broadcasting.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_cs2_38_rule_clause explicitly concerns players viewing live streams during play; its en field contains Thai text, so English answer-language support is unresolved.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?"
+      ],
+      "source_record_ids": [
+        "r114_cs2_38_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No prohibition, disqualification, translated rule or event identity enters labels.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The recorded en answer is Thai text and event edition is not supplied.",
+      "handling": "Preserve actual language/source/edition limitations; do not claim an English source translation."
+    }
+  ],
+  "historical_review_row": 171,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "players",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "watch live streams",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "during the match",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_cs2_38_rule_clause": {
+      "revision": 1,
+      "record_sha256": "77f10fd4656839f8870215e5a2e0649cada4b1b0e4d1be74fb19280a17b5e194"
+    }
+  }
+}

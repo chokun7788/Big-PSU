@@ -1,0 +1,19 @@
+--- before/app/knowledge/common/owner_server.py
++++ r61/app/knowledge/common/owner_server.py
+@@ -9,6 +9,7 @@
+ from .registry import CATALOG,VERSION,template,now,source_errors,validate,content_hash,value
+ from .store import CommonStore,Conflict
+ from .answer import CommonAnswerer,database_path
++from .build_info import LOADED_BUILD
+ from app.knowledge.records import canonical_json
+ HOME=Path(__file__).resolve().parent
+ MAX_BODY=2*1024*1024
+@@ -70,7 +71,7 @@
+             try:
+                 if path=='/api/registry':return self.reply(200,{'version':VERSION,'catalog':list(CATALOG.values()),'actor':actor,'scope':'local operator','db':str(store.path),'kinds':24})
+                 if path=='/api/status':
+-                    snap=store.snapshot();return self.reply(200,{'active':snap['active'],'epoch':snap['epoch'],'records':store.list_heads(),'published_ids':list((snap['release'] or {}).get('records',{})),'demo':snap['allow_demo']})
++                    snap=store.snapshot();return self.reply(200,{'build':LOADED_BUILD,'active':snap['active'],'epoch':snap['epoch'],'records':store.list_heads(),'published_ids':list((snap['release'] or {}).get('records',{})),'demo':snap['allow_demo']})
+                 if path=='/api/template':return self.reply(200,template(parse_qs(parsed.query).get('kind',[''])[0]))
+                 if path=='/api/edit-context':return self.reply(200,store.edit_context(parse_qs(parsed.query).get('id',[''])[0]))
+                 if path=='/api/revision':return self.reply(200,store.revision(parse_qs(parsed.query).get('id',[''])[0],int(parse_qs(parsed.query).get('version',['0'])[0])))

@@ -1,0 +1,89 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 251,
+  "question_key": "8193721107238eefad91cb2eda48dae497216bd6757f779ea5befd550743bc30",
+  "raw_question": "VR Zone มีอะไรให้ใช้บบ้าง",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "VR Zone มีอะไรให้ใช้บบ้าง",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "VR Zone",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_inventory",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "VR Zone มีอะไรให้ใช้บบ้าง",
+        "domain": "equipment",
+        "operation": "list",
+        "facet": "name",
+        "target": "VR Zone",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One Thai inventory question asks what VR Zone has available to use; doubled บ is a typo, not another need.",
+    "intent_operation_facet": "equipment/list/name with VR Zone target is the inventory purpose, not games, prices or equipment instructions.",
+    "entities_and_slot_roles": "No capacity, room seats, current occupancy, exact device model or rental package is requested.",
+    "local_shared_history_scope": "No prior service session, game edition, party size or live status is inherited.",
+    "negation_and_ambiguity": "Inventory wording does not promise that a listed device is currently unoccupied or working.",
+    "source_version_alignment": "Pinned home-equipment VR Zone FAQ revision2 names the local device inventory; zone_vr revision2 has unknown room seats/location. Neither source is a live-availability feed.",
+    "no_business_answer_target": "Keep the existing label; no device names, quantities, seats, prices or current availability answers enter it."
+  },
+  "decision": "accepted",
+  "source_record_ids": [
+    "migrated_faq_curated_home_equipment_vr_zone",
+    "zone_vr"
+  ],
+  "source_answer_issues": [
+    [
+      "Static inventory does not establish current resource availability or room seats.",
+      "Keep inventory separate from live and capacity."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 252,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_faq_curated_home_equipment_vr_zone": {
+      "revision": 2,
+      "record_sha256": "4d4fafdd63d1e279487a701f078c6f8259dd01102f8571852ec0d3fb8bed9135"
+    },
+    "zone_vr": {
+      "revision": 2,
+      "record_sha256": "6da204a1777e5d087c159aef87176f78c9d0a6aba76c55be01d4e172e3bdc09e"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

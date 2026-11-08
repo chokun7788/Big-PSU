@@ -1,0 +1,106 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 250,
+  "question_key": "205d336855a25305286468bdb5ab5006e36e9018147df1945d083a47b78e5b93",
+  "raw_question": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Mario Odyssey",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม L (Left Stick) ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Mario Odyssey",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "L (Left Stick)",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One Thai question asks the function of the explicitly named L (Left Stick) in Super Mario Odyssey on Nintendo Switch.",
+    "intent_operation_facet": "game_controls/control/input_bindings is one game-specific control lookup; the named controller part does not add equipment usage.",
+    "entities_and_slot_roles": "Retain the supplied platform and add the full exact L (Left Stick) scope rather than collapsing it to L.",
+    "local_shared_history_scope": "Remove the duplicated top-level platform context; no second task, game edition, controller preset or history is supplied.",
+    "negation_and_ambiguity": "Do not confuse stick movement with L shoulder, stick click, R or R3; the wording does not supply a click gesture.",
+    "source_version_alignment": "Pinned controls_nintendo_super_mario_odyssey revision6 has an explicit L (Left Stick) binding separate from R and R3; game version, input_device and preset remain unknown and coverage needs manual verification.",
+    "no_business_answer_target": "No movement answer, fabricated click gesture, preset, edition or source-verification verdict enters the language label."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "controls_nintendo_super_mario_odyssey"
+  ],
+  "source_answer_issues": [
+    [
+      "Controller labels are specific and recorded source coverage needs manual verification.",
+      "Match full stick label; do not add click or current-version certainty."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 251,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "controls_nintendo_super_mario_odyssey": {
+      "revision": 6,
+      "record_sha256": "6c8492ed6930de946f02864afb1106cd745c297ee045e2370b409d8ddc645a43"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

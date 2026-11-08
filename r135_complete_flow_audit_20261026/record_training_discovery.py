@@ -1,0 +1,42 @@
+"""Record all-row historical provenance gaps without altering training history."""
+import json,time,hashlib
+from pathlib import Path
+R=Path(__file__).resolve().parent
+def read(p):return json.loads(p.read_text('utf8'))
+def write(p,d):p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n','utf8')
+p=sorted(R.glob('saved_training_provenance_*/REPORT.json'))[-1];audit=read(p);assert audit['rows_examined']==289 and audit['integrity_checks_passed'];gaps=read(R/'AUDIT_GAPS.json')
+for gid,requirements,finding in [
+ ('G102',['CONTRACT-15','FLOW-23','FLOW-24','FLOW-25','FLOW-26','PHASE-07','PHASE-09'],'All289 historical annotation review rows lack recorded source_version, teacher_trace_refs, individual reviewer identity and explicit adjudication_status required for source-matched review. Historical decisions228retained/53corrected/8quarantined are preserved; missing provenance is not proof all labels are wrong. New training admission must fail closed until actual individual source/question/context review; generic historical reviewed text is not current semantic acceptance.'),
+ ('G103',['CONTRACT-14','CONTRACT-15','PHASE-08','PHASE-09','PHASE-10','PHASE-17'],'All281 saved accepted split training messages differ from current candidate inference messages despite retained r129-plan-v2 version. Dataset freeze itself is unchanged and original/review family splits remain disjoint. Training readiness must compare exact prompt/schema/chat-template hashes and protocol adaptation, not version alone; preserve historical failed adapter/optimization results and repack only after current label review, without declaring exposed test fresh holdout.')]:
+ g=next((g for g in gaps['gaps'] if g['id']==gid),None)
+ if g is None:g={'id':gid,'requirements':requirements};gaps['gaps'].append(g)
+ g.update(finding=finding,code='audit_saved_training_provenance.py',candidate_code='audit_saved_training_provenance.py',planned_implementation='TrainingExample/ReviewRecord admission, explicit source/teacher/reviewer/adjudication manifest, exact prompt/schema freeze gate and all-row semantic review still required',state='identified_pending_training_contract_and_individual_source_label_review',diagnostic=str((p.parent/'PER_LABEL_AUDIT.jsonl').relative_to(R)),evidence={'path':str(p.relative_to(R)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'passed':False,'integrity_checks_passed':True,'scope':'all saved row provenance/split integrity audit; semantic acceptance and training readiness not established'})
+gaps['last_recorded_at']=time.time();assert len(gaps['gaps'])==103;write(R/'AUDIT_GAPS.json',gaps)
+ledger=read(R/'COMPLETION_LEDGER.json');assert len(ledger['requirements'])==76
+for r in ledger['requirements']:
+ assert hashlib.sha256(r['text'].encode()).hexdigest()==r['text_sha256']
+ related=[g for g in gaps['gaps'] if r['id'] in g['requirements']]
+ if related:
+  r['gaps']=[g['id'] for g in related];r['review_iteration']=1
+  if any(g['state'].startswith('identified_pending') for g in related):r.update(implementation_state='implementation_gap_open',behavior_acceptance_state='not_closed_open_gap')
+write(R/'COMPLETION_LEDGER.json',ledger)
+status=read(R/'STATUS.json');status.update(last_recorded_at=time.time(),latest_training_provenance_audit={'path':str(p.relative_to(R)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'rows':289,'provenance_review_required':289,'current_prompt_mismatch_split_rows':281,'historical_freeze_unchanged':True,'both_family_groupings_disjoint':True,'semantic_label_acceptance_claimed':False,'training_ready':False},last_identified_implementation_gaps=['G102','G103'],complete=False,whole_flow_complete=False,requirement_closure_claimed=False,candidate_frozen=False,candidate_installed=False,active_installed_revision='R134',next_work='Implement current TrainingExample/ReviewRecord fail-closed admission + pinned source/teacher/reviewer/adjudication and exact prompt/schema/chat-template freeze; individually adjudicate all289 historical labels against question/context/source, keep 281prompt mismatches unresolved and do not retrain frozen old files. Continue remaining33 original requirement reviews, G40 and every category pending criterion, root/source750 and final exact raw/source/model/freeze/API/activation re-audit.')
+write(R/'STATUS.json',status)
+header=f'''## ล่าสุดจริง — remaining training requirements audit found G102/G103 open; no new training
+
+Latest closed COMPONENT checkpoint remains checkpoint_rule_dependencies.py at G01–G101,43 individual requirement reviews/162 controlled criteria/all14 category reviews, no requirement finally closed. New all-row historical training audit adds **G102/G103 identified_pending**; total gaps103. Do not run older checkpoint scripts (assert101/98/etc and overwrite latest state). Current recorder sequence record_audit_iteration.py → record_executor_requirement_reviews.py → record_category_requirement_reviews.py → record_training_discovery.py preserves open training findings; a new training checkpoint must be made after actual implementation/controls.
+
+Audit {p.relative_to(R)} + PER_LABEL_AUDIT.jsonl read every289 saved R129training_v2 labels and all281 split rows. Historical decisions228 reviewed_retained/53 reviewed_corrected/8 quarantined preserved. Every289 review row lacks source_version,teacher_trace_refs,individual reviewer identity,explicit adjudication_status fields. All281 saved training prompts differ from current inference messages. These are provenance/compatibility gaps, **not a claim every label is semantically wrong**. Exact original labels equal saved split labels; no duplicate review/split keys; original family and transitive review_family remain disjoint; historical DATASET_FREEZE everyfile hash unchanged. Saved optimization proof60steps/462microsteps is historical evidence, not a new run or proof source labels correct. No retrain/optimizer/model inference/old file edit performed.
+
+Next implement TrainingExample/ReviewRecord admission fail-closed in R135 candidate with pinned source-version manifest, actual teacher trace/reviewer/adjudication records, quarantine heuristic drafts, exact messages/schema/chat-template hashes and family exposure rules. Individually review all289 against raw question/allowed context/source before any future optimization; generic historical rationale is not current semantic proof. Read R129prepare_reviewed_data.py/prepare_training_v2.py/training_v2 summaries and actual saved records read-only. Never modify R129/R130/R131/R132 freeze/raw/adapters to satisfy checks. Failed new adapter stays unpromoted, R121 retained selector/base unchanged; no need to ask user technical profile.
+
+R135 unfrozen/uninstalled; R134 actually installed/healthy (latest source observation SOURCE_PRESERVATION_OBSERVATION_1793036440202598500.json: every candidate/frozenparent/live SQLite table incl WAL equal, sourceSHA db1685eafe9f1d95460614a0948792710c3462cdfac20b90beabd2f12d1ae157). No user data/approvals/log/history edits, no provider HTTP/inference/restart/retrain/subagents. Constrained decoder inactive; model42136 stop denied automatic review twice, never bypass.
+
+Original76 IDs/text/hash/specs preserved;43 individual requirement reviews and all14 categories are COMPONENT reviews with pending final acceptance, not Flow percentage. Remaining33 original requirement sections include top-level goals/distillation/TrainingExample/migration/phases/metrics/readiness/evidence. Also keep G40 general predicates and category pending items (C04 roles/mode variants,C05 device/platform/physical spans,C08–C10 composite actor/condition/authority/cause/source-date scopes,C13 retained dependency/completeness unknowns and FAQ-to-event alias versus attested relation).
+
+Still root/source750 changed QA + R133459/R134delta review or explicit supersession; final R135 same successful request/messages/schema/profile/adapter/stage/precision/cap330 saved raw/source replay/assets/actual identity/freeze/API and activation backup/re-audit. R132 sample/analyzer complete2111/5584; never rerun questions/baseline inference/regrade/Full20554. Keep heartbeat until all76 actual Flow implementation and re-audit complete, no completion announcement from category tests or sample/root review alone.
+
+## Previous C13 checkpoint
+
+'''
+h=R/'CURRENT_HANDOFF_TH.md';h.write_text(header+h.read_text('utf8'),'utf8');print(json.dumps({'gaps':103,'all_original_labels_audited_for_provenance':289,'provenance_review_required':289,'training_ready':False,'complete':False}))

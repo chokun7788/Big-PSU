@@ -1,0 +1,150 @@
+{
+  "question_key": "737ff3d31b174cda802050dc5c2d732fe5166938d56d7d69da6eef37131b703c",
+  "example_sha256": "ba71c199ed945c6ca674251f7dea53e2bce69e7e5b21f3084c54d29ae91f5992",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One conditional Thai question asks whether dropping a Nintendo Switch incurs a fine.",
+      "raw_quotes": [
+        "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy with damage focus retains liability, not equipment usage.",
+      "raw_quotes": [
+        "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Shorten condition to ถ้าทำเครื่อง Nintendo Switch ตก and add ค่าปรับ as requested scope; retain the explicit device platform.",
+      "raw_quotes": [
+        "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove full-question/platform top context; no actual incident, repair severity, negligence finding or amount is supplied.",
+      "raw_quotes": [
+        "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Dropping is a hypothetical event and does not independently establish damage or a payable fine.",
+      "raw_quotes": [
+        "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual damage policy revision6 preserves different Thai/English liability conditions and severity-based recorded amounts; cause/severity must not be invented.",
+      "raw_quotes": [
+        "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_damage_responsibility"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No fine amount, automatic liability verdict, negligence conclusion or billing action is taught.",
+      "raw_quotes": [
+        "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 285,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [
+      "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้าทำเครื่อง Nintendo Switch ตก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ค่าปรับ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_damage_responsibility": {
+      "revision": 6,
+      "record_sha256": "52714d489ea9ec6cd12be3c61050dfe4e83d0abbc8094ddbd0f6d3189213ee5f"
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "question_key": "5aceeef7eb106638ce5fa58c43ce8e805b8654e1febb5b80571ea9d6c370eaa4",
+  "example_sha256": "5401070e9cae18cf334a3d55182534d047747ded9ceeb9bd27750424c18920a6",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One reporting-contact policy need when a machine has a problem; verified-information requests are style.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains reporting responsibility rather than machine inventory.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "tell is requested action; retain if a machine has a problem as condition.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No named employee, damage liability, fault cause or previous malfunction is inherited.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A problem report is not a permission to repair or a claim that a user caused damage.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "report_problem and its English natural counterpart specify notification policy distinct from damage compensation.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_report_problem",
+        "migrated_faq_rule_en_report_problem_natural"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No staff identity, immediate deadline, repair instruction or compensation is taught.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 193,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [
+      "if a machine has a problem"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "if a machine has a problem",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [
+      "if a machine has a problem"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "if a machine has a problem",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "tell",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_report_problem": {
+      "revision": 4,
+      "record_sha256": "d0bcc2c082337173622e4e754b19dc85ee0ce48b5fb65e1becf532b1d50f97d9"
+    },
+    "migrated_faq_rule_en_report_problem_natural": {
+      "revision": 4,
+      "record_sha256": "be52d5829b584b66027d39b371c0e9b48980fad59965df8fae2c82a18334ba27"
+    }
+  }
+}

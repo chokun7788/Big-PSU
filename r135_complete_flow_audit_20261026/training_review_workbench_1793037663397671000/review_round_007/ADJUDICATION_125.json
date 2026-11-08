@@ -1,0 +1,128 @@
+{
+  "question_key": "96f755fd0f43b27fc5299d4357dcddc318809e699e062c341e8fbcb25f17198a",
+  "example_sha256": "fcf9ee82e5d3d823464a4ed7c42d3ec3a92a2b2d069c26a72659a8f23edd36ac",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One liability question includes a caused-controller-damage condition.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains the requested responsibility policy.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "ทำจอยเกมพัง is the literal condition, not a controller compatibility or controls need.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No severity, intent, cost or prior malfunction is inherited.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Causing damage is not equivalent to spontaneous equipment failure; do not decide negligence or damage band.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_faq_rule_damage_responsibility records source variants with different liability conditions, which remain runtime caveats.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_damage_responsibility"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No fine, replacement amount, responsible-person verdict or prohibition enters labels.",
+      "raw_quotes": [
+        "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Damage-source liability conditions differ across source variants.",
+      "handling": "Retain caused-damage scope and source caveats; do not invent severity or negligence."
+    }
+  ],
+  "historical_review_row": 125,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: ทำจอยเกมพังต้องรับผิดชอบยังไง",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ทำจอยเกมพัง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_damage_responsibility": {
+      "revision": 6,
+      "record_sha256": "52714d489ea9ec6cd12be3c61050dfe4e83d0abbc8094ddbd0f6d3189213ee5f"
+    }
+  }
+}

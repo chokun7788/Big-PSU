@@ -1,0 +1,16 @@
+from pathlib import Path
+root=Path(__file__).parent
+source=(root/'r30_extra_corpora.py').read_text(encoding='utf-8')
+source=source.replace("'EXTRA_CORPUS_RESULTS.jsonl'","'FINAL_G_EXTRA_CORPUS_RESULTS.jsonl'").replace("'EXTRA_CORPUS_SUMMARY.json'","'FINAL_G_EXTRA_CORPUS_SUMMARY.json'")
+with (root/'r30_extra_G.py').open('x',encoding='utf-8') as f:f.write(source)
+source=(root/'r30_extra_analyze.py').read_text(encoding='utf-8').replace("'EXTRA_CORPUS_RESULTS.jsonl'","'FINAL_G_EXTRA_CORPUS_RESULTS.jsonl'").replace("'EXTRA_CORPUS_ANALYSIS.json'","'FINAL_G_EXTRA_CORPUS_ANALYSIS.json'")
+with (root/'r30_extra_analyze_G.py').open('x',encoding='utf-8') as f:f.write(source)
+source=(root/'r30_http_all.py').read_text(encoding='utf-8').replace('2026.10.02-full-improvement-r30-F','2026.10.02-full-improvement-r30-G2').replace("'runtime':'r30-F'","'runtime':'r30-G2'")
+source=source.replace("tasks=[('focused79',json.loads((r/'focused_fixture_v2.json').read_text(encoding='utf-8'))['cases'])]","tasks=[('focused79',json.loads((r/'focused_fixture_v2.json').read_text(encoding='utf-8'))['cases']),('competition_G43',json.loads((r/'focused_fixture_G_new_v2.json').read_text(encoding='utf-8'))['cases'])]")
+source=source.replace("if suite=='focused79':","if suite in ('focused79','competition_G43'):").replace("if status!=c['outcome']:","if c['outcome'] and status!=c['outcome']:")
+source=source.replace("if not response['valid']:errors.append('validation_rejected')", """if not response['valid']:errors.append('validation_rejected')
+                    if c.get('required_source') and not any(c['required_source'] in str(h) for h in response['hits']):errors.append('wrong_source')
+                    if c.get('not_category') and c['not_category']==response['category']:errors.append('false_competition_context')
+                    if c.get('group')=='ingress_locale' and raw.get('language',{}).get('effective')!='th':errors.append('incorrect_english_locale')
+                    if c.get('group')=='true_wrong_layout' and 'keyboard_layout_mismatch' not in raw.get('input_quality',{}).get('flags',[]):errors.append('missed_true_layout')""")
+with (root/'r30_http_G.py').open('x',encoding='utf-8') as f:f.write(source)

@@ -1,0 +1,26 @@
+--- before/app/session/conversation_plan.py
++++ after/app/session/conversation_plan.py
+@@ -22,7 +22,7 @@
+     # Only the directly negated noun span is excluded, not the rest of the turn.
+     excluded = []
+     for match in re.finditer(r'(?:ไม่เอา|ไม่ใช่|ยกเว้น|เว้น|\b(?:except|exclude|excluding|not)\b)\s*([^,;\n]+)', text, re.I):
+-        span = re.split(r'แต่|หมายถึง|เอา|\b(?:but|instead|rather|i\s+mean)\b', match.group(1), maxsplit=1, flags=re.I)[0]
++        span = re.split(r'แต่|หมายถึง|เอา|ขอ|ต้องการ|\b(?:but|instead|rather|i\s+mean|show|give|tell|want|need)\b', match.group(1), maxsplit=1, flags=re.I)[0]
+         excluded.extend(service_mentions(span))
+     return list(dict.fromkeys(excluded))
+ 
+@@ -166,6 +166,14 @@
+     q = normalize_text(question)
+     active = copy.deepcopy(active_task) if valid_price_task(active_task) else legacy_task(history)
+     price = is_fee_request(q)
++    if price:
++        from app.pipeline.control_request import is_booking_button_request
++        parts = [part.strip(' ?？') for part in re.split(r'\s*(?:\band\b|และ|แล้ว|[;?？])\s*', q, flags=re.I) if part.strip(' ?？')]
++        if (2 <= len(parts) <= 3 and any(is_fee_request(part) for part in parts)
++            and any(is_booking_button_request(part) or (OTHER_TASK.search(part) and not is_fee_request(part)) for part in parts)):
++            # The parent must preserve every requested operation for the
++            # compound executor instead of rewriting the turn to prices only.
++            return None
+     if price and re.search(r'(?:และ|พร้อม|ด้วย|\band\b).*(?:กฎ|กฏ|กติกา|เกมอะไร|ว่างไหม|\brules?\b|\bgames?\b|\bavailable\b)',q,re.I):
+         return None  # Delegate other compound domains to the existing planner.
+     from app.pipeline.query_signals import looks_like_clear_general_request

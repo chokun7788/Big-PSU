@@ -1,0 +1,170 @@
+{
+  "question_key": "066cebde2e075e9d48730527e6e5ee7672ba5fdeca50be18876ef402f4225f2e",
+  "example_sha256": "ec9bb1f1840e8f71faa593cd55d74b475fb6b9572ca5c574c55e24a5bd9ae729",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One inclusion question selects the internal/full-day PC Zone rental package.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/equipment_included is retained rather than a generic PC hardware or inventory query.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full package target; PC inside PC Zone is not a separate platform, and the zone name is not an ordinary-service slot.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Internal/full-day apply to this named package only; no CPU model or individual PC is inherited.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A package inclusion question is not asking what a Gaming PC is used for.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_22 supplies the PC equipment inclusion field and internal organization/full_day relation.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": [
+        "package_22",
+        "audience_internal_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No computer count, CPU/RAM/GPU specification, fee or usage answer is taught.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 216,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PC",
+      "ภายใน",
+      "PC Zone"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PC Zone",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "PC Zone",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ แพ็กเกจ PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน มีอุปกรณ์อะไรให้",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "equipment_included",
+        "target": "PSU Esports Studio - Phuket - PC Zone / ภายใน / เต็มวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "เต็มวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_22": {
+      "revision": 1,
+      "record_sha256": "fc21b5be031f50becd0e748ef4374d97c88c2014b12304e612b2b22fbcea5593"
+    },
+    "audience_internal_org": {
+      "revision": 2,
+      "record_sha256": "d098dad7f2532de4774513d2ef2b572977cd3987fc5229333ccfa5b5af36f84f"
+    }
+  }
+}

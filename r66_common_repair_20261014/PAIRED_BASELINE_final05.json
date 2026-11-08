@@ -1,0 +1,1774 @@
+{
+  "scope": "same selected common requests only; no legacy calls",
+  "summary": {
+    "off": {
+      "counts": {
+        "paired_requests": 223,
+        "paired_grades": 503,
+        "baseline_strict_pass": 213,
+        "candidate_strict_pass": 153,
+        "strict_regressed": 64,
+        "strict_repaired": 4
+      },
+      "locales": {
+        "th": {
+          "grades": 324,
+          "baseline_strict_pass": 127,
+          "candidate_strict_pass": 101
+        },
+        "en": {
+          "grades": 179,
+          "baseline_strict_pass": 86,
+          "candidate_strict_pass": 52
+        }
+      }
+    },
+    "llm": {
+      "counts": {
+        "paired_requests": 223,
+        "paired_grades": 503,
+        "baseline_strict_pass": 131,
+        "candidate_strict_pass": 96,
+        "strict_regressed": 47,
+        "strict_repaired": 12
+      },
+      "locales": {
+        "th": {
+          "grades": 324,
+          "baseline_strict_pass": 74,
+          "candidate_strict_pass": 64
+        },
+        "en": {
+          "grades": 179,
+          "baseline_strict_pass": 57,
+          "candidate_strict_pass": 32
+        }
+      }
+    }
+  },
+  "strict_score_changes": [
+    {
+      "arm": "off",
+      "key": "2e064d4c0505e47303cd5f058f75db3ce3f2055d1ccfdf4fd4f0e5c693e50f42",
+      "question": "PS5 เล่นได้กี่ชั่วโมงต่อวัน",
+      "file": "data/eval/answer_quality_cases.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "quality_score_or_required_gate_failed",
+        "สูงสุด 3 Sessions"
+      ],
+      "old_answer": "การจอง 1 ครั้งสามารถจองได้สูงสุด 3 Sessions สำหรับ PlayStation 5: 1 session = 1 ชั่วโมง ดังนั้น 3 sessions = สูงสุด 3 ชั่วโมงต่อการจอง 1 ครั้ง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "2e064d4c0505e47303cd5f058f75db3ce3f2055d1ccfdf4fd4f0e5c693e50f42",
+      "question": "PS5 เล่นได้กี่ชั่วโมงต่อวัน",
+      "file": "data/routing/routing_eval_cases.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']",
+        "intent:common_read expected:booking_policy"
+      ],
+      "old_answer": "การจอง 1 ครั้งสามารถจองได้สูงสุด 3 Sessions สำหรับ PlayStation 5: 1 session = 1 ชั่วโมง ดังนั้น 3 sessions = สูงสุด 3 ชั่วโมงต่อการจอง 1 ครั้ง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "2e064d4c0505e47303cd5f058f75db3ce3f2055d1ccfdf4fd4f0e5c693e50f42",
+      "question": "PS5 เล่นได้กี่ชั่วโมงต่อวัน",
+      "file": "data/routing/routing_eval_real_usage.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']",
+        "intent:common_read expected:booking_policy"
+      ],
+      "old_answer": "การจอง 1 ครั้งสามารถจองได้สูงสุด 3 Sessions สำหรับ PlayStation 5: 1 session = 1 ชั่วโมง ดังนั้น 3 sessions = สูงสุด 3 ชั่วโมงต่อการจอง 1 ครั้ง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "0020719b93b85d4264af61ae54d9970c8275c6152e683f6532deb4a098da7457",
+      "question": "บุคคลทั่วไป เล่น Nintendo Switch 30 นาที เสียกี่บาท",
+      "file": "data/eval/broad_usage_eval_v1.json",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\nระยะเวลาที่ถาม 30 นาที (0.5 ชั่วโมง) คิดเป็น 1 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\nระยะเวลาที่ถาม 30 นาที (0.5 ชั่วโมง) คิดเป็น 1 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "new_answer": "**ค่าบริการ — Nintendo Switch (1-2 Persons) / General Adult**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-2 Persons) / PSU Alumni and General Student**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-2 Persons) / PSU Student and Staff**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-4 Persons) / General Adult**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-4 Persons) / PSU Alumni and General Student**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-4 Persons) / PSU Student and Staff**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\nราคาปัจจุบันยังยืนยันไม่ได้จากอัตราที่หมดอายุแล้ว"
+    },
+    {
+      "arm": "off",
+      "key": "0020719b93b85d4264af61ae54d9970c8275c6152e683f6532deb4a098da7457",
+      "question": "บุคคลทั่วไป เล่น Nintendo Switch 30 นาที เสียกี่บาท",
+      "file": "data/eval/model_benchmark_1500.json",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\nระยะเวลาที่ถาม 30 นาที (0.5 ชั่วโมง) คิดเป็น 1 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\nระยะเวลาที่ถาม 30 นาที (0.5 ชั่วโมง) คิดเป็น 1 session (แพ็กเกจ)\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "new_answer": "**ค่าบริการ — Nintendo Switch (1-2 Persons) / General Adult**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-2 Persons) / PSU Alumni and General Student**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-2 Persons) / PSU Student and Staff**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-4 Persons) / General Adult**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-4 Persons) / PSU Alumni and General Student**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — Nintendo Switch (1-4 Persons) / PSU Student and Staff**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\nราคาปัจจุบันยังยืนยันไม่ได้จากอัตราที่หมดอายุแล้ว"
+    },
+    {
+      "arm": "off",
+      "key": "33b1d4846de51965dedccb3c92f471673acddfd50fd712bc67e0554212f09c55",
+      "question": "For Arena of Valor, can you verify the rule on the rulebook scope and tournament identity?",
+      "file": "data/eval/competition_rules_rag_ground_truth_v1.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "backend_wall_watchdog_20s"
+      ],
+      "new_failures": [],
+      "old_answer": null,
+      "new_answer": "Answer: Competition Rules for Blueket Games 2025 Esports Event Game: Arena of Valor (RoV)\n\nDetails:\n• Male Team Category\n\nRulebook: Arena of Valor (RoV)\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men"
+    },
+    {
+      "arm": "off",
+      "key": "33b1d4846de51965dedccb3c92f471673acddfd50fd712bc67e0554212f09c55",
+      "question": "For Arena of Valor, can you verify the rule on the rulebook scope and tournament identity?",
+      "file": "data/eval/competition_user_r24_2000_20261001.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "backend_wall_watchdog_20s"
+      ],
+      "new_failures": [],
+      "old_answer": null,
+      "new_answer": "Answer: Competition Rules for Blueket Games 2025 Esports Event Game: Arena of Valor (RoV)\n\nDetails:\n• Male Team Category\n\nRulebook: Arena of Valor (RoV)\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men"
+    },
+    {
+      "arm": "off",
+      "key": "6a0f74c48063498f91118d46ced17f1b531633b07e0b036218cd61f5daea26b6",
+      "question": "Please check: What ruls apply to the rov competition? please.",
+      "file": "data/eval/competition_user_r24_2000_20261001.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route expected ['competition_rules'], got knowledge",
+        "outcome expected answer_available, got clarification",
+        "missing rulebook target(s): ['competition_rules_rov_blueket_2025_men']"
+      ],
+      "old_answer": "Selected Arena of Valor (RoV) competition rules from the recorded rulebook:\nTournament: Arena of Valor (RoV) / 2025\n\n\n**Competition format**\n•    08:40-10:00: round of 5 teams, Single Elimination BO3\n•    10:00-11:30: semifinal match 1, Single Elimination BO3\n\n**Competition equipment**\n•    5.3. Tablets, iPads and any devices other than mobile phones may not be used in competition. If detected, staff will immediately impose disqualification.\n\n**Pauses and timeouts**\n•    4.3.1. If a participant disconnects during the match, the game will be paused temporarily. Each team may pause the game up to five times, each pause not exceeding one minute. If the time limit is exceeded, the other team may immediately resume the game and continue playing normally.\n•    4.5.1.1. If a competitor intentionally disconnects from the game without informing the referee, the referee may deny the pause request.\n•    4.5.1.2 In cases where the game is paused due to technical issues, not caused by player actions, the event staff may order a pause and require players to rejoin the game after all disconnected players have reconnected.\n•    4.5.2 If the game is paused for more than 10 minutes, the event staff may order a restart of the game, unless one team has a significantly larger score than the other; in such cases, the event staff may use their discretion to declare the higher-scoring team as the winner of the interrupted game.\n\n**Penalties**\n•    6.2.4.1. Penalty: If staff verify such violations or receive complaints from others, staff will impose penalties on offending competitors by disqualifying them from the competition.\n\nThis is a summary of selected clauses. Ask about a specific topic for details.\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men",
+      "new_answer": "Competition rules: Arena of Valor (RoV) — {\"kind\": \"competition\", \"field\": \"event_name\", \"text\": \"Blueket Games 2025 Men's Team\"}\n\nNo verified clause for this topic was found in the selected rulebook.\n\nEnglish translation is machine generated and has not been reviewed by the owner."
+    },
+    {
+      "arm": "off",
+      "key": "32f4407f6a3db4a8c45ca3b648439568615ec129c79c89493b209ebc27ba14c1",
+      "question": "How much does PS5 cost for PSU staff? Please use verified information.",
+      "file": "data/eval/english_gold_400_20260902.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available",
+        "missing required: 0 THB"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU students and staff: 0 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "new_answer": "No confirmed price for PlayStation 5 #01-#02"
+    },
+    {
+      "arm": "off",
+      "key": "35be52b4c9a5eceb2b28f7b7d266e593c3858995fa83412d732cbaad56a841ac",
+      "question": "How much does it cost for PSU staff to play Nintendo Switch for 2 hours?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nNintendo Switch — 60 minutes/package (1-2 people)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\n\nNintendo Switch — 60 minutes/package (3-4 people)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "new_answer": "**Service rate — Nintendo Switch (1-2 Persons) / General Adult**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-2 Persons) / PSU Alumni and General Student**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-2 Persons) / PSU Student and Staff**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-4 Persons) / General Adult**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-4 Persons) / PSU Alumni and General Student**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-4 Persons) / PSU Student and Staff**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\nThe current price cannot be confirmed from expired rates."
+    },
+    {
+      "arm": "off",
+      "key": "1fbafaa05737f31aaff0dd05710b5464bf3622b9e6dcddc396f7095acff65a00",
+      "question": "PSU students play PC for 30 minutes, how much do they lose in baht?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "6310aaca91867449df9551b7a6db7ef7617925d70a5e64422193cab7c151918c",
+      "question": "How much does an undergraduate student lose playing PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 60 minutes (1 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "dfa39d2d4480ec1b448a6b3493d753d2d15769de1f18497b09843eea59600523",
+      "question": "How much does a PSU student lose playing PC for 2 hours?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "e3b482adb877565a2200f8a398c48a80afcb81861c1abdcc63e6c0ba8047cc8b",
+      "question": "What is the price of PC?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "e3b482adb877565a2200f8a398c48a80afcb81861c1abdcc63e6c0ba8047cc8b",
+      "question": "What is the price of PC?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "e9c5be40d71123d06aa39b2e4d43a69881a6174173f1ee01dac494f097b5f18a",
+      "question": "How much does an undergraduate student lose playing PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v3.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "d7f29f0ad624cdae9e6499f84485231042998ce3bf6efae7309314183f8aff76",
+      "question": "How much does it cost for a student from another university to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 30 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "d7f29f0ad624cdae9e6499f84485231042998ce3bf6efae7309314183f8aff76",
+      "question": "How much does it cost for a student from another university to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 30 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "d7f29f0ad624cdae9e6499f84485231042998ce3bf6efae7309314183f8aff76",
+      "question": "How much does it cost for a student from another university to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 30 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "14c35076ac7b8b54d4c9cad09f16034cd5ef56e39e67bae6137b83a6a7266081",
+      "question": "What is the PC price?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v3.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "8ac7de6b5cf5962e2c0fb76cd9f19393ecd90751607ac5b95905d96dd3dc1234",
+      "question": "A student from another university plays PC for 30 minutes. How much does it cost?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v3.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "5247c7cbfd0a0e681b9eceda7bcd36dae6c42551ce26ddd35e50c0b8e5efbd12",
+      "question": "How much does a PSU student pay to play PC for 2 hours?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "93e0e68eebef7de47b6dcfb7831216b4b47680e1a5fa8db65ab9bb286b5126b3",
+      "question": "What is the price of the PC?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "93e0e68eebef7de47b6dcfb7831216b4b47680e1a5fa8db65ab9bb286b5126b3",
+      "question": "What is the price of the PC?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "9b86033f63287242f35c0d7e6ab97fbe454484a01e836e85cda5811ccc85bf13",
+      "question": "How much does it cost for a PSU student to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 60 minutes (1 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "9b86033f63287242f35c0d7e6ab97fbe454484a01e836e85cda5811ccc85bf13",
+      "question": "How much does it cost for a PSU student to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 60 minutes (1 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "e32dc3b969bc3d4f609dfadca058eef1216748fd39f70a97e62ea882781358e3",
+      "question": "How much does it cost for a PSU student to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "e32dc3b969bc3d4f609dfadca058eef1216748fd39f70a97e62ea882781358e3",
+      "question": "How much does it cost for a PSU student to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "e32dc3b969bc3d4f609dfadca058eef1216748fd39f70a97e62ea882781358e3",
+      "question": "How much does it cost for a PSU student to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "6614a3ff6d437d591e8d653f18357b81218993251f94336a1fdecc49e4f4c981",
+      "question": "If I damage a studio PS5, is there a penalty?",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "If equipment is damaged through improper or negligent use, users are responsible according to severity: minor damage carries a 100-500 THB fine; moderate damage costs the actual repair amount or 500-2,000 THB; severe damage requires full compensation based on the property's market value.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+      "new_answer": "The requested topic is unclear. Which part of PlayStation 5 #01-#02 do you need: name / platform / Play time (minutes) / Reserved time (minutes)?"
+    },
+    {
+      "arm": "off",
+      "key": "6614a3ff6d437d591e8d653f18357b81218993251f94336a1fdecc49e4f4c981",
+      "question": "If I damage a studio PS5, is there a penalty?",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "If equipment is damaged through improper or negligent use, users are responsible according to severity: minor damage carries a 100-500 THB fine; moderate damage costs the actual repair amount or 500-2,000 THB; severe damage requires full compensation based on the property's market value.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+      "new_answer": "The requested topic is unclear. Which part of PlayStation 5 #01-#02 do you need: name / platform / Play time (minutes) / Reserved time (minutes)?"
+    },
+    {
+      "arm": "off",
+      "key": "0062d3f2c395a741eba6584a729d3ba2d94310f1adaa8b9c6fd8ed6edc07a4c0",
+      "question": "คนทั่วไปมีสิทธิ์เล่นเครื่อง PC ของศูนย์ไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "ได้ครับ บุคคลทั่วไปสามารถจองใช้บริการ PC Zone ได้ ค่าบริการขึ้นกับประเภทบริการและกลุ่มผู้ใช้ ต้องจองผ่านระบบและแสดงบัตรประชาชนเมื่อเช็กอิน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "0062d3f2c395a741eba6584a729d3ba2d94310f1adaa8b9c6fd8ed6edc07a4c0",
+      "question": "คนทั่วไปมีสิทธิ์เล่นเครื่อง PC ของศูนย์ไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "ได้ครับ บุคคลทั่วไปสามารถจองใช้บริการ PC Zone ได้ ค่าบริการขึ้นกับประเภทบริการและกลุ่มผู้ใช้ ต้องจองผ่านระบบและแสดงบัตรประชาชนเมื่อเช็กอิน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "3582293f81c608c865504ae54ae05b35cf7f96d2a89cdb7a2b3895dc25861ea7",
+      "question": "ถ้าทำ PS5 ของศูนย์เสียหายต้องเสียค่าปรับไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "ถ้าทำอุปกรณ์เสียหาย ผู้ใช้งานต้องรับผิดชอบค่าปรับหรือค่าชดเชยตามระดับความเสียหาย ตั้งแต่ความเสียหายเล็กน้อย 100–500 บาท ความเสียหายปานกลางตามราคาจริงหรือ 500–2,000 บาท ไปจนถึงความเสียหายร้ายแรงที่ต้องชดเชยราคาทรัพย์สินเต็มจำนวน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "3582293f81c608c865504ae54ae05b35cf7f96d2a89cdb7a2b3895dc25861ea7",
+      "question": "ถ้าทำ PS5 ของศูนย์เสียหายต้องเสียค่าปรับไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "ถ้าทำอุปกรณ์เสียหาย ผู้ใช้งานต้องรับผิดชอบค่าปรับหรือค่าชดเชยตามระดับความเสียหาย ตั้งแต่ความเสียหายเล็กน้อย 100–500 บาท ความเสียหายปานกลางตามราคาจริงหรือ 500–2,000 บาท ไปจนถึงความเสียหายร้ายแรงที่ต้องชดเชยราคาทรัพย์สินเต็มจำนวน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "9ee1d576be31ea93f8532aff0c5f288fad39f739c2da2a53518bb1bed5edca5c",
+      "question": "Please use verified studio information: Can a non-student access the Cockpit?",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "Yes. Public visitors can book and use a Cockpit station. Fees depend on the service and user group. Book through the reservation system and present a national ID card at check-in.\nSource: https://esports.computing.psu.ac.th/",
+      "new_answer": "The requested topic is unclear. Which part of Cockpit Zone do you need: name / platform / Play time (minutes) / Reserved time (minutes)?"
+    },
+    {
+      "arm": "off",
+      "key": "9ee1d576be31ea93f8532aff0c5f288fad39f739c2da2a53518bb1bed5edca5c",
+      "question": "Please use verified studio information: Can a non-student access the Cockpit?",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "Yes. Public visitors can book and use a Cockpit station. Fees depend on the service and user group. Book through the reservation system and present a national ID card at check-in.\nSource: https://esports.computing.psu.ac.th/",
+      "new_answer": "The requested topic is unclear. Which part of Cockpit Zone do you need: name / platform / Play time (minutes) / Reserved time (minutes)?"
+    },
+    {
+      "arm": "off",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_en_5000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_en_5000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "off",
+      "key": "0031eebd438833ce8bfa3932ec9947e101b965e1ecff6b8b11161094792fdb62",
+      "question": "How do I bok a cockpit",
+      "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Booking steps:\n• Select a service.\n• Choose a date and time.\n• Fill in your user information.\n• Review the details.\n• Pay by bank transfer.\n• Upload the payment slip.\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)",
+      "new_answer": "The requested topic is unclear. Which part of Cockpit Zone do you need: name / platform / Play time (minutes) / Reserved time (minutes)?"
+    },
+    {
+      "arm": "off",
+      "key": "cb2e121303568a7d195d5aaf4f8ebf4be2aed2e6d55e1b77662d9fc6b7d090da",
+      "question": "I would like to know: Which VR Zone units aer free from 14:00 to 15:00",
+      "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "route:knowledge expected:['reservation', 'schedule']",
+        "status:clarification expected:live_lookup_required"
+      ],
+      "new_failures": [],
+      "old_answer": "The requested topic is unclear. Which part of VR Zone do you need: name / platform / Play time (minutes) / Reserved time (minutes)?",
+      "new_answer": "For 2026-10-14 (Asia/Bangkok), I cannot confirm the live opening or booking status because the booking connection is unavailable. I will not present a saved schedule as live availability. Please check the reservation page or try again shortly.\nSource: https://esports.computing.psu.ac.th/reservation"
+    },
+    {
+      "arm": "off",
+      "key": "9c1a37d79460855345426dbc5005a1c4ed488b12630ccc84027e6b292635996d",
+      "question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ต้องการจองเครื่องทำยังไง",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']"
+      ],
+      "old_answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "**ขั้นตอนการจอง**\n• คำตอบพร้อมหลักฐานของศูนย์: ขั้นตอนการจองคือ เลือกบริการที่ต้องการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้บริการ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชีธนาคาร และแนบสลิปการโอนเงิน [S1]"
+    },
+    {
+      "arm": "off",
+      "key": "9c1a37d79460855345426dbc5005a1c4ed488b12630ccc84027e6b292635996d",
+      "question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ต้องการจองเครื่องทำยังไง",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']"
+      ],
+      "old_answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "**ขั้นตอนการจอง**\n• คำตอบพร้อมหลักฐานของศูนย์: ขั้นตอนการจองคือ เลือกบริการที่ต้องการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้บริการ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชีธนาคาร และแนบสลิปการโอนเงิน [S1]"
+    },
+    {
+      "arm": "off",
+      "key": "9c1a37d79460855345426dbc5005a1c4ed488b12630ccc84027e6b292635996d",
+      "question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ต้องการจองเครื่องทำยังไง",
+      "file": "data/eval/master_ground_truth_th_5000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']"
+      ],
+      "old_answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "**ขั้นตอนการจอง**\n• คำตอบพร้อมหลักฐานของศูนย์: ขั้นตอนการจองคือ เลือกบริการที่ต้องการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้บริการ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชีธนาคาร และแนบสลิปการโอนเงิน [S1]"
+    },
+    {
+      "arm": "off",
+      "key": "9c1a37d79460855345426dbc5005a1c4ed488b12630ccc84027e6b292635996d",
+      "question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ต้องการจองเครื่องทำยังไง",
+      "file": "data/eval/master_ground_truth_th_5000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']"
+      ],
+      "old_answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "**ขั้นตอนการจอง**\n• คำตอบพร้อมหลักฐานของศูนย์: ขั้นตอนการจองคือ เลือกบริการที่ต้องการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้บริการ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชีธนาคาร และแนบสลิปการโอนเงิน [S1]"
+    },
+    {
+      "arm": "off",
+      "key": "9c1a37d79460855345426dbc5005a1c4ed488b12630ccc84027e6b292635996d",
+      "question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ต้องการจองเครื่องทำยังไง",
+      "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']"
+      ],
+      "old_answer": "ขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "**ขั้นตอนการจอง**\n• คำตอบพร้อมหลักฐานของศูนย์: ขั้นตอนการจองคือ เลือกบริการที่ต้องการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้บริการ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชีธนาคาร และแนบสลิปการโอนเงิน [S1]"
+    },
+    {
+      "arm": "off",
+      "key": "9ae5f74240bf0357080bcbd7bb820fdba196736351f678a528ae42058146f962",
+      "question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลที่ยืนนยันได้หน่อยครับ: อัดวิดีโอในศูนย์ได้ไหม",
+      "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "pipeline_exception"
+      ],
+      "new_failures": [],
+      "old_answer": null,
+      "new_answer": "ยังไม่พบข้อมูลที่ยืนยันคำตอบเรื่องนี้ได้ชัดในหมวด ภาพรวม/ข้อมูลทั่วไป ครับ\nกรุณาระบุคำถามให้เจาะจงขึ้น หรือตรวจสอบกับศูนย์โดยตรงครับ"
+    },
+    {
+      "arm": "off",
+      "key": "39f646fc593fd285b24060e228465b97be5f18b36232c8be8bdf632780340688",
+      "question": "พรุ่งนี้เปิดไหม",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'schedule']",
+        "status:answer expected:live_lookup_required"
+      ],
+      "old_answer": "พรุ่งนี้ 14/10/2026 (วันพุธ): วันพุธเปิดให้เล่น 09:00-12:00 และ 13:00-16:00\nวันที่อ้างอิงของระบบ: วันนี้คือ 13/10/2026 (วันอังคาร) ตามเวลาไทย\n\nปฏิทินไทยของวันที่นี้:\nไม่พบวันหยุดไทยหรือเทศกาลในปฏิทินที่บันทึกไว้สำหรับวันที่นี้\n\nรายละเอียดจากตาราง:\n•    วันจันทร์ช่วงเช้า 09:00-12:00 เป็น Maintenance* และเปิดช่วงบ่าย 13:00-16:00\n•    วันอังคาร-พฤหัสบดีเปิด 09:00-12:00 และ 13:00-16:00\n•    วันศุกร์เปิดช่วงเช้า 09:00-12:00 และช่วงบ่าย 13:00-16:00 เป็น Maintenance\n•    เฉพาะวันที่บันทึกว่าศูนย์ปิดในไฟล์ปฏิทินบริการจะมีผลก่อนตารางปกติ; วันหยุดไทยอย่างเดียวไม่ได้ทำให้ปิดอัตโนมัติ\nแหล่งข้อมูลตารางบริการ: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "**ตารางเวลาบริการ**\n• ช่วงที่จองได้: 09:00–12:00 / 13:00–16:00 [S1]\n• ช่วงบำรุงรักษา: ไม่มีรายการในช่องนี้ (ยืนยันแล้ว) [S2]\n• เขตเวลา: Asia/Bangkok [S3]\n• เลือกวันในสัปดาห์: 3 [S4]"
+    },
+    {
+      "arm": "off",
+      "key": "39f646fc593fd285b24060e228465b97be5f18b36232c8be8bdf632780340688",
+      "question": "พรุ่งนี้เปิดไหม",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'schedule']",
+        "status:answer expected:live_lookup_required"
+      ],
+      "old_answer": "พรุ่งนี้ 14/10/2026 (วันพุธ): วันพุธเปิดให้เล่น 09:00-12:00 และ 13:00-16:00\nวันที่อ้างอิงของระบบ: วันนี้คือ 13/10/2026 (วันอังคาร) ตามเวลาไทย\n\nปฏิทินไทยของวันที่นี้:\nไม่พบวันหยุดไทยหรือเทศกาลในปฏิทินที่บันทึกไว้สำหรับวันที่นี้\n\nรายละเอียดจากตาราง:\n•    วันจันทร์ช่วงเช้า 09:00-12:00 เป็น Maintenance* และเปิดช่วงบ่าย 13:00-16:00\n•    วันอังคาร-พฤหัสบดีเปิด 09:00-12:00 และ 13:00-16:00\n•    วันศุกร์เปิดช่วงเช้า 09:00-12:00 และช่วงบ่าย 13:00-16:00 เป็น Maintenance\n•    เฉพาะวันที่บันทึกว่าศูนย์ปิดในไฟล์ปฏิทินบริการจะมีผลก่อนตารางปกติ; วันหยุดไทยอย่างเดียวไม่ได้ทำให้ปิดอัตโนมัติ\nแหล่งข้อมูลตารางบริการ: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "**ตารางเวลาบริการ**\n• ช่วงที่จองได้: 09:00–12:00 / 13:00–16:00 [S1]\n• ช่วงบำรุงรักษา: ไม่มีรายการในช่องนี้ (ยืนยันแล้ว) [S2]\n• เขตเวลา: Asia/Bangkok [S3]\n• เลือกวันในสัปดาห์: 3 [S4]"
+    },
+    {
+      "arm": "off",
+      "key": "39f646fc593fd285b24060e228465b97be5f18b36232c8be8bdf632780340688",
+      "question": "พรุ่งนี้เปิดไหม",
+      "file": "data/eval/master_ground_truth_th_5000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'schedule']",
+        "status:answer expected:live_lookup_required"
+      ],
+      "old_answer": "พรุ่งนี้ 14/10/2026 (วันพุธ): วันพุธเปิดให้เล่น 09:00-12:00 และ 13:00-16:00\nวันที่อ้างอิงของระบบ: วันนี้คือ 13/10/2026 (วันอังคาร) ตามเวลาไทย\n\nปฏิทินไทยของวันที่นี้:\nไม่พบวันหยุดไทยหรือเทศกาลในปฏิทินที่บันทึกไว้สำหรับวันที่นี้\n\nรายละเอียดจากตาราง:\n•    วันจันทร์ช่วงเช้า 09:00-12:00 เป็น Maintenance* และเปิดช่วงบ่าย 13:00-16:00\n•    วันอังคาร-พฤหัสบดีเปิด 09:00-12:00 และ 13:00-16:00\n•    วันศุกร์เปิดช่วงเช้า 09:00-12:00 และช่วงบ่าย 13:00-16:00 เป็น Maintenance\n•    เฉพาะวันที่บันทึกว่าศูนย์ปิดในไฟล์ปฏิทินบริการจะมีผลก่อนตารางปกติ; วันหยุดไทยอย่างเดียวไม่ได้ทำให้ปิดอัตโนมัติ\nแหล่งข้อมูลตารางบริการ: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "**ตารางเวลาบริการ**\n• ช่วงที่จองได้: 09:00–12:00 / 13:00–16:00 [S1]\n• ช่วงบำรุงรักษา: ไม่มีรายการในช่องนี้ (ยืนยันแล้ว) [S2]\n• เขตเวลา: Asia/Bangkok [S3]\n• เลือกวันในสัปดาห์: 3 [S4]"
+    },
+    {
+      "arm": "off",
+      "key": "39f646fc593fd285b24060e228465b97be5f18b36232c8be8bdf632780340688",
+      "question": "พรุ่งนี้เปิดไหม",
+      "file": "data/eval/master_ground_truth_th_5000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'schedule']",
+        "status:answer expected:live_lookup_required"
+      ],
+      "old_answer": "พรุ่งนี้ 14/10/2026 (วันพุธ): วันพุธเปิดให้เล่น 09:00-12:00 และ 13:00-16:00\nวันที่อ้างอิงของระบบ: วันนี้คือ 13/10/2026 (วันอังคาร) ตามเวลาไทย\n\nปฏิทินไทยของวันที่นี้:\nไม่พบวันหยุดไทยหรือเทศกาลในปฏิทินที่บันทึกไว้สำหรับวันที่นี้\n\nรายละเอียดจากตาราง:\n•    วันจันทร์ช่วงเช้า 09:00-12:00 เป็น Maintenance* และเปิดช่วงบ่าย 13:00-16:00\n•    วันอังคาร-พฤหัสบดีเปิด 09:00-12:00 และ 13:00-16:00\n•    วันศุกร์เปิดช่วงเช้า 09:00-12:00 และช่วงบ่าย 13:00-16:00 เป็น Maintenance\n•    เฉพาะวันที่บันทึกว่าศูนย์ปิดในไฟล์ปฏิทินบริการจะมีผลก่อนตารางปกติ; วันหยุดไทยอย่างเดียวไม่ได้ทำให้ปิดอัตโนมัติ\nแหล่งข้อมูลตารางบริการ: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "**ตารางเวลาบริการ**\n• ช่วงที่จองได้: 09:00–12:00 / 13:00–16:00 [S1]\n• ช่วงบำรุงรักษา: ไม่มีรายการในช่องนี้ (ยืนยันแล้ว) [S2]\n• เขตเวลา: Asia/Bangkok [S3]\n• เลือกวันในสัปดาห์: 3 [S4]"
+    },
+    {
+      "arm": "off",
+      "key": "39f646fc593fd285b24060e228465b97be5f18b36232c8be8bdf632780340688",
+      "question": "พรุ่งนี้เปิดไหม",
+      "file": "data/eval/rag_robustness_ground_truth_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['schedule', 'reservation']",
+        "status:answer expected:live_lookup_required"
+      ],
+      "old_answer": "พรุ่งนี้ 14/10/2026 (วันพุธ): วันพุธเปิดให้เล่น 09:00-12:00 และ 13:00-16:00\nวันที่อ้างอิงของระบบ: วันนี้คือ 13/10/2026 (วันอังคาร) ตามเวลาไทย\n\nปฏิทินไทยของวันที่นี้:\nไม่พบวันหยุดไทยหรือเทศกาลในปฏิทินที่บันทึกไว้สำหรับวันที่นี้\n\nรายละเอียดจากตาราง:\n•    วันจันทร์ช่วงเช้า 09:00-12:00 เป็น Maintenance* และเปิดช่วงบ่าย 13:00-16:00\n•    วันอังคาร-พฤหัสบดีเปิด 09:00-12:00 และ 13:00-16:00\n•    วันศุกร์เปิดช่วงเช้า 09:00-12:00 และช่วงบ่าย 13:00-16:00 เป็น Maintenance\n•    เฉพาะวันที่บันทึกว่าศูนย์ปิดในไฟล์ปฏิทินบริการจะมีผลก่อนตารางปกติ; วันหยุดไทยอย่างเดียวไม่ได้ทำให้ปิดอัตโนมัติ\nแหล่งข้อมูลตารางบริการ: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "**ตารางเวลาบริการ**\n• ช่วงที่จองได้: 09:00–12:00 / 13:00–16:00 [S1]\n• ช่วงบำรุงรักษา: ไม่มีรายการในช่องนี้ (ยืนยันแล้ว) [S2]\n• เขตเวลา: Asia/Bangkok [S3]\n• เลือกวันในสัปดาห์: 3 [S4]"
+    },
+    {
+      "arm": "off",
+      "key": "d78ad94404469ab1581e12b84fdb694a40360b72c27d0221bf3b15b4eccf1946",
+      "question": "Can visitors use VR without booking?",
+      "file": "data/eval/review_grounded_novel_20260925.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']",
+        "missing required: No, you cannot use the studio without booking first",
+        "missing required: one hour"
+      ],
+      "old_answer": "No, you cannot use the studio without booking first. The published rule requires an online reservation at least one hour before use. Public visitors can book using the National ID field and present the card at check-in.\nSource: https://esports.computing.psu.ac.th/",
+      "new_answer": "Selected service/game: VR Station 30 นาที / VR Station 1 ชั่วโมง\n\n**booking_steps**\n• answer: The booking steps are: select a service, choose date and time, fill in user information, review the details, make payment by bank transfer, and upload the payment slip. [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner."
+    },
+    {
+      "arm": "off",
+      "key": "340328c122d8be3f92f04fa39b969100547c0b9b8caefb2c51ae98a9a558bd74",
+      "question": "เด็กอายุ 12 ใช้ VR ได้ไหม",
+      "file": "data/eval/review_grounded_novel_20260925.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['no_answer']",
+        "status:clarification expected:no_answer_expected",
+        "missing required: อายุขั้นต่ำ"
+      ],
+      "old_answer": "กฎการใช้บริการที่เผยแพร่ไม่ได้ระบุอายุขั้นต่ำสำหรับบริการนี้ครับ จึงยังยืนยันสิทธิ์จากอายุอย่างเดียวไม่ได้ กรุณาตรวจสอบกับศูนย์ก่อนจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ VR Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "5f673b0950604ad63e848fcfb9d33cb2abbd3707af2d3abb610c6079c91dcb5d",
+      "question": "ไม่ใช่นักศึกษา แต่อยากยืม PS5 กลับบ้านได้ไหม",
+      "file": "data/eval/review_grounded_novel_20260925.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['no_answer']",
+        "status:clarification expected:no_answer_expected",
+        "missing required: ไม่ได้ยืนยันสิทธิ์ยืมอุปกรณ์กลับบ้าน"
+      ],
+      "old_answer": "ข้อมูลการจองที่เผยแพร่เป็นการใช้บริการภายในศูนย์ ไม่ได้ยืนยันสิทธิ์ยืมอุปกรณ์กลับบ้านครับ กรุณาสอบถามเจ้าหน้าที่ก่อน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "ca93cf2b8fd54779cfa728d49fba6ad2062d39f083adbc76b33d58f0b3144343",
+      "question": "คนภายนอกใช้ PC ตอนนี้ได้ไหม",
+      "file": "data/eval/review_grounded_novel_20260925.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['schedule']",
+        "status:clarification expected:live_lookup_required"
+      ],
+      "old_answer": "วันที่ 2026-10-14 (เวลาไทย) ยังยืนยันสถานะเปิด-ปิดและ Slot แบบสดไม่ได้ เพราะการเชื่อมต่อระบบจองยังไม่พร้อมใช้งานครับ\nผมจะไม่เอาตารางเก่ามาแสดงว่าเป็นข้อมูลจองแบบสด กรุณาลองใหม่อีกครั้งหรือดูหน้าจองโดยตรง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "a99e29ccad7b563d51967e718c2f74cca4fc36225b67b77cee360ea227fca06b",
+      "question": "จองเพลย์ห้ายังงัย",
+      "file": "data/eval/thai_noisy_input_holdout_20260929.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "intent:common_read expected:booking_policy"
+      ],
+      "old_answer": "จอง PlayStation 5 ต้องเลือกบริการ PlayStation 5 และเลือกรอบเวลาที่ต้องการครับ\n•    ข้อมูลค่าบริการที่มีระบุ PlayStation 5 ต่อ 60 นาที สำหรับ 1-2 คน\n•    จากนั้นกรอกข้อมูลผู้ใช้บริการ ชำระเงิน และแนบสลิปเพื่อยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "**วิธีจอง**\n• คำตอบพร้อมหลักฐานของศูนย์: ขั้นตอนจองคือ เลือกบริการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชี และแนบสลิปการโอนเงิน [S1]"
+    },
+    {
+      "arm": "off",
+      "key": "cc013ba7d5f9fc52b3effe48e558c27e91697bea5756c624e72e8b29b3f3759a",
+      "question": "จองคอมยังไงงง",
+      "file": "data/eval/thai_noisy_input_holdout_20260929.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "intent:common_read expected:booking_policy"
+      ],
+      "old_answer": "จองคิวเล่นเกม/ใช้อุปกรณ์ได้ผ่านระบบจองออนไลน์ครับ\nถ้าต้องการจอง PC ให้เลือกเครื่อง PC/บริการ PC ที่ต้องการและเลือกรอบเวลา\nขั้นตอนโดยสรุปคือ 1) เลือกบริการหรือโซนที่ต้องการใช้ 2) เลือกวันและรอบเวลา 3) กรอก Student ID/Staff ID/National ID ชื่อ นามสกุล อีเมล และเบอร์โทรศัพท์ 4) ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง 5) แนบสลิปและยืนยันการจอง\nต้องจองล่วงหน้าอย่างน้อย 1 ชั่วโมง และหลังจองต้องชำระเงินภายใน 10 นาทีครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "**วิธีจอง**\n• คำตอบพร้อมหลักฐานของศูนย์: ขั้นตอนจองคือ เลือกบริการ เลือกวันและเวลา กรอกข้อมูลผู้ใช้ ตรวจสอบข้อมูล ชำระเงินโดยโอนเข้าบัญชี และแนบสลิปการโอนเงิน [S1]"
+    },
+    {
+      "arm": "off",
+      "key": "6f64acf64c078c7ee600e4c50665352de1a97f82fccf4a0cc5abb80d518095f0",
+      "question": "PC ใช้การ์ดจอรุ่นอะไรร",
+      "file": "data/eval/thai_noisy_input_pairs_20260929.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "intent:common_read expected:equipment_item_lookup"
+      ],
+      "old_answer": "Gaming PC รุ่น MSI MAG Infinite S3 14th: เครื่องคอมพิวเตอร์เกมมิ่งของ PC Zone สำหรับเล่นเกมบนคอมและฝึกซ้อมอีสปอร์ต\nจำนวน: 10 Units\nอยู่ที่: PC Zone\nใช้สำหรับ:\n•    เล่น VALORANT\n•    เล่น Counter-Strike 2\n•    เล่น PUBG: BATTLEGROUNDS\n•    เล่น Call of Duty: Warzone\n•    เล่น TEKKEN 8\n•    เล่น League of Legends\nหมายเหตุ: สเปกที่บันทึกไว้ในโปรเจกต์: Intel Core i5-14400, RAM DDR5 32GB, NVIDIA GeForce RTX 5060 8GB\nสเปกนี้เป็นข้อมูลที่บันทึกไว้ในโปรเจกต์ ยังไม่พบหลักฐานในชุดข้อมูลนี้ว่ายืนยันตรงกับเครื่อง PC ที่ใช้งานจริงทุกเครื่อง\nเว็บไซต์รายการอุปกรณ์ของศูนย์: https://esports.phuket.psu.ac.th/home\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "05945e0d1f52477dbcb4e4ca11a886ae3f3d0266e9a3d6697b0c6b15d3d14562",
+      "question": "นักศึกษา PSU เล่น Cockpit ต้องจ่ายไหม",
+      "file": "data/routing/routing_eval_real_usage.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "intent:common_read expected:service_fee_query"
+      ],
+      "old_answer": "ราคา 0 บาท สำหรับกลุ่ม PSU Student and Staff\n•    Cockpit 60 นาที: 0 บาท\nกลุ่มผู้ใช้ที่ตรวจเจอ: PSU Student and Staff\n\nรายละเอียดจากตาราง:\nCockpit 60 นาที (1 ชั่วโมง, 1 คน)\n•    PSU Student and Staff: 0 บาท\n•    PSU Alumni and General Student: 65 บาท\n•    General Adult: 200 บาท\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ Cockpit Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "off",
+      "key": "33962a11e38b47be12fe48c93a45d2a15eab8c0af032a423295b3e7460823db8",
+      "question": "ROV มีข้อมูลไหม",
+      "file": "data/routing/routing_eval_real_usage.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['games']",
+        "intent:common_read expected:game_availability_lookup"
+      ],
+      "old_answer": "ยังไม่พบ RoV / Arena of Valor ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nในฐานข้อมูลมีข้อมูลกติกาการแข่งขันของเกมนี้ แต่ยังไม่พบว่าอยู่ในรายการเกมให้เล่นของศูนย์\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 เกม)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 เกม)\n•    Gran Turismo 7\n\nVR Zone (4 เกม)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ Arena of Valor (RoV) เช่น ชื่อเกมอย่างเป็นทางการ?"
+    },
+    {
+      "arm": "llm",
+      "key": "2e064d4c0505e47303cd5f058f75db3ce3f2055d1ccfdf4fd4f0e5c693e50f42",
+      "question": "PS5 เล่นได้กี่ชั่วโมงต่อวัน",
+      "file": "data/eval/answer_quality_cases.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "quality_score_or_required_gate_failed",
+        "สูงสุด 3 Sessions"
+      ],
+      "old_answer": "การจอง 1 ครั้งสามารถจองได้สูงสุด 3 Sessions สำหรับ PlayStation 5: 1 session = 1 ชั่วโมง ดังนั้น 3 sessions = สูงสุด 3 ชั่วโมงต่อการจอง 1 ครั้ง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "2e064d4c0505e47303cd5f058f75db3ce3f2055d1ccfdf4fd4f0e5c693e50f42",
+      "question": "PS5 เล่นได้กี่ชั่วโมงต่อวัน",
+      "file": "data/routing/routing_eval_cases.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']",
+        "intent:common_read expected:booking_policy"
+      ],
+      "old_answer": "การจอง 1 ครั้งสามารถจองได้สูงสุด 3 Sessions สำหรับ PlayStation 5: 1 session = 1 ชั่วโมง ดังนั้น 3 sessions = สูงสุด 3 ชั่วโมงต่อการจอง 1 ครั้ง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "2e064d4c0505e47303cd5f058f75db3ce3f2055d1ccfdf4fd4f0e5c693e50f42",
+      "question": "PS5 เล่นได้กี่ชั่วโมงต่อวัน",
+      "file": "data/routing/routing_eval_real_usage.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation']",
+        "intent:common_read expected:booking_policy"
+      ],
+      "old_answer": "การจอง 1 ครั้งสามารถจองได้สูงสุด 3 Sessions สำหรับ PlayStation 5: 1 session = 1 ชั่วโมง ดังนั้น 3 sessions = สูงสุด 3 ชั่วโมงต่อการจอง 1 ครั้ง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "33b1d4846de51965dedccb3c92f471673acddfd50fd712bc67e0554212f09c55",
+      "question": "For Arena of Valor, can you verify the rule on the rulebook scope and tournament identity?",
+      "file": "data/eval/competition_rules_rag_ground_truth_v1.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "pipeline_exception"
+      ],
+      "new_failures": [],
+      "old_answer": null,
+      "new_answer": "Answer: Competition Rules for Blueket Games 2025 Esports Event Game: Arena of Valor (RoV)\n\nDetails:\n• Male Team Category\n\nRulebook: Arena of Valor (RoV)\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men"
+    },
+    {
+      "arm": "llm",
+      "key": "33b1d4846de51965dedccb3c92f471673acddfd50fd712bc67e0554212f09c55",
+      "question": "For Arena of Valor, can you verify the rule on the rulebook scope and tournament identity?",
+      "file": "data/eval/competition_user_r24_2000_20261001.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "pipeline_exception"
+      ],
+      "new_failures": [],
+      "old_answer": null,
+      "new_answer": "Answer: Competition Rules for Blueket Games 2025 Esports Event Game: Arena of Valor (RoV)\n\nDetails:\n• Male Team Category\n\nRulebook: Arena of Valor (RoV)\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men"
+    },
+    {
+      "arm": "llm",
+      "key": "6a0f74c48063498f91118d46ced17f1b531633b07e0b036218cd61f5daea26b6",
+      "question": "Please check: What ruls apply to the rov competition? please.",
+      "file": "data/eval/competition_user_r24_2000_20261001.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route expected ['competition_rules'], got knowledge",
+        "outcome expected answer_available, got clarification",
+        "missing rulebook target(s): ['competition_rules_rov_blueket_2025_men']"
+      ],
+      "old_answer": "Selected Arena of Valor (RoV) competition rules from the recorded rulebook:\nTournament: Arena of Valor (RoV) / 2025\n\n\n**Competition format**\n•    08:40-10:00: round of 5 teams, Single Elimination BO3\n•    10:00-11:30: semifinal match 1, Single Elimination BO3\n\n**Competition equipment**\n•    5.3. Tablets, iPads and any devices other than mobile phones may not be used in competition. If detected, staff will immediately impose disqualification.\n\n**Pauses and timeouts**\n•    4.3.1. If a participant disconnects during the match, the game will be paused temporarily. Each team may pause the game up to five times, each pause not exceeding one minute. If the time limit is exceeded, the other team may immediately resume the game and continue playing normally.\n•    4.5.1.1. If a competitor intentionally disconnects from the game without informing the referee, the referee may deny the pause request.\n•    4.5.1.2 In cases where the game is paused due to technical issues, not caused by player actions, the event staff may order a pause and require players to rejoin the game after all disconnected players have reconnected.\n•    4.5.2 If the game is paused for more than 10 minutes, the event staff may order a restart of the game, unless one team has a significantly larger score than the other; in such cases, the event staff may use their discretion to declare the higher-scoring team as the winner of the interrupted game.\n\n**Penalties**\n•    6.2.4.1. Penalty: If staff verify such violations or receive complaints from others, staff will impose penalties on offending competitors by disqualifying them from the competition.\n\nThis is a summary of selected clauses. Ask about a specific topic for details.\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men",
+      "new_answer": "Competition rules: Arena of Valor (RoV) — {\"kind\": \"competition\", \"field\": \"event_name\", \"text\": \"Blueket Games 2025 Men's Team\"}\n\nNo verified clause for this topic was found in the selected rulebook.\n\nEnglish translation is machine generated and has not been reviewed by the owner."
+    },
+    {
+      "arm": "llm",
+      "key": "32f4407f6a3db4a8c45ca3b648439568615ec129c79c89493b209ebc27ba14c1",
+      "question": "How much does PS5 cost for PSU staff? Please use verified information.",
+      "file": "data/eval/english_gold_400_20260902.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available",
+        "missing required: 0 THB"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU students and staff: 0 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "new_answer": "No confirmed price for PlayStation 5 #01-#02"
+    },
+    {
+      "arm": "llm",
+      "key": "35be52b4c9a5eceb2b28f7b7d266e593c3858995fa83412d732cbaad56a841ac",
+      "question": "How much does it cost for PSU staff to play Nintendo Switch for 2 hours?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nNintendo Switch — 60 minutes/package (1-2 people)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\n\nNintendo Switch — 60 minutes/package (3-4 people)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "new_answer": "**Service rate — Nintendo Switch (1-2 Persons) / General Adult**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-2 Persons) / PSU Alumni and General Student**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-2 Persons) / PSU Student and Staff**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-4 Persons) / General Adult**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-4 Persons) / PSU Alumni and General Student**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\n**Service rate — Nintendo Switch (1-4 Persons) / PSU Student and Staff**\nThis revision or a referenced record is not effective at the query time; no current fact is asserted. (recorded validity: 2026-02-01T00:00:00+07:00 until (exclusive) 2026-04-01T00:00:00+07:00)\n\nThe current price cannot be confirmed from expired rates."
+    },
+    {
+      "arm": "llm",
+      "key": "6310aaca91867449df9551b7a6db7ef7617925d70a5e64422193cab7c151918c",
+      "question": "How much does an undergraduate student lose playing PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 60 minutes (1 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "dfa39d2d4480ec1b448a6b3493d753d2d15769de1f18497b09843eea59600523",
+      "question": "How much does a PSU student lose playing PC for 2 hours?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "e9c5be40d71123d06aa39b2e4d43a69881a6174173f1ee01dac494f097b5f18a",
+      "question": "How much does an undergraduate student lose playing PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "4e2652ba08a4f451baf1f9cf000c44619db7ebfb389263ba1221cab3d1b392bd",
+      "question": "How much does it cost for a student from another university to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v3.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 60 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "d7f29f0ad624cdae9e6499f84485231042998ce3bf6efae7309314183f8aff76",
+      "question": "How much does it cost for a student from another university to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 30 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "d7f29f0ad624cdae9e6499f84485231042998ce3bf6efae7309314183f8aff76",
+      "question": "How much does it cost for a student from another university to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 30 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "d7f29f0ad624cdae9e6499f84485231042998ce3bf6efae7309314183f8aff76",
+      "question": "How much does it cost for a student from another university to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "PC - 1 hour (1 people)\n- PSU alumni and students from other institutions: 25 THB\n- Requested duration: 30 minutes, charged as 1 session(s).\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "8ac7de6b5cf5962e2c0fb76cd9f19393ecd90751607ac5b95905d96dd3dc1234",
+      "question": "A student from another university plays PC for 30 minutes. How much does it cost?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v3.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "5247c7cbfd0a0e681b9eceda7bcd36dae6c42551ce26ddd35e50c0b8e5efbd12",
+      "question": "How much does a PSU student pay to play PC for 2 hours?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 120 minutes (2 hours); 2 session(s).\n• PSU students and staff: 0 THB/package × 2 = 0 THB\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC Zone\n\nNo confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "93e0e68eebef7de47b6dcfb7831216b4b47680e1a5fa8db65ab9bb286b5126b3",
+      "question": "What is the price of the PC?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "93e0e68eebef7de47b6dcfb7831216b4b47680e1a5fa8db65ab9bb286b5126b3",
+      "question": "What is the price of the PC?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "9b86033f63287242f35c0d7e6ab97fbe454484a01e836e85cda5811ccc85bf13",
+      "question": "How much does it cost for a PSU student to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 60 minutes (1 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "9b86033f63287242f35c0d7e6ab97fbe454484a01e836e85cda5811ccc85bf13",
+      "question": "How much does it cost for a PSU student to play PC for 1 hour?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 60 minutes (1 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "e32dc3b969bc3d4f609dfadca058eef1216748fd39f70a97e62ea882781358e3",
+      "question": "How much does it cost for a PSU student to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "e32dc3b969bc3d4f609dfadca058eef1216748fd39f70a97e62ea882781358e3",
+      "question": "How much does it cost for a PSU student to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_20260908.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "e32dc3b969bc3d4f609dfadca058eef1216748fd39f70a97e62ea882781358e3",
+      "question": "How much does it cost for a PSU student to play PC for 30 minutes?",
+      "file": "data/eval/english_shadow_1600_machine_sample_20260908_v4.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "6614a3ff6d437d591e8d653f18357b81218993251f94336a1fdecc49e4f4c981",
+      "question": "If I damage a studio PS5, is there a penalty?",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "If equipment is damaged through improper or negligent use, users are responsible according to severity: minor damage carries a 100-500 THB fine; moderate damage costs the actual repair amount or 500-2,000 THB; severe damage requires full compensation based on the property's market value.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+      "new_answer": "The requested topic is unclear. Which part of PlayStation 5 #01-#02 do you need: name / platform / Play time (minutes) / Reserved time (minutes)?"
+    },
+    {
+      "arm": "llm",
+      "key": "6614a3ff6d437d591e8d653f18357b81218993251f94336a1fdecc49e4f4c981",
+      "question": "If I damage a studio PS5, is there a penalty?",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "If equipment is damaged through improper or negligent use, users are responsible according to severity: minor damage carries a 100-500 THB fine; moderate damage costs the actual repair amount or 500-2,000 THB; severe damage requires full compensation based on the property's market value.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+      "new_answer": "The requested topic is unclear. Which part of PlayStation 5 #01-#02 do you need: name / platform / Play time (minutes) / Reserved time (minutes)?"
+    },
+    {
+      "arm": "llm",
+      "key": "0062d3f2c395a741eba6584a729d3ba2d94310f1adaa8b9c6fd8ed6edc07a4c0",
+      "question": "คนทั่วไปมีสิทธิ์เล่นเครื่อง PC ของศูนย์ไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "ได้ครับ บุคคลทั่วไปสามารถจองใช้บริการ PC Zone ได้ ค่าบริการขึ้นกับประเภทบริการและกลุ่มผู้ใช้ ต้องจองผ่านระบบและแสดงบัตรประชาชนเมื่อเช็กอิน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "0062d3f2c395a741eba6584a729d3ba2d94310f1adaa8b9c6fd8ed6edc07a4c0",
+      "question": "คนทั่วไปมีสิทธิ์เล่นเครื่อง PC ของศูนย์ไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "ได้ครับ บุคคลทั่วไปสามารถจองใช้บริการ PC Zone ได้ ค่าบริการขึ้นกับประเภทบริการและกลุ่มผู้ใช้ ต้องจองผ่านระบบและแสดงบัตรประชาชนเมื่อเช็กอิน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "3582293f81c608c865504ae54ae05b35cf7f96d2a89cdb7a2b3895dc25861ea7",
+      "question": "ถ้าทำ PS5 ของศูนย์เสียหายต้องเสียค่าปรับไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "ถ้าทำอุปกรณ์เสียหาย ผู้ใช้งานต้องรับผิดชอบค่าปรับหรือค่าชดเชยตามระดับความเสียหาย ตั้งแต่ความเสียหายเล็กน้อย 100–500 บาท ความเสียหายปานกลางตามราคาจริงหรือ 500–2,000 บาท ไปจนถึงความเสียหายร้ายแรงที่ต้องชดเชยราคาทรัพย์สินเต็มจำนวน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "3582293f81c608c865504ae54ae05b35cf7f96d2a89cdb7a2b3895dc25861ea7",
+      "question": "ถ้าทำ PS5 ของศูนย์เสียหายต้องเสียค่าปรับไหม ตอบเฉพาะประเด็นที่ถามได้ไหม",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['penalty', 'rules']",
+        "status:clarification expected:answer_available",
+        "missing all alternatives: ['ค่าปรับ', 'ชดเชย', 'รับผิดชอบ', 'fine', 'compensation', 'responsible']"
+      ],
+      "old_answer": "ถ้าทำอุปกรณ์เสียหาย ผู้ใช้งานต้องรับผิดชอบค่าปรับหรือค่าชดเชยตามระดับความเสียหาย ตั้งแต่ความเสียหายเล็กน้อย 100–500 บาท ความเสียหายปานกลางตามราคาจริงหรือ 500–2,000 บาท ไปจนถึงความเสียหายร้ายแรงที่ต้องชดเชยราคาทรัพย์สินเต็มจำนวน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "d68931242d456622046d68945c4f8400f15bf25cf9123394b7cb69fd2aa44940",
+      "question": "May a parent use the Nintendo equipment? Please answer only that point.",
+      "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "Yes. Public visitors can book and use studio services. Fees depend on the service and user group. Book through the reservation system and present a national ID card at check-in.\nSource: https://esports.computing.psu.ac.th/",
+      "new_answer": "**Service Fee 2026 - Full service fee table from image**\n• answer: PSU Esports Studio - Phuket Service Fee 2026 Pricing Table as shown in the image: PlayStation 5, 1 hour for 1-2 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 50 THB, General Adult 150 THB. Nintendo Switch, 1 hour for 1-2 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 50 THB, General Adult 140 THB. Nintendo Switch, 1 hour for 3-4 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 100 THB, General Adult 280 THB. Cockpit, 1 hour for 1 person: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 65 THB, General Adult 200 THB. VR, 30 minutes for 1-5 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 190 THB, General Adult 525 THB. VR, 1 hour for 1-5 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 375 THB, General Adult 1050 THB. The image specifies that the fees are valid from 1 February 2026 to 31 March 2026 and does not list PC pricing. [S1]\n• scope note: Not yet confirmed\n\nEnglish translation is machine generated and has not been reviewed by the owner."
+    },
+    {
+      "arm": "llm",
+      "key": "d68931242d456622046d68945c4f8400f15bf25cf9123394b7cb69fd2aa44940",
+      "question": "May a parent use the Nintendo equipment? Please answer only that point.",
+      "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+      ],
+      "old_answer": "Yes. Public visitors can book and use studio services. Fees depend on the service and user group. Book through the reservation system and present a national ID card at check-in.\nSource: https://esports.computing.psu.ac.th/",
+      "new_answer": "**Service Fee 2026 - Full service fee table from image**\n• answer: PSU Esports Studio - Phuket Service Fee 2026 Pricing Table as shown in the image: PlayStation 5, 1 hour for 1-2 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 50 THB, General Adult 150 THB. Nintendo Switch, 1 hour for 1-2 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 50 THB, General Adult 140 THB. Nintendo Switch, 1 hour for 3-4 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 100 THB, General Adult 280 THB. Cockpit, 1 hour for 1 person: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 65 THB, General Adult 200 THB. VR, 30 minutes for 1-5 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 190 THB, General Adult 525 THB. VR, 1 hour for 1-5 people: PSU Student and Staff Free 0 THB, PSU Alumni and General Student 375 THB, General Adult 1050 THB. The image specifies that the fees are valid from 1 February 2026 to 31 March 2026 and does not list PC pricing. [S1]\n• scope note: Not yet confirmed\n\nEnglish translation is machine generated and has not been reviewed by the owner."
+    },
+    {
+      "arm": "llm",
+      "key": "99931b507bc73024e03c9783b5024a4df7049c311b487ed21111e930f12153a0",
+      "question": "Could you check the studio information for me? Can I bring food into the studio? Please answer briefly",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "route:knowledge expected:['rules']",
+        "missing required: designated areas"
+      ],
+      "new_failures": [],
+      "old_answer": "**[Thai source] personal_power / general**\n• answer: Ask staff for permission first. Rule 4.8 prohibits plugging personal electronic devices into the studio's power outlets without authorization. [S1]\n• scope note: Not yet confirmed",
+      "new_answer": "Yes, you may bring food or drinks inside. Eating and drinking are allowed only in the studio's designated areas, not throughout the gaming room.\nSource: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "arm": "llm",
+      "key": "99931b507bc73024e03c9783b5024a4df7049c311b487ed21111e930f12153a0",
+      "question": "Could you check the studio information for me? Can I bring food into the studio? Please answer briefly",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "route:knowledge expected:['rules']",
+        "missing required: designated areas"
+      ],
+      "new_failures": [],
+      "old_answer": "**[Thai source] personal_power / general**\n• answer: Ask staff for permission first. Rule 4.8 prohibits plugging personal electronic devices into the studio's power outlets without authorization. [S1]\n• scope note: Not yet confirmed",
+      "new_answer": "Yes, you may bring food or drinks inside. Eating and drinking are allowed only in the studio's designated areas, not throughout the gaming room.\nSource: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "arm": "llm",
+      "key": "99931b507bc73024e03c9783b5024a4df7049c311b487ed21111e930f12153a0",
+      "question": "Could you check the studio information for me? Can I bring food into the studio? Please answer briefly",
+      "file": "data/eval/master_ground_truth_en_5000_v1.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "route:knowledge expected:['rules']",
+        "missing required: designated areas"
+      ],
+      "new_failures": [],
+      "old_answer": "**[Thai source] personal_power / general**\n• answer: Ask staff for permission first. Rule 4.8 prohibits plugging personal electronic devices into the studio's power outlets without authorization. [S1]\n• scope note: Not yet confirmed",
+      "new_answer": "Yes, you may bring food or drinks inside. Eating and drinking are allowed only in the studio's designated areas, not throughout the gaming room.\nSource: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "arm": "llm",
+      "key": "99931b507bc73024e03c9783b5024a4df7049c311b487ed21111e930f12153a0",
+      "question": "Could you check the studio information for me? Can I bring food into the studio? Please answer briefly",
+      "file": "data/eval/master_ground_truth_en_5000_v2.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "route:knowledge expected:['rules']",
+        "missing required: designated areas"
+      ],
+      "new_failures": [],
+      "old_answer": "**[Thai source] personal_power / general**\n• answer: Ask staff for permission first. Rule 4.8 prohibits plugging personal electronic devices into the studio's power outlets without authorization. [S1]\n• scope note: Not yet confirmed",
+      "new_answer": "Yes, you may bring food or drinks inside. Eating and drinking are allowed only in the studio's designated areas, not throughout the gaming room.\nSource: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "arm": "llm",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_en_5000_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_ground_truth_en_5000_v2.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "cadb09fbfad8813ae6c3b123d40e3f487670e124873a0194367dca02b09bc05b",
+      "question": "Could you please help me with this: What is the price of the PC",
+      "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee']",
+        "status:clarification expected:answer_available"
+      ],
+      "old_answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "new_answer": "No confirmed price for PC #01-#02\n\nNo confirmed price for PC #03-#10"
+    },
+    {
+      "arm": "llm",
+      "key": "cb2e121303568a7d195d5aaf4f8ebf4be2aed2e6d55e1b77662d9fc6b7d090da",
+      "question": "I would like to know: Which VR Zone units aer free from 14:00 to 15:00",
+      "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "route:knowledge expected:['reservation', 'schedule']",
+        "status:answer expected:live_lookup_required",
+        "validation_rejected"
+      ],
+      "new_failures": [],
+      "old_answer": "capacity persons: This attribute is outside the selected record scope; please specify the related service or record.\n\noperational status: This attribute is outside the selected record scope; please specify the related service or record.",
+      "new_answer": "For 2026-10-14 (Asia/Bangkok), I cannot confirm the live opening or booking status because the booking connection is unavailable. I will not present a saved schedule as live availability. Please check the reservation page or try again shortly.\nSource: https://esports.computing.psu.ac.th/reservation"
+    },
+    {
+      "arm": "llm",
+      "key": "a15c08a3011ac094b9b410c76e2b5885494acfa4554e07f5db58b5d3454906be",
+      "question": "How much is it?",
+      "file": "data/eval/rag_robustness_ground_truth_v1.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['service_fee', 'general', 'clarification']",
+        "status:answer expected:clarification_required"
+      ],
+      "old_answer": "Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?",
+      "new_answer": "**damage_penalty_summary**\n• answer: Damage penalties depend on severity: minor damage is 100-500 THB, moderate damage is the actual cost or 500-2,000 THB, and severe damage requires full compensation for the property. [S1]\n• scope note: Not yet confirmed\n\nEnglish translation is machine generated and has not been reviewed by the owner."
+    },
+    {
+      "arm": "llm",
+      "key": "340328c122d8be3f92f04fa39b969100547c0b9b8caefb2c51ae98a9a558bd74",
+      "question": "เด็กอายุ 12 ใช้ VR ได้ไหม",
+      "file": "data/eval/review_grounded_novel_20260925.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['no_answer']",
+        "status:clarification expected:no_answer_expected",
+        "missing required: อายุขั้นต่ำ"
+      ],
+      "old_answer": "กฎการใช้บริการที่เผยแพร่ไม่ได้ระบุอายุขั้นต่ำสำหรับบริการนี้ครับ จึงยังยืนยันสิทธิ์จากอายุอย่างเดียวไม่ได้ กรุณาตรวจสอบกับศูนย์ก่อนจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ VR Zone เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "5f673b0950604ad63e848fcfb9d33cb2abbd3707af2d3abb610c6079c91dcb5d",
+      "question": "ไม่ใช่นักศึกษา แต่อยากยืม PS5 กลับบ้านได้ไหม",
+      "file": "data/eval/review_grounded_novel_20260925.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['no_answer']",
+        "status:clarification expected:no_answer_expected",
+        "missing required: ไม่ได้ยืนยันสิทธิ์ยืมอุปกรณ์กลับบ้าน"
+      ],
+      "old_answer": "ข้อมูลการจองที่เผยแพร่เป็นการใช้บริการภายในศูนย์ ไม่ได้ยืนยันสิทธิ์ยืมอุปกรณ์กลับบ้านครับ กรุณาสอบถามเจ้าหน้าที่ก่อน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PlayStation 5 #01-#02 เช่น ชื่อบริการตามหน้า WordPress / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่น (นาที) / เวลาที่ล็อกเครื่อง (นาที)?"
+    },
+    {
+      "arm": "llm",
+      "key": "25f587311536591ee8cfc0b6601962645e5a01e1125d1d943df02eda41ef9b0b",
+      "question": "มีอุปกอนแะไรบ้าง",
+      "file": "data/eval/thai_multi_error_from_verified49_20260929.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "intent:common_read expected:list"
+      ],
+      "old_answer": "อุปกรณ์บนหน้า Home:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (จำนวน 10 เครื่อง)\n•    Gaming Monitor (จำนวน 10 จอ)\n•    Gaming Chair (จำนวน 10 ตัว)\n•    Gaming Gear ครบชุด ทั้ง Keyboard, Mouse และ Headset\n\nCockpit Zone\n•    TV ขนาด 65 นิ้ว (จำนวน 2 เครื่อง)\n•    Racezone Full Cockpit V3 (จำนวน 2 ชุด)\n•    Logitech G923 TRUEFORCE Racing wheel พร้อม Driving Force Shifter (จำนวน 2 ชุด)\n•    Pulse Elite Wireless Headset (จำนวน 2 อัน)\n\nNintendo Switch Zone\n•    TV ขนาด 86 นิ้ว (จำนวน 1 เครื่อง)\n•    Nintendo Switch OLED (จำนวน 1 เครื่อง)\n•    Sofa ขนาด 2 ที่นั่ง (จำนวน 2 ตัว)\n\nPlayStation 5 Zone\n•    PlayStation 5 Slim รุ่น Ultra HD Blu-Ray Disc Drive (จำนวน 2 เครื่อง)\n\nVR Zone\n•    PlayStation 5 Slim (จำนวน 1 เครื่อง)\n•    Sony PlayStation VR2 (จำนวน 1 ชุด)\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home",
+      "new_answer": "**กรอกข้อมูล.*สลิป**\n• คำตอบพร้อมหลักฐานของศูนย์: ตอนจองต้องกรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล, เบอร์โทรศัพท์ และคอมเมนต์ถ้ามี จากนั้นชำระเงินโดยโอนเข้าบัญชีธนาคารและแนบสลิปการโอนเงิน [S1]\n• ขอบเขตคำตอบและข้อจำกัด: ยังไม่มีข้อมูลยืนยัน"
+    },
+    {
+      "arm": "llm",
+      "key": "07c026af8988f19313cb0f6721337dfd5be0bcf900ec0e685d16075a83694226",
+      "question": "มีเกมแข่งรถไหม",
+      "file": "data/eval/thai_multi_error_from_verified49_20260929.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "intent:common_read expected:list"
+      ],
+      "new_failures": [],
+      "old_answer": "ระบบยังเลือกข้อมูลให้คำถามนี้ไม่ทัน กรุณาลองอีกครั้ง / The model could not select the relevant data in time; please retry.",
+      "new_answer": "เกมแนว Racing / เกมแข่งรถ ที่พบในรายการเกมที่ยืนยันได้:\n\nGran Turismo 7\n•    แนวเกม: เกมแข่งรถ / Driving Simulator\n•    เล่นได้ที่: Cockpit Zone\n\nMario Kart 8 Deluxe\n•    แนวเกม: เกมแข่งรถ Party Racing\n•    เล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+    },
+    {
+      "arm": "llm",
+      "key": "07c026af8988f19313cb0f6721337dfd5be0bcf900ec0e685d16075a83694226",
+      "question": "มีเกมแข่งรถไหม",
+      "file": "data/eval/thai_multi_error_holdout25_20260929.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "intent:common_read expected:list"
+      ],
+      "new_failures": [],
+      "old_answer": "ระบบยังเลือกข้อมูลให้คำถามนี้ไม่ทัน กรุณาลองอีกครั้ง / The model could not select the relevant data in time; please retry.",
+      "new_answer": "เกมแนว Racing / เกมแข่งรถ ที่พบในรายการเกมที่ยืนยันได้:\n\nGran Turismo 7\n•    แนวเกม: เกมแข่งรถ / Driving Simulator\n•    เล่นได้ที่: Cockpit Zone\n\nMario Kart 8 Deluxe\n•    แนวเกม: เกมแข่งรถ Party Racing\n•    เล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+    },
+    {
+      "arm": "llm",
+      "key": "07c026af8988f19313cb0f6721337dfd5be0bcf900ec0e685d16075a83694226",
+      "question": "มีเกมแข่งรถไหม",
+      "file": "data/eval/thai_noisy_input_holdout_20260929.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "intent:common_read expected:list"
+      ],
+      "new_failures": [],
+      "old_answer": "ระบบยังเลือกข้อมูลให้คำถามนี้ไม่ทัน กรุณาลองอีกครั้ง / The model could not select the relevant data in time; please retry.",
+      "new_answer": "เกมแนว Racing / เกมแข่งรถ ที่พบในรายการเกมที่ยืนยันได้:\n\nGran Turismo 7\n•    แนวเกม: เกมแข่งรถ / Driving Simulator\n•    เล่นได้ที่: Cockpit Zone\n\nMario Kart 8 Deluxe\n•    แนวเกม: เกมแข่งรถ Party Racing\n•    เล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+    },
+    {
+      "arm": "llm",
+      "key": "07c026af8988f19313cb0f6721337dfd5be0bcf900ec0e685d16075a83694226",
+      "question": "มีเกมแข่งรถไหม",
+      "file": "data/eval/thai_noisy_input_pairs_20260929.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "intent:common_read expected:list"
+      ],
+      "new_failures": [],
+      "old_answer": "ระบบยังเลือกข้อมูลให้คำถามนี้ไม่ทัน กรุณาลองอีกครั้ง / The model could not select the relevant data in time; please retry.",
+      "new_answer": "เกมแนว Racing / เกมแข่งรถ ที่พบในรายการเกมที่ยืนยันได้:\n\nGran Turismo 7\n•    แนวเกม: เกมแข่งรถ / Driving Simulator\n•    เล่นได้ที่: Cockpit Zone\n\nMario Kart 8 Deluxe\n•    แนวเกม: เกมแข่งรถ Party Racing\n•    เล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+    },
+    {
+      "arm": "llm",
+      "key": "00077f023319b0a1e999ebfdf6e81ad125ba3758c08a0e85aadfdd9f2daba9a4",
+      "question": "บอทนี้ทำอาไรได้บ้าง",
+      "file": "data/eval/thai_noisy_input_pairs_20260929.jsonl",
+      "change": "strict_repaired",
+      "old_failures": [
+        "intent:common_read expected:chatbot_identity"
+      ],
+      "new_failures": [],
+      "old_answer": "**กินข้าว.*เสียงดัง.*จอยพัง**\n• คำตอบพร้อมหลักฐานของศูนย์: กรณีนี้เกี่ยวกับหลายกฎพร้อมกัน: อาหารและเครื่องดื่มรับประทานได้เฉพาะพื้นที่ที่กำหนด, ควรงดส่งเสียงดังเกินควร, และถ้าทำอุปกรณ์เสียหายผู้ใช้งานต้องรับผิดชอบค่าปรับหรือค่าชดเชยตามระดับความเสียหาย [S1]\n• ขอบเขตคำตอบและข้อจำกัด: ยังไม่มีข้อมูลยืนยัน",
+      "new_answer": "ผมคือ PSU Esports Assistant แชทบอทผู้ช่วยของ PSU Esports Studio - Phuket ครับ\n\nผมช่วยตอบคำถามเกี่ยวกับ:\n•    เกมที่มีให้เล่นและเกมที่เกี่ยวข้องกับการแข่งขัน\n•    ปุ่มควบคุมและวิธีเล่นของเกมที่มีข้อมูลยืนยัน\n•    อุปกรณ์และโซนบริการ เช่น PC, PS5, Nintendo Switch, VR และ Cockpit\n•    วิธีจอง เช็คอิน ค่าบริการ เวลาเปิด-ปิด และกฎการใช้งาน\n•    สมาชิกทีม ตำแหน่ง และหมวดสมาชิกของ PSU Esports Studio - Phuket\n\nถ้าเป็นข้อมูลของศูนย์ ผมจะตอบจากฐานข้อมูลที่ยืนยันได้ก่อนเสมอ ถ้ายังไม่มีข้อมูลยืนยัน ผมจะบอกตรง ๆ ครับ"
+    },
+    {
+      "arm": "llm",
+      "key": "359fe8eaa613d5c1fe1ad173ac5418e7911cbbae6eb17ec840c926eb7ebc9253",
+      "question": "cooperative education มีใครบ้าง",
+      "file": "data/eval/broad_usage_eval_v1.json",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['members', 'overview']",
+        "missing all alternatives: ['Members', 'สมาชิก', 'คน', 'หมวด']"
+      ],
+      "old_answer": "สมาชิกในหมวด cooperative education and Internship student:\ncooperative education and Internship student (5 คน):\n•    นายณภัทร เชื้อเหล่าวานิช: นักศึกษาสหกิจ Game and 3D Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 6/1/2025 - 30/4/2025)\n•    Mr. Amine Abidellaoui: Internship Student (High School Bristol Cannes, France; ระยะเวลา: 10/11/2025 - 19/12/2025)\n•    นายสุพศิน อะนะฝรั่ง: นักศึกษาสหกิจ Web & AI Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 12/1/2026 - 8/5/2026)\n•    Mr. Yanis Igoudjil: Internship Student (Industrial Engineering and Information Systems, EPF Graduate School of Engineering, Cachan Val-De-Marne, France; ระยะเวลา: 29/06/2026 - 18/09/2026)\n•    นายภาสวุฒิ ชูติประชากิจ: นักศึกษาฝึกงานโครงการ Super AI SS6 ตำแหน่ง AI Chat Bot Developer (วิศวกรรมระบบไอโอทีและสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง; ระยะเวลา: 07/2026 - 08/2026)\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/about-us/Members",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ Overcooked 2 เช่น ชื่อเกมอย่างเป็นทางการ?"
+    },
+    {
+      "arm": "llm",
+      "key": "359fe8eaa613d5c1fe1ad173ac5418e7911cbbae6eb17ec840c926eb7ebc9253",
+      "question": "cooperative education มีใครบ้าง",
+      "file": "data/eval/model_benchmark_1500.json",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['members', 'overview']",
+        "missing all alternatives: ['Members', 'สมาชิก', 'คน', 'หมวด']"
+      ],
+      "old_answer": "สมาชิกในหมวด cooperative education and Internship student:\ncooperative education and Internship student (5 คน):\n•    นายณภัทร เชื้อเหล่าวานิช: นักศึกษาสหกิจ Game and 3D Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 6/1/2025 - 30/4/2025)\n•    Mr. Amine Abidellaoui: Internship Student (High School Bristol Cannes, France; ระยะเวลา: 10/11/2025 - 19/12/2025)\n•    นายสุพศิน อะนะฝรั่ง: นักศึกษาสหกิจ Web & AI Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 12/1/2026 - 8/5/2026)\n•    Mr. Yanis Igoudjil: Internship Student (Industrial Engineering and Information Systems, EPF Graduate School of Engineering, Cachan Val-De-Marne, France; ระยะเวลา: 29/06/2026 - 18/09/2026)\n•    นายภาสวุฒิ ชูติประชากิจ: นักศึกษาฝึกงานโครงการ Super AI SS6 ตำแหน่ง AI Chat Bot Developer (วิศวกรรมระบบไอโอทีและสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง; ระยะเวลา: 07/2026 - 08/2026)\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/about-us/Members",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ Overcooked 2 เช่น ชื่อเกมอย่างเป็นทางการ?"
+    },
+    {
+      "arm": "llm",
+      "key": "359fe8eaa613d5c1fe1ad173ac5418e7911cbbae6eb17ec840c926eb7ebc9253",
+      "question": "cooperative education มีใครบ้าง",
+      "file": "data/routing/routing_eval_cases.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['overview']",
+        "intent:common_read expected:list"
+      ],
+      "old_answer": "สมาชิกในหมวด cooperative education and Internship student:\ncooperative education and Internship student (5 คน):\n•    นายณภัทร เชื้อเหล่าวานิช: นักศึกษาสหกิจ Game and 3D Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 6/1/2025 - 30/4/2025)\n•    Mr. Amine Abidellaoui: Internship Student (High School Bristol Cannes, France; ระยะเวลา: 10/11/2025 - 19/12/2025)\n•    นายสุพศิน อะนะฝรั่ง: นักศึกษาสหกิจ Web & AI Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 12/1/2026 - 8/5/2026)\n•    Mr. Yanis Igoudjil: Internship Student (Industrial Engineering and Information Systems, EPF Graduate School of Engineering, Cachan Val-De-Marne, France; ระยะเวลา: 29/06/2026 - 18/09/2026)\n•    นายภาสวุฒิ ชูติประชากิจ: นักศึกษาฝึกงานโครงการ Super AI SS6 ตำแหน่ง AI Chat Bot Developer (วิศวกรรมระบบไอโอทีและสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง; ระยะเวลา: 07/2026 - 08/2026)\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/about-us/Members",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ Overcooked 2 เช่น ชื่อเกมอย่างเป็นทางการ?"
+    },
+    {
+      "arm": "llm",
+      "key": "359fe8eaa613d5c1fe1ad173ac5418e7911cbbae6eb17ec840c926eb7ebc9253",
+      "question": "cooperative education มีใครบ้าง",
+      "file": "data/routing/routing_eval_real_usage.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['overview']",
+        "intent:common_read expected:list"
+      ],
+      "old_answer": "สมาชิกในหมวด cooperative education and Internship student:\ncooperative education and Internship student (5 คน):\n•    นายณภัทร เชื้อเหล่าวานิช: นักศึกษาสหกิจ Game and 3D Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 6/1/2025 - 30/4/2025)\n•    Mr. Amine Abidellaoui: Internship Student (High School Bristol Cannes, France; ระยะเวลา: 10/11/2025 - 19/12/2025)\n•    นายสุพศิน อะนะฝรั่ง: นักศึกษาสหกิจ Web & AI Developer (วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต; ระยะเวลา: 12/1/2026 - 8/5/2026)\n•    Mr. Yanis Igoudjil: Internship Student (Industrial Engineering and Information Systems, EPF Graduate School of Engineering, Cachan Val-De-Marne, France; ระยะเวลา: 29/06/2026 - 18/09/2026)\n•    นายภาสวุฒิ ชูติประชากิจ: นักศึกษาฝึกงานโครงการ Super AI SS6 ตำแหน่ง AI Chat Bot Developer (วิศวกรรมระบบไอโอทีและสารสนเทศ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง; ระยะเวลา: 07/2026 - 08/2026)\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/about-us/Members",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ Overcooked 2 เช่น ชื่อเกมอย่างเป็นทางการ?"
+    },
+    {
+      "arm": "llm",
+      "key": "33962a11e38b47be12fe48c93a45d2a15eab8c0af032a423295b3e7460823db8",
+      "question": "ROV มีข้อมูลไหม",
+      "file": "data/routing/routing_eval_real_usage.jsonl",
+      "change": "strict_regressed",
+      "old_failures": [],
+      "new_failures": [
+        "route:knowledge expected:['games']",
+        "intent:common_read expected:game_availability_lookup"
+      ],
+      "old_answer": "ยังไม่พบ RoV / Arena of Valor ในรายการเกมที่ยืนยันได้ของ PSU Esports Studio - Phuket ครับ\nในฐานข้อมูลมีข้อมูลกติกาการแข่งขันของเกมนี้ แต่ยังไม่พบว่าอยู่ในรายการเกมให้เล่นของศูนย์\nถ้าต้องการเล่นเกมนี้ ควรสอบถามเจ้าหน้าที่ก่อนจองหรือก่อนเข้าใช้บริการ\n\nตอนนี้มีเกมที่ยืนยันได้ทั้งหมด 42 เกมครับ\n\nPC Zone (6 เกม)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 เกม)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 เกม)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 เกม)\n•    Gran Turismo 7\n\nVR Zone (4 เกม)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+      "new_answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ Arena of Valor (RoV) เช่น ชื่อเกมอย่างเป็นทางการ?"
+    }
+  ]
+}

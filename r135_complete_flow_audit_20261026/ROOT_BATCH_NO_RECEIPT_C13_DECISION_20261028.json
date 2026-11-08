@@ -1,0 +1,2229 @@
+{
+  "batch_id": 2,
+  "description": "Read all 12 saved questions and answers. Source-free grouping does not establish a common cause.",
+  "input_sha256": {
+    "r135_complete_flow_audit_20261026\\changed_answer_source_batches_1793167120954709200\\BATCHES.json": "38cdea3bcba3b317f36a175536c1518d374d6fbe86ce9a404e92a4b99877278f",
+    "r135_complete_flow_audit_20261026\\changed_answer_group_queue_1793166229784847000\\ITEMS.jsonl": "109726be6be64aa380c9521308d3ea5aacf58b5b416c026be0345be37ea07416"
+  },
+  "counts": {
+    "unconfirmed_or_incomplete_to_service_unavailable": 8,
+    "old_booking_extension_irrelevant_to_team_size_then_service_unavailable": 3,
+    "clarification_target_changed": 1
+  },
+  "cases": [
+    {
+      "key": "06acefff28ceca1e00174241b3c416bb794061e9fd7d0d6a41bf4afb8a50584d",
+      "question": "สอบถามหน่อยครับ กติกา CS2 เข้าโซเชียลบนเครื่องแข่งได้ไหม หน่อย",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ข้อกติกาหรือข้อที่อ้างถึงยังไม่ครบ จึงยังยืนยันไม่ได้ครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 15.805224699986866,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.805224699986866
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกา cs2 เข้าโซเชียลบนเครื่องแข่งได้ไหม หน่อย",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "กติกา cs2 เข้าโซเชียลบนเครื่องแข่งได้ไหม หน่อย",
+              "source_span": "กติกา cs2 เข้าโซเชียลบนเครื่องแข่งได้ไหม หน่อย",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "สอบถามหน่อยครับ กติกา CS2 เข้าโซเชียลบนเครื่องแข่งได้ไหม หน่อย"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "กติกา cs2 เข้าโซเชียลบนเครื่องแข่งได้ไหม หน่อย",
+            "execution_query": "กติกา cs2 เข้าโซเชียลบนเครื่องแข่งได้ไหม หน่อย ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "350ede407ddd10e2a5892c9e277328129521323e2d2b7796f1ca723c51de7a40",
+      "question": "อยากทราบว่า กฎตอนแข่ง rov มีไรบ้าง ครับ",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ข้อกติกาหรือข้อที่อ้างถึงยังไม่ครบ จึงยังยืนยันไม่ได้ครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 73.20035469997674,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 73.20035469997674
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "อยากทราบว่า กฎตอนแข่ง rov มีไรบ้าง ครับ",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "อยากทราบว่า กฎตอนแข่ง rov มีไรบ้าง ครับ",
+              "source_span": "อยากทราบว่า กฎตอนแข่ง rov มีไรบ้าง ครับ",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "อยากทราบว่า กฎตอนแข่ง rov มีไรบ้าง ครับ"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "อยากทราบว่า กฎตอนแข่ง rov มีไรบ้าง ครับ",
+            "execution_query": "อยากทราบว่า กฎตอนแข่ง rov มีไรบ้าง ครับ ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "9c87d82517e215b600a6c0e48fdef30805c7d99502ba86e47f2bfdb21f50cf4e",
+      "question": "กติกกา CS2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ข้อกติกาหรือข้อที่อ้างถึงยังไม่ครบ จึงยังยืนยันไม่ได้ครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 15.948734200006584,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.948734200006584
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "กติกกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+              "source_span": "กติกกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "กติกกา CS2 นำโทรศัพท์เข้าเขตแข่งได้ไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "กติกกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+            "execution_query": "กติกกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "4fb0c910644ad21820a8aff50faa39d45771c90595184f7f795b918877680b20",
+      "question": "ช่วยดูหน่อย กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ครับ",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ต่อเวลา: หากรอบถัดไปยังว่างและอยู่ในเวลาบริการปกติ สามารถจองต่อผ่านขั้นตอนปกติได้ [S1]",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 62.415732800000114,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "old_booking_extension_irrelevant_to_team_size_then_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 62.415732800000114
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "ช่วยดูหน่อย กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ครับ",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "ช่วยดูหน่อย กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ครับ",
+              "source_span": "ช่วยดูหน่อย กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ครับ",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "ช่วยดูหน่อย กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ครับ"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "ช่วยดูหน่อย กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ครับ",
+            "execution_query": "ช่วยดูหน่อย กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ครับ ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "4fbfeb8580f20813cf36de172a350e67fd6744ddb8f8cb426d30a3e2a2a0fb18",
+      "question": "กติกา CS2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ข้อกติกาหรือข้อที่อ้างถึงยังไม่ครบ จึงยังยืนยันไม่ได้ครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 15.859083299990743,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.859083299990743
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+              "source_span": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "กติกา CS2 นำโทรศัพท์เข้าเขตแข่งได้ไหม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม",
+            "execution_query": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "4782065bbe09cf53f058b36968b50602c341af05d7d8ef7f8ed89571579bd503",
+      "question": "CS2 แข่งทีมละกี่คน อะ",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ยังไม่มีข้อมูลที่เชื่อมกับรายการนี้สำหรับส่วนที่ถามครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 15.552312899992103,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.552312899992103
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "cs2 แข่งทีมละกี่คน อะ",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "cs2 แข่งทีมละกี่คน อะ",
+              "source_span": "cs2 แข่งทีมละกี่คน อะ",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "CS2 แข่งทีมละกี่คน อะ"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "cs2 แข่งทีมละกี่คน อะ",
+            "execution_query": "cs2 แข่งทีมละกี่คน อะ ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "b5d6c3aff9332ca34d23cd70b79dc377fc9efa4df5d15fea61d033c0de35803c",
+      "question": "Valorant แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ต่อเวลา: หากรอบถัดไปยังว่างและอยู่ในเวลาบริการปกติ สามารถจองต่อผ่านขั้นตอนปกติได้ [S1]",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 15.745623599999817,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "old_booking_extension_irrelevant_to_team_size_then_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.745623599999817
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "valorant แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "valorant แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+              "source_span": "valorant แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "Valorant แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "valorant แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน",
+            "execution_query": "valorant แข่งจริง กฎเกี่ยวกับจำนวนผู้เล่นต่อทีม เป็นแบบไหน ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "fb0ca092be9322d1f175c748b915f524150fd8bd7c9a61e4af25b8defb92003e",
+      "question": "สอบถามหน่อยครับ กติกา CS2 นำโทรศัพท์เข้าเขตแข่งได้ไหม หน่อย",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ข้อกติกาหรือข้อที่อ้างถึงยังไม่ครบ จึงยังยืนยันไม่ได้ครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 15.840098199987551,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.840098199987551
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม หน่อย",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม หน่อย",
+              "source_span": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม หน่อย",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "สอบถามหน่อยครับ กติกา CS2 นำโทรศัพท์เข้าเขตแข่งได้ไหม หน่อย"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม หน่อย",
+            "execution_query": "กติกา cs2 นำโทรศัพท์เข้าเขตแข่งได้ไหม หน่อย ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "34f6475d35aa3f20e842bb5a1091e9dc8347dad8e2aedde07eccfa61429188e3",
+      "question": "ขอข้อมูล กฎตอนแข่ง rov มีไรบ้าง ครับ",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ข้อกติกาหรือข้อที่อ้างถึงยังไม่ครบ จึงยังยืนยันไม่ได้ครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 15.736676300002728,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.736676300002728
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "ขอข้อมูล กฎตอนแข่ง rov มีไรบ้าง ครับ",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "ขอข้อมูล กฎตอนแข่ง rov มีไรบ้าง ครับ",
+              "source_span": "ขอข้อมูล กฎตอนแข่ง rov มีไรบ้าง ครับ",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "ขอข้อมูล กฎตอนแข่ง rov มีไรบ้าง ครับ"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "ขอข้อมูล กฎตอนแข่ง rov มีไรบ้าง ครับ",
+            "execution_query": "ขอข้อมูล กฎตอนแข่ง rov มีไรบ้าง ครับ ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "daefff21ac94b3d6bc29e543a02946044b389ad12416fb2065d7dc55d979a070",
+      "question": "สอบถามหน่อยครับ กติกา RoV เริ่มแข่งช้าเกิน 15 นาทีเป็นยังไง ครับ",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ข้อกติกาหรือข้อที่อ้างถึงยังไม่ครบ จึงยังยืนยันไม่ได้ครับ",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 15.699281499983044,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "unconfirmed_or_incomplete_to_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.699281499983044
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กติกา rov เริ่มแข่งช้าเกิน 15 นาทีเป็นยังไง ครับ",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "กติกา rov เริ่มแข่งช้าเกิน 15 นาทีเป็นยังไง ครับ",
+              "source_span": "กติกา rov เริ่มแข่งช้าเกิน 15 นาทีเป็นยังไง ครับ",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "สอบถามหน่อยครับ กติกา RoV เริ่มแข่งช้าเกิน 15 นาทีเป็นยังไง ครับ"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "กติกา rov เริ่มแข่งช้าเกิน 15 นาทีเป็นยังไง ครับ",
+            "execution_query": "กติกา rov เริ่มแข่งช้าเกิน 15 นาทีเป็นยังไง ครับ ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "c8bec227a9adf68f577049717374652cfbd85289a770fd8c6c2f921f4c2554f9",
+      "question": "ขอสอบถามหน่อยครับ กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ต่อเวลา: หากรอบถัดไปยังว่างและอยู่ในเวลาบริการปกติ สามารถจองต่อผ่านขั้นตอนปกติได้ [S1]",
+      "new": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "elapsed_sec": 15.71104400002514,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "old_booking_extension_irrelevant_to_team_size_then_service_unavailable",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_0.jsonl.gz",
+        "mode": "pipeline:common_unavailable",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "unavailable",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "unavailable",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "unavailable",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "unavailable"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 15.71104400002514
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+              "source_span": "กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "ขอสอบถามหน่อยครับ กำลังจะลงแข่ง RoV อยากรู้เรื่องจำนวนผู้เล่นต่อทีม"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม",
+            "execution_query": "กำลังจะลงแข่ง rov อยากรู้เรื่องจำนวนผู้เล่นต่อทีม ",
+            "status": "temporary_failure",
+            "reason_codes": [
+              "model_transport_failure"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "provider_unavailable",
+              "reason_codes": [
+                "model_transport_failure"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "model_transport_failure",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    },
+    {
+      "key": "8cb5c63fd017fa5269e11a406f5d5933a4f9797ae1a9914101b0c7b3149c9db2",
+      "question": "ช่วยดูหน่อย แข่งทีมละกี่คนอะ ครับ",
+      "requested_locale": "th",
+      "categories": [
+        "C13"
+      ],
+      "old": "ยังระบุข้อมูลจากชุดที่ย้ายมาให้ตรงคำถามนี้ไม่ได้ครับ กรุณาระบุชื่อเกม อุปกรณ์ หรือหัวข้อที่ต้องการทราบเพิ่มอีกนิด",
+      "new": "กรุณาระบุรายการแข่งขันหรือฉบับกติกาที่ต้องการ เพื่อให้จับคู่กติกาที่ถามได้ตรงครับ",
+      "semantic_status": "review_required",
+      "candidate_group": "other_changed_content",
+      "original_result": {
+        "result_file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "elapsed_sec": 0.5295062999939546,
+        "source_refs": []
+      },
+      "review_state": "review_required",
+      "observed_change": "clarification_target_changed",
+      "source_and_transport_diagnosis": "No delivered source refs in indexed new result; absence does not establish source absence or cause. Inspect actual source, execution and receipts separately.",
+      "r132_saved_execution_observation": {
+        "file": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+        "mode": "pipeline:common_clarification",
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "clarification",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "clarification",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "clarification",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [],
+                "requested_fields": [],
+                "method": "r114_domain_readers",
+                "operation": "domain",
+                "source_answer_confirmed": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false,
+              "need_ledger": {
+                "version": "common_need_ledger_v1",
+                "needs": [],
+                "total_needs": 0,
+                "answered_needs": 0,
+                "scope_limits": [],
+                "snapshot_consistent": true,
+                "semantic_correctness_verified": false,
+                "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+                "evidence_hits": 0,
+                "response_type": "clarification"
+              },
+              "task_flow": {
+                "version": "r95",
+                "path": "compatibility_common_domain",
+                "reason": "no_accepted_replacement_task"
+              },
+              "interpretation_diagnostics": [],
+              "knowledge_snapshot": {
+                "release_id": "migration-preview-r69",
+                "epoch": 2497,
+                "content_view": "evaluation_draft"
+              }
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "hits_count": 0,
+        "elapsed_sec": 0.5295062999939546
+      },
+      "r132_saved_task_evidence": {
+        "request_plan": {
+          "version": "common_request_plan_v3",
+          "question": "ช่วยดูหน่อย แข่งทีมละกี่คนอะ ครับ",
+          "needs": [
+            {
+              "id": "r114_n1",
+              "task": "competition_rules",
+              "query": "ช่วยดูหน่อย แข่งทีมละกี่คนอะ ครับ",
+              "source_span": "ช่วยดูหน่อย แข่งทีมละกี่คนอะ ครับ",
+              "record_ids": [],
+              "qualifiers": [],
+              "slot_origin": "current_user",
+              "predicate": "competition_rules",
+              "slots": {},
+              "required_claims": [],
+              "hard_dependencies": []
+            }
+          ],
+          "scope": {
+            "source": "current_pinned_snapshot",
+            "router": "r114"
+          },
+          "raw_question": "ช่วยดูหน่อย แข่งทีมละกี่คนอะ ครับ"
+        },
+        "need_results": [
+          {
+            "need_id": "r114_n1",
+            "task": "competition_rules",
+            "category": "C13",
+            "source_span": "ช่วยดูหน่อย แข่งทีมละกี่คนอะ ครับ",
+            "execution_query": "ช่วยดูหน่อย แข่งทีมละกี่คนอะ ครับ ",
+            "status": "needs_user_slot",
+            "reason_codes": [
+              "event_or_rule_not_bound"
+            ],
+            "receipts": [],
+            "claim_packets": [],
+            "execution_contract": {
+              "version": "r123-obligation-verifier-v1",
+              "task_id": "t1",
+              "terminal_state": "missing_input",
+              "reason_codes": [
+                "event_or_rule_not_bound"
+              ],
+              "obligations": [
+                {
+                  "id": "t1:answer",
+                  "kind": "task_completion",
+                  "task_id": "t1",
+                  "expected": "rule_clause",
+                  "fulfilled": false,
+                  "reason": "event_or_rule_not_bound",
+                  "claim_refs": []
+                }
+              ],
+              "receipts": [],
+              "fatal": [],
+              "source_refs_checked": true,
+              "all_obligations_fulfilled": false,
+              "whole_question_semantics_verified": false,
+              "planned_task_coverage_only": true
+            },
+            "semantic_correctness_verified": false
+          }
+        ],
+        "understanding_event": {
+          "http_attempted": false,
+          "model_called": false,
+          "meaning_review": {
+            "basis": "canonical_source_operation"
+          },
+          "context_scope_version": "r129",
+          "shared_bindings": [],
+          "superseded_slots": [],
+          "binding_ambiguities": [],
+          "binding_contract": "r129-shared-context-v2",
+          "model_edges_review": []
+        }
+      }
+    }
+  ],
+  "review_required": true,
+  "no_http_model_or_regrade": true,
+  "execution_trace_review_note": "Compatibility projection has empty ledger, but separately recorded request_plan and need_results may contain tasks and reasons. Reason codes are runtime classification, not independently verified transport root cause or source absence.",
+  "saved_trace_summary": {
+    "observed_groups": [
+      {
+        "record_ids_count": 0,
+        "ledger_needs": 0,
+        "task_flow_reason": "no_accepted_replacement_task",
+        "count": 12
+      }
+    ],
+    "interpretation": "Recorded R114 compatibility projection, not evidence that no source exists or transport failed; inspect individual execution and source."
+  },
+  "task_result_summary": [
+    {
+      "status": "temporary_failure",
+      "reason_codes": [
+        "model_transport_failure"
+      ],
+      "count": 11
+    },
+    {
+      "status": "needs_user_slot",
+      "reason_codes": [
+        "event_or_rule_not_bound"
+      ],
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "question_key": "cb250317c45d865e08185cf9e739928a4ca3703ff8e39ab6b05926cd8194250b",
+  "example_sha256": "541865e35c8acabff701d7bfa207b6bab8c31f04315d23717b796966b6a343ea",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One request asks for Valorant rules of the latest event.",
+      "raw_quotes": [
+        "กติกา Valorant งานล่าสุดใช้อะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "competition_rules/rule_lookup/rule_clause is retained with unresolved event identity.",
+      "raw_quotes": [
+        "กติกา Valorant งานล่าสุดใช้อะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "งานล่าสุด is a literal event qualifier; the game target remains Valorant.",
+      "raw_quotes": [
+        "กติกา Valorant งานล่าสุดใช้อะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No current clock, owner event chronology or event ID is inherited into a label.",
+      "raw_quotes": [
+        "กติกา Valorant งานล่าสุดใช้อะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Keep ambiguous true: latest does not name a tournament edition and source recency alone is not authority.",
+      "raw_quotes": [
+        "กติกา Valorant งานล่าสุดใช้อะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "The pinned VALORANT2026 title is an existing edition, not proof that it is the latest event when the eventual request runs.",
+      "raw_quotes": [
+        "กติกา Valorant งานล่าสุดใช้อะไร"
+      ],
+      "source_record_ids": [
+        "r114_valorant_2_rule_clause"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No event year, selected title or rulebook answer enters supervision.",
+      "raw_quotes": [
+        "กติกา Valorant งานล่าสุดใช้อะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The source contains one named VALORANT edition but does not establish an exhaustive current event chronology.",
+      "handling": "Do not equate source recency with the latest event."
+    }
+  ],
+  "historical_review_row": 86,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กติกา Valorant งานล่าสุดใช้อะไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Valorant",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "กติกา Valorant งานล่าสุดใช้อะไร",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "Valorant",
+        "constraints": [
+          {
+            "slot": "event",
+            "quote": "งานล่าสุด",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_valorant_2_rule_clause": {
+      "revision": 1,
+      "record_sha256": "8ee4fede474ac9b0b5969d4afc48e3f97d489f402d65ca4f7880983a31cb4638"
+    }
+  }
+}

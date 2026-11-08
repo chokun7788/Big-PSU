@@ -1,0 +1,12 @@
+--- before/app/knowledge/common/registry.py
++++ r61/app/knowledge/common/registry.py
+@@ -72,7 +72,8 @@
+     if publish and kind in {'rate','rental_package','schedule','closure','competition','competition_rule','news'} and v['state']!='known':errors.append('Time-sensitive content requires confirmed validity')
+     for spec in CATALOG[kind]['fields']:
+         key=spec['key']; field=fields[key]; val=value(record,key)
+-        if publish and spec['publish_core'] and (field['status']!='known' or (val==[] and key not in {'conditions_all','preconditions','required_documents','open_periods','bookable_periods'})):
++        empty_is_meaningful=key in {'conditions_all','preconditions','required_documents','open_periods','bookable_periods'} or (kind in {'schedule','closure'} and key=='zone_ids')
++        if publish and spec['publish_core'] and (field['status']!='known' or (val==[] and not empty_is_meaningful)):
+             errors.append(key+': required before publication')
+         if publish and field['status']=='conflicted':errors.append(key+': unresolved conflict')
+         for ref in field['evidence_refs']:

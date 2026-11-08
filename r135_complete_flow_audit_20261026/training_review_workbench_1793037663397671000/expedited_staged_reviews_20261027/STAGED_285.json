@@ -1,0 +1,114 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 285,
+  "question_key": "737ff3d31b174cda802050dc5c2d732fe5166938d56d7d69da6eef37131b703c",
+  "raw_question": "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [
+      "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "damage",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ถ้าทำเครื่อง Nintendo Switch ตกจะมีค่าปรับไหม",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้าทำเครื่อง Nintendo Switch ตก",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ค่าปรับ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One conditional Thai question asks whether dropping a Nintendo Switch incurs a fine.",
+    "intent_operation_facet": "rules/detail/owner_policy with damage focus retains liability, not equipment usage.",
+    "entities_and_slot_roles": "Shorten condition to ถ้าทำเครื่อง Nintendo Switch ตก and add ค่าปรับ as requested scope; retain the explicit device platform.",
+    "local_shared_history_scope": "Remove full-question/platform top context; no actual incident, repair severity, negligence finding or amount is supplied.",
+    "negation_and_ambiguity": "Dropping is a hypothetical event and does not independently establish damage or a payable fine.",
+    "source_version_alignment": "Actual damage policy revision6 preserves different Thai/English liability conditions and severity-based recorded amounts; cause/severity must not be invented.",
+    "no_business_answer_target": "No fine amount, automatic liability verdict, negligence conclusion or billing action is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_faq_rule_damage_responsibility"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 286,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_faq_rule_damage_responsibility": {
+      "revision": 6,
+      "record_sha256": "52714d489ea9ec6cd12be3c61050dfe4e83d0abbc8094ddbd0f6d3189213ee5f"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

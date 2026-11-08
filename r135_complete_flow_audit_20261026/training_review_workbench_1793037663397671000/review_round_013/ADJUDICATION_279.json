@@ -1,0 +1,137 @@
+{
+  "question_key": "2fe50255e1804a59bbcac8aacf797072089fe2b4d5d3150a412ffe78b89bc3ab",
+  "example_sha256": "41aa7c12ed9b834fd493e0d57cb67723f16ccdd25a7172f85f9658535c9b2aff",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One typo-bearing Thai PC question asks the graphics-card model.",
+      "raw_quotes": [
+        "PC ช้กาดจอรุ่นอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "equipment/detail/specifications with hardware focus retains GPU specifications, not usage or whole equipment inventory.",
+      "raw_quotes": [
+        "PC ช้กาดจอรุ่นอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add exact กาดจอรุ่นอะไร as requested hardware scope, without inventing corrected user text.",
+      "raw_quotes": [
+        "PC ช้กาดจอรุ่นอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Remove duplicated PC top context; no particular machine number or source version is supplied.",
+      "raw_quotes": [
+        "PC ช้กาดจอรุ่นอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The studio PC specification must not be confused with the developer laptop GPU or another equipment model.",
+      "raw_quotes": [
+        "PC ช้กาดจอรุ่นอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned equipment_gaming_pc revision11 has separate CPU/RAM/GPU specification keys and recorded-detail provenance. The requested field is GPU, not a full hardware dump.",
+      "raw_quotes": [
+        "PC ช้กาดจอรุ่นอะไร"
+      ],
+      "source_record_ids": [
+        "equipment_gaming_pc"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No GPU model, capacity, workstation default or current physical-installation assertion is taught.",
+      "raw_quotes": [
+        "PC ช้กาดจอรุ่นอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 279,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "hardware",
+    "context_quotes": [
+      "PC"
+    ],
+    "tasks": [
+      {
+        "quote": "PC ช้กาดจอรุ่นอะไร",
+        "domain": "equipment",
+        "operation": "detail",
+        "facet": "specifications",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "hardware",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "PC ช้กาดจอรุ่นอะไร",
+        "domain": "equipment",
+        "operation": "detail",
+        "facet": "specifications",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "กาดจอรุ่นอะไร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "equipment_gaming_pc": {
+      "revision": 11,
+      "record_sha256": "75d28be7ff6714faff153e6aac7de920ecccccad8bb428b1188f8f70e5c38044"
+    }
+  }
+}

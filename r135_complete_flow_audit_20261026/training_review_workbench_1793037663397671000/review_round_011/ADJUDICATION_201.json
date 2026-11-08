@@ -1,0 +1,150 @@
+{
+  "question_key": "f97b7501d2b12970b04132a5939454cf12206def7329dd81dc2337f004e34b16",
+  "example_sha256": "2bee8ca36bde60663e5578ced41f4718409ac86678fbd19b1a6f214f832d0173",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One reverse A-button function lookup in Super Smash Bros. Ultimate.",
+      "raw_quotes": [
+        "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings is retained rather than a general game description.",
+      "raw_quotes": [
+        "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full game target and explicit Nintendo Switch platform are retained; add exact ปุ่ม A requested-button scope.",
+      "raw_quotes": [
+        "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No action, direction, modifier or controller model is inherited.",
+      "raw_quotes": [
+        "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A is a physical button request; do not infer the attack action from the source into input slots.",
+      "raw_quotes": [
+        "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "controls_nintendo_super_smash_bros_ultimate contains A with left-stick direction notes; the linked game title/aliases retain the requested edition.",
+      "raw_quotes": [
+        "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร"
+      ],
+      "source_record_ids": [
+        "controls_nintendo_super_smash_bros_ultimate",
+        "game_detail_super_smash_bros"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No attack function, direction-specific move or universal layout answer is taught.",
+      "raw_quotes": [
+        "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "The A-button source has direction-dependent notes; exact device/preset/version are unconfirmed.",
+      "handling": "Retain binding notes and source scope when answering."
+    }
+  ],
+  "historical_review_row": 201,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Smash Bros. Ultimate",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Smash Bros. Ultimate",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ปุ่ม A",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_nintendo_super_smash_bros_ultimate": {
+      "revision": 6,
+      "record_sha256": "33205ad81406fd08f0a09d2b4e54906aab6bef0830fe00fae59741ece9659b76"
+    },
+    "game_detail_super_smash_bros": {
+      "revision": 8,
+      "record_sha256": "7168a8a6170b01256cb21a89bd209b2333f4dd952a2183d2c2af9aadf18547f0"
+    }
+  }
+}

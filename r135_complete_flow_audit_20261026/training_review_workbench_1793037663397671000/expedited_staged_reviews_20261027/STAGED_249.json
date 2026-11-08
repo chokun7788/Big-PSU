@@ -1,0 +1,153 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 249,
+  "question_key": "a4fa6a46fb5d45d615597962be4d1cb8afb062db8dbdf840fce1af9624301710",
+  "raw_question": "How much does a PSU studenr pay to play VR for 1 hour or 2 hours",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "1 hour",
+      "2 hours",
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does a PSU studenr pay to play VR for 1 hour or 2 hours",
+        "domain": "service_fee",
+        "operation": "compare",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "2 hours",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU studenr",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "How much does a PSU studenr pay to play VR for 1 hour or 2 hours",
+        "domain": "service_fee",
+        "operation": "compare",
+        "facet": "amount",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "1 hour",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "duration",
+            "quote": "2 hours",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU studenr",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One price comparison requests VR for either one hour or two hours for a PSU studenr.",
+    "intent_operation_facet": "service_fee/compare/amount retains alternatives rather than adding the two durations or converting the question to a booking.",
+    "entities_and_slot_roles": "Existing exact duration/service/audience quotes preserve the typo and both alternatives; no invented corrected quote is needed.",
+    "local_shared_history_scope": "Remove duplicated top-level duration/service context. No number of persons, booking product, date or history is supplied.",
+    "negation_and_ambiguity": "Two hours is requested use duration, not proof that a two-hour product exists or that rates are linear.",
+    "source_version_alignment": "Pinned VR30/VR60 PSU student-staff rate records revision2 use session_ceil with person bands; source service records distinguish session durations. No explicit two-hour product or party size is supplied by the question.",
+    "no_business_answer_target": "No zero price, default party count, chosen product, free-use entitlement or computed total is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_rate_vr_30_1_5_psu_student_staff",
+    "migrated_rate_vr_60_1_5_psu_student_staff",
+    "availability_vr_30",
+    "availability_vr_60"
+  ],
+  "source_answer_issues": [
+    [
+      "Duration alternatives are not additive and party size/product choice is unspecified.",
+      "Keep both alternatives and source-specific calculation obligations."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 250,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_rate_vr_30_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "cbb10c075112bf48345bdfd11b307d02ed5edfc120ef5c3644a97d924de3f823"
+    },
+    "migrated_rate_vr_60_1_5_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "3b937929a76c3c519ddfe1d1afdef0a6fa6e699b4e298b63f1aaac0d736ea0df"
+    },
+    "availability_vr_30": {
+      "revision": 5,
+      "record_sha256": "684ca350ae5809737f1975682978283eca4dc308d432f694333d8261cec15d60"
+    },
+    "availability_vr_60": {
+      "revision": 5,
+      "record_sha256": "c3384985c72b8fa25a4bb9ec3ae5fd292dff804a0e93cb02ac5f82fe246f9913"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

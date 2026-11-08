@@ -1,0 +1,120 @@
+--- before/app/pipeline/bilingual_english.py
++++ after/app/pipeline/bilingual_english.py
+@@ -110,6 +110,8 @@
+         "pipeline:chatbot_identity_en",
+         "pipeline:chatbot_greeting_en",
+         "pipeline:english_scope_guidance_en",
++        "pipeline:structured_studio_location_en",
++        "pipeline:studio_location_target_clarification_en",
+         "pipeline:english_no_answer",
+         "pipeline:missing_english_localization",
+     }
+@@ -2623,6 +2625,49 @@
+     )
+ 
+ 
++def _answer_studio_location(query: str, matcher: RuleMatcher) -> EnglishSupportResult | None:
++    """Bind studio-location paraphrases to the existing bilingual contact fact."""
++    q = normalize_text(query)
++    tokens = _tokens(q)
++    target = bool(tokens & {"studio", "venue", "centre", "center"} or _phrase(q, "psu esports"))
++    location = bool(tokens & {"where", "address", "location", "located", "situated"}
++                    or re.search(r"\b(?:get|go)\s+to\b|\bfind\b", q))
++    if not (target and location):
++        return None
++    # A physical device, game, person or named competition has its own source.
++    if (tokens & {"competition", "tournament", "event", "staff", "manager", "member", "members",
++                  "tv", "television", "monitor", "screen", "equipment", "keyboard", "mouse", "controller"}
++            or _known_game(q) or _detect_service(q, EntityBundle())):
++        return None
++    allowed = {"where", "is", "are", "s", "the", "a", "an", "studio", "venue", "centre", "center",
++               "psu", "esports", "phuket", "located", "situated", "what", "address", "location",
++               "of", "for", "can", "could", "would", "will", "you", "please", "tell", "show", "give",
++               "share", "me", "i", "need", "want", "to", "know", "how", "do", "get", "go", "find"}
++    if not tokens <= allowed:
++        return _result(
++            "Do you mean PSU Esports Studio - Phuket? I only have its recorded studio address; please specify the venue you mean.",
++            category="clarification", intent="studio_location_target_clarification",
++            mode="pipeline:studio_location_target_clarification_en", confidence=0.98, hits=[],
++            reason="unresolved words in a location target must not be replaced by the PSU studio",
++            answer_type="clarification",
++        )
++    matched = matcher.match("address", category="contact", locale="en")
++    if not matched or matched.get("intent") != "contact_location" or not matched.get("source_ids"):
++        return None
++    answer = str(matched.get("answer") or "").strip()
++    url = str(matched.get("source_url") or "")
++    if not answer or not url:
++        return None
++    if re.search(r"\b(?:get|go)\s+to\b", q):
++        answer += " This is the recorded address; travel directions are not provided in the studio records."
++    return _result(
++        answer + _source_suffix(url), category="contact", intent="contact_location",
++        mode="pipeline:structured_studio_location_en", confidence=0.98,
++        hits=[_hit(source_id, "contact", url, "Studio location") for source_id in matched["source_ids"]],
++        reason=f"explicit studio location request bound to existing bilingual rule {matched.get('rule_id')}",
++    )
++
++
+ def answer_english_supported(
+     query: str,
+     *,
+@@ -2729,6 +2774,7 @@
+         # domains. Their data is verified and does not require an LLM rewrite.
+         lambda: _answer_equipment(query, entities, route=route),
+         lambda: _answer_games(query, entities, route=route),
++        lambda: _answer_studio_location(query, matcher),
+         lambda: _rule_answer(query, matcher),
+         lambda: _answer_approved_rag(query, route=route),
+         lambda: _answer_missing_localized_domain(query, route=route),
+--- before/app/pipeline/closed_query_improvements.py
++++ after/app/pipeline/closed_query_improvements.py
+@@ -129,6 +129,26 @@
+         return StructuredToolResult(answer,[],'equipment_home_delivery_no_answer',.98,{'missing_service':'home_equipment_delivery'})
+     return None
+ 
++def _studio_location_th(query,locale):
++    if locale!='th':return None
++    from app.core.normalization import normalize_text
++    q=normalize_text(query)
++    if not (re.search(r'ศูนย์|สตูดิโอ|\bpsu esports\b',q,re.I) and re.search(r'ที่ตั้ง|ที่อยู่|อยู่ที่ไหน',q)):return None
++    if re.search(r'แข่ง|กฎ|กติกา|อุปกรณ์|ทีวี|จอ|ปุ่ม|เกม|เจ้าหน้าที่|\b(?:competition|tournament|tv|pc|ps5|vr)\b',q,re.I):return None
++    remainder=re.sub(r'psu esports(?: studio)?(?:\s*-?\s*phuket)?|อยู่ที่ไหน|ที่ตั้ง|ที่อยู่|สตูดิโอ|อยากทราบ|อยากรู้|ทราบ|ศูนย์|ของ|ขอ|ครับ|ค่ะ|หน่อย|\s|[-?.!]', '',q,flags=re.I)
++    if remainder:
++        return StructuredToolResult('หมายถึง PSU Esports Studio - Phuket ใช่ไหมครับ? กรุณาระบุชื่อสถานที่ที่ต้องการ ข้อมูลที่อยู่ที่มีเป็นของศูนย์นี้ครับ',[],'studio_location_target_clarification_th',.98,{'unresolved_location_target':remainder})
++    from app.rules.matcher import RuleMatcher
++    from app.pipeline.retrieval import load_curated_rows,hit_from_curated
++    matched=RuleMatcher.default().match('ที่ตั้ง',category='contact',locale='th')
++    if not matched:return None
++    rows={row.get('content_id') or row['id']:row for row in load_curated_rows() if row.get('id') and row.get('language','th')=='th'}
++    source_ids=matched.get('source_ids',[])
++    if not source_ids or any(source not in rows or matched['answer'].strip()!=str(rows[source].get('text','')).strip() for source in source_ids):return None
++    answer=matched['answer']+'\nแหล่งข้อมูล: '+matched['source_url']
++    return StructuredToolResult(answer,[hit_from_curated(rows[source]) for source in source_ids],'structured_studio_location_th',.98,{'required_fields':['location'],'source_ids':source_ids,'existing_record_only':True})
++
++
+ def _contact_fields(query,locale):
+     if not (re.search(r'อีเมล|\be-?mail\b',query,re.I) and re.search(r'เบอร์|โทร|\b(?:phone|telephone|tel)\b',query,re.I)):return None
+     if re.search(r'ส่วนตัว|\b(?:personal|private)\b',query,re.I):return None
+@@ -195,7 +215,7 @@
+     return StructuredToolResult(answer,[],'booking_maximum_lead_unconfirmed',.98,{'missing_policy':'maximum_booking_lead_days','not_weekly_schedule':True,'no_inferred_maximum':True})
+ 
+ def answer_closed_query_improvement(query,locale):
+-    for category,resolver in [('reservation',_booking_maximum_resource_count),('reservation',_booking_maximum_lead),('games',_recorded_catalog_gap),('contact',_contact_fields),('no_answer',_non_catalog_request),('service_fee',_fee_comparison),('service_fee',answer_fee_alternatives),('service_fee',_fee_catalog),('reservation',_booking_resource),('no_answer',_media_policy_gap)]:
++    for category,resolver in [('reservation',_booking_maximum_resource_count),('reservation',_booking_maximum_lead),('games',_recorded_catalog_gap),('contact',_studio_location_th),('contact',_contact_fields),('no_answer',_non_catalog_request),('service_fee',_fee_comparison),('service_fee',answer_fee_alternatives),('service_fee',_fee_catalog),('reservation',_booking_resource),('no_answer',_media_policy_gap)]:
+         result=resolver(query,locale)
+         if result is not None:return ('clarification' if 'clarification' in result.mode else category),result
+     return None
+--- before/app/pipeline/question_frame.py
++++ after/app/pipeline/question_frame.py
+@@ -91,6 +91,10 @@
+     # The game name is a retrieval target here; it must not change the domain.
+     if looks_like_competition_rule_query(question):
+         return "competition_rule_lookup", "competition_rules", 0.97
++    # A contact route already establishes the subject of "where". The broad
++    # equipment-location cue below must not reject an address as equipment.
++    if route.category == "contact":
++        return "contact_lookup", "contact", max(0.94, route.confidence)
+     from app.pipeline.source_task_signals import fee_comparison_query
+     if fee_comparison_query(question):
+         return "price_lookup", "service_fee", 0.98

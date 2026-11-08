@@ -1,0 +1,382 @@
+--- a/app/calendar/service_calendar.py
++++ b/app/calendar/service_calendar.py
+@@ -226,6 +226,15 @@
+     if "วันนี้" in q or "today" in q:
+         return DateResolution(base, f"วันนี้ {format_thai_date(base)}", "relative_day")
+ 
++    iso_match = re.search(r"(?<!\d)(\d{4})-(\d{1,2})-(\d{1,2})(?!\d)", q)
++    if iso_match:
++        year = _parse_year(iso_match.group(1), base.year)
++        try:
++            target = date(year, int(iso_match.group(2)), int(iso_match.group(3)))
++        except ValueError:
++            return None
++        return DateResolution(target, f"วันที่ {format_thai_date(target)}", "explicit_date")
++
+     numeric_match = re.search(r"\b(\d{1,2})[/-](\d{1,2})(?:[/-](\d{2,4}))?\b", q)
+     if numeric_match:
+         day = int(numeric_match.group(1))
+--- a/app/booking/live_status.py
++++ b/app/booking/live_status.py
+@@ -12,7 +12,7 @@
+ from urllib.parse import urlencode, urlparse, urlunparse
+ from urllib.request import Request, urlopen
+ 
+-from app.calendar.service_calendar import resolve_date_from_text, today_bangkok
++from app.calendar.service_calendar import closure_for, regular_service_slots, resolve_date_from_text, today_bangkok
+ from app.core.normalization import normalize_text
+ from app.pipeline.protected_intents import is_weekly_booking_window_query
+ 
+@@ -170,7 +170,9 @@
+     if source != "remote_csv_live":
+         raise ValueError(f"booking dashboard source is not live: {source or 'unknown'}")
+ 
+-    center = payload.get("center") if isinstance(payload.get("center"), dict) else {}
++    center = payload.get("center")
++    if not isinstance(center, dict) or not isinstance(center.get("open"), bool):
++        raise ValueError("booking dashboard returned no valid center state")
+     periods: list[tuple[str, str]] = []
+     for raw in center.get("open_periods") or []:
+         if isinstance(raw, (list, tuple)) and len(raw) == 2:
+@@ -209,6 +211,9 @@
+             available_now=_as_nonnegative_int(raw_resource.get("available_now")),
+             slots=tuple(slots),
+         ))
++
++    if not resources:
++        raise ValueError("booking dashboard returned no valid resources")
+ 
+     return LiveBookingSnapshot(
+         ok=True,
+@@ -367,11 +372,14 @@
+     asks_resource_availability = asks_availability and bool(_resource_scopes(q))
+     # A precise time is a live-slot request only with an availability word.
+     asks_time_availability = bool(re.search(r"\b\d{1,2}:\d{2}\b", q)) and asks_availability
++    asks_center_use_now = asks_live and any(
++        phrase in q for phrase in ("ตอนนี้เล่นได้ไหม", "ตอนนี้เล่นได้มั้ย", "ตอนนี้ใช้ได้ไหม", "ตอนนี้ใช้ได้มั้ย")
++    )
+     asks_use_now = asks_live and bool(_resource_scopes(q)) and (
+         bool(re.search(r"(?:ใช้|เล่น).{0,24}(?:ตอนนี้|ขณะนี้).{0,12}ได้(?:ไหม|มั้ย|หรือเปล่า)?", q))
+         or bool(re.search(r"\bcan\b.{0,35}\b(?:use|play)\b.{0,35}\b(?:now|right now)\b", q))
+     )
+-    return asks_resource_availability or asks_use_now or (asks_live and asks_availability) or asks_time_availability or (
++    return asks_resource_availability or asks_use_now or asks_center_use_now or (asks_live and asks_availability) or asks_time_availability or (
+         asks_live and bool(tokens & {"open", "closed", "เปิด", "ปิด"})
+     )
+ 
+@@ -735,6 +743,33 @@
+     return any(start <= window.start and window.end <= period_end for start, period_end in snapshot.open_periods)
+ 
+ 
++def live_booking_calendar_conflict(query: str, snapshot: LiveBookingSnapshot) -> str | None:
++    """Flag a claimed open Dashboard window that the recorded calendar does not support.
++
++    This does not choose which source controls bookings; it prevents a false
++    availability claim until the owner reconciles the two schedules.
++    """
++    if not snapshot.ok or not snapshot.center_open:
++        return None
++    window = requested_time_window(query, snapshot)
++    if window is None or not is_open_for_window(snapshot, window):
++        return None
++    try:
++        target = date.fromisoformat(snapshot.date)
++    except ValueError:
++        return None
++    closure = closure_for(target)
++    if closure is not None and closure.status == "closed":
++        return "recorded_special_closure"
++    for period in regular_service_slots(target):
++        if period["state"] != "open":
++            continue
++        start, end = period["start"], period["end"]
++        if start <= window.start and (window.end <= end if window.end else window.start < end):
++            return None
++    return "published_service_hours"
++
++
+ def _time_context(snapshot: LiveBookingSnapshot, window: TimeWindow | None, locale: str) -> str:
+     if window is None:
+         return "--:--"
+@@ -911,6 +946,22 @@
+         return (
+             f"วันที่ {snapshot.date} (เวลาไทย) ยังยืนยันสถานะเปิด-ปิดและ Slot แบบสดไม่ได้ เพราะ Booking Dashboard ไม่พร้อมใช้งานครับ\n"
+             "ผมจะไม่เอาตารางเก่ามาแสดงว่าเป็นข้อมูลจองแบบสด กรุณาลองใหม่อีกครั้งหรือดูหน้าจองโดยตรง\n"
++            f"แหล่งข้อมูล: {BOOKING_SOURCE_URL}"
++        )
++
++    conflict = live_booking_calendar_conflict(query, snapshot)
++    if conflict is not None:
++        window = requested_time_window(query, snapshot)
++        when = window.label if window is not None else "the requested time"
++        if english:
++            return (
++                f"For {snapshot.date} at {when} (Asia/Bangkok), the Booking Dashboard and the recorded service calendar disagree. "
++                "I cannot confirm whether this period is bookable or available. Please check with the studio.\n"
++                f"Source: {BOOKING_SOURCE_URL}"
++            )
++        return (
++            f"วันที่ {snapshot.date} ช่วง {when} น. (เวลาไทย) ข้อมูลจาก Booking Dashboard ขัดกับปฏิทินบริการที่บันทึกไว้ "
++            "จึงยังยืนยันไม่ได้ว่าช่วงนี้จองได้หรือมีเครื่องว่าง กรุณาตรวจสอบกับศูนย์ครับ\n"
+             f"แหล่งข้อมูล: {BOOKING_SOURCE_URL}"
+         )
+ 
+--- a/app/runtime/fast_answer.py
++++ b/app/runtime/fast_answer.py
+@@ -12,6 +12,7 @@
+ from app.booking.live_status import (
+     get_live_booking_status,
+     is_live_booking_question,
++    live_booking_calendar_conflict,
+     render_live_booking_answer,
+     resolve_live_target_date,
+ )
+@@ -1356,8 +1357,13 @@
+         return None
+     snapshot = get_live_booking_status(resolve_live_target_date(query))
+     locale = "en" if effective_locale() == "en" else "th"
+-    mode = "live_booking_status_fast_path" if snapshot.ok else "live_booking_status_unavailable"
+-    confidence = 0.99 if snapshot.ok else 0.94
++    conflict = live_booking_calendar_conflict(query, snapshot)
++    mode = (
++        "live_booking_calendar_conflict" if conflict
++        else "live_booking_status_fast_path" if snapshot.ok
++        else "live_booking_status_unavailable"
++    )
++    confidence = 0.99 if snapshot.ok and not conflict else 0.94
+     return _answer(
+         render_live_booking_answer(query, snapshot, locale),
+         "reservation",
+@@ -1635,7 +1641,7 @@
+             first,
+             closure.note,
+             current_line,
+-            "หมายเหตุ: วันปิดพิเศษ/วันหยุดราชการจะ override ตารางเปิดปิดปกติ",
++            "หมายเหตุ: วันที่บันทึกว่าศูนย์ปิดในไฟล์ปฏิทินบริการจะมีผลก่อนตารางปกติ",
+             f"แหล่งข้อมูลตารางบริการ: {RESERVATION_URL}",
+             f"แหล่งข้อมูลวันปิด: {closure.source}",
+         ]
+@@ -1663,7 +1669,7 @@
+         "- วันจันทร์ช่วงเช้า 09:00-12:00 เป็น Maintenance* และเปิดช่วงบ่าย 13:00-16:00",
+         "- วันอังคาร-พฤหัสบดีเปิด 09:00-12:00 และ 13:00-16:00",
+         "- วันศุกร์เปิดช่วงเช้า 09:00-12:00 และช่วงบ่าย 13:00-16:00 เป็น Maintenance",
+-        "- วันหยุดราชการ/วันปิดพิเศษในไฟล์ปฏิทินจะมีผลก่อนตารางปกติ",
++        "- เฉพาะวันที่บันทึกว่าศูนย์ปิดในไฟล์ปฏิทินบริการจะมีผลก่อนตารางปกติ; วันหยุดไทยอย่างเดียวไม่ได้ทำให้ปิดอัตโนมัติ",
+         f"แหล่งข้อมูลตารางบริการ: {RESERVATION_URL}",
+     ])
+     game_context = _game_context_for_schedule(q)
+--- a/app/pipeline/bilingual_english.py
++++ b/app/pipeline/bilingual_english.py
+@@ -15,11 +15,12 @@
+     BOOKING_SOURCE_URL,
+     get_live_booking_status,
+     is_live_booking_question,
++    live_booking_calendar_conflict,
+     render_live_booking_answer,
+     resolve_live_target_date,
+ )
+ from app.calculator.service_fee import SERVICE_FEES, SOURCE_URL
+-from app.calendar.service_calendar import closure_for, holidays_for_date, regular_service_slots, today_bangkok
++from app.calendar.service_calendar import closure_for, holidays_for_date, regular_service_slots, resolve_date_from_text, today_bangkok
+ from app.core.normalization import normalize_text
+ from app.core.source_registry import (
+     PC_SERVICE_FEE_LOCAL_UPDATE_20260727_ID,
+@@ -606,14 +607,15 @@
+     """Render the same calendar facts as Thai, with an approved English template."""
+     display_date = _english_date_label(target)
+     reference_date = _english_date_label(today_bangkok())
++    date_heading = f"{relative_label}, {display_date}" if relative_label else display_date
+     closure = closure_for(target)
+     if closure and closure.status == "closed":
+-        headline = f"{relative_label}, {display_date}: the studio is closed due to a registered special closure."
++        headline = f"{date_heading}: the studio is closed due to a registered special closure."
+         closure_detail = "A special closure overrides the regular service schedule."
+     else:
+         slots = regular_service_slots(target)
+         if not slots:
+-            headline = f"{relative_label}, {display_date}: no regular service period is listed."
++            headline = f"{date_heading}: no regular service period is listed."
+             closure_detail = "Please confirm with the studio before travelling or making a booking."
+         else:
+             slot_lines: list[str] = []
+@@ -625,7 +627,7 @@
+                     slot_lines.append(
+                         f"{period} is a maintenance period for equipment inspection and cleaning; play and booking are unavailable"
+                     )
+-            headline = f"{relative_label}, {display_date}: " + "; ".join(slot_lines) + "."
++            headline = f"{date_heading}: " + "; ".join(slot_lines) + "."
+             closure_detail = ""
+ 
+     lines = [
+@@ -640,7 +642,7 @@
+         "•    Monday 09:00-12:00 is maintenance; 13:00-16:00 is open for play.",
+         "•    Tuesday-Thursday are open from 09:00-12:00 and 13:00-16:00.",
+         "•    Friday 09:00-12:00 is open; 13:00-16:00 is maintenance.",
+-        "•    A registered public-holiday or special-closure record takes precedence over the regular schedule.",
++        "•    Only a recorded studio closure overrides the regular schedule; a Thai public holiday alone does not automatically close the studio.",
+     ]
+     return "\n".join(line for line in lines if line)
+ 
+@@ -693,6 +695,10 @@
+     elif "tomorrow" in tokens:
+         target_date = today_bangkok() + timedelta(days=1)
+         relative_label = "Tomorrow"
++    else:
++        resolved = resolve_date_from_text(query, today=today_bangkok())
++        if resolved is not None:
++            target_date = resolved.target_date
+ 
+     if target_date is not None:
+         text = _date_aware_schedule_text(target_date, relative_label=relative_label)
+@@ -736,11 +742,13 @@
+     if not is_live_booking_question(query):
+         return None
+     snapshot = get_live_booking_status(resolve_live_target_date(query))
++    conflict = live_booking_calendar_conflict(query, snapshot)
++    confirmed = snapshot.ok and not conflict
+     route = PipelineRoute(
+         "schedule",
+         "live_booking_status",
+-        0.99 if snapshot.ok else 0.94,
+-        "fact" if snapshot.ok else "no_answer",
++        0.99 if confirmed else 0.94,
++        "fact" if confirmed else "no_answer",
+         "medium",
+         "aggregate-only live booking dashboard",
+     )
+@@ -748,11 +756,15 @@
+         render_live_booking_answer(query, snapshot, "en"),
+         category=route.category,
+         intent=route.intent,
+-        mode="pipeline:live_booking_status_en" if snapshot.ok else "pipeline:live_booking_status_unavailable_en",
++        mode=(
++            "pipeline:live_booking_calendar_conflict_en" if conflict
++            else "pipeline:live_booking_status_en" if snapshot.ok
++            else "pipeline:live_booking_status_unavailable_en"
++        ),
+         confidence=route.confidence,
+         hits=[_hit("booking_live_status", "reservation", BOOKING_SOURCE_URL, "Live booking status")],
+         reason=route.reason,
+-        answer_type="fact" if snapshot.ok else "no_answer",
++        answer_type="fact" if confirmed else "no_answer",
+     )
+ 
+ 
+--- a/tests/test_p0_calendar_booking_reconciliation_20260925.py
++++ b/tests/test_p0_calendar_booking_reconciliation_20260925.py
+@@ -0,0 +1,115 @@
++from __future__ import annotations
++
++import os
++import time
++import unittest
++from datetime import date
++from unittest.mock import patch
++
++from app.booking.live_status import (
++    LiveBookingSnapshot,
++    LiveResource,
++    LiveSlot,
++    _snapshot_from_payload,
++    is_live_booking_question,
++    live_booking_calendar_conflict,
++    render_live_booking_answer,
++)
++from app.calendar.service_calendar import resolve_date_from_text
++from app.pipeline.bilingual_english import _answer_schedule
++from app.pipeline.schemas import EntityBundle
++from app.runtime.fast_answer import answer_schedule
++
++
++def snapshot(day: str, at: str) -> LiveBookingSnapshot:
++    slot_start = at[:2] + ":00"
++    slot_end = f"{int(at[:2]) + 1:02d}:00"
++    return LiveBookingSnapshot(
++        ok=True,
++        date=day,
++        now=f"{day}T{at}:00+07:00",
++        generated_at=f"{day}T09:00:00+07:00",
++        source="remote_csv_live",
++        center_open=True,
++        center_reason="",
++        open_periods=(("09:00", "16:00"),),
++        resources=(
++            LiveResource(
++                resource_id="1",
++                resource_name="PC #01",
++                capacity=1,
++                status="available",
++                available_now=1,
++                slots=(LiveSlot(slot_start, slot_end, "available", 0, 0, 1),),
++            ),
++        ),
++    )
++
++
++class CalendarBookingReconciliationTests(unittest.TestCase):
++    def test_iso_date_resolver_and_thai_special_closure(self) -> None:
++        resolved = resolve_date_from_text("2026-07-28 เปิดไหม", today=date(2026, 9, 25))
++        self.assertIsNotNone(resolved)
++        self.assertEqual(resolved.target_date, date(2026, 7, 28))
++        result = answer_schedule("2026-07-28 เปิดไหม", time.perf_counter())
++        self.assertIsNotNone(result)
++        self.assertIn("ศูนย์ปิดให้บริการ", result.answer)
++
++    def test_english_explicit_dates_use_recorded_closure(self) -> None:
++        for question in (
++            "Is the studio open on 28/07/2026?",
++            "Is the studio open on 2026-07-28?",
++        ):
++            with self.subTest(question=question):
++                result = _answer_schedule(question, EntityBundle())
++                self.assertIsNotNone(result)
++                self.assertIn("closed due to a registered special closure", result.answer)
++                self.assertIn("28", result.answer)
++
++    def test_holiday_alone_does_not_claim_studio_closure(self) -> None:
++        with patch.dict(os.environ, {"PSU_ESPORTS_TODAY": "2026-10-12"}):
++            th = answer_schedule("พรุ่งนี้เปิดไหม", time.perf_counter())
++            en = _answer_schedule("Is the studio open tomorrow?", EntityBundle())
++        self.assertIsNotNone(th)
++        self.assertIsNotNone(en)
++        self.assertIn("วันหยุดไทยอย่างเดียวไม่ได้ทำให้ปิดอัตโนมัติ", th.answer)
++        self.assertIn("a Thai public holiday alone does not automatically close", en.answer)
++
++    def test_disagreement_never_claims_lunch_or_special_date_available(self) -> None:
++        for day, at in (("2026-09-28", "12:30"), ("2026-09-29", "12:30"), ("2026-07-28", "13:00")):
++            status = snapshot(day, at)
++            for query, locale in (
++                (f"PC #01 ว่างไหม {day} {at}", "th"),
++                (f"Is PC #01 available on {day} at {at}?", "en"),
++            ):
++                with self.subTest(day=day, at=at, locale=locale):
++                    self.assertIsNotNone(live_booking_calendar_conflict(query, status))
++                    answer = render_live_booking_answer(query, status, locale)
++                    self.assertIn("ขัดกับ" if locale == "th" else "disagree", answer)
++                    self.assertNotIn("ว่างอยู่ตอนนี้", answer)
++                    self.assertNotIn("is available right now", answer)
++
++    def test_regular_open_window_can_report_booking_fact(self) -> None:
++        status = snapshot("2026-09-28", "13:00")
++        query = "PC #01 ว่างไหม 2026-09-28 13:00"
++        self.assertIsNone(live_booking_calendar_conflict(query, status))
++        self.assertIn("ว่าง", render_live_booking_answer(query, status, "th"))
++
++    def test_empty_service_export_is_unavailable_even_if_fetch_succeeded(self) -> None:
++        payload = {
++            "ok": True,
++            "source": "remote_csv_live",
++            "date": "2026-09-29",
++            "center": {"open": True, "open_periods": [["09:00", "16:00"]]},
++            "resources": [],
++        }
++        with self.assertRaisesRegex(ValueError, "no valid resources"):
++            _snapshot_from_payload(payload)
++
++    def test_now_opening_question_uses_live_path_in_both_languages(self) -> None:
++        self.assertTrue(is_live_booking_question("Is the studio open now?"))
++        self.assertTrue(is_live_booking_question("ตอนนี้เล่นได้ไหม"))
++
++
++if __name__ == "__main__":
++    unittest.main()

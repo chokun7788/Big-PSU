@@ -1,0 +1,138 @@
+{
+  "question_key": "7e2137c209142aead5ba36cd8dcb2ccc19d0447629c79d47ad7aed6cfac0b0fd",
+  "example_sha256": "de2e1989df976eecb27afb89cf90f5e703cee10a6687750da4993f8979e7cfd1",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One participant-capacity query names the PC03-10 service pool.",
+      "raw_quotes": [
+        "PC #03-#10 เล่นได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Correct equipment/count/capacity_persons to equipment/count/service_capacity because the exact named service carries a participant range distinct from physical resource count.",
+      "raw_quotes": [
+        "PC #03-#10 เล่นได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PC #03-#10 is the full target; numeric station IDs are not requested people counts.",
+      "raw_quotes": [
+        "PC #03-#10 เล่นได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No station03 alone, total eight-person purchase or past group is inherited.",
+      "raw_quotes": [
+        "PC #03-#10 เล่นได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The question is clear about service capacity; eventual output must distinguish service participant range from the number of physical stations.",
+      "raw_quotes": [
+        "PC #03-#10 เล่นได้กี่คน"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "availability_pc_03_10 has capacity_min/max1 and eight linked resources; resource_pc_03 separately records per-resource capacity.",
+      "raw_quotes": [
+        "PC #03-#10 เล่นได้กี่คน"
+      ],
+      "source_record_ids": [
+        "availability_pc_03_10",
+        "resource_pc_03"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No capacity value, summed eight-person verdict or resource count is taught.",
+      "raw_quotes": [
+        "PC #03-#10 เล่นได้กี่คน"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 105,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_capacity",
+    "context_quotes": [
+      "PC"
+    ],
+    "tasks": [
+      {
+        "quote": "PC #03-#10 เล่นได้กี่คน",
+        "domain": "equipment",
+        "operation": "count",
+        "facet": "capacity_persons",
+        "target": "PC #03-#10",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_capacity",
+    "context_quotes": [
+      "PC"
+    ],
+    "tasks": [
+      {
+        "quote": "PC #03-#10 เล่นได้กี่คน",
+        "domain": "equipment",
+        "operation": "count",
+        "facet": "service_capacity",
+        "target": "PC #03-#10",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PC",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_pc_03_10": {
+      "revision": 5,
+      "record_sha256": "472e782a0ac21bd680d205ea4207a9e3bb2d73b0e7fe87c37c13463b0ad6bf70"
+    },
+    "resource_pc_03": {
+      "revision": 2,
+      "record_sha256": "a46735819ea398b754ad7240018a7336c8b0fc9bcee5d7793b9d2685807ed183"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+"""Execute supported interpretation operators against the current fact index.
+
+The interpreter cannot override a locked source/safety guard or create facts.
+Unsupported operators are explicit scope gaps, never approximated by top-K.
+"""
+import re
+from .readers import confirmed,blocked
+from .scope import contains,norm
+from .projection import value
+
+def apply(index,question,meaning,original,at):
+    if meaning is None or original.locked:return original
+    cat=meaning.category;facet=meaning.facet
+    if meaning.ambiguous:return blocked(cat or '', 'meaning_requires_clarification','missing_input')
+    if not cat or not facet:return original
+    # Use only targets actually named by the user; an interpretation is not a
+    # licence to search a different record or broaden a selected game/platform.
+    pool=index.bind(cat,meaning.target or question)
+    if not pool:pool=index.bind(cat,question)
+    if cat=='C05':
+        for pattern,platform in [(r'\bps5\b|playstation','playstation'),(r'\bpc\b|keyboard','pc'),(r'nintendo|switch','switch')]:
+            if re.search(pattern,question,re.I):
+                pool=[f for f in pool if platform in norm(' '.join(f['subject'].values()))];break
+        if meaning.operation=='list' and facet=='input_bindings' and pool:
+            scopes={tuple(sorted(f['subject'].items())) for f in pool}
+            if len(scopes)>1:return blocked(cat,'control_platform_required','missing_input')
+            return confirmed(cat,pool,'complete_source_binding_set',complete_set=True,member_count=len(pool),operator='list')
+        # Single-action lookup still requires source action semantics; do not
+        # turn a list of all bindings into a guessed answer to one action.
+        return original
+    if cat=='C04' and facet=='zone':
+        if meaning.operation in {'group_list','group_count'}:
+            # Only an explicit "multiple zones" qualifier supports this filter.
+            if not re.search(r'หลายโซน|มากกว่าหนึ่งโซน|multiple zones|more than one zone',question,re.I):return original
+            matches=[f for f in index.bycat[cat] if f['facet']=='zone' and len(f.get('zone_ids',[]))>1]
+            if matches:return confirmed(cat,matches,'confirmed_multi_zone_subset',operator=meaning.operation,complete_set=False,
+                                        relation_completeness='Only confirmed game/service/resource/zone edges are included.')
+            return blocked(cat,'multi_zone_relations_not_confirmed')
+        chosen=[f for f in pool if f['facet']=='zone']
+        if chosen:return confirmed(cat,chosen,'typed_game_zone_projection',operator=meaning.operation)
+        return blocked(cat,'game_zone_relation_not_confirmed')
+    # Keep financial calculations, policies, live providers and rule dependency
+    # readers in control of their own conditions, even with a valid meaning plan.
+    if cat in {'C06','C07','C08','C09','C10','C12','C13'}:return original
+    if cat=='C02':
+        # Inverse roles must pass the shared personnel/public-scope contract.
+        # Never bypass it with a generic name projection.
+        return original
+    if cat=='C11':
+        if re.search(r'วันนี้|พรุ่งนี้|ตอนนี้|\btoday\b|\btomorrow\b|right now|20\d\d[-/]',question,re.I):return original
+        if not pool:
+            # An explicit weekday may be in a quoted slot separate from target.
+            pool=index.bind(cat,question)
+        if not pool and facet=='maintenance_periods' and not re.search(r'จันทร์|อังคาร|พุธ|พฤหัส|ศุกร์|เสาร์|อาทิตย์|monday|tuesday|wednesday|thursday|friday|saturday|sunday',question,re.I):
+            pool=index.bycat[cat]
+        chosen=[f for f in pool if f['facet']==facet]
+        if chosen:
+            result=confirmed(cat,chosen,'interpreted_recorded_calendar_facet',operator=meaning.operation)
+            result.metadata['calendar_source_limits']=['recorded_periods_only','opening_hours_and_applicability_not_inferred']
+            if facet in {'open_periods','closing_time'} and any(index.records.get(f['record_id'],{}).get('fields',{}).get('open_periods',{}).get('status')=='conflicted' for f in chosen):return original
+            return result
+        return original
+    if cat in {'C01','C03','C04','C14'} and pool:
+        if meaning.operation in {'group_count','compare','recommendation'} or meaning.operation=='count' and facet not in {'quantity','capacity_persons','controllers','room_seats','players_max'}:
+            # Do not quietly emit a detail record for an unimplemented operator.
+            return blocked(cat,'requested_operator_not_supported_by_reader')
+        chosen=[f for f in pool if f['facet']==facet]
+        if chosen:return confirmed(cat,chosen,'meaning_bound_requested_field',operator=meaning.operation)
+    return original

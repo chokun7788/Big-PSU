@@ -1,0 +1,85 @@
+
+competition_rag_v1_current.jsonl: 308/548 pass, 240 fail
+domains [('facet_targeted_retrieval', 235), ('adversarial_safe_outcome', 2), ('cross_rulebook_comparison', 2), ('source_gap_safe_no_answer', 1)]
+modes [('pipeline:missing_english_localization', 226), ('pipeline:chatbot_identity_fast_path', 5), ('pipeline:protected_booking_window', 3), ('pipeline:competition_source_localization_pending_en', 3), ('pipeline:english_no_answer', 1), ('pipeline:structured_service_capacity_en', 1), ('pipeline:protected_checkin_required', 1)]
+failure types [('outcome expected answer_available, got localization_pending', 229), ('missing rulebook target(s)', 9), ('retrieval evidence did not match the allowed canonical fact/rule IDs', 8), ("route expected ['competition_rules'], got knowledge", 5), ("route expected ['competition_rules'], got schedule", 3), ("route expected ['competition_rules', 'clarification'], got no_answer", 1), ('outcome expected clarification_required, got no_answer', 1), ("route expected ['competition_rules', 'clarification'], got reservation", 1)]
+sample COMP-RAG-EN-001 What do the CS2 tournament rules say about the competition format? ['outcome expected answer_available, got localization_pending'] This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.
+Source: https://esports.computing.psu.ac.th/ (original source in Thai)
+sample COMP-RAG-EN-002 For Counter-Strike 2, can you verify the rule on the competition format? ['outcome expected answer_available, got localization_pending'] This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.
+Source: https://esports.computing.psu.ac.th/ (original source in Thai)
+sample COMP-RAG-EN-003 I am preparing for a Counter Strike 2 match. What is the policy for the competition format? ['outcome expected answer_available, got localization_pending'] This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.
+Source: https://esports.computing.psu.ac.th/ (original source in Thai)
+
+competition_rag_v2_current.jsonl: 103/282 pass, 179 fail
+domains [('facet_targeted_retrieval', 172), ('adversarial_safe_outcome', 4), ('cross_rulebook_comparison', 3)]
+modes [('pipeline:missing_english_localization', 110), ('pipeline:competition_source_rag', 21), ('pipeline:competition_facet_not_covered_no_answer_en', 19), ('pipeline:competition_facet_not_covered_no_answer', 19), ('pipeline:competition_source_localization_pending_en', 3), ('pipeline:english_no_answer', 3), ('pipeline:protected_checkin_required', 3), ('pipeline:rag_direct_curated', 1)]
+failure types [('outcome expected answer_available, got localization_pending', 113), ('retrieval evidence did not match the allowed canonical fact/rule IDs', 84), ('missing rulebook target(s)', 41), ('outcome expected answer_available, got no_answer', 38), ("route expected ['competition_rules', 'clarification'], got no_answer", 3), ('outcome expected clarification_required, got no_answer', 3), ("route expected ['competition_rules'], got reservation", 3), ("route expected ['competition_rules', 'clarification'], got rules", 1)]
+sample COMP-RAG-V2-EN-001 What competition format does Counter-Strike 2 use? ['outcome expected answer_available, got localization_pending'] This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.
+Source: https://esports.computing.psu.ac.th/ (original source in Thai)
+sample COMP-RAG-V2-EN-002 How many games are played in a Counter-Strike 2 match? ['outcome expected answer_available, got localization_pending'] This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.
+Source: https://esports.computing.psu.ac.th/ (original source in Thai)
+sample COMP-RAG-V2-EN-003 Is the Counter-Strike 2 event single elimination or does it use another format? ['outcome expected answer_available, got localization_pending'] This information does not yet have an approved English localization. Please open the cited original source or ask a staff member for confirmation.
+Source: https://esports.computing.psu.ac.th/ (original source in Thai)
+
+english_shadow_machine_1600_current.jsonl: 1223/1470 pass, 247 fail
+domains [(None, 247)]
+modes [('pipeline:english_no_answer', 135), ('pipeline:structured_members_source_th', 52), ('pipeline:english_clarification', 15), ('pipeline:protected_price_missing_service', 15), ('pipeline:structured_game_controls_en', 11), ('pipeline:protected_checkin_required', 4), ('pipeline:game_controls_no_source_en', 3), ('pipeline:structured_game_availability_en', 2)]
+failure types [('category', 180), ('thai_prose_leak', 53), ('mode', 14)]
+sample EN-SHADOW-0059 What is the price of VALORANT? ['category'] Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?
+sample EN-SHADOW-0060 What is the price of Counter-Strike 2? ['category'] Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?
+sample EN-SHADOW-0069 Horizon Call of the Mountain price ['category'] Which service, duration, and user group should I price: PC, PlayStation 5, Nintendo Switch, Cockpit, or VR?
+
+intent_trap_v2_current.jsonl: 1000/1000 pass, 0 fail
+domains []
+modes []
+failure types []
+
+master_v1_delta_300_current.jsonl: 157/300 pass, 143 fail
+domains [('game_detail', 121), ('schedule_calendar', 11), ('games_catalog_availability', 10), ('compound_context_boundary', 1)]
+modes [('pipeline:missing_english_localization', 131), ('pipeline:current_service_slot_fast_path', 4), ('pipeline:calendar_upcoming_holidays_fast_path', 4), ('pipeline:rag_direct_curated', 2), ('pipeline:protected_studio_rule_direct', 1), ('pipeline:english_no_answer', 1)]
+failure types [('status expected answer_available, got localization_pending', 131), ('status expected live_lookup_required, got answer', 5), ('status expected clarification_required, got answer', 4), ('none of required alternatives found', 2), ("route expected ['multi_question'], got no_answer", 1), ('status expected answer_available, got no_answer', 1)]
+sample MASTER-GT-TH-01548 ตอนนี้ศูนย์เปิดไหม ขอรายละเอียดแบบสั้น ๆ ['status expected live_lookup_required, got answer'] ตอนนี้ยังเล่นไม่ได้ครับ วันนี้ศูนย์ปิดให้บริการ (no_regular_service)
+แหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation
+sample MASTER-GT-TH-01549 ขอข้อมูลที่ยืนยันได้หน่อยครับ: ตอนนี้ศูนย์เปิดไหม ขอรายละเอียดแบบสั้น ๆ ['status expected live_lookup_required, got answer'] ตอนนี้ยังเล่นไม่ได้ครับ วันนี้ศูนย์ปิดให้บริการ (no_regular_service)
+แหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation
+sample MASTER-GT-TH-01550 กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า ตอนนี้ศูนย์เปิดไหม ขอรายละเอียดแบบสั้น ๆ ['status expected live_lookup_required, got answer'] ตอนนี้ยังเล่นไม่ได้ครับ วันนี้ศูนย์ปิดให้บริการ (no_regular_service)
+แหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation
+
+master_v2_current.jsonl: 2134/2270 pass, 136 fail
+domains [('schedule_calendar', 59), ('games_catalog_availability', 35), ('reservation_policy', 34), ('service_fee', 6), ('game_detail', 2)]
+modes [('pipeline:no_answer', 49), ('pipeline:rag_direct_curated', 25), ('pipeline:calendar_upcoming_holidays_fast_path', 20), ('pipeline:structured_equipment_item', 8), ('pipeline:game_target_unknown', 8), ('pipeline:candidate_margin_clarification', 5), ('pipeline:ambiguity_clarification', 5), ('pipeline:protected_studio_rule_direct', 5)]
+failure types [('status expected answer_available, got no_answer', 48), ('none of required alternatives found', 26), ('status expected live_lookup_required, got answer', 26), ('status expected clarification_required, got answer', 20), ('status expected answer_available, got clarification', 16), ('status expected no_answer_expected, got answer', 10), ("route expected ['reservation'], got clarification", 8), ("route expected ['games', 'reservation'], got equipment", 8)]
+sample MASTER-GT-TH-00007 กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า เล่น PC 2 ชั่วโมง บุคคลทั่วไปคิดยังไง ["route expected ['service_fee'], got games", 'status expected answer_available, got no_answer'] ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ
+sample MASTER-GT-TH-00018 ขอข้อมูลที่ยืนยันได้หน่อยครับ: Tekken 8 ราคาเท่าไหร่ ["route expected ['games', 'service_fee'], got competition_rules", 'status expected answer_available, got no_answer'] ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด competition_rules ตอนนี้ครับ
+sample MASTER-GT-TH-00019 กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า Tekken 8 ราคาเท่าไหร่ ["route expected ['games', 'service_fee'], got clarification", 'status expected answer_available, got clarification'] ต้องการทราบค่าบริการของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? ราคาแตกต่างตามบริการและกลุ่มผู้ใช้ จึงยังระบุราคาเดียวไม่ได้ครับ
+
+rag_robustness_current.jsonl: 448/600 pass, 152 fail
+domains [('live_availability', 32), ('competition', 28), ('clarification', 26), ('booking', 15), ('equipment', 12), ('games', 8), ('service_fee', 7), ('live_schedule', 4), ('members', 4), ('contact', 4)]
+modes [('pipeline:live_booking_status_unavailable', 40), ('pipeline:no_answer', 16), ('pipeline:missing_english_localization', 12), ('pipeline:english_no_answer', 10), ('pipeline:game_target_ambiguous', 8), ('pipeline:competition_facet_not_covered_no_answer', 8), ('pipeline:candidate_margin_clarification', 6), ('pipeline:game_control_missing_game_context', 4)]
+failure types [("route expected one of ['reservation'], got schedule", 40), ('outcome expected answer_available, got clarification', 29), ('outcome expected clarification_required, got answer', 23), ('outcome expected answer_available, got no_answer', 23), ("route expected one of ['competition_rules'], got games", 16), ('outcome expected no_answer_expected, got answer', 8), ("route expected one of ['competition_rules'], got no_answer", 8), ('outcome expected clarification_required, got no_answer', 7)]
+sample RAG-ROBUST-TH-005 PC Zone มีเกมอะไรให้เล่น ['outcome expected answer_available, got clarification'] ยังไม่แน่ใจว่าหมายถึงเกมใดครับ จึงไม่ขอดึงข้อมูลของเกมอื่นมาตอบแทน
+กรุณาระบุชื่อเกมให้ชัดเจนอีกครั้ง
+sample RAG-ROBUST-TH-006 ขอข้อมูลที่ยืนยันได้หน่อยครับ: PC Zone มีเกมอะไรให้เล่น ['outcome expected answer_available, got clarification'] ยังไม่แน่ใจว่าหมายถึงเกมใดครับ จึงไม่ขอดึงข้อมูลของเกมอื่นมาตอบแทน
+กรุณาระบุชื่อเกมให้ชัดเจนอีกครั้ง
+sample RAG-ROBUST-TH-007 กำลังวางแผนจะไปใช้บริการ พอดีอยากรู้ว่า PC Zone มีเกมอะไรให้เล่น ['outcome expected answer_available, got clarification'] ยังไม่แน่ใจว่าหมายถึงเกมใดครับ จึงไม่ขอดึงข้อมูลของเกมอื่นมาตอบแทน
+กรุณาระบุชื่อเกมให้ชัดเจนอีกครั้ง
+
+real_usage_current.jsonl: 22/24 pass, 2 fail
+domains [('service_fee', 1), ('games', 1)]
+modes [('pipeline:multi_question_splitter', 1), ('pipeline:game_detail_fast_path', 1)]
+failure types [('missing answer keywords', 1), ('intent expected game_detail_lookup, got how_to', 1), ('mode expected prefix pipeline', 1)]
+sample RG-SF-006 PS5 มีเกมอะไรกับราคาเท่าไหร่ ["missing answer keywords: ['PlayStation 5 Zone', 'TEKKEN 8']"] คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:
+
+คำถามที่ 1: PS5 มีเกมอะไร
+ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับหมวด games ตอนนี้ครับ
+
+คำถามที่ 2: PS5 ราคาเท่าไหร่
+PlayStation 5 60 นาที (1 ชั่วโมง, 1-
+sample RG-GM-005 Naruto เล่นยังไง ['intent expected game_detail_lookup, got how_to', 'mode expected prefix pipeline:structured_game_detail, got pipeline:game_detail_fast_path'] NARUTO X BORUTO Ultimate Ninja Storm Connections: NARUTO X BORUTO Ultimate Ninja Storm Connections คือเกมต่อสู้ที่ใช้ตัวละครจากจักรวาล Naruto/Boruto
+แนวเกม: เกมต่อสู้จากอนิเมะ
+วิธีเล่นโดยสรุป: เลือกตัวละคร ใช้คอมโบ สกิลนินจา และจั
+
+review_grounded_novel_current.jsonl: 41/41 pass, 0 fail
+domains []
+modes []
+failure types []

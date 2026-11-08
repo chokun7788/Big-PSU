@@ -1,0 +1,228 @@
+{
+  "total": 10000,
+  "passed": 8959,
+  "failed": 1041,
+  "by_locale": {
+    "en": {
+      "total": 5000,
+      "passed": 4440,
+      "failed": 560
+    },
+    "th": {
+      "total": 5000,
+      "passed": 4519,
+      "failed": 481
+    }
+  },
+  "by_domain": {
+    "competition_rules": {
+      "total": 1000,
+      "passed": 543,
+      "failed": 457
+    },
+    "compound_context_boundary": {
+      "total": 500,
+      "passed": 370,
+      "failed": 130
+    },
+    "equipment": {
+      "total": 700,
+      "passed": 599,
+      "failed": 101
+    },
+    "game_controls": {
+      "total": 1300,
+      "passed": 1259,
+      "failed": 41
+    },
+    "game_detail": {
+      "total": 900,
+      "passed": 868,
+      "failed": 32
+    },
+    "games_catalog_availability": {
+      "total": 1200,
+      "passed": 1165,
+      "failed": 35
+    },
+    "live_booking": {
+      "total": 800,
+      "passed": 800,
+      "failed": 0
+    },
+    "members_overview_contact": {
+      "total": 500,
+      "passed": 462,
+      "failed": 38
+    },
+    "reservation_policy": {
+      "total": 900,
+      "passed": 857,
+      "failed": 43
+    },
+    "schedule_calendar": {
+      "total": 700,
+      "passed": 628,
+      "failed": 72
+    },
+    "service_fee": {
+      "total": 800,
+      "passed": 773,
+      "failed": 27
+    },
+    "studio_rules_penalties": {
+      "total": 700,
+      "passed": 635,
+      "failed": 65
+    }
+  },
+  "by_review_status": {
+    "generated_paraphrase_pending_review": {
+      "total": 4996,
+      "passed": 4501,
+      "failed": 495
+    },
+    "inherited_gold_candidate": {
+      "total": 2850,
+      "passed": 2614,
+      "failed": 236
+    },
+    "source_grounded_gold_candidate": {
+      "total": 2154,
+      "passed": 1844,
+      "failed": 310
+    }
+  },
+  "failure_by_locale_domain": {
+    "en:competition_rules": 436,
+    "th:compound_context_boundary": 113,
+    "th:studio_rules_penalties": 65,
+    "th:equipment": 63,
+    "th:schedule_calendar": 59,
+    "en:equipment": 38,
+    "th:games_catalog_availability": 35,
+    "th:reservation_policy": 34,
+    "th:game_controls": 29,
+    "th:game_detail": 28,
+    "th:members_overview_contact": 28,
+    "th:competition_rules": 21,
+    "en:service_fee": 21,
+    "en:compound_context_boundary": 17,
+    "en:schedule_calendar": 13,
+    "en:game_controls": 12,
+    "en:members_overview_contact": 10,
+    "en:reservation_policy": 9,
+    "th:service_fee": 6,
+    "en:game_detail": 4
+  },
+  "failure_modes": {
+    "pipeline:missing_english_localization": 463,
+    "pipeline:no_answer": 190,
+    "pipeline:ambiguity_clarification": 39,
+    "pipeline:english_no_answer": 30,
+    "pipeline:structured_equipment_catalog": 29,
+    "pipeline:rag_direct_curated": 28,
+    "pipeline:candidate_margin_clarification": 26,
+    "pipeline:game_control_missing_game_context": 21,
+    "pipeline:calendar_upcoming_holidays_fast_path": 20,
+    "pipeline:structured_equipment_item": 20,
+    "pipeline:english_clarification": 15,
+    "pipeline:protected_price_missing_service": 14,
+    "pipeline:structured_game_controls": 13,
+    "pipeline:structured_service_game_availability_no_match": 11,
+    "pipeline:protected_booking_window": 10,
+    "pipeline:game_target_unknown": 9,
+    "pipeline:game_meta_clarification": 9,
+    "pipeline:chatbot_identity_fast_path": 9,
+    "pipeline:equipment_spec_unverified_en": 6,
+    "pipeline:protected_studio_rule_direct": 5,
+    "pipeline:structured_games_catalog": 5,
+    "pipeline:structured_game_controls_en": 5,
+    "pipeline:member_role_not_found_en": 5,
+    "pipeline:games_known_unsupported_fast_path": 4,
+    "pipeline:structured_reservation_fact": 4,
+    "pipeline:structured_schedule": 4,
+    "pipeline:competition_facet_not_covered_no_answer": 4,
+    "pipeline:price_service_clarification_en": 4,
+    "pipeline:calendar_date_clarification_en": 4,
+    "pipeline:game_controls_no_source_en": 4,
+    "pipeline:competition_source_localization_pending_en": 4,
+    "pipeline:structured_games_genre_list": 3,
+    "pipeline:guard_no_answer": 3,
+    "pipeline:structured_booking_game_family_clarification": 2,
+    "pipeline:structured_game_controls_no_current_game": 2,
+    "pipeline:category_rule_fast_path": 2,
+    "pipeline:multi_question_splitter": 2,
+    "pipeline:live_booking_status_unavailable": 2,
+    "pipeline:current_service_slot_fast_path": 1,
+    "pipeline:structured_game_controls_no_data": 1,
+    "pipeline:protected_damage_responsibility": 1,
+    "pipeline:protected_checkin_required": 1,
+    "pipeline:protected_food_consumption": 1,
+    "pipeline:structured_game_detail": 1,
+    "pipeline:structured_service_game_availability": 1,
+    "pipeline:studio_rules_overview_fast_path": 1,
+    "pipeline:general_input_clarification": 1,
+    "pipeline:structured_service_fee_en": 1,
+    "pipeline:structured_service_capacity_en": 1
+  },
+  "failure_reasons": {
+    "status expected answer_available, got localization_pending": 467,
+    "none of required alternatives found": 147,
+    "status expected answer_available, got no_answer": 134,
+    "status expected answer_available, got clarification": 129,
+    "route expected ['no_answer', 'overview', 'rules'], got general": 62,
+    "status expected clarification_required, got answer": 41,
+    "status expected no_answer_expected, got answer": 32,
+    "status expected live_lookup_required, got answer": 26,
+    "route expected ['games'], got clarification": 20,
+    "route expected ['service_fee'], got clarification": 15,
+    "route expected ['reservation'], got clarification": 13,
+    "route expected ['equipment', 'game_controls'], got games": 12,
+    "route expected ['general', 'knowledge'], got no_answer": 12,
+    "status expected clarification_required, got no_answer": 11,
+    "route expected ['games', 'reservation'], got equipment": 8,
+    "route expected ['competition_rules'], got knowledge": 8,
+    "route expected ['competition_rules'], got games": 8,
+    "route expected ['members', 'overview'], got clarification": 8,
+    "status expected no_answer_expected, got clarification": 7,
+    "route expected ['competition_rules'], got schedule": 6,
+    "route expected ['penalty', 'rules'], got no_answer": 6,
+    "route expected ['no_answer'], got clarification": 5,
+    "route expected ['overview'], got no_answer": 5,
+    "route expected ['games', 'service_fee'], got clarification": 4,
+    "route expected ['reservation'], got general": 4,
+    "route expected ['contact'], got clarification": 4,
+    "route expected ['no_answer'], got games": 4,
+    "route expected ['reservation'], got schedule": 4,
+    "route expected ['reservation', 'schedule'], got clarification": 4,
+    "route expected ['equipment'], got games": 3,
+    "route expected ['clarification', 'equipment'], got games": 3,
+    "route expected ['reservation'], got no_answer": 3,
+    "route expected ['general', 'knowledge'], got clarification": 3,
+    "route expected ['service_fee'], got games": 2,
+    "route expected ['games', 'service_fee'], got competition_rules": 2,
+    "missing required text": 2,
+    "route expected ['contact'], got reservation": 2,
+    "route expected ['overview'], got knowledge": 2,
+    "route expected ['overview'], got clarification": 2,
+    "route expected ['general', 'knowledge', 'overview'], got clarification": 2,
+    "route expected ['clarification', 'equipment'], got schedule": 2,
+    "route expected ['general', 'knowledge', 'overview'], got no_answer": 2,
+    "route expected ['reservation', 'schedule'], got games": 1,
+    "status expected live_lookup_required, got no_answer": 1,
+    "route expected ['rules'], got penalty": 1,
+    "route expected ['rules'], got equipment": 1,
+    "route expected ['rules'], got general": 1,
+    "route expected ['competition_rules', 'no_answer'], got reservation": 1,
+    "route expected ['no_answer'], got general": 1,
+    "route expected ['no_answer'], got rules": 1,
+    "route expected ['no_answer'], got reservation": 1,
+    "route expected ['no_answer'], got equipment": 1,
+    "route expected ['clarification', 'competition_rules', 'general'], got events_news": 1,
+    "route expected ['games'], got service_fee": 1,
+    "route expected ['clarification', 'competition_rules'], got no_answer": 1,
+    "route expected ['clarification', 'competition_rules'], got reservation": 1
+  },
+  "latency_over_20sec": 0
+}

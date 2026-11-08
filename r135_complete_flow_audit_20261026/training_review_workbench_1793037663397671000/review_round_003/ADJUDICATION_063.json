@@ -1,0 +1,136 @@
+{
+  "question_key": "a1c90b6efa66d5a5dba8f4bd8559db108bf0254516e7929f37346ad730e6fd53",
+  "example_sha256": "83a867cc3080af88a70aa73851436a81b896ae0c0e5c61d822c0aa2a77ca5a58",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One zone query names the recorded Part I / Part II game collection.",
+      "raw_quotes": [
+        "Which studio zone has The Last of Us Part I / Part II"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/list/zone preserves the requested collection relation.",
+      "raw_quotes": [
+        "Which studio zone has The Last of Us Part I / Part II"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "The full The Last of Us Part I / Part II target stays; remove the erroneous service slot for only Part I.",
+      "raw_quotes": [
+        "Which studio zone has The Last of Us Part I / Part II"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No platform, individual part preference or history is supplied.",
+      "raw_quotes": [
+        "Which studio zone has The Last of Us Part I / Part II"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The slash retains both named parts rather than silently choosing the first.",
+      "raw_quotes": [
+        "Which studio zone has The Last of Us Part I / Part II"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_the_last_of_us has exactly this combined title and zone_ps5; separate Part I/Part II records must not narrow the user scope.",
+      "raw_quotes": [
+        "Which studio zone has The Last of Us Part I / Part II"
+      ],
+      "source_record_ids": [
+        "game_detail_the_last_of_us",
+        "migrated_game_the_last_of_us_part_i",
+        "migrated_game_the_last_of_us_part_ii"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No PS5 Zone answer or gameplay description enters labels.",
+      "raw_quotes": [
+        "Which studio zone has The Last of Us Part I / Part II"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 63,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "The Last of Us Part I"
+    ],
+    "tasks": [
+      {
+        "quote": "Which studio zone has The Last of Us Part I / Part II",
+        "domain": "games",
+        "operation": "list",
+        "facet": "zone",
+        "target": "The Last of Us Part I / Part II",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "The Last of Us Part I",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "The Last of Us Part I"
+    ],
+    "tasks": [
+      {
+        "quote": "Which studio zone has The Last of Us Part I / Part II",
+        "domain": "games",
+        "operation": "list",
+        "facet": "zone",
+        "target": "The Last of Us Part I / Part II",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "game_detail_the_last_of_us": {
+      "revision": 5,
+      "record_sha256": "192bb1c25cb2caea5a84149eb452a584c76226c1c51a1a455c75986202132931"
+    },
+    "migrated_game_the_last_of_us_part_i": {
+      "revision": 7,
+      "record_sha256": "cb142c201daed70d4e9e08b606c8c95cffb342c771b92b95964f018c68deaf64"
+    },
+    "migrated_game_the_last_of_us_part_ii": {
+      "revision": 1,
+      "record_sha256": "354da4018098ac7709a334feb2b8a88602fba39184479cf3c054b6e86c19ac93"
+    }
+  }
+}

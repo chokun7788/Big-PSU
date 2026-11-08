@@ -1,0 +1,139 @@
+{
+  "question_key": "f2a13ac7b6e42a72d0748bb884694ae6febdf3dfa3114a58a0f0ae2f402b11d2",
+  "example_sha256": "bb0b9395e5eb7063a7d194e7ecb2cca8f7c766747aba7d6a4bc93cdd61216522",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Wednesday opening-hours request; verified-information is style.",
+      "raw_quotes": [
+        "What are the opening hours on Wednesday? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/detail/open_periods retains physical opening rather than bookable periods.",
+      "raw_quotes": [
+        "What are the opening hours on Wednesday? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Wednesday is the exact date/weekday scope.",
+      "raw_quotes": [
+        "What are the opening hours on Wednesday? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No absolute date, year, current live status or other weekday is inherited.",
+      "raw_quotes": [
+        "What are the opening hours on Wednesday? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A weekday alone must not turn a conflicted physical opening field into known service timetable authority.",
+      "raw_quotes": [
+        "What are the opening hours on Wednesday? Please use verified information."
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_schedule_2 distinguishes conflicted open_periods from bookable/service slots.",
+      "raw_quotes": [
+        "What are the opening hours on Wednesday? Please use verified information."
+      ],
+      "source_record_ids": [
+        "migrated_schedule_2"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No weekday clock range, opening guarantee or live-free verdict is taught.",
+      "raw_quotes": [
+        "What are the opening hours on Wednesday? Please use verified information."
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Wednesday physical opening is conflicted and differs from service/booking periods.",
+      "handling": "Expose source status/scope before claiming opening hours."
+    }
+  ],
+  "historical_review_row": 182,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Wednesday"
+    ],
+    "tasks": [
+      {
+        "quote": "What are the opening hours on Wednesday? Please use verified information.",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Wednesday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "Wednesday"
+    ],
+    "tasks": [
+      {
+        "quote": "What are the opening hours on Wednesday? Please use verified information.",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "Wednesday",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_schedule_2": {
+      "revision": 3,
+      "record_sha256": "54f567b0a429b84ed238f9f73ecf0a3aa19e5f16cd4a3f876eb991506ce704a7"
+    }
+  }
+}

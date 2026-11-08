@@ -1,0 +1,614 @@
+[
+  {
+    "case": "readiness-route-reports-game-data-not-publish-approval",
+    "passed": true,
+    "detail": {
+      "version": "common_task_readiness_v1",
+      "kind": "game",
+      "record_id": "fixture_lumen_circuit",
+      "tasks": [
+        {
+          "task": "game_overview",
+          "label_th": "เกมเกี่ยวกับอะไร",
+          "status": "data_ready",
+          "missing": [],
+          "warnings": [],
+          "related_ids": []
+        },
+        {
+          "task": "game_genre",
+          "label_th": "แนวเกม",
+          "status": "data_ready",
+          "missing": [],
+          "warnings": [],
+          "related_ids": []
+        },
+        {
+          "task": "game_how_to_play",
+          "label_th": "วิธีเล่น",
+          "status": "data_ready",
+          "missing": [],
+          "warnings": [],
+          "related_ids": []
+        },
+        {
+          "task": "game_controls",
+          "label_th": "ปุ่มควบคุม",
+          "status": "needs_data",
+          "missing": [
+            {
+              "relation": "control_set",
+              "reason": "missing_related_records"
+            }
+          ],
+          "warnings": [],
+          "related_ids": []
+        },
+        {
+          "task": "game_offerings",
+          "label_th": "บริการที่มีเกมนี้",
+          "status": "needs_data",
+          "missing": [
+            {
+              "relation": "game_service",
+              "reason": "missing_related_records"
+            }
+          ],
+          "warnings": [],
+          "related_ids": []
+        }
+      ],
+      "publish_core_missing": [],
+      "scope": "data readiness only; store validation and runtime interpretation still required",
+      "publication_approval_created": false,
+      "runtime_answer_correctness_verified": false
+    }
+  },
+  {
+    "case": "owner-http-uses-shared-dispatcher-and-current-content",
+    "passed": true,
+    "detail": {
+      "answer": "Game: Lumen Circuit Fixture\n\n**Lumen Circuit Fixture**\n• summary: Concurrent edit LUMEN_V3 [S1]\n• genre: Synthetic adventure [S2]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "trace": {
+        "response_type": "answer",
+        "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+        "query_plan": {
+          "record_ids": [
+            "fixture_lumen_circuit"
+          ],
+          "requested_fields": [
+            "summary",
+            "genre"
+          ],
+          "all_fields": false,
+          "method": "exact",
+          "scope": "common_published",
+          "platform": null,
+          "query_without_entity": "could you give me a beginner-friendly introduction to ?",
+          "operation": "game_overview",
+          "scope_ids": [
+            "fixture_lumen_circuit"
+          ],
+          "field_selection": [],
+          "confidence_calibrated": false,
+          "request_focus": null,
+          "schema_language_recoveries": [],
+          "task_contract": {
+            "version": "common-task-contract-v2",
+            "task": "game_overview",
+            "operation": "game_overview",
+            "record_ids": [
+              "fixture_lumen_circuit"
+            ],
+            "requested_fields": [
+              "summary",
+              "genre"
+            ],
+            "original_task": "could you give me a beginner-friendly introduction to ?",
+            "task_span": "give me a beginner friendly introduction to",
+            "matched_current_labels": [],
+            "canonical_task": "give me a beginner friendly introduction to",
+            "edit_distance": 0,
+            "whole_task_covered": true,
+            "method": "whole_task_grammar",
+            "confidence_calibrated": false,
+            "facts_source": "current_common_snapshot"
+          },
+          "authority": {
+            "decision": "common",
+            "reason": "published_target_owned",
+            "record_ids": [
+              "fixture_lumen_circuit"
+            ],
+            "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+            "epoch": 5
+          },
+          "field_authority": [
+            {
+              "record_id": "fixture_lumen_circuit",
+              "field": "summary",
+              "authority": "common",
+              "status": "known",
+              "revision": 3
+            },
+            {
+              "record_id": "fixture_lumen_circuit",
+              "field": "genre",
+              "authority": "common",
+              "status": "known",
+              "revision": 3
+            }
+          ],
+          "unresolved_clauses": [],
+          "semantic_review_needed": false,
+          "semantic_plan_accepted": false,
+          "read_contract": {
+            "schema_version": "common_read_plan_v1",
+            "needs": [
+              {
+                "id": "n1",
+                "field_refs": [
+                  {
+                    "kind": "game",
+                    "key": "summary"
+                  }
+                ],
+                "source_span": "Could you give me a beginner-friendly introduction to Lumen Circuit Fixture?",
+                "resolution": "typed_supported",
+                "ambiguous_kind": false
+              },
+              {
+                "id": "n2",
+                "field_refs": [
+                  {
+                    "kind": "game",
+                    "key": "genre"
+                  }
+                ],
+                "source_span": "Could you give me a beginner-friendly introduction to Lumen Circuit Fixture?",
+                "resolution": "typed_supported",
+                "ambiguous_kind": false
+              }
+            ],
+            "unresolved_spans": [],
+            "semantic_correctness_verified": false
+          },
+          "response_projection": [
+            {
+              "record_id": "fixture_lumen_circuit",
+              "fields": {
+                "summary": "explicit",
+                "genre": "explicit"
+              }
+            }
+          ]
+        },
+        "obligations": [
+          {
+            "record_id": "fixture_lumen_circuit",
+            "field": "summary",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/summary",
+                "source_id": "owner_6296e248c249110c64e47e2d"
+              }
+            ]
+          },
+          {
+            "record_id": "fixture_lumen_circuit",
+            "field": "genre",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/genre",
+                "source_id": "owner_6296e248c249110c64e47e2d"
+              }
+            ]
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "published",
+        "production_publication_verified": true,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [
+            {
+              "id": "field_summary",
+              "field": "summary",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "fixture_lumen_circuit",
+                  "field": "summary",
+                  "sources": [
+                    {
+                      "locator": "/summary",
+                      "source_id": "owner_6296e248c249110c64e47e2d"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            },
+            {
+              "id": "field_genre",
+              "field": "genre",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "fixture_lumen_circuit",
+                  "field": "genre",
+                  "sources": [
+                    {
+                      "locator": "/genre",
+                      "source_id": "owner_6296e248c249110c64e47e2d"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            }
+          ],
+          "total_needs": 2,
+          "answered_needs": 2,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 2,
+          "response_type": "answer"
+        },
+        "knowledge_snapshot": {
+          "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+          "epoch": 5,
+          "content_view": "published"
+        },
+        "migration": {
+          "profile": "common-published",
+          "database": "ISOLATED_OWNER_API.sqlite",
+          "draft_preview_only": false,
+          "production_publication_verified": true,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": [
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [
+              "fixture_lumen_circuit"
+            ],
+            "method": "exact"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "reason": "no_supported_task",
+              "candidate_ids": []
+            }
+          },
+          {
+            "stage": "task_interpretation",
+            "contract": {
+              "version": "common-task-contract-v2",
+              "task": "game_overview",
+              "operation": "game_overview",
+              "record_ids": [
+                "fixture_lumen_circuit"
+              ],
+              "requested_fields": [
+                "summary",
+                "genre"
+              ],
+              "original_task": "could you give me a beginner-friendly introduction to ?",
+              "task_span": "give me a beginner friendly introduction to",
+              "matched_current_labels": [],
+              "canonical_task": "give me a beginner friendly introduction to",
+              "edit_distance": 0,
+              "whole_task_covered": true,
+              "method": "whole_task_grammar",
+              "confidence_calibrated": false,
+              "facts_source": "current_common_snapshot"
+            }
+          }
+        ],
+        "draft_preview_only": false,
+        "preview_llm_enabled": false,
+        "preview_dispatcher": "shared_common_chat",
+        "preview_live_enabled": false
+      },
+      "common_read_state": {
+        "schema_version": 1,
+        "record_ids": [
+          "fixture_lumen_circuit"
+        ],
+        "requested_fields": [
+          "summary",
+          "genre"
+        ],
+        "all_fields": false,
+        "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+        "pending_selection": null,
+        "profile_confirmation": null,
+        "profile_confirmation_closed": false,
+        "declined_profile_ids": [],
+        "scope_ids": [
+          "fixture_lumen_circuit"
+        ],
+        "operation": "game_overview",
+        "platform": null,
+        "constraints": {},
+        "price_comparison": null
+      }
+    }
+  },
+  {
+    "case": "owner-http-follow-up-retains-task-target",
+    "passed": true,
+    "detail": {
+      "answer": "Game: Lumen Circuit Fixture\n\n**Lumen Circuit Fixture**\n• how to play: Synthetic instructions LUMEN_PLAY [S1]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+      "trace": {
+        "response_type": "answer",
+        "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+        "query_plan": {
+          "record_ids": [
+            "fixture_lumen_circuit"
+          ],
+          "requested_fields": [
+            "how_to_play"
+          ],
+          "all_fields": false,
+          "method": "typed_common_state",
+          "scope": "common_published",
+          "platform": null,
+          "query_without_entity": "how to play",
+          "operation": "game_how_to_play",
+          "scope_ids": [
+            "fixture_lumen_circuit"
+          ],
+          "field_selection": [
+            {
+              "field": "how_to_play",
+              "cue": "how to play",
+              "method": "schema_attribute"
+            }
+          ],
+          "confidence_calibrated": false,
+          "request_focus": null,
+          "schema_language_recoveries": [],
+          "task_contract": {
+            "version": "common-task-contract-v2",
+            "task": "game_how_to_play",
+            "operation": "game_how_to_play",
+            "record_ids": [
+              "fixture_lumen_circuit"
+            ],
+            "requested_fields": [
+              "how_to_play"
+            ],
+            "original_task": "how to play",
+            "task_span": "how to play",
+            "matched_current_labels": [],
+            "canonical_task": "how to play",
+            "edit_distance": 0,
+            "whole_task_covered": true,
+            "method": "whole_task_exact",
+            "confidence_calibrated": false,
+            "facts_source": "current_common_snapshot"
+          },
+          "authority": {
+            "decision": "common",
+            "reason": "published_target_owned",
+            "record_ids": [
+              "fixture_lumen_circuit"
+            ],
+            "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+            "epoch": 5
+          },
+          "field_authority": [
+            {
+              "record_id": "fixture_lumen_circuit",
+              "field": "how_to_play",
+              "authority": "common",
+              "status": "known",
+              "revision": 3
+            }
+          ],
+          "unresolved_clauses": [],
+          "semantic_review_needed": false,
+          "semantic_plan_accepted": false,
+          "read_contract": {
+            "schema_version": "common_read_plan_v1",
+            "needs": [
+              {
+                "id": "n1",
+                "field_refs": [
+                  {
+                    "kind": "game",
+                    "key": "how_to_play"
+                  }
+                ],
+                "source_span": "how to play",
+                "resolution": "typed_supported",
+                "ambiguous_kind": false
+              }
+            ],
+            "unresolved_spans": [],
+            "semantic_correctness_verified": false
+          },
+          "response_projection": [
+            {
+              "record_id": "fixture_lumen_circuit",
+              "fields": {
+                "how_to_play": "explicit"
+              }
+            }
+          ]
+        },
+        "obligations": [
+          {
+            "record_id": "fixture_lumen_circuit",
+            "field": "how_to_play",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/how_to_play",
+                "source_id": "owner_6296e248c249110c64e47e2d"
+              }
+            ]
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "published",
+        "production_publication_verified": true,
+        "need_ledger": {
+          "version": "common_need_ledger_v1",
+          "needs": [
+            {
+              "id": "field_how_to_play",
+              "field": "how_to_play",
+              "status": "answered",
+              "evidence_refs": [
+                {
+                  "record_id": "fixture_lumen_circuit",
+                  "field": "how_to_play",
+                  "sources": [
+                    {
+                      "locator": "/how_to_play",
+                      "source_id": "owner_6296e248c249110c64e47e2d"
+                    }
+                  ]
+                }
+              ],
+              "unanswered_records": []
+            }
+          ],
+          "total_needs": 1,
+          "answered_needs": 1,
+          "scope_limits": [],
+          "snapshot_consistent": true,
+          "semantic_correctness_verified": false,
+          "coverage_basis": "selected typed fields and explicit clauses; not all possible user intents",
+          "evidence_hits": 1,
+          "response_type": "answer"
+        },
+        "knowledge_snapshot": {
+          "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+          "epoch": 5,
+          "content_view": "published"
+        },
+        "migration": {
+          "profile": "common-published",
+          "database": "ISOLATED_OWNER_API.sqlite",
+          "draft_preview_only": false,
+          "production_publication_verified": true,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": [
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [
+              "fixture_lumen_circuit"
+            ],
+            "method": "typed_common_state"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "reason": "no_supported_task",
+              "candidate_ids": []
+            }
+          },
+          {
+            "stage": "task_interpretation",
+            "contract": {
+              "version": "common-task-contract-v2",
+              "task": "game_how_to_play",
+              "operation": "game_how_to_play",
+              "record_ids": [
+                "fixture_lumen_circuit"
+              ],
+              "requested_fields": [
+                "how_to_play"
+              ],
+              "original_task": "how to play",
+              "task_span": "how to play",
+              "matched_current_labels": [],
+              "canonical_task": "how to play",
+              "edit_distance": 0,
+              "whole_task_covered": true,
+              "method": "whole_task_exact",
+              "confidence_calibrated": false,
+              "facts_source": "current_common_snapshot"
+            }
+          }
+        ],
+        "draft_preview_only": false,
+        "preview_llm_enabled": false,
+        "preview_dispatcher": "shared_common_chat",
+        "preview_live_enabled": false
+      },
+      "common_read_state": {
+        "schema_version": 1,
+        "record_ids": [
+          "fixture_lumen_circuit"
+        ],
+        "requested_fields": [
+          "how_to_play"
+        ],
+        "all_fields": false,
+        "release_id": "7f892f97514d4ed6b5ca2c16a161d67a",
+        "pending_selection": null,
+        "profile_confirmation": null,
+        "profile_confirmation_closed": false,
+        "declined_profile_ids": [],
+        "scope_ids": [
+          "fixture_lumen_circuit"
+        ],
+        "operation": "game_how_to_play",
+        "platform": null,
+        "constraints": {},
+        "price_comparison": null
+      }
+    }
+  },
+  {
+    "case": "owner-ui-serves-task-readiness-display",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "case": "owner-ui-explains-draft-and-live-boundaries",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "case": "readiness-keeps-owner-capability-authentication",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "case": "readiness-and-preview-do-not-write-owner-database",
+    "passed": true,
+    "detail": null
+  }
+]

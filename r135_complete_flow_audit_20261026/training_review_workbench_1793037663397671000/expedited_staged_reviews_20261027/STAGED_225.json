@@ -1,0 +1,118 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 225,
+  "question_key": "89f627e4123ba68de40899e8c635d1c9563636bea483097a9465615129ddfcb8",
+  "raw_question": "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [
+      "ถ้ายังไม่เปลี่ยนสถานะทำไง"
+    ],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้ายังไม่เปลี่ยนสถานะทำไง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "รบกวนเช็กให้หน่อย โอนแล้วปกติกี่นาทีตรวจเสร็จ ถ้ายังไม่เปลี่ยนสถานะทำไง",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "condition",
+            "quote": "ถ้ายังไม่เปลี่ยนสถานะ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "action",
+            "quote": "โอนแล้ว",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "กี่นาทีตรวจเสร็จ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ทำไง",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One payment-verification procedure asks normal checking time and what to do if status stays unchanged.",
+    "intent_operation_facet": "payment/detail/owner_policy keeps both attributes under the same verification purpose, not a query of a particular live booking.",
+    "entities_and_slot_roles": "โอนแล้ว is scenario context, กี่นาทีตรวจเสร็จ requests an unknown time value, ถ้ายังไม่เปลี่ยนสถานะ is the conditional branch and ทำไง requests its procedure.",
+    "local_shared_history_scope": "The condition belongs locally to this request; remove its false top-level shared-context quote. No supplied booking ID, elapsed minutes, payment amount or date is inherited.",
+    "negation_and_ambiguity": "The user asks the normal duration rather than asserting an exact deadline; unchanged status is hypothetical, not evidence that payment failed.",
+    "source_version_alignment": "Pinned r114_q017 records normal checking time separately from Facebook follow-up on unchanged status; its unknown applicability cannot certify a particular transaction.",
+    "no_business_answer_target": "No30-minute value, Facebook destination, payment result, refund or booking status enters the language label."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "r114_q017_owner_policy"
+  ],
+  "source_answer_issues": [
+    [
+      "Normal checking time is not a guaranteed transaction deadline and current applicability remains unknown.",
+      "Keep normal/conditional wording, both requested attributes and no live status confirmation."
+    ]
+  ],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 226,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "r114_q017_owner_policy": {
+      "revision": 1,
+      "record_sha256": "83669cd17aa33c064bf579cc6be0cc180add9117e272e203517febf47035f0aa"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

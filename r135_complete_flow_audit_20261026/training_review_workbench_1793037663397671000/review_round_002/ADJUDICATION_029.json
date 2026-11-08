@@ -1,0 +1,126 @@
+{
+  "question_key": "8570a28b567efb150998f4e15cebed739de8dcc6c72b66747d9f66b10022607a",
+  "example_sha256": "1d69d54cf613fe590cc5003495d4c7fbd5c38596da1a83764ecd903730ed190a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One named-game location question; verification text is style.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Which studio zone has TEKKEN 8"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "games/detail/zone asks studio location, not service price or a booking transaction.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Which studio zone has TEKKEN 8"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "TEKKEN 8 is a game target; remove the erroneous service slot containing the game title.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Which studio zone has TEKKEN 8"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The named game scopes this location task only; no platform is supplied.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Which studio zone has TEKKEN 8"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A clear location request remains clear even when more than one recorded zone is returned.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Which studio zone has TEKKEN 8"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "game_detail_tekken_8 explicitly has studio_zone_ids zone_pc and zone_ps5; supported_platforms is unknown and cannot replace studio location.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Which studio zone has TEKKEN 8"
+      ],
+      "source_record_ids": [
+        "game_detail_tekken_8"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No source zone name is taught as a generated answer.",
+      "raw_quotes": [
+        "Please answer from verified studio information: Which studio zone has TEKKEN 8"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 29,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "TEKKEN 8"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Which studio zone has TEKKEN 8",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "TEKKEN 8",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "TEKKEN 8",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_location",
+    "context_quotes": [
+      "TEKKEN 8"
+    ],
+    "tasks": [
+      {
+        "quote": "Please answer from verified studio information: Which studio zone has TEKKEN 8",
+        "domain": "games",
+        "operation": "detail",
+        "facet": "zone",
+        "target": "TEKKEN 8",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "game_detail_tekken_8": {
+      "revision": 6,
+      "record_sha256": "d043ff783e90ed0e56f6ae40223caa876dee572e81fb732326a3e1d7b8f04bcc"
+    }
+  }
+}

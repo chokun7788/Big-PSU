@@ -1,0 +1,3659 @@
+{
+  "label": "final_r41_3_regression_mixed",
+  "port": 8093,
+  "health": {
+    "ok": true,
+    "service": "psu-esports-chat-web",
+    "time": "2026-10-06T07:52:31.375208+00:00",
+    "warmup": {
+      "ok": true,
+      "elapsed_sec": 9.0533,
+      "warmed": [
+        "game_title_aliases",
+        "structured_tools",
+        "game_resolver",
+        "routing_data",
+        "retrieval_data",
+        "probe_queries",
+        "semantic_embedding"
+      ],
+      "errors": [],
+      "timings": {
+        "game_title_aliases": 0.9143,
+        "structured_tools": 0.4528,
+        "game_resolver": 0.1564,
+        "routing_data": 0.1975,
+        "retrieval_data": 2.0157,
+        "probe_queries": 5.2826,
+        "semantic_embedding": 0.0338
+      }
+    },
+    "llm_preflight": {
+      "ok": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "kind": "preflight",
+      "elapsed_ms": 85.33,
+      "response_chars": 2,
+      "done_reason": "length",
+      "num_ctx": 3072,
+      "load_duration": 9763300,
+      "prompt_eval_duration": 65931000,
+      "eval_duration": 1000,
+      "health": {
+        "llm_health_enabled": true,
+        "llm_health_status": "ok",
+        "llm_health_failures": 0,
+        "llm_health_failure_scope": "model_and_kind"
+      }
+    },
+    "input_quality_guard": {
+      "enabled": true,
+      "mode": "enforce",
+      "repeat_policy": "warn_and_continue",
+      "layout_threshold": 0.39,
+      "repeat_threshold": 0.55,
+      "corpus_size": 4023,
+      "profile_version": "keyboard-profile-v1:2a863a4176572043"
+    },
+    "llm_health": {
+      "enabled": true,
+      "failure_threshold": 2,
+      "failure_window_sec": 30.0,
+      "cooldown_sec": 90.0,
+      "states": [
+        {
+          "kind": "model",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 85.33,
+          "last_checked_at": 1791273025.4047093,
+          "last_success_at": 1791273025.4047093,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 85.33,
+              "detail": "preflight_ok",
+              "at": 1791273025.405
+            }
+          ]
+        },
+        {
+          "kind": "preflight",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 85.33,
+          "last_checked_at": 1791273025.4047093,
+          "last_success_at": 1791273025.4047093,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 85.33,
+              "detail": "preflight_ok",
+              "at": 1791273025.405
+            }
+          ]
+        }
+      ]
+    },
+    "pipeline_workers": {
+      "enabled": true,
+      "started": true,
+      "worker_count": 1,
+      "workers": [
+        {
+          "worker_id": 0,
+          "pid": 34208,
+          "alive": true,
+          "ready": true,
+          "completed_requests": 185,
+          "busy": false,
+          "replacement_warming": false
+        }
+      ],
+      "performance": {
+        "run_id": "20261006T075003Z",
+        "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r41_task_memory_20261006_142223_26da94\\release_r41_3\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261006T075003Z.jsonl",
+        "events_written": 3537,
+        "events_dropped": 0
+      }
+    },
+    "runtime": {
+      "profile": "owner-local-rag-assist",
+      "version": "2026.10.06-task-memory-r41.3",
+      "installation_id": "f40670e83bc518e7",
+      "started_at": "2026-10-06T07:50:02.970989+00:00",
+      "answer_timeout_sec": 20.0,
+      "pipeline_timeout_sec": 19.0,
+      "intent_timeout_sec": 14.0,
+      "local_llm": {
+        "enabled": true,
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "intent_timeout_sec": 14.0,
+        "planner_timeout_sec": 1.2,
+        "general_timeout_sec": 4.0,
+        "high_assist_profile": true
+      },
+      "semantic_rag": {
+        "enabled": true,
+        "embedding_model": "psu-bge-m3:q8_0"
+      },
+      "english": {
+        "enabled": true,
+        "draft_preview": false
+      },
+      "booking": {
+        "enabled": true,
+        "fetch_mode": "wordpress",
+        "cache_seconds": 0.0,
+        "dashboard_required": false,
+        "read_only": true
+      },
+      "input_quality": {
+        "mode": "enforce",
+        "keyboard_layout": "request_retype",
+        "repeated_characters": "warn_and_continue"
+      }
+    },
+    "features": {
+      "bilingual_english": true,
+      "local_llm_assist": true,
+      "semantic_rag": true,
+      "embedding_model": "psu-bge-m3:q8_0",
+      "live_booking_status": true
+    }
+  },
+  "planned_cases": 4,
+  "executed_cases": 4,
+  "requests": 4,
+  "passed": 4,
+  "failed": 0,
+  "raw_file": "final_r41_3_regression_mixed_20261006_145231_9bc4fd_raw.jsonl",
+  "results": [
+    {
+      "id": "mixed-controls-price-en",
+      "kind": "selected_requests",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "expected_requests": true,
+        "no_dropped_parts": true,
+        "child_operations": true,
+        "no_missing_known_target": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for VALORANT\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings\n\nQuestion 2: what are the PC prices\nPC - 1 hour (1 people)\n- PSU students and staff: 0 THB\n- PSU alumni and students from other institutions: 25 THB\n- General adults: 70 THB\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+      "latency": [
+        0.3361
+      ],
+      "records": [
+        {
+          "case_id": "mixed-controls-price-en",
+          "payload": {
+            "question": "What are the controls for VALORANT and what are the PC prices?",
+            "locale": "en",
+            "client_session_id": "r40-16ad1b2f-4af9-43aa-92d6-1626cfee8b33",
+            "client_turn_id": "b760f50a-b47f-4f96-ba40-18091a66246d",
+            "last_seen_response_id": "",
+            "debug": true
+          },
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "7adc6ab42eb042d6b9797d0bbcf59348",
+            "session_id": "r40-16ad1b2f-4af9-43aa-92d6-1626cfee8b33",
+            "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the controls for VALORANT\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings\n\nQuestion 2: what are the PC prices\nPC - 1 hour (1 people)\n- PSU students and staff: 0 THB\n- PSU alumni and students from other institutions: 25 THB\n- General adults: 70 THB\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "universal_intent": null,
+            "confidence": 0.9,
+            "latency_sec": 0.3121,
+            "wall_sec": 0.3297,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.3296,
+              "global_remaining_sec": 19.6704,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.6704,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "game_control_pc_valorant_01_move",
+                "url": "https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings"
+              },
+              {
+                "id": "service_fee_image_2026",
+                "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+              },
+              {
+                "id": "pc_service_fee_local_update_20260727",
+                "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.324,
+              "language": "en",
+              "language_quality": 0.676,
+              "should_review_intent": false,
+              "reason": "English character n-gram quality=0.676",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:31.714266+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:31.714266+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.001394,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 1.67
+            },
+            "context_resolution": {
+              "original_question": "What are the controls for VALORANT and what are the PC prices?",
+              "resolved_question": "What are the controls for VALORANT and what are the PC prices?",
+              "used_context": false,
+              "context_game": "VALORANT",
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "question_has_explicit_game",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "What are the controls for VALORANT and what are the PC prices?",
+              "resolved_question": "What are the controls for VALORANT and what are the PC prices?",
+              "normalized_query": "",
+              "query_variants": [],
+              "active_query": "What are the controls for VALORANT and what are the PC prices?",
+              "active_query_changed": false,
+              "trace": []
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "multi_question",
+                "operation": "multi_question_split",
+                "target": "",
+                "confidence": 0.92,
+                "method": "route"
+              },
+              "route": {
+                "category": "multi_question",
+                "intent": "multi_question_split",
+                "confidence": 0.92,
+                "answer_type": "summary",
+                "risk": "medium",
+                "reason": "split clear multi-intent question"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_pipeline_fallback",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:multi_question_splitter",
+                "confidence": 0.9,
+                "execution_step": "execute_pipeline_fallback",
+                "executed_capability": "pipeline.unknown",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [
+                  "controls_secondary_needs_manual_verify",
+                  "fact_answer_may_be_too_verbose"
+                ],
+                "evidence_count": 3,
+                "source_ids": [
+                  "game_control_pc_valorant_01_move",
+                  "service_fee_image_2026",
+                  "pc_service_fee_local_update_20260727"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch",
+                  "validation_warning"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": "pc",
+                "user_group": null,
+                "duration": null,
+                "price_intent": true
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "compound",
+                "tasks": [
+                  {
+                    "task_id": "task-1",
+                    "question": "What are the controls for VALORANT",
+                    "category": "games",
+                    "intent": "game_control_lookup",
+                    "mode": "pipeline:structured_game_controls_en",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 1
+                  },
+                  {
+                    "task_id": "task-2",
+                    "question": "what are the PC prices",
+                    "category": "service_fee",
+                    "intent": "service_fee_query",
+                    "mode": "pipeline:structured_service_fee_en",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 2
+                  }
+                ],
+                "expected_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "executed_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "answered_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "pending_task_ids": [],
+                "missing_task_ids": [],
+                "outcome": "answered_complete",
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": "pc",
+              "user_group": null,
+              "duration": null,
+              "price_intent": true,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "what are the controls for valorant and what are the pc prices?",
+                "language_hint": "en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "controls_secondary_needs_manual_verify",
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.02,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 18.3499,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3499,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 21.02,
+                  "elapsed_sec": 0.021,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0237,
+                  "global_remaining_sec": 18.3262,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3262,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.02,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0268,
+                  "global_remaining_sec": 18.3232,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3232,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the controls for VALORANT and what are the PC prices?",
+                  "candidate": "What are the controls for VALORANT and what are the PC prices?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=2",
+                "metadata": {
+                  "elapsed_ms": 18.61,
+                  "elapsed_sec": 0.0186,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0454,
+                  "global_remaining_sec": 18.3046,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3046,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 26.76,
+                  "parts": [
+                    "What are the controls for VALORANT",
+                    "what are the PC prices"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.36,
+                  "signals": [],
+                  "can_parallelize": true,
+                  "requires_planner": false,
+                  "max_workers": 2,
+                  "reason": "independent child operations"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "deterministic splitter produced standalone parts; planner skipped",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "bounded_parallel_candidate",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "profile": {
+                    "level": "simple",
+                    "score": 0.36,
+                    "signals": [],
+                    "can_parallelize": true,
+                    "requires_planner": false,
+                    "max_workers": 2,
+                    "reason": "independent child operations"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "What are the controls for VALORANT",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "what are the PC prices",
+                      "depends_on": []
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "bounded_parallel",
+                "confidence": 0.92,
+                "detail": "deterministic child preflight passed; child LLM paths disabled",
+                "metadata": {
+                  "children": 2,
+                  "max_workers": 2
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=2",
+                "metadata": {
+                  "elapsed_ms": 235.36,
+                  "elapsed_sec": 0.2354,
+                  "child_elapsed_sec": [
+                    0.168,
+                    0.1684
+                  ],
+                  "child_modes": [
+                    "pipeline:structured_game_controls_en",
+                    "pipeline:structured_service_fee_en"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 28.91,
+                  "elapsed_sec": 0.0289
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.54,
+                  "elapsed_sec": 0.0005
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=2",
+                "metadata": {
+                  "parts": [
+                    "What are the controls for VALORANT",
+                    "what are the PC prices"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "What are the controls for VALORANT",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.168,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "service_fee/service_fee_query",
+                "confidence": 0.9,
+                "detail": "what are the PC prices",
+                "metadata": {
+                  "mode": "pipeline:structured_service_fee_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.1684,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "record each requested child execution separately from factual correctness",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "compound",
+                  "tasks": [
+                    {
+                      "task_id": "task-1",
+                      "question": "What are the controls for VALORANT",
+                      "category": "games",
+                      "intent": "game_control_lookup",
+                      "mode": "pipeline:structured_game_controls_en",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 1
+                    },
+                    {
+                      "task_id": "task-2",
+                      "question": "what are the PC prices",
+                      "category": "service_fee",
+                      "intent": "service_fee_query",
+                      "mode": "pipeline:structured_service_fee_en",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 2
+                    }
+                  ],
+                  "expected_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "executed_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "answered_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "pending_task_ids": [],
+                  "missing_task_ids": [],
+                  "outcome": "answered_complete",
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 1.02,
+                  "elapsed_sec": 0.001,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 311.98,
+                  "total_elapsed_sec": 0.312
+                }
+              }
+            ],
+            "resolved_question": "What are the controls for VALORANT and what are the PC prices?",
+            "rule_coverage": null,
+            "client_turn_id": "b760f50a-b47f-4f96-ba40-18091a66246d",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "compound",
+              "tasks": [
+                {
+                  "task_id": "task-1",
+                  "question": "What are the controls for VALORANT",
+                  "category": "games",
+                  "intent": "game_control_lookup",
+                  "mode": "pipeline:structured_game_controls_en",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 1
+                },
+                {
+                  "task_id": "task-2",
+                  "question": "what are the PC prices",
+                  "category": "service_fee",
+                  "intent": "service_fee_query",
+                  "mode": "pipeline:structured_service_fee_en",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 2
+                }
+              ],
+              "expected_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "executed_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "answered_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "pending_task_ids": [],
+              "missing_task_ids": [],
+              "outcome": "answered_complete",
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "game_controls/control_lookup",
+                  "domain": "game_controls",
+                  "operation": "control_lookup",
+                  "targets": [
+                    "VALORANT"
+                  ],
+                  "offered_options": [],
+                  "query": "What are the controls for VALORANT",
+                  "price_task": null,
+                  "seed_question": "What are the controls for VALORANT",
+                  "mode": "pipeline:structured_game_controls_en",
+                  "route_category": "games",
+                  "route_intent": "game_control_lookup",
+                  "response_id": "7adc6ab42eb042d6b9797d0bbcf59348",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                },
+                {
+                  "schema_version": 1,
+                  "key": "service_fee/price_lookup",
+                  "domain": "service_fee",
+                  "operation": "price_lookup",
+                  "targets": [
+                    "pc"
+                  ],
+                  "offered_options": [],
+                  "query": "what are the PC prices",
+                  "price_task": {
+                    "task_id": "fee-1",
+                    "domain": "service_fee",
+                    "operation": "price_lookup",
+                    "targets": [
+                      "pc"
+                    ],
+                    "scope": {
+                      "entity_selection": "explicit",
+                      "detail_level": "package_rates"
+                    },
+                    "filters": {
+                      "customer_scope": "unspecified",
+                      "customer_group_ids": [],
+                      "duration_minutes": null,
+                      "people_count": null
+                    },
+                    "per_target_filters": {},
+                    "excluded_targets": [],
+                    "pending_slots": [],
+                    "offered_option_ids": [
+                      "pc",
+                      "ps5",
+                      "nintendo_switch",
+                      "cockpit",
+                      "vr"
+                    ],
+                    "provenance": {
+                      "operation": "explicit_user",
+                      "targets": "explicit_user",
+                      "filters": "explicit_user"
+                    }
+                  },
+                  "seed_question": "what are the PC prices",
+                  "mode": "pipeline:structured_service_fee_en",
+                  "route_category": "service_fee",
+                  "route_intent": "service_fee_query",
+                  "response_id": "7adc6ab42eb042d6b9797d0bbcf59348",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "game_controls/control_lookup",
+                "service_fee/price_lookup"
+              ],
+              "delivery": {
+                "b760f50a-b47f-4f96-ba40-18091a66246d": "prepared"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            },
+            "log_sinks": {
+              "status": "queued"
+            }
+          },
+          "elapsed_sec": 0.3361
+        }
+      ]
+    },
+    {
+      "id": "mixed-price-controls-en",
+      "kind": "selected_requests",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "expected_requests": true,
+        "no_dropped_parts": true,
+        "child_operations": true,
+        "no_missing_known_target": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the PC prices\nPC - 1 hour (1 people)\n- PSU students and staff: 0 THB\n- PSU alumni and students from other institutions: 25 THB\n- General adults: 70 THB\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)\n\nQuestion 2: what are the controls for VALORANT\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "latency": [
+        0.3076
+      ],
+      "records": [
+        {
+          "case_id": "mixed-price-controls-en",
+          "payload": {
+            "question": "What are the PC prices and what are the controls for VALORANT?",
+            "locale": "en",
+            "client_session_id": "r40-1ca55b96-27d1-4fd7-b179-bc5f2d5ab37b",
+            "client_turn_id": "8d19efde-1bf6-4c4f-bec2-86d034d4d3ea",
+            "last_seen_response_id": "",
+            "debug": true
+          },
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "cee5b79eb6bf4b888b02ccefa4b5f98a",
+            "session_id": "r40-1ca55b96-27d1-4fd7-b179-bc5f2d5ab37b",
+            "answer": "This question contains several topics. Here are the answers separately:\n\nQuestion 1: What are the PC prices\nPC - 1 hour (1 people)\n- PSU students and staff: 0 THB\n- PSU alumni and students from other institutions: 25 THB\n- General adults: 70 THB\nPrices are calculated deterministically from the Service Fee 2026 table.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png (original source in Thai)\n\nQuestion 2: what are the controls for VALORANT\nVALORANT controls:\n- W / A / S / D: Move\n- Left Shift: Walk\n- Space Bar: Jump\n- Left Ctrl: Crouch\n- Left Mouse Button: Fire\n- Right Mouse Button: Alternate Fire\n- R: Reload\n- 1 / 2 / 3: Equip weapons\n- 4: Equip/Use Spike\n- Q / E / C / X: Use abilities\n- F: Use Object\n- B: Open Armory\n- M: Open Map\n- Tab: Show Scoreboard\nThese controls come from a secondary guide and have not been checked against the studio's installed game and controller settings.\nSource: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "universal_intent": null,
+            "confidence": 0.9,
+            "latency_sec": 0.2684,
+            "wall_sec": 0.2849,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.2848,
+              "global_remaining_sec": 19.7152,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.7152,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "service_fee_image_2026",
+                "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+              },
+              {
+                "id": "pc_service_fee_local_update_20260727",
+                "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+              },
+              {
+                "id": "game_control_pc_valorant_01_move",
+                "url": "https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "en",
+              "detected": "en",
+              "effective": "en",
+              "confidence": 1.0,
+              "reason": "toggle_override_en;english_sentence_structure"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.3438,
+              "language": "en",
+              "language_quality": 0.6562,
+              "should_review_intent": false,
+              "reason": "English character n-gram quality=0.656",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:32.022202+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:32.022202+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.001394,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 1.778
+            },
+            "context_resolution": {
+              "original_question": "What are the PC prices and what are the controls for VALORANT?",
+              "resolved_question": "What are the PC prices and what are the controls for VALORANT?",
+              "used_context": false,
+              "context_game": "VALORANT",
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "question_has_explicit_game",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "What are the PC prices and what are the controls for VALORANT?",
+              "resolved_question": "What are the PC prices and what are the controls for VALORANT?",
+              "normalized_query": "",
+              "query_variants": [],
+              "active_query": "What are the PC prices and what are the controls for VALORANT?",
+              "active_query_changed": false,
+              "trace": []
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "multi_question",
+                "operation": "multi_question_split",
+                "target": "",
+                "confidence": 0.92,
+                "method": "route"
+              },
+              "route": {
+                "category": "multi_question",
+                "intent": "multi_question_split",
+                "confidence": 0.92,
+                "answer_type": "summary",
+                "risk": "medium",
+                "reason": "split clear multi-intent question"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_pipeline_fallback",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:multi_question_splitter",
+                "confidence": 0.9,
+                "execution_step": "execute_pipeline_fallback",
+                "executed_capability": "pipeline.unknown",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [
+                  "controls_secondary_needs_manual_verify",
+                  "fact_answer_may_be_too_verbose"
+                ],
+                "evidence_count": 3,
+                "source_ids": [
+                  "service_fee_image_2026",
+                  "pc_service_fee_local_update_20260727",
+                  "game_control_pc_valorant_01_move"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch",
+                  "validation_warning"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": "pc",
+                "user_group": null,
+                "duration": null,
+                "price_intent": true
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "compound",
+                "tasks": [
+                  {
+                    "task_id": "task-1",
+                    "question": "What are the PC prices",
+                    "category": "service_fee",
+                    "intent": "service_fee_query",
+                    "mode": "pipeline:structured_service_fee_en",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 2
+                  },
+                  {
+                    "task_id": "task-2",
+                    "question": "what are the controls for VALORANT",
+                    "category": "games",
+                    "intent": "game_control_lookup",
+                    "mode": "pipeline:structured_game_controls_en",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 1
+                  }
+                ],
+                "expected_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "executed_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "answered_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "pending_task_ids": [],
+                "missing_task_ids": [],
+                "outcome": "answered_complete",
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": "pc",
+              "user_group": null,
+              "duration": null,
+              "price_intent": true,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "what are the pc prices and what are the controls for valorant?",
+                "language_hint": "en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "controls_secondary_needs_manual_verify",
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0001,
+                  "global_remaining_sec": 18.3499,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3499,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 23.23,
+                  "elapsed_sec": 0.0232,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0307,
+                  "global_remaining_sec": 18.3192,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3192,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.02,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0333,
+                  "global_remaining_sec": 18.3166,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3166,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "en",
+                "confidence": 1.0,
+                "detail": "toggle_override_en;english_sentence_structure",
+                "metadata": {
+                  "requested": "en",
+                  "detected": "en",
+                  "effective": "en",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_en;english_sentence_structure"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "What are the PC prices and what are the controls for VALORANT?",
+                  "candidate": "What are the PC prices and what are the controls for VALORANT?",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=2",
+                "metadata": {
+                  "elapsed_ms": 15.8,
+                  "elapsed_sec": 0.0158,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0492,
+                  "global_remaining_sec": 18.3008,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3008,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 33.33,
+                  "parts": [
+                    "What are the PC prices",
+                    "what are the controls for VALORANT"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.36,
+                  "signals": [],
+                  "can_parallelize": true,
+                  "requires_planner": false,
+                  "max_workers": 2,
+                  "reason": "independent child operations"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "deterministic splitter produced standalone parts; planner skipped",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "bounded_parallel_candidate",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "profile": {
+                    "level": "simple",
+                    "score": 0.36,
+                    "signals": [],
+                    "can_parallelize": true,
+                    "requires_planner": false,
+                    "max_workers": 2,
+                    "reason": "independent child operations"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "What are the PC prices",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "what are the controls for VALORANT",
+                      "depends_on": []
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "bounded_parallel",
+                "confidence": 0.92,
+                "detail": "deterministic child preflight passed; child LLM paths disabled",
+                "metadata": {
+                  "children": 2,
+                  "max_workers": 2
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=2",
+                "metadata": {
+                  "elapsed_ms": 187.82,
+                  "elapsed_sec": 0.1878,
+                  "child_elapsed_sec": [
+                    0.0439,
+                    0.098
+                  ],
+                  "child_modes": [
+                    "pipeline:structured_service_fee_en",
+                    "pipeline:structured_game_controls_en"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 29.49,
+                  "elapsed_sec": 0.0295
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.39,
+                  "elapsed_sec": 0.0004
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=2",
+                "metadata": {
+                  "parts": [
+                    "What are the PC prices",
+                    "what are the controls for VALORANT"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "service_fee/service_fee_query",
+                "confidence": 0.9,
+                "detail": "What are the PC prices",
+                "metadata": {
+                  "mode": "pipeline:structured_service_fee_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.0439,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "what are the controls for VALORANT",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls_en",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.098,
+                  "universal_intent_method": "",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": ""
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "record each requested child execution separately from factual correctness",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "compound",
+                  "tasks": [
+                    {
+                      "task_id": "task-1",
+                      "question": "What are the PC prices",
+                      "category": "service_fee",
+                      "intent": "service_fee_query",
+                      "mode": "pipeline:structured_service_fee_en",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 2
+                    },
+                    {
+                      "task_id": "task-2",
+                      "question": "what are the controls for VALORANT",
+                      "category": "games",
+                      "intent": "game_control_lookup",
+                      "mode": "pipeline:structured_game_controls_en",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 1
+                    }
+                  ],
+                  "expected_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "executed_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "answered_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "pending_task_ids": [],
+                  "missing_task_ids": [],
+                  "outcome": "answered_complete",
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 0.91,
+                  "elapsed_sec": 0.0009,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 268.3,
+                  "total_elapsed_sec": 0.2683
+                }
+              }
+            ],
+            "resolved_question": "What are the PC prices and what are the controls for VALORANT?",
+            "rule_coverage": null,
+            "client_turn_id": "8d19efde-1bf6-4c4f-bec2-86d034d4d3ea",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "compound",
+              "tasks": [
+                {
+                  "task_id": "task-1",
+                  "question": "What are the PC prices",
+                  "category": "service_fee",
+                  "intent": "service_fee_query",
+                  "mode": "pipeline:structured_service_fee_en",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 2
+                },
+                {
+                  "task_id": "task-2",
+                  "question": "what are the controls for VALORANT",
+                  "category": "games",
+                  "intent": "game_control_lookup",
+                  "mode": "pipeline:structured_game_controls_en",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 1
+                }
+              ],
+              "expected_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "executed_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "answered_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "pending_task_ids": [],
+              "missing_task_ids": [],
+              "outcome": "answered_complete",
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "service_fee/price_lookup",
+                  "domain": "service_fee",
+                  "operation": "price_lookup",
+                  "targets": [
+                    "pc"
+                  ],
+                  "offered_options": [],
+                  "query": "What are the PC prices",
+                  "price_task": {
+                    "task_id": "fee-1",
+                    "domain": "service_fee",
+                    "operation": "price_lookup",
+                    "targets": [
+                      "pc"
+                    ],
+                    "scope": {
+                      "entity_selection": "explicit",
+                      "detail_level": "package_rates"
+                    },
+                    "filters": {
+                      "customer_scope": "unspecified",
+                      "customer_group_ids": [],
+                      "duration_minutes": null,
+                      "people_count": null
+                    },
+                    "per_target_filters": {},
+                    "excluded_targets": [],
+                    "pending_slots": [],
+                    "offered_option_ids": [
+                      "pc",
+                      "ps5",
+                      "nintendo_switch",
+                      "cockpit",
+                      "vr"
+                    ],
+                    "provenance": {
+                      "operation": "explicit_user",
+                      "targets": "explicit_user",
+                      "filters": "explicit_user"
+                    }
+                  },
+                  "seed_question": "What are the PC prices",
+                  "mode": "pipeline:structured_service_fee_en",
+                  "route_category": "service_fee",
+                  "route_intent": "service_fee_query",
+                  "response_id": "cee5b79eb6bf4b888b02ccefa4b5f98a",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                },
+                {
+                  "schema_version": 1,
+                  "key": "game_controls/control_lookup",
+                  "domain": "game_controls",
+                  "operation": "control_lookup",
+                  "targets": [
+                    "VALORANT"
+                  ],
+                  "offered_options": [],
+                  "query": "what are the controls for VALORANT",
+                  "price_task": null,
+                  "seed_question": "what are the controls for VALORANT",
+                  "mode": "pipeline:structured_game_controls_en",
+                  "route_category": "games",
+                  "route_intent": "game_control_lookup",
+                  "response_id": "cee5b79eb6bf4b888b02ccefa4b5f98a",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "service_fee/price_lookup",
+                "game_controls/control_lookup"
+              ],
+              "delivery": {
+                "8d19efde-1bf6-4c4f-bec2-86d034d4d3ea": "prepared"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            },
+            "log_sinks": {
+              "status": "queued"
+            }
+          },
+          "elapsed_sec": 0.3076
+        }
+      ]
+    },
+    {
+      "id": "mixed-controls-price-th",
+      "kind": "selected_requests",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "expected_requests": true,
+        "no_dropped_parts": true,
+        "child_operations": true,
+        "no_missing_known_target": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: VALORANT มีปุ่มอะไรบ้าง\nVALORANT มีข้อมูลปุ่มควบคุมดังนี้:\nPC\n•    W / A / S / D: เคลื่อนที่ - W เดินหน้า, A ไปซ้าย, S ถอยหลัง, D ไปขวา\n•    Left Shift: เดินช้า - ใช้เดินเงียบหรือเดินแบบควบคุมเสียง\n•    Space Bar: กระโดด - กระโดด\n•    Left Ctrl: ย่อตัว - ย่อตัวเพื่อลดระดับตัวละคร\n•    Left Mouse Button: ยิง - ยิงอาวุธหลัก\n•    Right Mouse Button: ยิง/เล็งแบบรอง - ใช้งานโหมดรองของอาวุธหรือเล็งตามชนิดอาวุธ\n•    R: รีโหลด - เปลี่ยนกระสุน\n•    1 / 2 / 3: เลือกอาวุธ - 1 อาวุธหลัก, 2 อาวุธรอง, 3 อาวุธระยะประชิด\n•    4: หยิบ/ใช้ Spike - ใช้กับ Spike เช่น วางหรือกู้ตามสถานการณ์\n•    Q / E / C / X: ใช้สกิล Agent - Q/E/C คือสกิลทั่วไป และ X คือ Ultimate\n•    F: โต้ตอบกับวัตถุ - ใช้โต้ตอบกับวัตถุในเกม\n•    B: เปิดร้านซื้ออาวุธ - เปิดหน้า Armory ในช่วงซื้อของ\n•    M: เปิดแผนที่ - เปิด/ปิดแผนที่\n•    Tab: ดูตารางคะแนน - กดค้างเพื่อดู scoreboard\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings\n\nคำถามที่ 2: PC ราคาเท่าไหร่\nราคา PC 1 ชั่วโมง (1 คน)\n•    PSU Student and Staff: 0 บาท\n•    PSU Alumni and General Student / นักศึกษาหรือนักเรียนต่างสถาบัน: 25 บาท\n•    General Adult / บุคคลทั่วไป: 70 บาท\nหมายเหตุข้อมูล PC: ราคา PC เพิ่มจาก local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "latency": [
+        0.513
+      ],
+      "records": [
+        {
+          "case_id": "mixed-controls-price-th",
+          "payload": {
+            "question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+            "locale": "th",
+            "client_session_id": "r40-66fed861-cd35-44db-b1a0-3b94c789d747",
+            "client_turn_id": "681d5d19-5d18-46d6-bed3-b3d060948b37",
+            "last_seen_response_id": "",
+            "debug": true
+          },
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "3d46e548b1c1459c89176b484c354cfe",
+            "session_id": "r40-66fed861-cd35-44db-b1a0-3b94c789d747",
+            "answer": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: VALORANT มีปุ่มอะไรบ้าง\nVALORANT มีข้อมูลปุ่มควบคุมดังนี้:\nPC\n•    W / A / S / D: เคลื่อนที่ - W เดินหน้า, A ไปซ้าย, S ถอยหลัง, D ไปขวา\n•    Left Shift: เดินช้า - ใช้เดินเงียบหรือเดินแบบควบคุมเสียง\n•    Space Bar: กระโดด - กระโดด\n•    Left Ctrl: ย่อตัว - ย่อตัวเพื่อลดระดับตัวละคร\n•    Left Mouse Button: ยิง - ยิงอาวุธหลัก\n•    Right Mouse Button: ยิง/เล็งแบบรอง - ใช้งานโหมดรองของอาวุธหรือเล็งตามชนิดอาวุธ\n•    R: รีโหลด - เปลี่ยนกระสุน\n•    1 / 2 / 3: เลือกอาวุธ - 1 อาวุธหลัก, 2 อาวุธรอง, 3 อาวุธระยะประชิด\n•    4: หยิบ/ใช้ Spike - ใช้กับ Spike เช่น วางหรือกู้ตามสถานการณ์\n•    Q / E / C / X: ใช้สกิล Agent - Q/E/C คือสกิลทั่วไป และ X คือ Ultimate\n•    F: โต้ตอบกับวัตถุ - ใช้โต้ตอบกับวัตถุในเกม\n•    B: เปิดร้านซื้ออาวุธ - เปิดหน้า Armory ในช่วงซื้อของ\n•    M: เปิดแผนที่ - เปิด/ปิดแผนที่\n•    Tab: ดูตารางคะแนน - กดค้างเพื่อดู scoreboard\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings\n\nคำถามที่ 2: PC ราคาเท่าไหร่\nราคา PC 1 ชั่วโมง (1 คน)\n•    PSU Student and Staff: 0 บาท\n•    PSU Alumni and General Student / นักศึกษาหรือนักเรียนต่างสถาบัน: 25 บาท\n•    General Adult / บุคคลทั่วไป: 70 บาท\nหมายเหตุข้อมูล PC: ราคา PC เพิ่มจาก local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "universal_intent": null,
+            "confidence": 0.96,
+            "latency_sec": 0.4963,
+            "wall_sec": 0.5076,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.5075,
+              "global_remaining_sec": 19.4925,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.4924,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "game_controls_valorant",
+                "url": "https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings"
+              },
+              {
+                "id": "service_fee_image_2026",
+                "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+              },
+              {
+                "id": "pc_service_fee_local_update_20260727",
+                "url": "local://service_fee/pc_price_update_20260727"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "th",
+              "detected": "mixed",
+              "effective": "th",
+              "confidence": 1.0,
+              "reason": "toggle_override_th;mixed_thai_function_words"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.199,
+              "language": "mixed",
+              "language_quality": 0.801,
+              "should_review_intent": false,
+              "reason": "Thai character n-gram quality=0.801",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:32.539326+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:32.539326+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.010664,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 0.754
+            },
+            "context_resolution": {
+              "original_question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+              "resolved_question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+              "used_context": false,
+              "context_game": "VALORANT",
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "question_has_explicit_game",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+              "resolved_question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+              "normalized_query": "",
+              "query_variants": [],
+              "active_query": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+              "active_query_changed": false,
+              "trace": []
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "multi_question",
+                "operation": "multi_question_split",
+                "target": "",
+                "confidence": 0.92,
+                "method": "route"
+              },
+              "route": {
+                "category": "multi_question",
+                "intent": "multi_question_split",
+                "confidence": 0.92,
+                "answer_type": "summary",
+                "risk": "medium",
+                "reason": "split clear multi-intent question"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_pipeline_fallback",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:multi_question_splitter",
+                "confidence": 0.96,
+                "execution_step": "execute_pipeline_fallback",
+                "executed_capability": "pipeline.unknown",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [
+                  "fact_answer_may_be_too_verbose"
+                ],
+                "evidence_count": 3,
+                "source_ids": [
+                  "game_controls_valorant",
+                  "service_fee_image_2026",
+                  "pc_service_fee_local_update_20260727"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch",
+                  "validation_warning"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": "pc",
+                "user_group": null,
+                "duration": null,
+                "price_intent": true
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "compound",
+                "tasks": [
+                  {
+                    "task_id": "task-1",
+                    "question": "VALORANT มีปุ่มอะไรบ้าง",
+                    "category": "games",
+                    "intent": "game_control_lookup",
+                    "mode": "pipeline:structured_game_controls",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 1
+                  },
+                  {
+                    "task_id": "task-2",
+                    "question": "PC ราคาเท่าไหร่",
+                    "category": "service_fee",
+                    "intent": "service_fee_query",
+                    "mode": "pipeline:deterministic_calculator_fast",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 2
+                  }
+                ],
+                "expected_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "executed_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "answered_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "pending_task_ids": [],
+                "missing_task_ids": [],
+                "outcome": "answered_complete",
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": "pc",
+              "user_group": null,
+              "duration": null,
+              "price_intent": true,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "valorant มีปุ่มอะไรบ้าง และ pc ราคาเท่าไหร่",
+                "language_hint": "mixed_th_en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.02,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 18.3499,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3499,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 11.91,
+                  "elapsed_sec": 0.0119,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0131,
+                  "global_remaining_sec": 18.3369,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3369,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.02,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0143,
+                  "global_remaining_sec": 18.3357,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3357,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "th",
+                "confidence": 1.0,
+                "detail": "toggle_override_th;mixed_thai_function_words",
+                "metadata": {
+                  "requested": "th",
+                  "detected": "mixed",
+                  "effective": "th",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_th;mixed_thai_function_words"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+                  "candidate": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=2",
+                "metadata": {
+                  "elapsed_ms": 17.8,
+                  "elapsed_sec": 0.0178,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0321,
+                  "global_remaining_sec": 18.3179,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3179,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 14.29,
+                  "parts": [
+                    "VALORANT มีปุ่มอะไรบ้าง",
+                    "PC ราคาเท่าไหร่"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.36,
+                  "signals": [],
+                  "can_parallelize": true,
+                  "requires_planner": false,
+                  "max_workers": 2,
+                  "reason": "independent child operations"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "deterministic splitter produced standalone parts; planner skipped",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "bounded_parallel_candidate",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "profile": {
+                    "level": "simple",
+                    "score": 0.36,
+                    "signals": [],
+                    "can_parallelize": true,
+                    "requires_planner": false,
+                    "max_workers": 2,
+                    "reason": "independent child operations"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "VALORANT มีปุ่มอะไรบ้าง",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "PC ราคาเท่าไหร่",
+                      "depends_on": []
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "bounded_parallel",
+                "confidence": 0.92,
+                "detail": "deterministic child preflight passed; child LLM paths disabled",
+                "metadata": {
+                  "children": 2,
+                  "max_workers": 2
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=2",
+                "metadata": {
+                  "elapsed_ms": 422.19,
+                  "elapsed_sec": 0.4222,
+                  "child_elapsed_sec": [
+                    0.386,
+                    0.2134
+                  ],
+                  "child_modes": [
+                    "pipeline:structured_game_controls",
+                    "pipeline:deterministic_calculator_fast"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 40.07,
+                  "elapsed_sec": 0.0401
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.45,
+                  "elapsed_sec": 0.0004
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=2",
+                "metadata": {
+                  "parts": [
+                    "VALORANT มีปุ่มอะไรบ้าง",
+                    "PC ราคาเท่าไหร่"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "VALORANT มีปุ่มอะไรบ้าง",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.386,
+                  "universal_intent_method": "heuristic",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": "game_controls/control"
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "service_fee/service_fee_query",
+                "confidence": 0.97,
+                "detail": "PC ราคาเท่าไหร่",
+                "metadata": {
+                  "mode": "pipeline:deterministic_calculator_fast",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.2134,
+                  "universal_intent_method": "heuristic",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": "service_fee/price_calculate"
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "record each requested child execution separately from factual correctness",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "compound",
+                  "tasks": [
+                    {
+                      "task_id": "task-1",
+                      "question": "VALORANT มีปุ่มอะไรบ้าง",
+                      "category": "games",
+                      "intent": "game_control_lookup",
+                      "mode": "pipeline:structured_game_controls",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 1
+                    },
+                    {
+                      "task_id": "task-2",
+                      "question": "PC ราคาเท่าไหร่",
+                      "category": "service_fee",
+                      "intent": "service_fee_query",
+                      "mode": "pipeline:deterministic_calculator_fast",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 2
+                    }
+                  ],
+                  "expected_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "executed_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "answered_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "pending_task_ids": [],
+                  "missing_task_ids": [],
+                  "outcome": "answered_complete",
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 0.87,
+                  "elapsed_sec": 0.0009,
+                  "format_response_style_ms": 0.4,
+                  "answer_language": "th",
+                  "total_elapsed_ms": 496.26,
+                  "total_elapsed_sec": 0.4963
+                }
+              }
+            ],
+            "resolved_question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+            "rule_coverage": null,
+            "client_turn_id": "681d5d19-5d18-46d6-bed3-b3d060948b37",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "compound",
+              "tasks": [
+                {
+                  "task_id": "task-1",
+                  "question": "VALORANT มีปุ่มอะไรบ้าง",
+                  "category": "games",
+                  "intent": "game_control_lookup",
+                  "mode": "pipeline:structured_game_controls",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 1
+                },
+                {
+                  "task_id": "task-2",
+                  "question": "PC ราคาเท่าไหร่",
+                  "category": "service_fee",
+                  "intent": "service_fee_query",
+                  "mode": "pipeline:deterministic_calculator_fast",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 2
+                }
+              ],
+              "expected_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "executed_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "answered_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "pending_task_ids": [],
+              "missing_task_ids": [],
+              "outcome": "answered_complete",
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "game_controls/control_lookup",
+                  "domain": "game_controls",
+                  "operation": "control_lookup",
+                  "targets": [
+                    "VALORANT"
+                  ],
+                  "offered_options": [],
+                  "query": "VALORANT มีปุ่มอะไรบ้าง",
+                  "price_task": null,
+                  "seed_question": "VALORANT มีปุ่มอะไรบ้าง",
+                  "mode": "pipeline:structured_game_controls",
+                  "route_category": "games",
+                  "route_intent": "game_control_lookup",
+                  "response_id": "3d46e548b1c1459c89176b484c354cfe",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                },
+                {
+                  "schema_version": 1,
+                  "key": "service_fee/price_lookup",
+                  "domain": "service_fee",
+                  "operation": "price_lookup",
+                  "targets": [
+                    "pc"
+                  ],
+                  "offered_options": [],
+                  "query": "PC ราคาเท่าไหร่",
+                  "price_task": {
+                    "task_id": "fee-1",
+                    "domain": "service_fee",
+                    "operation": "price_lookup",
+                    "targets": [
+                      "pc"
+                    ],
+                    "scope": {
+                      "entity_selection": "explicit",
+                      "detail_level": "package_rates"
+                    },
+                    "filters": {
+                      "customer_scope": "unspecified",
+                      "customer_group_ids": [],
+                      "duration_minutes": null,
+                      "people_count": null
+                    },
+                    "per_target_filters": {},
+                    "excluded_targets": [],
+                    "pending_slots": [],
+                    "offered_option_ids": [
+                      "pc",
+                      "ps5",
+                      "nintendo_switch",
+                      "cockpit",
+                      "vr"
+                    ],
+                    "provenance": {
+                      "operation": "explicit_user",
+                      "targets": "explicit_user",
+                      "filters": "explicit_user"
+                    }
+                  },
+                  "seed_question": "PC ราคาเท่าไหร่",
+                  "mode": "pipeline:deterministic_calculator_fast",
+                  "route_category": "service_fee",
+                  "route_intent": "service_fee_query",
+                  "response_id": "3d46e548b1c1459c89176b484c354cfe",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "game_controls/control_lookup",
+                "service_fee/price_lookup"
+              ],
+              "delivery": {
+                "681d5d19-5d18-46d6-bed3-b3d060948b37": "prepared"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            },
+            "log_sinks": {
+              "status": "queued"
+            }
+          },
+          "elapsed_sec": 0.513
+        }
+      ]
+    },
+    {
+      "id": "mixed-price-controls-th",
+      "kind": "selected_requests",
+      "passed": true,
+      "checks": {
+        "http_success": true,
+        "expected_requests": true,
+        "no_dropped_parts": true,
+        "child_operations": true,
+        "no_missing_known_target": true
+      },
+      "mode": "pipeline:multi_question_splitter",
+      "answer": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: PC ราคาเท่าไหร่\nราคา PC 1 ชั่วโมง (1 คน)\n•    PSU Student and Staff: 0 บาท\n•    PSU Alumni and General Student / นักศึกษาหรือนักเรียนต่างสถาบัน: 25 บาท\n•    General Adult / บุคคลทั่วไป: 70 บาท\nหมายเหตุข้อมูล PC: ราคา PC เพิ่มจาก local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\n\nคำถามที่ 2: VALORANT มีปุ่มอะไรบ้าง\nVALORANT มีข้อมูลปุ่มควบคุมดังนี้:\nPC\n•    W / A / S / D: เคลื่อนที่ - W เดินหน้า, A ไปซ้าย, S ถอยหลัง, D ไปขวา\n•    Left Shift: เดินช้า - ใช้เดินเงียบหรือเดินแบบควบคุมเสียง\n•    Space Bar: กระโดด - กระโดด\n•    Left Ctrl: ย่อตัว - ย่อตัวเพื่อลดระดับตัวละคร\n•    Left Mouse Button: ยิง - ยิงอาวุธหลัก\n•    Right Mouse Button: ยิง/เล็งแบบรอง - ใช้งานโหมดรองของอาวุธหรือเล็งตามชนิดอาวุธ\n•    R: รีโหลด - เปลี่ยนกระสุน\n•    1 / 2 / 3: เลือกอาวุธ - 1 อาวุธหลัก, 2 อาวุธรอง, 3 อาวุธระยะประชิด\n•    4: หยิบ/ใช้ Spike - ใช้กับ Spike เช่น วางหรือกู้ตามสถานการณ์\n•    Q / E / C / X: ใช้สกิล Agent - Q/E/C คือสกิลทั่วไป และ X คือ Ultimate\n•    F: โต้ตอบกับวัตถุ - ใช้โต้ตอบกับวัตถุในเกม\n•    B: เปิดร้านซื้ออาวุธ - เปิดหน้า Armory ในช่วงซื้อของ\n•    M: เปิดแผนที่ - เปิด/ปิดแผนที่\n•    Tab: ดูตารางคะแนน - กดค้างเพื่อดู scoreboard\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+      "latency": [
+        0.5016
+      ],
+      "records": [
+        {
+          "case_id": "mixed-price-controls-th",
+          "payload": {
+            "question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+            "locale": "th",
+            "client_session_id": "r40-554fdef8-2644-470f-a8a7-88db7d10edb2",
+            "client_turn_id": "6344cb0c-4d4e-4ca9-95f0-34664ae73350",
+            "last_seen_response_id": "",
+            "debug": true
+          },
+          "status": 200,
+          "response": {
+            "ok": true,
+            "request_id": "707566b035e743d18789f01c26f4a27c",
+            "session_id": "r40-554fdef8-2644-470f-a8a7-88db7d10edb2",
+            "answer": "คำถามนี้มีหลายเรื่อง ขอแยกตอบเป็นข้อ ๆ:\n\nคำถามที่ 1: PC ราคาเท่าไหร่\nราคา PC 1 ชั่วโมง (1 คน)\n•    PSU Student and Staff: 0 บาท\n•    PSU Alumni and General Student / นักศึกษาหรือนักเรียนต่างสถาบัน: 25 บาท\n•    General Adult / บุคคลทั่วไป: 70 บาท\nหมายเหตุข้อมูล PC: ราคา PC เพิ่มจาก local service fee update 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\n\nคำถามที่ 2: VALORANT มีปุ่มอะไรบ้าง\nVALORANT มีข้อมูลปุ่มควบคุมดังนี้:\nPC\n•    W / A / S / D: เคลื่อนที่ - W เดินหน้า, A ไปซ้าย, S ถอยหลัง, D ไปขวา\n•    Left Shift: เดินช้า - ใช้เดินเงียบหรือเดินแบบควบคุมเสียง\n•    Space Bar: กระโดด - กระโดด\n•    Left Ctrl: ย่อตัว - ย่อตัวเพื่อลดระดับตัวละคร\n•    Left Mouse Button: ยิง - ยิงอาวุธหลัก\n•    Right Mouse Button: ยิง/เล็งแบบรอง - ใช้งานโหมดรองของอาวุธหรือเล็งตามชนิดอาวุธ\n•    R: รีโหลด - เปลี่ยนกระสุน\n•    1 / 2 / 3: เลือกอาวุธ - 1 อาวุธหลัก, 2 อาวุธรอง, 3 อาวุธระยะประชิด\n•    4: หยิบ/ใช้ Spike - ใช้กับ Spike เช่น วางหรือกู้ตามสถานการณ์\n•    Q / E / C / X: ใช้สกิล Agent - Q/E/C คือสกิลทั่วไป และ X คือ Ultimate\n•    F: โต้ตอบกับวัตถุ - ใช้โต้ตอบกับวัตถุในเกม\n•    B: เปิดร้านซื้ออาวุธ - เปิดหน้า Armory ในช่วงซื้อของ\n•    M: เปิดแผนที่ - เปิด/ปิดแผนที่\n•    Tab: ดูตารางคะแนน - กดค้างเพื่อดู scoreboard\nหมายเหตุ: ข้อมูลปุ่มจากแหล่งรองนี้ยังไม่ได้ตรวจยืนยันกับเกมและเครื่องที่ศูนย์ใช้อยู่จริง การตั้งค่าปุ่มอาจต่างจากรายการนี้\nแหล่งข้อมูล: https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings",
+            "mode": "pipeline:multi_question_splitter",
+            "route_category": "multi_question",
+            "route_intent": "multi_question_split",
+            "universal_intent": null,
+            "confidence": 0.96,
+            "latency_sec": 0.4783,
+            "wall_sec": 0.495,
+            "deadline": {
+              "global_timeout_enabled": true,
+              "global_timeout_sec": 20.0,
+              "global_elapsed_sec": 0.495,
+              "global_remaining_sec": 19.505,
+              "finalizer_reserve_sec": 1.0,
+              "work_remaining_sec": 18.505,
+              "timing_status": "running"
+            },
+            "timing_status": "completed",
+            "timed_out": false,
+            "timeout_stage": "",
+            "retryable": false,
+            "worker_id": 0,
+            "sources": [
+              {
+                "id": "service_fee_image_2026",
+                "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+              },
+              {
+                "id": "pc_service_fee_local_update_20260727",
+                "url": "local://service_fee/pc_price_update_20260727"
+              },
+              {
+                "id": "game_controls_valorant",
+                "url": "https://www.shacknews.com/article/117434/valorant-pc-controls-and-keybindings"
+              }
+            ],
+            "validation_ok": true,
+            "language": {
+              "requested": "th",
+              "detected": "mixed",
+              "effective": "th",
+              "confidence": 1.0,
+              "reason": "toggle_override_th;mixed_thai_function_words"
+            },
+            "experimental_rag_fallback": false,
+            "experimental_allow_llm": true,
+            "input_recovery": {
+              "score": 0.2092,
+              "language": "mixed",
+              "language_quality": 0.7908,
+              "should_review_intent": false,
+              "reason": "Thai character n-gram quality=0.791",
+              "action": "continue"
+            },
+            "server_date": {
+              "iso": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:33.042242+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "calendar": {
+              "date": "2026-10-06",
+              "label": "06/10/2026 (วันอังคาร)",
+              "weekday": "วันอังคาร",
+              "time": "14:52",
+              "datetime_iso": "2026-10-06T14:52:33.042242+07:00",
+              "timezone": "Asia/Bangkok",
+              "service_slot": {
+                "date": "2026-10-06",
+                "time": "14:52",
+                "weekday": "วันอังคาร",
+                "timezone": "Asia/Bangkok",
+                "status": "open",
+                "playable": true,
+                "slot": {
+                  "code": "afternoon",
+                  "label": "Afternoon",
+                  "start": "13:00",
+                  "end": "16:00",
+                  "time_range": "13:00-16:00",
+                  "state": "open",
+                  "note": "เปิดให้บริการ"
+                },
+                "next_open_slot": null,
+                "reason": "open",
+                "note": "เปิดให้บริการ",
+                "source": "reservation_schedule"
+              },
+              "service_closure": null,
+              "thai_holidays": [],
+              "upcoming_thai_holidays": [
+                {
+                  "date": "2026-10-13",
+                  "title": "วันนวมินทรมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-16",
+                  "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+                  "type": "bank_holiday_bangkok",
+                  "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+                  "source": "Bank of Thailand Financial Institutions Holidays 2026",
+                  "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+                },
+                {
+                  "date": "2026-10-23",
+                  "title": "วันปิยมหาราช",
+                  "type": "national_holiday",
+                  "note": "วันหยุดประจำปีของไทย",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-10-31",
+                  "title": "วันฮาโลวีน",
+                  "type": "observance",
+                  "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                },
+                {
+                  "date": "2026-12-05",
+                  "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+                  "type": "national_holiday",
+                  "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+                  "source": "Time and Date Thailand holidays 2026",
+                  "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+                }
+              ]
+            },
+            "input_quality": {
+              "action": "continue",
+              "detected_action": "continue",
+              "applied_action": "continue",
+              "should_retype": false,
+              "flags": [],
+              "layout_score": 0.010664,
+              "repeat_score": 0.0,
+              "guard_status": "passed",
+              "guard_mode": "enforce",
+              "repeat_policy": "warn_and_continue",
+              "profile_version": "keyboard-profile-v1:2a863a4176572043",
+              "guard_elapsed_ms": 0.595
+            },
+            "context_resolution": {
+              "original_question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+              "resolved_question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+              "used_context": false,
+              "context_game": "VALORANT",
+              "context_domain": null,
+              "context_operation": null,
+              "context_topic": null,
+              "reason": "question_has_explicit_game",
+              "selected_requests": [],
+              "selection_errors": []
+            },
+            "query_debug": {
+              "original_question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+              "resolved_question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+              "normalized_query": "",
+              "query_variants": [],
+              "active_query": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+              "active_query_changed": false,
+              "trace": []
+            },
+            "decision_artifact": {
+              "intent": {
+                "domain": "multi_question",
+                "operation": "multi_question_split",
+                "target": "",
+                "confidence": 0.92,
+                "method": "route"
+              },
+              "route": {
+                "category": "multi_question",
+                "intent": "multi_question_split",
+                "confidence": 0.92,
+                "answer_type": "summary",
+                "risk": "medium",
+                "reason": "split clear multi-intent question"
+              },
+              "tool_router": null,
+              "selected_candidate": null,
+              "candidates": [],
+              "rejected": [],
+              "policy": {},
+              "execution_plan": [
+                "normalize_and_extract_entities",
+                "route_and_resolve_universal_intent",
+                "generate_capability_candidates",
+                "apply_policy_and_rank",
+                "apply_tool_preconditions",
+                "execute_pipeline_fallback",
+                "format_validate_and_record"
+              ],
+              "final": {
+                "mode": "pipeline:multi_question_splitter",
+                "confidence": 0.96,
+                "execution_step": "execute_pipeline_fallback",
+                "executed_capability": "pipeline.unknown",
+                "selected_matches_execution": false,
+                "validation_ok": true,
+                "validation_errors": [],
+                "validation_warnings": [
+                  "fact_answer_may_be_too_verbose"
+                ],
+                "evidence_count": 3,
+                "source_ids": [
+                  "service_fee_image_2026",
+                  "pc_service_fee_local_update_20260727",
+                  "game_controls_valorant"
+                ]
+              },
+              "production_metrics": {
+                "policy_version": "correctness_control_flow_v2",
+                "outcome": "answered",
+                "semantic_outcome": null,
+                "temporal_validity": null,
+                "adequacy_status": null,
+                "quality_gate_status": "pass",
+                "candidate_margin": null,
+                "selection_status": "",
+                "ambiguity_decision": "",
+                "repair_attempted": false,
+                "repair_recovered": false,
+                "llm_call_count": 0,
+                "requires_shadow_review": true,
+                "shadow_review_reasons": [
+                  "selected_execution_mismatch",
+                  "validation_warning"
+                ]
+              },
+              "entities": {
+                "day": null,
+                "time_slots": [],
+                "service": "pc",
+                "user_group": null,
+                "duration": null,
+                "price_intent": true
+              },
+              "structured_tool": null,
+              "tool_preconditions": [],
+              "candidate_execution": [],
+              "validation": null,
+              "llm_calls": [],
+              "conversation_contract": {},
+              "score_semantics": "heuristic ranking / routing confidence, not a calibrated correctness probability",
+              "task_answer_contract": {
+                "schema_version": 1,
+                "kind": "compound",
+                "tasks": [
+                  {
+                    "task_id": "task-1",
+                    "question": "PC ราคาเท่าไหร่",
+                    "category": "service_fee",
+                    "intent": "service_fee_query",
+                    "mode": "pipeline:deterministic_calculator_fast",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 2
+                  },
+                  {
+                    "task_id": "task-2",
+                    "question": "VALORANT มีปุ่มอะไรบ้าง",
+                    "category": "games",
+                    "intent": "game_control_lookup",
+                    "mode": "pipeline:structured_game_controls",
+                    "status": "answered",
+                    "validation_ok": true,
+                    "source_count": 1
+                  }
+                ],
+                "expected_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "executed_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "answered_task_ids": [
+                  "task-1",
+                  "task-2"
+                ],
+                "pending_task_ids": [],
+                "missing_task_ids": [],
+                "outcome": "answered_complete",
+                "coverage_meaning": "execution_status_not_factual_accuracy"
+              }
+            },
+            "entities": {
+              "day": null,
+              "time_slots": [],
+              "service": "pc",
+              "user_group": null,
+              "duration": null,
+              "price_intent": true,
+              "short_answer": false,
+              "comparison_intent": false,
+              "raw": {
+                "normalized_query": "pc ราคาเท่าไหร่ และ valorant มีปุ่มอะไรบ้าง",
+                "language_hint": "mixed_th_en"
+              }
+            },
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "fact_answer_may_be_too_verbose"
+              ]
+            },
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.03,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0001,
+                  "global_remaining_sec": 18.3499,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3499,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 45.38,
+                  "elapsed_sec": 0.0454,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0477,
+                  "global_remaining_sec": 18.3023,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3023,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "canonical_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.01,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0479,
+                  "global_remaining_sec": 18.3021,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.3021,
+                  "timing_status": "running"
+                }
+              },
+              {
+                "stage": "locale_resolution",
+                "decision": "th",
+                "confidence": 1.0,
+                "detail": "toggle_override_th;mixed_thai_function_words",
+                "metadata": {
+                  "requested": "th",
+                  "detected": "mixed",
+                  "effective": "th",
+                  "confidence": 1.0,
+                  "reason": "toggle_override_th;mixed_thai_function_words"
+                }
+              },
+              {
+                "stage": "intent_cue_preflight",
+                "decision": "unchanged",
+                "confidence": 1.0,
+                "detail": "bounded task cues; offsets refer to each intermediate input",
+                "metadata": {
+                  "raw": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+                  "candidate": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+                  "recoveries": [],
+                  "span_budget": 3,
+                  "edit_budget": 4
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "split_multi_question",
+                "confidence": 1.0,
+                "detail": "parts=2",
+                "metadata": {
+                  "elapsed_ms": 21.49,
+                  "elapsed_sec": 0.0215,
+                  "global_timeout_enabled": true,
+                  "global_timeout_sec": 18.35,
+                  "global_elapsed_sec": 0.0694,
+                  "global_remaining_sec": 18.2806,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 17.2806,
+                  "timing_status": "running",
+                  "entry_to_split_ms": 47.88,
+                  "parts": [
+                    "PC ราคาเท่าไหร่",
+                    "VALORANT มีปุ่มอะไรบ้าง"
+                  ],
+                  "competition_rule_query": false
+                }
+              },
+              {
+                "stage": "compound_complexity",
+                "decision": "simple",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "level": "simple",
+                  "score": 0.36,
+                  "signals": [],
+                  "can_parallelize": true,
+                  "requires_planner": false,
+                  "max_workers": 2,
+                  "reason": "independent child operations"
+                }
+              },
+              {
+                "stage": "query_planner",
+                "decision": "skipped",
+                "confidence": 0.0,
+                "detail": "deterministic splitter produced standalone parts; planner skipped",
+                "metadata": {
+                  "method": "gated",
+                  "llm_attempted": false,
+                  "allow_llm": true
+                }
+              },
+              {
+                "stage": "compound_plan",
+                "decision": "bounded_parallel_candidate",
+                "confidence": 0.36,
+                "detail": "independent child operations",
+                "metadata": {
+                  "profile": {
+                    "level": "simple",
+                    "score": 0.36,
+                    "signals": [],
+                    "can_parallelize": true,
+                    "requires_planner": false,
+                    "max_workers": 2,
+                    "reason": "independent child operations"
+                  },
+                  "nodes": [
+                    {
+                      "index": 1,
+                      "question": "PC ราคาเท่าไหร่",
+                      "depends_on": []
+                    },
+                    {
+                      "index": 2,
+                      "question": "VALORANT มีปุ่มอะไรบ้าง",
+                      "depends_on": []
+                    }
+                  ]
+                }
+              },
+              {
+                "stage": "compound_child_execution",
+                "decision": "bounded_parallel",
+                "confidence": 0.92,
+                "detail": "deterministic child preflight passed; child LLM paths disabled",
+                "metadata": {
+                  "children": 2,
+                  "max_workers": 2
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_children_total",
+                "confidence": 1.0,
+                "detail": "children=2",
+                "metadata": {
+                  "elapsed_ms": 366.9,
+                  "elapsed_sec": 0.3669,
+                  "child_elapsed_sec": [
+                    0.1927,
+                    0.3086
+                  ],
+                  "child_modes": [
+                    "pipeline:deterministic_calculator_fast",
+                    "pipeline:structured_game_controls"
+                  ]
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_preprocess",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 39.53,
+                  "elapsed_sec": 0.0395
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "multi_question_parent_entities",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.36,
+                  "elapsed_sec": 0.0004
+                }
+              },
+              {
+                "stage": "multi_question",
+                "decision": "split",
+                "confidence": 0.92,
+                "detail": "parts=2",
+                "metadata": {
+                  "parts": [
+                    "PC ราคาเท่าไหร่",
+                    "VALORANT มีปุ่มอะไรบ้าง"
+                  ]
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "service_fee/service_fee_query",
+                "confidence": 0.97,
+                "detail": "PC ราคาเท่าไหร่",
+                "metadata": {
+                  "mode": "pipeline:deterministic_calculator_fast",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.1927,
+                  "universal_intent_method": "heuristic",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": "service_fee/price_calculate"
+                }
+              },
+              {
+                "stage": "multi_question_child",
+                "decision": "games/game_control_lookup",
+                "confidence": 0.96,
+                "detail": "VALORANT มีปุ่มอะไรบ้าง",
+                "metadata": {
+                  "mode": "pipeline:structured_game_controls",
+                  "answer_type": "fact",
+                  "validation_ok": true,
+                  "validation_errors": [],
+                  "elapsed": 0.3086,
+                  "universal_intent_method": "heuristic",
+                  "universal_intent_llm_attempted": false,
+                  "universal_intent": "game_controls/control"
+                }
+              },
+              {
+                "stage": "task_answer_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "record each requested child execution separately from factual correctness",
+                "metadata": {
+                  "schema_version": 1,
+                  "kind": "compound",
+                  "tasks": [
+                    {
+                      "task_id": "task-1",
+                      "question": "PC ราคาเท่าไหร่",
+                      "category": "service_fee",
+                      "intent": "service_fee_query",
+                      "mode": "pipeline:deterministic_calculator_fast",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 2
+                    },
+                    {
+                      "task_id": "task-2",
+                      "question": "VALORANT มีปุ่มอะไรบ้าง",
+                      "category": "games",
+                      "intent": "game_control_lookup",
+                      "mode": "pipeline:structured_game_controls",
+                      "status": "answered",
+                      "validation_ok": true,
+                      "source_count": 1
+                    }
+                  ],
+                  "expected_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "executed_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "answered_task_ids": [
+                    "task-1",
+                    "task-2"
+                  ],
+                  "pending_task_ids": [],
+                  "missing_task_ids": [],
+                  "outcome": "answered_complete",
+                  "coverage_meaning": "execution_status_not_factual_accuracy"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:multi_question_splitter",
+                "metadata": {
+                  "elapsed_ms": 1.62,
+                  "elapsed_sec": 0.0016,
+                  "format_response_style_ms": 0.45,
+                  "answer_language": "th",
+                  "total_elapsed_ms": 478.24,
+                  "total_elapsed_sec": 0.4782
+                }
+              }
+            ],
+            "resolved_question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+            "rule_coverage": null,
+            "client_turn_id": "6344cb0c-4d4e-4ca9-95f0-34664ae73350",
+            "request_plan": null,
+            "task_contract": {
+              "schema_version": 1,
+              "kind": "compound",
+              "tasks": [
+                {
+                  "task_id": "task-1",
+                  "question": "PC ราคาเท่าไหร่",
+                  "category": "service_fee",
+                  "intent": "service_fee_query",
+                  "mode": "pipeline:deterministic_calculator_fast",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 2
+                },
+                {
+                  "task_id": "task-2",
+                  "question": "VALORANT มีปุ่มอะไรบ้าง",
+                  "category": "games",
+                  "intent": "game_control_lookup",
+                  "mode": "pipeline:structured_game_controls",
+                  "status": "answered",
+                  "validation_ok": true,
+                  "source_count": 1
+                }
+              ],
+              "expected_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "executed_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "answered_task_ids": [
+                "task-1",
+                "task-2"
+              ],
+              "pending_task_ids": [],
+              "missing_task_ids": [],
+              "outcome": "answered_complete",
+              "coverage_meaning": "execution_status_not_factual_accuracy"
+            },
+            "conversation_outcome": "answered_complete",
+            "coverage": {},
+            "conversation_state": {
+              "schema_version": 1,
+              "revision": 1,
+              "active_task": null,
+              "task_memory_schema_version": 1,
+              "requested_tasks": [
+                {
+                  "schema_version": 1,
+                  "key": "service_fee/price_lookup",
+                  "domain": "service_fee",
+                  "operation": "price_lookup",
+                  "targets": [
+                    "pc"
+                  ],
+                  "offered_options": [],
+                  "query": "PC ราคาเท่าไหร่",
+                  "price_task": {
+                    "task_id": "fee-1",
+                    "domain": "service_fee",
+                    "operation": "price_lookup",
+                    "targets": [
+                      "pc"
+                    ],
+                    "scope": {
+                      "entity_selection": "explicit",
+                      "detail_level": "package_rates"
+                    },
+                    "filters": {
+                      "customer_scope": "unspecified",
+                      "customer_group_ids": [],
+                      "duration_minutes": null,
+                      "people_count": null
+                    },
+                    "per_target_filters": {},
+                    "excluded_targets": [],
+                    "pending_slots": [],
+                    "offered_option_ids": [
+                      "pc",
+                      "ps5",
+                      "nintendo_switch",
+                      "cockpit",
+                      "vr"
+                    ],
+                    "provenance": {
+                      "operation": "explicit_user",
+                      "targets": "explicit_user",
+                      "filters": "explicit_user"
+                    }
+                  },
+                  "seed_question": "PC ราคาเท่าไหร่",
+                  "mode": "pipeline:deterministic_calculator_fast",
+                  "route_category": "service_fee",
+                  "route_intent": "service_fee_query",
+                  "response_id": "707566b035e743d18789f01c26f4a27c",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                },
+                {
+                  "schema_version": 1,
+                  "key": "game_controls/control_lookup",
+                  "domain": "game_controls",
+                  "operation": "control_lookup",
+                  "targets": [
+                    "VALORANT"
+                  ],
+                  "offered_options": [],
+                  "query": "VALORANT มีปุ่มอะไรบ้าง",
+                  "price_task": null,
+                  "seed_question": "VALORANT มีปุ่มอะไรบ้าง",
+                  "mode": "pipeline:structured_game_controls",
+                  "route_category": "games",
+                  "route_intent": "game_control_lookup",
+                  "response_id": "707566b035e743d18789f01c26f4a27c",
+                  "status": "answered",
+                  "provenance": "server_completed_user_request",
+                  "acknowledged": false
+                }
+              ],
+              "current_task_keys": [
+                "service_fee/price_lookup",
+                "game_controls/control_lookup"
+              ],
+              "delivery": {
+                "6344cb0c-4d4e-4ca9-95f0-34664ae73350": "prepared"
+              },
+              "storage": "parent_memory",
+              "survives_server_restart": false
+            },
+            "log_sinks": {
+              "status": "queued"
+            }
+          },
+          "elapsed_sec": 0.5016
+        }
+      ]
+    }
+  ]
+}

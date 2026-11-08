@@ -1,0 +1,133 @@
+{
+  "question_key": "05a5f2936ac3bb678c0d07355485024155fdec4b7ca38fd9b39126e8b1042421",
+  "example_sha256": "4ed0cf189d3436ae01ddd5b28b3656cb59b537af985db37e04155e027409e478",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One payment-deadline question; answer-briefly is presentation style.",
+      "raw_quotes": [
+        "Could you please help me with this: How long do I have to pay after booking? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy is retained rather than making or verifying a payment.",
+      "raw_quotes": [
+        "Could you please help me with this: How long do I have to pay after booking? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "pay is the requested action and after booking the local condition.",
+      "raw_quotes": [
+        "Could you please help me with this: How long do I have to pay after booking? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No booking ID, actual payment state or bank details are inherited.",
+      "raw_quotes": [
+        "Could you please help me with this: How long do I have to pay after booking? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "How long asks a deadline; it does not establish that this customer already paid or booked.",
+      "raw_quotes": [
+        "Could you please help me with this: How long do I have to pay after booking? Please answer briefly"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "English payment_deadline_natural and Thai payment_10_minutes records distinguish immediate payment and cancellation after the recorded interval.",
+      "raw_quotes": [
+        "Could you please help me with this: How long do I have to pay after booking? Please answer briefly"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_en_payment_deadline_natural",
+        "migrated_faq_rule_payment_10_minutes"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No10-minute value, cancellation verdict or banking instruction becomes a model target.",
+      "raw_quotes": [
+        "Could you please help me with this: How long do I have to pay after booking? Please answer briefly"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 126,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: How long do I have to pay after booking? Please answer briefly",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: How long do I have to pay after booking? Please answer briefly",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "pay",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "condition",
+            "quote": "after booking",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_en_payment_deadline_natural": {
+      "revision": 4,
+      "record_sha256": "9b81d70647987df45b5b3140b52ac90fc554b5e1d5f47e632a2304b751249ddf"
+    },
+    "migrated_faq_rule_payment_10_minutes": {
+      "revision": 4,
+      "record_sha256": "46f3b420fb920f1adf923c8ceac4173ab0962ffb6f9ea423d80a647f90f87e3a"
+    }
+  }
+}

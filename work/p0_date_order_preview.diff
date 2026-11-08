@@ -1,0 +1,15 @@
+--- a/app/booking/live_status.py
++++ b/app/booking/live_status.py
+@@ -277,9 +277,10 @@
+             payload = json.loads(raw.decode("utf-8"))
+             if not isinstance(payload, dict):
+                 raise ValueError("booking dashboard returned a non-object payload")
++            returned_date = str(payload.get("date") or "")
++            if returned_date != selected_date:
++                raise ValueError(f"booking dashboard returned date {returned_date!r}, expected {selected_date!r}")
+             snapshot = _snapshot_from_payload(payload)
+-            if snapshot.date != selected_date:
+-                raise ValueError(f"booking dashboard returned date {snapshot.date!r}, expected {selected_date!r}")
+         except (OSError, TimeoutError, URLError, ValueError, json.JSONDecodeError) as exc:
+             snapshot = _unavailable(selected_date, f"{type(exc).__name__}: {exc}")
+         except Exception as exc:  # pragma: no cover - safe boundary around external adapter.

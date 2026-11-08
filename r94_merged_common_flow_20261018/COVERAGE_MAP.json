@@ -1,0 +1,534 @@
+{
+  "status": "design_reviewed_not_implemented",
+  "source_problem_catalog": "r90_full_flow_analysis_20261018/PROBLEM_CATALOG_REVIEWED.json",
+  "source_kind_catalog": "r78_web_session_check_20261016/system/app/knowledge/common/catalog.json",
+  "problems": [
+    {
+      "id": "P01",
+      "title": "เปลี่ยน data format พร้อมเปลี่ยนเส้นทาง interpreter โดยไม่ย้าย behavioral contract ครบ",
+      "design_mapping": [
+        "คืน behavioral contracts ก่อน common early return โดยแยก facts",
+        "S0–S2: routing/capability map และ trace"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P02",
+      "title": "การฟื้นคำผิดของ task cue ไม่ได้ถูกเรียกเหมือนเดิม",
+      "design_mapping": [
+        "task typo recovery ร่วมกับ entity recovery แบบแยกหน้าที่",
+        "S1: edits/protected spans/meaningful task evidence"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P03",
+      "title": "Exact entity ถูกเข้าใจผิดว่าเข้าใจคำถามแล้ว",
+      "design_mapping": [
+        "entity exact ไม่เท่ากับ task understood",
+        "S2–S3: independently recorded task acceptance"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P04",
+      "title": "Regex/priority ของเดิมไม่ได้กลายเป็นความหมายของaliasesโดยอัตโนมัติ",
+      "design_mapping": [
+        "แยก pure intent helpers จาก regex/loader dependencies",
+        "S0–S2: dependency audit; no per-record handler"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P05",
+      "title": "Candidate recall และ independent-topic anchor ปิดทางก่อน LLM เห็น source",
+      "design_mapping": [
+        "task-compatible candidate recall โดยไม่เสีย independent topic",
+        "S2–S3: candidate/rejection logs + source-recall cases"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P06",
+      "title": "LLM schema ผ่าน แต่ semantic guard ปฏิเสธเพราะ lexical intent ยังไม่รู้จัก",
+      "design_mapping": [
+        "semantic acceptance ไม่ขึ้นกับ lexical cue เดิมอย่างเดียว",
+        "S2: accepted paraphrases + rejected wrong plans"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P07",
+      "title": "LLM เลือก field กว้างหรือผิดหน้าที่ แม้ JSON ถูกต้อง",
+      "design_mapping": [
+        "จำกัด LLM task/fields/roles และตรวจ meaningful coverage",
+        "S2: schema/semantic decisions แยก"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P08",
+      "title": "คำถามผสมมีส่วนขาด แล้วคำตอบที่มีหลักฐานถูกทิ้งทั้งก้อน",
+      "design_mapping": [
+        "independent partial answer และ dependent task graph",
+        "S2/S4/S5: covered/missing needs แสดงตรงจริง"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P09",
+      "title": "ระดับ Zone/Service/Resource และ relation projection ยังไม่ตรงกับคำถามบางแบบ",
+      "design_mapping": [
+        "zone/service/resource/equipment output granularity",
+        "S3/S5: relation path/identity/cardinality evidence"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P10",
+      "title": "การผูกกลุ่มราคา หน่วยเวลา และบริการยังต้องแยกจากการงดตอบเพราะราคาเก่า",
+      "design_mapping": [
+        "service/audience/duration/units/billing แยก validity",
+        "S4: slot plan + calculation trace"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P11",
+      "title": "ราคาเหมาอ่านได้แล้ว แต่ไม่ใช่ทุกเงื่อนไขการเช่ามีนโยบายให้ตอบ",
+      "design_mapping": [
+        "rental จาก package; conditions unknown ไม่แต่ง",
+        "S4: package inputs/terms/missing facts"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P12",
+      "title": "ข้อมูลเกมมีอยู่แล้ว แต่ overview/description operation ยังไม่ครอบคลุมรูปประโยค",
+      "design_mapping": [
+        "overview/how-to ทุก records ใน task ที่รองรับ",
+        "S3: clean/noisy/held-out/new-record evidence"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P13",
+      "title": "ปุ่มและวิธีเล่น: action/mode mapping กับ completeness ไม่ใช่แค่ชื่อปุ่มปรากฏ",
+      "design_mapping": [
+        "controls action/input/preset/platform และ source completeness",
+        "S3: binding/limitations/missing-action checks"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P14",
+      "title": "กติกาแข่งขัน: เล่มถูกไม่ได้แปลว่าเลือก proposition/ข้อยกเว้นครบ",
+      "design_mapping": [
+        "rule propositions/dependencies/edition/compare",
+        "S5: source clause coverage + semantic translation review"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P15",
+      "title": "Open / bookable / Maintenance ยังมีความขัดแย้งใน metadata ที่ต้องแยกความหมาย",
+      "design_mapping": [
+        "open/bookable/maintenance แยกความหมาย",
+        "S5: status source และ conflicting fields แยก"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P16",
+      "title": "วันปิดพิเศษ วันหยุด และวันที่อ้างอิงต้องมี precedence ที่สม่ำเสมอ",
+      "design_mapping": [
+        "local date/closure scope/precedence",
+        "S5: time boundary/override/conflict evidence"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P17",
+      "title": "สถานะจองถูกจำลอง unavailable ในชุดใหญ่ จึงห้ามตีความว่า live จริงล่มหรือจองผิด",
+      "design_mapping": [
+        "controlled live-unavailable ไม่เท่ากับ live ผิด",
+        "S0/S5/S7: fixture/live results คนละรายงาน"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P18",
+      "title": "ประวัติมาถึงแล้ว แต่ short follow-up ยังไม่กลายเป็น task ที่ตอบได้",
+      "design_mapping": [
+        "short follow-up เติม pending task ไม่เริ่มหัวข้อใหม่",
+        "S1/S2: multi-turn delivered-state evidence"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P19",
+      "title": "Qualification และ unknown policy ต้องไม่ถูกแทนด้วยคำตอบใกล้เคียง",
+      "design_mapping": [
+        "qualifier/action-specific policies + precise unknown",
+        "S4: neighboring policy negatives"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P20",
+      "title": "ภาษาอังกฤษ: metadata, ค่าที่ขาด, proper names และคำแปลต้องแยกกัน",
+      "design_mapping": [
+        "English understanding/source/render/review แยก",
+        "ทุกช่วง/S6: invariants/localization lineage"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P21",
+      "title": "Output ยังเผยชื่อ field ภายในหรือ label ที่ไม่ช่วยตอบคำถาม",
+      "design_mapping": [
+        "task renderer แทน internal field menu/dump",
+        "S3–S5: answer body/diagnostics separation"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P22",
+      "title": "Validation/score ดูดีไม่ได้รับรองว่าเข้าใจเจตนาถูก",
+      "design_mapping": [
+        "validation ไม่ใช้ confidence หรือ keyword ผ่านแทน meaning",
+        "S2/S7: acceptance reason + per-need correctness"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P23",
+      "title": "Model transport, JSON/schema, binding และคำตอบต้องวัดแยก",
+      "design_mapping": [
+        "transport/body/JSON/semantic/final correctness คนละ metric",
+        "S0/S7: model audit และ content reports"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P24",
+      "title": "Bug ฝั่งเดิม: ownership_blocked ไม่อยู่ใน scope ของ retrieve_curated",
+      "design_mapping": [
+        "ไม่ดึง legacy retrieve_curated ที่มี ownership_blocked bug มาทั้งก้อน",
+        "S0/S2: audited pure helpers, no legacy loader fallback"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P25",
+      "title": "ข้อมูลหมดอายุ: คะแนนเดิมดีขึ้นได้จากการตอบค่าที่ระบบใหม่ไม่ควรยืนยัน",
+      "design_mapping": [
+        "expired/historical/current แยกตามเวลาที่ถาม",
+        "S4/S7: validity-aware outcome ไม่เปลี่ยน source dates"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P26",
+      "title": "Draft preview ไม่ใช่ production authority หรือ owner approval",
+      "design_mapping": [
+        "migration draft ไม่ใช่ published/owner approval",
+        "S0/S6: provider/release/publication identity"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P27",
+      "title": "Data-only extensibility ยังจำกัดด้วย vocabulary, relation และ runtime contract",
+      "design_mapping": [
+        "data-only onboarding ใน kinds/tasks เดิม",
+        "S3–S6: unseen records, create/edit/withdraw lifecycle"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P28",
+      "title": "คะแนน strict ถูกผูก route/mode/source IDs เดิม",
+      "design_mapping": [
+        "protocol route/mode/source IDs ไม่ใช่ content score",
+        "S7: separate raw strict table"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P29",
+      "title": "Literal checker มีทั้ง false mismatch และเงื่อนไขที่อ่อนเกินกว่าจะยืนยันคำตอบถูก",
+      "design_mapping": [
+        "keyword อ่อน/exact clause แข็งต้อง review แยก",
+        "S7: raw results retained + semantic labels/case notes"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P30",
+      "title": "ชุดเฉพาะจุดผ่าน ไม่ได้แทน distribution ของ full corpus",
+      "design_mapping": [
+        "targeted pass ไม่แทน distribution",
+        "ทุกช่วง/S7: development/held-out/sample/full scopes ชัด"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P31",
+      "title": "Root cause บางข้อระบุไม่ได้จาก final answer อย่างเดียว ต้องรักษา rejected plan และ phase timing",
+      "design_mapping": [
+        "retained rejected plans และ phase timing",
+        "S0 เป็นต้นไป: trace completeness"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P32",
+      "title": "Latency และ concurrency มี queue หลายชั้น ไม่ใช่เปิด LLM แล้วตอบพร้อมกันได้ทุกคำขอ",
+      "design_mapping": [
+        "shared deadline/model admission/queue/capacity",
+        "S0/S2/S7: no uncontrolled fan-out; latency/queue audits"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P33",
+      "title": "Unknown/conflicted fields ไม่ใช่หลักฐานว่าข้อมูลหายทั้งหมด และบางข้อไม่ต้องถามคนใหม่",
+      "design_mapping": [
+        "unknown/conflicted เฉพาะ field ไม่ถือว่าข้อมูลทั้งหมดหาย",
+        "S2/S6: readiness/result reasons ต่อ need"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P34",
+      "title": "Archive comparison ไม่ใช่ controlled experiment ของ schema อย่างเดียว",
+      "design_mapping": [
+        "archive comparison ไม่ใช่ schema-only experiment",
+        "S7: matched cohort/reference clock/build/data report"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P35",
+      "title": "ติดตั้ง R78 แล้ว ไม่ได้แปลว่า portable package/เครื่องอื่นมีการแก้ล่าสุดครบ",
+      "design_mapping": [
+        "installed R78 กับ portable เป็นคนละ artifact",
+        "S7: package build/data/model manifest และ launcher identity"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P36",
+      "title": "Input guard ตรวจ layout/repeat ได้บางชนิด แต่ไม่ได้แก้เจตนาทั้งประโยค",
+      "design_mapping": [
+        "input layout/repeat guard ไม่ใช่ NLU ทั้งประโยค",
+        "S1: guard correction candidates ผ่าน task checks"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    },
+    {
+      "id": "P37",
+      "title": "Owner preview กับแชทจริงใช้ dispatcher/authority surface ต่างกัน",
+      "design_mapping": [
+        "preview/public core semantics ร่วม, authority/capabilities ต่างชัด",
+        "S6: same task result under equivalent provider, public envelope checked"
+      ],
+      "implementation_status": "not_completed_by_R94_document_work"
+    }
+  ],
+  "kinds": [
+    {
+      "kind": "center",
+      "design_mapping": [
+        "operator/overview/address/map/building/floor",
+        "operator, description, address/building/floor/map_url/timezone"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "contact",
+      "design_mapping": [
+        "ติดต่อเรื่องใด/ช่องทาง/เวลาตอบ",
+        "purpose, channel/value, office_hours"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "facility",
+      "design_mapping": [
+        "ที่จอดรถ/ที่นั่งพัก/เงื่อนไขเข้าถึง",
+        "location, usage_conditions, accessibility"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "zone",
+      "design_mapping": [
+        "หมวดพื้นที่/ทรัพยากรในโซน/ตำแหน่ง",
+        "name/location, reverse resource/service/package refs"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "equipment_model",
+      "design_mapping": [
+        "explain/specs/usage/list via resource",
+        "device_type, specifications/units, usage"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "resource",
+      "design_mapping": [
+        "เครื่องใด/ความจุ/อุปกรณ์/สถานะกายภาพ",
+        "zone_id, equipment_model_ids, capacity_persons, physical_pool_key, operational_status"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "service",
+      "design_mapping": [
+        "บริการ/รอบ/ผู้เล่น/เครื่องที่ใช้",
+        "resource_ids, session_minutes, occupancy_minutes, platform/capacity, booking_product_key"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "game",
+      "design_mapping": [
+        "overview/genre/how-to/description",
+        "title/edition, summary/genre/how_to_play, supported_platforms, scope/source listing"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "game_service",
+      "design_mapping": [
+        "ศูนย์มีเกมนี้ให้เล่นที่ไหน/ติดตั้งที่เครื่องใด",
+        "game_id/service_id, offered/installed_resource_ids, account_policy_id"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "game_mode",
+      "design_mapping": [
+        "เล่นด้วยกันกี่คน/โหมดใด",
+        "players_min/max, platform, network_requirement, studio_supported"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "control_set",
+      "design_mapping": [
+        "action/button/input/preset/version",
+        "bindings, game_id/platform/input_device/preset, limitations/source_coverage"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "audience",
+      "design_mapping": [
+        "ใครใช้ได้/หลักฐาน/เลือกกลุ่มราคา",
+        "eligibility, required_proofs, linked rates/packages"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "rate",
+      "design_mapping": [
+        "quote/table/compare/budget",
+        "service_id/audience_id, amount_minor/currency/unit/duration_minutes, calculation_rule"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "rental_package",
+      "design_mapping": [
+        "ราคาเหมา/รวมอะไร/เงื่อนไข",
+        "zone_ids/audience_id, period_label/duration_minutes, amount_minor, equipment_included/terms"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "schedule",
+      "design_mapping": [
+        "วันเปิด/จอง/maintenance",
+        "timezone/weekday/zone_ids, open/bookable/maintenance periods"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "closure",
+      "design_mapping": [
+        "วันปิดพิเศษ/เวลา override",
+        "local_date/zone_ids/state, periods/reason/resolution_policy_id"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "policy",
+      "design_mapping": [
+        "permission/prohibition/exception/consequence",
+        "subject/decision/conditions_all/exceptions/consequence/procedure_id"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "procedure",
+      "design_mapping": [
+        "ขั้นตอน/เอกสาร/กำหนดเวลา/ผล",
+        "preconditions/steps/required_documents/deadline_minutes/outcome"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "competition",
+      "design_mapping": [
+        "รายการ/เกม/edition/division/coverage",
+        "game_id/event_name/division/rulebook_release/supersedes_id"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "competition_rule",
+      "design_mapping": [
+        "whole book/facet/proposition/compare",
+        "competition_id/section_number/text/facets/depends_on_ids/completeness/source_order"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "news",
+      "design_mapping": [
+        "ข่าว/กิจกรรม/กำหนดการ/สมัคร",
+        "title/body, event_start/end/audience_ids/contact_id/registration_url"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "person",
+      "design_mapping": [
+        "บุคลากร/หน้าที่/ทีม/ช่องทางสาธารณะ",
+        "display_name/role/team/affiliation/period/public_scope/public_contact_id"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "faq",
+      "design_mapping": [
+        "คำตอบตามหัวข้อ/ขอบเขต/related facts",
+        "question/answer, related_ids/topic/scope_note/query_profile"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    },
+    {
+      "kind": "live_binding",
+      "design_mapping": [
+        "สถานะสดตาม mapping",
+        "service_id/provider/external_resource_key/physical_pool_key/status_mapping/timezone/freshness_policy"
+      ],
+      "runtime_coverage_status": "target_requires_verification"
+    }
+  ]
+}

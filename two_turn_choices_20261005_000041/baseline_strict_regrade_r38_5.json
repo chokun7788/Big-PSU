@@ -1,0 +1,986 @@
+{
+  "raw": "api_8093_000042.jsonl",
+  "conversations": 36,
+  "requests": 72,
+  "passed": 23,
+  "results": [
+    {
+      "case": {
+        "id": "th-price-PC",
+        "locale": "th",
+        "initial": "อยากรู้ราคาของบุคคลภายนอก",
+        "choice": "PC",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "PC"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "ค่าบริการ PC บุคคลภายนอก",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+    },
+    {
+      "case": {
+        "id": "th-price-PS5",
+        "locale": "th",
+        "initial": "อยากรู้ราคาของบุคคลภายนอก",
+        "choice": "PS5",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "PlayStation 5"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "ค่าบริการ PlayStation 5 บุคคลภายนอก",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPlayStation 5 — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 150 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "th-price-Nintendo",
+        "locale": "th",
+        "initial": "อยากรู้ราคาของบุคคลภายนอก",
+        "choice": "Nintendo",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "Nintendo Switch"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "ค่าบริการ Nintendo Switch บุคคลภายนอก",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "th-price-Cockpit",
+        "locale": "th",
+        "initial": "อยากรู้ราคาของบุคคลภายนอก",
+        "choice": "Cockpit",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "Cockpit"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "ค่าบริการ Cockpit บุคคลภายนอก",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nCockpit — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 200 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "th-price-VR",
+        "locale": "th",
+        "initial": "อยากรู้ราคาของบุคคลภายนอก",
+        "choice": "VR",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "VR"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "ค่าบริการ VR บุคคลภายนอก",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "th-rules-CS2",
+        "locale": "th",
+        "initial": "ขอรายละเอียดกติกาการแข่งขัน",
+        "choice": "CS2",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "Counter-Strike"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "ขอรายละเอียดกติกาการแข่งขัน Counter-Strike 2",
+      "answer": "กติกา Counter-Strike 2: รายละเอียดจากเอกสารที่บันทึกไว้ (แสดงแล้ว 8/56 ส่วน)\n\n•    ข้อมูลทั่วไป (General Information)\n\n•    ขอบเขตการบังคับใช้ กฎระเบียบนี้ใช้กับผู้เล่น ทีม และเจ้าหน้าที่ทุกคนที่เข้าร่วมการแข่งขัน CS2 อย่างเป็นทางการที่จัดโดย PSU Esports Studio - Phuket\n\n•    เวอร์ชันของเกม การแข่งขันทั้งหมดจะใช้เวอร์ชันล่าสุดของ CS2 บนแพลตฟอร์ม Steam ห้ามใช้การดัดแปลงตัวเกมที่ไม่ได้รับอนุญาตโดยเด็ดขาด\n\n•    ภาษา ภาษาทางการของการแข่งขันคือ ภาษาไทย การสื่อสาร การประท้วง และการรายงานผลทั้งหมดต้องใช้ภาษาไทย เว้นแต่จะระบุไว้เป็นอย่างอื่น\n\n•    การจับฉลากและตารางเวลา\n\n•    การแข่งขันจะแข่งขันทั้งหมด 1 วัน แข่งขัน ณ PSU Esports Studio - Phuket มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตภูเก็ต\n\n•    การสื่อสาร ผู้เข้าร่วมทุกคนต้องใช้เซิร์ฟเวอร์ Discord ที่ทางศูนย์เป็นผู้กำหนด\n\n•    ข้อจำกัด\n\nยังเหลือ 48 ส่วน พิมพ์ “ต่อ” เพื่อดูหน้าถัดไปครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_cs2_psu_phuket_2026"
+    },
+    {
+      "case": {
+        "id": "th-rules-RoV",
+        "locale": "th",
+        "initial": "ขอรายละเอียดกติกาการแข่งขัน",
+        "choice": "RoV",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "RoV"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "ขอรายละเอียดกติกาการแข่งขัน Arena of Valor (RoV)",
+      "answer": "กติกา Arena of Valor (RoV): รายละเอียดจากเอกสารที่บันทึกไว้ (แสดงแล้ว 5/12 ส่วน)\n\nกติกาการแข่งขัน Blueket Games 2025\nรายการอีสปอร์ต\nเกม Arena of Valor (RoV)\n\nประเภททีมชาย\n\n•    กำหนดการแข่งขัน\n1.1. แข่งขันออฟไลน์ วันที่ 11 กันยายน 2568\n· เวลา 8.00-8.30 ลงทะเบียน\n· เวลา 8.30-8.40 แบ่งสายการแข่งขัน\n· เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3\n· เวลา 10.00-11.30 รอบรองชนะเลิศ คู่ที่ 1 แข่งแบบ Single Elimination BO3\n· เวลา 12.30-14.00 รอบรองชนะเลิศ คู่ที่ 2 แข่งแบบ Single Elimination BO3\n· เวลา 14.00-15.30 รอบชิงอันดับที่ 3 แข่งแบบ Single Elimination BO3\n· เวลา 15.30-17.00 รอบชิงชนะเลิศ แข่งแบบ Single Elimination BO3\n\n•    สถานที่แข่งขัน\n2.1. PSU Esports Studio – Phuket (อาคาร 5 ชั้น 1)\n\n•    รูปแบบการแข่งขัน\n3.1. แข่งแบบออฟไลน์\n3.2. แข่ง Best of 3 (BO3) ทุกรอบ\n\nยังเหลือ 7 ส่วน พิมพ์ “ต่อ” เพื่อดูหน้าถัดไปครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_rov_blueket_2025_men"
+    },
+    {
+      "case": {
+        "id": "th-rules-TEKKEN 8",
+        "locale": "th",
+        "initial": "ขอรายละเอียดกติกาการแข่งขัน",
+        "choice": "TEKKEN 8",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "TEKKEN"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "ขอรายละเอียดกติกาการแข่งขัน Tekken 8",
+      "answer": "กติกา Tekken 8: รายละเอียดจากเอกสารที่บันทึกไว้ (แสดงแล้ว 7/7 ส่วน)\n\nกติกาการแข่งขัน\n•    แข่งขันแบบ ออฟไลน์ (Offline)\n•    ใช้เครื่องเกม PlayStation 5\n•    แข่งขันแบบ เดี่ยว (1v1)\n•    รูปแบบการแข่งขัน:\n•    FT2: ผู้ชนะคือผู้ที่ชนะครบ 2 เกมก่อน\n•    ในแต่ละเกมใช้กติกา R3 (แข่ง 3 รอบต่อเกม) และ 60S (จำกัดเวลา 60 วินาทีต่อรอบ)\n•    หากเสมอกันที่ 1-1 จะต้องแข่งขัน เกมตัดสิน\n\nตัวละครและการตั้งค่า\n•    สามารถเลือก ตัวละครใดก็ได้ (ยกเว้น ตัวละคร DLC)\n•    ห้าม ปรับแต่งตัวละคร ทุกกรณี (เช่น ชุด, ทรงผม, เอฟเฟกต์การต่อสู้, ออร่า ฯลฯ)\n•    ต้องใช้ สกินมาตรฐาน เท่านั้น\n•    อนุญาตให้ใช้ ปุ่ม Assist หรือระบบช่วยเหลือพิเศษ\n•    ห้ามใช้ Bug หรือ Glitch ที่ส่งผลให้เกิดความได้เปรียบ\n•    เมื่อเริ่มเกมแล้ว ห้ามหยุดเกม ด้วยเหตุผลใด ๆ\n•    หากมีการกดหยุดเกมโดยเจตนา จะถูก ปรับแพ้ 1 รอบทันที\n\nการตั้งค่าเกม\n•    จำนวนรอบต่อเกม (Round): 3\n•    เวลาแข่งขันต่อรอบ (Timer): 60 วินาที\n•    Advantage: No advantage\n•    Stage: Random\n\nมารยาทในการแข่งขัน\n•    ห้ามแสดงพฤติกรรมที่ขาดน้ำใจนักกีฬา เช่น การเยาะเย้ย ถากถาง หรือแสดงความไม่สุภาพทั้งทางวาจาและการกระทำต่อผู้อื่น ผู้ที่ฝ่าฝืนจะถูกปรับแพ้ทันทีโดยไม่มีข้อยกเว้น\n•    ผู้เข้าแข่งขันต้องให้เกียรติผู้ตัดสินและผู้เข้าแข่งขันคนอื่น ห้ามแสดงพฤติกรรมดูถูกหรือไม่ให้เกียรติในทุกกรณี ผู้ที่ฝ่าฝืนจะถูกปรับแพ้ทันทีโดยไม่มีข้อยกเว้น\n\nข้อตกลงและข้อปฏิบัติ\n•    ผู้เข้าแข่งขันต้องยอมรับและปฏิบัติตามกฎ กติกา และคำตัดสินของกรรมการโดยไม่มีเงื่อนไข\n•    ผู้จัดมีสิทธิ์ปรับเปลี่ยนกฎการแข่งขันได้ตลอดเวลาโดยไม่ต้องแจ้งให้ทราบล่วงหน้า\n•    คำตัดสินของกรรมการถือเป็นที่สิ้นสุด\n•    กรรมการสามารถพิจารณาเปลี่ยนแปลงคำตัดสินเพื่อให้เกิดความยุติธรรมตามความเหมาะสม\n\nการหยุดเกม\n•    ห้ามออกจากเกมก่อนจบการแข่งขัน ยกเว้นได้รับอนุญาตจากกรรมการ\n•    หากออกจากเกมโดยไม่ได้รับอนุญาต จะถูกปรับแพ้ทันที\n•    การกดหยุดเกม (Pause) ทำได้เมื่อผู้เล่นทุกคนยินยอม และมีเหตุผลที่เหมาะสม เช่น อุปกรณ์ขัดข้องหรือเหตุฉุกเฉิน\n•    หากกดหยุดเกมโดยไม่จำเป็น จะได้รับโทษเช่นเดียวกับการออกจากเกมก่อนจบ\n\nการแก้ปัญหาข้อพิพาท\n•    หากเกิดปัญหาใด ๆ ต้องแจ้งผู้จัดการแข่งขันทันที\n•    ในกรณีเกิดข้อโต้แย้งหรือการประท้วง คำตัดสินของผู้ดูแลหรือกรรมการจะถือเป็นที่สิ้นสุด\nหมายเหตุ: ทางผู้จัดการแข่งขันขอสงวนสิทธิ์ในการเปลี่ยนแปลงแก้ไขกฎระเบียบโดยไม่ต้องแจ้งให้ทราบล่วงหน้า\nแสดงครบส่วนที่อ่านได้ของเอกสารที่บันทึกไว้แล้ว ไม่ได้ยืนยันกติกาของรายการใหม่ครับ\nเอกสารมีเงื่อนไขการหยุดเกมที่ขัดกัน ต้องให้ผู้จัดยืนยันการใช้เงื่อนไขครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_tekken8_psu_esports"
+    },
+    {
+      "case": {
+        "id": "th-rules-VALORANT",
+        "locale": "th",
+        "initial": "ขอรายละเอียดกติกาการแข่งขัน",
+        "choice": "VALORANT",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "VALORANT"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "ขอรายละเอียดกติกาการแข่งขัน VALORANT",
+      "answer": "กติกา VALORANT: รายละเอียดจากเอกสารที่บันทึกไว้ (แสดงแล้ว 8/25 ส่วน)\n\nพื้นที่การแข่งขันและกฎระเบียบ\n•    จำนวนบุคลากร ในช่วงเตรียมตัว (Match Prep) มีผู้เล่นได้ไม่เกิน 6 คน\n•    อุปกรณ์อิเล็กทรอนิกส์ ห้ามนำโทรศัพท์มือถือ, แท็บเล็ต หรือสมาร์ทวอทช์ เข้าไปในพื้นที่แข่ง จนกว่าจะจบแมตช์\n•    เอกสารและโน้ต ผู้เล่นห้ามนำโน้ตหรือเอกสารเข้าไป แต่ หัวหน้าทีม สามารถนำเข้าไปได้ และต้องให้เอกสารแก่กรรมการก่อนการแข่งขันทุกครั้ง\n•    อาหารและเครื่องดื่ม อนุญาตเฉพาะน้ำดื่มในภาชนะที่ปิดสนิทและหมากฝรั่งเท่านั้น\nกระบวนการแข่งขัน\n\nขั้นตอนตั้งแต่ก่อนเริ่มเกมจนถึงการเลือกตัวละคร\n•    เวลาการรายงานตัว ต้องมาถึงสนามแข่งไม่น้อยกว่า 30 นาที ก่อนเวลาแข่ง\n•    ข้อจำกัดเนื้อหาใหม่\n•    เอเจนท์ใหม่ จะถูกจำกัดห้ามใช้ประมาณ 2 สัปดาห์ หลังเปิดให้เล่นในโหมด Competitive\n•    แผนที่ใหม่ จะถูกจำกัดห้ามใช้ประมาณ 4 สัปดาห์ หลังเปิดให้เล่นในโหมด Competitive\n•    การตั้งค่าเกม (Settings)\n•    ผู้เล่นต้อง ปิด (OFF) การแสดงผลเลือด (Blood) และศพ (Bodies)\n•    ห้ามแสดงกราฟ FPS หรือ Latency ระหว่างการแข่งขัน\n•    การเลือกแผนที่ (Map Pool): ประกอบด้วย 7 แผนที่ตามที่กำหนด ได้แก่\n•    Abyss\n•    Ascent\n•    Bind\n•    Corrode\n•    Haven\n•    Lotus\n•    Sunset\n•    การเลือกฝั่ง\n•    ใช้วิธีการโยนเหรียญ\n•    การ Ban map\n•    แบนจนเหลือ 3 แผนที่\n\nกระบวนการหลังจบแมตช์\n•    การบันทึกผล เจ้าหน้าที่จะยืนยัน และบันทึกผลการแข่งทันที\n•    การปรับแพ้ (Forfeiture) หากมีการปรับแพ้ ผลการแข่งในแผนที่นั้นจะถูกบันทึกเป็น 13-0\nการหยุดเกม\n\nการหยุดเกมแบ่งออกเป็น 3 ประเภทหลัก เพื่อเหตุผลที่แตกต่างกัน\n\n•    เวลานอกทางยุทธวิธี (Tactical Timeout)\n•    ขอได้ 2 ครั้งต่อแผนที่ ในรอบปกติ (24 รอบแรก) ครั้งละ 60 วินาที\n•    เมื่อเข้าสู่ช่วงต่อเวลา (Overtime) จะได้เพิ่มอีกทีมละ 1 ครั้ง โดยที่โควตาจากรอบปกติจะไม่ถูกนำมาทบ\n\n•    การหยุดเกมทางเทคนิค (Technical Pause)\n•    ใช้เมื่อมีปัญหาอุปกรณ์ขัดข้อง, หลุดจากการเชื่อมต่อ หรือปัญหาซอฟต์แวร์\n•    ห้ามผู้เล่นสื่อสารกัน (ทั้งเสียงและข้อความ) เว้นแต่ได้รับอนุญาต\n\n•    การหยุดกรณีฉุกเฉิน (Player Emergency Pause)\n•    ขอได้ 1 ครั้งต่อแผนที่\n•    รวมเวลาทั้งหมดไม่เกิน 10 นาที ต่อหนึ่งแมตช์ หากเกินเวลาผู้เล่นรายนั้นอาจหมดสิทธิ์แข่งต่อและต้องใช้ตัวสำรองแทน\nกฎเกี่ยวกับบั๊ก\nบั๊กคือข้อผิดพลาดในเกมที่ทำให้เกิดผลลัพธ์ที่ไม่ตั้งใจ โดยแบ่งประเภทเพื่อกำหนดแนวทางปฏิบัติ ดังนี้\n•    Play Through Bug บั๊กที่ไม่ส่งผลกระทบต่อความยุติธรรมอย่างมีนัยสำคัญ ผู้เล่นต้องเล่นต่อไปและไม่สามารถขอ Challenge ได้\n•    Major Bug บั๊กที่ส่งผลกระทบต่อการเล่นหรือกลไกเกมอย่างมากและไม่มีทางแก้ไขเฉพาะหน้า ทีมสามารถขอ Challenge เพื่อตรวจสอบได้\n•    Game Breaking Bug บั๊กที่ทำลายความยุติธรรมของรอบนั้นจนไม่สามารถตัดสินผลแพ้ชนะได้\n•    การย้อนรอบ (Round Rollback)\n•    หากเกิดบั๊กก่อนที่จะมีการทำดาเมจใส่กัน เจ้าหน้าที่อาจย้อนรอบให้ได้\n•    หากมีการทำดาเมจไปแล้ว จะไม่มีการย้อนรอบยกเว้นผ่านกระบวนการ Challenge\n•    หากเป็น Game Breaking Bug เจ้าหน้าที่จะสั่งย้อนรอบไปยังจุดเริ่มต้นของรอบนั้นทันที\nการใช้ช่องโหว่ (Exploit Adjudication)\n\nการใช้บั๊กที่เกิดจากตัวผู้เล่นเองเพื่อสร้างความได้เปรียบที่ไม่ได้ตั้งใจถือเป็นความผิด\n•    การใช้สกิลเอเจนท์\n•    ห้ามวางกล้อง Cypher ในจุดที่มองไม่เห็นหรือทำลายไม่ได้ผ่านการทะลุ Texture ของแผนที่\n•    ห้ามใช้สกิลในพื้นที่นอกขอบเขตแผนที่ (Out of boundaries) เพื่อหาข้อมูลหรือสร้างความได้เปรียบ\n•    ข้อยกเว้นพิเศษ สกิล ZERO/POINT ของ KAY/O สามารถใช้ภายนอกแผนที่หรือจุดที่ทำลายไม่ได้ได้ แต่ตัวมีดห้ามพุ่งทะลุ Texture ที่ควรจะเป็นของแข็ง\n•    การกระโดดต่อตัว ห้ามใช้ตัวละครเพื่อนร่วมทีมเพื่อกระโดดไปยังจุดที่สูงเกินกว่าระยะกระโดดปกติ\nบทลงโทษ\nเจ้าหน้าที่จะพิจารณาโทษตามเจตนา (Intent) ผลกระทบ (Impact)\n\nยังเหลือ 17 ส่วน พิมพ์ “ต่อ” เพื่อดูหน้าถัดไปครับ\nแหล่งข้อมูล: local://competition_rules/competition_rules_valorant_psu_phuket_2026"
+    },
+    {
+      "case": {
+        "id": "th-controls-VALORANT",
+        "locale": "th",
+        "initial": "ขอดูปุ่มควบคุมเกม",
+        "choice": "VALORANT",
+        "expected_category": "game_control",
+        "expected_contains": [
+          "VALORANT"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": false,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:game_control_missing_game_context",
+      "second_mode": "pipeline:structured_game_detail",
+      "second_intent": "game_detail_lookup",
+      "resolved_question": "VALORANT",
+      "answer": "VALORANT: VALORANT คือเกมยิงเชิงกลยุทธ์ที่ผู้เล่นเลือก Agent ที่มีสกิลเฉพาะ แล้วเล่นเป็นฝ่ายบุก/รับในแต่ละรอบ\nแนวเกม: เกมยิง Tactical FPS แบบทีม 5v5\nวิธีเล่นโดยสรุป: ฝ่ายบุกต้องวาง Spike ส่วนฝ่ายรับต้องป้องกันพื้นที่หรือกู้ Spike การเล่นเน้นการเล็ง การสื่อสาร การใช้สกิล และการเล่นเป็นทีม\nเล่นได้ที่: PC Zone\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation"
+    },
+    {
+      "case": {
+        "id": "th-controls-Mario Kart 8 Deluxe",
+        "locale": "th",
+        "initial": "ขอดูปุ่มควบคุมเกม",
+        "choice": "Mario Kart 8 Deluxe",
+        "expected_category": "game_control",
+        "expected_contains": [
+          "Mario Kart 8 Deluxe"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": false,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:game_control_missing_game_context",
+      "second_mode": "pipeline:structured_game_detail",
+      "second_intent": "game_detail_lookup",
+      "resolved_question": "Mario Kart 8 Deluxe",
+      "answer": "Mario Kart 8 Deluxe: Mario Kart 8 Deluxe คือเกมแข่งรถสไตล์ปาร์ตี้ที่ใช้ตัวละคร Nintendo ขับรถแข่งกันในสนามหลากหลายแบบ\nแนวเกม: เกมแข่งรถ Party Racing\nวิธีเล่นโดยสรุป: เลือกตัวละครและรถ ขับเข้าเส้นชัย ใช้ไอเทมช่วยโจมตี/ป้องกัน และเล่นสนุกได้หลายคน\nเล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+    },
+    {
+      "case": {
+        "id": "th-controls-Beat Saber",
+        "locale": "th",
+        "initial": "ขอดูปุ่มควบคุมเกม",
+        "choice": "Beat Saber",
+        "expected_category": "game_control",
+        "expected_contains": [
+          "Beat Saber"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": false,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:game_control_missing_game_context",
+      "second_mode": "pipeline:structured_game_detail",
+      "second_intent": "game_detail_lookup",
+      "resolved_question": "Beat Saber",
+      "answer": "Beat Saber: Beat Saber คือเกม VR จังหวะดนตรีที่ผู้เล่นใช้ดาบแสงฟันบล็อกตามจังหวะเพลง\nแนวเกม: เกม VR Rhythm\nวิธีเล่นโดยสรุป: สวมแว่น VR ถือคอนโทรลเลอร์ แล้วฟันบล็อกตามทิศทาง หลบสิ่งกีดขวาง และพยายามทำคะแนนตามจังหวะเพลง\nเล่นได้ที่: VR Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games"
+    },
+    {
+      "case": {
+        "id": "th-pc-domain-games",
+        "locale": "th",
+        "initial": "PC มีอะไรบ้าง",
+        "choice": "เกม",
+        "expected_category": "games",
+        "expected_contains": [
+          "PC",
+          "VALORANT"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:ambiguity_clarification",
+      "second_mode": "pipeline:structured_service_game_availability",
+      "second_intent": "list",
+      "resolved_question": "PC มีเกมอะไรบ้าง",
+      "answer": "PC Zone แยกรายการเกมตามเลขเครื่องดังนี้\n\nPC #01-#02 (60 นาที, 1 คน)\n•    TEKKEN 8\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    VALORANT\nหมายเหตุ: PC #01-#02 มี TEKKEN 8 แต่ไม่มี Call of Duty: Warzone\nหมายเหตุ: PC #01-#02 และ PC #03-#10 มี Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS, VALORANT เหมือนกัน\n\nPC #03-#10 (60 นาที, 1 คน)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    VALORANT\nหมายเหตุ: PC #03-#10 มี Call of Duty: Warzone แต่ไม่มี TEKKEN 8\nหมายเหตุ: PC #01-#02 และ PC #03-#10 มี Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS, VALORANT เหมือนกัน\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "case": {
+        "id": "th-pc-domain-equipment",
+        "locale": "th",
+        "initial": "PC มีอะไรบ้าง",
+        "choice": "อุปกรณ์",
+        "expected_category": "equipment",
+        "expected_contains": [
+          "PC"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:ambiguity_clarification",
+      "second_mode": "pipeline:structured_equipment_catalog",
+      "second_intent": "list",
+      "resolved_question": "PC มีอุปกรณ์อะไรบ้าง",
+      "answer": "อุปกรณ์ใน PC Zone:\nPC Zone\n•    Gaming PC รุ่น MSI MAG Infinite S3 14th (10 Units)\n•    Gaming Monitor (10 Units)\n•    Gaming Keyboard\n•    Gaming Mouse\n•    Gaming Headset\n•    Gaming Chair (10 Units)\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+    },
+    {
+      "case": {
+        "id": "th-pc-domain-service_fee",
+        "locale": "th",
+        "initial": "PC มีอะไรบ้าง",
+        "choice": "ราคา",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "PC",
+          "70"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:ambiguity_clarification",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "ค่าบริการ PC",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    นักศึกษา/นักเรียน/บุคลากร PSU (PSU Student and Staff): 0 บาท/แพ็กเกจ\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+    },
+    {
+      "case": {
+        "id": "th-pc-domain-reservation",
+        "locale": "th",
+        "initial": "PC มีอะไรบ้าง",
+        "choice": "จอง",
+        "expected_category": "reservation",
+        "expected_contains": [
+          "จอง"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:ambiguity_clarification",
+      "second_mode": "pipeline:structured_reservation_fact",
+      "second_intent": "booking_policy",
+      "resolved_question": "PC จองยังไง",
+      "answer": "สำหรับ PC ให้เลือกบริการ/โซน PC ในระบบจอง แล้วทำตามขั้นตอนนี้ครับ\nขั้นตอนจองโดยสรุป:\n•    เลือกบริการหรือโซนที่ต้องการใช้\n•    เลือกวันและรอบเวลาที่ต้องการ\n•    กรอก Student ID/Staff ID/National ID, ชื่อ, นามสกุล, อีเมล และเบอร์โทรศัพท์\n•    ตรวจสอบข้อมูลและชำระเงินโดยโอนเข้าบัญชีที่ระบบแจ้ง\n•    หลังจองต้องชำระเงินภายใน 10 นาที\n•    แนบสลิปและยืนยันการจอง\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/"
+    },
+    {
+      "case": {
+        "id": "th-game-zone",
+        "locale": "th",
+        "initial": "มีเกมอะไรให้เล่นบ้าง",
+        "choice": "PS5",
+        "expected_category": "games",
+        "expected_contains": [
+          "PlayStation",
+          "God of War"
+        ],
+        "requires_clarification": false,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": false,
+        "content": false,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog",
+      "second_mode": "pipeline:candidate_margin_clarification",
+      "second_intent": "candidate_margin_clarification",
+      "resolved_question": "PS5",
+      "answer": "ขอรายละเอียดเพิ่มนิดนึงครับ ต้องการถามเรื่องเกม ปุ่ม ราคา การจอง อุปกรณ์ หรือตารางเวลา?"
+    },
+    {
+      "case": {
+        "id": "en-price-PC",
+        "locale": "en",
+        "initial": "What are the service prices for external users?",
+        "choice": "PC",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "PC"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "Service prices PC external users",
+      "answer": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727"
+    },
+    {
+      "case": {
+        "id": "en-price-PS5",
+        "locale": "en",
+        "initial": "What are the service prices for external users?",
+        "choice": "PS5",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "PlayStation 5"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "Service prices PlayStation 5 external users",
+      "answer": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 150 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "en-price-Nintendo",
+        "locale": "en",
+        "initial": "What are the service prices for external users?",
+        "choice": "Nintendo",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "Nintendo Switch"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "Service prices Nintendo Switch external users",
+      "answer": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nNintendo Switch — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 140 THB/package\n\nNintendo Switch — 60 minutes/package (3-4 people)\n• PSU alumni / students from other institutions: 100 THB/package\n• General adults: 280 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "en-price-Cockpit",
+        "locale": "en",
+        "initial": "What are the service prices for external users?",
+        "choice": "Cockpit",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "Cockpit"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "Service prices Cockpit external users",
+      "answer": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nCockpit — 60 minutes/package (1 person)\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "en-price-VR",
+        "locale": "en",
+        "initial": "What are the service prices for external users?",
+        "choice": "VR",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "VR"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:protected_price_missing_service",
+      "second_mode": "pipeline:structured_service_fee_conversation",
+      "second_intent": "conversation_price_lookup",
+      "resolved_question": "Service prices VR external users",
+      "answer": "Service prices (recorded package rates):\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nVR — 30 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 190 THB/package\n• General adults: 525 THB/package\n\nVR — 60 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 375 THB/package\n• General adults: 1,050 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+    },
+    {
+      "case": {
+        "id": "en-rules-CS2",
+        "locale": "en",
+        "initial": "I want detailed competition rules",
+        "choice": "CS2",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "Counter-Strike"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification_en",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "I want detailed competition rules Counter-Strike 2",
+      "answer": "Counter-Strike 2: detailed sections from the recorded rulebook (8/56 sections covered).\n\n1. General Information\n\nScope of Application This regulation applies to all players, teams, and staff members participating officially in any CS2 competition organized by PSU Esports Studio - Phuket.\n\nThe competition will use the latest version of CS2 on the Steam platform. Unauthorized modifications to the game are strictly prohibited.\n\nLanguage: The official language of the competition is Thai. All communication, protests, and reporting must be conducted in Thai, unless otherwise specified.\n\nDrawing of lots and schedule\n\nThe competition will be held for one day at PSU Esports Studio - Phuket, Prince of Songkla University, Phuket Campus.\n\nCommunication: All participants must use the Discord server designated by the Center.\n\nLimitations\n\n48 sections remain. Type “continue” to see the next page.\nSource: local://competition_rules/competition_rules_cs2_psu_phuket_2026"
+    },
+    {
+      "case": {
+        "id": "en-rules-RoV",
+        "locale": "en",
+        "initial": "I want detailed competition rules",
+        "choice": "RoV",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "RoV"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification_en",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "I want detailed competition rules Arena of Valor (RoV)",
+      "answer": "Arena of Valor (RoV): detailed sections from the recorded rulebook (5/12 sections covered).\n\nCompetition Rules for Blueket Games 2025 Esports Event Game: Arena of Valor (RoV)\n\nMale Team Category\n\n1. Competition schedule\n1.1. Offline competition on 11 September 2025 (B.E. 2568).\n* 08:00-08:30: registration\n* 08:30-08:40: bracket allocation\n* 08:40-10:00: round of 5 teams, Single Elimination BO3\n* 10:00-11:30: semifinal match 1, Single Elimination BO3\n* 12:30-14:00: semifinal match 2, Single Elimination BO3\n* 14:00-15:30: third-place match, Single Elimination BO3\n* 15:30-17:00: final, Single Elimination BO3\n\nCompetition Venue\n2.1. PSU Esports Studio - Phuket (Building 5, Floor 1)\n\nCompetition Format 3.1. Offline Mode 3.2. Each round played as Best of 3 (BO3)\n1 source sections lack a verified English rendering: competition_rules_rov_blueket_2025_men_s08_c01\n\n6 sections remain. Type “continue” to see the next page.\nSource: local://competition_rules/competition_rules_rov_blueket_2025_men"
+    },
+    {
+      "case": {
+        "id": "en-rules-TEKKEN 8",
+        "locale": "en",
+        "initial": "I want detailed competition rules",
+        "choice": "TEKKEN 8",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "TEKKEN"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification_en",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "I want detailed competition rules Tekken 8",
+      "answer": "Tekken 8: detailed sections from the recorded rulebook (7/7 sections covered).\n\nCompetition Rules * Offline mode * PlayStation 5 console used * Singles (1v1) format * Match format: * FT2: Winner is the first to win two games * Each game uses R3 rules (3 rounds per game) and 60S rule (60 seconds per round) * If tied at 1-1, a deciding game will be played\n\nCharacters and Setup * Any character can be selected (except DLC characters) * No character customization allowed in any case (such as clothing, hairstyle, combat effects, aura, etc.) * Only standard skins are permitted * Assist buttons or special assist systems are allowed * No use of bugs or glitches that provide an advantage * Once the game starts, no game pausing for any reason is permitted * Any intentional game pause will result in a penalty of losing one round immediately\n\nGame settings\n* Rounds per game (Round): 3\n* Time per round (Timer): 60 seconds\n* Advantage: No advantage\n* Stage: Random\n\nCompetition etiquette\n* Unsportsmanlike behavior, such as mocking, taunting, or rude words or actions towards others, is prohibited. Violations result in an immediate forfeit without exception.\n* Competitors must respect referees and other competitors. Insulting or disrespectful behavior is prohibited in all cases. Violations result in an immediate forfeit without exception.\n\nAgreements and conduct\n* Competitors must accept and follow the rules, regulations, and referees' decisions unconditionally.\n* Organizers may change competition rules at any time without prior notice.\n* Referees' decisions are final.\n* Referees may reconsider decisions as appropriate to ensure fairness.\n\nGame Pause * Players must not leave the game before the competition ends unless authorized by the referees. * If a player leaves the game without authorization, they will be forfeited immediately. * The game may be paused only when all players agree and there is a valid reason, such as equipment malfunction or an emergency. * Pausing the game without necessity will result in the same penalty as leaving the game prematurely.\n\nDispute Resolution * Any issues must be reported to the competition organizer immediately. * In cases of disputes or protests, the decision of the supervisors or referees shall be final. Note: The competition organizer reserves the right to amend or modify these regulations without prior notice.\nAll readable recorded sections have been covered; this does not confirm rules for a new event.\nThe source has conflicting pause conditions; the organizer must confirm their application.\nSource: local://competition_rules/competition_rules_tekken8_psu_esports"
+    },
+    {
+      "case": {
+        "id": "en-rules-VALORANT",
+        "locale": "en",
+        "initial": "I want detailed competition rules",
+        "choice": "VALORANT",
+        "expected_category": "competition_rules",
+        "expected_contains": [
+          "VALORANT"
+        ],
+        "requires_clarification": true,
+        "full_detail": true
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:competition_target_clarification_en",
+      "second_mode": "pipeline:competition_rule_full_sections_source",
+      "second_intent": "competition_rules_full_sections",
+      "resolved_question": "I want detailed competition rules VALORANT",
+      "answer": "VALORANT: detailed sections from the recorded rulebook (8/25 sections covered).\n\nCompetition Area and Regulations\n* Personnel: During Match Prep, no more than 6 players may be present.\n* Electronic devices: Mobile phones, tablets, and smartwatches may not be brought into the competition area until the match ends.\n* Documents and notes: Players may not bring notes or documents into the area. Team captains may bring them in, but must give the documents to the referees before every match.\n* Food and drinks: Only drinking water in sealed containers and chewing gum are permitted.\nCompetition Process\n\nPre-game procedure through agent selection\n* Check-in: arrive at least 30 minutes before the scheduled match time.\n* New agents may not be used for approximately 2 weeks after release in Competitive mode.\n* New maps may not be used for approximately 4 weeks after release in Competitive mode.\n* Turn OFF Blood and Bodies displays. Displaying FPS or Latency graphs during competition is prohibited.\n* Map pool: Abyss, Ascent, Bind, Corrode, Haven, Lotus, Sunset (7 maps).\n* Side selection uses a coin toss.\n* Ban maps until 3 remain.\n\nPost-match procedure\n* Officials confirm and record the result immediately.\n* If a forfeit is imposed, the result for that map is recorded as 13-0.\nGame pauses\n\nGame pauses are divided into three main types for different reasons.\n\n1. Tactical Timeout\n* 2 requests per map during regulation (first 24 rounds), 60 seconds each.\n* In Overtime, each team receives 1 additional timeout. Regulation quotas do not carry over.\n\nTechnical Pause * Used when there are device malfunctions, disconnections, or software issues * Players must not communicate with each other (either verbally or in text) unless authorized\n\n3. Player Emergency Pause\n* One request per map is allowed.\n* Total emergency-pause time may not exceed 10 minutes per match. If that limit is exceeded, the affected player may be unable to continue and must be replaced by a substitute.\nBug Rules\nA bug is an in-game error that produces an unintended result. It is classified to determine the appropriate response:\n* Play Through Bug: does not significantly affect fairness. The player must continue and may not request a Challenge.\n* Major Bug: significantly affects gameplay or game mechanics and has no immediate remedy. The team may request a Challenge for review.\n* Game Breaking Bug: destroys the fairness of that round so that the outcome cannot be determined.\nRound Rollback\n* If a bug occurs before either side deals damage, officials may roll back the round.\n* If damage has already been dealt, no rollback is allowed unless through the Challenge process.\n* For a Game Breaking Bug, officials will immediately roll back the round to its starting point.\nExploit Adjudication\n\nUsing player-caused bugs to gain an unintended advantage is an offense.\n* Agent abilities: Cypher cameras must not be placed where they are invisible or indestructible through map-texture clipping.\n* Abilities must not be used outside map boundaries to obtain information or an advantage.\n* Special exception: KAY/O's ZERO/POINT may be used outside the map or in indestructible locations, but the knife must not pass through textures that should be solid.\n* Using teammates to jump higher than the normal jump range is prohibited.\nPenalties\nOfficials assess penalties according to Intent and Impact.\n\n17 sections remain. Type “continue” to see the next page.\nSource: local://competition_rules/competition_rules_valorant_psu_phuket_2026"
+    },
+    {
+      "case": {
+        "id": "en-controls-VALORANT",
+        "locale": "en",
+        "initial": "Show me the game controls",
+        "choice": "VALORANT",
+        "expected_category": "game_control",
+        "expected_contains": [
+          "VALORANT"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": false,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:structured_game_detail_en",
+      "second_intent": "game_detail_lookup",
+      "resolved_question": "VALORANT",
+      "answer": "Verified English information:\nVALORANT\nGenre: Tactical 5v5 team-based FPS\nOverview: VALORANT is a tactical shooter game where players select agents with unique skills and play as either attackers or defenders in each round.\nHow to play: Attackers must plant the Spike; defenders must defend the area or defuse the Spike. Play emphasizes aiming, communication, ability use and teamwork.\nAvailable at: PC Zone\nSource: https://esports.computing.psu.ac.th/reservation (original source in Thai)"
+    },
+    {
+      "case": {
+        "id": "en-controls-Mario Kart 8 Deluxe",
+        "locale": "en",
+        "initial": "Show me the game controls",
+        "choice": "Mario Kart 8 Deluxe",
+        "expected_category": "game_control",
+        "expected_contains": [
+          "Mario Kart 8 Deluxe"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": false,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:structured_game_detail_en",
+      "second_intent": "game_detail_lookup",
+      "resolved_question": "Mario Kart 8 Deluxe",
+      "answer": "Verified English information:\nMario Kart 8 Deluxe\nGenre: Racing Party Racing\nOverview: Mario Kart 8 Deluxe is a party-style racing game featuring Nintendo characters racing on diverse tracks.\nHow to play: Choose a character and vehicle, drive to the finish line, use items to attack or defend, and enjoy multiplayer gameplay\nAvailable at: Nintendo Switch Zone\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)"
+    },
+    {
+      "case": {
+        "id": "en-controls-Beat Saber",
+        "locale": "en",
+        "initial": "Show me the game controls",
+        "choice": "Beat Saber",
+        "expected_category": "game_control",
+        "expected_contains": [
+          "Beat Saber"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": false,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:structured_game_detail_en",
+      "second_intent": "game_detail_lookup",
+      "resolved_question": "Beat Saber",
+      "answer": "Verified English information:\nBeat Saber\nGenre: VR Rhythm Game\nOverview: Beat Saber is a VR rhythm game in which players use light swords to slash blocks in time with the music.\nHow to play: Put on VR glasses, hold the controller, and smash blocks in the direction indicated. Dodge obstacles and try to score points according to the rhythm of the music.\nAvailable at: VR Zone\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)"
+    },
+    {
+      "case": {
+        "id": "en-pc-domain-games",
+        "locale": "en",
+        "initial": "What does PC have?",
+        "choice": "games",
+        "expected_category": "games",
+        "expected_contains": [
+          "PC",
+          "VALORANT"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": true,
+        "content": false,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:structured_games_catalog_en",
+      "second_intent": "games_lookup",
+      "resolved_question": "games",
+      "answer": "There are currently 42 verified games available.\n\nPC Zone (6 games)\n•    Call of Duty: Warzone\n•    Counter-Strike 2\n•    League of Legends\n•    PUBG: BATTLEGROUNDS\n•    TEKKEN 8\n•    VALORANT\n\nPlayStation 5 Zone (17 games)\n•    Call of Duty: Modern Warfare III\n•    Delta Force\n•    EA Sports FC 24\n•    eFootball\n•    FINAL FANTASY XVI\n•    Fortnite\n•    God of War Ragnarok\n•    Hogwarts Legacy\n•    Marvel's Spider-Man 2\n•    NARUTO X BORUTO Ultimate Ninja Storm Connections\n•    Resident Evil 4\n•    Resident Evil Village\n•    TEKKEN 8\n•    THE FINALS\n•    The Last of Us Part I\n•    The Last of Us Part II (Remastered)\n•    Uncharted: Legacy of Thieves Collection\n\nNintendo Switch Zone (17 games)\n•    Animal Crossing: New Horizons\n•    It Takes Two\n•    Little Nightmares II\n•    Luigi's Mansion 3\n•    Mario Kart 8 Deluxe\n•    Mario Party Superstars\n•    Monster Hunter Rise\n•    Moving Out 2\n•    New Super Mario Bros. U Deluxe\n•    Nintendo Switch Sports\n•    Overcooked!\n•    Overcooked! 2\n•    Pokémon Champions\n•    Ring Fit Adventure\n•    Super Mario Odyssey\n•    Super Smash Bros Ultimate\n•    The Legend of Zelda: Breath of The Wild\n\nCockpit Zone (1 game)\n•    Gran Turismo 7\n\nVR Zone (4 games)\n•    Beat Saber\n•    Horizon Call of the Mountain\n•    Resident Evil 4\n•    Resident Evil Village\nSource: https://esports.phuket.psu.ac.th/Services/our-games (original source in Thai)"
+    },
+    {
+      "case": {
+        "id": "en-pc-domain-equipment",
+        "locale": "en",
+        "initial": "What does PC have?",
+        "choice": "equipment",
+        "expected_category": "equipment",
+        "expected_contains": [
+          "PC"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:structured_equipment_catalog_en",
+      "second_intent": "equipment_catalog",
+      "resolved_question": "equipment",
+      "answer": "Verified equipment:\n- Gaming PC model MSI MAG Infinite S3 14th (PC Zone) - 10 Units\n- Gaming Monitor (PC Zone) - 10 Units\n- Gaming Keyboard (PC Zone)\n- Gaming Mouse (PC Zone)\n- Gaming Headset (PC Zone)\n- Gaming Chair (PC Zone) - 10 Units\n- Logitech G923 TRUEFORCE Racing Wheel (Cockpit Zone) - 2 Units with Driving Force Shifter\n- Driving Force Shifter (Cockpit Zone) - 2 Units with Logitech G923\n- Racezone Full Cockpit V3 (Cockpit Zone) - 2 Units\n- Pulse Elite Wireless Headset (Cockpit Zone) - 2 Units\n- Nintendo Switch OLED (Nintendo Switch Zone) - 1 Unit\n- PlayStation 5 Slim With Ultra HD Blu-Ray Disc Drive (PlayStation 5 Zone / VR Zone) - 2 Units in PlayStation 5 Zone and 1 Unit in VR Zone\n- Sony PlayStation VR2 (VR Zone) - 1 Unit\n- TV 65 inch (Cockpit Zone) - 2 Units\n- TV 86 inch (Nintendo Switch Zone) - 1 Unit\n- Sofa 2 seats (Nintendo Switch Zone) - 2 Sets\nSource: https://esports.phuket.psu.ac.th/home (original source in Thai)"
+    },
+    {
+      "case": {
+        "id": "en-pc-domain-service_fee",
+        "locale": "en",
+        "initial": "What does PC have?",
+        "choice": "prices",
+        "expected_category": "service_fee",
+        "expected_contains": [
+          "PC",
+          "70"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": false,
+        "content": false,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:english_no_answer",
+      "second_intent": "english_verified_evidence_unavailable",
+      "resolved_question": "prices",
+      "answer": "I could not find verified PSU Esports Studio - Phuket information for service_fee."
+    },
+    {
+      "case": {
+        "id": "en-pc-domain-reservation",
+        "locale": "en",
+        "initial": "What does PC have?",
+        "choice": "booking",
+        "expected_category": "reservation",
+        "expected_contains": [
+          "book"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": false,
+        "content": false,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:english_no_answer",
+      "second_intent": "english_verified_evidence_unavailable",
+      "resolved_question": "booking",
+      "answer": "I could not find verified PSU Esports Studio - Phuket information for reservation."
+    },
+    {
+      "case": {
+        "id": "en-game-zone",
+        "locale": "en",
+        "initial": "What games can I play?",
+        "choice": "PS5",
+        "expected_category": "games",
+        "expected_contains": [
+          "PlayStation",
+          "God of War"
+        ],
+        "requires_clarification": false,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": false,
+        "content": false,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:english_no_answer",
+      "second_intent": "english_verified_evidence_unavailable",
+      "resolved_question": "PS5",
+      "answer": "I could not find verified PSU Esports Studio - Phuket information for this question."
+    },
+    {
+      "case": {
+        "id": "th-cod-warzone",
+        "locale": "th",
+        "initial": "ขอรายละเอียดเกม Call of Duty",
+        "choice": "Warzone",
+        "expected_category": "games",
+        "expected_contains": [
+          "Warzone"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": true,
+      "checks": {
+        "first_question": true,
+        "category_and_operation": true,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_family",
+      "second_mode": "pipeline:structured_game_detail",
+      "second_intent": "game_detail_lookup",
+      "resolved_question": "Warzone",
+      "answer": "Call of Duty: Warzone: Call of Duty: Warzone คือเกมยิงแนว Battle Royale ที่เน้นการยิงรวดเร็ว การเก็บอุปกรณ์ และการเอาตัวรอดในแผนที่ขนาดใหญ่\nแนวเกม: เกมยิง Battle Royale\nวิธีเล่นโดยสรุป: ลงพื้นที่ หาอาวุธ ใช้ loadout/อุปกรณ์ช่วยทีม เคลื่อนตามวง และพยายามอยู่รอดจนจบเกม\nเล่นได้ที่: PC Zone\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/reservation"
+    },
+    {
+      "case": {
+        "id": "en-cod-mw3",
+        "locale": "en",
+        "initial": "Tell me about Call of Duty",
+        "choice": "Modern Warfare III",
+        "expected_category": "games",
+        "expected_contains": [
+          "Modern Warfare"
+        ],
+        "requires_clarification": true,
+        "full_detail": false
+      },
+      "passed": false,
+      "checks": {
+        "first_question": false,
+        "category_and_operation": false,
+        "content": true,
+        "scope": true,
+        "http": true
+      },
+      "first_mode": "pipeline:structured_games_catalog_en",
+      "second_mode": "pipeline:structured_game_availability_en",
+      "second_intent": "game_availability",
+      "resolved_question": "Modern Warfare III",
+      "answer": "Call of Duty: Modern Warfare III is available on: PlayStation 5 #01-#02. Studio zone(s): PlayStation 5 Zone.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "question_key": "2d7f3362b5f4cc1009ecf1a7b520e0d8c62f4ef2df1f4af11b7e78da71ffef08",
+  "example_sha256": "822b3a73208d7e3346a553f443f4aa51ae957cdbee72bf7267ce06b065d15e33",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One studio smoking-permission question; official-answer wording is a source/style expectation.",
+      "raw_quotes": [
+        "Can I smoke inside the studio? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains the permission need.",
+      "raw_quotes": [
+        "Can I smoke inside the studio? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "smoke is the action and inside the studio is the local premises scope.",
+      "raw_quotes": [
+        "Can I smoke inside the studio? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No tobacco product, tournament, previous permission or actor exemption is inherited.",
+      "raw_quotes": [
+        "Can I smoke inside the studio? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The permission question is clear; requesting official information is not an authority override.",
+      "raw_quotes": [
+        "Can I smoke inside the studio? I need the official answer"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_faq_curated_rule_smoking_alcohol_drugs explicitly covers smoking within the facility; drugs/alcohol are separate source clauses, not extra user requests.",
+      "raw_quotes": [
+        "Can I smoke inside the studio? I need the official answer"
+      ],
+      "source_record_ids": [
+        "migrated_faq_curated_rule_smoking_alcohol_drugs"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes/no verdict or unrelated substance prohibition is put in the plan.",
+      "raw_quotes": [
+        "Can I smoke inside the studio? I need the official answer"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 89,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I smoke inside the studio? I need the official answer",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "studio_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I smoke inside the studio? I need the official answer",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "smoke",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "inside the studio",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_curated_rule_smoking_alcohol_drugs": {
+      "revision": 4,
+      "record_sha256": "ac5dad39bbe6c5d48d5798495e1a658f6f81639aa5fd98a7763dd4a91650a97a"
+    }
+  }
+}

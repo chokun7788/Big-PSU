@@ -1,0 +1,144 @@
+{
+  "question_key": "5a53efba830e246fce27c03a2ddcbb1132596eed01ca62b16e08baf84057a0d6",
+  "example_sha256": "706ebb51c6508509404c2448eea3c541ea90b9d7edf5a07c4e330226341b6138",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One compound CS2 rules request asks regulation starting money/bomb time and overtime rounds/starting money.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "Keep one competition-specific rule lookup with all four attributes scoped by regulation versus overtime.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add exact starting money and bomb time in regulation, overtime rounds and starting money as literal scopes.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No actual match values, format selection, prior overtime or clock is supplied.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Same starting-money noun has two regime-specific scopes; merging them would lose meaning.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Actual CS2 sections025 revision5 and027 revision5 record regulation and overtime values separately; section024 wording has an English overtime ambiguity and must not override the explicit scopes.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?"
+      ],
+      "source_record_ids": [
+        "competition_competition_rules_cs2_psu_phuket_2026_section_025",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_027",
+        "competition_competition_rules_cs2_psu_phuket_2026_section_024"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No dollar values, bomb timer, round counts, winner rule or inferred current authority enters targets.",
+      "raw_quotes": [
+        "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Regulation and overtime have separate starting-money scopes.",
+      "handling": "Retain both regime-specific attributes and source versions."
+    }
+  ],
+  "historical_review_row": 276,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "competition_rules",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Could you help me? Under CS2 tournament rules, what are starting money and bomb time in regulation, and what are overtime rounds and starting money?",
+        "domain": "competition_rules",
+        "operation": "rule_lookup",
+        "facet": "rule_clause",
+        "target": "CS2",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "starting money and bomb time in regulation",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "overtime rounds and starting money",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "competition_competition_rules_cs2_psu_phuket_2026_section_025": {
+      "revision": 5,
+      "record_sha256": "8eac918688efe6b6cef99cde3901746dc182d38e073ccdcef3b4d673f8ba511d"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_027": {
+      "revision": 5,
+      "record_sha256": "1d78cbb064896762be4ed67f19018bd91f90abca9f9b54bfab4225ed16b73aee"
+    },
+    "competition_competition_rules_cs2_psu_phuket_2026_section_024": {
+      "revision": 4,
+      "record_sha256": "0768626346540c73fd482bd03cce48a902927a1f8eb059e1612ed3b218521745"
+    }
+  }
+}

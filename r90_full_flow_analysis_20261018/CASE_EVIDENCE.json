@@ -1,0 +1,5124 @@
+{
+  "K05": {
+    "id": "K05",
+    "title": "คำถามผสมราคาและวิธีจองที่พิมพ์ขาด",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 5,
+    "new": {
+      "key": "adabcf3a2ca3d695a117988e02e1a5d00467f9748ec8580c159142c2058ab6f4",
+      "question": "How much does it cost for a general visiror to play Cockpit for 30 minutes and how do I boo",
+      "requested_locale": "en",
+      "effective_locale": "en",
+      "stratum": {
+        "locale": "en",
+        "corpus": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+        "domain": "compound_context_boundary",
+        "style": "noisy"
+      },
+      "elapsed_sec": 4.646590500022285,
+      "result": {
+        "answer": "I cannot confirm an answer for the full situation you described. Please add details or split the question into separate parts.",
+        "hits": [],
+        "elapsed": 4.621409500017762,
+        "mode": "pipeline:migrated_clarification",
+        "confidence": 0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0,
+          "answer_type": "clarification",
+          "risk": "medium",
+          "reason": "migrated common content only"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "partial_answer",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "partial_answer",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [
+                  "availability_cockpit_01_02"
+                ],
+                "requested_fields": [
+                  "amount_minor"
+                ],
+                "all_fields": false,
+                "method": "exact",
+                "scope": "common_published",
+                "platform": "Cockpit",
+                "query_without_entity": "how much does it cost for a general visiror to play for 30 minutes and how do i boo",
+                "operation": "price",
+                "scope_ids": [
+                  "availability_cockpit_01_02"
+                ],
+                "field_selection": [
+                  {
+                    "field": "amount_minor",
+                    "cue": "cost",
+                    "method": "schema_attribute"
+                  },
+                  {
+                    "field": "duration_minutes",
+                    "cue": "minutes",
+                    "method": "schema_attribute"
+                  }
+                ],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "duration_constraint_supplied": true,
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "availability_cockpit_01_02"
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "epoch": 1840
+                },
+                "audience_selection": {
+                  "concepts": [],
+                  "organization_groups": [],
+                  "negated_group_removed": false,
+                  "selected_ids": [],
+                  "matched_spans": [],
+                  "source": "existing_audience_labels_and_organizational_actor_grammar"
+                },
+                "field_authority": [],
+                "unresolved_clauses": [
+                  "how do i boo"
+                ],
+                "semantic_review_needed": true,
+                "semantic_plan_accepted": false,
+                "read_contract": {
+                  "schema_version": "common_read_plan_v1",
+                  "needs": [
+                    {
+                      "id": "n1",
+                      "field_refs": [],
+                      "source_span": "how much does it cost for a general visiror to play cockpit for 30 minutes",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    }
+                  ],
+                  "unresolved_spans": [
+                    "how do i boo"
+                  ],
+                  "semantic_correctness_verified": false
+                },
+                "response_projection": [
+                  {
+                    "record_id": "availability_cockpit_01_02",
+                    "fields": {}
+                  },
+                  {
+                    "record_id": "migrated_rate_cockpit_60_1_1_general_adult",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "migrated_rate_cockpit_60_1_1_psu_alumni_general_student",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "migrated_rate_cockpit_60_1_1_psu_student_staff",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  }
+                ]
+              },
+              "obligations": [
+                {
+                  "record_id": "migrated_rate_cockpit_60_1_1_general_adult",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "migrated_rate_cockpit_60_1_1_psu_alumni_general_student",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "migrated_rate_cockpit_60_1_1_psu_student_staff",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "availability_cockpit_01_02",
+                  "field": "amount_minor",
+                  "status": "not_current",
+                  "evidence_refs": [],
+                  "reason": "declared_rate_outside_validity"
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [
+                "unresolved_query_clause"
+              ],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "rejected_candidate": {
+            "mode": "pipeline:common_partial_answer",
+            "validation_errors": [
+              "unresolved_query_clause"
+            ],
+            "query_plan": {
+              "record_ids": [
+                "availability_cockpit_01_02"
+              ],
+              "requested_fields": [
+                "amount_minor"
+              ],
+              "all_fields": false,
+              "method": "exact",
+              "scope": "common_published",
+              "platform": "Cockpit",
+              "query_without_entity": "how much does it cost for a general visiror to play for 30 minutes and how do i boo",
+              "operation": "price",
+              "scope_ids": [
+                "availability_cockpit_01_02"
+              ],
+              "field_selection": [
+                {
+                  "field": "amount_minor",
+                  "cue": "cost",
+                  "method": "schema_attribute"
+                },
+                {
+                  "field": "duration_minutes",
+                  "cue": "minutes",
+                  "method": "schema_attribute"
+                }
+              ],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "schema_language_recoveries": [],
+              "duration_constraint_supplied": true,
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "availability_cockpit_01_02"
+                ],
+                "release_id": "migration-preview-r69",
+                "epoch": 1840
+              },
+              "audience_selection": {
+                "concepts": [],
+                "organization_groups": [],
+                "negated_group_removed": false,
+                "selected_ids": [],
+                "matched_spans": [],
+                "source": "existing_audience_labels_and_organizational_actor_grammar"
+              },
+              "field_authority": [],
+              "unresolved_clauses": [
+                "how do i boo"
+              ],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": false,
+              "read_contract": {
+                "schema_version": "common_read_plan_v1",
+                "needs": [
+                  {
+                    "id": "n1",
+                    "field_refs": [],
+                    "source_span": "how much does it cost for a general visiror to play cockpit for 30 minutes",
+                    "resolution": "typed_supported",
+                    "ambiguous_kind": false
+                  }
+                ],
+                "unresolved_spans": [
+                  "how do i boo"
+                ],
+                "semantic_correctness_verified": false
+              },
+              "response_projection": [
+                {
+                  "record_id": "availability_cockpit_01_02",
+                  "fields": {}
+                },
+                {
+                  "record_id": "migrated_rate_cockpit_60_1_1_general_adult",
+                  "fields": {
+                    "amount_minor": "explicit",
+                    "service_id": "necessary_context",
+                    "audience_id": "necessary_context",
+                    "currency": "necessary_context",
+                    "duration_minutes": "necessary_context"
+                  }
+                },
+                {
+                  "record_id": "migrated_rate_cockpit_60_1_1_psu_alumni_general_student",
+                  "fields": {
+                    "amount_minor": "explicit",
+                    "service_id": "necessary_context",
+                    "audience_id": "necessary_context",
+                    "currency": "necessary_context",
+                    "duration_minutes": "necessary_context"
+                  }
+                },
+                {
+                  "record_id": "migrated_rate_cockpit_60_1_1_psu_student_staff",
+                  "fields": {
+                    "amount_minor": "explicit",
+                    "service_id": "necessary_context",
+                    "audience_id": "necessary_context",
+                    "currency": "necessary_context",
+                    "duration_minutes": "necessary_context"
+                  }
+                }
+              ]
+            }
+          },
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [
+            {
+              "attempted": true,
+              "transport_ok": true,
+              "schema_accepted": true,
+              "final_plan_accepted": true,
+              "rejection_reason": null,
+              "proposal": {
+                "requested_fields": [
+                  "session_minutes",
+                  "capacity_min",
+                  "capacity_max",
+                  "booking_product_key",
+                  "notes",
+                  "inventory_verified_on",
+                  "inventory_basis"
+                ],
+                "all_fields": false,
+                "platform": null
+              },
+              "clause_plan": {
+                "clause_fields": [
+                  {
+                    "id": 0,
+                    "requested_fields": [
+                      "session_minutes",
+                      "capacity_min",
+                      "capacity_max",
+                      "booking_product_key",
+                      "notes",
+                      "inventory_verified_on",
+                      "inventory_basis"
+                    ]
+                  },
+                  {
+                    "id": 1,
+                    "requested_fields": []
+                  }
+                ],
+                "all_fields": false,
+                "platform": null
+              },
+              "accepted_plan": {
+                "requested_fields": [
+                  "amount_minor",
+                  "duration_minutes"
+                ],
+                "all_fields": false,
+                "platform": null,
+                "method": "bounded_llm_schema_fields"
+              },
+              "semantic": {
+                "semantic_status": "typed_partial_scope",
+                "unresolved_clauses": [
+                  "how do i boo"
+                ],
+                "preserved_strong_needs": [
+                  "amount_minor",
+                  "duration_minutes"
+                ],
+                "removed_unrequested_fields": [
+                  "session_minutes",
+                  "capacity_min",
+                  "capacity_max",
+                  "booking_product_key",
+                  "notes",
+                  "inventory_verified_on",
+                  "inventory_basis"
+                ],
+                "unclear_clauses": [
+                  "how do i boo"
+                ],
+                "clause_coverage_repairs": []
+              },
+              "query_recoveries": [],
+              "original_question": "how much does it cost for a general visiror to play for 30 minutes and how do i boo",
+              "prompt_eval_count": 942,
+              "queue_wait_ms": 1.817299984395504,
+              "elapsed_ms": 4128.253800008679
+            }
+          ],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [
+                "zone_cockpit",
+                "availability_cockpit_01_02"
+              ],
+              "method": "exact"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            }
+          ]
+        },
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.028375,
+        "repeat_score": 0.04,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 6.59
+      },
+      "grades": [
+        {
+          "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+          "row": 1294,
+          "variant": "noisy",
+          "id": "MASTER-GT-EN-04963",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['equipment', 'games', 'multi_question', 'reservation']",
+            "status:clarification expected:answer_available"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['equipment', 'games', 'multi_question', 'reservation']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "inherited_gold_candidate"
+        }
+      ],
+      "observed_model_http_calls": [
+        {
+          "url": "http://127.0.0.1:11434/api/generate",
+          "transport_ok": true,
+          "elapsed_sec": 4.107189799979096
+        }
+      ]
+    },
+    "old": {
+      "question": "How much does it cost for a general visiror to play Cockpit for 30 minutes and how do I boo",
+      "answer": "Service prices (recorded package rates):\n\nCockpit — 60 minutes/package (1 person)\nRequested duration: 30 minutes (0.5 hours); 1 session(s).\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "exception": null,
+      "mode": "pipeline:structured_service_fee_conversation",
+      "category": "service_fee",
+      "intent": "conversation_price_lookup",
+      "confidence": 0.98,
+      "elapsed": 0.4822507998906076,
+      "source_file": "model_matrix_memo_counter\\legacy_RESULTS.jsonl.gz",
+      "source_line": 16006
+    },
+    "old_failed_grades": [
+      {
+        "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+        "row": 1294,
+        "variant": "noisy",
+        "id": "MASTER-GT-EN-04963",
+        "passed": false,
+        "failures": [
+          "route:service_fee expected:['equipment', 'games', 'multi_question', 'reservation']"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": true,
+          "positive_content_asserted": false
+        },
+        "protocol_failures": [
+          "route:service_fee expected:['equipment', 'games', 'multi_question', 'reservation']"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": true,
+        "content_checks_passed": true
+      }
+    ]
+  },
+  "K06": {
+    "id": "K06",
+    "title": "กติกา Tekken อังกฤษ: เนื้อหากับสำนวนตัวตรวจ",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 6,
+    "new": {
+      "key": "ed920c5962389f0a735cda26e46615e40a01037708c074b3858de0cc02e3ce19",
+      "question": "Hello, could you help? What conduct and etiquette do Tekken 8 tournament players follow?",
+      "requested_locale": "en",
+      "effective_locale": "en",
+      "stratum": {
+        "locale": "en",
+        "corpus": "data/eval/competition_content_contract_r27_320_20261001.json",
+        "domain": "unclassified",
+        "style": "wrapper"
+      },
+      "elapsed_sec": 0.710790499986615,
+      "result": {
+        "answer": "Competition rules: TEKKEN 8 — PSU Esports ปะทะมันส์ สนั่นจอ\n\n**Etiquette in Competition**\n• Rule topic: Etiquette in Competition [S1]\n• Rule details: Sportsmanship\n* No conduct shall be exhibited that shows lack of respect toward athletes, such as mockery, disparagement, or any unsuitable verbal or physical behavior toward others. Any violation will result in an immediate loss with no exceptions.\n* Competitors must show respect to referees and other competitors. No conduct showing disrespect or lack of courtesy shall be tolerated under any circumstances. Any violation will result in an immediate loss with no exceptions. [S2]\n\nEnglish translation is machine generated and has not been reviewed by the owner.",
+        "hits": [
+          {
+            "id": "competition_competition_rules_tekken8_psu_esports_section_005:heading:S1",
+            "record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+            "field": "heading",
+            "title": "Migrated source information",
+            "source_url": "",
+            "text": "Etiquette in Competition",
+            "source_id": "r66_en_cb31b61ed0a9ea5864bed703",
+            "snapshot_sha256": "cb31b61ed0a9ea5864bed703154e577af127e999c0382b53a03ff7f9312a0208",
+            "citation_label": "S1",
+            "locator": "/mapped_fields/heading",
+            "metadata": {
+              "common_record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+              "common_field": "heading",
+              "common_revision": 5,
+              "common_game_id": "game_detail_tekken_8",
+              "game": "TEKKEN 8",
+              "common_competition_id": "competition_competition_rules_tekken8_psu_esports",
+              "rulebook_release": "competition_rules_tekken8_psu_esports",
+              "document_id": "competition_rules_tekken8_psu_esports",
+              "legacy_document_identity_proven": true,
+              "source_ids": [
+                "competition_rules_tekken8_psu_esports"
+              ],
+              "source_chunk_id": "competition_rules_tekken8_psu_esports_s05_c01",
+              "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+              "original_chunk_text_sha256": "7ad303f72be0e44c0d7f8d83ee6d0ee04e0c395c25e9654e16f19159655cda40",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          },
+          {
+            "id": "competition_competition_rules_tekken8_psu_esports_section_005:text:S2",
+            "record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+            "field": "text",
+            "title": "Migrated source information",
+            "source_url": "",
+            "text": "Sportsmanship\n* No conduct shall be exhibited that shows lack of respect toward athletes, such as mockery, disparagement, or any unsuitable verbal or physical behavior toward others. Any violation will result in an immediate loss with no exceptions.\n* Competitors must show respect to referees and other competitors. No conduct showing disrespect or lack of courtesy shall be tolerated under any circumstances. Any violation will result in an immediate loss with no exceptions.",
+            "source_id": "r66_en_fbb0f1d41b7de6142b8b1cac",
+            "snapshot_sha256": "fbb0f1d41b7de6142b8b1cac3fd94dc38c37199414113a72a3e71ef678f46ce1",
+            "citation_label": "S2",
+            "locator": "/mapped_fields/text",
+            "metadata": {
+              "common_record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+              "common_field": "text",
+              "common_revision": 5,
+              "common_game_id": "game_detail_tekken_8",
+              "game": "TEKKEN 8",
+              "common_competition_id": "competition_competition_rules_tekken8_psu_esports",
+              "rulebook_release": "competition_rules_tekken8_psu_esports",
+              "document_id": "competition_rules_tekken8_psu_esports",
+              "legacy_document_identity_proven": true,
+              "source_ids": [
+                "competition_rules_tekken8_psu_esports"
+              ],
+              "source_chunk_id": "competition_rules_tekken8_psu_esports_s05_c01",
+              "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+              "original_chunk_text_sha256": "7ad303f72be0e44c0d7f8d83ee6d0ee04e0c395c25e9654e16f19159655cda40",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          }
+        ],
+        "elapsed": 0.6797252999967895,
+        "mode": "pipeline:common_answer",
+        "confidence": 0.8,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.8,
+          "answer_type": "answer",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "answer",
+            "confidence": 0.8,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "answer",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [
+                  "competition_competition_rules_tekken8_psu_esports"
+                ],
+                "requested_fields": [
+                  "text"
+                ],
+                "all_fields": false,
+                "method": "exact",
+                "scope": "common_published",
+                "platform": null,
+                "query_without_entity": "hello, could you help? what conduct and etiquette do tournament players follow?",
+                "operation": "rules",
+                "scope_ids": [
+                  "competition_competition_rules_tekken8_psu_esports"
+                ],
+                "field_selection": [],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "rule_content_all": false,
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "competition_competition_rules_tekken8_psu_esports"
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "epoch": 1840
+                },
+                "field_authority": [],
+                "unresolved_clauses": [],
+                "semantic_review_needed": false,
+                "semantic_plan_accepted": false,
+                "read_contract": {
+                  "schema_version": "common_read_plan_v1",
+                  "needs": [
+                    {
+                      "id": "n1",
+                      "field_refs": [
+                        {
+                          "kind": "competition_rule",
+                          "key": "text"
+                        }
+                      ],
+                      "source_span": "Hello, could you help? What conduct and etiquette do Tekken 8 tournament players follow?",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    }
+                  ],
+                  "unresolved_spans": [],
+                  "semantic_correctness_verified": false
+                },
+                "response_projection": [
+                  {
+                    "record_id": "competition_competition_rules_tekken8_psu_esports",
+                    "fields": {}
+                  }
+                ],
+                "rule_selection": [
+                  {
+                    "competition_id": "competition_competition_rules_tekken8_psu_esports",
+                    "facet": "conduct",
+                    "facets": [
+                      "conduct"
+                    ],
+                    "method": "literal_source_facets",
+                    "candidate_count": 8,
+                    "selected_ids": [
+                      "competition_competition_rules_tekken8_psu_esports_section_005"
+                    ]
+                  }
+                ]
+              },
+              "obligations": [
+                {
+                  "record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+                  "field": "heading",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/heading",
+                      "source_id": "r66_en_cb31b61ed0a9ea5864bed703"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+                  "field": "text",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/text",
+                      "source_id": "r66_en_fbb0f1d41b7de6142b8b1cac"
+                    }
+                  ]
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "answer",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "competition_competition_rules_tekken8_psu_esports"
+            ],
+            "requested_fields": [
+              "text"
+            ],
+            "all_fields": false,
+            "method": "exact",
+            "scope": "common_published",
+            "platform": null,
+            "query_without_entity": "hello, could you help? what conduct and etiquette do tournament players follow?",
+            "operation": "rules",
+            "scope_ids": [
+              "competition_competition_rules_tekken8_psu_esports"
+            ],
+            "field_selection": [],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "rule_content_all": false,
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "competition_competition_rules_tekken8_psu_esports"
+              ],
+              "release_id": "migration-preview-r69",
+              "epoch": 1840
+            },
+            "field_authority": [],
+            "unresolved_clauses": [],
+            "semantic_review_needed": false,
+            "semantic_plan_accepted": false,
+            "read_contract": {
+              "schema_version": "common_read_plan_v1",
+              "needs": [
+                {
+                  "id": "n1",
+                  "field_refs": [
+                    {
+                      "kind": "competition_rule",
+                      "key": "text"
+                    }
+                  ],
+                  "source_span": "Hello, could you help? What conduct and etiquette do Tekken 8 tournament players follow?",
+                  "resolution": "typed_supported",
+                  "ambiguous_kind": false
+                }
+              ],
+              "unresolved_spans": [],
+              "semantic_correctness_verified": false
+            },
+            "response_projection": [
+              {
+                "record_id": "competition_competition_rules_tekken8_psu_esports",
+                "fields": {}
+              }
+            ],
+            "rule_selection": [
+              {
+                "competition_id": "competition_competition_rules_tekken8_psu_esports",
+                "facet": "conduct",
+                "facets": [
+                  "conduct"
+                ],
+                "method": "literal_source_facets",
+                "candidate_count": 8,
+                "selected_ids": [
+                  "competition_competition_rules_tekken8_psu_esports_section_005"
+                ]
+              }
+            ]
+          },
+          "obligations": [
+            {
+              "record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+              "field": "heading",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/heading",
+                  "source_id": "r66_en_cb31b61ed0a9ea5864bed703"
+                }
+              ]
+            },
+            {
+              "record_id": "competition_competition_rules_tekken8_psu_esports_section_005",
+              "field": "text",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/text",
+                  "source_id": "r66_en_fbb0f1d41b7de6142b8b1cac"
+                }
+              ]
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [
+                "game_detail_tekken_8",
+                "competition_competition_rules_tekken8_psu_esports",
+                "controls_ps5_tekken_8",
+                "availability_pc_01_02",
+                "availability_ps5_01_02"
+              ],
+              "method": "exact"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            }
+          ]
+        },
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.016955,
+        "repeat_score": 0.521431,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 7.091
+      },
+      "grades": [
+        {
+          "file": "data/eval/competition_content_contract_r27_320_20261001.json",
+          "row": 244,
+          "variant": "question",
+          "id": "R27-tekken8-conduct-en-1",
+          "passed": false,
+          "failures": [
+            "route_mismatch",
+            "missing_complete_clause:Unsportsmanlike behavior, such as mocking, taunting, or rude words or actions towards others, is prohibited. Violations result in an immediate forfeit without exception.",
+            "missing_complete_clause:Competitors must respect referees and other competitors. Insulting or disrespectful behavior is prohibited in all cases. Violations result in an immediate forfeit without exception.",
+            "first_line_off_topic"
+          ],
+          "evidence_level": "complete_clause_content",
+          "grader_detail": null,
+          "partitions": {
+            "protocol": [
+              "route_mismatch"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [
+              "missing_complete_clause:Unsportsmanlike behavior, such as mocking, taunting, or rude words or actions towards others, is prohibited. Violations result in an immediate forfeit without exception.",
+              "missing_complete_clause:Competitors must respect referees and other competitors. Insulting or disrespectful behavior is prohibited in all cases. Violations result in an immediate forfeit without exception.",
+              "first_line_off_topic"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "assistant source-clause contract; not organizer approved"
+        }
+      ],
+      "observed_model_http_calls": []
+    },
+    "old": {
+      "question": "Hello, could you help? What conduct and etiquette do Tekken 8 tournament players follow?",
+      "answer": null,
+      "exception": "NameError:name 'ownership_blocked' is not defined",
+      "mode": null,
+      "category": null,
+      "intent": null,
+      "confidence": null,
+      "elapsed": 0.48308400018140674,
+      "source_file": "model_matrix_cached\\legacy_RESULTS.jsonl.gz",
+      "source_line": 268
+    },
+    "old_failed_grades": [
+      {
+        "file": "data/eval/competition_content_contract_r27_320_20261001.json",
+        "row": 244,
+        "variant": "question",
+        "passed": false,
+        "failures": [
+          "pipeline_exception"
+        ],
+        "content_checks_passed": false,
+        "content_asserted": false
+      }
+    ]
+  },
+  "K04": {
+    "id": "K04",
+    "title": "ถามนโยบาย Maintenance แต่แผนเลือกช่องคำถาม",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 14,
+    "new": {
+      "key": "0f863c96fa66427e13a97dfc9cee137ef81ab4fb72879dd12509054269c858de",
+      "question": "What is the studio policy for friday maintenance",
+      "requested_locale": "en",
+      "effective_locale": "en",
+      "stratum": {
+        "locale": "en",
+        "corpus": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+        "domain": "reservation_policy",
+        "style": "source_form"
+      },
+      "elapsed_sec": 2.501959599991096,
+      "result": {
+        "answer": "The requested topic is unclear. Which part of Friday — maintenance do you need: question / Confirmed information / topic?",
+        "hits": [],
+        "elapsed": 2.491336600010982,
+        "mode": "pipeline:common_clarification",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "clarification",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "clarification",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "clarification",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [
+                  "migrated_faq_rule_schedule_friday_maintenance"
+                ],
+                "requested_fields": [],
+                "all_fields": false,
+                "method": "bounded_fuzzy",
+                "scope": "common_published",
+                "platform": null,
+                "query_without_entity": "what is the studio policy for friday maintenance",
+                "operation": "policy",
+                "scope_ids": [
+                  "migrated_faq_rule_schedule_friday_maintenance"
+                ],
+                "field_selection": [],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "migrated_faq_rule_schedule_friday_maintenance"
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "epoch": 1840
+                },
+                "field_authority": [],
+                "unresolved_clauses": [
+                  "what is the studio policy for friday maintenance"
+                ],
+                "semantic_review_needed": true,
+                "semantic_plan_accepted": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "clarification",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "migrated_faq_rule_schedule_friday_maintenance"
+            ],
+            "requested_fields": [],
+            "all_fields": false,
+            "method": "bounded_fuzzy",
+            "scope": "common_published",
+            "platform": null,
+            "query_without_entity": "what is the studio policy for friday maintenance",
+            "operation": "policy",
+            "scope_ids": [
+              "migrated_faq_rule_schedule_friday_maintenance"
+            ],
+            "field_selection": [],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "migrated_faq_rule_schedule_friday_maintenance"
+              ],
+              "release_id": "migration-preview-r69",
+              "epoch": 1840
+            },
+            "field_authority": [],
+            "unresolved_clauses": [
+              "what is the studio policy for friday maintenance"
+            ],
+            "semantic_review_needed": true,
+            "semantic_plan_accepted": false
+          },
+          "obligations": [],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [
+            {
+              "attempted": true,
+              "transport_ok": true,
+              "schema_accepted": true,
+              "final_plan_accepted": false,
+              "rejection_reason": null,
+              "proposal": {
+                "requested_fields": [
+                  "question"
+                ],
+                "all_fields": false,
+                "platform": null
+              },
+              "clause_plan": {
+                "clause_fields": [
+                  {
+                    "id": 0,
+                    "requested_fields": [
+                      "question"
+                    ]
+                  }
+                ],
+                "all_fields": false,
+                "platform": null
+              },
+              "accepted_plan": null,
+              "semantic": {
+                "semantic_status": "rejected_unverified_intent",
+                "unresolved_clauses": [
+                  "what is the studio policy for friday maintenance"
+                ],
+                "proposal": [
+                  "question"
+                ],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "query_recoveries": [],
+              "original_question": "what is the studio policy for friday maintenance",
+              "prompt_eval_count": 404,
+              "queue_wait_ms": 699.0834999887738,
+              "elapsed_ms": 1303.7406999792438
+            }
+          ],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [
+                "migrated_faq_rule_schedule_friday_maintenance"
+              ],
+              "method": "bounded_fuzzy"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            }
+          ]
+        },
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.001394,
+        "repeat_score": 0.0,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 2.846
+      },
+      "grades": [
+        {
+          "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+          "row": 5416,
+          "variant": "question",
+          "id": "MASTER-GT-EN-00417",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['reservation']",
+            "status:clarification expected:answer_available"
+          ],
+          "evidence_level": "route_outcome_only",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['reservation']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "source_grounded_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+          "row": 6261,
+          "variant": "question",
+          "id": "MASTER-GT-EN-01262",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['reservation', 'schedule']",
+            "status:clarification expected:answer_available"
+          ],
+          "evidence_level": "route_outcome_only",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['reservation', 'schedule']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "source_grounded_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_en_5000_v1.jsonl",
+          "row": 416,
+          "variant": "question",
+          "id": "MASTER-GT-EN-00417",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['reservation']",
+            "status:clarification expected:answer_available"
+          ],
+          "evidence_level": "route_outcome_only",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['reservation']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "source_grounded_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_en_5000_v2.jsonl",
+          "row": 1261,
+          "variant": "question",
+          "id": "MASTER-GT-EN-01262",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['reservation', 'schedule']",
+            "status:clarification expected:answer_available"
+          ],
+          "evidence_level": "route_outcome_only",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['reservation', 'schedule']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "source_grounded_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+          "row": 1593,
+          "variant": "clean",
+          "id": "MASTER-GT-EN-01262",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['reservation', 'schedule']",
+            "status:clarification expected:answer_available"
+          ],
+          "evidence_level": "route_outcome_only",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['reservation', 'schedule']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "source_grounded_gold_candidate"
+        }
+      ],
+      "observed_model_http_calls": [
+        {
+          "url": "http://127.0.0.1:11434/api/generate",
+          "transport_ok": true,
+          "elapsed_sec": 1.2878240999998525
+        }
+      ]
+    },
+    "old": {
+      "question": "What is the studio policy for friday maintenance",
+      "answer": "Regular booking/service periods (not live station availability):\n- Monday: open 13:00-16:00; maintenance 09:00-12:00\n- Tuesday-Thursday: open 09:00-12:00, 13:00-16:00\n- Friday: open 09:00-12:00; maintenance 13:00-16:00\n- Weekend (Saturday-Sunday): no regular service or booking period is listed.\nSpecial closures override this weekly schedule. A bookable period does not confirm that a station is free.\nSource: https://esports.computing.psu.ac.th/reservation",
+      "exception": null,
+      "mode": "pipeline:source_operation_schedule_query",
+      "category": "schedule",
+      "intent": "schedule_query",
+      "confidence": 0.98,
+      "elapsed": 0.3101534000597894,
+      "source_file": "model_matrix_memo_counter\\legacy_RESULTS.jsonl.gz",
+      "source_line": 10019
+    },
+    "old_failed_grades": [
+      {
+        "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+        "row": 5416,
+        "variant": "question",
+        "id": "MASTER-GT-EN-00417",
+        "passed": false,
+        "failures": [
+          "route:schedule expected:['reservation']"
+        ],
+        "evidence_level": "route_outcome_only",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": false
+        },
+        "protocol_failures": [
+          "route:schedule expected:['reservation']"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": false,
+        "content_checks_passed": null
+      },
+      {
+        "file": "data/eval/master_ground_truth_en_5000_v1.jsonl",
+        "row": 416,
+        "variant": "question",
+        "id": "MASTER-GT-EN-00417",
+        "passed": false,
+        "failures": [
+          "route:schedule expected:['reservation']"
+        ],
+        "evidence_level": "route_outcome_only",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": false
+        },
+        "protocol_failures": [
+          "route:schedule expected:['reservation']"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": false,
+        "content_checks_passed": null
+      }
+    ]
+  },
+  "K10": {
+    "id": "K10",
+    "title": "ปุ่มยิง: ถามเพิ่มเหมือนกัน แต่ไม่ตรงคำที่ตัวตรวจบังคับ",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 47,
+    "new": {
+      "key": "2df6cad064b00dd2b0042ae9f8033e3b8de253cb687893a152ff4e6f607cf654",
+      "question": "ปุ่มยิงกดอะไร",
+      "requested_locale": "th",
+      "effective_locale": "th",
+      "stratum": {
+        "locale": "th",
+        "corpus": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+        "domain": "game_controls",
+        "style": "source_form"
+      },
+      "elapsed_sec": 0.7801794999977574,
+      "result": {
+        "answer": "ยังระบุข้อมูลจากชุดที่ย้ายมาให้ตรงคำถามนี้ไม่ได้ครับ กรุณาระบุชื่อเกม อุปกรณ์ หรือหัวข้อที่ต้องการทราบเพิ่มอีกนิด",
+        "hits": [],
+        "elapsed": 0.7771909000002779,
+        "mode": "pipeline:migrated_clarification",
+        "confidence": 0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0,
+          "answer_type": "clarification",
+          "risk": "medium",
+          "reason": "migrated common content only"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [],
+              "method": "none"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            },
+            {
+              "stage": "unresolved_scope",
+              "operation": "controls",
+              "entity_selection": {
+                "attempted": false,
+                "reason": "no_independent_topic_anchor",
+                "candidate_ids": [],
+                "retrieved_candidate_ids": [
+                  "game_detail_valorant",
+                  "game_detail_zelda_breath_of_the_wild"
+                ],
+                "rejected_unanchored_ids": [
+                  "game_detail_valorant",
+                  "game_detail_zelda_breath_of_the_wild"
+                ],
+                "rejected_correction_subject_ids": [],
+                "intent_verified": false
+              },
+              "requested_fields": [
+                "bindings"
+              ],
+              "request_needs": []
+            }
+          ]
+        },
+        "language": {
+          "requested": "th",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;thai_script"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.001544,
+        "repeat_score": 0.0,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 0.516
+      },
+      "grades": [
+        {
+          "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+          "row": 3289,
+          "variant": "question",
+          "id": "MASTER-GT-TH-03290",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['clarification', 'games', 'no_answer']",
+            "status:clarification expected:answer_available",
+            "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['clarification', 'games', 'no_answer']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+          "row": 3289,
+          "variant": "question",
+          "id": "MASTER-GT-TH-03290",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['clarification', 'games', 'no_answer']",
+            "status:clarification expected:answer_available",
+            "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['clarification', 'games', 'no_answer']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_th_5000_v1.jsonl",
+          "row": 3289,
+          "variant": "question",
+          "id": "MASTER-GT-TH-03290",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['clarification', 'games', 'no_answer']",
+            "status:clarification expected:answer_available",
+            "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['clarification', 'games', 'no_answer']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_th_5000_v2.jsonl",
+          "row": 3289,
+          "variant": "question",
+          "id": "MASTER-GT-TH-03290",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['clarification', 'games', 'no_answer']",
+            "status:clarification expected:answer_available",
+            "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['clarification', 'games', 'no_answer']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['ยังไม่แน่ใจ', 'ยังไม่พบ', 'ขอ', 'ไม่มี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        }
+      ],
+      "observed_model_http_calls": []
+    },
+    "old": {
+      "question": "ปุ่มยิงกดอะไร",
+      "answer": "ขอชื่อเกมก่อนครับ ยังไม่แน่ใจว่าหมายถึงเกมไหน จึงไม่ขอดึงปุ่มหรือวิธีเล่นของเกมอื่นมาตอบแทน\nตัวอย่างเกมที่มีข้อมูลปุ่มแล้ว: TEKKEN 8, Mario Kart 8 Deluxe, Call of Duty: Modern Warfare III\nเช่น `TEKKEN 8 มีปุ่มอะไรบ้าง` หรือ `Mario Kart 8 Deluxe กดอะไร`",
+      "exception": null,
+      "mode": "pipeline:game_control_missing_game_context",
+      "category": "games",
+      "intent": "game_control_lookup",
+      "confidence": 0.84,
+      "elapsed": 5.859572000103071,
+      "source_file": "model_matrix_memo_counter\\legacy_RESULTS.jsonl.gz",
+      "source_line": 8195
+    },
+    "old_failed_grades": [
+      {
+        "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+        "row": 3289,
+        "variant": "question",
+        "id": "MASTER-GT-TH-03290",
+        "passed": false,
+        "failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "protocol_failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": true,
+        "content_checks_passed": true
+      },
+      {
+        "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+        "row": 3289,
+        "variant": "question",
+        "id": "MASTER-GT-TH-03290",
+        "passed": false,
+        "failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "protocol_failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": true,
+        "content_checks_passed": true
+      },
+      {
+        "file": "data/eval/master_ground_truth_th_5000_v1.jsonl",
+        "row": 3289,
+        "variant": "question",
+        "id": "MASTER-GT-TH-03290",
+        "passed": false,
+        "failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "protocol_failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": true,
+        "content_checks_passed": true
+      },
+      {
+        "file": "data/eval/master_ground_truth_th_5000_v2.jsonl",
+        "row": 3289,
+        "variant": "question",
+        "id": "MASTER-GT-TH-03290",
+        "passed": false,
+        "failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "evidence_level": "literal_content_contract",
+        "grader_detail": {
+          "strong_outcome_matches": false,
+          "positive_content_asserted": true
+        },
+        "protocol_failures": [
+          "status:clarification expected:answer_available"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": true,
+        "content_checks_passed": true
+      }
+    ]
+  },
+  "K01": {
+    "id": "K01",
+    "title": "ชื่อเกมถูก แต่คำถามว่าเป็นเกมอะไรพิมพ์ผิด",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 67,
+    "new": {
+      "key": "e3547941eff33374ff75551fbf0f886c8570b64d0714e4bc9746040e864268f6",
+      "question": "The Legend of Zelda: Breath of the Wild คือกมอะๆร",
+      "requested_locale": "th",
+      "effective_locale": "th",
+      "stratum": {
+        "locale": "th",
+        "corpus": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+        "domain": "game_detail",
+        "style": "noisy"
+      },
+      "elapsed_sec": 10.044033799989847,
+      "result": {
+        "answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ The Legend of Zelda: Breath of the Wild เช่น ชื่อเกมอย่างเป็นทางการ?",
+        "hits": [],
+        "elapsed": 10.03521269999328,
+        "mode": "pipeline:common_clarification",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "clarification",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "clarification",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "clarification",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [
+                  "game_detail_zelda_breath_of_the_wild"
+                ],
+                "requested_fields": [],
+                "all_fields": false,
+                "method": "exact",
+                "scope": "common_published",
+                "platform": null,
+                "query_without_entity": "คือกมอะๆร",
+                "operation": null,
+                "scope_ids": [
+                  "game_detail_zelda_breath_of_the_wild"
+                ],
+                "field_selection": [],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "game_detail_zelda_breath_of_the_wild"
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "epoch": 1840
+                },
+                "scoped_topic_selection": {
+                  "attempted": false,
+                  "reason": "no_candidate",
+                  "method": "scoped_topic_unresolved"
+                },
+                "field_authority": [],
+                "unresolved_clauses": [
+                  "คือกมอะๆร"
+                ],
+                "semantic_review_needed": true,
+                "semantic_plan_accepted": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "clarification",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "game_detail_zelda_breath_of_the_wild"
+            ],
+            "requested_fields": [],
+            "all_fields": false,
+            "method": "exact",
+            "scope": "common_published",
+            "platform": null,
+            "query_without_entity": "คือกมอะๆร",
+            "operation": null,
+            "scope_ids": [
+              "game_detail_zelda_breath_of_the_wild"
+            ],
+            "field_selection": [],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "game_detail_zelda_breath_of_the_wild"
+              ],
+              "release_id": "migration-preview-r69",
+              "epoch": 1840
+            },
+            "scoped_topic_selection": {
+              "attempted": false,
+              "reason": "no_candidate",
+              "method": "scoped_topic_unresolved"
+            },
+            "field_authority": [],
+            "unresolved_clauses": [
+              "คือกมอะๆร"
+            ],
+            "semantic_review_needed": true,
+            "semantic_plan_accepted": false
+          },
+          "obligations": [],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [
+            {
+              "attempted": true,
+              "transport_ok": true,
+              "schema_accepted": true,
+              "final_plan_accepted": false,
+              "rejection_reason": null,
+              "proposal": {
+                "requested_fields": [
+                  "title",
+                  "edition",
+                  "genre",
+                  "summary",
+                  "how_to_play",
+                  "publisher_url",
+                  "supported_platforms",
+                  "age_rating",
+                  "official_description",
+                  "profile_role",
+                  "source_listing_sections",
+                  "venue_zone_ids"
+                ],
+                "all_fields": false,
+                "platform": null
+              },
+              "clause_plan": {
+                "clause_fields": [
+                  {
+                    "id": 0,
+                    "requested_fields": [
+                      "title",
+                      "edition",
+                      "genre",
+                      "summary",
+                      "how_to_play",
+                      "publisher_url",
+                      "supported_platforms",
+                      "age_rating",
+                      "official_description",
+                      "profile_role",
+                      "source_listing_sections",
+                      "venue_zone_ids"
+                    ]
+                  }
+                ],
+                "all_fields": false,
+                "platform": null
+              },
+              "accepted_plan": null,
+              "semantic": {
+                "semantic_status": "rejected_unverified_intent",
+                "unresolved_clauses": [
+                  "คือกมอะๆร"
+                ],
+                "proposal": [
+                  "edition",
+                  "genre",
+                  "summary",
+                  "how_to_play",
+                  "publisher_url",
+                  "supported_platforms",
+                  "age_rating",
+                  "official_description",
+                  "profile_role",
+                  "source_listing_sections",
+                  "venue_zone_ids"
+                ],
+                "unclear_clauses": [],
+                "clause_coverage_repairs": []
+              },
+              "query_recoveries": [],
+              "original_question": "คือกมอะๆร",
+              "prompt_eval_count": 1938,
+              "queue_wait_ms": 5853.217700001551,
+              "elapsed_ms": 3455.918899999233
+            }
+          ],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [
+                "game_detail_zelda_breath_of_the_wild",
+                "availability_nintendo_1_2",
+                "availability_nintendo_1_4",
+                "controls_nintendo_the_legend_of_zelda_breath_of_the_wild"
+              ],
+              "method": "exact"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            }
+          ]
+        },
+        "language": {
+          "requested": "th",
+          "detected": "mixed",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;mixed_named_title_thai_script"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.004073,
+        "repeat_score": 0.0,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 2.971
+      },
+      "grades": [
+        {
+          "file": "data/eval/master_gt_bilingual_multi_error_2000_20260929_r15.jsonl",
+          "row": 59,
+          "variant": "noisy",
+          "id": "MASTER-GT-TH-02306",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['games']",
+            "status:clarification expected:answer_available",
+            "missing all alternatives: ['The Legend of Zelda: Breath of the Wild คือเกมผจญภัยโลกเปิดที่ให้ผู้เล่นสำรวจ ต่อสู้ แก้ปริศนา และทดลองวิธีผ่านสถานการณ์ต่าง ๆ']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['games']"
+            ],
+            "outcome": [
+              "status:clarification expected:answer_available"
+            ],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['The Legend of Zelda: Breath of the Wild คือเกมผจญภัยโลกเปิดที่ให้ผู้เล่นสำรวจ ต่อสู้ แก้ปริศนา และทดลองวิธีผ่านสถานการณ์ต่าง ๆ']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "source_grounded_gold_candidate"
+        }
+      ],
+      "observed_model_http_calls": [
+        {
+          "url": "http://127.0.0.1:11434/api/generate",
+          "transport_ok": true,
+          "elapsed_sec": 3.444710599986138
+        }
+      ]
+    },
+    "old": {
+      "question": "The Legend of Zelda: Breath of the Wild คือกมอะๆร",
+      "answer": "The Legend of Zelda: Breath of The Wild: The Legend of Zelda: Breath of the Wild คือเกมผจญภัยโลกเปิดที่ให้ผู้เล่นสำรวจ ต่อสู้ แก้ปริศนา และทดลองวิธีผ่านสถานการณ์ต่าง ๆ\nแนวเกม: เกม Open-world Adventure\nวิธีเล่นโดยสรุป: สำรวจแผนที่ เก็บอาวุธ/อาหาร แก้ shrine ต่อสู้ และเลือกเส้นทางการผจญภัยเองได้มาก\nเล่นได้ที่: Nintendo Switch Zone\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/Services/our-games",
+      "exception": null,
+      "mode": "pipeline:structured_game_detail",
+      "category": "games",
+      "intent": "game_detail_lookup",
+      "confidence": 0.94,
+      "elapsed": 1.2937404001131654,
+      "source_file": "model_matrix_memo_counter\\legacy_RESULTS.jsonl.gz",
+      "source_line": 14771
+    },
+    "old_failed_grades": []
+  },
+  "K09": {
+    "id": "K09",
+    "title": "อาหาร: หยุดที่ watchdog ก่อนมีคำตอบ",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 70,
+    "new": {
+      "key": "b0b908e3789f04a2084a19d2b8c00c722d72f1e606a56da60dbe80fb380f15e3",
+      "question": "เอาอาหารเข้าได้ไหม",
+      "requested_locale": "auto",
+      "stratum": {
+        "locale": "auto",
+        "corpus": "data/eval/answer_quality_cases.jsonl",
+        "domain": "rules",
+        "style": "question"
+      },
+      "exception": "TimeoutError('request watchdog 28 seconds')",
+      "grades": [
+        {
+          "file": "data/eval/answer_quality_cases.jsonl",
+          "row": 22,
+          "variant": "question",
+          "id": "AQ-RULE-001",
+          "passed": false,
+          "failures": [
+            "pipeline_exception"
+          ],
+          "partitions": {
+            "protocol": [],
+            "outcome": [],
+            "evidence": [],
+            "content": [],
+            "validation": [
+              "pipeline_exception"
+            ],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "evidence_level": "execution_failure"
+        },
+        {
+          "file": "data/eval/model_benchmark_1500.json",
+          "row": 1247,
+          "variant": "question",
+          "id": "MB-1248-PSR-005",
+          "passed": false,
+          "failures": [
+            "pipeline_exception"
+          ],
+          "partitions": {
+            "protocol": [],
+            "outcome": [],
+            "evidence": [],
+            "content": [],
+            "validation": [
+              "pipeline_exception"
+            ],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "evidence_level": "execution_failure"
+        },
+        {
+          "file": "data/routing/routing_eval_cases.jsonl",
+          "row": 35,
+          "variant": "question",
+          "id": "RT-RULE-001",
+          "passed": false,
+          "failures": [
+            "pipeline_exception"
+          ],
+          "partitions": {
+            "protocol": [],
+            "outcome": [],
+            "evidence": [],
+            "content": [],
+            "validation": [
+              "pipeline_exception"
+            ],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "evidence_level": "execution_failure"
+        },
+        {
+          "file": "data/routing/routing_eval_real_usage.jsonl",
+          "row": 100,
+          "variant": "question",
+          "id": "RU-RULE-001",
+          "passed": false,
+          "failures": [
+            "pipeline_exception"
+          ],
+          "partitions": {
+            "protocol": [],
+            "outcome": [],
+            "evidence": [],
+            "content": [],
+            "validation": [
+              "pipeline_exception"
+            ],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "evidence_level": "execution_failure"
+        }
+      ],
+      "worker_transport_failure": true
+    },
+    "old": {
+      "question": "เอาอาหารเข้าได้ไหม",
+      "answer": "นำอาหารหรือเครื่องดื่มเข้ามาได้ครับ แต่รับประทานหรือดื่มได้เฉพาะพื้นที่ที่ศูนย์กำหนด ไม่ใช่ทุกจุดในห้องเล่นเกม\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/",
+      "exception": null,
+      "mode": "pipeline:protected_food_bring_permission",
+      "category": "rules",
+      "intent": "food_bring_permission",
+      "confidence": 0.98,
+      "elapsed": 0.41760449996218085,
+      "source_file": "model_matrix\\legacy_RESULTS.jsonl.gz",
+      "source_line": 23
+    },
+    "old_failed_grades": [
+      {
+        "file": "data/eval/answer_quality_cases.jsonl",
+        "row": 22,
+        "variant": "question",
+        "id": "AQ-RULE-001",
+        "passed": false,
+        "failures": [
+          "quality_score_or_required_gate_failed",
+          "พื้นที่ที่กำหนด"
+        ],
+        "evidence_level": "native_answer_quality",
+        "grader_detail": {
+          "id": "AQ-RULE-001",
+          "question": "เอาอาหารเข้าได้ไหม",
+          "passed": false,
+          "score": 7.5,
+          "min_score": 8.0,
+          "route_ok": true,
+          "validation_ok": true,
+          "missing": [
+            "พื้นที่ที่กำหนด"
+          ],
+          "forbidden": [],
+          "missing_sources": [
+            "reservation"
+          ],
+          "missing_format": [],
+          "expected_category": "rules",
+          "actual_category": "rules",
+          "actual_intent": "food_bring_permission",
+          "actual_domain": "",
+          "actual_operation": "",
+          "mode": "pipeline:protected_food_bring_permission",
+          "confidence": 0.98,
+          "elapsed": 0.4164,
+          "sources": [
+            {
+              "id": "food_bring_reviewed_20260924",
+              "metadata": {
+                "source_url": "https://esports.computing.psu.ac.th/",
+                "category": "rules",
+                "title": "food_bring_reviewed_20260924",
+                "source_ids": [
+                  "food_bring_reviewed_20260924"
+                ]
+              }
+            }
+          ],
+          "notes": ""
+        },
+        "protocol_failures": [],
+        "content_failures": [
+          "quality_score_or_required_gate_failed",
+          "พื้นที่ที่กำหนด"
+        ],
+        "performance_failures": [],
+        "content_asserted": true,
+        "content_checks_passed": false
+      },
+      {
+        "file": "data/routing/routing_eval_cases.jsonl",
+        "row": 35,
+        "variant": "question",
+        "id": "RT-RULE-001",
+        "passed": false,
+        "failures": [
+          "intent:food_bring_permission expected:studio_rules"
+        ],
+        "evidence_level": "route_outcome_only",
+        "grader_detail": {
+          "strong_outcome_matches": null,
+          "positive_content_asserted": false
+        },
+        "protocol_failures": [
+          "intent:food_bring_permission expected:studio_rules"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": false,
+        "content_checks_passed": null
+      },
+      {
+        "file": "data/routing/routing_eval_real_usage.jsonl",
+        "row": 100,
+        "variant": "question",
+        "id": "RU-RULE-001",
+        "passed": false,
+        "failures": [
+          "intent:food_bring_permission expected:studio_rules"
+        ],
+        "evidence_level": "route_outcome_only",
+        "grader_detail": {
+          "strong_outcome_matches": null,
+          "positive_content_asserted": false
+        },
+        "protocol_failures": [
+          "intent:food_bring_permission expected:studio_rules"
+        ],
+        "content_failures": [],
+        "performance_failures": [],
+        "content_asserted": false,
+        "content_checks_passed": null
+      }
+    ]
+  },
+  "K08": {
+    "id": "K08",
+    "title": "ราคาที่หมดอายุ: ไม่ตอบตัวเลขปัจจุบันอาจเป็นการป้องกันที่ถูกต้อง",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 81,
+    "new": {
+      "key": "f3ae278c43764dbda15c79671b61aafde8de0a50342a5abd5f1daf94becd847f",
+      "question": "General Student เล่น VR 30 นาที 3 ชั่วโมง เสียกี่บาท",
+      "requested_locale": "th",
+      "effective_locale": "th",
+      "stratum": {
+        "locale": "th",
+        "corpus": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+        "domain": "service_fee",
+        "style": "source_form"
+      },
+      "elapsed_sec": 0.295435300009558,
+      "result": {
+        "answer": "**ค่าบริการ — VR Station 30 นาที / PSU Alumni and General Student**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\n**ค่าบริการ — VR Station 1 ชั่วโมง / PSU Alumni and General Student**\nข้อมูลรุ่นนี้หรือรายการที่อ้างอิงยังไม่ถึงวันมีผลหรือหมดอายุแล้ว จึงยังยืนยันข้อมูลปัจจุบันไม่ได้ (ช่วงมีผลที่บันทึก: 2026-02-01T00:00:00+07:00 ถึงก่อน 2026-04-01T00:00:00+07:00)\n\nราคาปัจจุบันยังยืนยันไม่ได้จากอัตราที่หมดอายุแล้ว",
+        "hits": [],
+        "elapsed": 0.2828193999885116,
+        "mode": "pipeline:common_not_current",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "not_current",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "not_current",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "not_current",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [
+                  "availability_vr_30",
+                  "availability_vr_60",
+                  "audience_psu_alumni_general_student"
+                ],
+                "requested_fields": [
+                  "amount_minor"
+                ],
+                "all_fields": false,
+                "method": "exact",
+                "scope": "common_published",
+                "platform": "VR",
+                "query_without_entity": "general student เล่น 30 นาที 3 ชั่วโมง เสียกี่บาท",
+                "operation": "price",
+                "scope_ids": [
+                  "availability_vr_30",
+                  "availability_vr_60",
+                  "audience_psu_alumni_general_student"
+                ],
+                "field_selection": [
+                  {
+                    "field": "amount_minor",
+                    "cue": "กี่บาท",
+                    "method": "schema_attribute"
+                  }
+                ],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "duration_constraint_supplied": true,
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "availability_vr_30",
+                    "availability_vr_60",
+                    "audience_psu_alumni_general_student"
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "epoch": 1840
+                },
+                "audience_selection": {
+                  "concepts": [
+                    "alumni_general_student"
+                  ],
+                  "organization_groups": [],
+                  "negated_group_removed": false,
+                  "selected_ids": [
+                    "audience_psu_alumni_general_student"
+                  ],
+                  "matched_spans": [
+                    "general student"
+                  ],
+                  "source": "existing_audience_labels_and_organizational_actor_grammar"
+                },
+                "field_authority": [],
+                "unresolved_clauses": [],
+                "semantic_review_needed": false,
+                "semantic_plan_accepted": false,
+                "read_contract": {
+                  "schema_version": "common_read_plan_v1",
+                  "needs": [
+                    {
+                      "id": "n1",
+                      "field_refs": [],
+                      "source_span": "general student เล่น vr 30 นาที 3 ชั่วโมง เสียกี่บาท",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    }
+                  ],
+                  "unresolved_spans": [],
+                  "semantic_correctness_verified": false
+                },
+                "response_projection": [
+                  {
+                    "record_id": "availability_vr_30",
+                    "fields": {}
+                  },
+                  {
+                    "record_id": "migrated_rate_vr_30_1_5_psu_alumni_general_student",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "availability_vr_60",
+                    "fields": {}
+                  },
+                  {
+                    "record_id": "migrated_rate_vr_60_1_5_psu_alumni_general_student",
+                    "fields": {
+                      "amount_minor": "explicit",
+                      "service_id": "necessary_context",
+                      "audience_id": "necessary_context",
+                      "currency": "necessary_context",
+                      "duration_minutes": "necessary_context"
+                    }
+                  },
+                  {
+                    "record_id": "audience_psu_alumni_general_student",
+                    "fields": {}
+                  }
+                ]
+              },
+              "obligations": [
+                {
+                  "record_id": "migrated_rate_vr_30_1_5_psu_alumni_general_student",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "migrated_rate_vr_60_1_5_psu_alumni_general_student",
+                  "field": "validity",
+                  "status": "not_current"
+                },
+                {
+                  "record_id": "availability_vr_30",
+                  "field": "amount_minor",
+                  "status": "not_current",
+                  "evidence_refs": [],
+                  "reason": "declared_rate_outside_validity"
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "not_current",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "availability_vr_30",
+              "availability_vr_60",
+              "audience_psu_alumni_general_student"
+            ],
+            "requested_fields": [
+              "amount_minor"
+            ],
+            "all_fields": false,
+            "method": "exact",
+            "scope": "common_published",
+            "platform": "VR",
+            "query_without_entity": "general student เล่น 30 นาที 3 ชั่วโมง เสียกี่บาท",
+            "operation": "price",
+            "scope_ids": [
+              "availability_vr_30",
+              "availability_vr_60",
+              "audience_psu_alumni_general_student"
+            ],
+            "field_selection": [
+              {
+                "field": "amount_minor",
+                "cue": "กี่บาท",
+                "method": "schema_attribute"
+              }
+            ],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "duration_constraint_supplied": true,
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "availability_vr_30",
+                "availability_vr_60",
+                "audience_psu_alumni_general_student"
+              ],
+              "release_id": "migration-preview-r69",
+              "epoch": 1840
+            },
+            "audience_selection": {
+              "concepts": [
+                "alumni_general_student"
+              ],
+              "organization_groups": [],
+              "negated_group_removed": false,
+              "selected_ids": [
+                "audience_psu_alumni_general_student"
+              ],
+              "matched_spans": [
+                "general student"
+              ],
+              "source": "existing_audience_labels_and_organizational_actor_grammar"
+            },
+            "field_authority": [],
+            "unresolved_clauses": [],
+            "semantic_review_needed": false,
+            "semantic_plan_accepted": false,
+            "read_contract": {
+              "schema_version": "common_read_plan_v1",
+              "needs": [
+                {
+                  "id": "n1",
+                  "field_refs": [],
+                  "source_span": "general student เล่น vr 30 นาที 3 ชั่วโมง เสียกี่บาท",
+                  "resolution": "typed_supported",
+                  "ambiguous_kind": false
+                }
+              ],
+              "unresolved_spans": [],
+              "semantic_correctness_verified": false
+            },
+            "response_projection": [
+              {
+                "record_id": "availability_vr_30",
+                "fields": {}
+              },
+              {
+                "record_id": "migrated_rate_vr_30_1_5_psu_alumni_general_student",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              },
+              {
+                "record_id": "availability_vr_60",
+                "fields": {}
+              },
+              {
+                "record_id": "migrated_rate_vr_60_1_5_psu_alumni_general_student",
+                "fields": {
+                  "amount_minor": "explicit",
+                  "service_id": "necessary_context",
+                  "audience_id": "necessary_context",
+                  "currency": "necessary_context",
+                  "duration_minutes": "necessary_context"
+                }
+              },
+              {
+                "record_id": "audience_psu_alumni_general_student",
+                "fields": {}
+              }
+            ]
+          },
+          "obligations": [
+            {
+              "record_id": "migrated_rate_vr_30_1_5_psu_alumni_general_student",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "migrated_rate_vr_60_1_5_psu_alumni_general_student",
+              "field": "validity",
+              "status": "not_current"
+            },
+            {
+              "record_id": "availability_vr_30",
+              "field": "amount_minor",
+              "status": "not_current",
+              "evidence_refs": [],
+              "reason": "declared_rate_outside_validity"
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [
+                "zone_vr",
+                "availability_vr_30",
+                "availability_vr_60"
+              ],
+              "method": "exact"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            }
+          ]
+        },
+        "language": {
+          "requested": "th",
+          "detected": "mixed",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;mixed_thai_function_words"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.028375,
+        "repeat_score": 0.0,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 1.845
+      },
+      "grades": [
+        {
+          "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+          "row": 231,
+          "variant": "question",
+          "id": "MASTER-GT-TH-00232",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['service_fee']",
+            "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['service_fee']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_bilingual_10000_v2.jsonl",
+          "row": 231,
+          "variant": "question",
+          "id": "MASTER-GT-TH-00232",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['service_fee']",
+            "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['service_fee']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_th_5000_v1.jsonl",
+          "row": 231,
+          "variant": "question",
+          "id": "MASTER-GT-TH-00232",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['service_fee']",
+            "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['service_fee']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        },
+        {
+          "file": "data/eval/master_ground_truth_th_5000_v2.jsonl",
+          "row": 231,
+          "variant": "question",
+          "id": "MASTER-GT-TH-00232",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['service_fee']",
+            "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['service_fee']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['บาท', 'บาท', 'ฟรี']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "inherited_gold_candidate"
+        }
+      ],
+      "observed_model_http_calls": []
+    },
+    "old": {
+      "question": "General Student เล่น VR 30 นาที 3 ชั่วโมง เสียกี่บาท",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\nระยะเวลาที่ถาม 30 นาที (0.5 ชั่วโมง) คิดเป็น 1 session (แพ็กเกจ)\n•    นักศึกษา/นักเรียน/บุคลากร PSU (PSU Student and Staff): 0 บาท/แพ็กเกจ\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+      "exception": null,
+      "mode": "pipeline:structured_service_fee_conversation",
+      "category": "service_fee",
+      "intent": "conversation_price_lookup",
+      "confidence": 0.98,
+      "elapsed": 0.1396785001270473,
+      "source_file": "model_matrix_memo_counter\\legacy_RESULTS.jsonl.gz",
+      "source_line": 5137
+    },
+    "old_failed_grades": []
+  },
+  "K03": {
+    "id": "K03",
+    "title": "ถามสิทธิ์คนนอกใช้ VR กลับได้เมนูเวลาเล่น",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 101,
+    "new": {
+      "key": "eed9942c1154f47b25b1348687772419742fe9b3824eecec167f1a1a3bb58cb5",
+      "question": "A question about the studio: Can an external visitor use the VR headset?",
+      "requested_locale": "en",
+      "effective_locale": "en",
+      "stratum": {
+        "locale": "en",
+        "corpus": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+        "domain": "equipment_access_trap",
+        "style": "question"
+      },
+      "elapsed_sec": 13.166722399997525,
+      "result": {
+        "answer": "The requested topic is unclear. Which part of VR Zone do you need: Service / platform / Play time per session / Booking occupancy?",
+        "hits": [],
+        "elapsed": 13.151682299998356,
+        "mode": "pipeline:common_clarification",
+        "confidence": 0.0,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.0,
+          "answer_type": "clarification",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "clarification",
+            "confidence": 0.0,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "clarification",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [
+                  "zone_vr",
+                  "availability_vr_30",
+                  "availability_vr_60"
+                ],
+                "requested_fields": [],
+                "all_fields": false,
+                "method": "exact",
+                "scope": "common_published",
+                "platform": null,
+                "query_without_entity": "a question about the studio: can an external visitor use the headset?",
+                "operation": null,
+                "scope_ids": [
+                  "zone_vr",
+                  "availability_vr_30",
+                  "availability_vr_60"
+                ],
+                "field_selection": [],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "zone_vr",
+                    "availability_vr_30",
+                    "availability_vr_60"
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "epoch": 1840
+                },
+                "scoped_topic_selection": {
+                  "candidate_ids": [
+                    "procedure_wrong_slip",
+                    "procedure_change_time"
+                  ],
+                  "candidate_scores": [
+                    0.8235,
+                    0.2059
+                  ],
+                  "intent_verified": false,
+                  "retrieved_candidate_ids": [
+                    "procedure_wrong_slip",
+                    "procedure_change_time"
+                  ],
+                  "rejected_correction_subject_ids": [],
+                  "candidate_pruning": {
+                    "before_count": 2,
+                    "after_count": 2,
+                    "rejected_ids": [],
+                    "reason": "fails_existing_independent_topic_guard"
+                  },
+                  "timing_ms": {
+                    "retrieval_ms": 4.825,
+                    "model_work_wait_ms": 832.098,
+                    "admission_wait_ms": 1830.437,
+                    "http_wait_and_read_ms": 1217.885,
+                    "total_ms": 3886.224
+                  },
+                  "profile_retrieval_coverage": {
+                    "compatible_count": 0,
+                    "included_count": 0,
+                    "omitted_ids": [],
+                    "all_compatible_topics_available_for_clarification": true,
+                    "semantic_recall_verified": false
+                  },
+                  "profile_protocol": true,
+                  "model_request": {
+                    "timeout_cap_seconds": 6,
+                    "effective_timeout_seconds": 6,
+                    "payload_bytes": 4206,
+                    "num_ctx": 3072,
+                    "num_predict": 420
+                  },
+                  "model_metrics": {
+                    "total_duration_ms": 1196.191,
+                    "load_duration_ms": 41.004,
+                    "prompt_eval_duration_ms": 315.754,
+                    "eval_duration_ms": 224.753,
+                    "prompt_eval_count": 523,
+                    "eval_count": 13
+                  },
+                  "generation_done": true,
+                  "attempted": true,
+                  "transport_ok": true,
+                  "schema_accepted": true,
+                  "selected_indices": [],
+                  "ambiguous": false,
+                  "profile_bindings": [],
+                  "profile_projections": {},
+                  "profile_binding_accepted": false,
+                  "independent_topic_alignment": {},
+                  "semantic_selection_accepted": false,
+                  "method": "scoped_topic_unresolved"
+                },
+                "field_authority": [],
+                "unresolved_clauses": [
+                  "a question about the studio: can an external visitor use the headset"
+                ],
+                "semantic_review_needed": true,
+                "semantic_plan_accepted": false
+              },
+              "obligations": [],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "clarification",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "zone_vr",
+              "availability_vr_30",
+              "availability_vr_60"
+            ],
+            "requested_fields": [],
+            "all_fields": false,
+            "method": "exact",
+            "scope": "common_published",
+            "platform": null,
+            "query_without_entity": "a question about the studio: can an external visitor use the headset?",
+            "operation": null,
+            "scope_ids": [
+              "zone_vr",
+              "availability_vr_30",
+              "availability_vr_60"
+            ],
+            "field_selection": [],
+            "confidence_calibrated": false,
+            "request_focus": null,
+            "schema_language_recoveries": [],
+            "authority": {
+              "decision": "common",
+              "reason": "published_target_owned",
+              "record_ids": [
+                "zone_vr",
+                "availability_vr_30",
+                "availability_vr_60"
+              ],
+              "release_id": "migration-preview-r69",
+              "epoch": 1840
+            },
+            "scoped_topic_selection": {
+              "candidate_ids": [
+                "procedure_wrong_slip",
+                "procedure_change_time"
+              ],
+              "candidate_scores": [
+                0.8235,
+                0.2059
+              ],
+              "intent_verified": false,
+              "retrieved_candidate_ids": [
+                "procedure_wrong_slip",
+                "procedure_change_time"
+              ],
+              "rejected_correction_subject_ids": [],
+              "candidate_pruning": {
+                "before_count": 2,
+                "after_count": 2,
+                "rejected_ids": [],
+                "reason": "fails_existing_independent_topic_guard"
+              },
+              "timing_ms": {
+                "retrieval_ms": 4.825,
+                "model_work_wait_ms": 832.098,
+                "admission_wait_ms": 1830.437,
+                "http_wait_and_read_ms": 1217.885,
+                "total_ms": 3886.224
+              },
+              "profile_retrieval_coverage": {
+                "compatible_count": 0,
+                "included_count": 0,
+                "omitted_ids": [],
+                "all_compatible_topics_available_for_clarification": true,
+                "semantic_recall_verified": false
+              },
+              "profile_protocol": true,
+              "model_request": {
+                "timeout_cap_seconds": 6,
+                "effective_timeout_seconds": 6,
+                "payload_bytes": 4206,
+                "num_ctx": 3072,
+                "num_predict": 420
+              },
+              "model_metrics": {
+                "total_duration_ms": 1196.191,
+                "load_duration_ms": 41.004,
+                "prompt_eval_duration_ms": 315.754,
+                "eval_duration_ms": 224.753,
+                "prompt_eval_count": 523,
+                "eval_count": 13
+              },
+              "generation_done": true,
+              "attempted": true,
+              "transport_ok": true,
+              "schema_accepted": true,
+              "selected_indices": [],
+              "ambiguous": false,
+              "profile_bindings": [],
+              "profile_projections": {},
+              "profile_binding_accepted": false,
+              "independent_topic_alignment": {},
+              "semantic_selection_accepted": false,
+              "method": "scoped_topic_unresolved"
+            },
+            "field_authority": [],
+            "unresolved_clauses": [
+              "a question about the studio: can an external visitor use the headset"
+            ],
+            "semantic_review_needed": true,
+            "semantic_plan_accepted": false
+          },
+          "obligations": [],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [
+            {
+              "attempted": true,
+              "transport_ok": false,
+              "schema_accepted": false,
+              "error_stage": "transport",
+              "error_type": "TimeoutError",
+              "elapsed_ms": 8036.061499995412
+            }
+          ],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [
+                "zone_vr",
+                "availability_vr_30",
+                "availability_vr_60"
+              ],
+              "method": "exact"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            }
+          ]
+        },
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.015478,
+        "repeat_score": 0.0,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 4.03
+      },
+      "grades": [
+        {
+          "file": "data/eval/intent_trap_bilingual_1000_v1.jsonl",
+          "row": 916,
+          "variant": "question",
+          "id": "INTENT-TRAP-EN-0417",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "scenario_curated_paraphrase_pending_review"
+        },
+        {
+          "file": "data/eval/intent_trap_bilingual_1000_v2.jsonl",
+          "row": 916,
+          "variant": "question",
+          "id": "INTENT-TRAP-EN-0417",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['reservation', 'rules', 'no_answer', 'clarification']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": "scenario_curated_paraphrase_pending_review"
+        },
+        {
+          "file": "data/eval/intent_trap_english_reference_200_20260926.jsonl",
+          "row": 116,
+          "variant": "question",
+          "id": "INTENT-TRAP-EN-0417",
+          "passed": true,
+          "failures": [],
+          "evidence_level": "route_outcome_only",
+          "grader_detail": {
+            "strong_outcome_matches": null,
+            "positive_content_asserted": false
+          },
+          "partitions": {
+            "protocol": [],
+            "outcome": [],
+            "evidence": [],
+            "content": [],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": false,
+          "review_status": null
+        }
+      ],
+      "observed_model_http_calls": [
+        {
+          "url": "http://127.0.0.1:11434/api/generate",
+          "transport_ok": true,
+          "elapsed_sec": 1.2175958000007086
+        },
+        {
+          "url": "http://127.0.0.1:11434/api/generate",
+          "transport_ok": false,
+          "error_type": "TimeoutError",
+          "error": "timed out",
+          "elapsed_sec": 8.016072300000815
+        }
+      ]
+    },
+    "old": {
+      "question": "A question about the studio: Can an external visitor use the VR headset?",
+      "answer": "Yes. Public visitors can book and use a VR station. Fees depend on the service and user group. Book through the reservation system and present a national ID card at check-in.\nSource: https://esports.computing.psu.ac.th/",
+      "exception": null,
+      "mode": "pipeline:protected_public_access",
+      "category": "reservation",
+      "intent": "public_access",
+      "confidence": 0.98,
+      "elapsed": 0.20547239994630218,
+      "source_file": "model_matrix_memo_counter\\legacy_RESULTS.jsonl.gz",
+      "source_line": 4822
+    },
+    "old_failed_grades": []
+  },
+  "K07": {
+    "id": "K07",
+    "title": "ถามโซนของเกม กลับได้รายการบริการ",
+    "raw_file": "RESULTS_0.jsonl.gz",
+    "raw_line": 105,
+    "new": {
+      "key": "98db8777d79361985fa4635a167d2f2e0d063c5676110287b61664cc4a997d44",
+      "question": "Please answer from verified studio information: Which studio zone has The Legend of Zelda: Breath of the Wild",
+      "requested_locale": "en",
+      "effective_locale": "en",
+      "stratum": {
+        "locale": "en",
+        "corpus": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+        "domain": "game_detail",
+        "style": "paraphrase_wrapper_02"
+      },
+      "elapsed_sec": 0.48316269999486394,
+      "result": {
+        "answer": "Confirmed game records: The Legend of Zelda: Breath of the Wild\n\n• Confirmed source scope: Nintendo Switch (1-2 Persons) [S1][S2][S3]\n\n• Confirmed source scope: Nintendo Switch (1-4 Persons) [S4][S5][S6]\n\nThis confirms game offerings/installations, not live booking availability.",
+        "hits": [
+          {
+            "id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild:game_id:S1",
+            "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+            "field": "game_id",
+            "title": "Migrated source information",
+            "text": "game_detail_zelda_breath_of_the_wild",
+            "source_id": "r63_b732e5b132fc0d7026df08b6c1a6",
+            "snapshot_sha256": "7722c79dcc71b29d9ff1c01c1dc6c907be1d99048aca059ff420ed4ca7a57992",
+            "locator": "/mapped_fields/game_id",
+            "citation_label": "S1",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+              "common_field": "game_id",
+              "common_revision": 1,
+              "common_game_id": "game_detail_zelda_breath_of_the_wild",
+              "game": "The Legend of Zelda: Breath of the Wild",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          },
+          {
+            "id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild:service_id:S2",
+            "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+            "field": "service_id",
+            "title": "Migrated source information",
+            "text": "availability_nintendo_1_2",
+            "source_id": "r63_b732e5b132fc0d7026df08b6c1a6",
+            "snapshot_sha256": "7722c79dcc71b29d9ff1c01c1dc6c907be1d99048aca059ff420ed4ca7a57992",
+            "locator": "/mapped_fields/service_id",
+            "citation_label": "S2",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+              "common_field": "service_id",
+              "common_revision": 1,
+              "common_game_id": "game_detail_zelda_breath_of_the_wild",
+              "game": "The Legend of Zelda: Breath of the Wild",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          },
+          {
+            "id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild:offered:S3",
+            "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+            "field": "offered",
+            "title": "Migrated source information",
+            "text": "Yes",
+            "source_id": "r63_b732e5b132fc0d7026df08b6c1a6",
+            "snapshot_sha256": "7722c79dcc71b29d9ff1c01c1dc6c907be1d99048aca059ff420ed4ca7a57992",
+            "locator": "/mapped_fields/offered",
+            "citation_label": "S3",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+              "common_field": "offered",
+              "common_revision": 1,
+              "common_game_id": "game_detail_zelda_breath_of_the_wild",
+              "game": "The Legend of Zelda: Breath of the Wild",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          },
+          {
+            "id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild:game_id:S4",
+            "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+            "field": "game_id",
+            "title": "Migrated source information",
+            "text": "game_detail_zelda_breath_of_the_wild",
+            "source_id": "r63_40b14da1a78b8cd5564a24563361",
+            "snapshot_sha256": "ad85f7cc4731fc05f9253c212c80321be39238f3f7a57c0a377cd57d03710585",
+            "locator": "/mapped_fields/game_id",
+            "citation_label": "S4",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+              "common_field": "game_id",
+              "common_revision": 1,
+              "common_game_id": "game_detail_zelda_breath_of_the_wild",
+              "game": "The Legend of Zelda: Breath of the Wild",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          },
+          {
+            "id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild:service_id:S5",
+            "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+            "field": "service_id",
+            "title": "Migrated source information",
+            "text": "availability_nintendo_1_4",
+            "source_id": "r63_40b14da1a78b8cd5564a24563361",
+            "snapshot_sha256": "ad85f7cc4731fc05f9253c212c80321be39238f3f7a57c0a377cd57d03710585",
+            "locator": "/mapped_fields/service_id",
+            "citation_label": "S5",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+              "common_field": "service_id",
+              "common_revision": 1,
+              "common_game_id": "game_detail_zelda_breath_of_the_wild",
+              "game": "The Legend of Zelda: Breath of the Wild",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          },
+          {
+            "id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild:offered:S6",
+            "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+            "field": "offered",
+            "title": "Migrated source information",
+            "text": "Yes",
+            "source_id": "r63_40b14da1a78b8cd5564a24563361",
+            "snapshot_sha256": "ad85f7cc4731fc05f9253c212c80321be39238f3f7a57c0a377cd57d03710585",
+            "locator": "/mapped_fields/offered",
+            "citation_label": "S6",
+            "source_url": "",
+            "metadata": {
+              "common_record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+              "common_field": "offered",
+              "common_revision": 1,
+              "common_game_id": "game_detail_zelda_breath_of_the_wild",
+              "game": "The Legend of Zelda: Breath of the Wild",
+              "common_approved": false,
+              "content_view": "evaluation_draft",
+              "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+              "release_id": "migration-preview-r69"
+            }
+          }
+        ],
+        "elapsed": 0.4498934999865014,
+        "mode": "pipeline:common_answer",
+        "confidence": 0.8,
+        "route": {
+          "category": "knowledge",
+          "intent": "common_read",
+          "confidence": 0.8,
+          "answer_type": "answer",
+          "risk": "medium",
+          "reason": "unpublished evaluation draft"
+        },
+        "entities": {
+          "day": null,
+          "time_slots": [],
+          "service": null,
+          "user_group": null,
+          "duration": null,
+          "price_intent": false,
+          "short_answer": false,
+          "comparison_intent": false,
+          "raw": {}
+        },
+        "validation": {
+          "ok": true,
+          "errors": [],
+          "warnings": []
+        },
+        "trace": [
+          {
+            "stage": "common_content",
+            "decision": "answer",
+            "confidence": 0.8,
+            "detail": "typed fields and source-backed joins; uncalibrated confidence",
+            "metadata": {
+              "response_type": "answer",
+              "release_id": "migration-preview-r69",
+              "query_plan": {
+                "record_ids": [
+                  "game_detail_zelda_breath_of_the_wild",
+                  "availability_nintendo_1_2",
+                  "availability_nintendo_1_4"
+                ],
+                "scope_ids": [
+                  "availability_nintendo_1_2",
+                  "availability_nintendo_1_4"
+                ],
+                "operation": "game_presence",
+                "requested_fields": [],
+                "all_fields": false,
+                "method": "declared_game_installation_scope",
+                "negative_from_absence": false,
+                "live_availability_asserted": false
+              },
+              "obligations": [
+                {
+                  "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+                  "field": "game_id",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/game_id",
+                      "source_id": "r63_b732e5b132fc0d7026df08b6c1a6"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+                  "field": "service_id",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/service_id",
+                      "source_id": "r63_b732e5b132fc0d7026df08b6c1a6"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+                  "field": "offered",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/offered",
+                      "source_id": "r63_b732e5b132fc0d7026df08b6c1a6"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+                  "field": "game_id",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/game_id",
+                      "source_id": "r63_40b14da1a78b8cd5564a24563361"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+                  "field": "service_id",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/service_id",
+                      "source_id": "r63_40b14da1a78b8cd5564a24563361"
+                    }
+                  ]
+                },
+                {
+                  "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+                  "field": "offered",
+                  "status": "known",
+                  "evidence_refs": [
+                    {
+                      "locator": "/mapped_fields/offered",
+                      "source_id": "r63_40b14da1a78b8cd5564a24563361"
+                    }
+                  ]
+                }
+              ],
+              "catalog_scope": "common_published",
+              "coverage_errors": [],
+              "confidence_calibrated": false,
+              "validation_scope": "selected fields and evidence, not human intent correctness",
+              "content_view": "evaluation_draft",
+              "production_publication_verified": false
+            }
+          },
+          {
+            "stage": "migrated_chat",
+            "decision": "selected",
+            "confidence": 1.0,
+            "detail": "isolated copied data; no legacy content fallback",
+            "metadata": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            }
+          }
+        ],
+        "universal_intent": null,
+        "decision_artifact": {
+          "response_type": "answer",
+          "release_id": "migration-preview-r69",
+          "query_plan": {
+            "record_ids": [
+              "game_detail_zelda_breath_of_the_wild",
+              "availability_nintendo_1_2",
+              "availability_nintendo_1_4"
+            ],
+            "scope_ids": [
+              "availability_nintendo_1_2",
+              "availability_nintendo_1_4"
+            ],
+            "operation": "game_presence",
+            "requested_fields": [],
+            "all_fields": false,
+            "method": "declared_game_installation_scope",
+            "negative_from_absence": false,
+            "live_availability_asserted": false
+          },
+          "obligations": [
+            {
+              "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+              "field": "game_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/game_id",
+                  "source_id": "r63_b732e5b132fc0d7026df08b6c1a6"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+              "field": "service_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/service_id",
+                  "source_id": "r63_b732e5b132fc0d7026df08b6c1a6"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_nintendo_1_2_game_detail_zelda_breath_of_the_wild",
+              "field": "offered",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/offered",
+                  "source_id": "r63_b732e5b132fc0d7026df08b6c1a6"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+              "field": "game_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/game_id",
+                  "source_id": "r63_40b14da1a78b8cd5564a24563361"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+              "field": "service_id",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/service_id",
+                  "source_id": "r63_40b14da1a78b8cd5564a24563361"
+                }
+              ]
+            },
+            {
+              "record_id": "migrated_link_availability_nintendo_1_4_game_detail_zelda_breath_of_the_wild",
+              "field": "offered",
+              "status": "known",
+              "evidence_refs": [
+                {
+                  "locator": "/mapped_fields/offered",
+                  "source_id": "r63_40b14da1a78b8cd5564a24563361"
+                }
+              ]
+            }
+          ],
+          "catalog_scope": "common_published",
+          "coverage_errors": [],
+          "confidence_calibrated": false,
+          "validation_scope": "selected fields and evidence, not human intent correctness",
+          "content_view": "evaluation_draft",
+          "production_publication_verified": false,
+          "migration": {
+            "profile": "r69-migration-preview",
+            "database": "common.sqlite",
+            "draft_preview_only": true,
+            "production_publication_verified": false,
+            "knowledge_source": "migrated_common",
+            "legacy_fallback_used": false
+          },
+          "planner_audits": [],
+          "query_resolution": [
+            {
+              "stage": "request_needs",
+              "needs": []
+            },
+            {
+              "stage": "named_scope",
+              "record_ids": [
+                "game_detail_zelda_breath_of_the_wild",
+                "availability_nintendo_1_2",
+                "availability_nintendo_1_4",
+                "controls_nintendo_the_legend_of_zelda_breath_of_the_wild"
+              ],
+              "method": "exact"
+            },
+            {
+              "stage": "question_profile",
+              "selection": {
+                "method": "declared_question_profile",
+                "reason": "no_supported_task",
+                "candidate_ids": []
+              }
+            }
+          ]
+        },
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "evaluation": {
+          "format": "common",
+          "llm_enabled": true,
+          "profile": "r69-migration-preview",
+          "draft_only": true,
+          "legacy_fallback": false,
+          "booking": "controlled_unavailable",
+          "reference_clock": "2026-10-16"
+        }
+      },
+      "input_quality": {
+        "action": "continue",
+        "detected_action": "continue",
+        "applied_action": "continue",
+        "should_retype": false,
+        "flags": [],
+        "layout_score": 0.00205,
+        "repeat_score": 0.0,
+        "guard_status": "passed",
+        "guard_mode": "enforce",
+        "repeat_policy": "warn_and_continue",
+        "profile_version": "keyboard-profile-v1:2a863a4176572043",
+        "guard_elapsed_ms": 15.025
+      },
+      "grades": [
+        {
+          "file": "data/eval/master_ground_truth_bilingual_10000_v1.jsonl",
+          "row": 7563,
+          "variant": "question",
+          "id": "MASTER-GT-EN-02564",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['games']",
+            "missing all alternatives: ['Nintendo Switch Zone']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['games']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['Nintendo Switch Zone']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "generated_paraphrase_pending_review"
+        },
+        {
+          "file": "data/eval/master_ground_truth_en_5000_v1.jsonl",
+          "row": 2563,
+          "variant": "question",
+          "id": "MASTER-GT-EN-02564",
+          "passed": false,
+          "failures": [
+            "route:knowledge expected:['games']",
+            "missing all alternatives: ['Nintendo Switch Zone']"
+          ],
+          "evidence_level": "literal_content_contract",
+          "grader_detail": {
+            "strong_outcome_matches": false,
+            "positive_content_asserted": true
+          },
+          "partitions": {
+            "protocol": [
+              "route:knowledge expected:['games']"
+            ],
+            "outcome": [],
+            "evidence": [],
+            "content": [
+              "missing all alternatives: ['Nintendo Switch Zone']"
+            ],
+            "validation": [],
+            "performance": [],
+            "grader": []
+          },
+          "positive_text_contract": true,
+          "review_status": "generated_paraphrase_pending_review"
+        }
+      ],
+      "observed_model_http_calls": []
+    },
+    "old": {
+      "question": "Please answer from verified studio information: Which studio zone has The Legend of Zelda: Breath of the Wild",
+      "answer": "The Legend of Zelda: Breath of the Wild is available on: Nintendo Switch (1-2 Persons), Nintendo Switch (1-4 Persons). Studio zone(s): Nintendo Switch Zone.\nSource: https://esports.computing.psu.ac.th/ (original source in Thai)",
+      "exception": null,
+      "mode": "pipeline:structured_game_availability_en",
+      "category": "games",
+      "intent": "game_availability",
+      "confidence": 0.99,
+      "elapsed": 0.5797841001767665,
+      "source_file": "model_matrix_memo_counter\\legacy_RESULTS.jsonl.gz",
+      "source_line": 12078
+    },
+    "old_failed_grades": []
+  },
+  "K02": {
+    "id": "K02",
+    "title": "ถาม PC แล้วตอบสั้น ๆ ว่าอุปกรณ์: state มาถึง แต่ task ยังถูกปฏิเสธ",
+    "session_turns": [
+      {
+        "session_id": "SF-006",
+        "key": "SF-006:0",
+        "question": "PC มีอะไรบ้าง",
+        "requested_locale": "auto",
+        "effective_locale": "th",
+        "stratum": {
+          "domain": "multi_turn",
+          "corpus": "data/eval/broad_usage_eval_v1.json",
+          "locale": "auto",
+          "style": "session"
+        },
+        "elapsed_sec": 1.3852025000087451,
+        "result": {
+          "answer": "ยังตีความหัวข้อที่ถามไม่ชัด ต้องการส่วนใดของ PC Zone เช่น บริการ / แพลตฟอร์ม เช่น PC หรือ PS5 / เวลาเล่นต่อรอบ / เวลาที่กันช่องจอง?",
+          "hits": [],
+          "elapsed": 1.3834871999861207,
+          "mode": "pipeline:common_clarification",
+          "confidence": 0.0,
+          "route": {
+            "category": "knowledge",
+            "intent": "common_read",
+            "confidence": 0.0,
+            "answer_type": "clarification",
+            "risk": "medium",
+            "reason": "unpublished evaluation draft"
+          },
+          "entities": {
+            "day": null,
+            "time_slots": [],
+            "service": null,
+            "user_group": null,
+            "duration": null,
+            "price_intent": false,
+            "short_answer": false,
+            "comparison_intent": false,
+            "raw": {}
+          },
+          "validation": {
+            "ok": true,
+            "errors": [],
+            "warnings": []
+          },
+          "trace": [
+            {
+              "stage": "common_content",
+              "decision": "clarification",
+              "confidence": 0.0,
+              "detail": "typed fields and source-backed joins; uncalibrated confidence",
+              "metadata": {
+                "response_type": "clarification",
+                "release_id": "migration-preview-r69",
+                "query_plan": {
+                  "record_ids": [
+                    "zone_pc",
+                    "availability_pc_01_02",
+                    "availability_pc_03_10"
+                  ],
+                  "requested_fields": [],
+                  "all_fields": false,
+                  "method": "exact",
+                  "scope": "common_published",
+                  "platform": null,
+                  "query_without_entity": "มีอะไรบ้าง",
+                  "operation": null,
+                  "scope_ids": [
+                    "zone_pc",
+                    "availability_pc_01_02",
+                    "availability_pc_03_10"
+                  ],
+                  "field_selection": [],
+                  "confidence_calibrated": false,
+                  "request_focus": null,
+                  "schema_language_recoveries": [],
+                  "authority": {
+                    "decision": "common",
+                    "reason": "published_target_owned",
+                    "record_ids": [
+                      "zone_pc",
+                      "availability_pc_01_02",
+                      "availability_pc_03_10"
+                    ],
+                    "release_id": "migration-preview-r69",
+                    "epoch": 1840
+                  },
+                  "scoped_topic_selection": {
+                    "attempted": false,
+                    "reason": "no_candidate",
+                    "method": "scoped_topic_unresolved"
+                  },
+                  "field_authority": [],
+                  "unresolved_clauses": [
+                    "มีอะไรบ้าง"
+                  ],
+                  "semantic_review_needed": true,
+                  "semantic_plan_accepted": false
+                },
+                "obligations": [],
+                "catalog_scope": "common_published",
+                "coverage_errors": [],
+                "confidence_calibrated": false,
+                "validation_scope": "selected fields and evidence, not human intent correctness",
+                "content_view": "evaluation_draft",
+                "production_publication_verified": false
+              }
+            },
+            {
+              "stage": "migrated_chat",
+              "decision": "selected",
+              "confidence": 1.0,
+              "detail": "isolated copied data; no legacy content fallback",
+              "metadata": {
+                "profile": "r69-migration-preview",
+                "database": "common.sqlite",
+                "draft_preview_only": true,
+                "production_publication_verified": false,
+                "knowledge_source": "migrated_common",
+                "legacy_fallback_used": false
+              }
+            }
+          ],
+          "universal_intent": null,
+          "decision_artifact": {
+            "response_type": "clarification",
+            "release_id": "migration-preview-r69",
+            "query_plan": {
+              "record_ids": [
+                "zone_pc",
+                "availability_pc_01_02",
+                "availability_pc_03_10"
+              ],
+              "requested_fields": [],
+              "all_fields": false,
+              "method": "exact",
+              "scope": "common_published",
+              "platform": null,
+              "query_without_entity": "มีอะไรบ้าง",
+              "operation": null,
+              "scope_ids": [
+                "zone_pc",
+                "availability_pc_01_02",
+                "availability_pc_03_10"
+              ],
+              "field_selection": [],
+              "confidence_calibrated": false,
+              "request_focus": null,
+              "schema_language_recoveries": [],
+              "authority": {
+                "decision": "common",
+                "reason": "published_target_owned",
+                "record_ids": [
+                  "zone_pc",
+                  "availability_pc_01_02",
+                  "availability_pc_03_10"
+                ],
+                "release_id": "migration-preview-r69",
+                "epoch": 1840
+              },
+              "scoped_topic_selection": {
+                "attempted": false,
+                "reason": "no_candidate",
+                "method": "scoped_topic_unresolved"
+              },
+              "field_authority": [],
+              "unresolved_clauses": [
+                "มีอะไรบ้าง"
+              ],
+              "semantic_review_needed": true,
+              "semantic_plan_accepted": false
+            },
+            "obligations": [],
+            "catalog_scope": "common_published",
+            "coverage_errors": [],
+            "confidence_calibrated": false,
+            "validation_scope": "selected fields and evidence, not human intent correctness",
+            "content_view": "evaluation_draft",
+            "production_publication_verified": false,
+            "migration": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            },
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": false,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "name",
+                    "description",
+                    "location",
+                    "room_seats"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "name",
+                        "description",
+                        "location",
+                        "room_seats"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": null,
+                "semantic": {
+                  "semantic_status": "rejected_unverified_intent",
+                  "unresolved_clauses": [
+                    "มีอะไรบ้าง"
+                  ],
+                  "proposal": [
+                    "description",
+                    "location",
+                    "room_seats"
+                  ],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "มีอะไรบ้าง",
+                "prompt_eval_count": 1062,
+                "queue_wait_ms": 1.2227999977767467,
+                "elapsed_ms": 1184.3025999842212
+              }
+            ],
+            "query_resolution": [
+              {
+                "stage": "request_needs",
+                "needs": []
+              },
+              {
+                "stage": "named_scope",
+                "record_ids": [
+                  "zone_pc",
+                  "availability_pc_01_02",
+                  "availability_pc_03_10"
+                ],
+                "method": "exact"
+              },
+              {
+                "stage": "question_profile",
+                "selection": {
+                  "method": "declared_question_profile",
+                  "reason": "no_supported_task",
+                  "candidate_ids": []
+                }
+              }
+            ]
+          },
+          "language": {
+            "requested": "auto",
+            "detected": "th",
+            "effective": "th",
+            "confidence": 0.9033,
+            "reason": "thai_script"
+          },
+          "evaluation": {
+            "format": "common",
+            "llm_enabled": true,
+            "profile": "r69-migration-preview",
+            "draft_only": true,
+            "legacy_fallback": false,
+            "booking": "controlled_unavailable",
+            "reference_clock": "2026-10-16"
+          }
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.001837,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.666
+        },
+        "grades": [
+          {
+            "file": "data/eval/broad_usage_eval_v1.json",
+            "row": 656,
+            "variant": "session-0",
+            "id": null,
+            "passed": true,
+            "failures": [],
+            "evidence_level": "literal_content_contract",
+            "grader_detail": {
+              "strong_outcome_matches": null,
+              "positive_content_asserted": false
+            },
+            "partitions": {
+              "protocol": [],
+              "outcome": [],
+              "evidence": [],
+              "content": [],
+              "validation": [],
+              "performance": [],
+              "grader": []
+            },
+            "positive_text_contract": false,
+            "review_status": null
+          }
+        ],
+        "observed_model_http_calls": [
+          {
+            "url": "http://127.0.0.1:11434/api/generate",
+            "transport_ok": true,
+            "elapsed_sec": 1.1767895000230055
+          }
+        ],
+        "turn": 0,
+        "literal_passed": true,
+        "literal_failures": [],
+        "positive_text_contract": false,
+        "delivered_common_state": {
+          "schema_version": 1,
+          "record_ids": [
+            "zone_pc",
+            "availability_pc_01_02",
+            "availability_pc_03_10"
+          ],
+          "requested_fields": [],
+          "all_fields": false,
+          "release_id": "migration-preview-r69",
+          "pending_selection": null,
+          "profile_confirmation": null,
+          "profile_confirmation_closed": false,
+          "declined_profile_ids": [],
+          "scope_ids": [
+            "zone_pc",
+            "availability_pc_01_02",
+            "availability_pc_03_10"
+          ],
+          "operation": null,
+          "platform": null,
+          "constraints": {},
+          "price_comparison": null
+        }
+      },
+      {
+        "session_id": "SF-006",
+        "key": "SF-006:1",
+        "question": "อุปกรณ์",
+        "requested_locale": "auto",
+        "effective_locale": "th",
+        "stratum": {
+          "domain": "multi_turn",
+          "corpus": "data/eval/broad_usage_eval_v1.json",
+          "locale": "auto",
+          "style": "session"
+        },
+        "elapsed_sec": 2.025053499994101,
+        "result": {
+          "answer": "ยังยืนยันคำตอบให้ครบตามสถานการณ์ที่ถามไม่ได้ครับ กรุณาระบุรายละเอียดหรือแยกคำถามเพิ่มเติมอีกนิด",
+          "hits": [],
+          "elapsed": 2.0166074999724515,
+          "mode": "pipeline:migrated_clarification",
+          "confidence": 0,
+          "route": {
+            "category": "knowledge",
+            "intent": "common_read",
+            "confidence": 0,
+            "answer_type": "clarification",
+            "risk": "medium",
+            "reason": "migrated common content only"
+          },
+          "entities": {
+            "day": null,
+            "time_slots": [],
+            "service": null,
+            "user_group": null,
+            "duration": null,
+            "price_intent": false,
+            "short_answer": false,
+            "comparison_intent": false,
+            "raw": {}
+          },
+          "validation": {
+            "ok": true,
+            "errors": [],
+            "warnings": []
+          },
+          "trace": [
+            {
+              "stage": "common_content",
+              "decision": "partial_answer",
+              "confidence": 0.0,
+              "detail": "typed fields and source-backed joins; uncalibrated confidence",
+              "metadata": {
+                "response_type": "partial_answer",
+                "release_id": "migration-preview-r69",
+                "query_plan": {
+                  "record_ids": [
+                    "availability_pc_01_02",
+                    "availability_pc_03_10"
+                  ],
+                  "requested_fields": [
+                    "specifications",
+                    "usage"
+                  ],
+                  "all_fields": false,
+                  "method": "typed_common_state",
+                  "scope": "common_published",
+                  "platform": "PC",
+                  "query_without_entity": "อุปกรณ์",
+                  "operation": "equipment",
+                  "scope_ids": [
+                    "availability_pc_01_02",
+                    "availability_pc_03_10"
+                  ],
+                  "field_selection": [],
+                  "confidence_calibrated": false,
+                  "request_focus": null,
+                  "schema_language_recoveries": [],
+                  "authority": {
+                    "decision": "common",
+                    "reason": "published_target_owned",
+                    "record_ids": [
+                      "availability_pc_01_02",
+                      "availability_pc_03_10"
+                    ],
+                    "release_id": "migration-preview-r69",
+                    "epoch": 1840
+                  },
+                  "field_authority": [],
+                  "unresolved_clauses": [
+                    "อุปกรณ์"
+                  ],
+                  "semantic_review_needed": true,
+                  "semantic_plan_accepted": false,
+                  "read_contract": {
+                    "schema_version": "common_read_plan_v1",
+                    "needs": [
+                      {
+                        "id": "n1",
+                        "field_refs": [
+                          {
+                            "kind": "equipment_model",
+                            "key": "specifications"
+                          }
+                        ],
+                        "source_span": "อุปกรณ์",
+                        "resolution": "typed_supported",
+                        "ambiguous_kind": false
+                      },
+                      {
+                        "id": "n2",
+                        "field_refs": [
+                          {
+                            "kind": "equipment_model",
+                            "key": "usage"
+                          }
+                        ],
+                        "source_span": "อุปกรณ์",
+                        "resolution": "typed_supported",
+                        "ambiguous_kind": false
+                      }
+                    ],
+                    "unresolved_spans": [
+                      "อุปกรณ์"
+                    ],
+                    "semantic_correctness_verified": false
+                  },
+                  "response_projection": [
+                    {
+                      "record_id": "availability_pc_01_02",
+                      "fields": {}
+                    },
+                    {
+                      "record_id": "availability_pc_03_10",
+                      "fields": {}
+                    }
+                  ],
+                  "relation_edges": [
+                    {
+                      "from": "availability_pc_01_02",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_chair"
+                    },
+                    {
+                      "from": "availability_pc_01_02",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_headset"
+                    },
+                    {
+                      "from": "availability_pc_01_02",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_keyboard"
+                    },
+                    {
+                      "from": "availability_pc_01_02",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_monitor"
+                    },
+                    {
+                      "from": "availability_pc_01_02",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_mouse"
+                    },
+                    {
+                      "from": "availability_pc_01_02",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_pc"
+                    },
+                    {
+                      "from": "availability_pc_03_10",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_chair"
+                    },
+                    {
+                      "from": "availability_pc_03_10",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_headset"
+                    },
+                    {
+                      "from": "availability_pc_03_10",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_keyboard"
+                    },
+                    {
+                      "from": "availability_pc_03_10",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_monitor"
+                    },
+                    {
+                      "from": "availability_pc_03_10",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_mouse"
+                    },
+                    {
+                      "from": "availability_pc_03_10",
+                      "via": "literal_equipment_source_zone",
+                      "to": "equipment_gaming_pc"
+                    }
+                  ]
+                },
+                "obligations": [
+                  {
+                    "record_id": "equipment_gaming_chair",
+                    "field": "specifications",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/specifications",
+                        "source_id": "r63_fc7d8dd97058c5a18e121b2de918"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_chair",
+                    "field": "usage",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/usage",
+                        "source_id": "r66_en_22d2c024f659e52119991f26"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_headset",
+                    "field": "specifications",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/specifications",
+                        "source_id": "r63_d1714679f0f758a35733635fbb38"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_headset",
+                    "field": "usage",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/usage",
+                        "source_id": "r66_en_c600ee9a16820d94856910f0"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_keyboard",
+                    "field": "specifications",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/specifications",
+                        "source_id": "r63_0d4513c308153752dd234ccd5b9f"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_keyboard",
+                    "field": "usage",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/usage",
+                        "source_id": "r66_en_d1f3019e5c5c67d5bcd9441d"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_monitor",
+                    "field": "specifications",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/specifications",
+                        "source_id": "r63_5af80ccff359cadb665af2160ab0"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_monitor",
+                    "field": "usage",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/usage",
+                        "source_id": "r66_en_6c08b7373c04ff4ffc2fbb8b"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_mouse",
+                    "field": "specifications",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/specifications",
+                        "source_id": "r63_560abc52790fc644b6cf2203af58"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_mouse",
+                    "field": "usage",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/usage",
+                        "source_id": "r66_en_cb3606b2339775b0b537aaf1"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_pc",
+                    "field": "specifications",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/specifications",
+                        "source_id": "r68_specs_6e0321cf25d72b8d6e364a15"
+                      }
+                    ]
+                  },
+                  {
+                    "record_id": "equipment_gaming_pc",
+                    "field": "usage",
+                    "status": "known",
+                    "evidence_refs": [
+                      {
+                        "locator": "/mapped_fields/usage",
+                        "source_id": "r66_en_3f1d06139031883ad8b5d3f1"
+                      }
+                    ]
+                  }
+                ],
+                "catalog_scope": "common_published",
+                "coverage_errors": [
+                  "unresolved_query_clause"
+                ],
+                "confidence_calibrated": false,
+                "validation_scope": "selected fields and evidence, not human intent correctness",
+                "content_view": "evaluation_draft",
+                "production_publication_verified": false
+              }
+            },
+            {
+              "stage": "migrated_chat",
+              "decision": "selected",
+              "confidence": 1.0,
+              "detail": "isolated copied data; no legacy content fallback",
+              "metadata": {
+                "profile": "r69-migration-preview",
+                "database": "common.sqlite",
+                "draft_preview_only": true,
+                "production_publication_verified": false,
+                "knowledge_source": "migrated_common",
+                "legacy_fallback_used": false
+              }
+            }
+          ],
+          "universal_intent": null,
+          "decision_artifact": {
+            "rejected_candidate": {
+              "mode": "pipeline:common_partial_answer",
+              "validation_errors": [
+                "unresolved_query_clause"
+              ],
+              "query_plan": {
+                "record_ids": [
+                  "availability_pc_01_02",
+                  "availability_pc_03_10"
+                ],
+                "requested_fields": [
+                  "specifications",
+                  "usage"
+                ],
+                "all_fields": false,
+                "method": "typed_common_state",
+                "scope": "common_published",
+                "platform": "PC",
+                "query_without_entity": "อุปกรณ์",
+                "operation": "equipment",
+                "scope_ids": [
+                  "availability_pc_01_02",
+                  "availability_pc_03_10"
+                ],
+                "field_selection": [],
+                "confidence_calibrated": false,
+                "request_focus": null,
+                "schema_language_recoveries": [],
+                "authority": {
+                  "decision": "common",
+                  "reason": "published_target_owned",
+                  "record_ids": [
+                    "availability_pc_01_02",
+                    "availability_pc_03_10"
+                  ],
+                  "release_id": "migration-preview-r69",
+                  "epoch": 1840
+                },
+                "field_authority": [],
+                "unresolved_clauses": [
+                  "อุปกรณ์"
+                ],
+                "semantic_review_needed": true,
+                "semantic_plan_accepted": false,
+                "read_contract": {
+                  "schema_version": "common_read_plan_v1",
+                  "needs": [
+                    {
+                      "id": "n1",
+                      "field_refs": [
+                        {
+                          "kind": "equipment_model",
+                          "key": "specifications"
+                        }
+                      ],
+                      "source_span": "อุปกรณ์",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    },
+                    {
+                      "id": "n2",
+                      "field_refs": [
+                        {
+                          "kind": "equipment_model",
+                          "key": "usage"
+                        }
+                      ],
+                      "source_span": "อุปกรณ์",
+                      "resolution": "typed_supported",
+                      "ambiguous_kind": false
+                    }
+                  ],
+                  "unresolved_spans": [
+                    "อุปกรณ์"
+                  ],
+                  "semantic_correctness_verified": false
+                },
+                "response_projection": [
+                  {
+                    "record_id": "availability_pc_01_02",
+                    "fields": {}
+                  },
+                  {
+                    "record_id": "availability_pc_03_10",
+                    "fields": {}
+                  }
+                ],
+                "relation_edges": [
+                  {
+                    "from": "availability_pc_01_02",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_chair"
+                  },
+                  {
+                    "from": "availability_pc_01_02",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_headset"
+                  },
+                  {
+                    "from": "availability_pc_01_02",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_keyboard"
+                  },
+                  {
+                    "from": "availability_pc_01_02",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_monitor"
+                  },
+                  {
+                    "from": "availability_pc_01_02",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_mouse"
+                  },
+                  {
+                    "from": "availability_pc_01_02",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_pc"
+                  },
+                  {
+                    "from": "availability_pc_03_10",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_chair"
+                  },
+                  {
+                    "from": "availability_pc_03_10",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_headset"
+                  },
+                  {
+                    "from": "availability_pc_03_10",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_keyboard"
+                  },
+                  {
+                    "from": "availability_pc_03_10",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_monitor"
+                  },
+                  {
+                    "from": "availability_pc_03_10",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_mouse"
+                  },
+                  {
+                    "from": "availability_pc_03_10",
+                    "via": "literal_equipment_source_zone",
+                    "to": "equipment_gaming_pc"
+                  }
+                ]
+              }
+            },
+            "migration": {
+              "profile": "r69-migration-preview",
+              "database": "common.sqlite",
+              "draft_preview_only": true,
+              "production_publication_verified": false,
+              "knowledge_source": "migrated_common",
+              "legacy_fallback_used": false
+            },
+            "planner_audits": [
+              {
+                "attempted": true,
+                "transport_ok": true,
+                "schema_accepted": true,
+                "final_plan_accepted": false,
+                "rejection_reason": null,
+                "proposal": {
+                  "requested_fields": [
+                    "name",
+                    "platform",
+                    "resource_ids",
+                    "inventory_verified_on",
+                    "inventory_basis"
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "clause_plan": {
+                  "clause_fields": [
+                    {
+                      "id": 0,
+                      "requested_fields": [
+                        "name",
+                        "platform",
+                        "resource_ids",
+                        "inventory_verified_on",
+                        "inventory_basis"
+                      ]
+                    }
+                  ],
+                  "all_fields": false,
+                  "platform": null
+                },
+                "accepted_plan": null,
+                "semantic": {
+                  "semantic_status": "rejected_unverified_intent",
+                  "unresolved_clauses": [
+                    "อุปกรณ์"
+                  ],
+                  "proposal": [
+                    "platform",
+                    "resource_ids",
+                    "inventory_verified_on",
+                    "inventory_basis"
+                  ],
+                  "unclear_clauses": [],
+                  "clause_coverage_repairs": []
+                },
+                "query_recoveries": [],
+                "original_question": "อุปกรณ์",
+                "prompt_eval_count": 1059,
+                "queue_wait_ms": 0.9756000072229654,
+                "elapsed_ms": 1691.5780999988783
+              }
+            ],
+            "query_resolution": [
+              {
+                "stage": "request_needs",
+                "needs": []
+              },
+              {
+                "stage": "named_scope",
+                "record_ids": [
+                  "zone_pc",
+                  "availability_pc_01_02",
+                  "availability_pc_03_10"
+                ],
+                "method": "typed_common_state"
+              },
+              {
+                "stage": "question_profile",
+                "selection": {
+                  "method": "declared_question_profile",
+                  "reason": "no_supported_task",
+                  "candidate_ids": []
+                }
+              }
+            ]
+          },
+          "language": {
+            "requested": "auto",
+            "detected": "th",
+            "effective": "th",
+            "confidence": 0.8783,
+            "reason": "thai_script"
+          },
+          "evaluation": {
+            "format": "common",
+            "llm_enabled": true,
+            "profile": "r69-migration-preview",
+            "draft_only": true,
+            "legacy_fallback": false,
+            "booking": "controlled_unavailable",
+            "reference_clock": "2026-10-16"
+          }
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.005386,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.357
+        },
+        "grades": [
+          {
+            "file": "data/eval/broad_usage_eval_v1.json",
+            "row": 656,
+            "variant": "session-1",
+            "id": null,
+            "passed": false,
+            "failures": [
+              "missing required: PC",
+              "missing required: อุปกรณ์"
+            ],
+            "evidence_level": "literal_content_contract",
+            "grader_detail": {
+              "strong_outcome_matches": null,
+              "positive_content_asserted": true
+            },
+            "partitions": {
+              "protocol": [],
+              "outcome": [],
+              "evidence": [],
+              "content": [
+                "missing required: PC",
+                "missing required: อุปกรณ์"
+              ],
+              "validation": [],
+              "performance": [],
+              "grader": []
+            },
+            "positive_text_contract": true,
+            "review_status": null
+          }
+        ],
+        "observed_model_http_calls": [
+          {
+            "url": "http://127.0.0.1:11434/api/generate",
+            "transport_ok": true,
+            "elapsed_sec": 1.684869400021853
+          }
+        ],
+        "turn": 1,
+        "literal_passed": false,
+        "literal_failures": [
+          "missing required: PC",
+          "missing required: อุปกรณ์"
+        ],
+        "positive_text_contract": true,
+        "delivered_common_state": {}
+      }
+    ]
+  }
+}

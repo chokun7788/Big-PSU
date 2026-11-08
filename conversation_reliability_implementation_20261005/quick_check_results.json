@@ -1,0 +1,931 @@
+[
+  {
+    "locale": "th",
+    "q": "ต้องการรู้ราคาของการใช้บริการของบุคคลภายนอก",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "ต้องการรู้ราคาของการใช้บริการของบุคคลภายนอก",
+      "resolved_query": "ค่าบริการ  บุคคลภายนอก",
+      "act": "new_task",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [],
+          "scope": {
+            "entity_selection": "unresolved",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [
+            "service"
+          ],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "unresolved",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": false,
+      "needs_review": false
+    },
+    "mode": "pipeline:protected_price_missing_service",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "service_fee_answer_missing_service_fee_source"
+      ]
+    },
+    "answer": "ต้องการราคาของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? เลือกเครื่องเดียวหรือทุกบริการได้ครับ"
+  },
+  {
+    "locale": "th",
+    "q": "PC",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "PC",
+      "resolved_query": "ค่าบริการ PC บุคคลภายนอก",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc"
+          ],
+          "scope": {
+            "entity_selection": "explicit",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "price_question_should_start_with_price_or_number"
+      ]
+    },
+    "answer": "ค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "th",
+    "q": "ทั้งหมด",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "ทั้งหมด",
+      "resolved_query": "ตารางราคาทุกบริการ บุคคลภายนอก",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "scope": {
+            "entity_selection": "all",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user_scope",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "source_current_validity_unconfirmed",
+        "price_question_should_start_with_price_or_number",
+        "fact_answer_may_be_too_verbose"
+      ]
+    },
+    "answer": "ค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\n\nPlayStation 5 — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 150 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\n\nCockpit — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 200 บาท/แพ็กเกจ\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 190 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 375 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "th",
+    "q": "ไม่ใช่นักศึกษานะ",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "ไม่ใช่นักศึกษานะ",
+      "resolved_query": "ค่าบริการ  บุคคลทั่วไป",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [],
+          "scope": {
+            "entity_selection": "unresolved",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "general_adult",
+            "customer_group_ids": [
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [
+            "service"
+          ],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "unresolved",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:protected_price_missing_service",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "service_fee_answer_missing_service_fee_source"
+      ]
+    },
+    "answer": "ต้องการราคาของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? เลือกเครื่องเดียวหรือทุกบริการได้ครับ"
+  },
+  {
+    "locale": "th",
+    "q": "เอาคอมก่อน",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "เอาคอมก่อน",
+      "resolved_query": "ค่าบริการ PC บุคคลภายนอก",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc"
+          ],
+          "scope": {
+            "entity_selection": "explicit",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "price_question_should_start_with_price_or_number"
+      ]
+    },
+    "answer": "ค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "th",
+    "q": "ไม่เอา VR",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "ไม่เอา VR",
+      "resolved_query": "ค่าบริการ  บุคคลภายนอก",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [],
+          "scope": {
+            "entity_selection": "unresolved",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [
+            "vr"
+          ],
+          "pending_slots": [
+            "service"
+          ],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "unresolved",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:protected_price_missing_service",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "service_fee_answer_missing_service_fee_source"
+      ]
+    },
+    "answer": "ต้องการราคาของ PC, PlayStation 5, Nintendo Switch, Cockpit หรือ VR ครับ? เลือกเครื่องเดียวหรือทุกบริการได้ครับ"
+  },
+  {
+    "locale": "th",
+    "q": "ทุกบริการยกเว้น VR",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "ทุกบริการยกเว้น VR",
+      "resolved_query": "ตารางราคาทุกบริการ บุคคลภายนอก",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit"
+          ],
+          "scope": {
+            "entity_selection": "all",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [
+            "vr"
+          ],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user_scope",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "source_current_validity_unconfirmed",
+        "price_question_should_start_with_price_or_number",
+        "fact_answer_may_be_too_verbose"
+      ]
+    },
+    "answer": "ค่าบริการตามแพ็กเกจที่บันทึกไว้:\nผู้ใช้ภายนอกมีอัตราต่างกันตามคุณสมบัติ จึงแสดงกลุ่มผู้เรียนต่างสถาบันและบุคคลทั่วไปให้เทียบครับ\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 25 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\n\nPlayStation 5 — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 150 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (1-2 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 50 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 140 บาท/แพ็กเกจ\n\nNintendo Switch — 60 นาที/แพ็กเกจ (3-4 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 100 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 280 บาท/แพ็กเกจ\n\nCockpit — 60 นาที/แพ็กเกจ (1 คน)\n•    ศิษย์เก่า PSU / นักศึกษา-นักเรียนต่างสถาบัน (General Student): 65 บาท/แพ็กเกจ\n•    บุคคลทั่วไป (General Adult): 200 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "en",
+    "q": "Service prices for external users",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "Service prices for external users",
+      "resolved_query": "Service prices  external users",
+      "act": "new_task",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [],
+          "scope": {
+            "entity_selection": "unresolved",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [
+            "service"
+          ],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "unresolved",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": false,
+      "needs_review": false
+    },
+    "mode": "pipeline:protected_price_missing_service",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    "answer": "Which service would you like the prices for: PC, PlayStation 5, Nintendo Switch, Cockpit or VR? You can also choose all services."
+  },
+  {
+    "locale": "en",
+    "q": "PC",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "PC",
+      "resolved_query": "Service prices PC external users",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc"
+          ],
+          "scope": {
+            "entity_selection": "explicit",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "price_question_should_start_with_price_or_number"
+      ]
+    },
+    "answer": "Recorded service package rates:\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 people)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "en",
+    "q": "all of them",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "all of them",
+      "resolved_query": "All service prices external users",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "scope": {
+            "entity_selection": "all",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user_scope",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "source_current_validity_unconfirmed",
+        "price_question_should_start_with_price_or_number",
+        "fact_answer_may_be_too_verbose"
+      ]
+    },
+    "answer": "Recorded service package rates:\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 people)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 150 THB/package\n\nNintendo Switch — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 140 THB/package\n\nNintendo Switch — 60 minutes/package (3-4 people)\n• PSU alumni / students from other institutions: 100 THB/package\n• General adults: 280 THB/package\n\nCockpit — 60 minutes/package (1 people)\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\n\nVR — 30 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 190 THB/package\n• General adults: 525 THB/package\n\nVR — 60 minutes/package (1-5 people)\n• PSU alumni / students from other institutions: 375 THB/package\n• General adults: 1,050 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nPC rates use the local update dated 2026-07-27.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nSource: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "en",
+    "q": "not a student",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "not a student",
+      "resolved_query": "Service prices  general adults",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [],
+          "scope": {
+            "entity_selection": "unresolved",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "general_adult",
+            "customer_group_ids": [
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [
+            "service"
+          ],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "unresolved",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:protected_price_missing_service",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    "answer": "Which service would you like the prices for: PC, PlayStation 5, Nintendo Switch, Cockpit or VR? You can also choose all services."
+  },
+  {
+    "locale": "en",
+    "q": "the PC one",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "the PC one",
+      "resolved_query": "Service prices PC external users",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc"
+          ],
+          "scope": {
+            "entity_selection": "explicit",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "price_question_should_start_with_price_or_number"
+      ]
+    },
+    "answer": "Recorded service package rates:\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 people)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "en",
+    "q": "all services except VR",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "all services except VR",
+      "resolved_query": "All service prices external users",
+      "act": "fill_slot",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit"
+          ],
+          "scope": {
+            "entity_selection": "all",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "external_unspecified",
+            "customer_group_ids": [
+              "general_student",
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [
+            "vr"
+          ],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user_scope",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "source_current_validity_unconfirmed",
+        "price_question_should_start_with_price_or_number",
+        "fact_answer_may_be_too_verbose"
+      ]
+    },
+    "answer": "Recorded service package rates:\nExternal users have different rates depending on their eligibility; both relevant groups are shown below.\n\nPC — 60 minutes/package (1 people)\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\n\nPlayStation 5 — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 150 THB/package\n\nNintendo Switch — 60 minutes/package (1-2 people)\n• PSU alumni / students from other institutions: 50 THB/package\n• General adults: 140 THB/package\n\nNintendo Switch — 60 minutes/package (3-4 people)\n• PSU alumni / students from other institutions: 100 THB/package\n• General adults: 280 THB/package\n\nCockpit — 60 minutes/package (1 people)\n• PSU alumni / students from other institutions: 65 THB/package\n• General adults: 200 THB/package\nThe original fee table states validity through 2026-03-31; continued validity for the requested date has not been confirmed.\nPC rates use the local update dated 2026-07-27.\nSource: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png\nSource: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "th",
+    "q": "ราคา PC บุคคลทั่วไป",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "ราคา PC บุคคลทั่วไป",
+      "resolved_query": "ค่าบริการ PC บุคคลทั่วไป",
+      "act": "new_task",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "pc"
+          ],
+          "scope": {
+            "entity_selection": "explicit",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "general_adult",
+            "customer_group_ids": [
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": false,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "price_question_should_start_with_price_or_number"
+      ]
+    },
+    "answer": "ค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    บุคคลทั่วไป (General Adult): 70 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727"
+  },
+  {
+    "locale": "th",
+    "q": "แล้ว VR ล่ะ",
+    "plan": {
+      "schema_version": 1,
+      "original_query": "แล้ว VR ล่ะ",
+      "resolved_query": "ค่าบริการ VR บุคคลทั่วไป",
+      "act": "replace_target",
+      "tasks": [
+        {
+          "task_id": "fee-1",
+          "domain": "service_fee",
+          "operation": "price_lookup",
+          "targets": [
+            "vr"
+          ],
+          "scope": {
+            "entity_selection": "explicit",
+            "detail_level": "package_rates"
+          },
+          "filters": {
+            "customer_scope": "general_adult",
+            "customer_group_ids": [
+              "general_adult"
+            ],
+            "duration_minutes": null,
+            "people_count": null
+          },
+          "per_target_filters": {},
+          "excluded_targets": [],
+          "pending_slots": [],
+          "offered_option_ids": [
+            "pc",
+            "ps5",
+            "nintendo_switch",
+            "cockpit",
+            "vr"
+          ],
+          "provenance": {
+            "operation": "explicit_user",
+            "targets": "explicit_user",
+            "filters": "explicit_user"
+          }
+        }
+      ],
+      "context_used": true,
+      "needs_review": false
+    },
+    "mode": "pipeline:structured_service_fee_conversation",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "source_current_validity_unconfirmed",
+        "price_question_should_start_with_price_or_number"
+      ]
+    },
+    "answer": "ค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nVR — 30 นาที/แพ็กเกจ (1-5 คน)\n•    บุคคลทั่วไป (General Adult): 525 บาท/แพ็กเกจ\n\nVR — 60 นาที/แพ็กเกจ (1-5 คน)\n•    บุคคลทั่วไป (General Adult): 1,050 บาท/แพ็กเกจ\nตารางต้นฉบับระบุมีผลถึง 2026-03-31 ยังไม่ยืนยันการต่ออายุสำหรับวันที่ต้องการ ตัวเลขด้านบนเป็นอัตราที่บันทึกไว้ครับ\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+  },
+  {
+    "locale": "th",
+    "q": "VR คืออะไร",
+    "plan": null,
+    "mode": "pipeline:structured_equipment_item",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": []
+    },
+    "answer": "Sony PlayStation VR2: ชุดแว่น VR สำหรับเล่นเกมเสมือนจริงใน VR Zone\nจำนวน: 1 Unit\nอยู่ที่: VR Zone\nใช้สำหรับ:\n•    เล่น Beat Saber\n•    เล่น Horizon Call of the Mountain\nแหล่งข้อมูล: https://esports.phuket.psu.ac.th/home"
+  },
+  {
+    "locale": "th",
+    "q": "ไก่กับไข่อะไรเกิดก่อนกัน",
+    "plan": null,
+    "mode": "pipeline:no_answer",
+    "validation": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "fallback_general_route_no_curated_guessing"
+      ]
+    },
+    "answer": "ยังไม่พบข้อมูลที่ยืนยันได้ในฐานข้อมูลของ PSU Esports Studio - Phuket สำหรับคำถามนี้ครับ"
+  }
+]

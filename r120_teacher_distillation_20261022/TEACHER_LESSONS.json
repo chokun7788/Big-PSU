@@ -1,0 +1,6716 @@
+{
+  "version": 1,
+  "method": "retrieved demonstrations and observable behavior transfer; no parameter training",
+  "weights_changed": false,
+  "business_answers_included": false,
+  "examples": [
+    {
+      "id": "6c45201d8477d3c61deb1918631bfa2a56a52e9eb57028886dd74fa561650396",
+      "question": "What does the R button do in God of War Ragnarök on PlayStation / PS5",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "What does the R button do in God of War Ragnarök on PlayStation / PS5",
+            "domain": "game_controls",
+            "operation": "control",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_game_controls_en",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_game_controls_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "74ccd8b54a7707f37c699e40f0a15bffea71e63b35226b7028068c1e70b7672e",
+      "question": "The Last of Us Part I อยู่โซนไหน",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "The Last of Us Part I อยู่โซนไหน",
+            "domain": "games",
+            "operation": "detail",
+            "facet": "zone",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_service_game_availability",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_exact_target_lock"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "weak_domain_signal"
+        },
+        {
+          "stage": "router",
+          "decision": "games"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "games/availability"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.games"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_service_game_availability"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "cd845ff443f2f69cf07a8b8fd752b4aa7ab5c6fc346e54f66906095ad517967b",
+      "question": "In Resident Evil 4, what button do you press to switch the camera angle?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "In Resident Evil 4, what button do you press to switch the camera angle?",
+            "domain": "game_controls",
+            "operation": "control",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_game_controls_en",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_game_controls_en"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "43d4deaf88e230ef0049d9526e5693675df8614fe11f2843c54cb12fd35060ff",
+      "question": "What are all the buttons in Fortnite?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "What are all the buttons in Fortnite?",
+            "domain": "game_controls",
+            "operation": "list",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_game_controls_en",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_game_controls_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "16f6644813f53f2bbb0505cb450a34ac9f1169b893ada730093cb5118018a97c",
+      "question": "Which studio zone has PUBG: BATTLEGROUNDS",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Which studio zone has PUBG: BATTLEGROUNDS",
+            "domain": "games",
+            "operation": "detail",
+            "facet": "zone",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_game_availability_en",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_game_availability_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "1c6d202f7c70681b5d41c7626fb4967df1834c98b61246ef29669013d5b5f928",
+      "question": "How to play New Super Mario Bros. U Deluxe",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "How to play New Super Mario Bros. U Deluxe",
+            "domain": "games",
+            "operation": "detail",
+            "facet": "how_to_play",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_game_detail_en",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_game_detail_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "aa50c26c89d96b6587cfab18fb61df10d27e6687448c2b6909883c4141eb1fd1",
+      "question": "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "PSU Student เล่น Cockpit 30 นาที เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 นาที",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "service_fee",
+      "teacher_mode": "pipeline:structured_service_fee_conversation",
+      "technique": "typed_financial_slots",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "conversation_request",
+          "decision": "new_task"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "service_fee/price_lookup"
+        },
+        {
+          "stage": "conversation_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "2f44bbdd2344713b9df5f397f94b671bfe3d4c54c5bc8db88ea4ea8c3ce95f40",
+      "question": "Is there an It Takes Two game available",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Is there an It Takes Two game available",
+            "domain": "games",
+            "operation": "detail",
+            "facet": "studio_services",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_game_availability_en",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_game_availability_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "fc89e5e2fc4f57679b59ee021a82792670cd357e536d352e20e2fc327baa353f",
+      "question": "Gran Turismo 7 เล่นได้ที่โซนไหน",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Gran Turismo 7 เล่นได้ที่โซนไหน",
+            "domain": "games",
+            "operation": "detail",
+            "facet": "zone",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "games",
+      "teacher_mode": "pipeline:structured_service_game_availability",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_exact_target_lock"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "games"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "games/availability"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.games"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_service_game_availability"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "c048af4898454d1edc15c901db8392c593738094182167846a5915322b520a3d",
+      "question": "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "บุคคลทั่วไป เล่น Nintendo Switch 1 ชั่วโมง เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "1 ชั่วโมง",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "service_fee",
+      "teacher_mode": "pipeline:structured_service_fee_conversation",
+      "technique": "typed_financial_slots",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "conversation_request",
+          "decision": "new_task"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "service_fee/price_lookup"
+        },
+        {
+          "stage": "conversation_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "eedac27d650fcfee11bbfafe6894df6a7a9c042abb2ba4626ffe989c51a7c4f2",
+      "question": "ขอสอบถามหน่อยครับ วันนี้เปิดไหม",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ขอสอบถามหน่อยครับ วันนี้เปิดไหม",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "schedule",
+      "teacher_mode": "pipeline:calendar_schedule_fast_path",
+      "technique": "recorded_calendar",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "schedule"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "schedule/schedule_lookup"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.schedule"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "candidate_execution",
+          "decision": "structured_no_result"
+        },
+        {
+          "stage": "deterministic",
+          "decision": "answer_schedule"
+        },
+        {
+          "stage": "timing",
+          "decision": "deterministic"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "fb29c44cbb8ae3df1c8f42b110dadc4b8ff0f757ba437165c109849f45d5a959",
+      "question": "ปิดกี่โมงงอ่า",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ปิดกี่โมงงอ่า",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "schedule",
+      "teacher_mode": "pipeline:structured_schedule",
+      "technique": "recorded_calendar",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "recovered"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "schedule"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "schedule/schedule_lookup"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.schedule"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_schedule"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "88010793be90d52053721dbe0018c5859ccd72c115d15a13afbbce973851488a",
+      "question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องไม่จ่าย 10 เช็คอินช้า",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:structured_reservation_fact",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "reservation"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "reservation/rule_lookup"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "reservation/payment_policy -> reservation/competition_rules_lookup"
+        },
+        {
+          "stage": "booking_policy_rag_gate",
+          "decision": "defer_generic_structured_booking"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:retrieval"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_grounded_retrieval"
+        },
+        {
+          "stage": "semantic_retrieval",
+          "decision": "fallback_no_semantic"
+        },
+        {
+          "stage": "timing",
+          "decision": "booking_policy_rag_fallback_frame"
+        },
+        {
+          "stage": "booking_policy_rag_gate",
+          "decision": "restore_structured_booking_fallback"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.reservation"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_reservation_fact"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "2749d625c7211fcbe6005e4efe20849fbcb828a8150c6278df91c1425116a2eb",
+      "question": "Could you please help me with this: What is a gaming chair",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: What is a gaming chair",
+            "domain": "equipment",
+            "operation": "detail",
+            "facet": "usage",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_item_en",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_equipment_item_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "758913de73192f8446660e0ac1e2987e5f99b3e6a8c4fa9576f559b734ede61d",
+      "question": "How much does a PSU student pay to play VR for 30 minutes?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "How much does a PSU student pay to play VR for 30 minutes?",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "30 minutes",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "service_fee",
+      "teacher_mode": "pipeline:structured_service_fee_conversation",
+      "technique": "typed_financial_slots",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "conversation_request",
+          "decision": "new_task"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "service_fee/price_lookup"
+        },
+        {
+          "stage": "conversation_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "c5e56ba26e68aab63238cb0a70b6088e7b85754e15ab65c2c7f6a1849239ef8b",
+      "question": "Driving Force Shifter คืออะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Driving Force Shifter คืออะไร",
+            "domain": "equipment",
+            "operation": "detail",
+            "facet": "usage",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_item",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "weak_domain_signal"
+        },
+        {
+          "stage": "router",
+          "decision": "equipment"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "equipment/detail"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "equipment/equipment_item_lookup -> equipment/detail"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.equipment"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_equipment_item"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "16ea31ed93d3427d0c44b1a2bb31a9cd322318ec588a84c66948432d2eb3d2e2",
+      "question": "PSU Student เล่น VR 1 ชั่วโมง 1 ชั่วโมง เสียกี่บาท",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "PSU Student เล่น VR 1 ชั่วโมง 1 ชั่วโมง เสียกี่บาท",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "1 ชั่วโมง",
+                "source_record_id": ""
+              },
+              {
+                "slot": "duration",
+                "quote": "1 ชั่วโมง",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "service_fee",
+      "teacher_mode": "pipeline:structured_service_fee_conversation",
+      "technique": "typed_financial_slots",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "conversation_request",
+          "decision": "new_task"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "service_fee/price_lookup"
+        },
+        {
+          "stage": "conversation_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "c6d3d4244dec2016bab7d476af37401911d2f7d1ddc5ec474960a07c9b648a30",
+      "question": "Could you please help me with this: How much does it cost for a student from another university to play PS5 for 2 hours",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: How much does it cost for a student from another university to play PS5 for 2 hours",
+            "domain": "service_fee",
+            "operation": "price_calculate",
+            "facet": "amount",
+            "target": "",
+            "constraints": [
+              {
+                "slot": "duration",
+                "quote": "2 hours",
+                "source_record_id": ""
+              }
+            ],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "service_fee",
+      "teacher_mode": "pipeline:structured_service_fee_en",
+      "technique": "typed_financial_slots",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_service_fee_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "8b37ea99e841227fa07c87f804538ae91d1ebd1e2b2260d0a177b109358790e2",
+      "question": "VR Zone มีอุปกรณ์อะไรบ้าง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "VR Zone มีอุปกรณ์อะไรบ้าง",
+            "domain": "equipment",
+            "operation": "list",
+            "facet": "name",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_catalog",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "routing_policy",
+          "decision": "equipment/zone_equipment_lookup -> equipment/equipment_item_lookup"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "equipment/list"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "equipment/equipment_item_lookup -> equipment/list"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.equipment"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_equipment_catalog"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "f394611ec86146d0e14f990450402809189df0910c49aaee7531c8ec041bf00d",
+      "question": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: คนภายนอกเข้าไปใช้แว่น VR ได้ไหม",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:protected_public_access",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "public_access"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "ad170024241b79e461bc6fea3726f3beb5bd32f3f17f5531979b9511c0a4cf64",
+      "question": "ขอสอบถามห่อยครับ Sony PlayStation VR2 อยู่โซนไหน",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ขอสอบถามห่อยครับ Sony PlayStation VR2 อยู่โซนไหน",
+            "domain": "equipment",
+            "operation": "detail",
+            "facet": "location",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_item",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "equipment"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "equipment/list"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "equipment/equipment_item_lookup -> equipment/list"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.equipment"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_equipment_item"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "fbac1a17fd6923188c551de79099da9a3d9ad033b7490e1ecf33920005484004",
+      "question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า ขอข้อมูลเรื่องcheck in ไม่ทัน",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:structured_reservation_fact",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "weak_domain_signal"
+        },
+        {
+          "stage": "router",
+          "decision": "reservation"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "reservation/how_to"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "kept_existing_high_risk_route"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.reservation"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_reservation_fact"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "23a878444fef032fba6939501c32fbeb249608e8d1c6ceebcc9afc83f7b5ad4c",
+      "question": "Could you please help me with this: Please tell me: How do I pay for my booking",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: Please tell me: How do I pay for my booking",
+            "domain": "payment",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:protected_payment_method",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "payment_method"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "158d4a2a3553fe431342dea2a5a90492381436b1126993c7031add0910bb6f10",
+      "question": "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you help me? Under CS2 tournament rules, may players watch live streams during the match?",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "935efb3e2a6041777aee2bd913b76f306412dc1782c3fff3073f1676af260252",
+      "question": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: เอาขนมติดกระเป๋าเข้าไปในศูนย์ได้ไหม",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ช่วยอ้างอิงข้อมูลที่ยืนยันได้: เอาขนมติดกระเป๋าเข้าไปในศูนย์ได้ไหม",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "rules",
+      "teacher_mode": "pipeline:protected_food_bring_permission",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "food_bring_permission"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "bff5ba9e53069ed1890207659c8c7e75ea02857c35c148b35f64f106d43c5a9d",
+      "question": "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "กติกกา RoV เกมแรกใครอยู่สีฟ้าและเกมต่อไปใครเลือกฝั่ง",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "recovered"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "76ca0ec4cd098d3c7e4f9dc72408e35d353b87d6f21c80715814a65a0ded5cdf",
+      "question": "Could you plese help me with this: Will the studio be opem tomorrow",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you plese help me with this: Will the studio be opem tomorrow",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "schedule",
+      "teacher_mode": "pipeline:structured_schedule_en",
+      "technique": "recorded_calendar",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_schedule_en"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "463ac544e5aac743c6b38fded937e44d10d18f4b237d4e5ecf2901f2524b0b4e",
+      "question": "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "กติกกา RoV เครื่องร้อนหยุดได้กี่นาทีและเงื่อนไขอะไร",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "recovered"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "910ae4ae09dd57e01a87e86e7b2ae2bbc22dcf3d50be06c9a8443c31253d00a4",
+      "question": "Before visiting, I need to know: Can I drink in the gaming zone?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Before visiting, I need to know: Can I drink in the gaming zone?",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "rules",
+      "teacher_mode": "pipeline:protected_food_consumption",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "food_consumption"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "1d90d96730a549c65d12c1bb7eafe75229a55d09d7a1e0a7fab00b74408eea8a",
+      "question": "Under CS2 tournament rules, may players use map or engine bugs?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Under CS2 tournament rules, may players use map or engine bugs?",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "d5fd6df678650dc85e371e93485f1fcd066eb6a439c4f18e99d65ef4ed3ce0f4",
+      "question": "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Who is the student intern for the Super AI SS6 project in the AI Chat Bot Developer role",
+            "domain": "members",
+            "operation": "role_lookup",
+            "facet": "role",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "overview",
+      "teacher_mode": "pipeline:structured_members_source_th",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_members_source_th"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "7e483e94fbc27f3f4e3088ec9c3340853217d5b71cf03c230247c94b718a0935",
+      "question": "สอบถามหน่อยครับ กติกา CS2 ถ้าสมาชิกถอนตัวจะเกิดอะไร หน่อย",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "สอบถามหน่อยครับ กติกา CS2 ถ้าสมาชิกถอนตัวจะเกิดอะไร หน่อย",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "91b45f9297d567b22de9d4cb7478990bc9447bbf3bdcfffe13cdffdb29672279",
+      "question": "กติกกา Tekken 8 ใช้ Bug หรือ Glitch สร้างความได้เปรียบได้ไหม",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "กติกกา Tekken 8 ใช้ Bug หรือ Glitch สร้างความได้เปรียบได้ไหม",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "recovered"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "f16231a66298c8a6c1cf84c36cb8b07f47fdb9a150ac302b5b129a3f16fa8780",
+      "question": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: Nintendo Switch OLED ใช้ทำอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ช่วยตอบจากข้อมูลที่ยืนยันได้หน่อย: Nintendo Switch OLED ใช้ทำอะไร",
+            "domain": "equipment",
+            "operation": "detail",
+            "facet": "usage",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_item",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "equipment"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "equipment/list"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "equipment/equipment_item_lookup -> equipment/list"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.equipment"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_equipment_item"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "f2a13ac7b6e42a72d0748bb884694ae6febdf3dfa3114a58a0f0ae2f402b11d2",
+      "question": "What are the opening hours on Wednesday? Please use verified information.",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "What are the opening hours on Wednesday? Please use verified information.",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "schedule",
+      "teacher_mode": "pipeline:source_operation_schedule_query",
+      "technique": "recorded_calendar",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "source_operation",
+          "decision": "schedule_query"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "9bb5d678fcf9636c2fc6152ee22d64ed8d1c7316799d0c2d485789ccdbfd5e2d",
+      "question": "Please use verified studio information: Does a public visitor need membership before entering?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Please use verified studio information: Does a public visitor need membership before entering?",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:user_service_facts",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "user_service_facts",
+          "decision": "answered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "db2919f1ab9c68fb22c5a09a1e8b27a8843313d425cc5d61fb3818027472ca22",
+      "question": "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "การจองเครื่องเล่นเกมเปิดจองวันไหนและช่วงเวลาไหนบ้าง",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "bookable_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "schedule",
+      "teacher_mode": "pipeline:protected_booking_window",
+      "technique": "recorded_calendar",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "timing",
+          "decision": "query_planner"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "llm_error"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "booking_window"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "839a24018c7106f1e760cba4250acd1fd6476dc1eb4a58bee2604f25b3efbdb2",
+      "question": "Could you please help me with this: What is the studio pollicy for facebook",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: What is the studio pollicy for facebook",
+            "domain": "contact",
+            "operation": "detail",
+            "facet": "value",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "contact",
+      "teacher_mode": "pipeline:rule_en",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "recovered"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "kept_original_query"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:rule_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "51b1bf0667aee428b95b3a5c021d247359cc0e220ae22856a27bd190f4c04f78",
+      "question": "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Please retrieve the official CS2 rulebook evidence for eligibility, roster, and registration",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "e314a8b014a9f7b02120592b6ba8491c45b54595c19357822d92ca09f49cb319",
+      "question": "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ขอสอบถามหน่อยครับ เอาอาหารเข้าได้ไหม",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "rules",
+      "teacher_mode": "pipeline:protected_food_bring_permission",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "food_bring_permission"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "1d252f4fee66dd473f373f0d0147ca4ed325bc0a1c05a796d2c071c614b923c3",
+      "question": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "รบกวนเช็กข้อมูลของศูนย์ให้หน่อยครับ ขอข้อมูลเรื่องข้อมูลผิด หลังจอง",
+            "domain": "reservation",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:structured_reservation_fact",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "reservation"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "reservation/how_to"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.reservation"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_reservation_fact"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "aa19dcc37fac3592f9dc23db626b803a30bc8d0d75e31a537ead4b4e2e31338e",
+      "question": "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ถ้าจะเล่น Mario Party Superstars ต้องจองอะไร",
+            "domain": "games",
+            "operation": "detail",
+            "facet": "studio_services",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:structured_booking_game_service_selection",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "closed_query_improvement",
+          "decision": "accepted"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "5ce75393d55d722299742dd8968cc97eafb328f7bfa4f500d278dec87e679888",
+      "question": "Gaming Monitor คืออะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Gaming Monitor คืออะไร",
+            "domain": "equipment",
+            "operation": "detail",
+            "facet": "usage",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_item",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "weak_domain_signal"
+        },
+        {
+          "stage": "router",
+          "decision": "equipment"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "equipment/detail"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "equipment/equipment_item_lookup -> equipment/detail"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.equipment"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_equipment_item"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "703523faaabe601a65578894f204ea56f4c7d676501fa35c8e5b6b3ab13441cd",
+      "question": "Please tell me: What time is the afternoon session",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Please tell me: What time is the afternoon session",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "bookable_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "schedule",
+      "teacher_mode": "pipeline:structured_schedule_en",
+      "technique": "recorded_calendar",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_schedule_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "846ae48aab6e69797de36249cf6d23b1c0b06eeeda03b4e262ae1ba944d78a09",
+      "question": "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ขอสอบถามหน่อยครับ ตาม rulebook อารีน่าออฟเวเลอร์ จำนวนผู้เล่นต่อทีม ต้องทำยังไง",
+            "domain": "competition_rules",
+            "operation": "rule_lookup",
+            "facet": "rule_clause",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "competition_rules",
+      "teacher_mode": "pipeline:competition_rule_detail_source",
+      "technique": "event_scoped_clauses",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "timing",
+          "decision": "competition_detail_lookup"
+        },
+        {
+          "stage": "competition_detail",
+          "decision": "accepted"
+        },
+        {
+          "stage": "semantic_route",
+          "decision": "skipped_exact_competition_facet"
+        },
+        {
+          "stage": "competition_source_grounding",
+          "decision": "detail_clauses_covered"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "5aceeef7eb106638ce5fa58c43ce8e805b8654e1febb5b80571ea9d6c370eaa4",
+      "question": "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Please answer from verified studio information: Who should I tell if a machine has a problem? Please use verified information",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "rules",
+      "teacher_mode": "pipeline:rule_en",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:rule_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "5411bc431ed46c5edae97358ac493cd9c2a65e1f84143a3310c865f9fd7002ef",
+      "question": "Nintendo Switch Zone รอบละกี่นาที",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Nintendo Switch Zone รอบละกี่นาที",
+            "domain": "service_fee",
+            "operation": "detail",
+            "facet": "duration_minutes",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "reservation",
+      "teacher_mode": "pipeline:structured_service_duration",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "exact_game_target_locked"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_exact_target_lock"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "reservation"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "games/count"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "games/game_detail_lookup -> games/count"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "restored_exact_game_target"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "target_context",
+          "decision": "enrich_universal_intent"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.games"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_service_duration"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "a9dbc235d6277c6b5f7ce52653ff2c6bf581fb41e911d68d11637ca104bac22a",
+      "question": "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ขอสอบถามหน่อยครับ PC Zone มีอุปกรณ์อะไรบ้าง",
+            "domain": "equipment",
+            "operation": "list",
+            "facet": "name",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_catalog",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "routing_policy",
+          "decision": "equipment/pc_availability -> equipment/equipment_item_lookup"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "equipment/list"
+        },
+        {
+          "stage": "universal_route_refine",
+          "decision": "equipment/equipment_item_lookup -> equipment/list"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.equipment"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_equipment_catalog"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "8bd147eb86c3a236b3ebb4696ed93bc59e2f9f4937c62fefd24ebc4da96dd873",
+      "question": "Could you please help me with this: Please tell me: What is the Gaming PC used for? Please answer briefly",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: Please tell me: What is the Gaming PC used for? Please answer briefly",
+            "domain": "equipment",
+            "operation": "detail",
+            "facet": "usage",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "equipment",
+      "teacher_mode": "pipeline:structured_equipment_item_en",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_equipment_item_en"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "e95c76f3a876b8e456a7a5f25b13b67b12d3e9516ee9297cb0175dc190bd69f4",
+      "question": "วันจันทร์เปิดกี่โมง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "วันจันทร์เปิดกี่โมง",
+            "domain": "schedule",
+            "operation": "detail",
+            "facet": "open_periods",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "schedule",
+      "teacher_mode": "pipeline:structured_schedule",
+      "technique": "recorded_calendar",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "timing",
+          "decision": "semantic_route_refiner"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_protected_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "domain_ok"
+        },
+        {
+          "stage": "router",
+          "decision": "schedule"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "schedule/schedule_lookup"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.schedule"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_schedule"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "d017691187eae03573a5bed4fd50eec11f978a6eb13340bebaafd14c7badcd85",
+      "question": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร",
+            "domain": "game_controls",
+            "operation": "control",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "game_controls",
+      "teacher_mode": "pipeline:source_operation_control_lookup",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "source_operation",
+          "decision": "control_lookup"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "89cd35074e8f62c909d4d1e992bc5eea311e5130b9e3746cd21e7ddfa1eb12ce",
+      "question": "ปุ่มของ FINAL FANTASY XVI มีอะไรบ้าง",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ปุ่มของ FINAL FANTASY XVI มีอะไรบ้าง",
+            "domain": "game_controls",
+            "operation": "list",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "game_controls",
+      "teacher_mode": "pipeline:source_operation_control_lookup",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "source_operation",
+          "decision": "control_lookup"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation_final"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "66bbcd3da7a7bc7208d19a21c8f6c1bc397eecebe4c2453ac2b038405df1572a",
+      "question": "Mr. Yanis Igoudjil มีตำแหน่งอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Mr. Yanis Igoudjil มีตำแหน่งอะไร",
+            "domain": "members",
+            "operation": "role_lookup",
+            "facet": "role",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "overview",
+      "teacher_mode": "pipeline:structured_members_person_lookup",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "question_frame",
+          "decision": "member_closed_route"
+        },
+        {
+          "stage": "semantic_route_refiner",
+          "decision": "skipped_member_closed_route"
+        },
+        {
+          "stage": "freshness_guard",
+          "decision": "not_required"
+        },
+        {
+          "stage": "boundary_guard",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "guard_scope"
+        },
+        {
+          "stage": "guard",
+          "decision": "weak_domain_signal"
+        },
+        {
+          "stage": "router",
+          "decision": "overview"
+        },
+        {
+          "stage": "model_gateway",
+          "decision": "skip_preflight_llm"
+        },
+        {
+          "stage": "timing",
+          "decision": "universal_intent"
+        },
+        {
+          "stage": "universal_intent",
+          "decision": "members/role_lookup"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_router"
+        },
+        {
+          "stage": "tool_router",
+          "decision": "heuristic:structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "ambiguity_gate"
+        },
+        {
+          "stage": "ambiguity_gate",
+          "decision": "allow"
+        },
+        {
+          "stage": "timing",
+          "decision": "question_frame"
+        },
+        {
+          "stage": "timing",
+          "decision": "candidate_decisions"
+        },
+        {
+          "stage": "decision_candidates",
+          "decision": "structured.members"
+        },
+        {
+          "stage": "timing",
+          "decision": "tool_precondition"
+        },
+        {
+          "stage": "tool_precondition",
+          "decision": "allow_structured"
+        },
+        {
+          "stage": "timing",
+          "decision": "structured_tool_execution"
+        },
+        {
+          "stage": "timing",
+          "decision": "facts_composer"
+        },
+        {
+          "stage": "timing",
+          "decision": "format_answer"
+        },
+        {
+          "stage": "timing",
+          "decision": "validation"
+        },
+        {
+          "stage": "structured_tool",
+          "decision": "structured_members_person_lookup"
+        },
+        {
+          "stage": "validation",
+          "decision": "ok"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "f97b7501d2b12970b04132a5939454cf12206def7329dd81dc2337f004e34b16",
+      "question": "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ในเกม Super Smash Bros. Ultimate บน Nintendo Switch ปุ่ม A ใช้ทำอะไร",
+            "domain": "game_controls",
+            "operation": "control",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "game_controls",
+      "teacher_mode": "pipeline:source_operation_control_lookup",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "source_operation",
+          "decision": "control_lookup"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "3b83d870682deaca5109b7339ce2ec203c7f459f2691ea5f772e3eac52f08658",
+      "question": "Could you please help me with this: What is รศ.ดร.อซีส นันทอมรพงศ์'s role",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Could you please help me with this: What is รศ.ดร.อซีส นันทอมรพงศ์'s role",
+            "domain": "members",
+            "operation": "role_lookup",
+            "facet": "role",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "overview",
+      "teacher_mode": "pipeline:structured_members_source_th",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "target_lock",
+          "decision": "not_locked"
+        },
+        {
+          "stage": "bilingual_route",
+          "decision": "pipeline:structured_members_source_th"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "018f56c5215afb08cb821daa0c234f38fbc5cc661d5d5a0b0b1f95d41e238cb8",
+      "question": "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Monster Hunter Rise ปุ่มเคลื่อนที่กดอะไร",
+            "domain": "game_controls",
+            "operation": "control",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "game_controls",
+      "teacher_mode": "pipeline:source_operation_control_lookup",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "source_operation",
+          "decision": "control_lookup"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "f438c28c93c26327159af463c7db61ee3d51c81c3d2113bba7faf38bb40f6f61",
+      "question": "ในเกม Resident Evil 4 บน PlayStation / PS5 ปุ่ม Triangle ใช้ทำอะไร",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ในเกม Resident Evil 4 บน PlayStation / PS5 ปุ่ม Triangle ใช้ทำอะไร",
+            "domain": "game_controls",
+            "operation": "control",
+            "facet": "input_bindings",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "game_controls",
+      "teacher_mode": "pipeline:source_operation_control_lookup",
+      "technique": "exact_control_binding",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "source_operation",
+          "decision": "control_lookup"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "123ced74a0c412574e602d69e95ce43ebac5ceedaf76c105a4ef90ce2c5634a8",
+      "question": "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ถือขวดน้ำเข้าไปได้หรือเปล่า ไม่ได้ถามเรื่องกิน",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "rules",
+      "teacher_mode": "pipeline:protected_food_bring_permission",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "food_bring_permission"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "56c8618faa43105fea1cd534026939bcd2d1c2c9f6e6f5212e10959ee3bf734c",
+      "question": "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ช่วยแนบแฟล่งข้อูลด้วย",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ช่วยแนบแฟล่งข้อูลด้วย",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "rules",
+      "teacher_mode": "pipeline:protected_food_consumption",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "th"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "food_consumption"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    },
+    {
+      "id": "1b61384a121a56d3ce75cb4a1a9fb69a0b4849ae371680ff3d6cbc2a76c938b4",
+      "question": "Can a visitor plug in their own laptop?",
+      "plan": {
+        "tasks": [
+          {
+            "quote": "Can a visitor plug in their own laptop?",
+            "domain": "rules",
+            "operation": "detail",
+            "facet": "owner_policy",
+            "target": "",
+            "constraints": [],
+            "ambiguous": false
+          }
+        ]
+      },
+      "teacher_route": "rules",
+      "teacher_mode": "pipeline:protected_personal_power",
+      "technique": "source_policy_or_record_lookup",
+      "observable_stages": [
+        {
+          "stage": "timing",
+          "decision": "locale_resolution"
+        },
+        {
+          "stage": "timing",
+          "decision": "intent_cue_preflight"
+        },
+        {
+          "stage": "timing",
+          "decision": "canonical_preflight"
+        },
+        {
+          "stage": "locale_resolution",
+          "decision": "en"
+        },
+        {
+          "stage": "intent_cue_preflight",
+          "decision": "unchanged"
+        },
+        {
+          "stage": "timing",
+          "decision": "split_multi_question"
+        },
+        {
+          "stage": "compound_complexity",
+          "decision": "simple"
+        },
+        {
+          "stage": "query_planner",
+          "decision": "skipped"
+        },
+        {
+          "stage": "preprocess",
+          "decision": "normalized"
+        },
+        {
+          "stage": "timing",
+          "decision": "preprocess"
+        },
+        {
+          "stage": "timing",
+          "decision": "active_route_selection"
+        },
+        {
+          "stage": "entities",
+          "decision": "extracted"
+        },
+        {
+          "stage": "protected_intent",
+          "decision": "personal_power"
+        },
+        {
+          "stage": "task_answer_contract",
+          "decision": "answered_complete"
+        },
+        {
+          "stage": "timing",
+          "decision": "build_result"
+        }
+      ],
+      "business_answer_included": false,
+      "reviewed_native_mapping": true
+    }
+  ],
+  "response_policy": [
+    "lead with the requested fact or missing slot",
+    "retain source conditions and stated duration/audience",
+    "do not answer a price question with a game catalogue",
+    "preserve game/event context from the whole request",
+    "for broad rule topics cover the related source sections or mark partial",
+    "always read current native facts; never reuse old numeric answers"
+  ],
+  "semantic_mapping_review": "teacher route/mode plus request predicate reviewed; teacher business facts still excluded"
+}

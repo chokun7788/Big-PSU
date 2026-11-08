@@ -1,0 +1,3209 @@
+{
+  "health_before": {
+    "ok": true,
+    "service": "psu-esports-chat-web",
+    "time": "2026-10-09T10:11:41.121058+00:00",
+    "warmup": {
+      "ok": true,
+      "elapsed_sec": 21.1511,
+      "warmed": [
+        "game_title_aliases",
+        "structured_tools",
+        "game_resolver",
+        "routing_data",
+        "retrieval_data",
+        "probe_queries",
+        "semantic_embedding"
+      ],
+      "errors": [],
+      "timings": {
+        "game_title_aliases": 0.9876,
+        "structured_tools": 1.7303,
+        "game_resolver": 0.4404,
+        "routing_data": 0.3786,
+        "retrieval_data": 4.944,
+        "probe_queries": 12.5497,
+        "semantic_embedding": 0.1204
+      }
+    },
+    "llm_preflight": {
+      "ok": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "kind": "preflight",
+      "elapsed_ms": 327.13,
+      "response_chars": 2,
+      "done_reason": "length",
+      "num_ctx": 3072,
+      "load_duration": 12029100,
+      "prompt_eval_duration": 303917000,
+      "eval_duration": 1000,
+      "health": {
+        "llm_health_enabled": true,
+        "llm_health_status": "ok",
+        "llm_health_failures": 0,
+        "llm_health_failure_scope": "model_and_kind"
+      }
+    },
+    "input_quality_guard": {
+      "enabled": true,
+      "mode": "enforce",
+      "repeat_policy": "warn_and_continue",
+      "layout_threshold": 0.39,
+      "repeat_threshold": 0.55,
+      "corpus_size": 4023,
+      "profile_version": "keyboard-profile-v1:2a863a4176572043"
+    },
+    "llm_health": {
+      "enabled": true,
+      "failure_threshold": 2,
+      "failure_window_sec": 30.0,
+      "cooldown_sec": 90.0,
+      "states": [
+        {
+          "kind": "model",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 327.13,
+          "last_checked_at": 1791540588.1043093,
+          "last_success_at": 1791540588.1043093,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 327.13,
+              "detail": "preflight_ok",
+              "at": 1791540588.104
+            }
+          ]
+        },
+        {
+          "kind": "preflight",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 327.13,
+          "last_checked_at": 1791540588.1043093,
+          "last_success_at": 1791540588.1043093,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 327.13,
+              "detail": "preflight_ok",
+              "at": 1791540588.104
+            }
+          ]
+        }
+      ]
+    },
+    "pipeline_workers": {
+      "enabled": true,
+      "started": true,
+      "worker_count": 1,
+      "workers": [
+        {
+          "worker_id": 0,
+          "pid": 43460,
+          "alive": true,
+          "ready": true,
+          "completed_requests": 18,
+          "busy": false,
+          "replacement_warming": false
+        }
+      ],
+      "performance": {
+        "run_id": "20261009T100913Z",
+        "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r50_flow_load_20261009_66d96bb7\\release_r50_2\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261009T100913Z.jsonl",
+        "events_written": 147,
+        "events_dropped": 0
+      }
+    },
+    "runtime": {
+      "profile": "owner-local-rag-assist",
+      "version": "2026.10.09-flow-r50.2",
+      "installation_id": "4389ce37fbbc1423",
+      "started_at": "2026-10-09T10:09:13.177013+00:00",
+      "system_memory": {
+        "available": true,
+        "physical_load_percent": 83,
+        "available_physical_mb": 2642.9,
+        "available_commit_mb": 6019.5
+      },
+      "python": {
+        "executable_id": "16a5fdffbda88a30",
+        "version": [
+          3,
+          12,
+          14
+        ],
+        "bits": 64,
+        "pid": 45836
+      },
+      "answer_timeout_sec": 20.0,
+      "pipeline_timeout_sec": 19.0,
+      "intent_timeout_sec": 14.0,
+      "local_llm": {
+        "enabled": true,
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "intent_timeout_sec": 14.0,
+        "planner_timeout_sec": 1.2,
+        "general_timeout_sec": 4.0,
+        "high_assist_profile": true
+      },
+      "semantic_rag": {
+        "enabled": true,
+        "embedding_model": "psu-bge-m3:q8_0"
+      },
+      "english": {
+        "enabled": true,
+        "draft_preview": false
+      },
+      "booking": {
+        "enabled": true,
+        "fetch_mode": "wordpress",
+        "cache_seconds": 0.0,
+        "dashboard_required": false,
+        "read_only": true
+      },
+      "input_quality": {
+        "mode": "enforce",
+        "keyboard_layout": "request_retype",
+        "repeated_characters": "warn_and_continue"
+      }
+    },
+    "features": {
+      "bilingual_english": true,
+      "local_llm_assist": true,
+      "semantic_rag": true,
+      "embedding_model": "psu-bge-m3:q8_0",
+      "live_booking_status": true
+    }
+  },
+  "health_after": {
+    "ok": true,
+    "service": "psu-esports-chat-web",
+    "time": "2026-10-09T10:14:16.996570+00:00",
+    "warmup": {
+      "ok": true,
+      "elapsed_sec": 21.6276,
+      "warmed": [
+        "game_title_aliases",
+        "structured_tools",
+        "game_resolver",
+        "routing_data",
+        "retrieval_data",
+        "probe_queries",
+        "semantic_embedding"
+      ],
+      "errors": [],
+      "timings": {
+        "game_title_aliases": 0.959,
+        "structured_tools": 1.7615,
+        "game_resolver": 0.4982,
+        "routing_data": 0.3922,
+        "retrieval_data": 5.2207,
+        "probe_queries": 12.6744,
+        "semantic_embedding": 0.1215
+      }
+    },
+    "llm_preflight": {
+      "ok": true,
+      "model": "scb10x/typhoon2.5-qwen3-4b",
+      "kind": "preflight",
+      "elapsed_ms": 165.03,
+      "response_chars": 2,
+      "done_reason": "length",
+      "num_ctx": 3072,
+      "load_duration": 8899600,
+      "prompt_eval_duration": 121972000,
+      "eval_duration": 1000,
+      "health": {
+        "llm_health_enabled": true,
+        "llm_health_status": "ok",
+        "llm_health_failures": 0,
+        "llm_health_failure_scope": "model_and_kind"
+      }
+    },
+    "input_quality_guard": {
+      "enabled": true,
+      "mode": "enforce",
+      "repeat_policy": "warn_and_continue",
+      "layout_threshold": 0.39,
+      "repeat_threshold": 0.55,
+      "corpus_size": 4023,
+      "profile_version": "keyboard-profile-v1:2a863a4176572043"
+    },
+    "llm_health": {
+      "enabled": true,
+      "failure_threshold": 2,
+      "failure_window_sec": 30.0,
+      "cooldown_sec": 90.0,
+      "states": [
+        {
+          "kind": "model",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 165.03,
+          "last_checked_at": 1791540815.9335296,
+          "last_success_at": 1791540815.9335296,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 165.03,
+              "detail": "preflight_ok",
+              "at": 1791540815.934
+            }
+          ]
+        },
+        {
+          "kind": "preflight",
+          "model": "scb10x/typhoon2.5-qwen3-4b",
+          "status": "ok",
+          "failures": 0,
+          "successes": 1,
+          "cooldown_remaining_sec": 0.0,
+          "last_error_type": "",
+          "last_error": "",
+          "last_elapsed_ms": 165.03,
+          "last_checked_at": 1791540815.9335296,
+          "last_success_at": 1791540815.9335296,
+          "half_open_probe_in_flight": false,
+          "events": [
+            {
+              "event": "success",
+              "kind": "preflight",
+              "elapsed_ms": 165.03,
+              "detail": "preflight_ok",
+              "at": 1791540815.934
+            }
+          ]
+        }
+      ]
+    },
+    "pipeline_workers": {
+      "enabled": true,
+      "started": true,
+      "worker_count": 1,
+      "workers": [
+        {
+          "worker_id": 0,
+          "pid": 25756,
+          "alive": true,
+          "ready": true,
+          "completed_requests": 1,
+          "busy": false,
+          "replacement_warming": false
+        }
+      ],
+      "performance": {
+        "run_id": "20261009T101311Z",
+        "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r50_flow_load_20261009_66d96bb7\\release_r50_2\\PSU_Esports_Chatbot_Local\\data\\logs\\performance\\pipeline_20261009T101311Z.jsonl",
+        "events_written": 11,
+        "events_dropped": 0
+      }
+    },
+    "runtime": {
+      "profile": "owner-local-rag-assist",
+      "version": "2026.10.09-flow-r50.2",
+      "installation_id": "4389ce37fbbc1423",
+      "started_at": "2026-10-09T10:13:10.519767+00:00",
+      "system_memory": {
+        "available": true,
+        "physical_load_percent": 82,
+        "available_physical_mb": 2815.6,
+        "available_commit_mb": 6113.8
+      },
+      "python": {
+        "executable_id": "16a5fdffbda88a30",
+        "version": [
+          3,
+          12,
+          14
+        ],
+        "bits": 64,
+        "pid": 6564
+      },
+      "answer_timeout_sec": 20.0,
+      "pipeline_timeout_sec": 19.0,
+      "intent_timeout_sec": 14.0,
+      "local_llm": {
+        "enabled": true,
+        "model": "scb10x/typhoon2.5-qwen3-4b",
+        "intent_timeout_sec": 14.0,
+        "planner_timeout_sec": 1.2,
+        "general_timeout_sec": 4.0,
+        "high_assist_profile": true
+      },
+      "semantic_rag": {
+        "enabled": true,
+        "embedding_model": "psu-bge-m3:q8_0"
+      },
+      "english": {
+        "enabled": true,
+        "draft_preview": false
+      },
+      "booking": {
+        "enabled": true,
+        "fetch_mode": "wordpress",
+        "cache_seconds": 0.0,
+        "dashboard_required": false,
+        "read_only": true
+      },
+      "input_quality": {
+        "mode": "enforce",
+        "keyboard_layout": "request_retype",
+        "repeated_characters": "warn_and_continue"
+      }
+    },
+    "features": {
+      "bilingual_english": true,
+      "local_llm_assist": true,
+      "semantic_rag": true,
+      "embedding_model": "psu-bge-m3:q8_0",
+      "live_booking_status": true
+    }
+  },
+  "total": 11,
+  "passed": 11,
+  "results": [
+    {
+      "payload": {
+        "question": "ฟรีไหม",
+        "locale": "th",
+        "client_session_id": "r50-restart-1cd072ebc4474912875dfdf6df33b389",
+        "client_turn_id": "cce020ad1c9348bbb18232311301bf78",
+        "debug": false,
+        "last_seen_response_id": "1419f2027d484dcd8d3fb74ee248f21c"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "2f7cba6b69a94e77b6671b7af20c8b11",
+        "session_id": "r50-restart-1cd072ebc4474912875dfdf6df33b389",
+        "answer": "มีที่จอดรถหน้าตึก 5 สำหรับรถยนต์และมอเตอร์ไซค์ครับ\n\nยังไม่ได้ระบุค่าจอดรถ จึงยืนยันว่าจอดฟรีไม่ได้ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "contact",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.8652,
+        "wall_sec": 0.9258,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.9257,
+          "global_remaining_sec": 19.0743,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.0743,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "th",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;thai_script"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.4473,
+          "language": "th",
+          "language_quality": 0.5527,
+          "should_review_intent": true,
+          "reason": "Thai character n-gram quality=0.553",
+          "action": "bounded_llm_intent_review"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:17.923101+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:17.923101+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.006287,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.347
+        },
+        "resolved_question": "ค่าจอดรถฟรีไหม",
+        "rule_coverage": null,
+        "client_turn_id": "cce020ad1c9348bbb18232311301bf78",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "partial",
+          "outcome": "answered_partial",
+          "category": "contact",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "answered_partial",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [
+            {
+              "schema_version": 1,
+              "key": "contact/contact_lookup",
+              "domain": "contact",
+              "operation": "contact_lookup",
+              "targets": [],
+              "offered_options": [],
+              "query": "ค่าจอดรถฟรีไหม",
+              "price_task": null,
+              "rental_plan": null,
+              "seed_question": "ฟรีไหม",
+              "mode": "pipeline:user_service_facts",
+              "route_category": "contact",
+              "route_intent": "user_service_facts",
+              "response_id": "2f7cba6b69a94e77b6671b7af20c8b11",
+              "status": "partial",
+              "provenance": "server_completed_user_request",
+              "acknowledged": false
+            }
+          ],
+          "current_task_keys": [
+            "contact/contact_lookup"
+          ],
+          "delivery": {
+            "82ec007db69d4282b30b7ffd82603df8": "client_acknowledged",
+            "cce020ad1c9348bbb18232311301bf78": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 6,
+            "restores": 1
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "Is it free?",
+        "locale": "en",
+        "client_session_id": "r50-restart-618e7fc2567c41a0bb268805aa99fe68",
+        "client_turn_id": "37bc605725d147f28110e0d1aea01b09",
+        "debug": false,
+        "last_seen_response_id": "6d6ead60852c4846aafbceac07112c02"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "7694289e77164255a97ef1d85b85815d",
+        "session_id": "r50-restart-618e7fc2567c41a0bb268805aa99fe68",
+        "answer": "Parking for cars and motorcycles is available in front of Building 5.\n\nParking fees have not been specified.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "contact",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.9574,
+        "wall_sec": 1.0258,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 1.0258,
+          "global_remaining_sec": 18.9742,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 17.9742,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.3993,
+          "language": "en",
+          "language_quality": 0.6007,
+          "should_review_intent": false,
+          "reason": "English character n-gram quality=0.601",
+          "action": "continue"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:18.997964+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:18.997964+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.002459,
+          "repeat_score": 0.04,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 1.03
+        },
+        "resolved_question": "Is parking free?",
+        "rule_coverage": null,
+        "client_turn_id": "37bc605725d147f28110e0d1aea01b09",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "partial",
+          "outcome": "answered_partial",
+          "category": "contact",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "answered_partial",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [
+            {
+              "schema_version": 1,
+              "key": "contact/contact_lookup",
+              "domain": "contact",
+              "operation": "contact_lookup",
+              "targets": [],
+              "offered_options": [],
+              "query": "Is parking free?",
+              "price_task": null,
+              "rental_plan": null,
+              "seed_question": "Is it free?",
+              "mode": "pipeline:user_service_facts",
+              "route_category": "contact",
+              "route_intent": "user_service_facts",
+              "response_id": "7694289e77164255a97ef1d85b85815d",
+              "status": "partial",
+              "provenance": "server_completed_user_request",
+              "acknowledged": false
+            }
+          ],
+          "current_task_keys": [
+            "contact/contact_lookup"
+          ],
+          "delivery": {
+            "348c42b837934bf5a1839126ac9bb057": "client_acknowledged",
+            "37bc605725d147f28110e0d1aea01b09": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 10,
+            "restores": 2
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "แล้วจอยล่ะ",
+        "locale": "th",
+        "client_session_id": "r50-restart-2f4809460af946dcad86cfe1ac0de66f",
+        "client_turn_id": "b91ecd2730864a8d95e88ee3eac8891b",
+        "debug": false,
+        "last_seen_response_id": "c83067be84484146b320f153f4e7aeea"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "bae584f2930142ac94e467e617792ee1",
+        "session_id": "r50-restart-2f4809460af946dcad86cfe1ac0de66f",
+        "answer": "ข้อมูลที่ยืนยันห้ามเฉพาะคีย์บอร์ดและเมาส์ส่วนตัว ยังไม่ได้ยืนยันสิทธิ์นำจอยส่วนตัวมาใช้ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "clarification",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.3164,
+        "wall_sec": 0.4045,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.4044,
+          "global_remaining_sec": 19.5956,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.5956,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "th",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;thai_script"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.3743,
+          "language": "th",
+          "language_quality": 0.6257,
+          "should_review_intent": false,
+          "reason": "Thai character n-gram quality=0.626",
+          "action": "continue"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:19.431374+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:19.431374+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.00194,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.352
+        },
+        "resolved_question": "เอาจอยส่วนตัวมาใช้ในศูนย์ได้ไหม",
+        "rule_coverage": null,
+        "client_turn_id": "b91ecd2730864a8d95e88ee3eac8891b",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "missing",
+          "outcome": "no_answer",
+          "category": "clarification",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "no_answer",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [],
+          "current_task_keys": [],
+          "delivery": {
+            "9b266a65ff504d80ba494e62f62f86b4": "client_acknowledged",
+            "b91ecd2730864a8d95e88ee3eac8891b": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 14,
+            "restores": 3
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "What about a controller?",
+        "locale": "en",
+        "client_session_id": "r50-restart-308922541817453ca24f82bab765fa53",
+        "client_turn_id": "c6ea15ab07c24c53993c6e218c6b1766",
+        "debug": false,
+        "last_seen_response_id": "dec993e8fba24f0596ceb513ec1506aa"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "2a2a97101fd843b7a348be8d6a0d0511",
+        "session_id": "r50-restart-308922541817453ca24f82bab765fa53",
+        "answer": "The confirmed restriction covers personal keyboards and mice. Permission to bring a personal controller has not been confirmed.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "clarification",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.5639,
+        "wall_sec": 0.695,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.695,
+          "global_remaining_sec": 19.305,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.305,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.2312,
+          "language": "en",
+          "language_quality": 0.7688,
+          "should_review_intent": false,
+          "reason": "English character n-gram quality=0.769",
+          "action": "continue"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:20.167456+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:20.167456+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.001345,
+          "repeat_score": 0.04,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 1.172
+        },
+        "resolved_question": "Can I bring my own controller for studio use?",
+        "rule_coverage": null,
+        "client_turn_id": "c6ea15ab07c24c53993c6e218c6b1766",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "missing",
+          "outcome": "no_answer",
+          "category": "clarification",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "no_answer",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [],
+          "current_task_keys": [],
+          "delivery": {
+            "ad2941e51bcb4beabed39938f5ec88a9": "client_acknowledged",
+            "c6ea15ab07c24c53993c6e218c6b1766": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 18,
+            "restores": 4
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "ฟรีไหม",
+        "locale": "th",
+        "client_session_id": "r50-restart-f29d482050f247139d97c52129db66d7",
+        "client_turn_id": "491478c944014ae487be24fa4b7cd77e",
+        "debug": false,
+        "last_seen_response_id": "3fbc36e9913148ddb9d36fc555e95700"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "0f9f06e869014f27a4066a542d89591e",
+        "session_id": "r50-restart-f29d482050f247139d97c52129db66d7",
+        "answer": "มีที่จอดรถหน้าตึก 5 สำหรับรถยนต์และมอเตอร์ไซค์ครับ\n\nยังไม่ได้ระบุค่าจอดรถ จึงยืนยันว่าจอดฟรีไม่ได้ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "contact",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.1257,
+        "wall_sec": 0.2009,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.2009,
+          "global_remaining_sec": 19.7991,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.7991,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "th",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;thai_script"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.4473,
+          "language": "th",
+          "language_quality": 0.5527,
+          "should_review_intent": true,
+          "reason": "Thai character n-gram quality=0.553",
+          "action": "bounded_llm_intent_review"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:20.399010+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:20.399010+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.006287,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.34
+        },
+        "resolved_question": "ค่าจอดรถฟรีไหม",
+        "rule_coverage": null,
+        "client_turn_id": "491478c944014ae487be24fa4b7cd77e",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "partial",
+          "outcome": "answered_partial",
+          "category": "contact",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "answered_partial",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [
+            {
+              "schema_version": 1,
+              "key": "contact/contact_lookup",
+              "domain": "contact",
+              "operation": "contact_lookup",
+              "targets": [],
+              "offered_options": [],
+              "query": "ค่าจอดรถฟรีไหม",
+              "price_task": null,
+              "rental_plan": null,
+              "seed_question": "ฟรีไหม",
+              "mode": "pipeline:user_service_facts",
+              "route_category": "contact",
+              "route_intent": "user_service_facts",
+              "response_id": "0f9f06e869014f27a4066a542d89591e",
+              "status": "partial",
+              "provenance": "server_completed_user_request",
+              "acknowledged": false
+            }
+          ],
+          "current_task_keys": [
+            "contact/contact_lookup"
+          ],
+          "delivery": {
+            "59224b8522394a458ab0220c97acdb2d": "client_acknowledged",
+            "491478c944014ae487be24fa4b7cd77e": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 22,
+            "restores": 5
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "Is it free?",
+        "locale": "en",
+        "client_session_id": "r50-restart-b2a971157ff44941b762747d36193ce0",
+        "client_turn_id": "4861e111ff5d42b5957570c8283e4125",
+        "debug": false,
+        "last_seen_response_id": "520e098dbb20497a8309fd0a11939b56"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "827ff1f866b2428898ba4fc1ff77714c",
+        "session_id": "r50-restart-b2a971157ff44941b762747d36193ce0",
+        "answer": "Parking for cars and motorcycles is available in front of Building 5.\n\nParking fees have not been specified.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "contact",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.1252,
+        "wall_sec": 0.2073,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.2072,
+          "global_remaining_sec": 19.7928,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.7928,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.3993,
+          "language": "en",
+          "language_quality": 0.6007,
+          "should_review_intent": false,
+          "reason": "English character n-gram quality=0.601",
+          "action": "continue"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:20.633451+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:20.633451+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.002459,
+          "repeat_score": 0.04,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 1.177
+        },
+        "resolved_question": "Is parking free?",
+        "rule_coverage": null,
+        "client_turn_id": "4861e111ff5d42b5957570c8283e4125",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "partial",
+          "outcome": "answered_partial",
+          "category": "contact",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "answered_partial",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [
+            {
+              "schema_version": 1,
+              "key": "contact/contact_lookup",
+              "domain": "contact",
+              "operation": "contact_lookup",
+              "targets": [],
+              "offered_options": [],
+              "query": "Is parking free?",
+              "price_task": null,
+              "rental_plan": null,
+              "seed_question": "Is it free?",
+              "mode": "pipeline:user_service_facts",
+              "route_category": "contact",
+              "route_intent": "user_service_facts",
+              "response_id": "827ff1f866b2428898ba4fc1ff77714c",
+              "status": "partial",
+              "provenance": "server_completed_user_request",
+              "acknowledged": false
+            }
+          ],
+          "current_task_keys": [
+            "contact/contact_lookup"
+          ],
+          "delivery": {
+            "519e1fd538214fbbb55dfed6feaceb1f": "client_acknowledged",
+            "4861e111ff5d42b5957570c8283e4125": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 26,
+            "restores": 6
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "แล้วจอยล่ะ",
+        "locale": "th",
+        "client_session_id": "r50-restart-4a1f0c504bd046fd8eb6b152cdfbb1fd",
+        "client_turn_id": "c1b654549b7747b29124ad9f78b38d57",
+        "debug": false,
+        "last_seen_response_id": "a49bf16085c64c3699763bd1c1beccc7"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "e8e48a5b40214054807a57045b7fc9cd",
+        "session_id": "r50-restart-4a1f0c504bd046fd8eb6b152cdfbb1fd",
+        "answer": "ข้อมูลที่ยืนยันห้ามเฉพาะคีย์บอร์ดและเมาส์ส่วนตัว ยังไม่ได้ยืนยันสิทธิ์นำจอยส่วนตัวมาใช้ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "clarification",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.2639,
+        "wall_sec": 0.3412,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.3412,
+          "global_remaining_sec": 19.6588,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.6588,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "th",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;thai_script"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.3743,
+          "language": "th",
+          "language_quality": 0.6257,
+          "should_review_intent": false,
+          "reason": "Thai character n-gram quality=0.626",
+          "action": "continue"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.002427+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.002427+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.00194,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.497
+        },
+        "resolved_question": "เอาจอยส่วนตัวมาใช้ในศูนย์ได้ไหม",
+        "rule_coverage": null,
+        "client_turn_id": "c1b654549b7747b29124ad9f78b38d57",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "missing",
+          "outcome": "no_answer",
+          "category": "clarification",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "no_answer",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [],
+          "current_task_keys": [],
+          "delivery": {
+            "9687b8c665754114a0da38769bf20db0": "client_acknowledged",
+            "c1b654549b7747b29124ad9f78b38d57": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 30,
+            "restores": 7
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "What about a controller?",
+        "locale": "en",
+        "client_session_id": "r50-restart-8be174e8c56c401d903bdff78f264cbf",
+        "client_turn_id": "f3536fbd25de419a97d8250e3b9cb6c8",
+        "debug": false,
+        "last_seen_response_id": "dd0ba59a6bfd4507910ba4479d22b2e3"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "b2470d85a0b149d1b72542e6f001078f",
+        "session_id": "r50-restart-8be174e8c56c401d903bdff78f264cbf",
+        "answer": "The confirmed restriction covers personal keyboards and mice. Permission to bring a personal controller has not been confirmed.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "clarification",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.3529,
+        "wall_sec": 0.4766,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.4765,
+          "global_remaining_sec": 19.5235,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.5235,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.2312,
+          "language": "en",
+          "language_quality": 0.7688,
+          "should_review_intent": false,
+          "reason": "English character n-gram quality=0.769",
+          "action": "continue"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.504403+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.504403+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.001345,
+          "repeat_score": 0.04,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 1.45
+        },
+        "resolved_question": "Can I bring my own controller for studio use?",
+        "rule_coverage": null,
+        "client_turn_id": "f3536fbd25de419a97d8250e3b9cb6c8",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "missing",
+          "outcome": "no_answer",
+          "category": "clarification",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "no_answer",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [],
+          "current_task_keys": [],
+          "delivery": {
+            "0808d5d72c104178a13163607dfc4ea1": "client_acknowledged",
+            "f3536fbd25de419a97d8250e3b9cb6c8": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 34,
+            "restores": 8
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "ฟรีไหม",
+        "locale": "th",
+        "client_session_id": "r50-restart-61dfd95dbb8f47f886a247eb31485041",
+        "client_turn_id": "dd978bb54f48460f902289fc5a9191b7",
+        "debug": false,
+        "last_seen_response_id": "181a6634b0a34b7a9c11ffa1a0b95a50"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "8f4ab685cf804a0896062a3fb0a37b04",
+        "session_id": "r50-restart-61dfd95dbb8f47f886a247eb31485041",
+        "answer": "มีที่จอดรถหน้าตึก 5 สำหรับรถยนต์และมอเตอร์ไซค์ครับ\n\nยังไม่ได้ระบุค่าจอดรถ จึงยืนยันว่าจอดฟรีไม่ได้ครับ\n\nแหล่งข้อมูล: คำตอบที่ผู้ใช้ยืนยัน (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "contact",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.1392,
+        "wall_sec": 0.2085,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.2084,
+          "global_remaining_sec": 19.7916,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.7916,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "th",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;thai_script"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.4473,
+          "language": "th",
+          "language_quality": 0.5527,
+          "should_review_intent": true,
+          "reason": "Thai character n-gram quality=0.553",
+          "action": "bounded_llm_intent_review"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.736568+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.736568+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.006287,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.356
+        },
+        "resolved_question": "ค่าจอดรถฟรีไหม",
+        "rule_coverage": null,
+        "client_turn_id": "dd978bb54f48460f902289fc5a9191b7",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "partial",
+          "outcome": "answered_partial",
+          "category": "contact",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "answered_partial",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [
+            {
+              "schema_version": 1,
+              "key": "contact/contact_lookup",
+              "domain": "contact",
+              "operation": "contact_lookup",
+              "targets": [],
+              "offered_options": [],
+              "query": "ค่าจอดรถฟรีไหม",
+              "price_task": null,
+              "rental_plan": null,
+              "seed_question": "ฟรีไหม",
+              "mode": "pipeline:user_service_facts",
+              "route_category": "contact",
+              "route_intent": "user_service_facts",
+              "response_id": "8f4ab685cf804a0896062a3fb0a37b04",
+              "status": "partial",
+              "provenance": "server_completed_user_request",
+              "acknowledged": false
+            }
+          ],
+          "current_task_keys": [
+            "contact/contact_lookup"
+          ],
+          "delivery": {
+            "16475911e1ca4c68ab110f0723a7360f": "client_acknowledged",
+            "dd978bb54f48460f902289fc5a9191b7": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 38,
+            "restores": 9
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "Is it free?",
+        "locale": "en",
+        "client_session_id": "r50-restart-41c3036d7f4a44dfaf22aea3e51dc64d",
+        "client_turn_id": "c6aac621303b4e478ec918156e310d8d",
+        "debug": false,
+        "last_seen_response_id": "c7ad24dd6f9a4940bc06c5f3d2d349e1"
+      },
+      "response": {
+        "ok": true,
+        "request_id": "94c8d53c1b2d409ca8e04652dfb2db45",
+        "session_id": "r50-restart-41c3036d7f4a44dfaf22aea3e51dc64d",
+        "answer": "Parking for cars and motorcycles is available in front of Building 5.\n\nParking fees have not been specified.\n\nSource: user-provided service answers (2026-10-08)\n\nlocal://service_policy/user_answers_20261008",
+        "mode": "pipeline:user_service_facts",
+        "route_category": "contact",
+        "route_intent": "user_service_facts",
+        "universal_intent": null,
+        "confidence": 0.98,
+        "latency_sec": 0.1388,
+        "wall_sec": 0.2213,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 0.2212,
+          "global_remaining_sec": 19.7788,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 18.7788,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "user_service_answers_20261008",
+            "url": "local://service_policy/user_answers_20261008"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "en",
+          "detected": "en",
+          "effective": "en",
+          "confidence": 1.0,
+          "reason": "toggle_override_en;english_sentence_structure"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.3993,
+          "language": "en",
+          "language_quality": 0.6007,
+          "should_review_intent": false,
+          "reason": "English character n-gram quality=0.601",
+          "action": "continue"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.983454+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:21.983454+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.002459,
+          "repeat_score": 0.04,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 1.298
+        },
+        "resolved_question": "Is parking free?",
+        "rule_coverage": null,
+        "client_turn_id": "c6aac621303b4e478ec918156e310d8d",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "partial",
+          "outcome": "answered_partial",
+          "category": "contact",
+          "intent": "user_service_facts",
+          "source_count": 1,
+          "coverage_meaning": "user_confirmed_fields_not_live_status"
+        },
+        "conversation_outcome": "answered_partial",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 2,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [
+            {
+              "schema_version": 1,
+              "key": "contact/contact_lookup",
+              "domain": "contact",
+              "operation": "contact_lookup",
+              "targets": [],
+              "offered_options": [],
+              "query": "Is parking free?",
+              "price_task": null,
+              "rental_plan": null,
+              "seed_question": "Is it free?",
+              "mode": "pipeline:user_service_facts",
+              "route_category": "contact",
+              "route_intent": "user_service_facts",
+              "response_id": "94c8d53c1b2d409ca8e04652dfb2db45",
+              "status": "partial",
+              "provenance": "server_completed_user_request",
+              "acknowledged": false
+            }
+          ],
+          "current_task_keys": [
+            "contact/contact_lookup"
+          ],
+          "delivery": {
+            "2c51e5977c2548cea3b6d3962f09be13": "client_acknowledged",
+            "c6aac621303b4e478ec918156e310d8d": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 42,
+            "restores": 10
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "payload": {
+        "question": "ฟรีไหม",
+        "locale": "th",
+        "client_session_id": "r50-unrelated-1ecc4407cc2041c0bf7f5aab2640b5ae",
+        "client_turn_id": "be4251b6e44140eebbf8cc2a825261bf",
+        "debug": false
+      },
+      "response": {
+        "ok": true,
+        "request_id": "5c2f0a9814104f2880207ba4f7081af0",
+        "session_id": "r50-unrelated-1ecc4407cc2041c0bf7f5aab2640b5ae",
+        "answer": "ตารางค่าบริการ PSU Esports Studio - Phuket Service Fee 2026 ตามภาพ: PlayStation 5 1 ชั่วโมง 1-2 คน: PSU Student and Staff ฟรี 0 บาท, PSU Alumni and General Student 50 บาท, General Adult 150 บาท. Nintendo Switch 1 ชั่วโมง 1-2 คน: PSU Student and Staff ฟรี 0 บาท, PSU Alumni and General Student 50 บาท, General Adult 140 บาท. Nintendo Switch 1 ชั่วโมง 3-4 คน: PSU Student and Staff ฟรี 0 บาท, PSU Alumni and General Student 100 บาท, General Adult 280 บาท. Cockpit 1 ชั่วโมง 1 คน: PSU Student and Staff ฟรี 0 บาท, PSU Alumni and General Student 65 บาท, General Adult 200 บาท. VR 30 นาที 1-5 คน: PSU Student and Staff ฟรี 0 บาท, PSU Alumni and General Student 190 บาท, General Adult 525 บาท. VR 1 ชั่วโมง 1-5 คน: PSU Student and Staff ฟรี 0 บาท, PSU Alumni and General Student 375 บาท, General Adult 1050 บาท. ภาพนี้ระบุว่าค่าบริการมีผลตั้งแต่ 1 February 2026 ถึง 31 March 2026 และไม่ปรากฏราคา PC\nแหล่งข้อมูล: https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png",
+        "mode": "pipeline:rag_direct_curated",
+        "route_category": "service_fee",
+        "route_intent": "service_fee_query",
+        "universal_intent": {
+          "domain": "service_fee",
+          "operation": "price_calculate",
+          "target": "",
+          "filters": {},
+          "needs": [],
+          "answer_style": "direct_then_details",
+          "confidence": 0.9,
+          "method": "llm",
+          "reason": "candidate_intent:c1 heuristic fallback"
+        },
+        "confidence": 0.84,
+        "latency_sec": 12.1684,
+        "wall_sec": 12.262,
+        "deadline": {
+          "global_timeout_enabled": true,
+          "global_timeout_sec": 20.0,
+          "global_elapsed_sec": 12.262,
+          "global_remaining_sec": 7.738,
+          "finalizer_reserve_sec": 1.0,
+          "work_remaining_sec": 6.738,
+          "timing_status": "running"
+        },
+        "timing_status": "completed",
+        "timed_out": false,
+        "timeout_stage": "",
+        "retryable": false,
+        "worker_id": 0,
+        "sources": [
+          {
+            "id": "curated_service_fee_2026_full_table::th::text",
+            "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+          },
+          {
+            "id": "curated_user_group_alias_general_adult::th::text",
+            "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+          },
+          {
+            "id": "curated_user_group_alias_general_student::th::text",
+            "url": "https://esports.computing.psu.ac.th/wp-content/uploads/2026/01/PSU-Esports-Studio-phuket-SERVICE-FEE-2026.png"
+          }
+        ],
+        "validation_ok": true,
+        "language": {
+          "requested": "th",
+          "detected": "th",
+          "effective": "th",
+          "confidence": 1.0,
+          "reason": "toggle_override_th;thai_script"
+        },
+        "experimental_rag_fallback": false,
+        "experimental_allow_llm": true,
+        "input_recovery": {
+          "score": 0.4473,
+          "language": "th",
+          "language_quality": 0.5527,
+          "should_review_intent": true,
+          "reason": "Thai character n-gram quality=0.553",
+          "action": "bounded_llm_intent_review"
+        },
+        "server_date": {
+          "iso": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:34.273693+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "calendar": {
+          "date": "2026-10-09",
+          "label": "09/10/2026 (วันศุกร์)",
+          "weekday": "วันศุกร์",
+          "time": "17:14",
+          "datetime_iso": "2026-10-09T17:14:34.273693+07:00",
+          "timezone": "Asia/Bangkok",
+          "service_slot": {
+            "date": "2026-10-09",
+            "time": "17:14",
+            "weekday": "วันศุกร์",
+            "timezone": "Asia/Bangkok",
+            "status": "outside_hours",
+            "playable": false,
+            "slot": null,
+            "next_open_slot": null,
+            "reason": "outside_regular_service_hours",
+            "note": "อยู่นอกช่วงเวลาให้บริการตามตารางประจำ",
+            "source": "reservation_schedule"
+          },
+          "service_closure": null,
+          "thai_holidays": [],
+          "upcoming_thai_holidays": [
+            {
+              "date": "2026-10-13",
+              "title": "วันนวมินทรมหาราช",
+              "type": "national_holiday",
+              "note": "วันคล้ายวันสวรรคตพระบาทสมเด็จพระบรมชนกาธิเบศรฯ",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-16",
+              "title": "วันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ",
+              "type": "bank_holiday_bangkok",
+              "note": "ธนาคารแห่งประเทศไทยระบุเป็นวันหยุดพิเศษของสถาบันการเงินในกรุงเทพฯ ไม่ใช่ข้อมูลยืนยันว่าศูนย์ภูเก็ตปิด",
+              "source": "Bank of Thailand Financial Institutions Holidays 2026",
+              "source_url": "https://www.bot.or.th/en/financial-institutions-holiday.html"
+            },
+            {
+              "date": "2026-10-23",
+              "title": "วันปิยมหาราช",
+              "type": "national_holiday",
+              "note": "วันหยุดประจำปีของไทย",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-10-31",
+              "title": "วันฮาโลวีน",
+              "type": "observance",
+              "note": "วันสำคัญ/เทศกาล ไม่ใช่ข้อมูลยืนยันว่าศูนย์ปิด",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            },
+            {
+              "date": "2026-12-05",
+              "title": "วันพ่อแห่งชาติ / วันชาติ / วันคล้ายวันพระบรมราชสมภพ ร.9",
+              "type": "national_holiday",
+              "note": "ตรงกับวันเสาร์ และมีวันหยุดชดเชย 7 ธันวาคม 2026",
+              "source": "Time and Date Thailand holidays 2026",
+              "source_url": "https://www.timeanddate.com/holidays/thailand/2026"
+            }
+          ]
+        },
+        "input_quality": {
+          "action": "continue",
+          "detected_action": "continue",
+          "applied_action": "continue",
+          "should_retype": false,
+          "flags": [],
+          "layout_score": 0.006287,
+          "repeat_score": 0.0,
+          "guard_status": "passed",
+          "guard_mode": "enforce",
+          "repeat_policy": "warn_and_continue",
+          "profile_version": "keyboard-profile-v1:2a863a4176572043",
+          "guard_elapsed_ms": 0.342
+        },
+        "resolved_question": "ฟรีไหม",
+        "rule_coverage": null,
+        "client_turn_id": "be4251b6e44140eebbf8cc2a825261bf",
+        "request_plan": null,
+        "task_contract": {
+          "schema_version": 1,
+          "kind": "single",
+          "status": "answered",
+          "outcome": "answered_complete",
+          "category": "service_fee",
+          "intent": "service_fee_query",
+          "source_count": 3,
+          "coverage_meaning": "execution_status_not_factual_accuracy"
+        },
+        "conversation_outcome": "answered_complete",
+        "coverage": {},
+        "conversation_state": {
+          "schema_version": 1,
+          "revision": 1,
+          "active_task": null,
+          "task_memory_schema_version": 1,
+          "requested_tasks": [
+            {
+              "schema_version": 1,
+              "key": "service_fee/price_lookup",
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "targets": [],
+              "offered_options": [],
+              "query": "ฟรีไหม",
+              "price_task": null,
+              "rental_plan": null,
+              "seed_question": "ฟรีไหม",
+              "mode": "pipeline:rag_direct_curated",
+              "route_category": "service_fee",
+              "route_intent": "service_fee_query",
+              "response_id": "5c2f0a9814104f2880207ba4f7081af0",
+              "status": "answered",
+              "provenance": "server_completed_user_request",
+              "acknowledged": false
+            }
+          ],
+          "current_task_keys": [
+            "service_fee/price_lookup"
+          ],
+          "delivery": {
+            "be4251b6e44140eebbf8cc2a825261bf": "prepared"
+          },
+          "storage": "sqlite_parent_state",
+          "survives_server_restart": true,
+          "persistence": {
+            "enabled": true,
+            "ready": true,
+            "last_error": "",
+            "writes": 45,
+            "restores": 10
+          }
+        }
+      },
+      "passed": true
+    }
+  ]
+}

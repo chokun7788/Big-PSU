@@ -1,0 +1,163 @@
+{
+  "question_key": "cd54fd98a856b2063ed97d75f68dbba35112f8bab47575e30f2ab012f0075759",
+  "example_sha256": "66cf935c1b572ad7efe21bd4168e3f79d7a7d17fa461dcb1465abc0daf245ae2",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One duration-in-minutes question selects the internal/half-day All Zones package.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rental/detail/duration_minutes retains the package duration dimension.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Full package target, internal audience label and half-day category are literal input; All Zones is not an ordinary service.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Source-verification framing supplies no business value or prior session.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not compute a conventional half-day duration or reinterpret minutes as the number of packages.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "package_3 records duration_minutes independently of its inclusion/room-seat/price fields.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที"
+      ],
+      "source_record_ids": [
+        "package_3",
+        "audience_internal_org"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No minute value, fee, elapsed clock or equipment list is taught.",
+      "raw_quotes": [
+        "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Package audience is an organization class; room seats/equipment quantities/session capacity and unknown terms/currentness are distinct.",
+      "handling": "Use the exact named rental record and requested field, never infer per-session duration, ordinary service, personal affiliation or offsite use."
+    }
+  ],
+  "historical_review_row": 214,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "ภายใน",
+      "All Zones"
+    ],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "duration_minutes",
+        "target": "All Zones",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "All Zones",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "rental",
+    "context_quotes": [
+      "PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน"
+    ],
+    "tasks": [
+      {
+        "quote": "ถามจากข้อมูลที่ศูนย์ให้ไว้ PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน ให้ใช้นานกี่นาที",
+        "domain": "rental",
+        "operation": "detail",
+        "facet": "duration_minutes",
+        "target": "PSU Esports Studio - Phuket - All Zones / ภายใน / ครึ่งวัน",
+        "constraints": [
+          {
+            "slot": "audience",
+            "quote": "ภายใน",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ครึ่งวัน",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "package_3": {
+      "revision": 1,
+      "record_sha256": "925ea8fb131287ff891b122d5137aa3a1a7a84658f6228ba728f8d79c7fb0d6f"
+    },
+    "audience_internal_org": {
+      "revision": 2,
+      "record_sha256": "d098dad7f2532de4774513d2ef2b572977cd3987fc5229333ccfa5b5af36f84f"
+    }
+  }
+}

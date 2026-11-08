@@ -1,0 +1,360 @@
+--- before/app\booking\live_status.py
++++ after/app\booking\live_status.py
+@@ -1,6 +1,8 @@
+ from __future__ import annotations
+ 
+ import json
++from contextlib import contextmanager
++from contextvars import ContextVar
+ import os
+ import re
+ import threading
+@@ -22,6 +24,23 @@
+ _CACHE_LOCK = threading.Lock()
+ _CACHE: dict[str, tuple[float, "LiveBookingSnapshot"]] = {}
+ _FETCH_LOCK = threading.Lock()
++_REQUEST_SNAPSHOTS = ContextVar('booking_request_snapshots', default=None)
++
++@contextmanager
++def booking_request_snapshots():
++    """One aggregate snapshot per date/transport within an answer only.
++
++    copy_context shares this state with compound children. It expires at
++    the end of the request; the next question uses the configured transport.
++    """
++    if _REQUEST_SNAPSHOTS.get() is not None:
++        yield
++        return
++    token = _REQUEST_SNAPSHOTS.set({'lock': threading.Lock(), 'values': {}})
++    try:
++        yield
++    finally:
++        _REQUEST_SNAPSHOTS.reset(token)
+ 
+ 
+ def _truthy(value: str | None, default: bool) -> bool:
+@@ -119,6 +138,7 @@
+     transport: str = "dashboard"
+     error_code: str = ""
+     fetch_elapsed_ms: float = 0.0
++    request_reused: bool = False
+ 
+     def as_public_dict(self) -> dict[str, Any]:
+         """Return only aggregate booking facts. Never return appointment or user fields."""
+@@ -138,6 +158,7 @@
+             "transport": self.transport,
+             "error_code": self.error_code or None,
+             "fetch_elapsed_ms": self.fetch_elapsed_ms,
++            "request_reused": self.request_reused,
+             "error": self.error or None,
+             "privacy": "aggregate_only",
+         }
+@@ -263,6 +284,20 @@
+ 
+ 
+ def get_live_booking_status(selected_date: str) -> LiveBookingSnapshot:
++    scope = _REQUEST_SNAPSHOTS.get()
++    if scope is None:
++        return _fetch_live_booking_status(selected_date)
++    config = live_booking_runtime_config()
++    key = (config['fetch_mode'], _status_url(), selected_date)
++    with scope['lock']:
++        if key in scope['values']:
++            return replace(scope['values'][key], request_reused=True)
++        result = _fetch_live_booking_status(selected_date)
++        scope['values'][key] = result
++        return result
++
++
++def _fetch_live_booking_status(selected_date: str) -> LiveBookingSnapshot:
+     """Fetch on demand through the configured read-only booking transport."""
+     mode = str(live_booking_runtime_config()["fetch_mode"])
+     if not live_booking_enabled():
+--- before/app\pipeline\conversation_rules.py
++++ after/app\pipeline\conversation_rules.py
+@@ -8,6 +8,7 @@
+ import json
+ import re
+ from app.knowledge.localization import approved_localization
++from app.pipeline.rulebook_source_fragments import fragment_translation, is_recorded_fragment
+ from app.pipeline.competition_targets import resolve_competition_targets
+ from app.pipeline.competition_conversation_signals import is_more_rule_request
+ from app.pipeline.competition_presentation import is_rule_clause
+@@ -34,7 +35,7 @@
+         meaningful.append(row)
+     # Hash both source content and locale overlays. A changed translation must
+     # not reuse a cursor based on a different displayed document.
+-    release = hashlib.sha256(json.dumps([(r['id'], r.get('text'), approved_localization(r,'text')) for r in meaningful],
++    release = hashlib.sha256(json.dumps([(r['id'], r.get('text'), approved_localization(r,'text') or fragment_translation(r)) for r in meaningful],
+                                          ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:16]
+     return meaningful, release
+ 
+@@ -78,7 +79,7 @@
+         if row['id'] in seen:
+             continue
+         original = str(row.get('text',''))
+-        text = (approved_localization(row,'text') or (original if not re.search(r'[\u0e00-\u0e7f]',original) else None)) if locale == 'en' else original
++        text = (approved_localization(row,'text') or fragment_translation(row) or (original if not re.search(r'[\u0e00-\u0e7f]',original) else None)) if locale == 'en' else original
+         if not text or (locale == 'en' and re.search(r'[\u0e00-\u0e7f]',text)):
+             locale_missing.append(row['id']); continue
+         section = re.sub(r'_c\d+$','',row['id'])
+@@ -127,17 +128,21 @@
+         lines.append('All readable recorded sections have been covered; this does not confirm rules for a new event.' if english else 'แสดงครบส่วนที่อ่านได้ของเอกสารที่บันทึกไว้แล้ว ไม่ได้ยืนยันกติกาของรายการใหม่ครับ')
+     if target.game_id == 'tekken8':
+         lines.append('The source has conflicting pause conditions; the organizer must confirm their application.' if english else 'เอกสารมีเงื่อนไขการหยุดเกมที่ขัดกัน ต้องให้ผู้จัดยืนยันการใช้เงื่อนไขครับ')
++    source_gap_ids = [r['id'] for r in rows if is_recorded_fragment(r)]
++    if source_gap_ids:
++        lines.append('The recorded RoV source is incomplete at clauses 6.1.5 / 6.1.5.1. The fragment translation is prepared by the agent, not organizer approval; no missing penalty ending is inferred.' if english else 'ต้นฉบับ RoV ข้อ 6.1.5 / 6.1.5.1 มีข้อความกำกวมและถูกตัดท้าย ยังต้องให้ผู้จัดยืนยันข้อความและบทลงโทษส่วนที่ขาดครับ')
+     if rows:
+         lines.append(('Source: ' if english else 'แหล่งข้อมูล: ')+str(rows[0].get('source_url','')))
+-    outcome = 'answered_partial' if remaining or locale_missing else 'answered_complete' if expected else 'source_missing'
++    outcome = 'answered_partial' if remaining or locale_missing or source_gap_ids else 'answered_complete' if expected else 'source_missing'
+     coverage = {'game_id':target.game_id, 'rulebook_id':target.rulebook_id,'source_release':release,'detail_level':'full_sections',
+                 'expected_ids':expected,'returned_ids':returned,'covered_ids':covered,'remaining_ids':remaining,
+                 'missing_ids':locale_missing,'locale_gap_ids':locale_missing,'outcome':outcome,
++                'source_gap_ids':source_gap_ids, 'known_source_fragment_gaps':bool(source_gap_ids), 'source_policy_complete':False if source_gap_ids else None, 'fragment_translation_basis':'agent_translation_readable_incomplete_source' if source_gap_ids and english else None,
+                 'source_changed':changed,'delivery_uncertain':uncertain,'owner_confirmed':False}
+     route = PipelineRoute('competition_rules','competition_rules_full_sections',.98,'list','medium','source sections rendered in full with acknowledged coverage')
+     hits = [hit_from_curated(row) for row,_ in selected] or ([hit_from_curated(rows[0])] if rows else [])
+     return {'answer':'\n'.join(lines),'hits':hits,
+             'mode':'pipeline:competition_rule_full_sections_source','route':route,'entities':EntityBundle(),
+-            'validation':ValidationResult(True, warnings=('english_localization_incomplete',) if locale_missing else ()),
++            'validation':ValidationResult(True, warnings=tuple((['english_localization_incomplete'] if locale_missing else [])+(['rulebook_source_incomplete'] if source_gap_ids else []))),
+             'trace':[PipelineTrace('competition_full_coverage',outcome,1.0,'summary does not count as detailed coverage',coverage),
+                      PipelineTrace('conversation_contract',outcome,1.0,'readable source coverage is separate from owner approval',coverage)]}
+--- before/app\pipeline\engine.py
++++ after/app\pipeline\engine.py
+@@ -849,7 +849,8 @@
+         keyboard_layout_direction: str | None = None,
+         request_plan: dict | None = None,
+     ) -> PipelineAnswer:
+-        with request_deadline(global_timeout_sec):
++        from app.booking.live_status import booking_request_snapshots
++        with request_deadline(global_timeout_sec), booking_request_snapshots():
+             started = time.perf_counter()
+             locale_started = time.perf_counter()
+             resolved_locale = locale_from_mapping(locale_decision) or resolve_locale(
+@@ -877,6 +878,23 @@
+                         route,EntityBundle(),ValidationResult(ok=True),[*trace,result.trace])
+                 return self._build_result(_general_disabled_answer(),[],started,'pipeline:general_llm_disabled',1.0,
+                     route,EntityBundle(),ValidationResult(ok=True),trace)
++            from app.pipeline.query_signals import looks_like_explicit_creation_request
++            if looks_like_explicit_creation_request(question):
++                from app.pipeline.experimental_fallback import _general_llm_fallback, _general_disabled_answer
++                allow_llm = env_experimental_llm_default() if experimental_allow_llm is None else experimental_allow_llm
++                route = PipelineRoute('general','creative_writing',1.0,'fact','low','explicit creation task; game vocabulary does not request studio inventory')
++                if allow_llm:
++                    result = _general_llm_fallback(question,details=('explicit_creation_task',),mode='general_llm_direct',decision='general_llm_direct')
++                    return self._build_result(result.answer,result.hits,started,'pipeline:'+result.mode,result.confidence,
++                        route,EntityBundle(),ValidationResult(ok=True),[*entry_timings,result.trace])
++                return self._build_result(_general_disabled_answer(),[],started,'pipeline:general_llm_disabled',1.0,
++                    route,EntityBundle(),ValidationResult(ok=True),entry_timings)
++            from app.pipeline.request_focus import explicit_request_focus
++            focused_question, focus = explicit_request_focus(question)
++            if focus:
++                entry_timings.append(PipelineTrace('explicit_request_focus','affirmative_task',1.0,
++                    'discard only an explicitly rejected task prefix with a named affirmative operation',focus))
++                question = focused_question
+             from app.pipeline.zone_rental import resolve_zone_rental_plan, build_zone_rental_answer
+             rental_plan = request_plan if request_plan and request_plan.get('schema_type')=='zone_rental_v1' else (resolve_zone_rental_plan(question,recent_history,locale=resolved_locale.effective) if request_plan is None else None)
+             if rental_plan is not None:
+@@ -1283,6 +1301,13 @@
+                     "child_llm_policy": "disabled_after_complex_planner_attempt" if compound_plan.profile.requires_planner else "inherited",
+                 },
+             ))
++        evidence_stages = {'conversation_contract','source_operation','user_service_facts','competition_overview','rulebook_coverage'}
++        trace.append(PipelineTrace('compound_source_evidence','child_source_bindings',1.0,
++            'preserve recorded assertions per child; execution coverage is not accuracy',
++            {'children': [{'question': part, 'mode': result.mode,
++                'source_traces': [{'stage': t.stage, 'decision': t.decision, 'metadata': t.metadata}
++                    for t in result.trace if t.stage in evidence_stages]}
++                for part, result in zip(display_parts, results)]}))
+         if self._deadline_is_exceeded(trace, "after_multi_children"):
+             from app.pipeline.task_contract import compound_contract
+             coverage = compound_contract(display_parts, results)
+--- before/app\pipeline\experimental_fallback.py
++++ after/app\pipeline\experimental_fallback.py
+@@ -99,10 +99,10 @@
+     word_request = re.search(r'(\d{2,4})\s*(?:คำ|words?)\b', q)
+     steps_request = re.search(r'\b(\d+|one|two|three|four|five|six|seven|eight)\s+(?:short\s+)?(?:steps?\b|ขั้นs?\b)|(\d+)\s*(?:ขั้นตอน|ข้อ)', q)
+     sentence_request = re.search(r'\b(?:two|2)[- ]sentences?\b|(?:2|สอง)\s*ประโยค', q)
+-    if word_request and int(word_request.group(1)) >= 100:
++    if word_request and int(word_request.group(1)) >= 30:
+         requested_words = int(word_request.group(1))
+         name = 'long_explanation'
+-        cap = min(max(configured, 1536), max(256, requested_words * 3))
++        cap = min(max(configured, 1536), max(256, requested_words * 4))
+         instruction = f'ตอบครบทุกประเด็นประมาณ {requested_words} คำ ห้ามย่อเหลือหนึ่งหรือสองประโยค'
+         required_entities = tuple(dict.fromkeys(re.findall(r'\b[A-Z][A-Z0-9]{1,9}\b',question)))
+     elif re.search(r'\bcompare\b', q) and re.search(r'\b(?:each|both)\b', q) and re.search(r'\badvantage\b', q) and re.search(r'\bdisadvantage\b', q):
+--- before/app\pipeline\query_signals.py
++++ after/app\pipeline\query_signals.py
+@@ -242,6 +242,17 @@
+     return has_any_signal(text, *_DEFINITION_TERMS)
+ 
+ 
++def looks_like_explicit_creation_request(text: str) -> bool:
++    """Named writing tasks are separate from the game's availability catalog.
++
++    Requests for actual studio policies, live data or rates remain grounded.
++    """
++    q = normalize_text(text)
++    named = bool(re.search(r'^(?:please\s+)?(?:write|draft|compose)\b.{0,100}\b(?:invitation|scene|dialogue|post|message|caption|story)\b|^(?:ช่วย)?(?:เขียน|ร่าง|แต่ง)(?:โพสต์|บทสนทนา|คำเชิญ|ข้อความชวน)', q, re.I))
++    factual = bool(re.search(r'ราคา|ค่าบริการ|จอง|ว่าง|กฎ|กฏ|กติกา|ศูนย์|มหาวิทยาลัย|\b(?:psu|studio|prices?|fees?|booking|reservations?|available|rules?|tournament|opening|official)\b',q,re.I))
++    return named and not factual
++
++
+ def looks_like_clear_general_request(text: str) -> bool:
+     from app.pipeline.semantic_quality import translation_request
+     translation = translation_request(text)
+@@ -250,6 +261,8 @@
+     query = normalize_text(text)
+     if looks_like_dynamic_freshness_query(query):
+         return False
++    if looks_like_explicit_creation_request(query):
++        return True
+     if has_any_signal(query, *_PSU_INVENTORY_TERMS):
+         return False
+     # Interpret a task before generic words such as "session" or "each".
+--- before/app\pipeline\service_query_completion.py
++++ after/app\pipeline\service_query_completion.py
+@@ -17,7 +17,7 @@
+     if re.search(r'เปิด|ปิด|maintenance|opening hours|\b(?:open|close|opens|closes)\b',q,re.I):return 'schedule'
+     if re.search(r'เกม(?:อะไร|ไร|ไหน|กี่)|มีเกม|\b(?:what|which|how many) games\b',q,re.I):return 'games'
+     if re.search(r'ชำระ|โอน|\b(?:pay|payment|transfer)\b',q,re.I):return 'payment'
+-    if re.search(r'สมาชิก|จอดรถ|บัตร|ตึก|ที่อยู่|where.*studio|membership|parking|\bid\b',q,re.I):return 'fact'
++    if re.search(r'สมาชิก|จอดรถ|บัตร|ตึก|ที่อยู่|where.*studio|membership|parking|\bid\b|\bbuilding\b',q,re.I):return 'fact'
+     return ''
+ 
+ def split_service_operations(question):
+@@ -25,7 +25,7 @@
+     parts=[p.strip(' ,?？') for p in re.split(r'\s*(?:และ|แล้ว|\band\b|[;?？])\s*',question,flags=re.I) if p.strip(' ,?？')]
+     if len(parts)==1 and re.search(r'ชำระเงิน(?:ยังไง|อย่างไร).*จ่ายเงินสด',question):
+         parts=[p.strip() for p in re.split(r'(?=จ่ายเงินสด)',question,maxsplit=1)]
+-    if not 2<=len(parts)<=3:return [question]
++    if not 2<=len(parts)<=6:return [question]
+     operations=[_op(p) for p in parts]
+     if not all(operations):return [question]
+     if len(set(operations))==1 and operations[0]!='live':return [question]
+--- before/app\pipeline\user_service_facts.py
++++ after/app\pipeline\user_service_facts.py
+@@ -55,11 +55,11 @@
+     if _has(q,r'ที่จอด|จอดรถ|(?:รถ|มอไซค์|มอเตอร์ไซค์).*จอด|\b(?:parking|park.*(?:car|motorcycle))\b'):keys.append('parking')
+     if _has(q,r'แผนที่|\b(?:map|maps)\b'):keys.append('map')
+     if _has(q,r'ตึก|อาคาร|ชั้นไหน|อยู่ตรงไหน|ที่อยู่ศูนย์|ศูนย์อยู่ที่ไหน|ศูนย์อยู่ไหน|ศูนย์อยู่ที่ใด|ที่ตั้ง.*(?:ศูนย์|psu)|\b(?:building|floor|studio (?:address|location)|(?:venue|studio|centre|center) address|address of.*(?:studio|psu esports)|where (?:is|can i find) (?:the )?(?:venue|studio|centre|center|psu esports)|how do i get to the venue)\b'):
+-        if not _has(q,r'ทีวี|จอ|คีย์บอร์ด|เมาส์|\b(?:tv|monitor|screen|keyboard|mouse|xbox|bangkok|floor plan|game map|floor price)\b'):keys.append('location')
++        if not _has(q,r'ทีวี|จอ(?!ด)|คีย์บอร์ด|เมาส์|\b(?:tv|monitor|screen|keyboard|mouse|xbox|bangkok|floor plan|game map|floor price)\b'):keys.append('location')
+     if _has(q,r'หาศูนย์ไม่เจอ|ติดต่อ|แจ้งใคร|\b(?:contact|notify|cannot find the studio)\b'):
+         if not _has(q,r'อีเมล|เบอร์|โทร|\b(?:email|phone|telephone)\b'):keys.append('contact')
+     if _has(q,r'(?:มา|กัน|กลุ่ม|มี).{0,8}(?:4|สี่)\s*คน|\b(?:four|4) (?:of us|people|friends|ppl)|\bgroup of (?:four|4)\b') and _has(q,r'เลือก|เล่น(?:อะไร|อันไหน)|แนะนำ|\b(?:choose|recommend|which service|what.*play)\b') and not _has(q,r'สลับ|2คน|2 คน|\b(?:swap|take turns|two people)\b'):keys.append('four_people')
+-    if _has(q,r'คนจอง.*คนเล่น|คนเล่น.*คนจอง|จองแทน|ใช้แทน|รายชื่อ.*จอง|ไม่มีชื่อ.*(?:จอง|เล่น)|จองชื่อ.*(?:เพื่อน|เล่นแทน)|\b(?:someone.*(?:booking|instead)|not listed|transfer.*booking|play instead|named in)\b'):keys.append('player_identity')
++    if _has(q,r'คนจอง.*คนเล่น|คนเล่น.*(?:คนจอง|ไม่มีชื่อ)|จองชื่อ.*แต่.*คนเล่น|จองแทน|ใช้แทน|รายชื่อ.*จอง|ไม่มีชื่อ.*(?:จอง|เล่น)|จองชื่อ.*(?:เพื่อน|เล่นแทน)|\b(?:someone.*(?:booking|instead)|not listed|transfer.*booking|play instead|named in)\b'):keys.append('player_identity')
+     if _has(q,r'หลักฐาน|แสดง.*บัตร|บัตร.*แสดง|(?:เอา|นำ|พก).*บัตร|บัตรอะไร.*(?:ไป|เช็คอิน|เช็กอิน)|ใช้.*(?:passport|พาสปอร์ต)|เอกสาร.*(?:มาถึง|เช็คอิน|เช็กอิน)|\b(?:identification|passport|id(?: card)?|student card|documents?.*(?:arrive|check.?in))\b') and not _has(q,r'สลิป|โอน|ชื่อจริง|ตรงกับบัตร|\b(?:slip|transfer|name.*match|real name)\b'):keys.append('checkin_documents')
+     wrong_machine=_has(q,r'ผิดเครื่อง|เครื่องผิด|จองผิดอุปกรณ์|\b(?:wrong machine|wrong device|wrong equipment|wrong console)\b')
+     active_session=_has(q,r'เล่นอยู่|ระหว่างเล่น|อัปเดต|อัพเดต|\b(?:while playing|during.*(?:play|update)|updat\w*)\b')
+@@ -109,7 +109,7 @@
+         ('technical_fault_compensation',r'ค้าง|ดับ|\b(?:crash\w*|shut down|power failure)\b',r'เวลา|ชดเชย|\b(?:time|compensat)\w*',
+          'ยังไม่ได้ยืนยันวิธีคิดหรือชดเชยเวลาที่เสียไปเมื่อเครื่องค้างหรือดับครับ',
+          'How lost time is charged or compensated after a crash or shutdown has not been confirmed.'),
+-        ('forgotten_logout_procedure',r'ลืม.*ออกจากบัญชี|\bforgot.*(?:log.?out|sign.?out)\b',r'บัญชี|\b(?:account|log.?out|sign.?out)\b',
++        ('forgotten_logout_procedure',r'ลืม.*(?:ออกจากบัญชี|log.?out|sign.?out)|\bforgot.*(?:log.?out|sign.?out)\b',r'บัญชี|\b(?:account|log.?out|sign.?out)\b',
+          'ติดต่อเพจศูนย์เพื่อแจ้งปัญหาได้ แต่ยังไม่ได้ยืนยันขั้นตอนออกจากบัญชีแทนผู้ใช้ครับ',
+          'You can report the problem to the studio page, but logging out on a user\'s behalf has not been confirmed.'),
+         ('photo_video_permission',r'ถ่ายรูป|อัดวิดีโอ|\b(?:photos?|record.*video|film)\b',r'ได้ไหม|ไหม|อนุญาต|\b(?:can|allowed|may|permission)\b',
+--- before/app\session\conversation_plan.py
++++ after/app\session\conversation_plan.py
+@@ -22,9 +22,13 @@
+ def excluded_services(text: str) -> list[str]:
+     # Only the directly negated noun span is excluded, not the rest of the turn.
+     excluded = []
+-    for match in re.finditer(r'(?:ไม่เอา|ไม่ใช่|ยกเว้น|เว้น|\b(?:except|exclude|excluding|not)\b)\s*([^,;\n]+)', text, re.I):
+-        span = re.split(r'แต่|หมายถึง|เอา|ขอ|ต้องการ|\b(?:but|instead|rather|i\s+mean|show|give|tell|want|need)\b', match.group(1), maxsplit=1, flags=re.I)[0]
+-        excluded.extend(service_mentions(span))
++    for match in re.finditer(r'(?:ไม่เอา|ไม่ใช่|ยกเว้น|เว้น|\b(?:except|exclude|excluding|not)\b)\s*([^,;.\n]+)', normalize_text(text), re.I):
++        # Only an immediately named device is negated. 'Not a student'
++        # must never remove a device mentioned later in the sentence.
++        span = match.group(1).strip()
++        for key, aliases in SERVICE_ALIASES.items():
++            if any(re.match(re.escape(normalize_text(a)) + (r'(?![a-z0-9])' if a.isascii() else ''), span, re.I) for a in aliases):
++                excluded.append(key)
+     return list(dict.fromkeys(excluded))
+ 
+ 
+@@ -170,6 +174,8 @@
+     rental = resolve_zone_rental_plan(question,history,locale=locale)
+     if rental is not None:
+         return rental
++    from app.pipeline.request_focus import explicit_request_focus
++    question = explicit_request_focus(question)[0]
+     q = normalize_text(question)
+     from app.pipeline.service_query_completion import split_service_operations
+     if len(split_service_operations(question))>1:
+--- before/app\web_api\chat_jobs.py
++++ after/app\web_api\chat_jobs.py
+@@ -95,12 +95,21 @@
+         return self.get(job_id,session)
+ 
+     def _public(self, row):
++        now = row['finished'] if row['finished'] is not None else time.time()
++        # Last dispatch start: earlier rejected attempts belong to admission
++        # delay, not completed inference. These are wall times, not GPU times.
++        started = row['started'] if row['status'] != 'queued' else None
++        timing = dict(elapsed_sec=round(max(0,now-row['created']),3),
++                      admission_wait_sec=round(max(0,(started or now)-row['created']),3),
++                      active_dispatch_sec=round(max(0,now-started),3) if started is not None else 0.0,
++                      remaining_sec=round(max(0,row['deadline']-now),3) if row['status'] in ('queued','running') else 0.0,
++                      meaning='wall_time_last_dispatch_not_model_inference')
+         return dict(ok=True, job_id=row['id'], session_id=row['session'], turn_id=row['turn'],
+                     status=row['status'], created_at=row['created'], deadline_at=row['deadline'],
+                     started_at=row['started'], finished_at=row['finished'], error=row['error'],
+                     result=json.loads(row['response']) if row['response'] else None,
+                     dispatch_attempts=row['attempts'], last_admission_error=row['last_admission_error'],
+-                    poll_after_ms=400, storage='local_sqlite')
++                    timing=timing, poll_after_ms=400, storage='local_sqlite')
+ 
+     def _claim(self):
+         with self._db() as db:
+--- before/app\web_api\server.py
++++ after/app\web_api\server.py
+@@ -420,7 +420,7 @@
+                 "input_quality_guard": STARTUP_INPUT_QUALITY_GUARD,
+                 "llm_health": llm_health_snapshot(),
+                 "pipeline_workers": PIPELINE_SUPERVISOR.health() if PIPELINE_SUPERVISOR else {"enabled": False},
+-                "runtime": _runtime_status(),
++                "runtime": {**_runtime_status(), 'queue_ttl_sec': getattr(self.server,'job_ttl_sec',None)},
+                 "features": {
+                     "bilingual_english": bilingual_english_enabled(),
+                     "local_llm_assist": LOCAL_LLM_ASSIST_ENABLED,
+@@ -1015,6 +1015,7 @@
+             model_busy=PIPELINE_SUPERVISOR.model_admission_busy if PIPELINE_SUPERVISOR else None,
+         )
+         server.chat_jobs.start()
++    server.job_ttl_sec = server.chat_jobs.ttl if server.chat_jobs else None
+     print(f"PSU Esports Chat Web is running at http://{args.host}:{args.port}/")
+     print("Press Ctrl+C to stop.")
+     try:
+--- before/web_chat\app.js
++++ after/web_chat\app.js
+@@ -466,7 +466,8 @@
+     ["Semantic RAG", rag.enabled ? `${on}: ${rag.embedding_model || "-"}` : off],
+     ["English", english.enabled ? on : off],
+     [isEnglish ? "English drafts" : "คำแปล Draft", english.draft_preview ? (isEnglish ? "Local preview only" : "ตัวอย่างเฉพาะเครื่อง") : off],
+-    [isEnglish ? "Answer limit" : "เวลาสูงสุด", `${runtime.answer_timeout_sec || "-"} s`],
++    [isEnglish ? "Processing limit" : "เวลาประมวลผลสูงสุด", `${runtime.answer_timeout_sec || "-"} s`],
++    [isEnglish ? "Queue + dispatch lifetime" : "เวลารวมรอคิวและส่งประมวลผล", runtime.queue_ttl_sec ? `${runtime.queue_ttl_sec} s` : (isEnglish ? "Queue disabled" : "ไม่ได้เปิดคิว")],
+   ];
+   runtimeListEl.innerHTML = "";
+   for (const [label, value] of rows) {
+--- before/web_chat\chat_request.js
++++ after/web_chat\chat_request.js
+@@ -21,7 +21,9 @@
+       const sessionId = jobData.session_id;
+       while (true) {
+         const english = payload.locale === 'en';
+-        if (options.onRetry) options.onRetry({job_status:jobData.status,language:{effective:english?'en':'th'},message:jobData.status === 'running' ? (english?'Processing your question…':'กำลังประมวลผลคำถาม…') : (english?'Question received. Waiting in the queue…':'รับคำถามแล้ว กำลังรอคิว…')},0);
++        const elapsed = Number((jobData.timing || {}).elapsed_sec);
++        const elapsedText = Number.isFinite(elapsed) ? (english ? ` (${Math.floor(elapsed)} s elapsed)` : ` (ผ่านไป ${Math.floor(elapsed)} วินาที)`) : '';
++        if (options.onRetry) options.onRetry({job_status:jobData.status,language:{effective:english?'en':'th'},message:(jobData.status === 'running' ? (english?'Processing your question…':'กำลังประมวลผลคำถาม…') : (english?'Question received. Waiting in the queue…':'รับคำถามแล้ว กำลังรอคิว…')) + elapsedText},0);
+         if (jobData.status === 'completed') return {response:jobResponse,data:jobData.result};
+         if (['failed','cancelled'].includes(jobData.status)) return {response:jobResponse,data:{ok:false,error:jobData.error || jobData.status,job_id:jobId,session_id:sessionId,retryable:false,message:jobData.error === 'queue_expired' ? (english?'The queue time limit was reached. Please try again.':'หมดเวลารอคิว กรุณาลองใหม่') : (english?'The request did not complete. Please try again.':'ยังตอบคำถามนี้ไม่สำเร็จ กรุณาลองใหม่')}};
+         if (now()-started > 185000) throw new Error(`Job polling timed out; job ${jobId} remains available for recovery.`);

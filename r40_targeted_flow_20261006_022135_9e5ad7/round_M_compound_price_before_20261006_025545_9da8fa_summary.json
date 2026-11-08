@@ -1,0 +1,1200 @@
+{
+  "label": "round_M_compound_price_before",
+  "model_enabled": false,
+  "semantic_retrieval": false,
+  "planned_cases": 4,
+  "executed_cases": 4,
+  "passed": 0,
+  "failed": 4,
+  "raw_file": "round_M_compound_price_before_20261006_025545_9da8fa_raw.jsonl",
+  "results": [
+    {
+      "id": "mixed-controls-price-en",
+      "kind": "selected_requests",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "expected_requests": false,
+        "no_dropped_parts": false
+      },
+      "mode": "pipeline:structured_service_fee_conversation",
+      "answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "latency": [
+        0.1317
+      ],
+      "records": [
+        {
+          "case_id": "mixed-controls-price-en",
+          "payload": {
+            "question": "What are the controls for VALORANT and what are the PC prices?",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+            "mode": "pipeline:structured_service_fee_conversation",
+            "route_category": "service_fee",
+            "route_intent": "conversation_price_lookup",
+            "request_id": "0",
+            "resolved_question": "Service prices PC",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.05,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 60.04,
+                  "elapsed_sec": 0.06,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "conversation_request",
+                "decision": "new_task",
+                "confidence": 1.0,
+                "detail": "typed slots preserve user filters; assistant options are not selections",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "What are the controls for VALORANT and what are the PC prices?",
+                    "resolved_query": "Service prices PC",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "unspecified",
+                          "customer_group_ids": [],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "universal_intent",
+                "decision": "service_fee/price_lookup",
+                "confidence": 0.98,
+                "detail": "typed dialogue request",
+                "metadata": {
+                  "filters": {
+                    "customer_scope": "unspecified",
+                    "customer_group_ids": [],
+                    "duration_minutes": null,
+                    "people_count": null
+                  },
+                  "target": "pc",
+                  "method": "conversation_plan"
+                }
+              },
+              {
+                "stage": "conversation_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "coverage and source validity are separate",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "What are the controls for VALORANT and what are the PC prices?",
+                    "resolved_query": "Service prices PC",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "unspecified",
+                          "customer_group_ids": [],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "source_release": "ad08219f3ba1bd36",
+                  "expected_ids": [
+                    "pc:psu_student_staff",
+                    "pc:general_student",
+                    "pc:general_adult"
+                  ],
+                  "returned_ids": [
+                    "pc:psu_student_staff",
+                    "pc:general_student",
+                    "pc:general_adult"
+                  ],
+                  "missing_ids": [],
+                  "missing_targets": [],
+                  "rows": [
+                    {
+                      "id": "pc:psu_student_staff",
+                      "package_id": "pc",
+                      "group_id": "psu_student_staff",
+                      "unit_price": 0,
+                      "sessions": 1,
+                      "total": 0
+                    },
+                    {
+                      "id": "pc:general_student",
+                      "package_id": "pc",
+                      "group_id": "general_student",
+                      "unit_price": 25,
+                      "sessions": 1,
+                      "total": 25
+                    },
+                    {
+                      "id": "pc:general_adult",
+                      "package_id": "pc",
+                      "group_id": "general_adult",
+                      "unit_price": 70,
+                      "sessions": 1,
+                      "total": 70
+                    }
+                  ],
+                  "temporal_validity": "recorded_rates",
+                  "recorded_expiry": null,
+                  "task_outcomes": [
+                    {
+                      "task_id": "fee-1",
+                      "outcome": "answered_complete"
+                    }
+                  ],
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "validation_final",
+                "confidence": 1.0,
+                "detail": "ok",
+                "metadata": {
+                  "elapsed_ms": 20.55,
+                  "elapsed_sec": 0.0206,
+                  "added_error_count": 0,
+                  "added_warning_count": 1,
+                  "added_errors": [],
+                  "added_warnings": [
+                    "price_question_should_start_with_price_or_number"
+                  ],
+                  "merged_error_count": 0,
+                  "merged_warning_count": 1
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_service_fee_conversation",
+                "metadata": {
+                  "elapsed_ms": 20.62,
+                  "elapsed_sec": 0.0206,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 89.7,
+                  "total_elapsed_sec": 0.0897
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "price_question_should_start_with_price_or_number"
+              ]
+            },
+            "universal_intent": {
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "target": "pc",
+              "filters": {
+                "customer_scope": "unspecified",
+                "customer_group_ids": [],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "needs": [],
+              "answer_style": "direct",
+              "confidence": 0.98,
+              "method": "conversation_plan",
+              "reason": "typed dialogue request"
+            }
+          },
+          "status": 200,
+          "elapsed_sec": 0.1317,
+          "context": {
+            "original_question": "What are the controls for VALORANT and what are the PC prices?",
+            "resolved_question": "Service prices PC",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": "service_fee",
+            "context_operation": "price_lookup",
+            "context_topic": null,
+            "reason": "parent_typed_request_plan",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "mixed-price-controls-en",
+      "kind": "selected_requests",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "expected_requests": false,
+        "no_dropped_parts": false
+      },
+      "mode": "pipeline:structured_service_fee_conversation",
+      "answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+      "latency": [
+        0.0062
+      ],
+      "records": [
+        {
+          "case_id": "mixed-price-controls-en",
+          "payload": {
+            "question": "What are the PC prices and what are the controls for VALORANT?",
+            "locale": "en"
+          },
+          "response": {
+            "ok": true,
+            "answer": "Service prices (recorded package rates):\n\nPC — 60 minutes/package (1 person)\n• PSU students and staff: 0 THB/package\n• PSU alumni / students from other institutions: 25 THB/package\n• General adults: 70 THB/package\nPC rates use the local update dated 2026-07-27.\nSource: local://service_fee/pc_price_update_20260727",
+            "mode": "pipeline:structured_service_fee_conversation",
+            "route_category": "service_fee",
+            "route_intent": "conversation_price_lookup",
+            "request_id": "0",
+            "resolved_question": "Service prices PC",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.04,
+                  "elapsed_sec": 0.0,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 4.78,
+                  "elapsed_sec": 0.0048,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "conversation_request",
+                "decision": "new_task",
+                "confidence": 1.0,
+                "detail": "typed slots preserve user filters; assistant options are not selections",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "What are the PC prices and what are the controls for VALORANT?",
+                    "resolved_query": "Service prices PC",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "unspecified",
+                          "customer_group_ids": [],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "universal_intent",
+                "decision": "service_fee/price_lookup",
+                "confidence": 0.98,
+                "detail": "typed dialogue request",
+                "metadata": {
+                  "filters": {
+                    "customer_scope": "unspecified",
+                    "customer_group_ids": [],
+                    "duration_minutes": null,
+                    "people_count": null
+                  },
+                  "target": "pc",
+                  "method": "conversation_plan"
+                }
+              },
+              {
+                "stage": "conversation_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "coverage and source validity are separate",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "What are the PC prices and what are the controls for VALORANT?",
+                    "resolved_query": "Service prices PC",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "unspecified",
+                          "customer_group_ids": [],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "source_release": "ad08219f3ba1bd36",
+                  "expected_ids": [
+                    "pc:psu_student_staff",
+                    "pc:general_student",
+                    "pc:general_adult"
+                  ],
+                  "returned_ids": [
+                    "pc:psu_student_staff",
+                    "pc:general_student",
+                    "pc:general_adult"
+                  ],
+                  "missing_ids": [],
+                  "missing_targets": [],
+                  "rows": [
+                    {
+                      "id": "pc:psu_student_staff",
+                      "package_id": "pc",
+                      "group_id": "psu_student_staff",
+                      "unit_price": 0,
+                      "sessions": 1,
+                      "total": 0
+                    },
+                    {
+                      "id": "pc:general_student",
+                      "package_id": "pc",
+                      "group_id": "general_student",
+                      "unit_price": 25,
+                      "sessions": 1,
+                      "total": 25
+                    },
+                    {
+                      "id": "pc:general_adult",
+                      "package_id": "pc",
+                      "group_id": "general_adult",
+                      "unit_price": 70,
+                      "sessions": 1,
+                      "total": 70
+                    }
+                  ],
+                  "temporal_validity": "recorded_rates",
+                  "recorded_expiry": null,
+                  "task_outcomes": [
+                    {
+                      "task_id": "fee-1",
+                      "outcome": "answered_complete"
+                    }
+                  ],
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "validation_final",
+                "confidence": 1.0,
+                "detail": "ok",
+                "metadata": {
+                  "elapsed_ms": 0.73,
+                  "elapsed_sec": 0.0007,
+                  "added_error_count": 0,
+                  "added_warning_count": 1,
+                  "added_errors": [],
+                  "added_warnings": [
+                    "price_question_should_start_with_price_or_number"
+                  ],
+                  "merged_error_count": 0,
+                  "merged_warning_count": 1
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_service_fee_conversation",
+                "metadata": {
+                  "elapsed_ms": 0.79,
+                  "elapsed_sec": 0.0008,
+                  "format_response_style_ms": 0.0,
+                  "answer_language": "en",
+                  "total_elapsed_ms": 5.78,
+                  "total_elapsed_sec": 0.0058
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "price_question_should_start_with_price_or_number"
+              ]
+            },
+            "universal_intent": {
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "target": "pc",
+              "filters": {
+                "customer_scope": "unspecified",
+                "customer_group_ids": [],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "needs": [],
+              "answer_style": "direct",
+              "confidence": 0.98,
+              "method": "conversation_plan",
+              "reason": "typed dialogue request"
+            }
+          },
+          "status": 200,
+          "elapsed_sec": 0.0062,
+          "context": {
+            "original_question": "What are the PC prices and what are the controls for VALORANT?",
+            "resolved_question": "Service prices PC",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": "service_fee",
+            "context_operation": "price_lookup",
+            "context_topic": null,
+            "reason": "parent_typed_request_plan",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "mixed-controls-price-th",
+      "kind": "selected_requests",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "expected_requests": false,
+        "no_dropped_parts": false
+      },
+      "mode": "pipeline:structured_service_fee_conversation",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    นักศึกษา/นักเรียน/บุคลากร PSU (PSU Student and Staff): 0 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+      "latency": [
+        0.2921
+      ],
+      "records": [
+        {
+          "case_id": "mixed-controls-price-th",
+          "payload": {
+            "question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+            "locale": "th"
+          },
+          "response": {
+            "ok": true,
+            "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    นักศึกษา/นักเรียน/บุคลากร PSU (PSU Student and Staff): 0 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+            "mode": "pipeline:structured_service_fee_conversation",
+            "route_category": "service_fee",
+            "route_intent": "conversation_price_lookup",
+            "request_id": "0",
+            "resolved_question": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 6.89,
+                  "elapsed_sec": 0.0069,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 278.79,
+                  "elapsed_sec": 0.2788,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "conversation_request",
+                "decision": "new_task",
+                "confidence": 1.0,
+                "detail": "typed slots preserve user filters; assistant options are not selections",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+                    "resolved_query": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "psu_student_staff",
+                          "customer_group_ids": [
+                            "psu_student_staff"
+                          ],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "universal_intent",
+                "decision": "service_fee/price_lookup",
+                "confidence": 0.98,
+                "detail": "typed dialogue request",
+                "metadata": {
+                  "filters": {
+                    "customer_scope": "psu_student_staff",
+                    "customer_group_ids": [
+                      "psu_student_staff"
+                    ],
+                    "duration_minutes": null,
+                    "people_count": null
+                  },
+                  "target": "pc",
+                  "method": "conversation_plan"
+                }
+              },
+              {
+                "stage": "conversation_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "coverage and source validity are separate",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+                    "resolved_query": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "psu_student_staff",
+                          "customer_group_ids": [
+                            "psu_student_staff"
+                          ],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "source_release": "ad08219f3ba1bd36",
+                  "expected_ids": [
+                    "pc:psu_student_staff"
+                  ],
+                  "returned_ids": [
+                    "pc:psu_student_staff"
+                  ],
+                  "missing_ids": [],
+                  "missing_targets": [],
+                  "rows": [
+                    {
+                      "id": "pc:psu_student_staff",
+                      "package_id": "pc",
+                      "group_id": "psu_student_staff",
+                      "unit_price": 0,
+                      "sessions": 1,
+                      "total": 0
+                    }
+                  ],
+                  "temporal_validity": "recorded_rates",
+                  "recorded_expiry": null,
+                  "task_outcomes": [
+                    {
+                      "task_id": "fee-1",
+                      "outcome": "answered_complete"
+                    }
+                  ],
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "validation_final",
+                "confidence": 1.0,
+                "detail": "ok",
+                "metadata": {
+                  "elapsed_ms": 0.98,
+                  "elapsed_sec": 0.001,
+                  "added_error_count": 0,
+                  "added_warning_count": 1,
+                  "added_errors": [],
+                  "added_warnings": [
+                    "price_question_should_start_with_price_or_number"
+                  ],
+                  "merged_error_count": 0,
+                  "merged_warning_count": 1
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_service_fee_conversation",
+                "metadata": {
+                  "elapsed_ms": 3.99,
+                  "elapsed_sec": 0.004,
+                  "format_response_style_ms": 2.95,
+                  "answer_language": "th",
+                  "total_elapsed_ms": 291.66,
+                  "total_elapsed_sec": 0.2917
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "price_question_should_start_with_price_or_number"
+              ]
+            },
+            "universal_intent": {
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "target": "pc",
+              "filters": {
+                "customer_scope": "psu_student_staff",
+                "customer_group_ids": [
+                  "psu_student_staff"
+                ],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "needs": [],
+              "answer_style": "direct",
+              "confidence": 0.98,
+              "method": "conversation_plan",
+              "reason": "typed dialogue request"
+            }
+          },
+          "status": 200,
+          "elapsed_sec": 0.2921,
+          "context": {
+            "original_question": "VALORANT มีปุ่มอะไรบ้าง และ PC ราคาเท่าไหร่",
+            "resolved_question": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": "service_fee",
+            "context_operation": "price_lookup",
+            "context_topic": null,
+            "reason": "parent_typed_request_plan",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "mixed-price-controls-th",
+      "kind": "selected_requests",
+      "passed": false,
+      "checks": {
+        "http_success": true,
+        "expected_requests": false,
+        "no_dropped_parts": false
+      },
+      "mode": "pipeline:structured_service_fee_conversation",
+      "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    นักศึกษา/นักเรียน/บุคลากร PSU (PSU Student and Staff): 0 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+      "latency": [
+        0.009
+      ],
+      "records": [
+        {
+          "case_id": "mixed-price-controls-th",
+          "payload": {
+            "question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+            "locale": "th"
+          },
+          "response": {
+            "ok": true,
+            "answer": "ราคาค่าบริการตามแพ็กเกจที่บันทึกไว้:\n\nPC — 60 นาที/แพ็กเกจ (1 คน)\n•    นักศึกษา/นักเรียน/บุคลากร PSU (PSU Student and Staff): 0 บาท/แพ็กเกจ\nราคา PC อ้างอิงข้อมูลปรับปรุงในระบบวันที่ 2026-07-27\nแหล่งข้อมูล: local://service_fee/pc_price_update_20260727",
+            "mode": "pipeline:structured_service_fee_conversation",
+            "route_category": "service_fee",
+            "route_intent": "conversation_price_lookup",
+            "request_id": "0",
+            "resolved_question": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+            "trace": [
+              {
+                "stage": "timing",
+                "decision": "locale_resolution",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 0.08,
+                  "elapsed_sec": 0.0001,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "intent_cue_preflight",
+                "confidence": 1.0,
+                "detail": "",
+                "metadata": {
+                  "elapsed_ms": 7.68,
+                  "elapsed_sec": 0.0077,
+                  "global_timeout_enabled": false,
+                  "global_timeout_sec": 0.0,
+                  "global_elapsed_sec": 0.0,
+                  "global_remaining_sec": 0.0,
+                  "finalizer_reserve_sec": 1.0,
+                  "work_remaining_sec": 0.0
+                }
+              },
+              {
+                "stage": "conversation_request",
+                "decision": "new_task",
+                "confidence": 1.0,
+                "detail": "typed slots preserve user filters; assistant options are not selections",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+                    "resolved_query": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "psu_student_staff",
+                          "customer_group_ids": [
+                            "psu_student_staff"
+                          ],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "universal_intent",
+                "decision": "service_fee/price_lookup",
+                "confidence": 0.98,
+                "detail": "typed dialogue request",
+                "metadata": {
+                  "filters": {
+                    "customer_scope": "psu_student_staff",
+                    "customer_group_ids": [
+                      "psu_student_staff"
+                    ],
+                    "duration_minutes": null,
+                    "people_count": null
+                  },
+                  "target": "pc",
+                  "method": "conversation_plan"
+                }
+              },
+              {
+                "stage": "conversation_contract",
+                "decision": "answered_complete",
+                "confidence": 1.0,
+                "detail": "coverage and source validity are separate",
+                "metadata": {
+                  "request_plan": {
+                    "schema_version": 1,
+                    "original_query": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+                    "resolved_query": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+                    "act": "new_task",
+                    "tasks": [
+                      {
+                        "task_id": "fee-1",
+                        "domain": "service_fee",
+                        "operation": "price_lookup",
+                        "targets": [
+                          "pc"
+                        ],
+                        "scope": {
+                          "entity_selection": "explicit",
+                          "detail_level": "package_rates"
+                        },
+                        "filters": {
+                          "customer_scope": "psu_student_staff",
+                          "customer_group_ids": [
+                            "psu_student_staff"
+                          ],
+                          "duration_minutes": null,
+                          "people_count": null
+                        },
+                        "per_target_filters": {},
+                        "excluded_targets": [],
+                        "pending_slots": [],
+                        "offered_option_ids": [
+                          "pc",
+                          "ps5",
+                          "nintendo_switch",
+                          "cockpit",
+                          "vr"
+                        ],
+                        "provenance": {
+                          "operation": "explicit_user",
+                          "targets": "explicit_user",
+                          "filters": "explicit_user"
+                        }
+                      }
+                    ],
+                    "context_used": false,
+                    "needs_review": false
+                  },
+                  "source_release": "ad08219f3ba1bd36",
+                  "expected_ids": [
+                    "pc:psu_student_staff"
+                  ],
+                  "returned_ids": [
+                    "pc:psu_student_staff"
+                  ],
+                  "missing_ids": [],
+                  "missing_targets": [],
+                  "rows": [
+                    {
+                      "id": "pc:psu_student_staff",
+                      "package_id": "pc",
+                      "group_id": "psu_student_staff",
+                      "unit_price": 0,
+                      "sessions": 1,
+                      "total": 0
+                    }
+                  ],
+                  "temporal_validity": "recorded_rates",
+                  "recorded_expiry": null,
+                  "task_outcomes": [
+                    {
+                      "task_id": "fee-1",
+                      "outcome": "answered_complete"
+                    }
+                  ],
+                  "outcome": "answered_complete"
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "validation_final",
+                "confidence": 1.0,
+                "detail": "ok",
+                "metadata": {
+                  "elapsed_ms": 0.68,
+                  "elapsed_sec": 0.0007,
+                  "added_error_count": 0,
+                  "added_warning_count": 1,
+                  "added_errors": [],
+                  "added_warnings": [
+                    "price_question_should_start_with_price_or_number"
+                  ],
+                  "merged_error_count": 0,
+                  "merged_warning_count": 1
+                }
+              },
+              {
+                "stage": "timing",
+                "decision": "build_result",
+                "confidence": 1.0,
+                "detail": "pipeline:structured_service_fee_conversation",
+                "metadata": {
+                  "elapsed_ms": 0.81,
+                  "elapsed_sec": 0.0008,
+                  "format_response_style_ms": 0.08,
+                  "answer_language": "th",
+                  "total_elapsed_ms": 8.74,
+                  "total_elapsed_sec": 0.0087
+                }
+              }
+            ],
+            "validation": {
+              "ok": true,
+              "errors": [],
+              "warnings": [
+                "price_question_should_start_with_price_or_number"
+              ]
+            },
+            "universal_intent": {
+              "domain": "service_fee",
+              "operation": "price_lookup",
+              "target": "pc",
+              "filters": {
+                "customer_scope": "psu_student_staff",
+                "customer_group_ids": [
+                  "psu_student_staff"
+                ],
+                "duration_minutes": null,
+                "people_count": null
+              },
+              "needs": [],
+              "answer_style": "direct",
+              "confidence": 0.98,
+              "method": "conversation_plan",
+              "reason": "typed dialogue request"
+            }
+          },
+          "status": 200,
+          "elapsed_sec": 0.009,
+          "context": {
+            "original_question": "PC ราคาเท่าไหร่ และ VALORANT มีปุ่มอะไรบ้าง",
+            "resolved_question": "ค่าบริการ PC นักศึกษาและบุคลากร PSU",
+            "used_context": false,
+            "context_game": null,
+            "context_domain": "service_fee",
+            "context_operation": "price_lookup",
+            "context_topic": null,
+            "reason": "parent_typed_request_plan",
+            "selected_requests": [],
+            "selection_errors": []
+          }
+        }
+      ]
+    }
+  ]
+}

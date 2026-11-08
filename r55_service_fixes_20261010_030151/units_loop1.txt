@@ -1,0 +1,48 @@
+test_affordability_known_zero_and_missing_groups (tests.test_service_repairs_r55.ServiceRepairsR55.test_affordability_known_zero_and_missing_groups) ... ok
+test_availability_followup_keeps_filters (tests.test_service_repairs_r55.ServiceRepairsR55.test_availability_followup_keeps_filters) ... ok
+test_catalog_totals_and_scopes (tests.test_service_repairs_r55.ServiceRepairsR55.test_catalog_totals_and_scopes) ... ok
+test_clause_subjects_operations_and_time (tests.test_service_repairs_r55.ServiceRepairsR55.test_clause_subjects_operations_and_time) ... 
+  test_clause_subjects_operations_and_time (tests.test_service_repairs_r55.ServiceRepairsR55.test_clause_subjects_operations_and_time) (q='Where is the studio and when does it open?') ... FAIL
+test_controls_actions_and_source_limit (tests.test_service_repairs_r55.ServiceRepairsR55.test_controls_actions_and_source_limit) ... ok
+test_duration_words_and_eligibility (tests.test_service_repairs_r55.ServiceRepairsR55.test_duration_words_and_eligibility) ... ok
+test_explicit_booking_scope (tests.test_service_repairs_r55.ServiceRepairsR55.test_explicit_booking_scope) ... FAIL
+test_full_rule_coverage_does_not_skip_acknowledged_pages (tests.test_service_repairs_r55.ServiceRepairsR55.test_full_rule_coverage_does_not_skip_acknowledged_pages) ... ok
+test_policy_subjects_and_nearby_unknowns (tests.test_service_repairs_r55.ServiceRepairsR55.test_policy_subjects_and_nearby_unknowns) ... ok
+test_price_two_hours (tests.test_service_repairs_r55.ServiceRepairsR55.test_price_two_hours) ... ok
+test_station_numbers_do_not_consume_quantity_or_clocks (tests.test_service_repairs_r55.ServiceRepairsR55.test_station_numbers_do_not_consume_quantity_or_clocks) ... ok
+test_vr_hour_occupancy_fixture (tests.test_service_repairs_r55.ServiceRepairsR55.test_vr_hour_occupancy_fixture) ... FAIL
+
+======================================================================
+FAIL: test_clause_subjects_operations_and_time (tests.test_service_repairs_r55.ServiceRepairsR55.test_clause_subjects_operations_and_time) (q='Where is the studio and when does it open?')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data\tests\test_service_repairs_r55.py", line 48, in test_clause_subjects_operations_and_time
+    with self.subTest(q=q):self.assertEqual(len(split_service_operations(q)),n)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2
+
+======================================================================
+FAIL: test_explicit_booking_scope (tests.test_service_repairs_r55.ServiceRepairsR55.test_explicit_booking_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data\tests\test_service_repairs_r55.py", line 60, in test_explicit_booking_scope
+    self.assertIsNone(resolve_request_plan('จองเครื่องยังไง ขอขั้นตอนทั้งหมด',[],locale='th'))
+AssertionError: {'schema_version': 1, 'original_query': 'จองเครื่องยังไง ขอขั้นตอนทั้งหมด', 'resolved_query': 'จองเครื่องยังไง ขอขั้นตอนทั้งหมด', 'act': 'ambiguous', 'tasks': [], 'context_used': False, 'missing': 'scope'} is not None
+
+======================================================================
+FAIL: test_vr_hour_occupancy_fixture (tests.test_service_repairs_r55.ServiceRepairsR55.test_vr_hour_occupancy_fixture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Chokhun\Downloads\Learn-LLM\18_PSU_Esports_Update_Route_Data\tests\test_service_repairs_r55.py", line 84, in test_vr_hour_occupancy_fixture
+    self.assertEqual(_slot_window_for_resources(snapshot.resources,TimeWindow('09:00','09:30',True)).label,'09:00-10:00')
+AssertionError: '09:00-09:30' != '09:00-10:00'
+- 09:00-09:30
+?        - ^
++ 09:00-10:00
+?       +  ^
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 4.743s
+
+FAILED (failures=3)

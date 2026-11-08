@@ -1,0 +1,128 @@
+{
+  "question_key": "cd845ff443f2f69cf07a8b8fd752b4aa7ab5c6fc346e54f66906095ad517967b",
+  "example_sha256": "6dd8349b25f7a6f926224ec8a453a6bab71873f39c558d4dbeef651e5e6e108d",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One action-to-button lookup asks how to switch camera angle in Resident Evil4.",
+      "raw_quotes": [
+        "In Resident Evil 4, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings retains controls rather than gameplay description.",
+      "raw_quotes": [
+        "In Resident Evil 4, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Resident Evil4 is target; switch the camera angle is the exact action quote.",
+      "raw_quotes": [
+        "In Resident Evil 4, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No console, remake edition or previously used controller is inherited.",
+      "raw_quotes": [
+        "In Resident Evil 4, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The raw unqualified title must not silently select a source-only Remake platform/edition.",
+      "raw_quotes": [
+        "In Resident Evil 4, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "controls_ps5_resident_evil_4_remake records camera control for migrated_game_resident_evil_4_remake; that is narrower than the raw game title.",
+      "raw_quotes": [
+        "In Resident Evil 4, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": [
+        "controls_ps5_resident_evil_4_remake"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No Right Stick button, platform compatibility or Remake identity is taught.",
+      "raw_quotes": [
+        "In Resident Evil 4, what button do you press to switch the camera angle?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Available source controls are explicitly PS5 Remake-scoped; raw title does not select that edition.",
+      "handling": "Require edition/platform alignment or clarification before a binding claim."
+    }
+  ],
+  "historical_review_row": 150,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "In Resident Evil 4, what button do you press to switch the camera angle?",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Resident Evil 4",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "In Resident Evil 4, what button do you press to switch the camera angle?",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Resident Evil 4",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "switch the camera angle",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_ps5_resident_evil_4_remake": {
+      "revision": 5,
+      "record_sha256": "c12412c47eb5a622f52ab74129f4478b8d46e67b471b56a172484f168a221703"
+    }
+  }
+}

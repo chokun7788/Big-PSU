@@ -1,0 +1,819 @@
+{
+  "passed": true,
+  "real_generation_verified": true,
+  "observed_model_calls": [
+    {
+      "url": "http://127.0.0.1:11434/api/generate",
+      "transport_ok": true
+    }
+  ],
+  "cases": [
+    {
+      "question": "เหมา PC เต็มวันหน่วยงานภายนอกราคาเท่าไหร่",
+      "expected": "common_legacy_rental_bridge",
+      "passed": true,
+      "answer": "**เหมา PC Zone เต็มวัน หน่วยงานภายนอก**\nราคาแพ็กเกจ: 4,000.00 THB [S1]\n\nข้อมูลต้นฉบับยังไม่ระบุวันมีผลของราคาเหมา กรุณายืนยันกับศูนย์ก่อนใช้บริการ",
+      "artifact": {
+        "response_type": "partial_answer",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [
+            "rental_pc_external_full_day"
+          ],
+          "requested_fields": [
+            "amount_minor",
+            "currency",
+            "audience_id",
+            "period_label"
+          ],
+          "operation": "rental",
+          "method": "common_legacy_rental_bridge",
+          "request_contract": {
+            "version": 1,
+            "domain": "rental",
+            "requests": [
+              {
+                "zones": [
+                  "zone_pc"
+                ],
+                "audiences": [
+                  "audience_external_org"
+                ],
+                "periods": [
+                  "full_day"
+                ]
+              }
+            ],
+            "asks": [
+              "rates"
+            ],
+            "context_used": false,
+            "original_query": "เหมา PC เต็มวันหน่วยงานภายนอกราคาเท่าไหร่",
+            "action": "read"
+          },
+          "response_projection": [
+            {
+              "record_id": "rental_pc_external_full_day",
+              "fields": {
+                "amount_minor": "explicit",
+                "currency": "necessary_context",
+                "audience_id": "necessary_context",
+                "period_label": "necessary_context"
+              }
+            }
+          ],
+          "unknown_fields": [
+            {
+              "record_id": "rental_pc_external_full_day",
+              "field": "validity"
+            }
+          ],
+          "not_current_ids": [],
+          "legacy_fact_fallback_used": false,
+          "source_answer_confirmed": false
+        },
+        "obligations": [
+          {
+            "record_id": "rental_pc_external_full_day",
+            "field": "amount_minor",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/amount_minor",
+                "source_id": "migration_rental_pc_external_full_day"
+              }
+            ]
+          },
+          {
+            "record_id": "rental_pc_external_full_day",
+            "field": "currency",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/currency",
+                "source_id": "migration_rental_pc_external_full_day"
+              }
+            ]
+          },
+          {
+            "record_id": "rental_pc_external_full_day",
+            "field": "audience_id",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/audience_id",
+                "source_id": "migration_rental_pc_external_full_day"
+              }
+            ]
+          },
+          {
+            "record_id": "rental_pc_external_full_day",
+            "field": "period_label",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/period_label",
+                "source_id": "migration_rental_pc_external_full_day"
+              }
+            ]
+          },
+          {
+            "record_id": "rental_pc_external_full_day",
+            "field": "validity",
+            "status": "unknown",
+            "evidence_refs": [],
+            "reason": "source_has_no_confirmed_effective_date"
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": []
+      },
+      "hits": [
+        {
+          "id": "rental_pc_external_full_day:amount_minor:S1",
+          "record_id": "rental_pc_external_full_day",
+          "field": "amount_minor",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "400000",
+          "source_id": "migration_rental_pc_external_full_day",
+          "snapshot_sha256": "75a98c7367235722cf39e142a0376bad75a1b913f317dfd44dcdd1aae892bbae",
+          "locator": "/mapped_fields/amount_minor",
+          "source_url": "",
+          "citation_label": "S1",
+          "metadata": {
+            "common_record_id": "rental_pc_external_full_day",
+            "common_field": "amount_minor",
+            "common_revision": 3,
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "rental_pc_external_full_day:currency:S2",
+          "record_id": "rental_pc_external_full_day",
+          "field": "currency",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "THB",
+          "source_id": "migration_rental_pc_external_full_day",
+          "snapshot_sha256": "75a98c7367235722cf39e142a0376bad75a1b913f317dfd44dcdd1aae892bbae",
+          "locator": "/mapped_fields/currency",
+          "source_url": "",
+          "citation_label": "S2",
+          "metadata": {
+            "common_record_id": "rental_pc_external_full_day",
+            "common_field": "currency",
+            "common_revision": 3,
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "rental_pc_external_full_day:audience_id:S3",
+          "record_id": "rental_pc_external_full_day",
+          "field": "audience_id",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "audience_external_org",
+          "source_id": "migration_rental_pc_external_full_day",
+          "snapshot_sha256": "75a98c7367235722cf39e142a0376bad75a1b913f317dfd44dcdd1aae892bbae",
+          "locator": "/mapped_fields/audience_id",
+          "source_url": "",
+          "citation_label": "S3",
+          "metadata": {
+            "common_record_id": "rental_pc_external_full_day",
+            "common_field": "audience_id",
+            "common_revision": 3,
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "rental_pc_external_full_day:period_label:S4",
+          "record_id": "rental_pc_external_full_day",
+          "field": "period_label",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "full_day",
+          "source_id": "migration_rental_pc_external_full_day",
+          "snapshot_sha256": "75a98c7367235722cf39e142a0376bad75a1b913f317dfd44dcdd1aae892bbae",
+          "locator": "/mapped_fields/period_label",
+          "source_url": "",
+          "citation_label": "S4",
+          "metadata": {
+            "common_record_id": "rental_pc_external_full_day",
+            "common_field": "period_label",
+            "common_revision": 3,
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        }
+      ]
+    },
+    {
+      "question": "ROV สรุปกติกาสั้นๆ",
+      "expected": "common_legacy_clause_overview",
+      "passed": true,
+      "answer": "สรุปกติกาบางประเด็นจากเอกสารที่มี — Blueket Games 2025 ประเภททีมชาย\n\n\n\n**รูปแบบการแข่งขัน**\n• เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3 [S1]\n\n**คุณสมบัติและการลงทะเบียน**\n• เวลา 8.00-8.30 ลงทะเบียน [S2]\n\n**อุปกรณ์การแข่งขัน**\n• 5.3. ไม่อนุญาตให้ใช้ Tablet หรือ iPad รวมถึงอุปกรณ์อื่นใดที่มิใช่โทรศัพท์มือถือ (Mobile Phone) ในการแข่งขัน หากตรวจสอบพบ ทีมงานจะตัดสิทธิ์ทันที [S3]\n\n**การหยุดเกมและเวลานอก**\n• 4.3.1.ในกรณีที่มีผู้เข้าแข่งขันหลุดออกจากเกม ให้ทำการหยุดเกมชั่วคราว โดยแต่ละทีมสามารถกดหยุดเกมได้ทีมละ 5 ครั้ง ครั้งละไม่เกิน 1 นาที ถ้าหากเกินเวลาดังกล่าว อีกทีมสามารถกด Resume ได้ทันทีและทำการแข่งขันต่อตามปกติ [S4]\n\n**ข้อห้ามและพฤติกรรม**\n• 4.1.1.ห้ามใช้ชื่อตัวละครหรือคําพูดที่เป็นการหยาบคายหรือเสียดสีผู้อื่น [S5]\n\n**บทลงโทษ**\n• 4.1.4.หากเริ่มการแข่งขันช้าเกินกว่าเวลาที่กำหนดไว้ 15 นาที ฝ่ายที่ล่าช้าจะถูกปรับแพ้จากการแข่งขันทันที [S6]\n\n\n\nเป็นสรุปบางข้อ ถ้าต้องการครบทุกข้อ ให้ถามกติกาทั้งหมด หรือระบุหัวข้อที่ต้องการรายละเอียด",
+      "artifact": {
+        "response_type": "answer",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [
+            "competition_competition_rules_rov_blueket_2025_men"
+          ],
+          "requested_fields": [
+            "text"
+          ],
+          "all_fields": false,
+          "method": "common_legacy_clause_overview",
+          "scope": "common_published",
+          "platform": null,
+          "query_without_entity": "สรุปกติกาสั้นๆ",
+          "operation": "rules",
+          "scope_ids": [
+            "competition_competition_rules_rov_blueket_2025_men"
+          ],
+          "field_selection": [
+            {
+              "field": "text",
+              "cue": "competition rule text",
+              "method": "schema_attribute"
+            }
+          ],
+          "confidence_calibrated": false,
+          "request_focus": null,
+          "schema_language_recoveries": [],
+          "rule_content_all": false,
+          "authority": {
+            "decision": "common",
+            "reason": "published_target_owned",
+            "record_ids": [
+              "competition_competition_rules_rov_blueket_2025_men"
+            ],
+            "release_id": "migration-preview-r69",
+            "epoch": 1840
+          },
+          "field_authority": [],
+          "response_projection": [
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+              "fields": {
+                "text": "explicit"
+              }
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+              "fields": {
+                "text": "explicit"
+              }
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_010",
+              "fields": {
+                "text": "explicit"
+              }
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+              "fields": {
+                "text": "explicit"
+              }
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+              "fields": {
+                "text": "explicit"
+              }
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+              "fields": {
+                "text": "explicit"
+              }
+            }
+          ],
+          "clause_selection": [
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+              "facet": "competition_format",
+              "clauses": [
+                "เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3"
+              ]
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+              "facet": "eligibility_registration",
+              "clauses": [
+                "เวลา 8.00-8.30 ลงทะเบียน"
+              ]
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_010",
+              "facet": "equipment",
+              "clauses": [
+                "5.3. ไม่อนุญาตให้ใช้ Tablet หรือ iPad รวมถึงอุปกรณ์อื่นใดที่มิใช่โทรศัพท์มือถือ (Mobile Phone) ในการแข่งขัน หากตรวจสอบพบ ทีมงานจะตัดสิทธิ์ทันที"
+              ]
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+              "facet": "pause_timeout",
+              "clauses": [
+                "4.3.1.ในกรณีที่มีผู้เข้าแข่งขันหลุดออกจากเกม ให้ทำการหยุดเกมชั่วคราว โดยแต่ละทีมสามารถกดหยุดเกมได้ทีมละ 5 ครั้ง ครั้งละไม่เกิน 1 นาที ถ้าหากเกินเวลาดังกล่าว อีกทีมสามารถกด Resume ได้ทันทีและทำการแข่งขันต่อตามปกติ"
+              ]
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+              "facet": "conduct",
+              "clauses": [
+                "4.1.1.ห้ามใช้ชื่อตัวละครหรือคําพูดที่เป็นการหยาบคายหรือเสียดสีผู้อื่น"
+              ]
+            },
+            {
+              "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+              "facet": "penalty",
+              "clauses": [
+                "4.1.4.หากเริ่มการแข่งขันช้าเกินกว่าเวลาที่กำหนดไว้ 15 นาที ฝ่ายที่ล่าช้าจะถูกปรับแพ้จากการแข่งขันทันที"
+              ]
+            }
+          ],
+          "legacy_fact_fallback_used": false,
+          "summary_is_complete": false,
+          "source_answer_confirmed": true
+        },
+        "obligations": [
+          {
+            "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+            "field": "text",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/text",
+                "source_id": "r66_en_73763689e2449fdb1555c4c4"
+              }
+            ]
+          },
+          {
+            "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+            "field": "text",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/text",
+                "source_id": "r66_en_73763689e2449fdb1555c4c4"
+              }
+            ]
+          },
+          {
+            "record_id": "competition_competition_rules_rov_blueket_2025_men_section_010",
+            "field": "text",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/text",
+                "source_id": "r66_en_c3a53e7e65bbbaa4e5ded425"
+              }
+            ]
+          },
+          {
+            "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+            "field": "text",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/text",
+                "source_id": "r66_en_5219ef5d00510358fb0f8d3b"
+              }
+            ]
+          },
+          {
+            "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+            "field": "text",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/text",
+                "source_id": "r66_en_5219ef5d00510358fb0f8d3b"
+              }
+            ]
+          },
+          {
+            "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+            "field": "text",
+            "status": "known",
+            "evidence_refs": [
+              {
+                "locator": "/mapped_fields/text",
+                "source_id": "r66_en_5219ef5d00510358fb0f8d3b"
+              }
+            ]
+          }
+        ],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": [
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [
+              "migrated_game_arena_of_valor_rov"
+            ],
+            "method": "exact"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "reason": "no_supported_task",
+              "candidate_ids": []
+            }
+          }
+        ]
+      },
+      "hits": [
+        {
+          "id": "competition_competition_rules_rov_blueket_2025_men_section_003:text:S1",
+          "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+          "field": "text",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "เวลา 8.40-10.00 รอบ 5 ทีม แข่งแบบ Single Elimination BO3",
+          "source_id": "r66_en_73763689e2449fdb1555c4c4",
+          "snapshot_sha256": "73763689e2449fdb1555c4c42f166bf43bb3ba14d4e8988b7077692dffaf5e13",
+          "locator": "/mapped_fields/text",
+          "source_url": "",
+          "citation_label": "S1",
+          "metadata": {
+            "common_record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+            "common_field": "text",
+            "common_revision": 5,
+            "common_game_id": "migrated_game_arena_of_valor_rov",
+            "game": "Arena of Valor (RoV)",
+            "common_competition_id": "competition_competition_rules_rov_blueket_2025_men",
+            "rulebook_release": "competition_rules_rov_blueket_2025_men",
+            "document_id": "competition_rules_rov_blueket_2025_men",
+            "legacy_document_identity_proven": true,
+            "source_ids": [
+              "competition_rules_rov_blueket_2025_men"
+            ],
+            "source_chunk_id": "competition_rules_rov_blueket_2025_men_s03_c01",
+            "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+            "original_chunk_text_sha256": "d69e40b6c43d664109fae13b7bed144408dda208d832ffda5f4d0578e9f5dbab",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "competition_competition_rules_rov_blueket_2025_men_section_003:text:S2",
+          "record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+          "field": "text",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "เวลา 8.00-8.30 ลงทะเบียน",
+          "source_id": "r66_en_73763689e2449fdb1555c4c4",
+          "snapshot_sha256": "73763689e2449fdb1555c4c42f166bf43bb3ba14d4e8988b7077692dffaf5e13",
+          "locator": "/mapped_fields/text",
+          "source_url": "",
+          "citation_label": "S2",
+          "metadata": {
+            "common_record_id": "competition_competition_rules_rov_blueket_2025_men_section_003",
+            "common_field": "text",
+            "common_revision": 5,
+            "common_game_id": "migrated_game_arena_of_valor_rov",
+            "game": "Arena of Valor (RoV)",
+            "common_competition_id": "competition_competition_rules_rov_blueket_2025_men",
+            "rulebook_release": "competition_rules_rov_blueket_2025_men",
+            "document_id": "competition_rules_rov_blueket_2025_men",
+            "legacy_document_identity_proven": true,
+            "source_ids": [
+              "competition_rules_rov_blueket_2025_men"
+            ],
+            "source_chunk_id": "competition_rules_rov_blueket_2025_men_s03_c01",
+            "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+            "original_chunk_text_sha256": "d69e40b6c43d664109fae13b7bed144408dda208d832ffda5f4d0578e9f5dbab",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "competition_competition_rules_rov_blueket_2025_men_section_010:text:S3",
+          "record_id": "competition_competition_rules_rov_blueket_2025_men_section_010",
+          "field": "text",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "5.3. ไม่อนุญาตให้ใช้ Tablet หรือ iPad รวมถึงอุปกรณ์อื่นใดที่มิใช่โทรศัพท์มือถือ (Mobile Phone) ในการแข่งขัน หากตรวจสอบพบ ทีมงานจะตัดสิทธิ์ทันที",
+          "source_id": "r66_en_c3a53e7e65bbbaa4e5ded425",
+          "snapshot_sha256": "c3a53e7e65bbbaa4e5ded4258fa661a408b02fa05f23b7f7c009e81ed7cc6e5e",
+          "locator": "/mapped_fields/text",
+          "source_url": "",
+          "citation_label": "S3",
+          "metadata": {
+            "common_record_id": "competition_competition_rules_rov_blueket_2025_men_section_010",
+            "common_field": "text",
+            "common_revision": 4,
+            "common_game_id": "migrated_game_arena_of_valor_rov",
+            "game": "Arena of Valor (RoV)",
+            "common_competition_id": "competition_competition_rules_rov_blueket_2025_men",
+            "rulebook_release": "competition_rules_rov_blueket_2025_men",
+            "document_id": "competition_rules_rov_blueket_2025_men",
+            "legacy_document_identity_proven": true,
+            "source_ids": [
+              "competition_rules_rov_blueket_2025_men"
+            ],
+            "source_chunk_id": "competition_rules_rov_blueket_2025_men_s07_c01",
+            "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+            "original_chunk_text_sha256": "333ee96305cd26f5580a412350e054a59b0cb6e5c4573ba223b29b63d3ba4e59",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "competition_competition_rules_rov_blueket_2025_men_section_006:text:S4",
+          "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+          "field": "text",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "4.3.1.ในกรณีที่มีผู้เข้าแข่งขันหลุดออกจากเกม ให้ทำการหยุดเกมชั่วคราว โดยแต่ละทีมสามารถกดหยุดเกมได้ทีมละ 5 ครั้ง ครั้งละไม่เกิน 1 นาที ถ้าหากเกินเวลาดังกล่าว อีกทีมสามารถกด Resume ได้ทันทีและทำการแข่งขันต่อตามปกติ",
+          "source_id": "r66_en_5219ef5d00510358fb0f8d3b",
+          "snapshot_sha256": "5219ef5d00510358fb0f8d3b6ca7d29fefcd7154aeef0e092ae37b4f7a133ca7",
+          "locator": "/mapped_fields/text",
+          "source_url": "",
+          "citation_label": "S4",
+          "metadata": {
+            "common_record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+            "common_field": "text",
+            "common_revision": 5,
+            "common_game_id": "migrated_game_arena_of_valor_rov",
+            "game": "Arena of Valor (RoV)",
+            "common_competition_id": "competition_competition_rules_rov_blueket_2025_men",
+            "rulebook_release": "competition_rules_rov_blueket_2025_men",
+            "document_id": "competition_rules_rov_blueket_2025_men",
+            "legacy_document_identity_proven": true,
+            "source_ids": [
+              "competition_rules_rov_blueket_2025_men"
+            ],
+            "source_chunk_id": "competition_rules_rov_blueket_2025_men_s06_c01",
+            "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+            "original_chunk_text_sha256": "13680e662a0fff83acfe8826d260397d13a87b82d772b861b2b58de7f1fc5a92",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "competition_competition_rules_rov_blueket_2025_men_section_006:text:S5",
+          "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+          "field": "text",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "4.1.1.ห้ามใช้ชื่อตัวละครหรือคําพูดที่เป็นการหยาบคายหรือเสียดสีผู้อื่น",
+          "source_id": "r66_en_5219ef5d00510358fb0f8d3b",
+          "snapshot_sha256": "5219ef5d00510358fb0f8d3b6ca7d29fefcd7154aeef0e092ae37b4f7a133ca7",
+          "locator": "/mapped_fields/text",
+          "source_url": "",
+          "citation_label": "S5",
+          "metadata": {
+            "common_record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+            "common_field": "text",
+            "common_revision": 5,
+            "common_game_id": "migrated_game_arena_of_valor_rov",
+            "game": "Arena of Valor (RoV)",
+            "common_competition_id": "competition_competition_rules_rov_blueket_2025_men",
+            "rulebook_release": "competition_rules_rov_blueket_2025_men",
+            "document_id": "competition_rules_rov_blueket_2025_men",
+            "legacy_document_identity_proven": true,
+            "source_ids": [
+              "competition_rules_rov_blueket_2025_men"
+            ],
+            "source_chunk_id": "competition_rules_rov_blueket_2025_men_s06_c01",
+            "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+            "original_chunk_text_sha256": "13680e662a0fff83acfe8826d260397d13a87b82d772b861b2b58de7f1fc5a92",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        },
+        {
+          "id": "competition_competition_rules_rov_blueket_2025_men_section_006:text:S6",
+          "record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+          "field": "text",
+          "title": "ข้อมูลอ้างอิงของชุดย้าย",
+          "text": "4.1.4.หากเริ่มการแข่งขันช้าเกินกว่าเวลาที่กำหนดไว้ 15 นาที ฝ่ายที่ล่าช้าจะถูกปรับแพ้จากการแข่งขันทันที",
+          "source_id": "r66_en_5219ef5d00510358fb0f8d3b",
+          "snapshot_sha256": "5219ef5d00510358fb0f8d3b6ca7d29fefcd7154aeef0e092ae37b4f7a133ca7",
+          "locator": "/mapped_fields/text",
+          "source_url": "",
+          "citation_label": "S6",
+          "metadata": {
+            "common_record_id": "competition_competition_rules_rov_blueket_2025_men_section_006",
+            "common_field": "text",
+            "common_revision": 5,
+            "common_game_id": "migrated_game_arena_of_valor_rov",
+            "game": "Arena of Valor (RoV)",
+            "common_competition_id": "competition_competition_rules_rov_blueket_2025_men",
+            "rulebook_release": "competition_rules_rov_blueket_2025_men",
+            "document_id": "competition_rules_rov_blueket_2025_men",
+            "legacy_document_identity_proven": true,
+            "source_ids": [
+              "competition_rules_rov_blueket_2025_men"
+            ],
+            "source_chunk_id": "competition_rules_rov_blueket_2025_men_s06_c01",
+            "source_chunk_identity_basis": "exact immutable migrated document / section / Thai text",
+            "original_chunk_text_sha256": "13680e662a0fff83acfe8826d260397d13a87b82d772b861b2b58de7f1fc5a92",
+            "common_approved": false,
+            "content_view": "evaluation_draft",
+            "title": "ร่างข้อมูลทดสอบ / Evaluation draft information",
+            "release_id": "migration-preview-r69"
+          }
+        }
+      ]
+    },
+    {
+      "question": "แนบหลักฐานชำระเงินผิด ต้องแก้ยังไง",
+      "expected": "selector",
+      "passed": true,
+      "answer": "คุณหมายถึงหัวข้อนี้ใช่ไหมครับ: แก้การแนบสลิปผิดรูป?\nตอบ “ใช่” หรือ “ไม่ใช่” ได้ครับ",
+      "artifact": {
+        "response_type": "clarification",
+        "release_id": "migration-preview-r69",
+        "query_plan": {
+          "record_ids": [],
+          "requested_fields": [],
+          "method": "profile_topic_clarification",
+          "profile_confirmation": {
+            "version": 1,
+            "options": [
+              {
+                "record_id": "procedure_wrong_slip",
+                "routing_sha256": "a3041a370c0bbf361acf8147e29b8cccd6b33f93610fe4c0fc4c564ca07b3c02"
+              }
+            ],
+            "page": 0,
+            "page_size": 6,
+            "reason": "unverified_meaning_requires_topic_selection"
+          },
+          "declined_profile_ids": [],
+          "entity_selection": {
+            "candidate_ids": [
+              "procedure_wrong_slip",
+              "migrated_owner_claim_checkin_documents"
+            ],
+            "candidate_scores": [
+              0.0,
+              0.1829
+            ],
+            "intent_verified": false,
+            "retrieved_candidate_ids": [
+              "procedure_wrong_slip",
+              "migrated_faq_rule_booking_steps",
+              "migrated_faq_rule_user_info_and_slip",
+              "migrated_game_the_last_of_us_part_ii_remastered",
+              "migrated_owner_claim_checkin_documents",
+              "game_detail_super_smash_bros"
+            ],
+            "rejected_correction_subject_ids": [],
+            "candidate_pruning": {
+              "before_count": 6,
+              "after_count": 2,
+              "rejected_ids": [
+                "migrated_faq_rule_booking_steps",
+                "migrated_faq_rule_user_info_and_slip",
+                "migrated_game_the_last_of_us_part_ii_remastered",
+                "game_detail_super_smash_bros"
+              ],
+              "reason": "fails_existing_independent_topic_guard"
+            },
+            "timing_ms": {
+              "retrieval_ms": 120.169,
+              "model_work_wait_ms": 1.132,
+              "admission_wait_ms": 0.121,
+              "http_wait_and_read_ms": 806.534,
+              "total_ms": 929.31
+            },
+            "profile_retrieval_coverage": {
+              "compatible_count": 1,
+              "included_count": 1,
+              "omitted_ids": [],
+              "all_compatible_topics_available_for_clarification": true,
+              "semantic_recall_verified": false
+            },
+            "topic_proposal_only": true,
+            "binding_required_before_profile_facts": true,
+            "profile_protocol": false,
+            "model_request": {
+              "timeout_cap_seconds": 6,
+              "effective_timeout_seconds": 6,
+              "payload_bytes": 2372,
+              "num_ctx": 3072,
+              "num_predict": 70
+            },
+            "model_metrics": {
+              "total_duration_ms": 772.351,
+              "load_duration_ms": 34.681,
+              "prompt_eval_duration_ms": 373.052,
+              "eval_duration_ms": 206.921,
+              "prompt_eval_count": 307,
+              "eval_count": 12
+            },
+            "generation_done": true,
+            "attempted": true,
+            "transport_ok": true,
+            "schema_accepted": true,
+            "selected_indices": [
+              0
+            ],
+            "ambiguous": false,
+            "topic_proposal_accepted": true,
+            "proposed_profile_ids": [
+              "procedure_wrong_slip"
+            ],
+            "requires_topic_confirmation": true,
+            "mixed_selection_requires_clarification": false
+          },
+          "source_answer_confirmed": false
+        },
+        "obligations": [],
+        "catalog_scope": "common_published",
+        "coverage_errors": [],
+        "confidence_calibrated": false,
+        "validation_scope": "selected fields and evidence, not human intent correctness",
+        "content_view": "evaluation_draft",
+        "production_publication_verified": false,
+        "migration": {
+          "profile": "r69-migration-preview",
+          "database": "common.sqlite",
+          "draft_preview_only": true,
+          "production_publication_verified": false,
+          "knowledge_source": "migrated_common",
+          "legacy_fallback_used": false
+        },
+        "planner_audits": [],
+        "query_resolution": [
+          {
+            "stage": "request_needs",
+            "needs": []
+          },
+          {
+            "stage": "named_scope",
+            "record_ids": [],
+            "method": "none"
+          },
+          {
+            "stage": "question_profile",
+            "selection": {
+              "method": "declared_question_profile",
+              "candidate_ids": [],
+              "matches": [],
+              "rejected": [],
+              "human_intent_correctness_verified": false,
+              "reason": "no_matching_profile"
+            }
+          }
+        ]
+      },
+      "hits": []
+    }
+  ],
+  "source_frozen_hashes_verified": true,
+  "database_matches_source": true,
+  "llm_enabled": true,
+  "format": "common"
+}

@@ -1,0 +1,19 @@
+--- before/app/web_api/server.py
++++ after/app/web_api/server.py
+@@ -554,6 +554,7 @@
+                         context_domain='service_fee', context_operation='price_lookup', reason='parent_typed_request_plan')
+                 else:
+                     resolved = resolve_question_with_context(question, recent_history, locale=locale_decision.effective)
++                    request_plan = resolved.to_selection_plan()
+                 worker_id = -1
+                 if PIPELINE_SUPERVISOR is not None:
+                     supervised = PIPELINE_SUPERVISOR.answer(
+@@ -705,7 +706,7 @@
+ 
+                 contract = next((t.metadata for t in reversed(result.trace) if t.stage == 'conversation_contract'), {})
+                 actual_plan = contract.get('request_plan') or request_plan
+-                if actual_plan and actual_plan.get('resolved_query'):
++                if actual_plan and actual_plan.get('resolved_query') and actual_plan.get('schema_type') != 'dialogue_selection_v1':
+                     resolved = ResolvedQuestion(question, actual_plan['resolved_query'], actual_plan.get('context_used',False),
+                         context_domain='service_fee', context_operation='price_lookup', reason='validated_typed_request_plan')
+                     if debug:

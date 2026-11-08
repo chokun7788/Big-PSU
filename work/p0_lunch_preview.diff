@@ -1,0 +1,88 @@
+--- a/booking_dashboard/server.py
++++ b/booking_dashboard/server.py
+@@ -153,6 +153,21 @@
+     return cleaned
+ 
+ 
++def exclude_lunch_break(periods: List[List[str]]) -> List[List[str]]:
++    """Keep owner opening bounds while excluding the confirmed 12:00-13:00 booking break."""
++    bookable: List[List[str]] = []
++    for start, end in periods:
++        if start < "12:00":
++            morning_end = min(end, "12:00")
++            if start < morning_end:
++                bookable.append([start, morning_end])
++        if end > "13:00":
++            afternoon_start = max(start, "13:00")
++            if afternoon_start < end:
++                bookable.append([afternoon_start, end])
++    return bookable
++
++
+ def weekday_key_from_date(selected_date: str) -> str:
+     try:
+         return str(datetime.strptime(selected_date, "%Y-%m-%d").weekday())
+@@ -170,6 +185,7 @@
+         if is_open and not periods:
+             hours = cfg.get("hours") if isinstance(cfg.get("hours"), dict) else schedule.get("default_hours", {})
+             periods = normalize_periods([[hours.get("start", "09:00"), hours.get("end", "16:00")]])
++        periods = exclude_lunch_break(periods)
+         return {
+             "date": selected_date,
+             "open": is_open and bool(periods),
+@@ -184,7 +200,7 @@
+     wk = weekday_key_from_date(selected_date)
+     cfg = (schedule.get("weekly") or {}).get(wk, {})
+     is_open = bool(cfg.get("open", False))
+-    periods = normalize_periods(cfg.get("open_periods"))
++    periods = exclude_lunch_break(normalize_periods(cfg.get("open_periods")))
+     return {
+         "date": selected_date,
+         "open": is_open and bool(periods),
+--- a/tests/test_p0_calendar_booking_reconciliation_20260925.py
++++ b/tests/test_p0_calendar_booking_reconciliation_20260925.py
+@@ -3,7 +3,7 @@
+ import os
+ import time
+ import unittest
+-from datetime import date
++from datetime import date, datetime
+ from unittest.mock import patch
+ 
+ from app.booking.live_status import (
+@@ -19,6 +19,7 @@
+ from app.pipeline.bilingual_english import _answer_schedule
+ from app.pipeline.schemas import EntityBundle
+ from app.runtime.fast_answer import answer_schedule
++from booking_dashboard import server as dashboard
+ 
+ 
+ def snapshot(day: str, at: str) -> LiveBookingSnapshot:
+@@ -111,5 +112,27 @@
+         self.assertTrue(is_live_booking_question("ตอนนี้เล่นได้ไหม"))
+ 
+ 
++    def test_dashboard_weekly_lunch_is_not_bookable(self) -> None:
++        for day, open_at_13 in (("2026-09-28", True), ("2026-09-29", True), ("2026-10-02", False)):
++            with self.subTest(day=day), patch.object(dashboard, "now_bangkok", return_value=datetime(2026, 9, 25, 8, 0)):
++                status = dashboard.build_status(
++                    [], [{"id": "1", "name": "PC #01", "duration": "60"}], day,
++                    {"mode": "remote_csv_live", "appointments_meta": {"hash": "fixture"}, "services_meta": {"hash": "fixture"}},
++                )
++                lunch = next(s for s in status["services"][0]["slots"] if s["start"] == "12:00")
++                self.assertEqual((lunch["status"], lunch["available_count"]), ("closed", 0))
++                self.assertFalse(any(start <= "12:30" < end for start, end in status["center"]["open_periods"]))
++                at_13 = next(s for s in status["services"][0]["slots"] if s["start"] == "13:00")
++                self.assertEqual(at_13["status"] == "available", open_at_13)
++
++    def test_dashboard_date_override_cannot_open_lunch(self) -> None:
++        schedule = dashboard.default_center_schedule()
++        schedule["dates"]["2026-09-29"] = {"open": True, "open_periods": [["11:00", "14:00"]]}
++        with patch.object(dashboard, "load_center_schedule", return_value=schedule):
++            center = dashboard.center_status_for_date("2026-09-29")
++        self.assertEqual(center["source"], "date_override")
++        self.assertEqual(center["open_periods"], [["11:00", "12:00"], ["13:00", "14:00"]])
++
++
+ if __name__ == "__main__":
+     unittest.main()

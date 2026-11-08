@@ -1,0 +1,192 @@
+{
+  "key": "8016adcd0614807d11a316a6ccd8ecfbf8c979bb02cae492e1ec2841c61d40d9",
+  "question": "กำลังวางแผนไปใช้บริการ เลยอยากทราบว่า PC #01 มี Call of Duty: Warzone ไหม",
+  "requested_locale": "th",
+  "r132_result_ref": {
+    "path": "r132_flow_repairs_20261025\\sample01\\RESULTS_1.jsonl.gz",
+    "sha256": "a59516630be4763c141ad9c85ae58a1629d85156403b80b3f8194b44ff809a91"
+  },
+  "r132_answer": "ยังไม่มีข้อมูลการติดตั้งที่ยืนยันเกมนี้บนเครื่องที่ระบุครับ ข้อมูลว่ามีในโซนไม่ได้ยืนยันทุกเครื่อง",
+  "r132_sources": {
+    "game_detail_warzone": {
+      "revision": 5,
+      "record_payload_sha256": "1ade4d811ef6876ca68e6108037afbe7249d717f0634bd67e5ccb4368391114a",
+      "kind": "game",
+      "relevant_fields": {
+        "title": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/title",
+              "source_id": "r66_en_03b9e3b40d678a4ba0ad04e4"
+            }
+          ],
+          "note": "Imported from canonical source; field mapping needs factual review",
+          "status": "known",
+          "value": {
+            "en": "Call of Duty: Warzone",
+            "th": "Call of Duty: Warzone"
+          }
+        }
+      }
+    },
+    "migrated_faq_curated_games_pc": {
+      "revision": 3,
+      "record_payload_sha256": "6cf1acd3f349287b317cb134d1d3e643c6c18b31f862160467b117177ac0f23f",
+      "kind": "faq",
+      "relevant_fields": {
+        "answer": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/answer",
+              "source_id": "r66_en_aba9da5f690146fc33077f54"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: copy complete answer; preserve English status",
+          "status": "known",
+          "value": {
+            "en": "The games listed for PC include Tekken 8, Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS, VALORANT and Call of Duty: Warzone",
+            "th": "เกมที่ปรากฏในรายการ PC ได้แก่ Tekken 8, Counter-Strike 2, League of Legends, PUBG: BATTLEGROUNDS, VALORANT และ Call of Duty: Warzone"
+          }
+        }
+      }
+    },
+    "availability_pc_01_02": {
+      "revision": 5,
+      "record_payload_sha256": "21ac91333804c2f2e8f24636d0a2a888e3a751da0d9d46f9476b235ac4f603d2",
+      "kind": "service",
+      "relevant_fields": {
+        "name": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/name",
+              "source_id": "r63_65331c20f193ef240c5184e70cf0"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: copy service label",
+          "status": "known",
+          "value": {
+            "en": "PC #01-#02",
+            "th": "PC #01-#02"
+          }
+        }
+      }
+    },
+    "availability_pc_03_10": {
+      "revision": 5,
+      "record_payload_sha256": "472e782a0ac21bd680d205ea4207a9e3bb2d73b0e7fe87c37c13463b0ad6bf70",
+      "kind": "service",
+      "relevant_fields": {
+        "name": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/name",
+              "source_id": "r63_4b3814570079bba99ae8bfa0b2ff"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: copy service label",
+          "status": "known",
+          "value": {
+            "en": "PC #03-#10",
+            "th": "PC #03-#10"
+          }
+        }
+      }
+    },
+    "migrated_link_availability_pc_03_10_game_detail_warzone": {
+      "revision": 1,
+      "record_payload_sha256": "849c303e1e099d0e2dad6dd1324d0bed00761e11af200fc755f6e8a1fc5f7767",
+      "kind": "game_service",
+      "relevant_fields": {
+        "game_id": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/game_id",
+              "source_id": "r63_392f2f4315446262b149d025a813"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: FK to matching source game title",
+          "status": "known",
+          "value": "game_detail_warzone"
+        },
+        "offered": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/offered",
+              "source_id": "r63_392f2f4315446262b149d025a813"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: explicit membership in service game list",
+          "status": "known",
+          "value": true
+        },
+        "service_id": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/service_id",
+              "source_id": "r63_392f2f4315446262b149d025a813"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: FK to source service",
+          "status": "known",
+          "value": "availability_pc_03_10"
+        }
+      }
+    }
+  },
+  "observed_game_service_relations": [
+    {
+      "record_id": "migrated_link_availability_pc_03_10_game_detail_warzone",
+      "revision": 1,
+      "service_id": "availability_pc_03_10",
+      "offered": true,
+      "fields": {
+        "game_id": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/game_id",
+              "source_id": "r63_392f2f4315446262b149d025a813"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: FK to matching source game title",
+          "status": "known",
+          "value": "game_detail_warzone"
+        },
+        "service_id": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/service_id",
+              "source_id": "r63_392f2f4315446262b149d025a813"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: FK to source service",
+          "status": "known",
+          "value": "availability_pc_03_10"
+        },
+        "offered": {
+          "evidence_refs": [
+            {
+              "locator": "/mapped_fields/offered",
+              "source_id": "r63_392f2f4315446262b149d025a813"
+            }
+          ],
+          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: explicit membership in service game list",
+          "status": "known",
+          "value": true
+        }
+      }
+    }
+  ],
+  "classification": {
+    "content": "R132 explicitly leaves machine-specific installation unknown; earlier zone-level game listing did not establish that PC #01 had the game.",
+    "source": "Frozen snapshot records Warzone offered for service PC #03–#10 and contains no Warzone relation for service PC #01–#02 among active game_service records. Absence does not prove the game is not installed: relation completeness and live state were not established.",
+    "protocol": "This is not a demonstrated runtime defect in R132; not an accuracy or availability claim."
+  },
+  "candidate_source_only_reaudit": {
+    "path": "r135_complete_flow_audit_20261026\\root_warzone_machine_reaudit_1793145768044888200\\DETAILS.json",
+    "sha256": "9381c7bd8df24c981f0b6c52e557f32dccd978a98f039790ade0da6caa141d1c",
+    "answer": "ยังไม่มีข้อมูลการติดตั้งที่ยืนยันเกมนี้บนเครื่องที่ระบุครับ ข้อมูลว่ามีในโซนไม่ได้ยืนยันทุกเครื่อง",
+    "inference_or_http": false
+  },
+  "semantic_status": "source_unknown_preserved_no_machine_absence_claim",
+  "created_at": 1793145794.1582937
+}

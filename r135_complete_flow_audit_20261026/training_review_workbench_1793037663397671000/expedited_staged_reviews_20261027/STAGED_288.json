@@ -1,0 +1,92 @@
+{
+  "state": "individual_manual_review_staged_not_admitted",
+  "original_row": 288,
+  "question_key": "1cf7db3858a13e4841f441117b1a23c40c3e46cf26be6bc9d0b7bb64314f0993",
+  "raw_question": "Please use verified studio information: What ID does an external visitor need to use the studio?",
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: What ID does an external visitor need to use the studio?",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Please use verified studio information: What ID does an external visitor need to use the studio?",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ID",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "external visitor",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "notes": {
+    "needs_and_style": "One question asks what identity document an external visitor needs for studio use.",
+    "intent_operation_facet": "reservation/detail/owner_policy with booking_policy focus retains document requirement rather than general eligibility.",
+    "entities_and_slot_roles": "Add ID and external visitor scopes explicitly.",
+    "local_shared_history_scope": "No actual identity number, nationality, booking, age or prior applicant is supplied.",
+    "negation_and_ambiguity": "A document requirement query does not authorize collecting personal data or certify the visitor already qualifies.",
+    "source_version_alignment": "Pinned public_access_booking_required revision2 distinguishes reservation National ID input and presenting the card at check-in; source purpose/effective interval still need independent review.",
+    "no_business_answer_target": "No personal number, document answer, completed verification, access permission or data-collection action is taught."
+  },
+  "decision": "corrected",
+  "source_record_ids": [
+    "migrated_policy_text_public_access_booking_required"
+  ],
+  "source_answer_issues": [],
+  "quarantine_reason": null,
+  "base_example_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\review_round_012\\EXAMPLES.jsonl",
+    "line": 289,
+    "sha256": "ef7d1d1725a0cfc2583998aadf3984d9d95f175ff08c7d0b7a53af3337aab099"
+  },
+  "source_snapshot_ref": {
+    "path": "C:\\Users\\Chokhun\\Documents\\Codex\\2026-09-25\\psu-esports-studio-phuket-chatbot-c-2\\r135_complete_flow_audit_20261026\\training_review_workbench_1793037663397671000\\SOURCE_SNAPSHOT.json",
+    "sha256": "9b95a7de3ab4748aeaf8b2d40250be3596349b96b2c4b5d70dc5c37a60599f71"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "source_field_evidence": {
+    "migrated_policy_text_public_access_booking_required": {
+      "revision": 2,
+      "record_sha256": "0054f38ec0e268e6e3ee10a1ce14378601377499e3b74ca27c887e9cf3cbd64b"
+    }
+  },
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "wire_shape_pass_is_not_semantic_proof": true,
+  "review_scope": "Individual language-plan/source-purpose review; admission/cohort compilation, answer/model acceptance and final requirement coverage remain pending."
+}

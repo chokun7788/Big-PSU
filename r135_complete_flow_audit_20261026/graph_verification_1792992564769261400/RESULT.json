@@ -1,0 +1,1855 @@
+{
+  "all_passed": true,
+  "checks": {
+    "shared_prefix_audience_reaches_both_relevant_tasks": true,
+    "shared_prefix_date_reaches_both_relevant_tasks": true,
+    "request_prefix_edges_have_request_source": true,
+    "shared_context_is_not_execution_dependency": true,
+    "local_audience_overrides_shared_prefix": true,
+    "local_override_records_excluded_shared_scope": true,
+    "booking_does_not_inherit_comparison_durations": true,
+    "booking_keeps_source_named_service": true,
+    "thai_multiple_antecedents_preserve_ambiguity": true,
+    "multiple_antecedents_do_not_choose_last_silently": true,
+    "new_wire_parses": true,
+    "self_cycle_rejected": true,
+    "invented_source_quote_rejected": true,
+    "wire_schema_has_graph_fields": true,
+    "derived_units_not_claimed_exact_raw": true,
+    "unattested_derived_span_marked_unresolved": true,
+    "unicode_casefold_does_not_forge_offsets": true,
+    "english_clause_difference_not_literal_duplicate": true,
+    "authority_bit_does_not_supersede_or_falsely_prove_prose_contradiction": true,
+    "source_snapshots_available_for_authority_pointer_checks": true,
+    "all_candidate_python_syntax_valid": true
+  },
+  "details": {
+    "shared_prefix_audience_reaches_both_relevant_tasks": {
+      "question": "สำหรับนักศึกษา PSU วันนี้ ราคา PC เท่าไหร่ แล้วจองยังไง",
+      "snapshot": {
+        "release_id": "migration-preview-r69",
+        "epoch": 2497,
+        "reference_time": "2026-10-24T12:00:00+07:00"
+      },
+      "tasks": [
+        {
+          "id": "t1",
+          "source_span": {
+            "start": 26,
+            "end": 42,
+            "text": "ราคา PC เท่าไหร่"
+          },
+          "category": "C06",
+          "operation": "price_calculate",
+          "facet": "amount",
+          "capability": {
+            "version": "r135-capabilities-v2",
+            "category": "C06",
+            "legacy_operation": "price_calculate",
+            "operation": "calculate_total",
+            "field": "amount",
+            "status": "adapter_available",
+            "executor": "capabilities.dispatch",
+            "implementation_entrypoint": "engine.Engine.plan",
+            "native_live_entrypoint": null,
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false,
+            "contract_version": "r135-executors-v3",
+            "semantic_operation": "calculate_total",
+            "input_requirements": "service/audience/quantities/declared billing rule",
+            "allowed_source_kinds": [
+              "rate",
+              "service",
+              "audience",
+              "faq"
+            ],
+            "completeness_rule": "recomputed Decimal arithmetic receipts",
+            "external_dependency": null,
+            "cost_class": "local_read",
+            "response_contract": "r135-executor-result-v3",
+            "arbitrary_unlisted_operations_supported": false,
+            "source_availability": {
+              "state": "recorded_candidates",
+              "candidate_fact_count": 24,
+              "source_kinds": [
+                "rate"
+              ],
+              "currentness_public_scope_and_requested_scope_checked_at_execution": true,
+              "semantic_answer_readiness_claimed": false,
+              "binding_and_public_scope_still_required": true
+            }
+          },
+          "target_span": {
+            "start": 31,
+            "end": 33,
+            "text": "PC"
+          },
+          "target_scope": "local",
+          "bound_record_ids": [],
+          "slots": [
+            {
+              "id": "t1s1",
+              "kind": "platform",
+              "role": "platform",
+              "source_span": {
+                "start": 31,
+                "end": 33,
+                "text": "PC"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": null,
+              "normalized_unit": null,
+              "origin": "current_user",
+              "scope": "local",
+              "source_record_id": ""
+            },
+            {
+              "id": "t1s2",
+              "kind": "date",
+              "role": "date",
+              "source_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": null,
+              "normalized_unit": null,
+              "origin": "current_user",
+              "scope": "shared",
+              "source_record_id": ""
+            },
+            {
+              "id": "t1s3",
+              "kind": "audience",
+              "role": "audience",
+              "source_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": null,
+              "normalized_unit": null,
+              "origin": "current_user",
+              "scope": "shared",
+              "source_record_id": "audience_psu_student_staff"
+            }
+          ],
+          "bindings": [
+            {
+              "id": "b_prefix_1",
+              "source_task_id": "request",
+              "target_task_id": "t1",
+              "source_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "basis": "shared_prefix",
+              "inherited_slots": [
+                "t1s2"
+              ],
+              "execution_dependency": false,
+              "entity_refs": [],
+              "relation_refs": [],
+              "validation_outcome": "validated",
+              "override_exclusions": [],
+              "ambiguities": []
+            },
+            {
+              "id": "b_prefix_2",
+              "source_task_id": "request",
+              "target_task_id": "t1",
+              "source_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "basis": "shared_prefix",
+              "inherited_slots": [
+                "t1s3"
+              ],
+              "execution_dependency": false,
+              "entity_refs": [
+                "audience_psu_student_staff"
+              ],
+              "relation_refs": [],
+              "validation_outcome": "validated",
+              "override_exclusions": [],
+              "ambiguities": []
+            }
+          ],
+          "obligations": [
+            {
+              "id": "t1:answer",
+              "kind": "task_completion",
+              "task_id": "t1",
+              "expected": "amount"
+            }
+          ],
+          "ambiguities": [],
+          "errors": [],
+          "canonical_operation": "C06.amount",
+          "source_provenance": [
+            {
+              "role": "task",
+              "execution_span": {
+                "start": 26,
+                "end": 42,
+                "text": "ราคา PC เท่าไหร่"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 26,
+                    "end": 42,
+                    "text": "ราคา PC เท่าไหร่"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "target",
+              "execution_span": {
+                "start": 31,
+                "end": 33,
+                "text": "PC"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 31,
+                    "end": 33,
+                    "text": "PC"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "shared_binding",
+              "binding_id": "b_prefix_1",
+              "execution_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 19,
+                    "end": 25,
+                    "text": "วันนี้"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "shared_binding",
+              "binding_id": "b_prefix_2",
+              "execution_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 6,
+                    "end": 18,
+                    "text": "นักศึกษา PSU"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "platform",
+              "slot_id": "t1s1",
+              "execution_span": {
+                "start": 31,
+                "end": 33,
+                "text": "PC"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 31,
+                    "end": 33,
+                    "text": "PC"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "date",
+              "slot_id": "t1s2",
+              "execution_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 19,
+                    "end": 25,
+                    "text": "วันนี้"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "audience",
+              "slot_id": "t1s3",
+              "execution_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 6,
+                    "end": 18,
+                    "text": "นักศึกษา PSU"
+                  }
+                ]
+              }
+            }
+          ],
+          "semantic_dependencies": [
+            {
+              "binding_id": "b_prefix_1",
+              "source": "request",
+              "slot_kind": "date"
+            },
+            {
+              "binding_id": "b_prefix_2",
+              "source": "request",
+              "slot_kind": "audience"
+            }
+          ],
+          "execution_dependencies": []
+        },
+        {
+          "id": "t2",
+          "source_span": {
+            "start": 43,
+            "end": 55,
+            "text": "แล้วจองยังไง"
+          },
+          "category": "C08",
+          "operation": "detail",
+          "facet": "owner_policy",
+          "capability": {
+            "version": "r135-capabilities-v2",
+            "category": "C08",
+            "legacy_operation": "detail",
+            "operation": "condition_lookup",
+            "field": "owner_policy",
+            "status": "adapter_available",
+            "executor": "capabilities.dispatch",
+            "implementation_entrypoint": "engine.Engine.plan",
+            "native_live_entrypoint": null,
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false,
+            "contract_version": "r135-executors-v3",
+            "semantic_operation": "condition_lookup",
+            "input_requirements": "source action and condition scope",
+            "allowed_source_kinds": [
+              "procedure",
+              "policy",
+              "faq"
+            ],
+            "completeness_rule": "all applicable conditions/exceptions or unresolved status",
+            "external_dependency": null,
+            "cost_class": "local_read",
+            "response_contract": "r135-executor-result-v3",
+            "arbitrary_unlisted_operations_supported": false,
+            "source_availability": {
+              "state": "recorded_candidates",
+              "candidate_fact_count": 55,
+              "source_kinds": [
+                "faq",
+                "procedure"
+              ],
+              "currentness_public_scope_and_requested_scope_checked_at_execution": true,
+              "semantic_answer_readiness_claimed": false,
+              "binding_and_public_scope_still_required": true
+            }
+          },
+          "target_span": {
+            "start": 31,
+            "end": 33,
+            "text": "PC"
+          },
+          "target_scope": "shared",
+          "bound_record_ids": [],
+          "slots": [
+            {
+              "id": "t2s1",
+              "kind": "date",
+              "role": "date",
+              "source_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "owner_task_id": "t2",
+              "normalized_value": null,
+              "normalized_unit": null,
+              "origin": "current_user",
+              "scope": "shared",
+              "source_record_id": ""
+            },
+            {
+              "id": "t2s2",
+              "kind": "audience",
+              "role": "audience",
+              "source_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "owner_task_id": "t2",
+              "normalized_value": null,
+              "normalized_unit": null,
+              "origin": "current_user",
+              "scope": "shared",
+              "source_record_id": "audience_psu_student_staff"
+            }
+          ],
+          "bindings": [
+            {
+              "id": "b2",
+              "source_task_id": "t1",
+              "target_task_id": "t2",
+              "source_span": {
+                "start": 31,
+                "end": 33,
+                "text": "PC"
+              },
+              "basis": "source_related_booking_ellipsis",
+              "inherited_slots": [],
+              "execution_dependency": false,
+              "entity_refs": [],
+              "relation_refs": [],
+              "validation_outcome": "validated",
+              "override_exclusions": [],
+              "ambiguities": []
+            },
+            {
+              "id": "b_prefix_3",
+              "source_task_id": "request",
+              "target_task_id": "t2",
+              "source_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "basis": "shared_prefix",
+              "inherited_slots": [
+                "t2s1"
+              ],
+              "execution_dependency": false,
+              "entity_refs": [],
+              "relation_refs": [],
+              "validation_outcome": "validated",
+              "override_exclusions": [],
+              "ambiguities": []
+            },
+            {
+              "id": "b_prefix_4",
+              "source_task_id": "request",
+              "target_task_id": "t2",
+              "source_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "basis": "shared_prefix",
+              "inherited_slots": [
+                "t2s2"
+              ],
+              "execution_dependency": false,
+              "entity_refs": [
+                "audience_psu_student_staff"
+              ],
+              "relation_refs": [],
+              "validation_outcome": "validated",
+              "override_exclusions": [],
+              "ambiguities": []
+            }
+          ],
+          "obligations": [
+            {
+              "id": "t2:answer",
+              "kind": "task_completion",
+              "task_id": "t2",
+              "expected": "owner_policy"
+            }
+          ],
+          "ambiguities": [],
+          "errors": [],
+          "canonical_operation": "C08.owner_policy",
+          "source_provenance": [
+            {
+              "role": "task",
+              "execution_span": {
+                "start": 43,
+                "end": 55,
+                "text": "แล้วจองยังไง"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 43,
+                    "end": 55,
+                    "text": "แล้วจองยังไง"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "target",
+              "execution_span": {
+                "start": 31,
+                "end": 33,
+                "text": "PC"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 31,
+                    "end": 33,
+                    "text": "PC"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "shared_binding",
+              "binding_id": "b2",
+              "execution_span": {
+                "start": 31,
+                "end": 33,
+                "text": "PC"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 31,
+                    "end": 33,
+                    "text": "PC"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "shared_binding",
+              "binding_id": "b_prefix_3",
+              "execution_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 19,
+                    "end": 25,
+                    "text": "วันนี้"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "shared_binding",
+              "binding_id": "b_prefix_4",
+              "execution_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 6,
+                    "end": 18,
+                    "text": "นักศึกษา PSU"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "date",
+              "slot_id": "t2s1",
+              "execution_span": {
+                "start": 19,
+                "end": 25,
+                "text": "วันนี้"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 19,
+                    "end": 25,
+                    "text": "วันนี้"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "audience",
+              "slot_id": "t2s2",
+              "execution_span": {
+                "start": 6,
+                "end": 18,
+                "text": "นักศึกษา PSU"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 6,
+                    "end": 18,
+                    "text": "นักศึกษา PSU"
+                  }
+                ]
+              }
+            }
+          ],
+          "semantic_dependencies": [
+            {
+              "binding_id": "b_prefix_3",
+              "source": "request",
+              "slot_kind": "date"
+            },
+            {
+              "binding_id": "b_prefix_4",
+              "source": "request",
+              "slot_kind": "audience"
+            }
+          ],
+          "execution_dependencies": []
+        }
+      ],
+      "compiler_events": [],
+      "version": "r135-plan-ir-v3",
+      "wire_version": "r121-meaning-wire",
+      "wire_adapter": "validated_meaning_task_adapter",
+      "whole_question_semantics_verified": false,
+      "input_basis": "engine_question_after_native_normalization",
+      "raw_request_offset_mapping_implemented": true,
+      "shared_bindings": [
+        {
+          "id": "prefix_1",
+          "basis": "shared_prefix",
+          "source_task_id": "request",
+          "target_task_id": "t1",
+          "source_span": {
+            "start": 19,
+            "end": 25,
+            "text": "วันนี้"
+          },
+          "slot_kind": "date",
+          "entity_refs": [],
+          "execution_dependency": false,
+          "validated": true,
+          "validation_outcome": "validated",
+          "override_exclusions": [],
+          "ambiguities": []
+        },
+        {
+          "id": "prefix_2",
+          "basis": "shared_prefix",
+          "source_task_id": "request",
+          "target_task_id": "t1",
+          "source_span": {
+            "start": 6,
+            "end": 18,
+            "text": "นักศึกษา PSU"
+          },
+          "slot_kind": "audience",
+          "entity_refs": [
+            "audience_psu_student_staff"
+          ],
+          "execution_dependency": false,
+          "validated": true,
+          "validation_outcome": "validated",
+          "override_exclusions": [],
+          "ambiguities": []
+        },
+        {
+          "id": "prefix_3",
+          "basis": "shared_prefix",
+          "source_task_id": "request",
+          "target_task_id": "t2",
+          "source_span": {
+            "start": 19,
+            "end": 25,
+            "text": "วันนี้"
+          },
+          "slot_kind": "date",
+          "entity_refs": [],
+          "execution_dependency": false,
+          "validated": true,
+          "validation_outcome": "validated",
+          "override_exclusions": [],
+          "ambiguities": []
+        },
+        {
+          "id": "prefix_4",
+          "basis": "shared_prefix",
+          "source_task_id": "request",
+          "target_task_id": "t2",
+          "source_span": {
+            "start": 6,
+            "end": 18,
+            "text": "นักศึกษา PSU"
+          },
+          "slot_kind": "audience",
+          "entity_refs": [
+            "audience_psu_student_staff"
+          ],
+          "execution_dependency": false,
+          "validated": true,
+          "validation_outcome": "validated",
+          "override_exclusions": [],
+          "ambiguities": []
+        }
+      ],
+      "superseded_slots": [],
+      "request_context": {
+        "version": "r129-request-provenance-v2",
+        "request_id": null,
+        "raw_question": "สำหรับนักศึกษา PSU วันนี้ ราคา PC เท่าไหร่ แล้วจองยังไง",
+        "normalized_question": "สำหรับนักศึกษา psu วันนี้ ราคา pc เท่าไหร่ แล้วจองยังไง",
+        "snapshot": null,
+        "budget": {
+          "deadline": {
+            "global_timeout_enabled": false
+          },
+          "max_model_calls": null,
+          "reserved_model_calls": null
+        },
+        "engine_question": "สำหรับนักศึกษา PSU วันนี้ ราคา PC เท่าไหร่ แล้วจองยังไง",
+        "input_origin": "direct_engine_or_domain_call",
+        "input_basis": "current_raw",
+        "normalization": {
+          "raw": "สำหรับนักศึกษา PSU วันนี้ ราคา PC เท่าไหร่ แล้วจองยังไง",
+          "text": "สำหรับนักศึกษา psu วันนี้ ราคา pc เท่าไหร่ แล้วจองยังไง",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54
+          ],
+          "edits": [],
+          "protected": []
+        },
+        "derivation": null,
+        "trusted_slot_provenance": {},
+        "superseded_slots": [],
+        "history": {
+          "present": false,
+          "native_delivered_state_accepted": false,
+          "state_sha256": null,
+          "facts_inherited": false,
+          "delivered_reference": null,
+          "trust_basis": "native_delivered_state_gate_requires_server_sanitized_history",
+          "arbitrary_assistant_prose_used": false
+        },
+        "whole_question_semantics_verified": false,
+        "span_map": {
+          "version": "r129-span-map-v2",
+          "raw_question": "สำหรับนักศึกษา PSU วันนี้ ราคา PC เท่าไหร่ แล้วจองยังไง",
+          "execution_question": "สำหรับนักศึกษา PSU วันนี้ ราคา PC เท่าไหร่ แล้วจองยังไง",
+          "segments": [
+            {
+              "execution_start": 0,
+              "execution_end": 55,
+              "origin": "current_user",
+              "raw_start": 0,
+              "raw_end": 55,
+              "raw_text": "สำหรับนักศึกษา PSU วันนี้ ราคา PC เท่าไหร่ แล้วจองยังไง",
+              "transform": "identity"
+            }
+          ],
+          "derivation": null,
+          "trusted_slot_provenance": {},
+          "business_facts_inherited": false
+        }
+      }
+    },
+    "booking_keeps_source_named_service": {
+      "question": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+      "snapshot": {
+        "release_id": "migration-preview-r69",
+        "epoch": 2497,
+        "reference_time": "2026-10-24T12:00:00+07:00"
+      },
+      "tasks": [
+        {
+          "id": "t1",
+          "source_span": {
+            "start": 0,
+            "end": 31,
+            "text": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง"
+          },
+          "category": "C06",
+          "operation": "compare",
+          "facet": "duration_minutes",
+          "capability": {
+            "version": "r135-capabilities-v2",
+            "category": "C06",
+            "legacy_operation": "compare",
+            "operation": "compare_durations",
+            "field": "duration_minutes",
+            "status": "adapter_available",
+            "executor": "capabilities.dispatch",
+            "implementation_entrypoint": "engine.Engine.plan",
+            "native_live_entrypoint": null,
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false,
+            "contract_version": "r135-executors-v3",
+            "semantic_operation": "compare_durations",
+            "input_requirements": "at least two source duration options",
+            "allowed_source_kinds": [
+              "rate",
+              "service",
+              "audience",
+              "faq"
+            ],
+            "completeness_rule": "all duration options per audience",
+            "external_dependency": null,
+            "cost_class": "local_read",
+            "response_contract": "r135-executor-result-v3",
+            "arbitrary_unlisted_operations_supported": false,
+            "source_availability": {
+              "state": "recorded_candidates",
+              "candidate_fact_count": 24,
+              "source_kinds": [
+                "rate"
+              ],
+              "currentness_public_scope_and_requested_scope_checked_at_execution": true,
+              "semantic_answer_readiness_claimed": false,
+              "binding_and_public_scope_still_required": true
+            }
+          },
+          "target_span": {
+            "start": 5,
+            "end": 7,
+            "text": "VR"
+          },
+          "target_scope": "local",
+          "bound_record_ids": [],
+          "slots": [
+            {
+              "id": "t1s1",
+              "kind": "duration",
+              "role": "comparison_duration",
+              "source_span": {
+                "start": 8,
+                "end": 15,
+                "text": "30 นาที"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": 30.0,
+              "normalized_unit": "minute",
+              "origin": "current_user",
+              "scope": "local",
+              "source_record_id": ""
+            },
+            {
+              "id": "t1s2",
+              "kind": "duration",
+              "role": "comparison_duration",
+              "source_span": {
+                "start": 22,
+                "end": 31,
+                "text": "1 ชั่วโมง"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": 60.0,
+              "normalized_unit": "minute",
+              "origin": "current_user",
+              "scope": "local",
+              "source_record_id": ""
+            }
+          ],
+          "bindings": [],
+          "obligations": [
+            {
+              "id": "t1:answer",
+              "kind": "task_completion",
+              "task_id": "t1",
+              "expected": "duration_minutes"
+            },
+            {
+              "id": "t1:duration:30.0",
+              "kind": "duration_option",
+              "task_id": "t1",
+              "expected": 30.0
+            },
+            {
+              "id": "t1:duration:60.0",
+              "kind": "duration_option",
+              "task_id": "t1",
+              "expected": 60.0
+            }
+          ],
+          "ambiguities": [],
+          "errors": [],
+          "canonical_operation": "C06.duration_minutes",
+          "source_provenance": [
+            {
+              "role": "task",
+              "execution_span": {
+                "start": 0,
+                "end": 31,
+                "text": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 0,
+                    "end": 31,
+                    "text": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "target",
+              "execution_span": {
+                "start": 5,
+                "end": 7,
+                "text": "VR"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 5,
+                    "end": 7,
+                    "text": "VR"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "comparison_duration",
+              "slot_id": "t1s1",
+              "execution_span": {
+                "start": 8,
+                "end": 15,
+                "text": "30 นาที"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 8,
+                    "end": 15,
+                    "text": "30 นาที"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "comparison_duration",
+              "slot_id": "t1s2",
+              "execution_span": {
+                "start": 22,
+                "end": 31,
+                "text": "1 ชั่วโมง"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 22,
+                    "end": 31,
+                    "text": "1 ชั่วโมง"
+                  }
+                ]
+              }
+            }
+          ],
+          "semantic_dependencies": [],
+          "execution_dependencies": []
+        },
+        {
+          "id": "t2",
+          "source_span": {
+            "start": 32,
+            "end": 44,
+            "text": "แล้วจองยังไง"
+          },
+          "category": "C08",
+          "operation": "detail",
+          "facet": "owner_policy",
+          "capability": {
+            "version": "r135-capabilities-v2",
+            "category": "C08",
+            "legacy_operation": "detail",
+            "operation": "condition_lookup",
+            "field": "owner_policy",
+            "status": "adapter_available",
+            "executor": "capabilities.dispatch",
+            "implementation_entrypoint": "engine.Engine.plan",
+            "native_live_entrypoint": null,
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false,
+            "contract_version": "r135-executors-v3",
+            "semantic_operation": "condition_lookup",
+            "input_requirements": "source action and condition scope",
+            "allowed_source_kinds": [
+              "procedure",
+              "policy",
+              "faq"
+            ],
+            "completeness_rule": "all applicable conditions/exceptions or unresolved status",
+            "external_dependency": null,
+            "cost_class": "local_read",
+            "response_contract": "r135-executor-result-v3",
+            "arbitrary_unlisted_operations_supported": false,
+            "source_availability": {
+              "state": "recorded_candidates",
+              "candidate_fact_count": 55,
+              "source_kinds": [
+                "faq",
+                "procedure"
+              ],
+              "currentness_public_scope_and_requested_scope_checked_at_execution": true,
+              "semantic_answer_readiness_claimed": false,
+              "binding_and_public_scope_still_required": true
+            }
+          },
+          "target_span": {
+            "start": 5,
+            "end": 7,
+            "text": "VR"
+          },
+          "target_scope": "shared",
+          "bound_record_ids": [],
+          "slots": [],
+          "bindings": [
+            {
+              "id": "b2",
+              "source_task_id": "t1",
+              "target_task_id": "t2",
+              "source_span": {
+                "start": 5,
+                "end": 7,
+                "text": "VR"
+              },
+              "basis": "source_related_booking_ellipsis",
+              "inherited_slots": [],
+              "execution_dependency": false,
+              "entity_refs": [],
+              "relation_refs": [],
+              "validation_outcome": "validated",
+              "override_exclusions": [],
+              "ambiguities": []
+            }
+          ],
+          "obligations": [
+            {
+              "id": "t2:answer",
+              "kind": "task_completion",
+              "task_id": "t2",
+              "expected": "owner_policy"
+            }
+          ],
+          "ambiguities": [],
+          "errors": [],
+          "canonical_operation": "C08.owner_policy",
+          "source_provenance": [
+            {
+              "role": "task",
+              "execution_span": {
+                "start": 32,
+                "end": 44,
+                "text": "แล้วจองยังไง"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 32,
+                    "end": 44,
+                    "text": "แล้วจองยังไง"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "target",
+              "execution_span": {
+                "start": 5,
+                "end": 7,
+                "text": "VR"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 5,
+                    "end": 7,
+                    "text": "VR"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "shared_binding",
+              "binding_id": "b2",
+              "execution_span": {
+                "start": 5,
+                "end": 7,
+                "text": "VR"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 5,
+                    "end": 7,
+                    "text": "VR"
+                  }
+                ]
+              }
+            }
+          ],
+          "semantic_dependencies": [],
+          "execution_dependencies": []
+        }
+      ],
+      "compiler_events": [],
+      "version": "r135-plan-ir-v3",
+      "wire_version": "r121-meaning-wire",
+      "wire_adapter": "validated_meaning_task_adapter",
+      "whole_question_semantics_verified": false,
+      "input_basis": "engine_question_after_native_normalization",
+      "raw_request_offset_mapping_implemented": true,
+      "shared_bindings": [],
+      "superseded_slots": [],
+      "request_context": {
+        "version": "r129-request-provenance-v2",
+        "request_id": null,
+        "raw_question": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+        "normalized_question": "ราคา vr 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+        "snapshot": null,
+        "budget": {
+          "deadline": {
+            "global_timeout_enabled": false
+          },
+          "max_model_calls": null,
+          "reserved_model_calls": null
+        },
+        "engine_question": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+        "input_origin": "direct_engine_or_domain_call",
+        "input_basis": "current_raw",
+        "normalization": {
+          "raw": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+          "text": "ราคา vr 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "edits": [],
+          "protected": [
+            {
+              "text": "30",
+              "start": 8,
+              "end": 10
+            },
+            {
+              "text": "1",
+              "start": 22,
+              "end": 23
+            }
+          ]
+        },
+        "derivation": null,
+        "trusted_slot_provenance": {},
+        "superseded_slots": [],
+        "history": {
+          "present": false,
+          "native_delivered_state_accepted": false,
+          "state_sha256": null,
+          "facts_inherited": false,
+          "delivered_reference": null,
+          "trust_basis": "native_delivered_state_gate_requires_server_sanitized_history",
+          "arbitrary_assistant_prose_used": false
+        },
+        "whole_question_semantics_verified": false,
+        "span_map": {
+          "version": "r129-span-map-v2",
+          "raw_question": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+          "execution_question": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+          "segments": [
+            {
+              "execution_start": 0,
+              "execution_end": 44,
+              "origin": "current_user",
+              "raw_start": 0,
+              "raw_end": 44,
+              "raw_text": "ราคา VR 30 นาที เทียบ 1 ชั่วโมง แล้วจองยังไง",
+              "transform": "identity"
+            }
+          ],
+          "derivation": null,
+          "trusted_slot_provenance": {},
+          "business_facts_inherited": false
+        }
+      }
+    },
+    "multiple_antecedents_do_not_choose_last_silently": {
+      "question": "PC price, PS5 price, what games does it offer?",
+      "snapshot": {
+        "release_id": "migration-preview-r69",
+        "epoch": 2497,
+        "reference_time": "2026-10-24T12:00:00+07:00"
+      },
+      "tasks": [
+        {
+          "id": "t1",
+          "source_span": {
+            "start": 0,
+            "end": 8,
+            "text": "PC price"
+          },
+          "category": "C06",
+          "operation": "detail",
+          "facet": "amount",
+          "capability": {
+            "version": "r135-capabilities-v2",
+            "category": "C06",
+            "legacy_operation": "detail",
+            "operation": "unit_rate",
+            "field": "amount",
+            "status": "adapter_available",
+            "executor": "capabilities.dispatch",
+            "implementation_entrypoint": "engine.Engine.plan",
+            "native_live_entrypoint": null,
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false,
+            "contract_version": "r135-executors-v3",
+            "semantic_operation": "unit_rate",
+            "input_requirements": "service/audience/session basis",
+            "allowed_source_kinds": [
+              "rate",
+              "service",
+              "audience",
+              "faq"
+            ],
+            "completeness_rule": "recorded rate with validity",
+            "external_dependency": null,
+            "cost_class": "local_read",
+            "response_contract": "r135-executor-result-v3",
+            "arbitrary_unlisted_operations_supported": false,
+            "source_availability": {
+              "state": "recorded_candidates",
+              "candidate_fact_count": 24,
+              "source_kinds": [
+                "rate"
+              ],
+              "currentness_public_scope_and_requested_scope_checked_at_execution": true,
+              "semantic_answer_readiness_claimed": false,
+              "binding_and_public_scope_still_required": true
+            }
+          },
+          "target_span": {
+            "start": 0,
+            "end": 2,
+            "text": "PC"
+          },
+          "target_scope": "local",
+          "bound_record_ids": [],
+          "slots": [
+            {
+              "id": "t1s1",
+              "kind": "platform",
+              "role": "platform",
+              "source_span": {
+                "start": 0,
+                "end": 2,
+                "text": "PC"
+              },
+              "owner_task_id": "t1",
+              "normalized_value": null,
+              "normalized_unit": null,
+              "origin": "current_user",
+              "scope": "local",
+              "source_record_id": ""
+            }
+          ],
+          "bindings": [],
+          "obligations": [
+            {
+              "id": "t1:answer",
+              "kind": "task_completion",
+              "task_id": "t1",
+              "expected": "amount"
+            }
+          ],
+          "ambiguities": [],
+          "errors": [],
+          "canonical_operation": "C06.amount",
+          "source_provenance": [
+            {
+              "role": "task",
+              "execution_span": {
+                "start": 0,
+                "end": 8,
+                "text": "PC price"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 0,
+                    "end": 8,
+                    "text": "PC price"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "target",
+              "execution_span": {
+                "start": 0,
+                "end": 2,
+                "text": "PC"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 0,
+                    "end": 2,
+                    "text": "PC"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "platform",
+              "slot_id": "t1s1",
+              "execution_span": {
+                "start": 0,
+                "end": 2,
+                "text": "PC"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 0,
+                    "end": 2,
+                    "text": "PC"
+                  }
+                ]
+              }
+            }
+          ],
+          "semantic_dependencies": [],
+          "execution_dependencies": []
+        },
+        {
+          "id": "t2",
+          "source_span": {
+            "start": 10,
+            "end": 19,
+            "text": "PS5 price"
+          },
+          "category": "C06",
+          "operation": "detail",
+          "facet": "amount",
+          "capability": {
+            "version": "r135-capabilities-v2",
+            "category": "C06",
+            "legacy_operation": "detail",
+            "operation": "unit_rate",
+            "field": "amount",
+            "status": "adapter_available",
+            "executor": "capabilities.dispatch",
+            "implementation_entrypoint": "engine.Engine.plan",
+            "native_live_entrypoint": null,
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false,
+            "contract_version": "r135-executors-v3",
+            "semantic_operation": "unit_rate",
+            "input_requirements": "service/audience/session basis",
+            "allowed_source_kinds": [
+              "rate",
+              "service",
+              "audience",
+              "faq"
+            ],
+            "completeness_rule": "recorded rate with validity",
+            "external_dependency": null,
+            "cost_class": "local_read",
+            "response_contract": "r135-executor-result-v3",
+            "arbitrary_unlisted_operations_supported": false,
+            "source_availability": {
+              "state": "recorded_candidates",
+              "candidate_fact_count": 24,
+              "source_kinds": [
+                "rate"
+              ],
+              "currentness_public_scope_and_requested_scope_checked_at_execution": true,
+              "semantic_answer_readiness_claimed": false,
+              "binding_and_public_scope_still_required": true
+            }
+          },
+          "target_span": {
+            "start": 10,
+            "end": 13,
+            "text": "PS5"
+          },
+          "target_scope": "local",
+          "bound_record_ids": [],
+          "slots": [
+            {
+              "id": "t2s1",
+              "kind": "platform",
+              "role": "platform",
+              "source_span": {
+                "start": 10,
+                "end": 13,
+                "text": "PS5"
+              },
+              "owner_task_id": "t2",
+              "normalized_value": null,
+              "normalized_unit": null,
+              "origin": "current_user",
+              "scope": "local",
+              "source_record_id": ""
+            }
+          ],
+          "bindings": [],
+          "obligations": [
+            {
+              "id": "t2:answer",
+              "kind": "task_completion",
+              "task_id": "t2",
+              "expected": "amount"
+            }
+          ],
+          "ambiguities": [],
+          "errors": [],
+          "canonical_operation": "C06.amount",
+          "source_provenance": [
+            {
+              "role": "task",
+              "execution_span": {
+                "start": 10,
+                "end": 19,
+                "text": "PS5 price"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 10,
+                    "end": 19,
+                    "text": "PS5 price"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "target",
+              "execution_span": {
+                "start": 10,
+                "end": 13,
+                "text": "PS5"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 10,
+                    "end": 13,
+                    "text": "PS5"
+                  }
+                ]
+              }
+            },
+            {
+              "role": "platform",
+              "slot_id": "t2s1",
+              "execution_span": {
+                "start": 10,
+                "end": 13,
+                "text": "PS5"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 10,
+                    "end": 13,
+                    "text": "PS5"
+                  }
+                ]
+              }
+            }
+          ],
+          "semantic_dependencies": [],
+          "execution_dependencies": []
+        },
+        {
+          "id": "t3",
+          "source_span": {
+            "start": 21,
+            "end": 46,
+            "text": "what games does it offer?"
+          },
+          "category": "C04",
+          "operation": "detail",
+          "facet": "game_catalog",
+          "capability": {
+            "version": "r135-capabilities-v2",
+            "category": "C04",
+            "legacy_operation": "detail",
+            "operation": "field_lookup",
+            "field": "game_catalog",
+            "status": "adapter_available",
+            "executor": "capabilities.dispatch",
+            "implementation_entrypoint": "engine.Engine.plan",
+            "native_live_entrypoint": null,
+            "verification_level": "source_and_obligation_checks_required",
+            "complete_semantics_verified": false,
+            "contract_version": "r135-executors-v3",
+            "semantic_operation": "clarification_required",
+            "input_requirements": "unresolved referent/required slot",
+            "allowed_source_kinds": [
+              "game",
+              "game_service",
+              "service",
+              "resource",
+              "zone",
+              "game_mode",
+              "faq"
+            ],
+            "completeness_rule": "targeted question preserving independent completed needs",
+            "external_dependency": null,
+            "cost_class": "local_read",
+            "response_contract": "r135-executor-result-v3",
+            "arbitrary_unlisted_operations_supported": false,
+            "source_availability": {
+              "state": "recorded_candidates",
+              "candidate_fact_count": 8,
+              "source_kinds": [
+                "service"
+              ],
+              "currentness_public_scope_and_requested_scope_checked_at_execution": true,
+              "semantic_answer_readiness_claimed": false,
+              "binding_and_public_scope_still_required": true
+            }
+          },
+          "target_span": null,
+          "target_scope": "none",
+          "bound_record_ids": [],
+          "slots": [],
+          "bindings": [],
+          "obligations": [
+            {
+              "id": "t3:answer",
+              "kind": "task_completion",
+              "task_id": "t3",
+              "expected": "game_catalog"
+            }
+          ],
+          "ambiguities": [
+            "legacy_meaning_requires_clarification"
+          ],
+          "errors": [],
+          "canonical_operation": "C04.game_catalog",
+          "source_provenance": [
+            {
+              "role": "task",
+              "execution_span": {
+                "start": 21,
+                "end": 46,
+                "text": "what games does it offer?"
+              },
+              "source": {
+                "status": "exact_current_raw",
+                "sources": [
+                  {
+                    "origin": "current_user",
+                    "start": 21,
+                    "end": 46,
+                    "text": "what games does it offer?"
+                  }
+                ]
+              }
+            }
+          ],
+          "semantic_dependencies": [],
+          "execution_dependencies": []
+        }
+      ],
+      "compiler_events": [],
+      "version": "r135-plan-ir-v3",
+      "wire_version": "r121-meaning-wire",
+      "wire_adapter": "validated_meaning_task_adapter",
+      "whole_question_semantics_verified": false,
+      "input_basis": "engine_question_after_native_normalization",
+      "raw_request_offset_mapping_implemented": true,
+      "shared_bindings": [],
+      "superseded_slots": [],
+      "request_context": {
+        "version": "r129-request-provenance-v2",
+        "request_id": null,
+        "raw_question": "PC price, PS5 price, what games does it offer?",
+        "normalized_question": "pc price, ps5 price, what games does it offer?",
+        "snapshot": null,
+        "budget": {
+          "deadline": {
+            "global_timeout_enabled": false
+          },
+          "max_model_calls": null,
+          "reserved_model_calls": null
+        },
+        "engine_question": "PC price, PS5 price, what games does it offer?",
+        "input_origin": "direct_engine_or_domain_call",
+        "input_basis": "current_raw",
+        "normalization": {
+          "raw": "PC price, PS5 price, what games does it offer?",
+          "text": "pc price, ps5 price, what games does it offer?",
+          "offsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "edits": [],
+          "protected": [
+            {
+              "text": "5",
+              "start": 12,
+              "end": 13
+            }
+          ]
+        },
+        "derivation": null,
+        "trusted_slot_provenance": {},
+        "superseded_slots": [],
+        "history": {
+          "present": false,
+          "native_delivered_state_accepted": false,
+          "state_sha256": null,
+          "facts_inherited": false,
+          "delivered_reference": null,
+          "trust_basis": "native_delivered_state_gate_requires_server_sanitized_history",
+          "arbitrary_assistant_prose_used": false
+        },
+        "whole_question_semantics_verified": false,
+        "span_map": {
+          "version": "r129-span-map-v2",
+          "raw_question": "PC price, PS5 price, what games does it offer?",
+          "execution_question": "PC price, PS5 price, what games does it offer?",
+          "segments": [
+            {
+              "execution_start": 0,
+              "execution_end": 46,
+              "origin": "current_user",
+              "raw_start": 0,
+              "raw_end": 46,
+              "raw_text": "PC price, PS5 price, what games does it offer?",
+              "transform": "identity"
+            }
+          ],
+          "derivation": null,
+          "trusted_slot_provenance": {},
+          "business_facts_inherited": false
+        }
+      }
+    }
+  },
+  "new_model_inferences": 0,
+  "accuracy_benchmark": false
+}

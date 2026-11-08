@@ -1,0 +1,127 @@
+{
+  "question_key": "aefe99111d809f80d0b9d6893353d58fec0237e9276073fe1016557e8df464b2",
+  "example_sha256": "0623832e354e645b7d188f66223a813cc654e6a8a42e1daf567680c1565e59d6",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One incomplete food/drink-area information request, not a booking or equipment task.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy retains the apparent policy topic.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "เครื่องดื่ม พื้นที่ is the literal requested scope; no named area or beverage is supplied.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No prior area or consume/bring action can be inherited.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Keep ambiguous true: the fragment does not specify whether it asks where to consume or permission to bring drinks.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned food_drink clauses concern consumption only; food_bring_general is separate, so nearby source words cannot select a permission.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_food_drink",
+        "migrated_policy_text_food_bring_general"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No designated-area answer or bring permission enters the label.",
+      "raw_quotes": [
+        "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 65,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "unclear",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "unclear",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอข้อมูลเรื่องเครื่องดื่ม พื้นที่ ครับ",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "เครื่องดื่ม พื้นที่",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": true,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_food_drink": {
+      "revision": 4,
+      "record_sha256": "b4a14cd8f3d8a1d7cc4eb0f674a114b4f846b51a1a907ab192df36eff48576f4"
+    },
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    }
+  }
+}

@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "purpose": "Presentation semantics only; no owner facts",
+  "kinds": {
+    "rate": {
+      "context": [
+        {
+          "when": [
+            "amount_minor",
+            "unit",
+            "duration_minutes"
+          ],
+          "include": [
+            "service_id",
+            "audience_id",
+            "currency",
+            "unit",
+            "duration_minutes",
+            "calculation_rule",
+            "tax_note"
+          ]
+        }
+      ]
+    },
+    "rental_package": {
+      "context": [
+        {
+          "when": [
+            "amount_minor"
+          ],
+          "include": [
+            "audience_id",
+            "currency",
+            "period_label",
+            "duration_minutes",
+            "terms"
+          ]
+        },
+        {
+          "when": [
+            "equipment_included"
+          ],
+          "include": [
+            "zone_ids"
+          ]
+        }
+      ]
+    },
+    "policy": {
+      "context": [
+        {
+          "when": [
+            "decision",
+            "exceptions",
+            "details",
+            "conditions_all"
+          ],
+          "include": [
+            "decision",
+            "conditions_all",
+            "exceptions",
+            "details"
+          ]
+        }
+      ]
+    },
+    "game_mode": {
+      "context": [
+        {
+          "when": [
+            "players_min",
+            "players_max",
+            "network_requirement",
+            "studio_supported"
+          ],
+          "include": [
+            "mode_name",
+            "platform"
+          ]
+        }
+      ]
+    },
+    "control_set": {
+      "context": [
+        {
+          "when": [
+            "bindings",
+            "game_version"
+          ],
+          "include": [
+            "platform",
+            "input_device",
+            "preset"
+          ]
+        }
+      ]
+    },
+    "competition_rule": {
+      "context": [
+        {
+          "when": [
+            "text"
+          ],
+          "include": [
+            "heading",
+            "section_number",
+            "completeness"
+          ]
+        }
+      ]
+    },
+    "schedule": {
+      "context": [
+        {
+          "when": [
+            "open_periods",
+            "bookable_periods",
+            "maintenance_periods"
+          ],
+          "include": [
+            "timezone",
+            "weekday",
+            "zone_ids"
+          ]
+        }
+      ]
+    },
+    "closure": {
+      "context": [
+        {
+          "when": [
+            "state",
+            "open_periods",
+            "bookable_periods"
+          ],
+          "include": [
+            "local_date",
+            "zone_ids"
+          ]
+        }
+      ]
+    }
+  },
+  "labels": {
+    "service": {
+      "session_minutes": {
+        "th": "เวลาเล่น (นาที)",
+        "en": "Play time (minutes)"
+      },
+      "occupancy_minutes": {
+        "th": "เวลาที่ล็อกเครื่อง (นาที)",
+        "en": "Reserved time (minutes)"
+      }
+    },
+    "rate": {
+      "amount_minor": {
+        "th": "ราคา",
+        "en": "Price"
+      },
+      "unit": {
+        "th": "หน่วยคิดราคา",
+        "en": "Billing unit"
+      },
+      "calculation_rule": {
+        "th": "วิธีคิดราคา",
+        "en": "Calculation rule"
+      }
+    },
+    "rental_package": {
+      "amount_minor": {
+        "th": "ราคาแพ็กเกจ",
+        "en": "Package price"
+      },
+      "equipment_included": {
+        "th": "อุปกรณ์ที่รวม",
+        "en": "Included equipment"
+      },
+      "room_seats": {
+        "th": "ที่นั่งในพื้นที่",
+        "en": "Room seats"
+      },
+      "duration_minutes": {
+        "th": "ระยะเวลา (นาที)",
+        "en": "Duration (minutes)"
+      }
+    },
+    "schedule": {
+      "open_periods": {
+        "th": "เวลาเปิดพื้นที่",
+        "en": "Opening periods"
+      },
+      "bookable_periods": {
+        "th": "ช่วงที่จองได้",
+        "en": "Bookable periods"
+      },
+      "maintenance_periods": {
+        "th": "ช่วงบำรุงรักษา",
+        "en": "Maintenance periods"
+      },
+      "zone_ids": {
+        "th": "โซนที่ใช้ตารางนี้",
+        "en": "Applicable zones"
+      }
+    },
+    "closure": {
+      "zone_ids": {
+        "th": "โซนที่ได้รับผล",
+        "en": "Affected zones"
+      },
+      "state": {
+        "th": "สถานะตามประกาศ",
+        "en": "Notice status"
+      }
+    },
+    "game_service": {
+      "game_version": {
+        "th": "เวอร์ชันที่ติดตั้ง",
+        "en": "Installed game version"
+      }
+    },
+    "control_set": {
+      "game_version": {
+        "th": "เวอร์ชันที่ตรวจชุดปุ่ม",
+        "en": "Version used to verify controls"
+      }
+    },
+    "contact": {
+      "value": {
+        "th": "ช่องทางติดต่อ",
+        "en": "Contact"
+      },
+      "office_hours": {
+        "th": "เวลาที่ช่องทางนี้ตอบ",
+        "en": "Contact response hours"
+      }
+    }
+  }
+}

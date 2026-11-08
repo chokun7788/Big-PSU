@@ -1,0 +1,150 @@
+{
+  "question_key": "d017691187eae03573a5bed4fd50eec11f978a6eb13340bebaafd14c7badcd85",
+  "example_sha256": "fe6feb40f4161738591a16a9f29710c16711ee12176f7356c0274ed8c26ed628",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One reverse button-binding lookup asks the function of the Plus button in Super Mario Odyssey.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/control/input_bindings is retained.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Super Mario Odyssey is game target, Nintendo Switch platform and ปุ่ม + (Plus) the exact requested physical-button scope.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The supplied platform/button are local; no keyboard layout or prior game is inherited.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The Plus spelling and symbol identify one button, not a arithmetic sum, extra task or requested pause permission.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "controls_nintendo_super_mario_odyssey binds that button in its Nintendo set; device/preset/game-version fields remain unknown and are not supplied by the title.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร"
+      ],
+      "source_record_ids": [
+        "controls_nintendo_super_mario_odyssey",
+        "game_detail_super_mario_odyssey"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No pause/options-menu function or controller compatibility answer enters labels.",
+      "raw_quotes": [
+        "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Exact input device, preset and game version are unconfirmed.",
+      "handling": "Present source-scoped bindings only and preserve controller/version caveats."
+    }
+  ],
+  "historical_review_row": 198,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Mario Odyssey",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [
+      "Nintendo Switch"
+    ],
+    "tasks": [
+      {
+        "quote": "ในเกม Super Mario Odyssey บน Nintendo Switch ปุ่ม + (Plus) ใช้ทำอะไร",
+        "domain": "game_controls",
+        "operation": "control",
+        "facet": "input_bindings",
+        "target": "Super Mario Odyssey",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ปุ่ม + (Plus)",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_nintendo_super_mario_odyssey": {
+      "revision": 6,
+      "record_sha256": "6c8492ed6930de946f02864afb1106cd745c297ee045e2370b409d8ddc645a43"
+    },
+    "game_detail_super_mario_odyssey": {
+      "revision": 9,
+      "record_sha256": "f4fd3437eedd84f6aa43e9aa65f336cace58806e9cafbb367d824c802cea9614"
+    }
+  }
+}

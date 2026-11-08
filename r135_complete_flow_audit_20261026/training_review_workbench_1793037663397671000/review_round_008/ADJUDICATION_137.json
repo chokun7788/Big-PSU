@@ -1,0 +1,216 @@
+{
+  "question_key": "3e3bf5f32c49dea818052e61126c5c81524eb250d8ca81721a73117110aaa59a",
+  "example_sha256": "ceb7f9c97dbfbf0bb93e3c4a0bbcbecf4024329d4699c0e5d48d96e5248b14e5",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "Two needs ask booking procedure and available days for the same VR service.",
+      "raw_quotes": [
+        "How to book VR and what days are available"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy plus schedule/detail/bookable_periods preserve procedure and calendar needs.",
+      "raw_quotes": [
+        "How to book VR and what days are available"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "VR is the explicit first-task service and target for both tasks.",
+      "raw_quotes": [
+        "How to book VR and what days are available"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "Add raw-bound target/service shared edges to the ellipsis in what days are available.",
+      "raw_quotes": [
+        "How to book VR and what days are available"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "No requested date or actual free slot is supplied; weekly bookable days differ from live occupancy.",
+      "raw_quotes": [
+        "How to book VR and what days are available"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Weekly schedule bookable_periods/service_slots are separate from conflicted open_periods and from booking_steps.",
+      "raw_quotes": [
+        "How to book VR and what days are available"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_booking_steps",
+        "migrated_schedule_0",
+        "migrated_schedule_1",
+        "migrated_schedule_2",
+        "migrated_schedule_3",
+        "migrated_schedule_4",
+        "migrated_schedule_5",
+        "migrated_schedule_6"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No weekday list, opening time, live-free verdict or booked reservation is taught.",
+      "raw_quotes": [
+        "How to book VR and what days are available"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Weekly bookable periods/service slots are distinct from conflicted physical opening fields and live occupancy.",
+      "handling": "Preserve the requested calendar facet and service scope."
+    }
+  ],
+  "historical_review_row": 137,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How to book VR",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "what days are available",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "bookable_periods",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "multiple",
+    "context_quotes": [
+      "VR"
+    ],
+    "tasks": [
+      {
+        "quote": "How to book VR",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      },
+      {
+        "quote": "what days are available",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "bookable_periods",
+        "target": "VR",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "VR",
+            "source_record_id": "",
+            "scope": "shared"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t2"
+      }
+    ],
+    "shared_bindings": [
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "target",
+        "quote": "VR",
+        "basis": "source_related_ellipsis"
+      },
+      {
+        "source_task_id": "t1",
+        "target_task_id": "t2",
+        "slot": "service",
+        "quote": "VR",
+        "basis": "source_related_ellipsis"
+      }
+    ]
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_booking_steps": {
+      "revision": 4,
+      "record_sha256": "3d46ed93710725b42212be78cc05d7197ba3043e04ade3b26ae2890e897dd846"
+    },
+    "migrated_schedule_0": {
+      "revision": 4,
+      "record_sha256": "43877514a17f5ca9e24a3d1036e1746148a1ad002e7096d2d4db073f6ce27d0a"
+    },
+    "migrated_schedule_1": {
+      "revision": 3,
+      "record_sha256": "a30b631c4777569af4196a5537dfb7ef5e38727adc9201eee6ca5a1d689e397c"
+    },
+    "migrated_schedule_2": {
+      "revision": 3,
+      "record_sha256": "54f567b0a429b84ed238f9f73ecf0a3aa19e5f16cd4a3f876eb991506ce704a7"
+    },
+    "migrated_schedule_3": {
+      "revision": 3,
+      "record_sha256": "9c34b6adae2e230074b10139043344b06136d0427dcc11b1e061cd5e8ba35aad"
+    },
+    "migrated_schedule_4": {
+      "revision": 4,
+      "record_sha256": "eaa9a80ab818d05e0752ea5c0f6f7a3bce2bace74b333eec394bc580d9deba41"
+    },
+    "migrated_schedule_5": {
+      "revision": 4,
+      "record_sha256": "4a62a2d3da96f4f392888a63fd7d5b96c13210fa5db1bab0d6b0193609894733"
+    },
+    "migrated_schedule_6": {
+      "revision": 4,
+      "record_sha256": "4619ab2ac36c59d3b782383119b445c81bf7b6c52f4d8348cec3433c8b94b5f3"
+    }
+  }
+}

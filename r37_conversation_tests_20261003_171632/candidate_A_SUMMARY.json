@@ -1,0 +1,49 @@
+{
+  "requests": 41,
+  "passed": 38,
+  "failed": [
+    {
+      "session": "typo",
+      "turn": 3,
+      "expect": {
+        "q": "ขอกฎหน่อยยย",
+        "kind": "overview",
+        "game": "valorant"
+      },
+      "errors": [
+        "wrong_domain:rules",
+        "not_source_overview",
+        "wrong_or_missing_rulebook_sources",
+        "fewer_than_three_sections"
+      ]
+    },
+    {
+      "session": "typo",
+      "turn": 4,
+      "expect": {
+        "q": "มีข้ออื่นอีกป่าว",
+        "kind": "more",
+        "game": "valorant"
+      },
+      "errors": [
+        "wrong_domain:clarification",
+        "not_source_overview",
+        "wrong_or_missing_rulebook_sources",
+        "fewer_than_two_new_clauses"
+      ]
+    },
+    {
+      "session": "english",
+      "turn": 4,
+      "expect": {
+        "q": "any other rulez?",
+        "kind": "more",
+        "game": "valorant"
+      },
+      "errors": [
+        "repeated_clauses:1"
+      ]
+    }
+  ],
+  "scope": "HTTP route + catalogue + same-game sources + overview sections + literal new-clause checks + topic/edition boundaries; not full expert or owner approval"
+}

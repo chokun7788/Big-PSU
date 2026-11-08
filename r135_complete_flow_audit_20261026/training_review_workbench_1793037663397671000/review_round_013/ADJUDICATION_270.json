@@ -1,0 +1,128 @@
+{
+  "question_key": "fe55f25aaebb1da6334206ac51f14ddbe94f9f67fe187a21cdfabd862779dbb9",
+  "example_sha256": "00a74316905dcfb380770f472eb26aff7a344bfd5948b515129caf2c787d6197",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Thai question asks who holds the academic-affairs assistant-president role.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "members/role_lookup must return display_name rather than role.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add exact ผู้ช่วยอธิการบดีฝ่ายวิชาการ as requested role scope.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No date, tenure, team or inherited person is supplied.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A recorded role/name pair is not independent proof of current incumbency.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned member_832e24bbcd11737e revision5 records separate role and name source fields; similarly named computer technical roles are not substitutes.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ"
+      ],
+      "source_record_ids": [
+        "member_832e24bbcd11737e"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No person name, current titleholder assertion or authority fact enters labels.",
+      "raw_quotes": [
+        "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Recorded member fields do not prove current tenure.",
+      "handling": "Retain source-version/currentness limits."
+    }
+  ],
+  "historical_review_row": 270,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "role",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "people",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอสอบถามหน่อยครับ ใครเป็นผู้ช่วยอธิการบดีฝ่ายวิชาการ",
+        "domain": "members",
+        "operation": "role_lookup",
+        "facet": "display_name",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "ผู้ช่วยอธิการบดีฝ่ายวิชาการ",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "member_832e24bbcd11737e": {
+      "revision": 5,
+      "record_sha256": "f2bf9cd354f0c4ff0eaa69450bf76f6c9978b6a4bcf4541a2d7d401fbd9d6fc1"
+    }
+  }
+}

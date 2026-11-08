@@ -1,0 +1,16 @@
+{
+  "state": "design_only_not_implemented",
+  "distinct_obligations": ["cancel_procedure", "cancel_policy_conditions"],
+  "requirements": [
+    "Detect a how-to predicate for cancellation separately from advance-deadline or permission questions, preserving text spans and other requested tasks.",
+    "Select procedure only if explicit source action is cancellation of a booking and applicable preconditions are independently bound to the request. A deadline-only policy and a change-time procedure do not prove a general cancellation procedure.",
+    "A typed procedure requires verified revision, step values, action, preconditions and source evidence in the actual execution receipt; no textual alias, record id, source label or semantic_entailment=false alone establishes it.",
+    "When no acceptable procedure is delivered, retain independent policy and price claims, leave the procedure obligation unfulfilled, and explicitly disclose the missing procedure in the requested locale. This is bounded to the checked snapshot, not a statement that no procedure exists anywhere.",
+    "A future owner-added procedure must remain discoverable, preserve steps and conditions, and be checked against actual source revision and evidence. Forged snapshots must not authorize delivery.",
+    "Test thai and english direct and compound questions, deadline-only and new booking negatives, scenario-specific changes, actual isolated source edits, source withdrawal, altered preconditions and forged receipts; follow with affected regressions."
+  ],
+  "references": ["CANCEL_BOOKING_TYPED_PROCEDURE_RECEIPTS_20261029.json", "cancel_procedure_scope_controls_1793212069462300700/RESULT.json"],
+  "implementation_risks": ["Adding only a renderer notice could hide unfulfilled obligations or suppress a future valid source.", "Mapping every cancellation mention to an unconditional procedure could project change_time conditions into unrelated requests.", "Treating task_completion/owner_policy as semantic procedure proof would repeat the current issue."],
+  "http_attempted": false,
+  "model_called": false
+}

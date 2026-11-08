@@ -1,0 +1,102 @@
+"""Exact identities and inverse operators over current source facts.
+
+No answer strings, benchmark keys or source record IDs live here. Model
+selection cannot substitute a nearby button, actor or title for an exact one.
+"""
+import re
+from .scope import norm,contains
+from .readers import confirmed,blocked,pending
+
+def button_text(f):
+    return norm(f.get('button_label',{}).get('en') or f['value']['en'].split(' — ')[0])
+
+def button_codes(text):
+    return set(re.findall(r'(?<![a-z0-9])(?:[lr][123]|zl|zr)(?![a-z0-9])',norm(text)))
+
+def controls(index,q):
+    pool=index.bind('C05',q)
+    if not pool:return None
+    for pattern,platform in [(r'\bps5\b|playstation','playstation'),(r'\bpc\b|keyboard','pc'),(r'nintendo|switch','switch')]:
+        if re.search(pattern,q,re.I):
+            pool=[f for f in pool if platform in norm(f.get('platform',''))];break
+    codes=button_codes(q)
+    # Named key expressions are read only from their binding column, never
+    # from explanatory notes (R2 notes can themselves mention L1).
+    labels={button_text(f) for f in pool}
+    labels={s for s in labels if len(s)>1 and contains(q,s)}
+    if labels:
+        longest={s for s in labels if not any(s!=t and contains(t,s) for t in labels)}
+    else:longest=set()
+    single=re.findall(r'(?:\bbutton\s+|ปุ่ม\s*)([a-z0-9])(?=\s|[?.,]|$)',norm(q))
+    wanted=bool(codes or longest or single)
+    if not wanted:return None
+    if not pool:return blocked('C05','control_platform_not_recorded')
+    if len({f['record_id'] for f in pool})>1:return blocked('C05','control_platform_required','missing_input')
+    # Prefer an entire recorded chord over its component keys. A chord not in
+    # the source is never answered using the closest component.
+    chord=re.search(r'(?<![a-z0-9])(?:[lr][123]|zl|zr)\s*\+\s*(?:[lr][123]|zl|zr)(?![a-z0-9])',norm(q))
+    if chord:
+        expr=re.sub(r'\s+','',chord[0])
+        chosen=[f for f in pool if re.sub(r'\s+','',button_text(f)).split('(')[0]==expr]
+    elif codes:
+        chosen=[f for f in pool if button_codes(button_text(f)) and button_codes(button_text(f))<=codes]
+    elif single:
+        chosen=[f for f in pool if button_text(f) in single]
+    else:
+        chosen=[f for f in pool if button_text(f) in longest]
+    if not chosen:return blocked('C05','exact_button_not_recorded')
+    result=confirmed('C05',chosen,'exact_button_reverse_lookup',operator='button_to_action',requested_button_codes=sorted(codes))
+    found=set().union(*(button_codes(button_text(f)) for f in chosen))
+    if codes-found:
+        result.status='partial';result.metadata['unanswered_buttons']=sorted(codes-found)
+    result.locked=True
+    return result
+
+def inverse_people(index,q):
+    if not re.search(r'ใคร|รายชื่อ|\b(?:who|names?|list)\b',q,re.I):return None
+    roles=[f for f in index.bycat['C02'] if f['facet']=='role' and any(contains(q,s) for s in f['value'].values())]
+    if not roles:return None
+    mentioned={norm(s) for f in roles for s in f['value'].values() if contains(q,s)}
+    longest={s for s in mentioned if not any(s!=t and contains(t,s) for t in mentioned)}
+    roles=[f for f in roles if any(norm(s) in longest for s in f['value'].values())]
+    team_labels={norm(s) for f in index.bycat['C02'] if f['facet']=='team' for s in f['value'].values() if contains(q,s)}
+    if team_labels:
+        allowed={f['record_id'] for f in index.bycat['C02'] if f['facet']=='team' and any(norm(s) in team_labels for s in f['value'].values())}
+        roles=[f for f in roles if f['record_id'] in allowed]
+    if not roles:return blocked('C02','role_and_team_intersection_empty')
+    result=confirmed('C02',roles,'inverse_role_to_people',operator='role_to_people',matched_people=len({f['record_id'] for f in roles}))
+    result.locked=True
+    return result
+
+def coordinated_games(index,q):
+    # Resolve literal shared-prefix edition lists only, then require each
+    # expanded title to match exactly one current game. Never fuzzy-match I/II.
+    m=re.search(r'([^:?!]+?\b(part|chapter|episode))\s+(IV|I{1,3}|V|\d+)\s*/\s*(?:\2\s+)?(IV|I{1,3}|V|\d+)(?!\w)',q,re.I)
+    if not m:return []
+    from .projection import title
+    found=[]
+    for part in [m[3],m[4]]:
+        matches=[]
+        for rid,r in index.records.items():
+            if r.get('kind')!='game':continue
+            for s in [*title(r).values(),*sum(r.get('aliases',{}).values(),[])]:
+                plain=norm(s)
+                if re.search(r'\b(?:part|chapter|episode)\s+'+re.escape(norm(part))+r'$',plain) and contains(m[1]+' '+part,plain):
+                    matches.append(rid);break
+        if len(set(matches))!=1:return []
+        found.extend(matches)
+    return list(dict.fromkeys(found))
+
+def lookup(index,cat,q):
+    if cat=='C05':return controls(index,q)
+    if cat=='C02':return inverse_people(index,q)
+    return None
+
+def validate(index,cat,q,plan):
+    """Last identity check after model selection; do not certify semantics."""
+    if cat=='C05' and plan.ids:
+        expected=controls(index,q)
+        if expected is not None and not set(plan.ids)<=set(expected.ids):return blocked(cat,'final_button_identity_mismatch')
+    if any(not index.byid[k].get('evidence_refs') for k in plan.ids if k in index.byid):return blocked(cat,'final_source_reference_missing')
+    plan.metadata['evidence_identity_checked']=True
+    return plan

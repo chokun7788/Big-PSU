@@ -1,0 +1,243 @@
+--- before/app/pipeline/competition_detail.py
++++ after/app/pipeline/competition_detail.py
+@@ -26,7 +26,7 @@
+     DetailConcept('language', ('cs2',), r'ภาษาอะไร|ภาษา.*ประท้วง|ประท้วง.*ภาษา|which language|official language|(?:protest|objection).{0,45}(?:English|Thai|language)|(?:English|Thai|language).{0,45}(?:protest|objection)', r'ภาษาทางการ|official language'),
+     DetailConcept('discord', ('cs2',), r'discord', r'เซิร์ฟเวอร์ Discord|Discord server'),
+     DetailConcept('roster_change', ('cs2',), r'เปลี่ยน(?:แปลง)?สมาชิก|เปลี่ยนตัว(?!ละคร)|สลับผู้เล่น|เปลี่ยนรายชื่อ|change (?:team )?members|teams? change|member changes|(?:swap|replace|change).{0,20}(?:players?|starters?)', r'เปลี่ยนแปลงสมาชิก|No team member changes'),
+-    DetailConcept('team_player_count', ('cs2',), r'ผู้เล่น(?:หลัก|ตัวจริง).{0,20}(?:กี่|จำนวน)|(?:ส่ง|ต้องมี).{0,12}ผู้เล่น.{0,12}(?:กี่|คน)|(?:how many|number of).{0,20}(?:starting players|starters)|(?:starting players|starters).{0,20}(?:how many|number)', r'องค์ประกอบทีม.*ผู้เล่น 5 คน|Team composition.*5 players'),
++    DetailConcept('team_player_count', ('cs2',), r'ผู้เล่น(?:หลัก|ตัวจริง).{0,20}(?:กี่|จำนวน)|(?:ส่ง|ต้องมี).{0,12}ผู้เล่น.{0,12}(?:กี่|คน)|สมาชิกทีม.{0,35}(?:กี่คน|จำนวน)|(?:how many|number of).{0,25}members.{0,30}team|(?:how many|number of).{0,20}(?:starting players|starters)|(?:starting players|starters).{0,20}(?:how many|number)', r'องค์ประกอบทีม.*ผู้เล่น 5 คน|Team composition.*5 players'),
+     DetailConcept('withdrawal', ('cs2',), r'ถอนตัว|withdraw', r'สมาชิกคนใดถอนตัว|If any member withdraws'),
+     DetailConcept('team_limit', ('cs2',), r'ลงได้กี่ทีม|ลงแข่ง.*กี่ทีม|how many teams.*(?:player|represent)|represent.*teams', r'ทีมเดียวเท่านั้น|only one team'),
+     DetailConcept('eligibility', ('cs2',), r'คุณสมบัติผู้สมัคร|ใครสมัคร|who is eligible|eligibility', r'เปิดรับเฉพาะ|General eligibility'),
+@@ -85,7 +85,7 @@
+     DetailConcept('prep_personnel', ('cs2','valorant'), r'(?:เตรียมตัว|Match Prep|match preparation).*(?:กี่คน|players)|(?:how many players|players).*(?:prepare|match prep|match preparation)', r'จำนวนบุคลากร.*6|No more than 6 players|preparation.*6'),
+     DetailConcept('competition_food', ('cs2','valorant'), r'กินดื่ม|อาหาร|เครื่องดื่ม|food|drinks?|beverages?', r'น้ำดื่ม.*ภาชนะ.*หมากฝรั่ง|drinking water.*sealed.*chewing gum'),
+     DetailConcept('final_authority', ('cs2',), r'คำตัดสิน.*(?:ที่สุด|สุดท้าย)|ผู้จัดเปลี่ยนกฎ|decisions? (?:are |is )?final|organizers?.*amend', r'อำนาจตัดสิน.*ที่สิ้นสุด|decisions.*final'),
+-    DetailConcept('regulation_timeout', ('valorant',), r'(?:Tactical Timeouts?|เวลานอกทางยุทธวิธี).*(?:รอบปกติ|กี่ครั้ง|regulation|how many)|(?:regulation|how many).*(?:Tactical Timeouts?|เวลานอก)', r'ขอได้ 2 ครั้งต่อแผนที่|2 requests per map|Each team may request up to 2 timeouts'),
++    DetailConcept('regulation_timeout', ('valorant',), r'(?:Tactical Timeouts?|เวลานอกทางยุทธวิธี).*(?:รอบปกติ|กี่ครั้ง|regulation|how many)|(?:regulation|how many).*(?:Tactical Timeouts?|เวลานอก)|เวลานอก.{0,20}กี่ครั้ง', r'ขอได้ 2 ครั้งต่อแผนที่|2 requests per map|Each team may request up to 2 timeouts'),
+     DetailConcept('technical_reasons', ('valorant',), r'(?:Technical Pause|หยุดเกมทางเทคนิค).*(?:ปัญหา|เหตุ|qualify|reasons?)|(?:problems|reasons).*(?:Technical Pause|หยุดเกมทางเทคนิค)', r'ใช้เมื่อมีปัญหา|Used when there are.*(?:malfunctions|disconnections|software)'),
+     DetailConcept('ability_boundaries', ('valorant',), r'สกิลนอกขอบ|สกิล.*นอก.*แผนที่|abilities.*outside.*(?:map|boundar)', r'ห้ามใช้สกิล.*นอก|Abilities.*not.*outside|ข้อยกเว้นพิเศษ.*KAY/O|Special exception:.*KAY/O'),
+     DetailConcept('cypher_camera', ('valorant',), r'กล้อง Cypher|Cypher cameras?', r'ห้ามวางกล้อง Cypher|Cypher cameras.*must not'),
+--- before/app/pipeline/competition_targets.py
++++ after/app/pipeline/competition_targets.py
+@@ -66,7 +66,7 @@
+     "protest", "roster", "substitute", "forfeit", "anti-cheat", "cheating", "conduct",
+     "sportsmanship", "technical pause", "timeout", "pause", "disconnect",
+     "มารยาท", "พฤติกรรม", "ตัวสำรอง", "ปรับแพ้", "ประท้วง", "ข้อพิพาท",
+-    "หลุดเกม", "การเชื่อมต่อ", "การหยุดเกม", "พักเกม", "โกง",
++    "หลุดเกม", "การเชื่อมต่อ", "การหยุดเกม", "พักเกม", "เวลานอก", "โกง",
+ )
+ 
+ # These phrases are not sufficient on their own: a question about a game can
+@@ -213,7 +213,7 @@
+         # Participant roles and a paired display-setting request express a
+         # rulebook proposition without requiring the word "rules". Bind these
+         # to an exact game; changing a character is not changing a roster.
+-        roles = bool(re.search(r"ผู้เล่น(?:หลัก|ตัวจริง).{0,20}(?:กี่|จำนวน)|(?:ส่ง|ต้องมี).{0,12}ผู้เล่น.{0,12}(?:กี่|คน)|(?:how many|number of).{0,20}(?:starting players|starters)", query, re.I))
++        roles = bool(re.search(r"ผู้เล่น(?:หลัก|ตัวจริง).{0,20}(?:กี่|จำนวน)|(?:ส่ง|ต้องมี).{0,12}ผู้เล่น.{0,12}(?:กี่|คน)|สมาชิกทีม.{0,35}(?:กี่คน|จำนวน)|(?:how many|number of).{0,25}(?:starting players|starters)|(?:how many|number of).{0,25}members.{0,30}team", query, re.I))
+         cs2_roster = any(t.game_id == 'cs2' for t in target.targets) and bool(re.search(r"เปลี่ยนตัว(?!ละคร)|สลับผู้เล่น|เปลี่ยน(?:แปลง)?สมาชิก|(?:swap|replace|change).{0,20}(?:players?|starters?)", query, re.I))
+         valo_display = any(t.game_id == 'valorant' for t in target.targets) and bool(re.search(r"ปิด.{0,20}(?:เลือด|ศพ)|(?:เลือด|ศพ).{0,20}ปิด|turn.{0,12}off.{0,25}(?:blood|bodies)|(?:blood|bodies).{0,25}(?:off|display|settings)", query, re.I))
+         rov_late = any(t.game_id == 'rov' for t in target.targets) and bool(re.search(r"มาสาย|(?:เริ่ม|เริ่มแข่ง).{0,15}ช้า|(?:arrive|arrival|team is|starts?).{0,50}late", query, re.I))
+--- before/app/pipeline/competition_taxonomy.py
++++ after/app/pipeline/competition_taxonomy.py
+@@ -208,6 +208,8 @@
+         for pause_term in ("pause", "timeout", "technical pause", "หยุดเกม", "พักเกม")
+     ):
+         return "pause_timeout"
++    if any(re.search(r'สมาชิกทีม.{0,35}(?:กี่คน|จำนวน)|(?:how many|number of).{0,25}members.{0,30}team',variant,re.I) for variant in variants):
++        return 'team_size'
+     # When a user asks for the penalty caused by misconduct, the proposition
+     # still requires a conduct clause. A generic penalty table for exploits
+     # cannot establish that profanity or unsportsmanlike behavior is an
+--- before/app/pipeline/service_fact_query.py
++++ after/app/pipeline/service_fact_query.py
+@@ -10,6 +10,7 @@
+ from app.core.typo_similarity import osa_distance
+ 
+ LEXICON=(
++ ('เครื่อง',r'จอง|จออง|หลาย|เปลี่ยน|โอน'),
+  ('สมาชิก',r'สมัคร|เข้า|เล่น|ใช้'),('แผนที่',r'ลิง|ไป|ขอ'),
+  ('จอดรถ',r'มี|รถ|มอเตอร์|มอไซ'),('คีย์บอร์ด',r'ส่วนตัว|ตัวเอง|นำ|เอา'),
+  ('เมาส์',r'ส่วนตัว|ของผม|ตัวเอง|นำ|เอา'),('สลิป',r'แนบ|รูป|ผิด|โอน'),
+--- before/app/pipeline/user_service_facts.py
++++ after/app/pipeline/user_service_facts.py
+@@ -32,7 +32,14 @@
+         return dict(answer=answer,hits=[],mode='pipeline:service_fact_scope_clarification',route=PipelineRoute('clarification','ambiguous_service_fee',.98,'clarification','low','multiple prior service subjects'),validation=ValidationResult(True,(),('ambiguous_service_fee',)),trace=[PipelineTrace('service_fact_scope_guard','clarification',.98,'do not choose the first prior subject',{'service_fact_state':ambiguous})])
+     # Tournament rules and zone-hire contracts are separate sources/scopes.
+     if _has(q,r'แข่งขัน|ลงแข่ง|ตอนแข่ง|กฎแข่ง|กติกา|\b(?:competition|tournament|esports event|rental|hire)\b|เหมา'):return None
++    if _has(q,r'สมาชิกทีม|\bmembers\b.*\bteam\b'):
++        from app.pipeline.competition_targets import looks_like_competition_rule_query
++        if looks_like_competition_rule_query(q):return None
++    if _has(q,r'parking (?:area )?in bangkok|(?:ศูนย์|ที่จอดรถ).{0,20}(?:ที่|ใน)กรุงเทพ'):
++        return dict(answer='The verified service facts cover PSU Esports Studio in Phuket. They do not confirm parking in Bangkok.' if en else 'ข้อมูลบริการที่ยืนยันเป็นของ PSU Esports Studio วิทยาเขตภูเก็ต ยังใช้ยืนยันที่จอดรถของศูนย์ในกรุงเทพไม่ได้ครับ',hits=[],mode='pipeline:service_fact_scope_clarification',route=PipelineRoute('clarification','external_location_scope',.98,'clarification','low','explicit outside-location request'),validation=ValidationResult(True,(),('external_location_scope',)),trace=[PipelineTrace('service_fact_scope_guard','clarification',.98,'do not apply Phuket facts to a different location',{})])
+     if _has(q,r'แผนที่.*(?:เกม|valorant|cs2)|(?:เกม|valorant|cs2).*แผนที่|\b(?:game map|map in|maps?.*(?:valorant|cs2))\b'):return None
++    if _has(q,r'(?:how many|number of).{0,25}(?:member groups|groups of members|members\b)|กลุ่มสมาชิก|รายชื่อสมาชิก|สมาชิก(?:ของศูนย์)?กี่(?:คน|กลุ่ม)') and not _has(q,r'steam|สมาชิกทีม|\bteam\b'):
++        return None  # Directory quantities are distinct from access membership.
+     if _has(q,r'สมาชิก|\b(?:membership|members?)\b') and _has(q,r'steam|สมาชิกทีม|\b(?:team|xbox live|nintendo online)\b'):
+         answer=('Studio membership requirements do not establish game-account or team membership requirements. Please specify the account service or competition rule you want to check.' if en else 'เงื่อนไขสมาชิกของศูนย์ใช้แทนข้อกำหนดบัญชีเกมหรือสมาชิกทีมไม่ได้ครับ ต้องตรวจข้อกำหนดของบัญชีเกมหรือรายการแข่งขันนั้นแยกกัน')
+         return dict(answer=answer,hits=[],mode='pipeline:service_fact_scope_clarification',route=PipelineRoute('clarification','external_membership_scope',.98,'clarification','low','studio access is not game account or team membership'),validation=ValidationResult(True,(),('external_membership_scope',)),trace=[PipelineTrace('service_fact_scope_guard','clarification',.98,'separate studio membership from account and team membership',{})])
+--- before/app/session/conversation_store.py
++++ after/app/session/conversation_store.py
+@@ -18,10 +18,15 @@
+ 
+ 
+ class ConversationStore:
+-    def __init__(self, *, ttl=1800.0, max_sessions=512, clock=time.monotonic):
++    def __init__(self, *, ttl=1800.0, max_sessions=512, clock=time.monotonic, persistence_path=None, wall_clock=time.time):
+         self.ttl, self.max_sessions, self.clock = ttl, max_sessions, clock
+         self._sessions = OrderedDict()
+         self._guard = threading.RLock()
++        from app.session.state_persistence import StatePersistence
++        self._persistence=StatePersistence(persistence_path,max_sessions=max_sessions,wall_clock=wall_clock) if persistence_path else None
++
++    def _save(self,session_id):
++        if self._persistence:self._persistence.save(session_id,self._sessions[session_id],now=self.clock())
+ 
+     def _record(self, session_id):
+         now=self.clock()
+@@ -31,7 +36,8 @@
+         if session_id not in self._sessions:
+             while len(self._sessions) >= self.max_sessions:
+                 self._sessions.popitem(last=False)
+-            self._sessions[session_id]={'revision':0,'active':None,'history':[],'turns':OrderedDict(),'expires':now+self.ttl,
++            restored=self._persistence.load(session_id,now=now,ttl=self.ttl) if self._persistence else None
++            self._sessions[session_id]=restored or {'revision':0,'active':None,'history':[],'turns':OrderedDict(),'expires':now+self.ttl,
+                                        'task_memory':OrderedDict(),'current_task_keys':[]}
+         r=self._sessions[session_id]
+         r['expires']=now+self.ttl
+@@ -80,6 +86,7 @@
+             r['turns'][turn_id]=turn
+             while len(r['turns'])>8:
+                 r['turns'].popitem(last=False)
++            self._save(session_id)
+             return copy.deepcopy(turn)
+ 
+     def complete(self, session_id, turn_id, revision, response, *, plan=None, fact_state=None):
+@@ -122,6 +129,7 @@
+                      'service_fact_state':copy.deepcopy(fact_state) if fact_state is not None else service_fact_state(response)},
+                 ])
+                 r['history']=r['history'][-16:]
++                self._save(session_id)
+             return True
+ 
+     def delivery(self, session_id, turn_id, status):
+@@ -131,6 +139,7 @@
+             turn=self._record(session_id)['turns'].get(turn_id)
+             if turn and turn['delivery'] != 'client_acknowledged':
+                 turn['delivery']=status
++                self._save(session_id)
+ 
+     def acknowledge(self, session_id, response_id):
+         with self._guard:
+@@ -139,6 +148,7 @@
+                     turn['delivery']='client_acknowledged'
+                     for task in self._record(session_id)['task_memory'].values():
+                         if task.get('response_id')==response_id:task['acknowledged']=True
++                    self._save(session_id)
+                     return True
+         return False
+ 
+@@ -148,7 +158,13 @@
+             return {'schema_version':1,'revision':r['revision'],'active_task':copy.deepcopy(r['active']),
+                     'task_memory_schema_version':1,'requested_tasks':copy.deepcopy(list(r['task_memory'].values())),
+                     'current_task_keys':list(r['current_task_keys']),
+-                    'delivery':{k:t['delivery'] for k,t in r['turns'].items()},'storage':'parent_memory','survives_server_restart':False}
++                    'delivery':{k:t['delivery'] for k,t in r['turns'].items()},'storage':'sqlite_parent_state' if self._persistence and not self._persistence.last_error else 'parent_memory',
++                    'survives_server_restart':bool(self._persistence and self._persistence.ready and not self._persistence.last_error),
++                    'persistence':self._persistence.health() if self._persistence else {'enabled':False}}
+ 
+ 
+-STORE = ConversationStore(ttl=max(60,float(os.getenv('PSU_CONVERSATION_TTL_SEC','1800'))), max_sessions=max(1,int(os.getenv('PSU_CONVERSATION_MAX_SESSIONS','512'))))
++from pathlib import Path
++def _state_path():
++    if os.getenv('PSU_CONVERSATION_PERSISTENCE','1').lower() in {'0','false','off'}:return None
++    return os.getenv('PSU_CONVERSATION_STATE_PATH') or str(Path(os.getenv('PSU_CHAT_LOG_DIR') or Path(__file__).resolve().parents[2]/'data/state')/'dialogue_state_v1.sqlite3')
++STORE = ConversationStore(ttl=max(60,float(os.getenv('PSU_CONVERSATION_TTL_SEC','1800'))), max_sessions=max(1,int(os.getenv('PSU_CONVERSATION_MAX_SESSIONS','512'))),persistence_path=_state_path())
+--- before/app/session/service_fact_dialogue.py
++++ after/app/session/service_fact_dialogue.py
+@@ -32,6 +32,7 @@
+     state=previous.get('service_fact_state') or {};keys=set(state.get('claim_ids',[]))
+     if not keys:return None
+     q=normalize_text(question).strip(' ?!.');en=locale=='en';query=None
++    q=re.sub(r'\s*(?:ครับ|ค่ะ|นะ|หน่อย|please)$','',q).strip()
+     if ambiguous_fee_followup(question,history):
+         from app.session.context_resolver import ResolvedQuestion
+         return ResolvedQuestion(question,question,True,context_domain='service_policy',context_operation='service_fact_clarification',reason='multiple_acknowledged_service_subjects')
+@@ -44,7 +45,7 @@
+             from app.session.context_resolver import ResolvedQuestion
+             return ResolvedQuestion(question,query,True,context_domain='service_policy',context_operation='service_fact_followup',reason='selected_service_fee_clarification')
+     if 'parking' in keys:
+-        if whole(r'(?:แล้ว)?\s*(?:มอเตอร์ไซค์|มอไซค์|รถยนต์)(?:ล่ะ|ละ|ด้วย|ไหม)?|(?:what about|and) (?:motorcycles?|cars?)'):
++        if whole(r'(?:แล้ว)?\s*(?:มอเตอร์ไซค์|มอไซค์|รถยนต์)(?:ล่ะ|ละ|ด้วย|ไหม|อะ|อ่ะ)?|(?:what about|and) (?:motorcycles?|cars?)'):
+             query='Is there parking for cars and motorcycles?' if en else 'มีที่จอดรถสำหรับรถยนต์และมอเตอร์ไซค์ไหม'
+         elif keys=={'parking'} and set(state.get('missing_fields',[]))<= {'parking_fee'} and whole(r'(?:แล้ว)?(?:จอด)?ฟรี(?:ไหม|มั้ย|ปะ)|(?:is (?:it|parking) free|free|what does it cost)'):
+             query='Is parking free?' if en else 'ค่าจอดรถฟรีไหม'
+@@ -55,7 +56,7 @@
+     if 'checkin_documents' in keys and whole(r'(?:แล้ว)?\s*(?:passport|พาสปอร์ต|บัตรนักศึกษา|บัตรนักเรียน)(?:\s*(?:ล่ะ|ละ|ใช้ได้ไหม))?|(?:and|what about) (?:a )?(?:passport|student card)'):
+         query='What identification can I show when I arrive?' if en else 'ตอนมาถึงต้องแสดงบัตรหรือ passport อะไรได้บ้าง'
+     if 'personal_keyboard_mouse' in keys:
+-        if whole(r'(?:แล้ว)?\s*(?:เมาส์|เม้าส์|คีย์บอร์ด|จอย)(?:ล่ะ|ละ|ใช้ได้ไหม)?|(?:what about|and) (?:a |my )?(?:mouse|keyboard|controller)'):
++        if whole(r'(?:แล้ว)?\s*(?:เมาส์|เม้าส์|คีย์บอร์ด|จอย)(?:ล่ะ|ละ|ใช้ได้ไหม|อะ|อ่ะ)?|(?:what about|and) (?:a |my )?(?:mouse|keyboard|controller)'):
+             controller=bool(re.search(r'จอย|controller',q))
+             query=('Can I bring my own controller for studio use?' if controller else 'Can I bring my own keyboard or mouse?') if en else ('เอาจอยส่วนตัวมาใช้ในศูนย์ได้ไหม' if controller else 'เอาคีย์บอร์ดหรือเมาส์ส่วนตัวมาใช้ได้ไหม')
+     if 'combined_transfer' in keys and re.fullmatch(r'(?:ต้อง)?(?:เขียน|ใส่).{0,15}note|what (?:should|do) i (?:write|put) in (?:the )?note',q,re.I):
+@@ -69,3 +70,31 @@
+     if not query:return None
+     from app.session.context_resolver import ResolvedQuestion
+     return ResolvedQuestion(question,query,True,context_domain='service_policy',context_operation='service_fact_followup',reason='acknowledged_service_fact_followup')
++
++def resolve_service_fact_resume(question,record):
++    """Explicit subject selection may return to an older acknowledged fact."""
++    q=normalize_text(question).strip(' ?!.')
++    match=re.fullmatch(r'(?:กลับไป(?:เรื่อง|ที่)?|กลับมาเรื่อง|ย้อนกลับไปเรื่อง|(?:please )?(?:back to|return to|go back to))\s*(.+)',q,re.I)
++    if not match:return None
++    tail=match[1]
++    subjects={
++      'parking':r'(?:เรื่อง)?(?:ที่จอดรถ|จอดรถ)|(?:the )?parking',
++      'personal_keyboard_mouse':r'(?:เรื่อง)?(?:คีย์บอร์ดส่วนตัว|เมาส์ส่วนตัว|อุปกรณ์ส่วนตัว)|(?:my |the )?(?:own |personal )?(?:keyboard|mouse|personal equipment)',
++      'membership':r'(?:การ)?สมัครสมาชิก|(?:the )?(?:studio )?membership',
++      'wrong_slip':r'(?:รูป)?สลิป(?:ผิด)?|(?:the )?(?:wrong |payment )?slip',
++      'combined_transfer':r'โอนรวม|โอนหลายเครื่อง|(?:the )?(?:combined|single) transfer',
++      'checkin_documents':r'เอกสารเช็กอิน|บัตรเช็กอิน|(?:the )?(?:check.in documents|identification)',
++    }
++    tail=re.sub(r'\s*(?:เมื่อกี้|เดิม|ครับ|ค่ะ|earlier|please)$','',tail).strip()
++    selected=next((key for key,pattern in subjects.items() if re.fullmatch(pattern,tail,re.I)),None)
++    if selected is None:return None
++    acknowledged={turn['response'].get('request_id') for turn in record.get('turns',{}).values() if turn.get('delivery')=='client_acknowledged' and turn.get('response')}
++    for h in reversed(record.get('history',[])):
++        if h.get('role')!='assistant' or h.get('request_id') not in acknowledged:continue
++        state=h.get('service_fact_state') or {};keys=state.get('claim_ids',[])
++        if selected not in keys:continue
++        from app.session.context_resolver import ResolvedQuestion
++        ambiguous=len(keys)!=1 or state.get('pending_field') is not None
++        return ResolvedQuestion(question,question if ambiguous else h.get('resolved_text',question),True,context_domain='service_policy',context_operation='service_fact_lookup',reason='ambiguous_service_resume' if ambiguous else 'explicitly_resumed_acknowledged_service_fact')
++    from app.session.context_resolver import ResolvedQuestion
++    return ResolvedQuestion(question,question,True,context_domain='service_policy',context_operation='service_fact_lookup',reason='no_acknowledged_service_resume')
+--- before/app/session/task_memory.py
++++ after/app/session/task_memory.py
+@@ -120,6 +120,13 @@
+ 
+ def resolve_memory(question,record,*,locale='th'):
+     """Only explicit resume or bounded scope commands may access older tasks."""
++    from app.session.service_fact_dialogue import resolve_service_fact_resume
++    service=resolve_service_fact_resume(question,record)
++    if service:
++        plan=None
++        if service.reason in {'ambiguous_service_resume','no_acknowledged_service_resume'}:
++            plan={'schema_type':'dialogue_state_clarification_v1','schema_version':1,'resolved_query':question,'context_used':True,'reason':service.reason,'message_key':'scope' if service.reason=='ambiguous_service_resume' else 'no_previous_task'}
++        return service.to_dict(),plan
+     q=unicodedata.normalize('NFC',question).casefold().strip().translate(THAI_DIGIT_TRANS);archive=record.get('task_memory',{})
+     def eligible(t):
+         return bool(t.get('acknowledged'))
+--- before/tests/test_service_fact_dialogue_r49.py
++++ after/tests/test_service_fact_dialogue_r49.py
+@@ -61,6 +61,9 @@
+     def test_membership_scope_does_not_leak_to_steam_or_teams(self):
+         for q in ['Steam ต้องเป็นสมาชิกก่อนหรือเปล่า','สมาชิกทีม VALORANT ต้องมีกี่คน']:
+             r=answer_user_service_facts(q)
++            if 'สมาชิกทีม' in q:
++                self.assertIsNone(r)  # Bound roster questions delegate to rulebook coverage.
++                continue
+             self.assertEqual('pipeline:service_fact_scope_clarification',r['mode'])
+             self.assertEqual([],r['hits'])
+ 

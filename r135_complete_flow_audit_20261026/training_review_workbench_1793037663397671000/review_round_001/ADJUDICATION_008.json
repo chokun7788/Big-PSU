@@ -1,0 +1,178 @@
+{
+  "question_key": "04a134cf2a6cb053f24bda6985f9ae0123b9c36adf79f4a11ca98d95fd0948b4",
+  "example_sha256": "8382fb59988e1ddbd00acab013b121202401eb0f306356f3e8ffaf4edfecc709",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One ordinary Nintendo Switch play-price request.",
+      "raw_quotes": [
+        "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount remains price calculation, not equipment specification.",
+      "raw_quotes": [
+        "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PSU Student is audience; Nintendo Switch is service/platform; 2 ชั่วโมง is requested duration.",
+      "raw_quotes": [
+        "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "All slots belong to the same current price task.",
+      "raw_quotes": [
+        "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Do not invent number of people from the source service titles or use a different audience.",
+      "raw_quotes": [
+        "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Two pinned Switch rates distinguish 1–2 and 1–4 participant service listings for the same student/staff audience.",
+      "raw_quotes": [
+        "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": [
+        "migrated_rate_nintendo_switch_60_1_2_psu_student_staff",
+        "migrated_rate_nintendo_switch_60_3_4_psu_student_staff"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No rate, billing quantity or total from either source listing is copied into labels.",
+      "raw_quotes": [
+        "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 8,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "Nintendo Switch",
+      "PSU Student"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU Student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "2 ชั่วโมง",
+      "Nintendo Switch",
+      "PSU Student"
+    ],
+    "tasks": [
+      {
+        "quote": "PSU Student เล่น Nintendo Switch 2 ชั่วโมง เสียกี่บาท",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Nintendo Switch",
+        "constraints": [
+          {
+            "slot": "duration",
+            "quote": "2 ชั่วโมง",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "platform",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "audience",
+            "quote": "PSU Student",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "service",
+            "quote": "Nintendo Switch",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_rate_nintendo_switch_60_1_2_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "1cba6de12cc2ea9ce6e54cc918d3189f0f2e5d951e3ff2a7bff7dd80286840de"
+    },
+    "migrated_rate_nintendo_switch_60_3_4_psu_student_staff": {
+      "revision": 2,
+      "record_sha256": "fab7d7289a95a76abf9b837534b2ba2f8dd057ec2f6a650bb8229f33750aa81a"
+    }
+  }
+}

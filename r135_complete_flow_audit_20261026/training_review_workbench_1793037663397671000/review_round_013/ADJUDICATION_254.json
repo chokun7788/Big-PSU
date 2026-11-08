@@ -1,0 +1,128 @@
+{
+  "question_key": "395964569143417a7bd468743cf59db151c077404be7adacc8635e8cd577cc16",
+  "example_sha256": "35505caec45c6862c435f51f29df5e193a1ae7cc2262d47a380b942ac1abe006",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Thai question asks how to use a controller in Fortnite.",
+      "raw_quotes": [
+        "Fortnite ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "game_controls/list/input_bindings keeps a game-specific control request, without adding general equipment usage.",
+      "raw_quotes": [
+        "Fortnite ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add exact จอย as the requested input-device scope; the protocol has no input_device slot, so requested_scope preserves the literal.",
+      "raw_quotes": [
+        "Fortnite ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No PS5, Xbox, preset, custom layout, game version, button or dialogue history is supplied.",
+      "raw_quotes": [
+        "Fortnite ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A generic controller question cannot certify a platform or default binding layout from the only available source.",
+      "raw_quotes": [
+        "Fortnite ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "Pinned controls_ps5_fortnite revision7 is PlayStation-specific partial_official evidence about menu/preset selection, explicitly not detailed layouts for every preset; input_device, game_version and preset fields are unknown.",
+      "raw_quotes": [
+        "Fortnite ใช้จอยยังไง"
+      ],
+      "source_record_ids": [
+        "controls_ps5_fortnite"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No invented platform quote, full-layout claim, preset choice or button-action business answer is taught.",
+      "raw_quotes": [
+        "Fortnite ใช้จอยยังไง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Only partial PlayStation menu/preset information is recorded.",
+      "handling": "Disclose source/platform limits instead of inventing a complete controller layout."
+    }
+  ],
+  "historical_review_row": 254,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Fortnite ใช้จอยยังไง",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Fortnite",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "game_controls",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Fortnite ใช้จอยยังไง",
+        "domain": "game_controls",
+        "operation": "list",
+        "facet": "input_bindings",
+        "target": "Fortnite",
+        "constraints": [
+          {
+            "slot": "requested_scope",
+            "quote": "จอย",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "controls_ps5_fortnite": {
+      "revision": 7,
+      "record_sha256": "291988987c8f1d8f434fe25e655a8e915783bd8b44ddfdcae9fac66808b63859"
+    }
+  }
+}

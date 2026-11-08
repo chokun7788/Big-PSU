@@ -1,0 +1,131 @@
+{
+  "question_key": "546c449056ffc350efa88ef0bd5a4b8957fd870fc8d94a2b77700032f0c79ae9",
+  "example_sha256": "77f1241ec305185b5bdfdd2728f3f9e2269887a7e137810a760141df788c8639",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One play-price question names a game in the studio-question context.",
+      "raw_quotes": [
+        "How much does Beat Saber cost"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "service_fee/price_calculate/amount is retained; it is not a game description.",
+      "raw_quotes": [
+        "How much does Beat Saber cost"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Beat Saber is the game target; remove its mistaken service role and resolve actual offers through source relations.",
+      "raw_quotes": [
+        "How much does Beat Saber cost"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No duration, audience or history is supplied.",
+      "raw_quotes": [
+        "How much does Beat Saber cost"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Missing price inputs must not cause an invented one-hour or general-adult default.",
+      "raw_quotes": [
+        "How much does Beat Saber cost"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "The two explicit Beat Saber game_service records bind VR30 and VR60; game presence alone does not select one price option.",
+      "raw_quotes": [
+        "How much does Beat Saber cost"
+      ],
+      "source_record_ids": [
+        "migrated_link_availability_vr_30_game_detail_beat_saber",
+        "migrated_link_availability_vr_60_game_detail_beat_saber"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No service duration, rate or game-purchase amount is taught.",
+      "raw_quotes": [
+        "How much does Beat Saber cost"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 50,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "Beat Saber"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does Beat Saber cost",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Beat Saber",
+        "constraints": [
+          {
+            "slot": "service",
+            "quote": "Beat Saber",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "price",
+    "context_quotes": [
+      "Beat Saber"
+    ],
+    "tasks": [
+      {
+        "quote": "How much does Beat Saber cost",
+        "domain": "service_fee",
+        "operation": "price_calculate",
+        "facet": "amount",
+        "target": "Beat Saber",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_link_availability_vr_30_game_detail_beat_saber": {
+      "revision": 1,
+      "record_sha256": "95aff7251c89434de1847bab21195b4517c90b21559ee47e130717a604f08f5f"
+    },
+    "migrated_link_availability_vr_60_game_detail_beat_saber": {
+      "revision": 1,
+      "record_sha256": "3d395c4651d525c0cff6c602cb7e1531c03ef61361a154da2d8770dfa817afb1"
+    }
+  }
+}

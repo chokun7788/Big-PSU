@@ -1,0 +1,122 @@
+{
+  "question_key": "f317e8d51f4ae622925452cf32ce955bbd53d4202ba18ccb83354e1e430b8cf9",
+  "example_sha256": "779bd0bf6ff9f7bf40f63bb42c44264b771e1439ccbf65af3970ecbe63ab1a4a",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One permission question concerns carrying takeaway food through the studio.",
+      "raw_quotes": [
+        "A question about the studio: Can I carry takeaway food through the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "rules/detail/owner_policy preserves food-bringing rather than eating/drinking.",
+      "raw_quotes": [
+        "A question about the studio: Can I carry takeaway food through the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "carry takeaway food through the studio is the full literal action.",
+      "raw_quotes": [
+        "A question about the studio: Can I carry takeaway food through the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No eating, designated consumption area or previous food permission is inherited.",
+      "raw_quotes": [
+        "A question about the studio: Can I carry takeaway food through the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Carrying food is not consuming it; a broad permission must not silently become all-area consumption permission.",
+      "raw_quotes": [
+        "A question about the studio: Can I carry takeaway food through the studio?"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_policy_text_food_bring_general explicitly separates bringing food from consuming only in designated areas; consumption-only clauses cannot substitute.",
+      "raw_quotes": [
+        "A question about the studio: Can I carry takeaway food through the studio?"
+      ],
+      "source_record_ids": [
+        "migrated_policy_text_food_bring_general"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No yes permission, consumption-area rule or fine enters the label.",
+      "raw_quotes": [
+        "A question about the studio: Can I carry takeaway food through the studio?"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 132,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "A question about the studio: Can I carry takeaway food through the studio?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "food_bring",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "A question about the studio: Can I carry takeaway food through the studio?",
+        "domain": "rules",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "carry takeaway food through the studio",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_policy_text_food_bring_general": {
+      "revision": 2,
+      "record_sha256": "40b9f5898bd57f7224ed836fdd0470927e2720b44e0174fdbdd4f4de99a7c4a8"
+    }
+  }
+}

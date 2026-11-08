@@ -1,0 +1,449 @@
+--- R69/app/knowledge/common/answer.py
++++ R72/app/knowledge/common/answer.py
+@@ -63,6 +63,9 @@
+         if value(r,k) is not None:
+             v=value(r,k);shown=text(v,lang)
+             if r.get('kind')=='faq' and k=='question':shown=shown.replace('.*',' — ')
++            if r.get('kind')=='service' and lang=='en':
++                shown=re.sub(r'(\d+)\s*นาที',lambda m:m[1]+' minute'+('s' if m[1]!='1' else ''),shown)
++                shown=re.sub(r'(\d+)\s*ชั่วโมง',lambda m:m[1]+' hour'+('s' if m[1]!='1' else ''),shown)
+             if r.get('kind')=='game' and lang=='th' and isinstance(v,dict) and v.get('en') and v.get('en')!=v.get('th'):shown+=' ('+v['en']+')'
+             return shown
+     if r.get('aliases',{}).get(lang):return r['aliases'][lang][0]
+@@ -166,7 +169,7 @@
+     return question,ids,method
+ 
+ class CommonAnswerer:
+-    def __init__(self,store):self.store=store
++    def __init__(self,store):self.store=store;self.diagnostics=[]
+     def answer(self,question,*,locale='th',history=None,at=None,planner=None,_composing=False):
+         started=time.perf_counter();snap=self.store.snapshot();rel=snap['release']
+         if not rel:return None
+@@ -174,8 +177,25 @@
+         lang='en' if locale=='en' else 'th';at=at or now_bangkok()
+         if at.tzinfo is None:raise ValueError('Query time needs timezone')
+         records={k:r for k,r in rel['records'].items() if k not in snap['withdrawn']}
++        from .request_roles import analyze as analyze_roles,groups as role_groups
++        request_needs=analyze_roles(question)
++        if not request_needs and history:
++            from .request_roles import contextual_needs
++            request_needs=contextual_needs(question,history,records)
++        need_groups=role_groups(request_needs,records)
++        self.diagnostics.append({'stage':'request_needs','needs':request_needs})
+         names=derived_names(scoped_names(snap),records)
+         q,ids,method=context_query(question,history,names,records)
++        self.diagnostics.append({'stage':'named_scope','record_ids':list(ids),'method':method})
++        from .identity_links import resolve as resolve_identity
++        ids,names,identity_audit=resolve_identity(question,ids,records,names)
++        if identity_audit:self.diagnostics.append({'stage':'identity_link','links':identity_audit})
++        holiday_query=bool(re.search(r'วันหยุดราชการ|วันหยุดนักขัตฤกษ์|\b(?:public|national) holidays?\b',normalize(question)))
++        if holiday_query and re.search(r'เปิด|ปิด|\b(?:open|closed|hours)\b',normalize(question)):
++            from app.calendar.service_calendar import resolve_date_from_text
++            if not resolve_date_from_text(question,today=at.date()) and not re.search(r'จันทร์|อังคาร|พุธ|พฤหัส|ศุกร์|เสาร์|อาทิตย์|\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b',normalize(question)):
++                msg='ต้องการทราบวันหยุดวันที่เท่าไรครับ? กรุณาระบุวันที่ เพื่อเช็กวันปิดพิเศษให้ตรงวัน' if lang=='th' else 'Which holiday date do you mean? Please specify the date so I can check the applicable special closing schedule.'
++                return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'method':'holiday_date_required','date_required':True},[],response='clarification')
+         if not ids and not live_query(question):
+             from .name_candidates import recover
+             recovery=recover(question,names)
+@@ -190,7 +210,10 @@
+             from .composition import parts,compose
+             entity_ids=[rid for rid in ids if records[rid]['kind'] not in {'faq','policy','procedure'}]
+             clauses=parts(strip_names(question,entity_ids,names))
+-            if clauses and ids:return compose(self,snap,started,clauses,ids,lang=lang,history=history,at=at,planner=planner)
++            if not clauses and request_needs:
++                from .request_roles import uncovered_parts
++                clauses=uncovered_parts(question)
++            if clauses and (ids or request_needs):return compose(self,snap,started,clauses,ids,lang=lang,history=history,at=at,planner=planner)
+         matched_ids=list(ids)
+         ids,query_operation=primary_ids(question,ids,records)
+         if method=='state_comparison_selection':query_operation='price'
+@@ -271,7 +294,12 @@
+                 from .scoped_topics import lookup
+                 secondary_ids,secondary_audit=lookup(question,{rid:r for rid,r in records.items() if effective(r,at,records)},names,ids,allow_llm=planner is not None)
+                 if secondary_ids:ids=secondary_ids;method='declared_scoped_topic'
+-        procedure_ids=operation_faqs(procedure_query,records,query_operation) if not secondary_ids else []
++        procedure_ids=([rid for group in need_groups for rid in group['candidate_ids']] if need_groups else operation_faqs(procedure_query,records,query_operation)) if not secondary_ids else []
++        role_audit=[]
++        if need_groups and not procedure_ids and not secondary_ids:
++            role_audit=[{**g,'selected_ids':[],'selection_status':'missing_source'} for g in need_groups]
++            msg='ยังไม่มีข้อมูลยืนยันหัวข้อที่ถามในขอบเขตนี้ กรุณาติดต่อเจ้าหน้าที่เพื่อยืนยัน' if lang=='th' else 'No confirmed source is recorded for the requested topic in this scope. Please contact staff to confirm.'
++            return self.finish(snap,started,msg,[],{'record_ids':[],'requested_fields':[],'method':'missing_request_role_source','role_selection':role_audit},[],response='clarification')
+         if procedure_ids:
+             # Prefer the requested language when duplicate migrated textual rows exist.
+             localized=[rid for rid in procedure_ids if (value(records[rid],'answer') or {}).get(lang)]
+@@ -279,7 +307,14 @@
+             from .entity_search import grams
+             candidates=localized or procedure_ids
+             candidates.sort(key=lambda rid:(owner_basis(records[rid],self.store,rel),len(grams(question)&grams(text(value(records[rid],'question') or {},lang)))),reverse=True)
+-            ids=candidates[:1]
++            if need_groups:
++                ids=[]
++                for group in need_groups:
++                    eligible=sorted(group['candidate_ids'],key=lambda rid:(bool((value(records[rid],'answer') or {}).get(lang)),owner_basis(records[rid],self.store,rel),len(grams(question)&grams(text(value(records[rid],'question') or {},lang)))),reverse=True)
++                    chosen=eligible[0] if eligible else None
++                    role_audit.append({**group,'selected_ids':[chosen] if chosen else [],'selection_status':'selected_source' if chosen else 'missing_source'})
++                    if chosen and chosen not in ids:ids.append(chosen)
++            else:ids=candidates[:1]
+             intent=value(records[ids[0]],'intent_key') or ''
+             if 'food' in intent or 'drink' in intent:query_operation='policy'
+             elif intent.startswith('schedule_'):query_operation='calendar'
+@@ -321,7 +356,7 @@
+             from .entity_search import select
+             choice,entity_audit=select(q,{rid:r for rid,r in records.items() if effective(r,at,records)},names)
+             if choice is None and (entity_audit.get('reason')=='model_busy' or entity_audit.get('error')):
+-                return self.finish(snap,started,'ระบบยังเลือกข้อมูลให้คำถามนี้ไม่ทัน กรุณาลองอีกครั้ง / The model could not select the relevant data in time; please retry.',[],{'entity_selection':entity_audit},[],response='retry')
++                return self.finish(snap,started,('ระบบยังเลือกข้อมูลให้คำถามนี้ไม่ทัน กรุณาลองอีกครั้ง' if lang=='th' else 'The model could not select the relevant data in time; please retry.'),[],{'entity_selection':entity_audit},[],response='retry')
+             if isinstance(choice,list):ids=choice;method='published_semantic_candidates'
+             elif isinstance(choice,dict) and choice.get('ambiguous'):
+                 options=choice['ambiguous']
+@@ -391,7 +426,9 @@
+                 if any(t in normal(q) for t in terms) and (broad or listing or k in {'center','contact','schedule'} and requested):kind=k;break
+             if not kind:
+                 kind=next((k for field,k in [('address','center'),('value','contact'),('open_periods','schedule'),('bookable_periods','schedule')] if field in requested),None)
+-            if not kind:return None
++            if not kind:
++                self.diagnostics.append({'stage':'unresolved_scope','operation':query_operation,'entity_selection':entity_audit,'requested_fields':requested,'request_needs':request_needs})
++                return None
+             ids=[k for k,r in records.items() if r['kind']==kind and (kind=='rate' or effective(r,at,records))]
+             if not ids:return None
+             if listing:broad=not requested or broad_request(q)
+@@ -433,6 +470,8 @@
+                 ids=competitions;field_kinds={'competition','competition_rule'};requested=field_requests(q,field_kinds)
+             else:return None # Legacy rulebooks remain authoritative until migrated.
+         plan={'record_ids':ids,'requested_fields':requested,'all_fields':broad,'method':method,'scope':'common_published','platform':None,'query_without_entity':q,'operation':query_operation,'scope_ids':scope_ids,'field_selection':resolve_fields(q,field_kinds)[1],'confidence_calibrated':False,'request_focus':focus,'schema_language_recoveries':schema_recoveries}
++        if request_needs:plan['request_needs']=request_needs;plan['role_selection']=role_audit
++        if identity_audit:plan['identity_links']=identity_audit
+         billing_query=raw_query
+         if 'amount_minor' in requested and method.startswith(('state_audience_selection','state_service_selection','typed_price_duration_selection','typed_common_state','state_comparison_selection','common_price_comparison')):
+             from .dialogue import previous_state
+@@ -531,6 +570,15 @@
+             plan['legacy_title_count']=len(legacy_titles)
+             return self.finish(snap,started,answer,[],plan,[],response='list')
+         selected={k:records[k] for k in ids};obligations=[];blocks=[];hits=[];rendered_fields=set()
++        for role in role_audit:
++            if not role['selected_ids']:
++                from .request_roles import LABELS
++                missing=LABELS[role['role']][lang=='en']
++                blocks.append(missing+(': ยังไม่มีข้อมูลยืนยันในขอบเขตที่เลือก' if lang=='th' else ': no confirmed source was found in this scope.'))
++                plan.setdefault('scope_limits',[]).append({'requested_role':role['role'],'status':'missing_source'})
++            if role['unconfirmed_qualifiers']:
++                blocks.append('ข้อมูลวิธีชำระทั่วไปยังไม่ยืนยันตัวเลือกหรือเงื่อนไขการชำระเฉพาะที่ถาม กรุณาติดต่อเจ้าหน้าที่เพื่อยืนยัน' if lang=='th' else 'The general payment method does not confirm the specific payment option or condition you asked about. Please contact staff to confirm.')
++                plan.setdefault('scope_limits',[]).append({'requested_role':role['role'],'status':'specific_option_unconfirmed'})
+         if plan.get('scope_limits'):blocks.append('ข้อมูลที่ยืนยันได้เป็นจำนวนรอบต่อการจองหนึ่งครั้ง ยังไม่มีข้อมูลยืนยันเพดานต่อวัน' if lang=='th' else 'The confirmed limit applies per booking. A daily limit has not been confirmed.')
+         if query_operation in {'price','booking'} and scope_ids and any(records[rid]['kind']=='game' for rid in scope_ids) and not any(records[rid]['kind']=='game' for rid in selected):
+             blocks.append(('เกมที่เกี่ยวข้อง: ' if lang=='th' else 'Related game: ')+ ' / '.join(title(records[rid],lang) for rid in scope_ids if records[rid]['kind']=='game'))
+@@ -761,6 +809,8 @@
+             hit['metadata']={**hit.get('metadata',{}),'common_approved':view=='published','content_view':view,'title':hit['title'],'release_id':snap['active']}
+         confidence=.8 if response in {'answer','list'} else 0.0
+         artifact={'response_type':response,'release_id':snap['active'],'query_plan':plan,'obligations':obligations,'catalog_scope':'common_published','coverage_errors':errors,'confidence_calibrated':False,'validation_scope':'selected fields and evidence, not human intent correctness','content_view':view,'production_publication_verified':view=='published'}
++        if plan.get('role_selection'):
++            artifact['task_coverage']=[{'role':r['role'],'scope':r['scope'],'status':'source_answer_rendered' if r['selected_ids'] and all(any(o.get('record_id')==rid and o.get('field')=='answer' and o.get('status')=='known' for o in obligations) for rid in r['selected_ids']) else 'not_answered','selected_ids':r['selected_ids'],'scope_confirmed':not r['unconfirmed_qualifiers'] and r['scope']!='per_day','human_intent_correctness_verified':False} for r in plan['role_selection']]
+         trace=PipelineTrace('common_content',response,confidence,'typed fields and source-backed joins; uncalibrated confidence',artifact)
+         reason={'published':'published common content','evaluation_draft':'unpublished evaluation draft','synthetic_demo':'synthetic demo common content'}[view]
+         return PipelineAnswer(answer=answer,hits=hits,elapsed=time.perf_counter()-started,mode='pipeline:common_'+response,confidence=confidence,route=PipelineRoute('knowledge','common_read',confidence,response,'medium',reason),entities=EntityBundle(),validation=ValidationResult(not errors,tuple(errors)),trace=[trace],decision_artifact=artifact)
+--- R69/app/knowledge/common/build_info.py
++++ R72/app/knowledge/common/build_info.py
+@@ -9,5 +9,5 @@
+  files.extend(root.glob('*.ps1'))
+  for p in sorted(files):
+   digest.update(p.relative_to(root).as_posix().encode());digest.update(p.read_bytes())
+- return {'build_id':'common-r69-isolated-chat','loaded_source_sha256':digest.hexdigest(),'fingerprint_scope':'application, web UI and launchers at module import'}
++ return {'build_id':'common-r72-flow-repair','loaded_source_sha256':digest.hexdigest(),'fingerprint_scope':'application, web UI and launchers at module import'}
+ LOADED_BUILD=_capture()
+--- R69/app/knowledge/common/entity_search.py
++++ R72/app/knowledge/common/entity_search.py
+@@ -17,6 +17,28 @@
+ def grams(s):
+  s=re.sub(r'[^a-z0-9\u0e00-\u0e7f]','',normalize(s))
+  return {s[i:i+3] for i in range(max(0,len(s)-2))}
++def query_variants(question):
++ q=normalize(question);variants=[q]
++ # Anchored conversational wrappers only; no removal of numbers/negation.
++ patterns=[r'^please answer from verified studio information:\s*',r'^i am planning a visit and would like to know:\s*']
++ for p in patterns:q=re.sub(p,'',q)
++ q=re.sub(r'\s*could you check this for me[?!.]*$','',q).strip()
++ if q and q not in variants:variants.append(q)
++ return variants
++def excerpt(question,parts,budget=650):
++ """Search all source text, then send relevant windows under a prompt budget."""
++ qg=grams(question);ranked=[]
++ for i,part in enumerate(parts):
++  # Include tail windows in ranking; prefix truncation loses known facts.
++  windows=[part[j:j+240] for j in range(0,len(part),200)] or ['']
++  for j,window in enumerate(windows):ranked.append((len(qg&grams(window)),i,j,window))
++ ranked.sort(key=lambda x:(-x[0],x[1],x[2]));chosen=[];used=0
++ for score,i,j,window in ranked:
++  if chosen and score==0:continue
++  piece=window[:max(0,budget-used)]
++  if not piece:break
++  chosen.append(piece);used+=len(piece)+3
++ return ' / '.join(chosen)[:budget]
+ def topic_alignment(question,record):
+  """Independent title/topic overlap, not an entailment or calibrated score."""
+  stop={'what','which','where','when','how','could','would','please','help','does','this','that','have','your','studio','information','detail','details','question','about','with','from','after','before','only','must','there','they','their','book','booking'}
+@@ -28,24 +50,27 @@
+  own=[]
+  for key in ('question','subject','topic','title','name','display_name'):
+   own.extend(strings(value(record,key)))
++ intent=value(record,'intent_key')
++ if isinstance(intent,str):own.append(intent.replace('_',' '))
+  shared=terms(question)&terms(' '.join(own))
+  return bool(shared),sorted(shared)
+ def candidates(question,records,names):
+- qg=grams(question)
++ variants=query_variants(question);qgs=[grams(q) for q in variants];qg=set().union(*qgs)
+  if re.search(r'(?:pc|ps|vr|cockpit|เครื่อง)\s*#?\s*\d+',normalize(question)):return []
+  if len(qg)<3 or len(question)>1200 or live_request(question) or broad_request(question):return []
+  rows=[];frequencies=collections.Counter();documents=[]
+  for rid,r in records.items():
+   if r['kind'] not in KINDS:continue
+-  text=' / '.join(names.get(rid,[])+[s for key,f in r['fields'].items() if f['status']=='known' and not key.endswith(('_id','_ids')) for s in strings(f['value'])])[:1800]
+-  g=grams(text);frequencies.update(g);documents.append((rid,r['kind'],text,g))
+- for rid,kind,text,g in documents:
++  parts=names.get(rid,[])+[s for key,f in r['fields'].items() if f['status']=='known' and not key.endswith(('_id','_ids')) for s in strings(f['value'])]
++  text=' / '.join(parts)
++  g=grams(text);frequencies.update(g);documents.append((rid,r['kind'],parts,g))
++ for rid,kind,parts,g in documents:
+   # Repeated generic grams have less influence than terms identifying a fact.
+   overlap=qg&g
+   if len(overlap)<3:continue
+-  score=sum(1/frequencies[x] for x in overlap)/max(1,sum(1/frequencies[x] for x in qg if frequencies[x]))
++  score=max(sum(1/frequencies[x] for x in variant&g)/max(1,sum(1/frequencies[x] for x in variant if frequencies[x])) for variant in qgs)
+   if score<.16:continue
+-  rows.append({'record_id':rid,'kind':kind,'text':text[:650],'score':round(score,4)})
++  rows.append({'record_id':rid,'kind':kind,'text':excerpt(variants[-1],parts),'score':round(score,4),'indexed_characters':sum(map(len,parts))})
+  return sorted(rows,key=lambda x:-x['score'])[:8]
+ def select(question,records,names):
+  from .query_scope import operation
+--- R69/app/knowledge/common/faq_topics.py
++++ R72/app/knowledge/common/faq_topics.py
+@@ -20,7 +20,10 @@
+     elif operation=='policy' and re.search(r'คืน|\breturn(?:ing)?\b',q) and re.search(r'อุปกรณ์|แผ่นเกม|จอย|\b(?:equipment|controllers?|discs?|games?)\b',q) and not re.search(r'คืนเงิน|\brefund\b',q):
+         topic='return_equipment';pattern=r'คืน.{0,25}(?:อุปกรณ์|แผ่นเกม|จอย)|\breturn\b.{0,35}\b(?:equipment|controllers?|game discs?)\b'
+     elif operation=='booking' and payment and not cancel_action and not refund:
++        from .request_roles import exceptional_payment
++        if exceptional_payment(q):return []
+         if re.search(r'บัญชี|ธนาคาร|สลิป|\b(?:bank|slip|receipt|account|transfer)\b',q):return []
++        if not re.search(r'ภายใน|กี่นาที|เมื่อไหร่|เมื่อไร|กำหนด|\b(?:when|deadline|within|how soon|immediately|unpaid)\b',q):return []
+         topic='payment';pattern=r'ชำระ.{0,12}หลังจอง|หลังจอง.{0,12}จ่าย|payment.timeout|pay.after.booking'
+     elif operation=='booking' and required and not cancel_action:
+         topic='booking_required';pattern=r'walk.in|เดินเข้า|booking.required|must.book.in.advance|ต้องจองล่วงหน้า'
+--- R69/app/knowledge/common/identity_links.json
++++ R72/app/knowledge/common/identity_links.json
+@@ -0,0 +1,63 @@
++{
++  "version": 1,
++  "links": [
++    {
++      "source_record_id": "migrated_game_god_of_war_ragnar_k",
++      "target_record_id": "game_detail_god_of_war_ragnarok",
++      "source_record_sha256": "1fa7d95ed19b83f1c813b5f1d0ba958cefed80c6ba88aa48ddcbde5daf013f66",
++      "target_record_sha256": "7715bf5d40e00a6fdcea3fc09593b67dfeb943cc2ff5ca8c08f60034141ea31a",
++      "fields": [
++        "genre",
++        "summary",
++        "how_to_play"
++      ],
++      "basis": "Same full game title, Latin accent variant only; target summary explicitly names God of War Ragnarök. Source is revision-1 imported title-only placeholder; no owner fact is replaced. Source/target record hashes must both remain unchanged. Does not merge editions, availability, platform, controls or prices.",
++      "owner_identity_approval": false,
++      "review_scope": "agent-reviewed migration draft only",
++      "evidence": {
++        "source_title": {
++          "evidence_refs": [
++            {
++              "locator": "/mapped_fields/title",
++              "source_id": "r63_50d384da3381763f8a3c123b4ef0"
++            }
++          ],
++          "note": "ย้ายจากต้นฉบับเดิมเป็นร่าง: source game label → title",
++          "status": "known",
++          "value": {
++            "en": "God of War Ragnarök",
++            "th": "God of War Ragnarök"
++          }
++        },
++        "target_title": {
++          "evidence_refs": [
++            {
++              "locator": "/mapped_fields/title",
++              "source_id": "r66_en_346fb3328fcd08e2ee1c62d4"
++            }
++          ],
++          "note": "Imported from canonical source; field mapping needs factual review",
++          "status": "known",
++          "value": {
++            "en": "God of War Ragnarok",
++            "th": "God of War Ragnarok"
++          }
++        },
++        "target_summary": {
++          "evidence_refs": [
++            {
++              "locator": "/mapped_fields/summary",
++              "source_id": "r66_en_346fb3328fcd08e2ee1c62d4"
++            }
++          ],
++          "note": "Imported from canonical source; field mapping needs factual review",
++          "status": "known",
++          "value": {
++            "en": "God of War Ragnarök is an action adventure game that emphasizes story, combat, and exploration in the legendary Norse world.",
++            "th": "God of War Ragnarok คือเกมแอ็กชันผจญภัยที่เน้นเนื้อเรื่อง การต่อสู้ และการสำรวจในโลกตำนานนอร์ส"
++          }
++        }
++      }
++    }
++  ]
++}--- R69/app/knowledge/common/identity_links.py
++++ R72/app/knowledge/common/identity_links.py
+@@ -0,0 +1,23 @@
++"""Reviewed migration read links; no data merge or fuzzy identity inference."""
++import hashlib,json
++from pathlib import Path
++from .query_contract import resolve_fields
++def digest(record):
++ return hashlib.sha256(json.dumps(record,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
++def resolve(question,ids,records,names):
++ path=Path(__file__).with_suffix('.json');audit=[]
++ if not path.is_file():return ids,names,audit
++ requested=resolve_fields(question,{'game'})[0]
++ if not requested:return ids,names,audit
++ for link in json.loads(path.read_text('utf8')).get('links',[]):
++  source=link['source_record_id'];target=link['target_record_id']
++  if source not in ids:continue
++  reason=None
++  if not set(requested)<=set(link['fields']):reason='field_outside_reviewed_scope'
++  elif source not in records or target not in records:reason='record_missing_or_withdrawn'
++  elif digest(records[source])!=link['source_record_sha256'] or digest(records[target])!=link['target_record_sha256']:reason='record_revision_changed'
++  audit.append({'source_record_id':source,'target_record_id':target,'requested_fields':requested,'applied':reason is None,'reason':reason or 'reviewed_immutable_migration_link','owner_identity_approval':False})
++  if reason:continue
++  ids=list(dict.fromkeys(target if rid==source else rid for rid in ids))
++  names={**names,target:list(dict.fromkeys(names.get(target,[])+names.get(source,[])))}
++ return ids,names,audit
+--- R69/app/knowledge/common/query_scope.py
++++ R72/app/knowledge/common/query_scope.py
+@@ -253,6 +253,8 @@
+     topical=select(question,records,op)
+     if topical:return topical
+     normalized=normalize(question)
++    from .request_roles import exceptional_payment
++    if exceptional_payment(normalized):return []
+     quota=op not in {'calendar','price','rental','rules'} and bool(re.search(r'(?:กี่|สูงสุด).{0,35}ต่อวัน|(?:สูงสุด|maximum|max).{0,30}(?:session|รอบ)|(?:session|รอบ).{0,30}(?:สูงสุด|maximum)|\b(?:how many|how long|maximum|max)\b.{0,60}\b(?:daily|per day)\b',normalized))
+     if quota:
+         result=[]
+--- R69/app/knowledge/common/request_roles.py
++++ R72/app/knowledge/common/request_roles.py
+@@ -0,0 +1,60 @@
++"""Task roles before FAQ selection. Language meaning, never answers or IDs.
++
++Keys refer to FAQ semantic metadata. Scope exceptions remain unconfirmed.
++"""
++import re
++from .query_contract import normalize
++from .registry import value
++ROLE_INTENTS={'payment_method':{'bank_account'},'payment_deadline':{'payment_timeout'},'booking_quota':{'booking_max_sessions'},'studio_rules':{'studio_rules_summary'}}
++LABELS={'payment_method':('วิธีชำระเงิน','Payment method'),'payment_deadline':('กำหนดชำระเงิน','Payment deadline'),'booking_quota':('จำนวนรอบต่อการจอง','Sessions per booking'),'studio_rules':('กฎศูนย์','Studio rules')}
++def exceptional_payment(question):
++ q=normalize(question)
++ return bool(re.search(r'โอนเกิน|โอนขาด|จ่ายเกิน|จ่ายขาด|สลิปผิด|(?:จ่าย|ชำระ|โอน).{0,15}ผิด|\b(?:wrong|incorrect|overpaid|underpaid|overpay|underpay|installments?)\b|\b(?:transfer|payment)\b.{0,35}\b(?:arrive|arrives|processing|clear|clears)\b',q))
++def analyze(question):
++ q=normalize(question)
++ if re.search(r'แข่ง|กติกา|\b(?:tournament|competition|rulebook)\b',q):return []
++ # Mask explicit unwanted topics only, not conditions such as "do not pay".
++ ignored=[]
++ for pattern in (r'\b(?:do not|don.t)\s+(?:need|want|show|include)\s+(?:the\s+)?(?:bank(?:\s+(?:account|details))?|account(?:\s+details)?)(?:\s+(?:account|details))?',r'ไม่(?:เอา|ต้องการ|ต้องแสดง|ต้องบอก)(?:เลข)?บัญชี'):
++  for m in re.finditer(pattern,q):ignored.append(m.group())
++  q=re.sub(pattern,' ',q)
++ payment=bool(re.search(r'ชำระ|จ่าย|โอนเงิน|\b(?:pay|payment|paid|transfer)\b',q))
++ method=payment and bool(re.search(r'วิธี|ช่องทาง|ยังไง|อย่างไร|บัญชีไหน|ธนาคาร|เลขบัญชี|\b(?:how\s+(?:(?:do|can|should)\s+i\s+|to\s+)?(?:pay|make\s+(?:the\s+)?payment)|payment\s+(?:method|options?)|(?:where|which)\b.{0,45}\b(?:transfer|bank|account)|bank\s+account)\b',q))
++ if re.search(r'เลขบัญชี|โอน.{0,20}บัญชีไหน|\b(?:which|what)\s+bank\s+account\b',q):method=True
++ if re.search(r'ไม่จ่าย|ไม่ชำระ|\bwhat happens\b|\bif\b.{0,25}\b(?:not|unpaid)\b',q) and not re.search(r'ช่องทาง|วิธีชำระ|วิธีจ่าย|\bpayment method\b|\bhow do i pay\b',q):method=False
++ deadline=payment and bool(re.search(r'ภายใน|กี่นาที|เมื่อไหร่|เมื่อไร|กำหนด|นานเท่าไหร่|\b(?:deadline|how soon|within|immediately|unpaid)\b|\bwhen\s+(?:must|should|do|can|is|does|will|payment)\b|\bhow long\s+(?:do|does)\s+(?:i|one)\s+have\b',q))
++ if exceptional_payment(q):method=False;deadline=False
++ quota=bool(re.search(r'(?:จอง|การจอง).{0,45}(?:กี่รอบ|กี่ช่วงเวลา|กี่\s*session|จำนวน.{0,12}(?:รอบ|session)|สูงสุด)|(?:กี่|จำนวน|สูงสุด|จำกัด).{0,30}(?:รอบ|session)|\b(?:how many|maximum|max|cap|limit)\b.{0,65}\b(?:sessions?|slots?)\b|\b(?:sessions?|slots?)\b.{0,35}\b(?:cap|limit)\b',q))
++ quota=quota and bool(re.search(r'จอง|สูงสุด|\b(?:booking|book|reserve|reservation|maximum|max|cap|limit)\b',q))
++ studio=bool(re.search(r'ศูนย์|สตูดิโอ|\b(?:studio|cent(?:er|re))\b',q)) and bool(re.search(r'กฎ|กฏ|ระเบียบ|\b(?:rules|regulations)\b',q))
++ if re.search(r'(?:กฎ|กฏ|ระเบียบ).{0,20}(?:เรื่อง|เกี่ยวกับ)|\b(?:rules|regulations)\s+(?:about|on|regarding|for refunds)\b',q):studio=False
++ if re.search(r'อนุญาต|ได้ไหม|\b(?:allow|allowed|can i|may i)\b',q):studio=False
++ roles=[r for r,ok in [('payment_method',method),('payment_deadline',deadline),('booking_quota',quota),('studio_rules',studio)] if ok]
++ qualifiers=[]
++ if payment and re.search(r'เงินสด|บัตรเครดิต|บัญชีเพื่อน|\b(?:cash|credit card|friend.s account)\b',q):qualifiers.append('payment_option_not_established_by_general_method')
++ daily=bool(re.search(r'ต่อวัน|\b(?:daily|per day)\b',q))
++ return [{'role':role,'source_intents':sorted(ROLE_INTENTS[role]),'scope':'per_day' if role=='booking_quota' and daily else 'per_booking' if role=='booking_quota' else 'studio','unconfirmed_qualifiers':qualifiers if role.startswith('payment_') else [],'ignored_topic_spans':ignored,'semantic_correctness_verified':False} for role in roles]
++def groups(needs,records):
++ return [{**need,'candidate_ids':[rid for rid,r in records.items() if r['kind']=='faq' and value(r,'intent_key') in need['source_intents']]} for need in needs]
++
++def uncovered_parts(question):
++ """Compose explicit extra questions, not noun lists or polite prefaces."""
++ from .query_contract import semantic_clauses
++ clauses=semantic_clauses(question)
++ if not 2<=len(clauses)<=4 or not analyze(question):return []
++ if any(not analyze(c) and re.search(r'^(?:where|what|how|when|can i|is there|do you)\b|ที่จอด|อยู่ไหน|ได้ไหม|หรือไม่',c) for c in clauses):return clauses
++ return []
++
++def contextual_needs(question,history,records):
++ """A short time/method follow-up can inherit topic, never answer text."""
++ from .dialogue import previous_state
++ state=previous_state(history,records)
++ if not state:return []
++ prior={role for role,keys in ROLE_INTENTS.items() if any(value(records[rid],'intent_key') in keys for rid in state['record_ids'])}
++ if not prior&{'payment_method','payment_deadline'}:return []
++ q=normalize(question).strip(' ?!.,')
++ role=None
++ if re.fullmatch(r'(?:(?:and|then|so)\s+)?when|(?:แล้ว)?(?:เมื่อไหร่|เมื่อไร)|(?:แล้ว)?ภายในกี่นาที',q):role='payment_deadline'
++ elif re.fullmatch(r'(?:and\s+)?(?:the\s+)?(?:payment\s+)?method|(?:แล้ว)?วิธี(?:ชำระ|จ่าย)?ล่ะ',q):role='payment_method'
++ if not role:return []
++ return [{'role':role,'source_intents':sorted(ROLE_INTENTS[role]),'scope':'studio','unconfirmed_qualifiers':[],'ignored_topic_spans':[],'semantic_correctness_verified':False,'context_record_ids':state['record_ids'],'context_basis':'server_state_ids_and_current_semantic_metadata_only'}]
+--- R69/app/pipeline/migrated_chat.py
++++ R72/app/pipeline/migrated_chat.py
+@@ -12,11 +12,11 @@
+ 
+ def answer(question,*,locale,history=None,allow_llm=True):
+  started=time.perf_counter();language=locale.effective
+- audits=[]
++ audits=[];reader=None
+  def finish(result,kind):
+   status={'profile':PROFILE,'database':'common.sqlite','draft_preview_only':True,'production_publication_verified':False,'knowledge_source':kind,'legacy_fallback_used':False}
+   hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} for h in result.hits]
+-  return replace(result,hits=hits,language=locale,elapsed=time.perf_counter()-started,decision_artifact={**(result.decision_artifact or {}),'migration':status,'planner_audits':audits},trace=[*result.trace,PipelineTrace('migrated_chat','selected',1.0,'isolated copied data; no legacy content fallback',status)])
++  return replace(result,hits=hits,language=locale,elapsed=time.perf_counter()-started,decision_artifact={**(result.decision_artifact or {}),'migration':status,'planner_audits':audits,'query_resolution':reader.diagnostics if reader is not None else []},trace=[*result.trace,PipelineTrace('migrated_chat','selected',1.0,'isolated copied data; no legacy content fallback',status)])
+  def message(text,kind='clarification'):
+   return PipelineAnswer(answer=text,hits=[],elapsed=time.perf_counter()-started,mode='pipeline:migrated_'+kind,confidence=0,route=PipelineRoute('knowledge','common_read',0,kind,'medium','migrated common content only'),entities=EntityBundle(),validation=ValidationResult(True))
+  from app.pipeline.chatbot_identity import is_chatbot_greeting_query,is_chatbot_identity_query
+@@ -29,7 +29,8 @@
+   def planner(q,records,ids):return plan_fields(q,records,ids,diagnostic=audits.append)
+   # Try common first: its schema can distinguish static inventory from live
+   # availability and a wrongly booked machine from an occupancy question.
+-  result=CommonAnswerer(view).answer(question,locale=language,history=history or [],planner=planner if allow_llm else None)
++  reader=CommonAnswerer(view)
++  result=reader.answer(question,locale=language,history=history or [],planner=planner if allow_llm else None)
+   if result is not None:
+    if not result.validation.ok:
+     # Do not present a failed candidate as a confirmed answer. Preserve why
+@@ -51,6 +52,6 @@
+   return finish(message(text),'migrated_common')
+  except (OSError,sqlite3.Error,ValueError,KeyError,TypeError) as exc:
+   # Missing/corrupt knowledge never switches back to the old dataset.
+-  result=message('ฐานข้อมูลชุดใหม่ยังอ่านไม่ได้ กรุณาลองใหม่ / The new knowledge database is unavailable. Please retry.','unavailable')
++  result=message('ฐานข้อมูลชุดใหม่ยังอ่านไม่ได้ กรุณาลองใหม่' if language=='th' else 'The new knowledge database is unavailable. Please retry.','unavailable')
+   result=replace(result,decision_artifact={'store_error_type':type(exc).__name__})
+   return finish(result,'unavailable')
+--- R69/web_chat/index.html
++++ R72/web_chat/index.html
+@@ -3,7 +3,7 @@
+   <head>
+     <meta charset="utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+-    <title>PSU Esports — แชทข้อมูลชุดใหม่ R69</title>
++    <title>PSU Esports — แชทข้อมูลชุดใหม่ R72</title>
+     <link rel="stylesheet" href="/styles.css" />
+   </head>
+   <body>
+@@ -28,7 +28,7 @@
+           </div>
+         </header>
+ 
+-        <div class="migration-banner" role="status">ข้อมูลชุดย้าย R69 — กำลังตรวจสอบก่อนเผยแพร่<br><span lang="en">Migrated data preview — not yet published</span></div>
++        <div class="migration-banner" role="status">ข้อมูลชุดย้าย R72 — กำลังตรวจสอบก่อนเผยแพร่<br><span lang="en">Migrated data preview — not yet published</span></div>
+         <div class="demo-layout">
+           <aside class="side-panel" aria-label="ตัวอย่างคำถามและข้อมูลระบบ">
+             <section class="side-section">

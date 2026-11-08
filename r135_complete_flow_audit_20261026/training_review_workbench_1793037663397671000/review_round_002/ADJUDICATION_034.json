@@ -1,0 +1,139 @@
+{
+  "question_key": "f10707b2c0244f8083805c71be540378e1f2090baa4cfb2a10ad7af8cc422f7f",
+  "example_sha256": "909289477f2bc4e094ac56c3f1603914510ebd7121343ab30eca22058f791142",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One Tuesday opening-time request despite typo อพดี.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "schedule/detail/open_periods is the available opening-period facet; closing_time would reverse the request.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "วันอังคาร remains an exact date/weekday constraint, not an absolute date.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "The weekday is local to one timetable task; no visit date is imported.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "A clear question does not become language ambiguity because the source has conflicting opening fields.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_schedule_1 retains conflicted open_periods with separate known service_slots/bookable_periods; source authority must resolve or display that distinction.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง"
+      ],
+      "source_record_ids": [
+        "migrated_schedule_1"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No 09:00 value or inferred authoritative opening interval enters the target.",
+      "raw_quotes": [
+        "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "open_periods is conflicted while service_slots and bookable_periods are separately known.",
+      "handling": "Do not train a selected authoritative opening time; preserve source authority/conflict handling at execution."
+    }
+  ],
+  "historical_review_row": 34,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "วันอังคาร"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันอังคาร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "opening_hours",
+    "context_quotes": [
+      "วันอังคาร"
+    ],
+    "tasks": [
+      {
+        "quote": "กำลังวางแผนจะไปใช้บริการ อพดีอยากรู้ว่า วันอังคารศูนย์เปิดกี่โมง",
+        "domain": "schedule",
+        "operation": "detail",
+        "facet": "open_periods",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "date",
+            "quote": "วันอังคาร",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; not answer accuracy",
+  "source_field_evidence": {
+    "migrated_schedule_1": {
+      "revision": 3,
+      "record_sha256": "a30b631c4777569af4196a5537dfb7ef5e38727adc9201eee6ca5a1d689e397c"
+    }
+  }
+}

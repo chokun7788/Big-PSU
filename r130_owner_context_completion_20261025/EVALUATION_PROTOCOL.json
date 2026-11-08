@@ -1,0 +1,51 @@
+{
+  "version": "r129-pre-inference-v1",
+  "frozen_before_training_and_inference": true,
+  "arms": [
+    "base",
+    "retained",
+    "new"
+  ],
+  "same_engine_data_clock_prompt_schema_precision_decoding_budgets_provider_fixture": true,
+  "context_only_adapters": true,
+  "other_stages_use_base_for_all_arms": true,
+  "clock": "2026-10-24T12:00:00+07:00",
+  "generation": {
+    "temperature": 0,
+    "max_context_tokens": 8192,
+    "max_new_tokens": 900,
+    "max_time_seconds": 90
+  },
+  "checkpoint_selection": "validation completion loss only",
+  "metrics": [
+    "wire_schema_acceptance",
+    "task_domain_operation_field_multiset_exact",
+    "exact_target",
+    "slot_quote_role_f1",
+    "shared_edge_exact",
+    "clarification_exact",
+    "source_fatal_count",
+    "typed_obligation_completion",
+    "actual_content_review_separate",
+    "latency_p50_p95",
+    "transport_error_count"
+  ],
+  "promotion": {
+    "new_source_fatal_must_equal": 0,
+    "new_operation_field_exact_at_least_retained": true,
+    "new_slot_f1_at_least_retained": true,
+    "new_transport_rate_not_worse_than_retained": true,
+    "noninferiority_margin": 0.0,
+    "otherwise_keep_retained_for_delivery": true
+  },
+  "accepted_wire_versions": [
+    "r129-plan-v2",
+    "explicit_r121_legacy_adapter"
+  ],
+  "legacy_wire_adaptation_reported_separately": true,
+  "historically_exposed_retained_questions": true,
+  "fresh_generalization_claimed": false,
+  "full_test_unique_keys": 20554,
+  "full_test_grades": 55811,
+  "legacy_full_rerun": false
+}

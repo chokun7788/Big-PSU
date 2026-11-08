@@ -1,0 +1,146 @@
+{
+  "question_key": "bf367f96c730d0bad6aac9fc5d51056cd53b64109cc86125acc9bd00ece91d02",
+  "example_sha256": "7b865a0aaf8e27ca3ea8e6a7c532ca2ca2515ff2c39e6cafee758520fba77d38",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One availability predicate coordinates receipt, quotation and tax invoice; ขอสรุปให้เข้าใจง่าย requests presentation only.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "payment/detail/owner_policy remains one purpose rather than an added service-price task from ราคา inside ใบเสนอราคา.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "Add exact ขอ action and ใบเสร็จ, ใบเสนอราคา, ใบกำกับภาษี scopes so all document types survive.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "No completed purchase, amount, tax status, invoice issuer or inherited booking is supplied.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "The alternative document nouns are not interchangeable and do not assert that any document is available.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "r114_q018 distinguishes the invoice wording from the earlier quotation/receipt answer; preserve type/version scope and unknown effective interval.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": [
+        "r114_q018_owner_policy"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No issue/refusal verdict, tax fact, document contents or price is taught.",
+      "raw_quotes": [
+        "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [
+    {
+      "scope": "answer_source",
+      "reason": "Document type and prior-answer version distinctions remain material.",
+      "handling": "Keep all three document scopes and original source wording/currentness."
+    }
+  ],
+  "historical_review_row": 227,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "payment",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "ขอใบเสร็จ ใบเสนอราคาหรือใบกำกับภาษีได้ไหม ขอสรุปให้เข้าใจง่าย",
+        "domain": "payment",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "ขอ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบเสร็จ",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบเสนอราคา",
+            "source_record_id": "",
+            "scope": "local"
+          },
+          {
+            "slot": "requested_scope",
+            "quote": "ใบกำกับภาษี",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "r114_q018_owner_policy": {
+      "revision": 1,
+      "record_sha256": "54da266ac52770fbdfcb3d7bdbe4d8093a30aa7ae6a0d39497e5d04ba810ade0"
+    }
+  }
+}

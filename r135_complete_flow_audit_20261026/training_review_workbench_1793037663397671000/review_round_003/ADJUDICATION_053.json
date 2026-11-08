@@ -1,0 +1,127 @@
+{
+  "question_key": "6d26c7feeaf4f6aabd9d6dafc411b75359e43bfa789594941d80c2b94d7cd146",
+  "example_sha256": "2018b09d2598ba10c7d25c81b4356840ed389ed5845a4e3003f18e08cbc82cd1",
+  "adjudication_status": "corrected",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One booking-cancellation permission request; verification is style.",
+      "raw_quotes": [
+        "Can I cancel my booking? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "reservation/detail/owner_policy retains cancellation rather than edit-time or payment.",
+      "raw_quotes": [
+        "Can I cancel my booking? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "cancel my booking is an exact action quote; no existing booking identifier is supplied.",
+      "raw_quotes": [
+        "Can I cancel my booking? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "There is no prior paid booking or active session to inherit.",
+      "raw_quotes": [
+        "Can I cancel my booking? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Can I asks policy; it neither performs cancellation nor proves refund eligibility.",
+      "raw_quotes": [
+        "Can I cancel my booking? Please use verified information"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "migrated_faq_rule_cancel_advance and its English natural duplicate record advance cancellation; edit/no-check-in rules have different triggers.",
+      "raw_quotes": [
+        "Can I cancel my booking? Please use verified information"
+      ],
+      "source_record_ids": [
+        "migrated_faq_rule_cancel_advance",
+        "migrated_faq_rule_en_cancel_booking"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "No one-hour deadline, refund or cancellation result is taught.",
+      "raw_quotes": [
+        "Can I cancel my booking? Please use verified information"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 53,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I cancel my booking? Please use verified information",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "booking_policy",
+    "context_quotes": [],
+    "tasks": [
+      {
+        "quote": "Can I cancel my booking? Please use verified information",
+        "domain": "reservation",
+        "operation": "detail",
+        "facet": "owner_policy",
+        "target": "",
+        "constraints": [
+          {
+            "slot": "action",
+            "quote": "cancel my booking",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "migrated_faq_rule_cancel_advance": {
+      "revision": 4,
+      "record_sha256": "46f051151519951185ff9d1a739a703d01a32145372923c101c7ebf2261b8487"
+    },
+    "migrated_faq_rule_en_cancel_booking": {
+      "revision": 4,
+      "record_sha256": "932a3398ce5bde1bea513a720817e3f4a42276808922d994e3e0ad250f4078e5"
+    }
+  }
+}

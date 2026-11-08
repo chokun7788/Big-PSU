@@ -1,0 +1,133 @@
+{
+  "question_key": "0234e46dd9231325b5e25d19de60eb9a6039f4af138b184f32d7269bf694bd5f",
+  "example_sha256": "988a27be626a3bf7c55b24d4167e72074b0087f2ff69d43a93f3486b6de68a29",
+  "adjudication_status": "accepted",
+  "reviewer": {
+    "id": "Codex-primary-agent-R135-source-adjudication",
+    "kind": "agent"
+  },
+  "source_identity_sha256": "6719877513dfa8646efce21d37ef5890fe4a0a72b56076977598954909497565",
+  "criteria": {
+    "needs_and_style": {
+      "status": "passed",
+      "reason": "One capacity question names an explicit PS5 station range.",
+      "raw_quotes": [
+        "Could you please help me with this: How many people can play PlayStation 5 #01-#02"
+      ],
+      "source_record_ids": []
+    },
+    "intent_operation_facet": {
+      "status": "passed",
+      "reason": "equipment/count/capacity_persons asks simultaneous players, not machine quantity or listed participant range.",
+      "raw_quotes": [
+        "Could you please help me with this: How many people can play PlayStation 5 #01-#02"
+      ],
+      "source_record_ids": []
+    },
+    "entities_and_slot_roles": {
+      "status": "passed",
+      "reason": "PlayStation 5 #01-#02 is the complete target; do not drop the station identifiers.",
+      "raw_quotes": [
+        "Could you please help me with this: How many people can play PlayStation 5 #01-#02"
+      ],
+      "source_record_ids": []
+    },
+    "local_shared_history_scope": {
+      "status": "passed",
+      "reason": "PlayStation 5 is local platform; no number of requested users was stated.",
+      "raw_quotes": [
+        "Could you please help me with this: How many people can play PlayStation 5 #01-#02"
+      ],
+      "source_record_ids": []
+    },
+    "negation_and_ambiguity": {
+      "status": "passed",
+      "reason": "Clear capacity need stays unambiguous even when the source cannot establish simultaneous capacity.",
+      "raw_quotes": [
+        "Could you please help me with this: How many people can play PlayStation 5 #01-#02"
+      ],
+      "source_record_ids": []
+    },
+    "source_version_alignment": {
+      "status": "passed",
+      "reason": "availability_ps5_01_02 currently gives service_capacity 1–2 with an explicit warning that simultaneous play is unconfirmed.",
+      "raw_quotes": [
+        "Could you please help me with this: How many people can play PlayStation 5 #01-#02"
+      ],
+      "source_record_ids": [
+        "availability_ps5_01_02"
+      ]
+    },
+    "no_business_answer_target": {
+      "status": "passed",
+      "reason": "Do not teach the source listing as the answer to physical player capacity.",
+      "raw_quotes": [
+        "Could you please help me with this: How many people can play PlayStation 5 #01-#02"
+      ],
+      "source_record_ids": []
+    }
+  },
+  "unresolved_issues": [],
+  "historical_review_row": 16,
+  "prior_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_capacity",
+    "context_quotes": [
+      "PlayStation 5"
+    ],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: How many people can play PlayStation 5 #01-#02",
+        "domain": "equipment",
+        "operation": "count",
+        "facet": "capacity_persons",
+        "target": "PlayStation 5 #01-#02",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PlayStation 5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "reviewed_label": {
+    "version": "r129-plan-v2",
+    "focus": "equipment_capacity",
+    "context_quotes": [
+      "PlayStation 5"
+    ],
+    "tasks": [
+      {
+        "quote": "Could you please help me with this: How many people can play PlayStation 5 #01-#02",
+        "domain": "equipment",
+        "operation": "count",
+        "facet": "capacity_persons",
+        "target": "PlayStation 5 #01-#02",
+        "constraints": [
+          {
+            "slot": "platform",
+            "quote": "PlayStation 5",
+            "source_record_id": "",
+            "scope": "local"
+          }
+        ],
+        "ambiguous": false,
+        "id": "t1"
+      }
+    ],
+    "shared_bindings": []
+  },
+  "review_scope": "language plan only; no answer accuracy certificate",
+  "source_field_evidence": {
+    "availability_ps5_01_02": {
+      "revision": 5,
+      "record_sha256": "b9ca6c769a0c9207354e00d14c7031f9912ce1f525200799c12d41952f704282"
+    }
+  }
+}
