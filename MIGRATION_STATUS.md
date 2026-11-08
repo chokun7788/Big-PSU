@@ -14,16 +14,25 @@ Destination: `D:\CodexProjects\Big-PSU`
 - Git selection follows the user's choice: code versions, plans, and summary reports. Models, databases,
   raw evidence, private chat archives, runtime logs, and generated dependencies stay local on D:.
 
-## Pending before any C: originals may be removed
+## Read permissions resolved; eligible-folder cleanup completed
 
-Windows denies read access to one file and several directories below:
+The user explicitly authorized repairing read access below:
 
 `work\r30_test_dependencies`
 
-The directory is owned by `CodexSandboxOnline`; the current Windows account is `Chokhun`.
-The complete-read gate is therefore **not passed**. No original project directory has been deleted,
-and the prepared activation/cleanup script has not been run. Keep C: intact until all remaining
-files are copied or the user explicitly changes the retention requirement.
+An elevated, narrowly scoped helper granted Chokhun read access successfully. The subsequent
+additional verification covered 541 files with zero blockers. Cleanup rechecked source and
+destination bytes per folder before moving the C: original into staging, creating a compatibility
+junction to D:, and removed that verified staging copy. **127 folders migrated successfully**;
+all 127 compatibility links validated. C: free space after cleanup was approximately **64.5 GiB**.
+The D: trial chat health check passed and protected model PID 26336 remained running.
+See `ACTIVATION.json` and `MIGRATION_COMPLETION_RECEIPT.json` for actual results.
+
+The protected model still uses `r129_full_plan_completion_20261024` and
+`r135_hybrid48_20261108` on C:; retain those folders without stopping the model.
+The old `conversation_reliability_implementation_20261005` contains junctions to the separate
+Learn-LLM repository and is retained when the reparse-directory safety check fails.
+Root-level files and the original `work` folder remain unless separately verified and migrated.
 
 Private audit receipts are in `D:\CodexProjects\_psu_migration_20261108`:
 `VERIFICATION.json`, `VERIFIED_FILES.jsonl`, `REPAIRED_FILES.json`, and `FINAL_COPY_CHECK.json`.
