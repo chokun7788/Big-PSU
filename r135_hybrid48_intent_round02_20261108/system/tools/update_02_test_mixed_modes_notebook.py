@@ -52,7 +52,10 @@ def main() -> None:
             """from pathlib import Path
 import sys
 
-PROJECT_ROOT = Path(r"C:\\Users\\Chokhun\\Downloads\\Learn-LLM\\18_PSU_Esports_Update_Route_Data")
+PROJECT_ROOT = next((p for p in (Path.cwd(), *Path.cwd().parents)
+                     if (p / "app").is_dir() and (p / "data").is_dir()), None)
+if PROJECT_ROOT is None:
+    raise RuntimeError("Open this notebook from the migrated system folder or its notebooks subfolder.")
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 

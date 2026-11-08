@@ -1,8 +1,11 @@
 param(
-  [string]$DeployRoot = "C:\Users\Chokhun\Downloads\Learn-LLM\20_PSU_Esports_Vercel_Deploy"
+  [string]$DeployRoot
 )
 
 $ErrorActionPreference = "Stop"
+if ([string]::IsNullOrWhiteSpace($DeployRoot)) {
+  throw 'Specify -DeployRoot explicitly. This migrated project has no implicit deployment destination.'
+}
 
 $SourceRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 $DeployRoot = (Resolve-Path -LiteralPath $DeployRoot).Path
