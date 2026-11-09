@@ -80,9 +80,17 @@ def render(index,category,question,lang,selected,claims,computations,metadata,bl
         return out
     if category=='C06' and all(f['facet']=='amount' for f in selected):
         groups=OrderedDict();bycalc={c['fact_id']:c for c in computations}
+        services_by_platform={}
+        for f in selected:
+            rate=index.records.get(f['record_id'],{});sid=value(rate,'service_id');service=index.records.get(sid,{})
+            platform=value(service,'platform')
+            if sid and platform:services_by_platform.setdefault(str(platform),set()).add(sid)
         for i,(f,c) in enumerate(zip(selected,claims),1):
             r=index.records.get(f['record_id'],{});srv=index.records.get(value(r,'service_id'),{});aud=index.records.get(value(r,'audience_id'),{})
             calculation=bycalc.get(f['id']);platform=value(srv,'platform') or title(srv)[lang];audience=title(aud)[lang]
+            if len(services_by_platform.get(str(platform),set()))>1 and srv.get('fields',{}).get('name',{}).get('status')=='known':
+                source_name=title(srv)[lang]
+                if source_name:platform=source_name
             signature=(value(r,'service_id'),value(r,'persons_min'),value(r,'persons_max'),str(platform),value(r,'audience_id'),c['numeric'],str(value(r,'duration_minutes')),f.get('billing_unit'),str(r.get('validity')),str(f.get('confirmation_as_of')),calculation.get('billing_quantity') if calculation else None)
             g=groups.setdefault(signature,{'bounds':metadata.get('source_person_ranges',{}).get(f['id']), 'platform':platform,'audience':audience,'text':c['value'],'citations':[],'calculation':calculation})
             g['citations'].append('S'+str(i))

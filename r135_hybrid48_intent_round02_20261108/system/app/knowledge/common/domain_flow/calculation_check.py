@@ -13,6 +13,9 @@ def errors(index, question, result):
     problems=[];seen=set();expected_sum=Decimal(0)
     facts=[index.byid.get(c.get('fact_id')) for c in computations]
     audience_ids={value(index.records[f['record_id']],'audience_id') for f in facts if f}
+    # Multiple audience rates can be alternatives for one unit, rather than
+    # an order comprising one person from every audience. Never sum them.
+    alternatives=bool(len(audience_ids)>1 and not re.search(r'(?<![\d.])\d+\s*(?:คน|people\b|persons?\b|players?\b)',question,re.I) and not re.search(r'รวม|ทั้งหมด|\btotal\b|\bcombined\b',question,re.I))
     for item,fact in zip(computations,facts):
         try:
             if not fact or item['fact_id'] in seen:raise ValueError('fact identity')
@@ -26,7 +29,9 @@ def errors(index, question, result):
             for label in sorted([*title(service).values(),*sum(service.get('aliases',{}).values(),[])],key=len,reverse=True):
                 if label:text=re.sub(re.escape(label.casefold()),' ',text)
             counts=list(re.finditer(r'(?<![\d.])(\d+)\s*(?:คน|people\b|persons?\b|players?\b)',text))
-            if len(audience_ids)>1:
+            if alternatives:
+                persons=Decimal(1)
+            elif len(audience_ids)>1:
                 labels=[*title(audience).values(),*sum(audience.get('aliases',{}).values(),[])]
                 bound=[]
                 all_labels=[]
@@ -68,6 +73,8 @@ def errors(index, question, result):
             problems.append('hybrid_independent_calculation_unproven')
     # An output-only mutation must not survive a perfectly valid receipt.
     totals=re.findall(r'(?:^|\n)(?:Total:\s*|รวม\s*)([\d,]+(?:\.\d+)?)\s*(?:THB|บาท)',result.get('answer',''),re.I)
+    alternative_total=re.search(r'(?:ราคารวม(?:เป็น)?|รวม(?:เป็น)?|(?:the\s+)?total(?:\s+(?:is|of))?)\s*:?\s*[\d,]+(?:\.\d+)?\s*(?:THB|บาท)',result.get('answer',''),re.I)
+    if alternatives and (totals or alternative_total):problems.append('hybrid_alternative_rates_not_purchase_total')
     if any(Decimal(t.replace(',',''))!=expected_sum for t in totals):problems.append('hybrid_rendered_total_mismatch')
     return sorted(set(problems))
 
