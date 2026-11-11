@@ -131,10 +131,15 @@ def normalize_duration(index,text,meaning):
 def compile_request(question,understanding,index,snapshot):
     if not understanding.accepted:return CompiledRequest(question,snapshot,[],[{'reason':'legacy_plan_unaccepted','coverage':'unverified'}])
     tasks=[];events=copy.deepcopy(understanding.event.get('typed_corrective_tasks',[]))
+    from .quote_occurrences import task_quote_spans
+    quote_positions=task_quote_spans(question,understanding.tasks,index)
     for i,meaning in enumerate(understanding.tasks):
-        tid=f't{i+1}';quote_span=span(question,meaning.quote)
+        tid=f't{i+1}';position=quote_positions[i]
+        quote_span=Span(position['start'],position['end'],position['text']) if position else None
         if quote_span is None:raise ValueError('unbound_task_quote')
         task=CompiledTask(tid,quote_span,meaning.category,meaning.operation,meaning.facet,resolve(meaning.category,meaning.operation,meaning.facet))
+        if position.get('ambiguous'):task.errors.append('task_quote_occurrence_ambiguous')
+        if position['basis']!='unique_exact_quote':events.append({'task_id':tid,'action':position['basis'],'source_span':asdict(quote_span),'semantic_correctness_verified':False})
         if meaning.category=='C11' and meaning.facet in {'open_periods','bookable_periods','maintenance_periods'} and meaning.operation in {'detail','availability'}:
             from .calendar_sets import weekly_requested
             if weekly_requested(meaning.quote):

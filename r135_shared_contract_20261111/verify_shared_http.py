@@ -1,7 +1,7 @@
 import json,time,uuid,urllib.request
 from pathlib import Path
 R=Path(__file__).resolve().parent;url='http://127.0.0.1:8143/'
-health=json.load(urllib.request.urlopen(url+'health',timeout=5));assert health['runtime']['version']=='R135-Shared-contract-working'
+health=json.load(urllib.request.urlopen(url+'health',timeout=5));assert health['runtime']['version']=='R135-Shared-contract-round02'
 out=R/('shared_http_'+str(time.time_ns()));out.mkdir();rows=[];checks={}
 qs=['มีเกมอะไรบ้าง; PC นักศึกษา PSU ราคาเท่าไหร่ แล้วจองยังไง','PC นักศึกษา PSU ราคาเท่าไหร่; จองยังไง แล้วมีเกมอะไรบ้าง','มีเกมอะไรบ้าง and also PC นักศึกษา PSU ราคาเท่าไหร่ แล้วจองยังไง']
 for n,q in enumerate(qs):

@@ -29,6 +29,8 @@ def check(index,task,fact,question):
         basis.append('independent_institution_and_contact_channel_binding')
         if fact['record_id'] not in allowed:errors.append('source_receipt_contact_subject_channel_mismatch')
     elif task.category=='C05':
+        from .game_edition_scope import allows as edition_allows
+        if not edition_allows(index,question,fact.get('game_id')):errors.append('source_receipt_game_numeric_edition_mismatch')
         from .control_scope import candidates
         from .precision import controls
         pool=candidates(index,question);allowed={f['record_id'] for f in pool}
@@ -65,6 +67,9 @@ def check(index,task,fact,question):
         basis.append(policy['basis'])
         if not policy['verified']:errors.append('source_receipt_policy_action_or_actor_mismatch')
     elif task.category=='C04':
+        from .game_edition_scope import allows as edition_allows
+        source_game=fact.get('game_id') or (fact['record_id'] if record.get('kind')=='game' else None)
+        if not edition_allows(index,question,source_game):errors.append('source_receipt_game_numeric_edition_mismatch')
         if getattr(task,'operation',None) in {'detail','availability'} and task.facet!='game_catalog':
             actual=index.bind('C04',question)
             if actual:bound=actual;bound_ids={f['record_id'] for f in actual};allowed=set(bound_ids)

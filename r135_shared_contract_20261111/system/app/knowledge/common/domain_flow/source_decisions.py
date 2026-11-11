@@ -137,6 +137,23 @@ def current_corrections(index):
 def guard_result(reader,result,snap,index,question,at,lang):
     """Prevent a compatibility reader from reviving a corrected old field."""
     art=result.decision_artifact or {}
+    from .game_edition_scope import request as edition_request,allows as edition_allows
+    edition=edition_request(index,question)
+    mismatches=[]
+    if edition['applicable']:
+        from .projection import value
+        for hit in result.hits:
+            rid=hit.get('record_id');record=index.records.get(rid,{})
+            game_id=rid if record.get('kind')=='game' else value(record,'game_id')
+            if game_id and not edition_allows(index,question,game_id):mismatches.append(rid)
+    if mismatches:
+        import time
+        from dataclasses import replace
+        safe=reader.finish(snap,time.perf_counter(),
+            'ยังยืนยันข้อมูลของเกมภาคที่ระบุไม่ได้ครับ กรุณาตรวจชื่อเกมและหมายเลขภาค โดยจะไม่ใช้ข้อมูลของอีกภาคตอบแทน' if lang=='th' else
+            'The requested game edition cannot be confirmed. Please check its name and edition number; information for another edition cannot establish this answer.',
+            [],{'record_ids':[],'requested_fields':[],'method':'source_bound_numeric_game_edition_guard'},[],response='unconfirmed')
+        return replace(safe,decision_artifact={**safe.decision_artifact,'game_edition_rejection':{**edition,'rejected_record_ids':sorted(set(mismatches))}})
     from .policy_subject_scope import check as policy_subject_check
     subject_scope=policy_subject_check(index,question,[h.get('record_id') for h in result.hits],composed=True)
     if subject_scope['errors']:

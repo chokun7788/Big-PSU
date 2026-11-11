@@ -61,6 +61,17 @@ class FactIndex:
         return sorted(ranked,key=lambda x:(-x[0],x[1]['id']))[:limit]
 
     def bind(self,cat,question):
+        facts=self._bind_source_aliases(cat,question)
+        if cat in {'C04','C05'}:
+            from .game_edition_scope import request
+            scope=request(self,question)
+            if scope['applicable']:
+                if scope['unresolved']:return []
+                allowed=set(scope['allowed_game_ids'])
+                facts=[f for f in facts if (f.get('game_id') or (f['record_id'] if self.records.get(f['record_id'],{}).get('kind')=='game' else None)) in allowed]
+        return facts
+
+    def _bind_source_aliases(self,cat,question):
         explicit=[f for rid in self.record_mentions(question) for f in self.byrecord[rid] if f['category']==cat]
         if explicit:return explicit
         q=norm(question);labels=self.subject_labels[cat]

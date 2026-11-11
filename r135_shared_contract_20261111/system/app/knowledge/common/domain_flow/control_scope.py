@@ -21,6 +21,10 @@ def binding_projection(binding):
 def candidates(index,question,pool=None):
     from .dialogue_task import platforms
     requested=set(platforms(index,question));pool=index.bind('C05',question) if pool is None else pool
+    from .game_edition_scope import request as edition_request
+    edition=edition_request(index,question)
+    if edition['applicable']:
+        pool=[] if edition['unresolved'] else [f for f in pool if f.get('game_id') in edition['allowed_game_ids']]
     if requested:pool=[f for f in pool if requested&set(platforms(index,str(value(index.records[f['record_id']],'platform') or '')))]
     from .requested_output import allows
     pool=[f for f in pool if allows(index,question,f)]

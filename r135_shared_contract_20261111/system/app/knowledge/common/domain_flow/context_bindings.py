@@ -40,8 +40,13 @@ def compile_shared(question,index,proposal):
  result=copy.deepcopy(proposal)
  if not result.accepted or not result.tasks:return result
  from .context_guard import PATTERNS,named_targets
- positions=[locate(question,t.quote) for t in result.tasks]
+ from .quote_occurrences import task_quote_spans
+ positions=task_quote_spans(question,result.tasks,index)
  if any(p is None for p in positions):return result
+ if any(p.get('ambiguous') for p in positions):
+  result.event['shared_bindings']=[]
+  result.event['binding_ambiguities']=[{'task_id':f't{n+1}','reason':'task_quote_occurrence_ambiguous'} for n,p in enumerate(positions) if p.get('ambiguous')]
+  return result
  first=result.tasks[0];start=positions[0]['start'];ask=ASK.search(first.quote)
  stop=start+ask.start() if ask else start
  prefix=question[:stop]

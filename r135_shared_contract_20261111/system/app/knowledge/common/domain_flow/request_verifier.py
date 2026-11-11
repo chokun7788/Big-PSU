@@ -144,10 +144,15 @@ def supplement(index,question,proposal):
     if not proposal.accepted:return proposal
     result=copy.deepcopy(proposal);observed=observe(index,question);added=[]
     for need in observed['needs']:
-        def covered(task):
-            start=question.find(task.quote)
-            return matches(need,{'category':task.category,'facet':task.facet,'canonical_operation':task.canonical_operation,'source_span':{'start':start,'end':start+len(task.quote)}})
-        if any(covered(t) for t in result.tasks):continue
+        from .quote_occurrences import task_quote_spans
+        positions=task_quote_spans(question,result.tasks,index)
+        def covered(task,position):
+            return bool(position and not position.get('ambiguous') and matches(need,{'category':task.category,'facet':task.facet,'canonical_operation':task.canonical_operation,'source_span':position}))
+        if any(covered(t,p) for t,p in zip(result.tasks,positions)):continue
+        if any(p and p.get('ambiguous') and t.quote==need['source_span']['text'] for t,p in zip(result.tasks,positions)):
+            # More guessed duplicate tasks cannot establish occurrence ownership.
+            # Keep the unresolved need visible to final coverage verification.
+            continue
         if len(result.tasks)>=32:continue
         cat=need['category'];facet=need['facet'];text=need['source_span']['text']
         domain=next(d for d,(c,_) in DOMAINS.items() if c==cat)
