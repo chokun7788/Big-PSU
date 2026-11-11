@@ -1,0 +1,533 @@
+{
+  "paired_same200": {
+    "hybrid_10pct": {
+      "requests": 200,
+      "sum_seconds": 4158.454,
+      "median_seconds": 1.2229999999999999,
+      "max_seconds": 151.475,
+      "over60": 27,
+      "unavailable": 22,
+      "partial": 96,
+      "missing_selected200_keys": 0
+    },
+    "bounded_200": {
+      "requests": 200,
+      "sum_seconds": 436.97,
+      "median_seconds": 1.072,
+      "max_seconds": 17.108,
+      "over60": 0,
+      "unavailable": 35,
+      "partial": 89,
+      "missing_selected200_keys": 0
+    },
+    "verified_200": {
+      "requests": 200,
+      "sum_seconds": 370.948,
+      "median_seconds": 0.922,
+      "max_seconds": 15.242,
+      "over60": 0,
+      "unavailable": 36,
+      "partial": 87,
+      "missing_selected200_keys": 0
+    }
+  },
+  "model_events_nonexclusive": {
+    "hybrid_10pct": {
+      "all": {
+        "requests": 2111,
+        "zero_model_calls_attempted_counter": 1349,
+        "explicit_timeout_requests": 400,
+        "gateway_transport_failure_requests": 400,
+        "gateway_transport_success_requests": 464,
+        "top_level_claim_packets_present": 70,
+        "no_public_url_but_claim_packets_present": 70
+      },
+      "unavailable": {
+        "requests": 324,
+        "explicit_timeout_requests": 321,
+        "gateway_transport_failure_requests": 321,
+        "gateway_transport_success_requests": 93
+      }
+    },
+    "bounded_200": {
+      "all": {
+        "requests": 200,
+        "explicit_timeout_requests": 17,
+        "gateway_transport_failure_requests": 17,
+        "zero_model_calls_attempted_counter": 174,
+        "gateway_transport_success_requests": 9,
+        "admission_denied_event_requests": 57,
+        "top_level_claim_packets_present": 5,
+        "no_public_url_but_claim_packets_present": 5
+      },
+      "unavailable": {
+        "requests": 35,
+        "explicit_timeout_requests": 12,
+        "gateway_transport_failure_requests": 12,
+        "admission_denied_event_requests": 28,
+        "zero_model_calls_attempted_counter": 23
+      }
+    },
+    "verified_200": {
+      "all": {
+        "requests": 200,
+        "explicit_timeout_requests": 17,
+        "gateway_transport_failure_requests": 17,
+        "zero_model_calls_attempted_counter": 175,
+        "gateway_transport_success_requests": 8,
+        "admission_denied_event_requests": 60,
+        "top_level_claim_packets_present": 5,
+        "no_public_url_but_claim_packets_present": 2
+      },
+      "unavailable": {
+        "requests": 36,
+        "explicit_timeout_requests": 14,
+        "gateway_transport_failure_requests": 14,
+        "admission_denied_event_requests": 30,
+        "zero_model_calls_attempted_counter": 22
+      }
+    }
+  },
+  "deadline": {
+    "hybrid_10pct": {
+      "recorded_global_elapsed_over_declared_limit": 1,
+      "over_limit_but_timed_out_false": 1
+    },
+    "bounded_200": {
+      "recorded_global_elapsed_over_declared_limit": 0,
+      "over_limit_but_timed_out_false": 0
+    },
+    "verified_200": {
+      "recorded_global_elapsed_over_declared_limit": 0,
+      "over_limit_but_timed_out_false": 0
+    }
+  },
+  "deadline_anomalies": [
+    {
+      "run": "hybrid_10pct",
+      "key": "e8b999d5007e4c998d1e622828ecb65d5c6987a23fff47459e75be147c7795af",
+      "question": "Please check: What do the RoV tournament ruls say about the competition format? please.",
+      "client_seconds": 2859.009,
+      "response_wall_seconds": 2858.9373,
+      "deadline": {
+        "global_timeout_enabled": true,
+        "global_timeout_sec": 190.0,
+        "global_elapsed_sec": 2858.9372,
+        "global_remaining_sec": 0.0,
+        "finalizer_reserve_sec": 1.0,
+        "work_remaining_sec": 0.0,
+        "timing_status": "running"
+      },
+      "timed_out": false,
+      "timing_status": "completed"
+    }
+  ],
+  "focused_cases_in_viewer": 48,
+  "five_runs_rows": 4623,
+  "all_viewer_rows": 4671,
+  "limits": "Same-key historical comparison, not causal or semantic accuracy. Trace coverage 2511 rows, earlier two 5% only response summaries. Events can overlap; no logs or frozen databases were changed.",
+  "same200_mode_transitions_hybrid10_to_verified": [
+    {
+      "old_mode": "pipeline:common_partial_answer",
+      "new_mode": "pipeline:common_partial_answer",
+      "questions": 86
+    },
+    {
+      "old_mode": "pipeline:common_answer",
+      "new_mode": "pipeline:common_answer",
+      "questions": 43
+    },
+    {
+      "old_mode": "pipeline:common_unavailable",
+      "new_mode": "pipeline:common_unavailable",
+      "questions": 21
+    },
+    {
+      "old_mode": "pipeline:common_unconfirmed",
+      "new_mode": "pipeline:common_unconfirmed",
+      "questions": 20
+    },
+    {
+      "old_mode": "pipeline:common_partial_answer",
+      "new_mode": "pipeline:common_unavailable",
+      "questions": 9
+    },
+    {
+      "old_mode": "pipeline:common_unconfirmed",
+      "new_mode": "pipeline:common_unavailable",
+      "questions": 5
+    },
+    {
+      "old_mode": "pipeline:migrated_greeting",
+      "new_mode": "pipeline:migrated_greeting",
+      "questions": 4
+    },
+    {
+      "old_mode": "pipeline:common_clarification",
+      "new_mode": "pipeline:common_clarification",
+      "questions": 4
+    },
+    {
+      "old_mode": "pipeline:common_answer",
+      "new_mode": "pipeline:common_unconfirmed",
+      "questions": 2
+    },
+    {
+      "old_mode": "pipeline:common_answer",
+      "new_mode": "pipeline:common_unavailable",
+      "questions": 1
+    },
+    {
+      "old_mode": "pipeline:common_unconfirmed",
+      "new_mode": "pipeline:common_answer",
+      "questions": 1
+    },
+    {
+      "old_mode": "pipeline:studio_scope_no_answer",
+      "new_mode": "pipeline:studio_scope_no_answer",
+      "questions": 1
+    },
+    {
+      "old_mode": "pipeline:common_not_current",
+      "new_mode": "pipeline:common_not_current",
+      "questions": 1
+    },
+    {
+      "old_mode": "pipeline:common_unavailable",
+      "new_mode": "pipeline:common_partial_answer",
+      "questions": 1
+    },
+    {
+      "old_mode": "pipeline:common_partial_answer",
+      "new_mode": "pipeline:common_unconfirmed",
+      "questions": 1
+    }
+  ],
+  "became_unavailable": [
+    {
+      "key": "1100db2e70bfb1912d3e4e62242cbf2470999901aaa67ad5d40d7d192060b4d6",
+      "question": "What can you use a PlayStation 5 Slim with Ultra HD Blu-ray Disc Drive for",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**usage**: PlayStation 5 console gaming equipment for console gaming and as a base for selected VR Zones. Book PlayStation 5 Zone or VR Zone according to desired service, then play pre-set games on schedule. Play Marvel's Spider-Man 2. Play TEKKEN 8. Play Fortnite. Play God of War Ragnarok. Supports VR Zone using PlayStation VR2. [S1]\n**PlayStation 5 Slim With Ultra HD Blu-Ray Disc Drive**",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 96.621,
+      "new_seconds": 1.093,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 778.373
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 831.066
+        }
+      ]
+    },
+    {
+      "key": "17f82798b4ffd7ff17ced7afd8c59adf6f1ccfd08736366351b18b826106a81d",
+      "question": "In The Legend of Zelda: Breath of the Wild, what button do you press to shrink",
+      "old_mode": "pipeline:common_unconfirmed",
+      "old_answer": "Related records exist, but the requested detail is not established.",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 14.966,
+      "new_seconds": 5.785,
+      "new_model_calls": [
+        {
+          "stage": "R129_model_gateway",
+          "model_stage": "evidence_selection",
+          "transport_ok": false,
+          "error": "TimeoutError: timed out",
+          "elapsed_seconds": 5.0,
+          "elapsed_ms": 5539.582
+        }
+      ]
+    },
+    {
+      "key": "356e65ab3c34f5b92010c923eed1351c991b5f1bfba6b25a7e6a2bb399047e7b",
+      "question": "Whete can VALORANT be plaed",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "The source-backed subset is shown; completeness for the requested operation is not established.\n**confirmed studio zones offering this game**: PC Zone [S1]\n**VALORANT**",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 44.625,
+      "new_seconds": 0.888,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 513.066
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 575.618
+        }
+      ]
+    },
+    {
+      "key": "41012f5c83e7677c556132b420329ddeeddecb5cc52392d26ffd96482d213616",
+      "question": "Driving Force Shifter อยู่ซนไหน",
+      "old_mode": "pipeline:common_answer",
+      "old_answer": "**ที่ตั้ง**: Cockpit Zone [S1]\n**Driving Force Shifter**",
+      "new_answer": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old_seconds": 27.884,
+      "new_seconds": 0.914,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 593.786
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 642.518
+        }
+      ]
+    },
+    {
+      "key": "43b2873212efc69c3bf7005567e686b27bcae4c85945d75c195e73ea5aec223c",
+      "question": "ตามกติกกาการแข่่งขัน CS2 เปลี่ยนสมาชิกทีมหลังเริ่มรายการได้หรือไม่",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**คำอธิบายเกม**: Counter-Strike 2 คือเกมยิงแข่งขันแบบทีมที่แบ่งเป็นฝ่ายบุกและฝ่ายรับ โดยมีเป้าหมายหลักเกี่ยวกับการวาง/กู้ระเบิดหรือจัดการฝ่ายตรงข้าม [S1]\n**Counter-Strike 2**",
+      "new_answer": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old_seconds": 96.086,
+      "new_seconds": 1.419,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 1111.479
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 1189.921
+        }
+      ]
+    },
+    {
+      "key": "4b5d53ef91b969f655f353e5a2f4f9f81db102537e849ec70f6260f3aca69edf",
+      "question": "Where can you play Monster Hunter Rise?",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**confirmed studio zones offering this game**: Nintendo Switch Zone [S1]\n**Monster Hunter Rise**",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 28.072,
+      "new_seconds": 0.777,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 448.064
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 509.847
+        }
+      ]
+    },
+    {
+      "key": "70997b13c9d5bb133901d0b1070d3be4c01c956c03ece8e2bb8c13ee04d29c2d",
+      "question": "Please answer from verified studio information: What is the studio policy for monday play",
+      "old_mode": "pipeline:common_unconfirmed",
+      "old_answer": "The requested game, machine or topic is not identified. Please specify the target.",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 35.333,
+      "new_seconds": 5.866,
+      "new_model_calls": [
+        {
+          "stage": "R129_model_gateway",
+          "model_stage": "context_understanding",
+          "transport_ok": false,
+          "error": "TimeoutError: timed out",
+          "elapsed_seconds": 5.0,
+          "elapsed_ms": 5532.065
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 5594.425
+        }
+      ]
+    },
+    {
+      "key": "73da6de3ccd6987bedcc29323cf3bde852c1c5a32a83cdaa3dd11b58665493db",
+      "question": "Does the PC Zone have gaming monitors? I need the official answer.",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**PC — 5 games**\n- TEKKEN 8\n- Counter-Strike 2\n- League of Legends\n- PUBG: BATTLEGROUNDS\n- VALORANT\n[S1]",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 52.068,
+      "new_seconds": 0.961,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 600.35
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 678.297
+        }
+      ]
+    },
+    {
+      "key": "80822a260bdd122e45cc7b36102ca940a6f9676eac1d339290fdb534394d24cc",
+      "question": "ช่วยตอบจากข้อมูลทียืนยันได้หน่อย: Gaming Keyboard อยู่โซนไกน",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**ที่ตั้ง**: PC Zone [S1]\n**สเปก**: zone; PC Zone [S2]\n**Gaming Keyboard**",
+      "new_answer": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old_seconds": 91.759,
+      "new_seconds": 5.895,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 548.256
+        },
+        {
+          "stage": "R129_model_gateway",
+          "model_stage": "evidence_selection",
+          "transport_ok": false,
+          "error": "TimeoutError: timed out",
+          "elapsed_seconds": 5.01600000000326,
+          "elapsed_ms": 5623.205
+        }
+      ]
+    },
+    {
+      "key": "8c1d09106534d760a4884f4d0cabc3447dcf5d438854e65124aef37390d37188",
+      "question": "อธิบายคำว่า latency ในระบบคอมพิวเตอร์แบบสั้น ๆ ตอบเป็นภาษาไทย",
+      "old_mode": "pipeline:common_unconfirmed",
+      "old_answer": "ยังไม่มีข้อมูลยืนยันสำหรับส่วนที่ถามครับ",
+      "new_answer": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old_seconds": 50.525,
+      "new_seconds": 0.751,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 527.821
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 590.768
+        }
+      ]
+    },
+    {
+      "key": "c5ff78a3089e9f00b4239e2423da005f17d4fc1ab2735e7c9ff28c8ebd83ba0a",
+      "question": "In God of War Ragnarök, what button is used for movement?",
+      "old_mode": "pipeline:common_unconfirmed",
+      "old_answer": "Related records exist, but the requested detail is not established.",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 17.841,
+      "new_seconds": 0.753,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 552.278
+        }
+      ]
+    },
+    {
+      "key": "cca6a13bcd8557fa52422ba2da8e717e6841f37490b4e55a131b2001d0ef68ba",
+      "question": "Where can you play Horizon Call of the Mountain",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**confirmed studio zones offering this game**: VR Zone [S1]\n**Horizon Call of the Mountain**",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 33.787,
+      "new_seconds": 1.074,
+      "new_model_calls": [
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "context_understanding",
+          "elapsed_ms": 672.028
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 744.167
+        }
+      ]
+    },
+    {
+      "key": "d604f5b5ba61c5756117ef941c27bc3b60ed5d78318b53a3095998969a50c3d4",
+      "question": "ขอข้อมูลเรื่องวันศุกร์ ตรวจอุปกรณ์",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**ศุกร์**\n**ช่วงจองเล่น**: 09:00–12:00 [S1]",
+      "new_answer": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old_seconds": 99.342,
+      "new_seconds": 5.951,
+      "new_model_calls": [
+        {
+          "stage": "R129_model_gateway",
+          "model_stage": "context_understanding",
+          "transport_ok": false,
+          "error": "TimeoutError: timed out",
+          "elapsed_seconds": 5.0,
+          "elapsed_ms": 5634.458
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 5699.53
+        }
+      ]
+    },
+    {
+      "key": "da50ab2947e251f9dda831ed078099cefa03850aa485aa04f4bcd293a8d01697",
+      "question": "How do you use the controller in Resident Evil Village",
+      "old_mode": "pipeline:common_unconfirmed",
+      "old_answer": "No verified control layout is recorded for the requested input device. Please specify the platform or device.",
+      "new_answer": "The checking service is unavailable; this detail cannot be confirmed.",
+      "old_seconds": 23.528,
+      "new_seconds": 5.774,
+      "new_model_calls": [
+        {
+          "stage": "R129_model_gateway",
+          "model_stage": "evidence_selection",
+          "transport_ok": false,
+          "error": "TimeoutError: timed out",
+          "elapsed_seconds": 5.01600000000326,
+          "elapsed_ms": 5517.447
+        }
+      ]
+    },
+    {
+      "key": "efe8ec50749130e3a344b84b72c2cff9b86d712d15ca11f6b149a80634953f91",
+      "question": "ขอสอบถามหน่อยครับ นักศึกษา PSU เฃ่น VR 30 นาที เสียกี่บท",
+      "old_mode": "pipeline:common_partial_answer",
+      "old_answer": "**VR — 4 เกม**\n- Beat Saber\n- Horizon Call of the Mountain\n- Resident Evil 4\n- Resident Evil Village\n[S1]\n\nยังยืนยันการใช้เงื่อนไขต่อไปนี้ในคำตอบไม่ได้: 30 นาที",
+      "new_answer": "ระบบตรวจสอบส่วนนี้ไม่พร้อม จึงยังยืนยันคำตอบไม่ได้ครับ",
+      "old_seconds": 73.833,
+      "new_seconds": 5.879,
+      "new_model_calls": [
+        {
+          "stage": "R129_model_gateway",
+          "model_stage": "context_understanding",
+          "transport_ok": false,
+          "error": "TimeoutError: timed out",
+          "elapsed_seconds": 5.032000000006519,
+          "elapsed_ms": 5584.364
+        },
+        {
+          "stage": "model_admission_denied",
+          "model_stage": "evidence_selection",
+          "elapsed_ms": 5661.861
+        }
+      ]
+    }
+  ],
+  "recovered_from_unavailable": [
+    {
+      "key": "df948b9fd983733a1cd9e6b0fe4b7aa0224b3915940d2f9ff4d0962d32549941",
+      "question": "นางสาวชญาภา จจันทร์เอิบ ทำตำแหน่งอะไร",
+      "new_mode": "pipeline:common_partial_answer"
+    }
+  ]
+}
