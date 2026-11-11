@@ -16,3 +16,5 @@
 previewล่าสุด8141ใช้working codeหลังแก้เฉพาะจุดเพิ่ม ส่วน8140เป็นfrozen measured trial ผล196/255literalไม่รวมpost-eval patches ต้องไม่อ้างคะแนนใหม่โดยรวมผลเฉพาะจุดเข้าไป
 
 ลำดับต่อไป:จัดกลุ่ม36unavailableจากtraceจริง โดยแยก15store/snapshot codeจาก21model transport codeก่อนสรุปสาเหตุ ตรวจowner/editor HTTP lifecycleและsource scopesที่ยังขาด ภาพ/เอกสารแนบที่เว็บเข้าไม่ได้ยังไม่รับรอง ไม่deployproductionก่อนgates/backupWAL
+
+อัปเดตการแยกสาเหตุ:15caseที่ติดรหัสstoreเดิมทั้งหมดมาจากr101_model_unavailable ไม่มีstore_error_type โดย13มีcontext-kind cooldown denialและ2มีtimeout ดูUNAVAILABLE_ATTRIBUTION_TH.md แพตช์reason labelsผ่านreplay20checks แต่ยังไม่แก้admission/timeoutและยังไม่โหลดแพตช์นี้เข้าpreviewเดิม

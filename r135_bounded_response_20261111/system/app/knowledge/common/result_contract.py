@@ -1,12 +1,24 @@
 """Terminal result adapter shared by common readers and dispatcher fallbacks."""
 from dataclasses import replace
 
+def unavailable_reason(art):
+    """Attribute availability to recorded origin, never infer a broken store."""
+    method=(art.get('query_plan') or {}).get('method')
+    if art.get('store_error_type') or method=='r102_snapshot_unavailable':return 'store_or_snapshot_unavailable'
+    if method=='r101_model_unavailable':
+        error=str(((art.get('understanding') or {}).get('event') or {}).get('error') or '')
+        if 'model_admission_unavailable' in error:return 'model_admission_unavailable'
+        if error.startswith('TimeoutError:'):return 'model_timeout'
+        return 'model_or_interpretation_unavailable'
+    if art.get('response_type')=='retry':return 'snapshot_changed_during_read'
+    return 'checking_service_unavailable'
+
 def status(result,coverage=None):
     art=result.decision_artifact or {};plan=art.get('query_plan') or {};response=art.get('response_type') or result.route.answer_type
     if art.get('claim_conflicts'):return 'conflict',['contradictory_current_typed_claims']
     if plan.get('graph_result',{}).get('status') in {'broken_relation','unsupported','conflict'}:return plan['graph_result']['status'],['required_graph_dependency_not_supported']
     errors=list(result.validation.errors);reason=[]
-    if art.get('store_error_type') or response in {'unavailable','retry'}:return 'temporary_failure',['store_or_snapshot_unavailable']
+    if art.get('store_error_type') or response in {'unavailable','retry'}:return 'temporary_failure',[unavailable_reason(art)]
     if errors:
         if any('source_pointer' in e for e in errors):return 'broken_relation',errors
         if any(e.startswith('missing_requested_field') for e in errors):return 'missing_source',errors
@@ -38,6 +50,11 @@ def finalize(result,question,snapshot=None,history=None):
     """Cover final rejection/fallback paths without restoring rejected facts."""
     from .request_plan import make_plan,attach,VERSION
     art=dict(result.decision_artifact or {})
+    # Earlier adapters may have built need rows before the understanding event
+    # arrived. Enrich their reason only; do not turn failure into supported data.
+    if (art.get('query_plan') or {}).get('method')=='r101_model_unavailable' and not art.get('store_error_type'):
+        origin=unavailable_reason(art)
+        art['need_results']=[{**row,'reason_codes':[origin if code in {'store_or_snapshot_unavailable','model_or_interpretation_unavailable'} else code for code in row.get('reason_codes',[])]} for row in art.get('need_results',[])]
     if art.get('request_plan',{}).get('version')==VERSION and art.get('need_results'):
         from .query_contract import normalize
         art['request_plan']['raw_question']=question
