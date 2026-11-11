@@ -207,6 +207,53 @@ class CommonAnswerer:
             from .domain_flow.input_derivation import check,reject_for_reader
             effective_locale=ctx.input['effective_locale']
             if not check(question)['verified']:return reject_for_reader(self,question,effective_locale,at,_snapshot)
+            if not _composing and not ctx.input.get('intent_edit_recovery_done'):
+                from .typo_recovery import propose
+                snap=_snapshot if _snapshot is not None else self.store.snapshot()
+                if snap.get('release'):
+                    ctx.bind_snapshot(snap)
+                    recovery=propose(question,snap['release']['records'])
+                    if recovery.status=='clarify' and recovery.reason=='missing_content_word_multiple_domains' and history:
+                        from .followup_scope import delivered_state
+                        if delivered_state(history):
+                            recovery.status='unchanged';recovery.reason='missing_content_deferred_to_validated_history'
+                    if recovery.status=='accepted':
+                        from .domain_flow.engine import Engine
+                        from .domain_flow.native_intents import propose as native_meaning
+                        engine=Engine.from_snapshot(snap,cache_key=self.store.path.resolve())
+                        original_meaning=native_meaning(engine.index,question)
+                        candidate_meaning=native_meaning(engine.index,recovery.execution)
+                        task_shape=lambda meaning:[(t.category,t.operation,t.facet,t.target,t.canonical_operation) for t in meaning.tasks]
+                        if original_meaning is not None and candidate_meaning is not None and original_meaning.accepted and candidate_meaning.accepted and not any(t.ambiguous for t in original_meaning.tasks+candidate_meaning.tasks) and task_shape(original_meaning)==task_shape(candidate_meaning):
+                            recovery.status='unchanged';recovery.execution=question;recovery.edits=[]
+                            recovery.reason='keep_already_recognized_native_request'
+                    ctx.input['intent_edit_recovery_done']=True
+                    ctx.event('intent_edit_recovery',**recovery.public())
+                    if recovery.status=='clarify':
+                        import time
+                        notice=('หมายถึงเกม อุปกรณ์ หรือบริการครับ? กรุณาระบุเรื่องที่ต้องการถามอีกนิด' if effective_locale=='th' else 'Do you mean games, equipment or services? Please clarify the topic.') if recovery.reason=='missing_content_word_multiple_domains' else ('อ่านคำถามได้หลายแบบ กรุณายืนยันว่าหมายถึง: ' if effective_locale=='th' else 'There are several possible readings. Please confirm: ')+' / '.join(c['text'] for c in recovery.candidates[:3])
+                        if recovery.reason=='polarity_sensitive_recovery_requires_confirmation':notice=('คำถามนี้มีคำปฏิเสธหรือเงื่อนไขสำคัญ ขอให้พิมพ์ยืนยันความหมายอีกครั้งครับ อ่านได้ว่า: ' if effective_locale=='th' else 'This wording includes a negation or important condition. Please restate the intended meaning. Possible reading: ')+' / '.join(c['text'] for c in recovery.candidates[:3])
+                        out=self.finish(snap,time.perf_counter(),notice,[],{'record_ids':[],'requested_fields':[],'method':'ambiguous_intent_edit_candidates'},[],response='clarification')
+                        out.decision_artifact['intent_edit_recovery']=recovery.public()
+                        return out
+                    if recovery.status=='accepted':
+                        from .domain_flow.engine import Engine
+                        from .domain_flow.request_provenance import derived_input
+                        engine=Engine.from_snapshot(snap,cache_key=self.store.path.resolve())
+                        derived_input(recovery.execution,'bounded_intent_edit_recovery',[{'origin':'current_user','text':question}],index=engine.index,parent_question=question)
+                        if not check(recovery.execution)['verified']:return reject_for_reader(self,recovery.execution,effective_locale,at,snap)
+                        question=recovery.execution
+                    # A list of offered games cannot establish the complement.
+                    # Gate this explicit request before every compatibility reader.
+                    import re,time
+                    if re.search(r'ไม่มีเกม.*(?:อะไร|บ้าง)|\b(?:what|which) games?\b.*\bnot\s+(?:available|offered)\b',question,re.I):
+                        notice=('ยังยืนยันรายชื่อเกมที่ไม่มีให้บริการไม่ได้ครับ ข้อมูลที่มีเป็นรายการเกมที่ให้บริการ หากต้องการตรวจเกมใด โปรดระบุชื่อเกมครับ' if effective_locale=='th' else 'The available-game catalogue does not establish a complete list of games not offered. Please name the game you want to check.')
+                        out=self.finish(snap,time.perf_counter(),notice,[],{'record_ids':[],'requested_fields':[],'method':'negative_catalog_requires_absence_set'},[],response='unconfirmed')
+                        out.decision_artifact['intent_edit_recovery']=recovery.public()
+                        return out
+                    out=self._answer_with_context(question,locale=effective_locale,history=history,at=at,planner=planner,_composing=_composing,_snapshot=snap)
+                    if out is not None:out.decision_artifact['intent_edit_recovery']=recovery.public()
+                    return out
             # Keep requested_locale/locale in the immutable request context,
             # while every typed, unified and compatibility reader receives the
             # same resolved language. Legacy helpers do not interpret "auto".

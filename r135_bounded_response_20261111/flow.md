@@ -4,6 +4,7 @@
 
 1. ตรึงraw question,บริบท,เวลาและsnapshot
 2. แยกสิ่งที่ถามและผูกเป้าหมายกับrecordจริง
+   ก่อนตีความใช้bounded intent-edit channelจากhelpersเก่า ป้องกันชื่อ/ตัวเลข/เงื่อนไข เก็บrawและedit receipts ถ้าคำแนะนำหลายความหมายถามกลับ และKEEPเมื่อโครงงานเดิมกับฉบับแก้เหมือนกัน ดูTYPO_RECOVERY_TH.md
 3. ใช้typed readerหรือcompatibilityที่ประกาศไว้ร่วมกับsource/receipt verifier ไม่ใช้fallbackเพื่อเลี่ยงการปฏิเสธหลักฐาน
 4. ตรวจservice/platform/audienceสำหรับราคา และsource-attested center relationสำหรับpolicyที่ประกาศขอบเขตไว้
 5. ตอบส่วนที่ผ่านก่อน ไม่ใช้คำถามเดิมเป็นหัวข้อคำตอบFAQ;เก็บส่วนที่ยังขาดและเหตุผลตรงกรณี

@@ -73,6 +73,11 @@ def register(question,kind,segments,index=None,history=None,**detail):
    if isinstance(parent,str) and check(parent)['verified']:
     from app.pipeline.request_focus import explicit_request_focus
     valid=explicit_request_focus(parent)[0]==question
+  elif kind=='bounded_intent_edit_recovery' and index is not None:
+   if isinstance(parent,str) and check(parent)['verified']:
+    from ..typo_recovery import propose
+    expected=propose(parent,index.records)
+    valid=expected.status=='accepted' and expected.execution==question
   elif kind in {'native_request_plan_query','native_surface_canonical'} and index is not None:
    if isinstance(parent,str) and check(parent)['verified']:
     from ..query_scope import derived_names
