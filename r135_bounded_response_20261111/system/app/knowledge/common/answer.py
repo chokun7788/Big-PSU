@@ -1171,8 +1171,10 @@ class CommonAnswerer:
         view='evaluation_draft' if snap.get('evaluation_draft_only') else 'synthetic_demo' if snap.get('allow_demo') else 'published'
         from .evidence import enrich_hit
         hits=[enrich_hit(hit,snap,self.store) for hit in hits]
+        from .public_citations import apply as public_citations
+        answer,hits=public_citations(answer,hits,snap)
         for hit in hits:
-            if view!='published':hit['title']='ร่างข้อมูลทดสอบ / Evaluation draft information' if view=='evaluation_draft' else 'Synthetic fixture information'
+            if view!='published' and hit.get('metadata',{}).get('public_citation_status')!='website_corroborated':hit['title']='ร่างข้อมูลทดสอบ / Evaluation draft information' if view=='evaluation_draft' else 'Synthetic fixture information'
             hit['metadata']={**hit.get('metadata',{}),'common_approved':view=='published','content_view':view,'title':hit['title'],'release_id':snap['active']}
         confidence=.8 if response in {'answer','list'} else 0.0
         artifact={'response_type':response,'release_id':snap['active'],'query_plan':plan,'obligations':obligations,'catalog_scope':'common_published','coverage_errors':errors,'confidence_calibrated':False,'validation_scope':'selected fields and evidence, not human intent correctness','content_view':view,'production_publication_verified':view=='published'}

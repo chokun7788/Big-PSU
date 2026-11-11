@@ -236,7 +236,13 @@ def _source_list(hits: list[dict[str, Any]]) -> list[dict[str, str]]:
             metadata = asdict(metadata)
         elif not isinstance(metadata, dict):
             metadata = vars(metadata) if hasattr(metadata, "__dict__") else {}
+        if metadata.get('public_citation_status') == 'not_verified':
+            # Internal receipts stay in the audit, not as empty public references.
+            continue
         source_id = str(item.get("id") or metadata.get("title") or metadata.get("source_id") or "")
+        if metadata.get('public_citation_status') == 'website_corroborated':
+            marker = str(item.get('citation_label') or '')
+            source_id = ('['+marker+'] ' if marker else '') + str(item.get('title') or metadata.get('title') or '')
         url = str(
             metadata.get("source_url")
             or metadata.get("url")
