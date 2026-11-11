@@ -1,0 +1,33 @@
+--- frozen/system/app/knowledge/common/domain_flow/native_intents.py
++++ working/system/app/knowledge/common/domain_flow/native_intents.py
+@@ -164,7 +164,7 @@
+         if people and re.search(r'ตำแหน่ง|หน้าที่|\brole\b|\bposition\b',q,re.I):
+             return Understanding([MeaningTask(question,'members','C02','role_lookup','role')],True,'canonical_person_role',{'model_called':False,'meaning_review':{'basis':'canonical_source_operation'}})
+         devices=mentions(index,q,{'equipment_model'})
+-        if devices and re.search(r'อยู่ไหน|อยู่ที่ไหน|อยู่โซนไหน|ที่ตั้ง|which zone|where|location|located',q,re.I):
++        if devices and re.search(r'อยู่ไหน|อยู่ที่ไหน|อยู่(?:โซน|ซน)ไหน|ที่ตั้ง|which zone|where|location|located',q,re.I):
+             return Understanding([MeaningTask(question,'equipment','C03','detail','location')],True,'canonical_equipment_location',{'model_called':False,'meaning_review':{'basis':'canonical_source_operation'}})
+     if re.search(r'\bwhat (?:id|documents?|identification)\b',q,re.I) and re.search(r'visitor|arrival|check.in|studio',q,re.I):
+         return Understanding([MeaningTask(question,'reservation','C08','detail','owner_policy',canonical_operation='policy.checkin_documents')],True,'canonical_checkin_documents',{'http_attempted':False,'model_called':False,'meaning_review':{'basis':'canonical_source_operation'}})
+--- frozen/system/app/knowledge/common/domain_flow/vocabulary.py
++++ working/system/app/knowledge/common/domain_flow/vocabulary.py
+@@ -11,7 +11,7 @@
+  'affiliation':r'สังกัด|คณะไหน|วิทยาลัยไหน|affiliation|affiliated|which (?:faculty|college|institution)',
+  'period':r'ช่วงเวลา|ดำรงตำแหน่ง.*(?:ปี|เมื่อ)|รุ่นปี|วาระ|term of office|tenure|(?:profile|recorded|employment|appointment) period|which (?:year|cohort)',
+  'team':r'\bteam\b|ทีม(?:ไหน|อะไร|ที่สังกัด)|อยู่กลุ่มไหน|สังกัดกลุ่ม|group.+belong','display_name':r'รายชื่อ|ใครบ้าง|ชื่ออะไร|แนะนำชื่อ|\bname\b|who (?:is|are)|listed.+directory',
+- 'location':r'ที่ตั้ง|อยู่โซนไหน|โซนไหน|อยู่ตรงไหน|อยู่ที่ไหน|ตั้งอยู่|บริเวณใด|location|which zone|where .*(?:located|find)',
++ 'location':r'ที่ตั้ง|อยู่(?:โซน|ซน)ไหน|โซนไหน|อยู่ตรงไหน|อยู่ที่ไหน|ตั้งอยู่|บริเวณใด|location|which zone|where .*(?:located|find)',
+  'quantity':r'จำนวนเครื่อง|กี่เครื?อง|กี่เครือง|กี่ชุด|มีทั้งหมดกี่|how many .*?(?:units|machines|consoles|devices)|\bquantity\b',
+  'capacity_persons':r'กี่คน|จำนวนคน|เล่นพร้อมกัน|simultaneous|how many (?:people|players)|player capacity',
+  'service_capacity':r'ช่วงจำนวนผู้ใช้|จำนวนผู้ใช้ตาม(?:รายการ)?บริการ|service participant range|listed service capacity',
+--- frozen/system/app/pipeline/migrated_chat.py
++++ working/system/app/pipeline/migrated_chat.py
+@@ -80,7 +80,7 @@
+   status={'profile':PROFILE if migrated_mode else 'owner-draft-preview' if draft else 'common-published',
+    'database':view.path.name if view is not None else 'common.sqlite','draft_preview_only':draft,
+    'production_publication_verified':published,'knowledge_source':kind,'legacy_fallback_used':False}
+-  hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} if migrated_mode else h for h in result.hits]
++  hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} if migrated_mode and h.get('metadata',{}).get('public_citation_status')!='website_corroborated' else h for h in result.hits]
+   art['input_normalization']=normalized.public()
+   if focus:art['request_focus']=focus
+   if reader is not None and reader.declined_profile_ids and kind!='live_booking':

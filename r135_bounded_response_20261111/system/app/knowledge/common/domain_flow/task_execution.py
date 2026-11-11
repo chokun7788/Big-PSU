@@ -11,6 +11,13 @@ from .plan_contract import compile_request,prepared_meaning
 from .obligation_verifier import assess,withhold_delivery
 from .policy_scope import contradicts_customer_actor
 
+def rejected_plan(category,ledger):
+    plan=blocked(category,'source_receipt_verification_failed')
+    if any(reason.startswith('policy_') for reason in ledger.get('fatal',[])):
+        from .policy_subject_scope import NOTICE
+        plan.metadata['execution_notice']=dict(NOTICE)
+    return plan
+
 def compatibility_contract(engine,question,result,path,at,reason=None,locale='auto'):
     """Audit bounded fallback without inventing a validated requested operator."""
     from .plan_contract import CompiledTask,Span,Obligation,CompiledRequest,span
@@ -25,7 +32,7 @@ def compatibility_contract(engine,question,result,path,at,reason=None,locale='au
         ledger=assess(engine.index,task,child,snapshot,child.get('execution_query') or quoted)
         ledger['compatibility_limits_explicit']=True
         if ledger['fatal']:
-            child=engine._render_one(child.get('category') or '',quoted,locale,blocked(child.get('category') or '','source_receipt_verification_failed'),at)
+            child=engine._render_one(child.get('category') or '',quoted,locale,rejected_plan(child.get('category') or '',ledger),at)
             ledger=withhold_delivery(ledger,'source_receipt_verification_failed','invalid_plan')
         child['execution_contract']=ledger;child['executor_result']=package(task,ledger,child,snapshot)
         result['needs'][i-1]=child;tasks.append(task);ledgers.append(ledger);executors.append(child['executor_result'])
@@ -210,7 +217,7 @@ def _execute(engine,question,locale='auto',category=None,at=None,allow_llm=True,
         result=engine._render_one(cat,q,locale,p,at)
         ledger=assess(engine.index,task,result,snapshot,q)
         if ledger['fatal']:
-            p=blocked(cat,'source_receipt_verification_failed');result=engine._render_one(cat,q,locale,p,at)
+            p=rejected_plan(cat,ledger);result=engine._render_one(cat,q,locale,p,at)
             ledger=withhold_delivery(ledger,'source_receipt_verification_failed','invalid_plan')
         elif result['claims'] and any(reason in ledger['reason_codes'] for reason in ['requested_field_not_delivered','substantive_clause_not_delivered']):
             if p.reason=='source_declared_scoped_decision' and p.metadata.get('source_decision'):

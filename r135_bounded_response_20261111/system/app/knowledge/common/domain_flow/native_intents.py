@@ -164,7 +164,7 @@ def propose(index,question,_split=True):
         if people and re.search(r'ตำแหน่ง|หน้าที่|\brole\b|\bposition\b',q,re.I):
             return Understanding([MeaningTask(question,'members','C02','role_lookup','role')],True,'canonical_person_role',{'model_called':False,'meaning_review':{'basis':'canonical_source_operation'}})
         devices=mentions(index,q,{'equipment_model'})
-        if devices and re.search(r'อยู่ไหน|อยู่ที่ไหน|อยู่โซนไหน|ที่ตั้ง|which zone|where|location|located',q,re.I):
+        if devices and re.search(r'อยู่ไหน|อยู่ที่ไหน|อยู่(?:โซน|ซน)ไหน|ที่ตั้ง|which zone|where|location|located',q,re.I):
             return Understanding([MeaningTask(question,'equipment','C03','detail','location')],True,'canonical_equipment_location',{'model_called':False,'meaning_review':{'basis':'canonical_source_operation'}})
     if re.search(r'\bwhat (?:id|documents?|identification)\b',q,re.I) and re.search(r'visitor|arrival|check.in|studio',q,re.I):
         return Understanding([MeaningTask(question,'reservation','C08','detail','owner_policy',canonical_operation='policy.checkin_documents')],True,'canonical_checkin_documents',{'http_attempted':False,'model_called':False,'meaning_review':{'basis':'canonical_source_operation'}})

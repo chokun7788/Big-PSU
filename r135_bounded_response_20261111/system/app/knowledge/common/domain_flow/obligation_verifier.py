@@ -39,6 +39,9 @@ def assess(index,task,result,snapshot,question=''):
     from .intent_source_binding import price_chain
     source_chain=price_chain(index,task.category,question,claims)
     fatal.extend(source_chain['errors'])
+    from .policy_subject_scope import check as policy_subject_check
+    policy_subject=policy_subject_check(index,question,[c.get('record_id') for c in claims])
+    fatal.extend(policy_subject['errors'])
     if task.category=='C05':
         from .requested_output import allows as device_allows
         if any(not device_allows(index,question,index.byid[c['fact_id']]) for c in claims if c.get('fact_id') in index.byid):fatal.append('source_receipt_requested_input_device_unproven')
@@ -369,4 +372,5 @@ def assess(index,task,result,snapshot,question=''):
         'source_refs_checked':not fatal,'all_obligations_fulfilled':all(o['fulfilled'] for o in obligations),
         'collection_proof':collection,
         'intent_source_chain':source_chain,
+        'policy_subject_scope':policy_subject,
         'whole_question_semantics_verified':False,'planned_task_coverage_only':True}

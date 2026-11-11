@@ -11,7 +11,7 @@ FACETS={
  'affiliation':r'สังกัด|คณะไหน|วิทยาลัยไหน|affiliation|affiliated|which (?:faculty|college|institution)',
  'period':r'ช่วงเวลา|ดำรงตำแหน่ง.*(?:ปี|เมื่อ)|รุ่นปี|วาระ|term of office|tenure|(?:profile|recorded|employment|appointment) period|which (?:year|cohort)',
  'team':r'\bteam\b|ทีม(?:ไหน|อะไร|ที่สังกัด)|อยู่กลุ่มไหน|สังกัดกลุ่ม|group.+belong','display_name':r'รายชื่อ|ใครบ้าง|ชื่ออะไร|แนะนำชื่อ|\bname\b|who (?:is|are)|listed.+directory',
- 'location':r'ที่ตั้ง|อยู่โซนไหน|โซนไหน|อยู่ตรงไหน|อยู่ที่ไหน|ตั้งอยู่|บริเวณใด|location|which zone|where .*(?:located|find)',
+ 'location':r'ที่ตั้ง|อยู่(?:โซน|ซน)ไหน|โซนไหน|อยู่ตรงไหน|อยู่ที่ไหน|ตั้งอยู่|บริเวณใด|location|which zone|where .*(?:located|find)',
  'quantity':r'จำนวนเครื่อง|กี่เครื?อง|กี่เครือง|กี่ชุด|มีทั้งหมดกี่|how many .*?(?:units|machines|consoles|devices)|\bquantity\b',
  'capacity_persons':r'กี่คน|จำนวนคน|เล่นพร้อมกัน|simultaneous|how many (?:people|players)|player capacity',
  'service_capacity':r'ช่วงจำนวนผู้ใช้|จำนวนผู้ใช้ตาม(?:รายการ)?บริการ|service participant range|listed service capacity',

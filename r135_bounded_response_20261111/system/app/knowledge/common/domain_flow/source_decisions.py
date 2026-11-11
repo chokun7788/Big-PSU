@@ -137,6 +137,16 @@ def current_corrections(index):
 def guard_result(reader,result,snap,index,question,at,lang):
     """Prevent a compatibility reader from reviving a corrected old field."""
     art=result.decision_artifact or {}
+    from .policy_subject_scope import check as policy_subject_check
+    subject_scope=policy_subject_check(index,question,[h.get('record_id') for h in result.hits],composed=True)
+    if subject_scope['errors']:
+        import time
+        from dataclasses import replace
+        safe=reader.finish(snap,time.perf_counter(),
+            'กฎที่พบเป็นของศูนย์นี้ ยังใช้ยืนยันกฎของสถานที่ที่คุณระบุไม่ได้ กรุณายืนยันว่าหมายถึง PSU Esports Studio – Phuket หรือสถานที่อื่นครับ' if lang=='th' else
+            'The recorded policy belongs to this studio and does not establish the policy of the place you named. Do you mean PSU Esports Studio – Phuket or another place?',
+            [],{'record_ids':[],'requested_fields':[],'method':'source_bound_policy_subject_guard'},[],response='clarification')
+        return replace(safe,decision_artifact={**safe.decision_artifact,'policy_subject_scope':subject_scope,'rejected_record_ids':[h.get('record_id') for h in result.hits]})
     from .controller_catalog import request as controller_request,delivery_errors as controller_errors,notice as controller_notice
     controller=controller_request(index,question)
     delivered=(art.get('domain_flow') or {}).get('typed_claims',[])

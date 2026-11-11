@@ -80,7 +80,7 @@ def _answer(question,*,locale,history=None,allow_llm=True,store=None,allow_live=
   status={'profile':PROFILE if migrated_mode else 'owner-draft-preview' if draft else 'common-published',
    'database':view.path.name if view is not None else 'common.sqlite','draft_preview_only':draft,
    'production_publication_verified':published,'knowledge_source':kind,'legacy_fallback_used':False}
-  hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} if migrated_mode else h for h in result.hits]
+  hits=[{**h,'title':'ข้อมูลอ้างอิงของชุดย้าย' if language=='th' else 'Migrated source information'} if migrated_mode and h.get('metadata',{}).get('public_citation_status')!='website_corroborated' else h for h in result.hits]
   art['input_normalization']=normalized.public()
   if focus:art['request_focus']=focus
   if reader is not None and reader.declined_profile_ids and kind!='live_booking':

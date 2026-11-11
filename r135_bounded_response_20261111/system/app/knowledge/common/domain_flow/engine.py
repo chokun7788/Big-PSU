@@ -372,7 +372,7 @@ class Engine:
             if f['facet']=='owner_policy':
                 # Teacher-style fact first. Source conditions remain verbatim;
                 # technical FAQ/intent identifiers are not customer headings.
-                technical=not subject or f.get('service_policy_claim') or re.fullmatch(r'[a-z][a-z0-9_.-]+',subject,re.I)
+                technical=not subject or self.index.records.get(f['record_id'],{}).get('kind')=='faq' or f.get('service_policy_claim') or re.fullmatch(r'[a-z][a-z0-9_.-]+',subject,re.I)
                 blocks.append((subject+': ' if not technical else '')+shown+citation)
             elif norm(label)==norm(shown) or category=='C13' and norm(re.sub(r'^\s*\d+[.)]\s*','',label))==norm(re.sub(r'^\s*\d+[.)]\s*','',shown)):
                 blocks.append(prefix+shown+citation)
