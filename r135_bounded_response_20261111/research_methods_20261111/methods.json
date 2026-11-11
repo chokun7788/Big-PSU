@@ -1,0 +1,538 @@
+[
+  {
+    "id": "M01",
+    "name": "Field-level provenance และ data contract",
+    "refs": [
+      "R01",
+      "R02",
+      "E01"
+    ],
+    "proposal": "เก็บค่ารายfieldพร้อม source locator/hash/revision, scope, authority state, valid interval, observed time และความสัมพันธ์;แยก known/unknown/not_applicable/conflict",
+    "where": "schema/projection/source authority/public citations",
+    "acceptance": "sourceเดิมแต่ผิดfield/targetต้องตก;ownerแก้ค่าต้องinvalidateclaim/citationเดิม",
+    "limit": "lineageบอกที่มาไม่ตัดสินว่าหน่วยงานใดมีอำนาจ;ต้องเจ้าของยืนยันช่องที่ขาด",
+    "combine": [
+      "M02",
+      "M03",
+      "M04",
+      "M15",
+      "M24"
+    ],
+    "cost": "low online; moderate data review"
+  },
+  {
+    "id": "M02",
+    "name": "Temporal applicability และ freshness แยกชนิดเวลา",
+    "refs": [
+      "R27",
+      "E10"
+    ],
+    "proposal": "แยกeffective_from/to, recorded_at, observed_at, freshnessTTL, requestreference และrequestedwindow;normalize intervalพร้อมtimezone",
+    "where": "temporal/policy/calendar/live/news",
+    "acceptance": "adjacent/cross-midnight/expired/future/unknown ต้องได้สถานะถูก;cacheสดแต่policyหมดอายุต้องไม่ผ่าน",
+    "limit": "TTLไม่แทนvalidityและไม่สร้างเวลาว่างจริงจากตาราง",
+    "combine": [
+      "M01",
+      "M03",
+      "M12",
+      "M20"
+    ],
+    "cost": "low online; source dates may require owner"
+  },
+  {
+    "id": "M03",
+    "name": "Transactional snapshot, revision-keyed cache และ lifecycle",
+    "refs": [
+      "E02",
+      "E03",
+      "R01"
+    ],
+    "proposal": "pin records+source bodiesในreadtransactionเดียว;cacheตามsnapshot/epoch/revision/runtime;add/edit/withdrawสร้างrevisionใหม่และrebuildผลที่พึ่งพา",
+    "where": "MigratedView/DraftSnapshotView/owner/store/cache",
+    "acceptance": "readerinstanceเดิมหลังeditเห็นใหม่;ถอนแล้วไม่อ้างclaim/receipt/citationแต่siblingsยังตอบ;backuprestoreได้",
+    "limit": "transactionไม่ซ่อมscopeผิดหรือapplicationcacheที่ลืมkey;ห้ามแตะfrozen/live",
+    "combine": [
+      "M01",
+      "M02",
+      "M19",
+      "M24"
+    ],
+    "cost": "low online; moderate integration"
+  },
+  {
+    "id": "M04",
+    "name": "Two-stage entity linking ที่ตรวจ relation",
+    "refs": [
+      "R03",
+      "R04"
+    ],
+    "proposal": "สร้างcandidatesด้วยalias/lexicalก่อน;rankด้วยcontext,kind,description;finalbindผ่านgame→offering→service→resource→zone/platformที่มีsource",
+    "where": "index/bind/receipt_scope/game/control readers",
+    "acceptance": "ชื่อร่วม/ผิดedition/platform/หน่วยงาน/withdrawnrelationต้องไม่ส่ง;unknownไม่เลือกอันดับหนึ่งเอง",
+    "limit": "ไม่ต้องติดตั้งBLINKทันที;similarityสร้างcandidateไม่ใช่proof",
+    "combine": [
+      "M01",
+      "M05",
+      "M11",
+      "M13"
+    ],
+    "cost": "low lexical first; trained reranker later"
+  },
+  {
+    "id": "M05",
+    "name": "Description-driven intents/slots และ desired output",
+    "refs": [
+      "R05",
+      "R03"
+    ],
+    "proposal": "นิยามoperation/fieldด้วยคำอธิบายและpositive/negativeexamples;slotทุกตัวมีowner task/span;definition/usage/location/spec/price/total/liveแยกกัน",
+    "where": "native_intents/vocabulary/task_registry/planner schema",
+    "acceptance": "schemaเพิ่มfieldแล้วnormalchatอ่านได้;noextra taskจากใบเสนอราคา/ชื่อpackage/uses-for",
+    "limit": "prompt/schemaดีขึ้นไม่แก้modelavailabilityและไม่พิสูจน์intentทุกข้อความ",
+    "combine": [
+      "M04",
+      "M06",
+      "M07",
+      "M11"
+    ],
+    "cost": "low bounded parsing; optional model once"
+  },
+  {
+    "id": "M06",
+    "name": "Typed intermediate plan และ constrained validation",
+    "refs": [
+      "R06",
+      "R12"
+    ],
+    "proposal": "รับแผนเป็นtyped IR;validate types/enums/IDs/limits/duplicatekeys และcapabilityรายoperation;หากbackendรองรับค่อยทดลองgrammar constrained decodingแยก",
+    "where": "plan_contract/understanding/compiler/model protocol",
+    "acceptance": "invalidplan/protocoloversizeถูกrejectพร้อมเหตุ;valid syntaxแต่wrongentityยังต้องถูกsourceguard",
+    "limit": "PICARDinspiredsyntaxไม่ใช่semanticproof;ห้ามอ้างเปิดconstraineddecoderแล้ว",
+    "combine": [
+      "M04",
+      "M05",
+      "M07",
+      "M12"
+    ],
+    "cost": "low post-validation; decoding integration later"
+  },
+  {
+    "id": "M07",
+    "name": "Explicit need graph และ independent coverage ledger",
+    "refs": [
+      "R30",
+      "R21"
+    ],
+    "proposal": "เก็บneedจากrawspans,task/slotowners,prerequisitesและconditionaledges;runtypedneedsก่อน;ปิดneedเมื่อผ่านoutput+constraintcoverageเท่านั้น",
+    "where": "routing/compiler/task_execution/request_verifier",
+    "acceptance": "ราคา+จองครบทั้งคู่;หนึ่งneedunknownยังไม่ทิ้งsiblings;both/unless prerequisiteไม่ผ่านต้องไม่กล่าวผลสำเร็จ",
+    "limit": "ใช้graphภายในไม่ใช้subagents;observerที่sharebugกับplannerต้องมีhumancontrastivecheck",
+    "combine": [
+      "M05",
+      "M06",
+      "M11",
+      "M17",
+      "M21"
+    ],
+    "cost": "bounded linear graph; no recursive LLM loop"
+  },
+  {
+    "id": "M08",
+    "name": "Polarity/scope model และ contrastive negation tests",
+    "refs": [
+      "R07",
+      "E11"
+    ],
+    "proposal": "แทนactor/action/polarity/scope/exceptionชัด;เทียบpositive/negative/scope-shift;absence-listต้องมีcompleteuniverseหรือexplicitnegativefacts",
+    "where": "native_intents/policy/request_verifier/negativecatalog gate",
+    "acceptance": "ไม่มีเกมไม่คืนpositivecatalog;นำเข้า/ดื่มและห้าม/ยกเว้นต้องต่าง;ambiguousถามกลับ",
+    "limit": "EnglishCondaQAไม่รับรองThai;ห้ามเปลี่ยนประโยคปฏิเสธเป็นบวกแล้วส่งโดยไม่verify",
+    "combine": [
+      "M05",
+      "M07",
+      "M11",
+      "M13",
+      "M21"
+    ],
+    "cost": "low bounded rules; semantics review required"
+  },
+  {
+    "id": "M09",
+    "name": "Noisy-channel spelling candidates แบบรักษา entity",
+    "refs": [
+      "R08",
+      "R10"
+    ],
+    "proposal": "เพิ่มkeyboardgeometryและinsert/delete/transposecandidatesในintentframes;protectsourceentities/numbers/URLs/conditions;rankด้วยcost+context",
+    "where": "typo_recovery/keyboard helpers",
+    "acceptance": "คำผิดknownframeดีขึ้นและcleanชื่อ/เลข/expressiveไม่ถูกแก้;เก็บrawและcandidates",
+    "limit": "costไม่ใช่probability;ชื่อผิดใกล้หลายentityต้องเลือกยืนยัน ไม่nearestalways",
+    "combine": [
+      "M04",
+      "M10",
+      "M11",
+      "M21"
+    ],
+    "cost": "low bounded candidate count"
+  },
+  {
+    "id": "M10",
+    "name": "Minimal edit, KEEP และ Thai-character-cluster evaluation",
+    "refs": [
+      "R09",
+      "R11"
+    ],
+    "proposal": "เก็บeditspansและvalidatedderivation;KEEPถ้าตีความเดิมครบ;แยกTCCจากcodepointในการวัดและเพิ่มsupportเฉพาะที่ทดสอบ",
+    "where": "typo_recovery/input_derivation/normalization",
+    "acceptance": "compoundไม่ตกงานหลังแก้;forgedexecutionตก;วัดfalsecorrectionตามกลไกและความยาว",
+    "limit": "ไม่ได้ติดตั้งGECToR/TCCtagger;sharedrecomputationไม่เป็นindependentsemantics",
+    "combine": [
+      "M07",
+      "M09",
+      "M11",
+      "M21"
+    ],
+    "cost": "low bounded edits; TCC integration separate"
+  },
+  {
+    "id": "M11",
+    "name": "Targeted clarification และ risk–coverage",
+    "refs": [
+      "R18",
+      "R31",
+      "R29"
+    ],
+    "proposal": "ถามเฉพาะslot/ความหมายที่จำเป็น;มีcandidateต่างtarget/quantityให้ยืนยัน;calibrateaccept/rejectบนชุดแยกและรายงานcoverageคู่error",
+    "where": "followup_scope/clarification/need states",
+    "acceptance": "questionmissingwordถามdomain;missingrateไม่ถามserviceซ้ำ;positiveยังตอบได้ ไม่abstainทั้งหมด",
+    "limit": "ยังไม่ให้conformalguarantee;R29samplingcostสูงและต้องassumptions จัดเป็นงานภายหลัง",
+    "combine": [
+      "M04",
+      "M07",
+      "M08",
+      "M09",
+      "M17",
+      "M22"
+    ],
+    "cost": "low deterministic clarification; calibration offline"
+  },
+  {
+    "id": "M12",
+    "name": "Source-bound arithmetic program และ dimensional checks",
+    "refs": [
+      "R12",
+      "R13",
+      "R14"
+    ],
+    "proposal": "แปลงsourcefacts+quantityownersเป็นallowlistedAST:unit_rate/alternative/line_total/sum;Decimal+currency/unit/duration/audience/serviceและreceiptแยก",
+    "where": "billing/calculation_check/obligation_verifier",
+    "acceptance": "positiveownereditrecomputes;forgedrate/total/quantity/outputตก;rangepriceไม่ถูกคูณต่อคนเอง",
+    "limit": "ไม่รันcodeจากmodel;ถูกเลขแต่ผิดrateยังผิด ต้องผูกsemanticsก่อน",
+    "combine": [
+      "M01",
+      "M02",
+      "M04",
+      "M06",
+      "M07",
+      "M16"
+    ],
+    "cost": "low deterministic arithmetic"
+  },
+  {
+    "id": "M13",
+    "name": "Declared collection scope และ set completeness",
+    "refs": [
+      "R01",
+      "E11",
+      "R21"
+    ],
+    "proposal": "ระบุuniverse/filter/grouping/source-membershipของlist/count/compare;ตรวจexactsetหรือexplicitconfirmedsubset;ไม่unionlistsคนละservice",
+    "where": "collection_contract/inventory/game/rules comparison",
+    "acceptance": "ตัดสมาชิก/option/fieldแล้วไม่complete;wrongzoneไม่คืนall;absenceต้องclosedsetที่sourceประกาศ",
+    "limit": "ไม่มีข้อมูลไม่เท่ากับfalse;รายชื่อที่บันทึกไม่รับรองphysicalworldทั้งหมด",
+    "combine": [
+      "M01",
+      "M04",
+      "M07",
+      "M08",
+      "M15"
+    ],
+    "cost": "low set operations"
+  },
+  {
+    "id": "M14",
+    "name": "Bounded retrieve–check สำหรับข้อความที่ typed อ่านไม่ได้",
+    "refs": [
+      "R17",
+      "R03"
+    ],
+    "proposal": "retrieveเฉพาะsource/fieldที่boundแล้ว;rankclausesและตรวจsupport/conditions/dependencies;อนุญาตrefinementจำนวนจำกัดในbudget",
+    "where": "compatibility/source quote/rules/policy fallback",
+    "acceptance": "knownclauseตอบได้;wrongevent/negatednote/genericexploitแทนboostไม่ผ่าน;no post-reject bypass",
+    "limit": "ไม่ใช่Self-RAGtrainedและไม่เพิ่มself-criticloopทุกคำถาม;ไม่มีevidenceต้องคงunknown",
+    "combine": [
+      "M01",
+      "M04",
+      "M07",
+      "M15",
+      "M17"
+    ],
+    "cost": "moderate optional; limit model call count"
+  },
+  {
+    "id": "M15",
+    "name": "Atomic claims, citation precision และ answer coverage",
+    "refs": [
+      "R15",
+      "R16"
+    ],
+    "proposal": "แยกclaimsต่อneedพร้อมevidence;ตรวจsupport/precisionและcitationcoverage;แยกURLpublicจากinternalreceiptและวัดrequestedneedrecallเพิ่ม",
+    "where": "finish/public_citations/offline semantic review",
+    "acceptance": "citationwrongrevisionตก;หนึ่งcitationไม่รับรองทั้งparagraph;ตรวจทั้งclaimsผิดและneedsที่ไม่ตอบ",
+    "limit": "FActScoreprecisionไม่ลงโทษตอบน้อย;LLM/NLIjudgeไม่ใช่goldและต้องThai/sourceaudit",
+    "combine": [
+      "M01",
+      "M07",
+      "M13",
+      "M16",
+      "M22"
+    ],
+    "cost": "low exactpins online; semantic judge offline"
+  },
+  {
+    "id": "M16",
+    "name": "Fact-preserving renderer และ output contract",
+    "refs": [
+      "R15",
+      "R12",
+      "R21"
+    ],
+    "proposal": "formatจากverifiedtypedclaims;templateตามdesiredoutput;ตรวจmoney/units/names/polarity/dateconditionsกับrenderedrepresentation;noticeผูกneed",
+    "where": "customer_render/finish/final delivery",
+    "acceptance": "0บาท/จำนวนคน/หน่วย/ข้อยกเว้นไม่เปลี่ยน;renderrejectถอนdeliveryproof;partialไม่กลายsupported",
+    "limit": "regexยังไม่generalsemanticvalidator;freeparaphraseใช้เฉพาะfieldที่ไม่ทำfactsหาย",
+    "combine": [
+      "M07",
+      "M12",
+      "M15",
+      "M17"
+    ],
+    "cost": "low templates; limited paraphrase optional"
+  },
+  {
+    "id": "M17",
+    "name": "Shared deadline และ verified partial delivery",
+    "refs": [
+      "R19",
+      "R20",
+      "E04",
+      "E09"
+    ],
+    "proposal": "pinmonotonicdeadlineเดียว;จองเวลาส่งผล;typedreadsก่อนoptionalmodel;checkpointverifiedclaims;หมดงบส่งเฉพาะที่ผ่านและระบุส่วนที่ค้าง",
+    "where": "budget/model_gateway/task_execution/API",
+    "acceptance": "slowoptionalneedไม่ทำtypedanswerหาย;no newcallหลังdeadline;timeoutไม่กลายnosource;ตรวจorphanwork",
+    "limit": "Futuretimeoutไม่killrunningcall;partialต้องไม่ใช้ใกล้เคียงผิดscope ไม่หยุดprotectedmodel",
+    "combine": [
+      "M07",
+      "M11",
+      "M15",
+      "M16",
+      "M18",
+      "M19"
+    ],
+    "cost": "low scheduling; integration moderate"
+  },
+  {
+    "id": "M18",
+    "name": "Per-kind circuit breaker, bounded admission และ half-open recovery",
+    "refs": [
+      "E05",
+      "E07",
+      "R20"
+    ],
+    "proposal": "separatequeue/admission/transport/timeout/modelparse;gateตามkind+profile+backend;limitedhalfopenprobeและbackoffไม่retrystorm",
+    "where": "model_admission/health/gateway",
+    "acceptance": "contextkindopenไม่ปิดtypedreads;timeoutthreshold/recoveryมีreceipts;health200ไม่แทนinference",
+    "limit": "ยังไม่สรุปค่าคิว/timeoutที่เหมาะก่อนtrace;ไม่ปิดgateหรือเพิ่มconcurrencyลอยๆ",
+    "combine": [
+      "M17",
+      "M19",
+      "M24"
+    ],
+    "cost": "low control overhead; no duplicate inference"
+  },
+  {
+    "id": "M19",
+    "name": "Stage-level traces และ causal error taxonomy",
+    "refs": [
+      "E06",
+      "E08",
+      "R25"
+    ],
+    "proposal": "ใช้request/turn/task/span IDsเดียว;บันทึกqueuewait,admission,inference,read,verify,renderและexceptionจริง;labelsตามreceipt",
+    "where": "flow_context/logs/result_contract/runner",
+    "acceptance": "storeerrorต้องมาจากstore;denialhttp_attemptedfalseไม่เรียกbackenddown;outertimingเทียบstageได้",
+    "limit": "traceไม่พิสูจน์semantics;redactprivatecontentและไม่pushrawlogs",
+    "combine": [
+      "M03",
+      "M07",
+      "M17",
+      "M18",
+      "M22",
+      "M24"
+    ],
+    "cost": "low sampled metadata; avoid broad tracing overhead"
+  },
+  {
+    "id": "M20",
+    "name": "Typed calendar algebra และ live-observation contract",
+    "refs": [
+      "R27",
+      "E10"
+    ],
+    "proposal": "ใช้intervalunion/intersectionที่แยกbuilding/play/bookable/maintenance/live;สดต้องresource/requestedslots/observation/freshnessครบ",
+    "where": "calendar_windows/period_scope/live readers",
+    "acceptance": "contiguousintervalไม่gap;missingmiddlememberไม่free;future/expiredobservationไม่ตอบcurrent",
+    "limit": "ตารางไม่ใช่live occupancy;HTTPfreshnessไม่รับรองowner effective dates",
+    "combine": [
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M13"
+    ],
+    "cost": "low local intervals; external fetch bounded"
+  },
+  {
+    "id": "M21",
+    "name": "Behavioral, invariance, directional และ lifecycle controls",
+    "refs": [
+      "R21",
+      "R07",
+      "R11"
+    ],
+    "proposal": "แต่ละcapabilityมีMFTpositive,typo/localeinvariance,polarity/scope-directional,sourceadd/edit/withdrawและHTTPbridge;แยกharnessfailจากbehavior",
+    "where": "focused scripts/dispatcher/API/editor",
+    "acceptance": "กรณีเพิ่มข้อมูลต้องมีnonemptypositive;ถอนแล้วsiblingsอยู่;wrongtargetและoutputtamperตก",
+    "limit": "controlcountไม่เป็นcompletion;ไม่รันunchangedซ้ำหรือเพิ่มแต่negative",
+    "combine": [
+      "M03",
+      "M07",
+      "M08",
+      "M09",
+      "M10",
+      "M12",
+      "M22"
+    ],
+    "cost": "low focused tests; broad run only meaningful changes"
+  },
+  {
+    "id": "M22",
+    "name": "Frozen paired evaluation, semantic review และ leakage-safe split",
+    "refs": [
+      "R22",
+      "R28",
+      "R16",
+      "R21"
+    ],
+    "proposal": "freezeinputs/source/runtime;จับคู่question/criteria;รายงานliteralแยกatomicprecision/needcoverage/unavailable/latency;holdoutตามfamilyและtime",
+    "where": "eval/semantic review/train admission",
+    "acceptance": "keysครบไม่ซ้ำ;เกณฑ์3sessionsกับsource6แยกreview;C07thinแสดงdenominator;ไม่ใช้testปรับthreshold",
+    "limit": "pairedเกณฑ์ตรงยังมีtime/source/backendconfounds;รายงานCIภายหลังใช้familyclusterไม่ถือgradeidentitiesอิสระทุกตัว",
+    "combine": [
+      "M11",
+      "M15",
+      "M19",
+      "M21",
+      "M23",
+      "M24"
+    ],
+    "cost": "offline review cost; no full rerun this task"
+  },
+  {
+    "id": "M23",
+    "name": "Source-verified teacher examples และ staged distillation",
+    "refs": [
+      "R23",
+      "R24",
+      "R22"
+    ],
+    "proposal": "R134เสนอcandidate;reviewintent/source/version/outputก่อนคัดhardlabelsหรือrank;เริ่มplannerlabelsแทนbusinessfacts;familyholdoutและprotocolhashตรงก่อนtrain",
+    "where": "training_review/contracts/cohort/optimizer",
+    "acceptance": "teacherwrongunitsหรือpolicyเก่าถูกquarantine;eval2111ไม่เข้าฝึก;studentผ่านcriticalsourcechecks",
+    "limit": "hardlabelSFTไม่ใช่softKD;ไม่trainweightsในงานนี้และไม่แทนretainedmodelก่อนgates",
+    "combine": [
+      "M05",
+      "M06",
+      "M21",
+      "M22",
+      "M24"
+    ],
+    "cost": "offline potentially high; defer until flow stable"
+  },
+  {
+    "id": "M24",
+    "name": "Single runtime/capability manifest และ reviewed release gate",
+    "refs": [
+      "R02",
+      "R25",
+      "E03"
+    ],
+    "proposal": "หนึ่งmanifestผูกcode/DB/profile/modelidentity/capabilities/route/evidence;เอกสารใหม่supersedeเก่าเฉพาะเรื่อง;backuprestore/rollback",
+    "where": "launchers/GATES/STATUS/route matrix",
+    "acceptance": "preflightbusinesspositive+negative/buildidentityก่อนsample;parentreadyไม่ใช้รับรองcurrent;unknownroutesdisabled",
+    "limit": "เอกสารmanifestไม่พิสูจน์codepathเอง;ยังต้องHTTP/editorและapprovalจริง",
+    "combine": [
+      "M01",
+      "M03",
+      "M06",
+      "M19",
+      "M21",
+      "M22"
+    ],
+    "cost": "low runtime; moderate release review"
+  },
+  {
+    "id": "M25",
+    "name": "Offline document extraction พร้อม human/source validation",
+    "refs": [
+      "R26",
+      "R02",
+      "R15"
+    ],
+    "proposal": "เก็บภาพ/PDFhash,page/region,text/tableและlanguage;extractofflineแล้วมนุษย์ตรวจnumbers/conditionsก่อนสร้างdraftrecords/sourcepins",
+    "where": "source ingestion/attachments/citation registry",
+    "acceptance": "ภาพราคาเก่าไม่ทับowner0;อ่านไม่ได้คงunreviewed;tablecells+sectionผูกclaimตรง",
+    "limit": "Donutไม่รับรองThaiทุกภาพ;ไม่ติดตั้งmodelใหม่และไม่OCRทุกchatrequest",
+    "combine": [
+      "M01",
+      "M02",
+      "M03",
+      "M15",
+      "M24"
+    ],
+    "cost": "offline potentially high; zero added chat inference"
+  },
+  {
+    "id": "M26",
+    "name": "Cross-language semantic parity และ locale contract",
+    "refs": [
+      "R05",
+      "R10",
+      "R21"
+    ],
+    "proposal": "sourcevaluesแยกภาษาและtranslationreview;ส่งeffectivelocaleเดียวทั้งroute;คู่ทดสอบTH/ENเทียบfactsไม่เทียบstringอย่างเดียว",
+    "where": "language/normalization/renderer/source bilingual fields",
+    "acceptance": "TH/ENจำนวนเงิน/negation/role/validityตรง;autoไม่บังคับThai;missingtranslationไม่แต่งfacts",
+    "limit": "ยังไม่มีgeneralThai-to-Englishqualityscore;ไม่ใช้machine translationแทนauthority",
+    "combine": [
+      "M01",
+      "M05",
+      "M08",
+      "M10",
+      "M15",
+      "M21"
+    ],
+    "cost": "low paired tests; translation review offline"
+  }
+]

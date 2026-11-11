@@ -1,0 +1,1094 @@
+{
+  "D01": {
+    "methods": [
+      "M01",
+      "M24",
+      "M03"
+    ],
+    "change": "เพิ่มreadiness/publication/authority statesแยก ไม่promote draftเมื่อมีURL",
+    "verify": "draftอ่านในpreviewได้แต่ไม่อ้างpublished;releasegateต้องตรวจapproval",
+    "status": "D01 / P1 / เปิด",
+    "finding": "ข้อมูลส่วนใหญ่ใน audit วันที่ 10 Nov เป็น draft: 847 active heads ทั้งหมด lifecycle draft"
+  },
+  "D02": {
+    "methods": [
+      "M02",
+      "M01",
+      "M11"
+    ],
+    "change": "แยกunknownintervalจากexpiredและจากconfirmedassertion",
+    "verify": "expired/unknown/currentมีคำตอบและcaveatต่างกันโดยไม่เดาวัน",
+    "status": "D02 / P0 / เปิด",
+    "finding": "validity unknown 808 records, known 39 ใน snapshot ที่ audit"
+  },
+  "D03": {
+    "methods": [
+      "M26",
+      "M01",
+      "M21"
+    ],
+    "change": "reviewtranslationรายfieldและเก็บlanguage/sourceversion",
+    "verify": "TH/ENfacts/negation/unitsตรงและmissingEnglishไม่แต่ง",
+    "status": "D03 / P1 / เปิด",
+    "finding": "อังกฤษ agent_translated 708, missing 139 ใน audit เดิม"
+  },
+  "D04": {
+    "methods": [
+      "M01",
+      "M02",
+      "M03",
+      "M15"
+    ],
+    "change": "คงrevision3sessionsเก่าและ6sessionsใหม่พร้อมscope/effectivestate",
+    "verify": "คำถามปัจจุบันอ่าน6;historicalไม่ถูกทับและเกณฑ์เก่าไม่ถูกแก้เงียบ",
+    "status": "D04 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "FAQ 3 records เคยบอกจองสูงสุด 3 sessions ขณะที่เว็บปัจจุบันบอก 6"
+  },
+  "D05": {
+    "methods": [
+      "M01",
+      "M02",
+      "M25"
+    ],
+    "change": "แยกownerpriceassertionกับimageclaim ไม่ผูกภาพเก่ารับรอง0",
+    "verify": "PCstudent0อยู่;บริการอื่นไม่รับ0และcitationไม่รับรองผิด",
+    "status": "D05 / P0 / เปิด",
+    "finding": "ภาพราคาบางภาพยังไม่ตรงคำยืนยันเจ้าของ: PC นักศึกษา PSU = 0 บาท"
+  },
+  "D06": {
+    "methods": [
+      "M19",
+      "M25",
+      "M02"
+    ],
+    "change": "บันทึกfetchstatus/cachetimestampแยกsourcevalidity",
+    "verify": "502เป็นfetcherrorไม่ใช่ไม่มีข้อมูล;cachedroleมีข้อจำกัด",
+    "status": "D06 / P1 / เปิด",
+    "finding": "เว็บ Phuket เปิดตรงบางหน้าพบ 502; Members อ่านจาก search cache ได้"
+  },
+  "D07": {
+    "methods": [
+      "M25",
+      "M01",
+      "M15"
+    ],
+    "change": "extractattachmentofflineและreviewpage/region/unitsก่อนimport",
+    "verify": "entrypageไม่ใช้รับรองไฟล์ที่ยังไม่อ่าน;ภาพไม่ชัดยังunreviewed",
+    "status": "D07 / P1 / เปิด",
+    "finding": "การมีหน้า entry คู่มือ/แข่งขัน/ดาวน์โหลด ไม่ได้พิสูจน์ข้อความในภาพหรือไฟล์แนบ"
+  },
+  "D08": {
+    "methods": [
+      "M01",
+      "M04",
+      "M11"
+    ],
+    "change": "ยืนยันroleoperatorกับuniquecenterrelationก่อนเลือกsource",
+    "verify": "CollegeกับUniversityไม่ถูกdedupe/แทนกันโดยalias;ambiguityถูกแสดง",
+    "status": "D08 / P0 / เปิด",
+    "finding": "operator FAQ บอก College of Computing แต่ typed center operator เป็นมหาวิทยาลัย และ FAQ บางรายการไม่มี relation/validity ที่ยืนยัน"
+  },
+  "D09": {
+    "methods": [
+      "M04",
+      "M05",
+      "M13"
+    ],
+    "change": "ใช้kind+operation+relationลดcandidateก่อนrank",
+    "verify": "PC/TEKKENร่วมหลายkindยังตอบfieldถูก;unknownไม่เลือกfirst",
+    "status": "D09 / P0 / เปิด",
+    "finding": "alias strings ใช้ร่วมหลาย records 792 ชื่อใน audit เดิม"
+  },
+  "D10": {
+    "methods": [
+      "M04",
+      "M01",
+      "M05"
+    ],
+    "change": "แยกplatformของcontrolguideจากplatformที่offeringจริง",
+    "verify": "Nintendoofferingไม่รับรองPS5availability/จอยโดยไม่มีrelation",
+    "status": "D10 / P0 / เปิด",
+    "finding": "Monster Hunter Rise มี offering Nintendo และชุดปุ่ม PS5 ในข้อมูลคนละบริบท"
+  },
+  "D11": {
+    "methods": [
+      "M24",
+      "M03",
+      "M19"
+    ],
+    "change": "ทำreadermapและsourceidentitymanifestก่อนย้าย/ลดrepresentation",
+    "verify": "ทุกrouteระบุDB/file/snapshotและไม่อ่านทุกเวอร์ชันรวม",
+    "status": "D11 / P1 / ความเสี่ยงที่ต้องตรวจ",
+    "finding": "มี SQLite กลาง พร้อม curated/control/calendar/competition representations เก่าหลายชุด"
+  },
+  "D12": {
+    "methods": [
+      "M01",
+      "M04",
+      "M15"
+    ],
+    "change": "verifylocatorcontent/field/target/revisionหลังreferenceexistence",
+    "verify": "sourceIDถูกแต่locatorหรือentityผิดต้องตก",
+    "status": "D12 / P0 / ความเสี่ยงที่ต้องตรวจ",
+    "finding": "source ID มีอยู่ และ reference ชนิดถูก ไม่ได้พิสูจน์ว่า locator/ข้อความสนับสนุน claim จริง"
+  },
+  "D13": {
+    "methods": [
+      "M04",
+      "M08",
+      "M21"
+    ],
+    "change": "ขยายentityscopecontrolsจากnamedlocationสู่newaliases/negation",
+    "verify": "โรงแรมอื่นไม่ยืมกฎศูนย์และศูนย์จริงยังตอบ",
+    "status": "D13 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "กฎศูนย์เคยถูกตอบให้ Andaman Hotel; แพตช์ center relation และ location rejection ผ่าน controls"
+  },
+  "D14": {
+    "methods": [
+      "M19",
+      "M01",
+      "M24"
+    ],
+    "change": "taxonomyแยกsourceunknown/authorityunknown/readerunsupported/verificationfailed",
+    "verify": "มีsourceแต่predicateหายถูกจัดเป็นreadergapไม่ใช่nosource",
+    "status": "D14 / P1 / เปิด",
+    "finding": "source unknown กับ code gap เคยถูกปะปนในการสรุป"
+  },
+  "T01": {
+    "methods": [
+      "M19",
+      "M17",
+      "M18"
+    ],
+    "change": "วัดqueue/inference/verify/renderแล้วลดoptionalcallที่ทำlongtail",
+    "verify": "p50/p95/p99และtimeoutrateเทียบsnapshot/runtimeที่ควบคุม",
+    "status": "T01 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "eval10 มี long tail สูง แม้ median ต่ำ; bounded รุ่นใหม่ลดเวลาที่สังเกตได้ใน 200 ข้อ"
+  },
+  "T02": {
+    "methods": [
+      "M19",
+      "M17",
+      "M06"
+    ],
+    "change": "จับcontextprompt/token/deadline/transportจริงก่อนตัดสินงบ",
+    "verify": "timeoutทำซ้ำได้ในcontrolledstageและknownpositiveไม่ถูกตัดหมด",
+    "status": "T02 / P1 / เปิด",
+    "finding": "ใน 15 คำถามที่ติด store code เดิม พบ 2 context TimeoutError จริง"
+  },
+  "T03": {
+    "methods": [
+      "M18",
+      "M19",
+      "M17"
+    ],
+    "change": "ตรวจkindbreaker+halfopenrecoveryแทนปิดhealthgate",
+    "verify": "denialไม่ส่งHTTP;probeสำเร็จคืนkindและtypedงานอื่นไม่ถูกบล็อก",
+    "status": "T03 / P1 / เปิด",
+    "finding": "อีก 13 จาก 15 มี model_admission_unavailable เพราะ context-kind cooldown หลัง timeout 2 ครั้ง; http_attempted=false ตอน denial"
+  },
+  "T04": {
+    "methods": [
+      "M19",
+      "M21"
+    ],
+    "change": "คงแพตช์attributionและเพิ่มcausalmetadataผ่านcomposition",
+    "verify": "replaystore/admission/timeout/retryไม่สลับสาเหตุ",
+    "status": "T04 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "common/result_contract เคยเหมารวม unavailable/retry เป็น store_or_snapshot_unavailable"
+  },
+  "T05": {
+    "methods": [
+      "M19",
+      "M18"
+    ],
+    "change": "บันทึกattempted/callid/admission/transporterrorแยก",
+    "verify": "transportfailurelabelต้องย้อนถึงstageจริงได้ไม่เหมารวมbackenddown",
+    "status": "T05 / P1 / เปิด",
+    "finding": "reason model_transport_failure อาจเป็นป้ายส่งต่อจาก fallback"
+  },
+  "T06": {
+    "methods": [
+      "M17",
+      "M19"
+    ],
+    "change": "propagateเวลาคงเหลือและตรวจcancellation/orphanwork",
+    "verify": "callไม่เริ่มหลังdeadline;runningfutureไม่ถูกอ้างว่ายกเลิกแล้ว",
+    "status": "T06 / P1 / เปิด",
+    "finding": "STATUS ระบุ hard_wall_clock_deadline_proven=false แม้มี analysis budget20s/model5s/admission1s"
+  },
+  "T07": {
+    "methods": [
+      "M07",
+      "M17"
+    ],
+    "change": "จัดtypedreadsก่อนoptionalและใช้requestbudgetร่วม",
+    "verify": "หนึ่งtaskไม่resetbudgetและไม่ทำneedอื่นอดงบโดยไม่มีnotice",
+    "status": "T07 / P1 / ความเสี่ยงที่ต้องตรวจ",
+    "finding": "หลาย needs และ fallback ใช้งบ request เดียวกัน; งานหลังอาจหมดโควตาก่อนถึง"
+  },
+  "T08": {
+    "methods": [
+      "M07",
+      "M17",
+      "M16"
+    ],
+    "change": "checkpointverifiedsiblingsและส่งpartialตามneed",
+    "verify": "slowbookingไม่ลบverifiedprice;pendingconditionไม่อนุญาตtransaction",
+    "status": "T08 / P1 / เปิด",
+    "finding": "partial delivery ผ่านบาง controls แต่ไม่ได้พิสูจน์ว่า preserve successful siblings ทุก operation"
+  },
+  "T09": {
+    "methods": [
+      "M24",
+      "M19"
+    ],
+    "change": "pinapppython/modelpython/packagepathพร้อมsemanticpreflight",
+    "verify": "launcherhealthและpositiveinferenceแยกกัน;ไม่installเพื่อเดาแก้",
+    "status": "T09 / P1 / ประวัติที่ต้องรักษา",
+    "finding": "normal model startup เคยใช้ bundled Python ที่ไม่มี torch; training venv จึงเป็น model runtime ที่ต่างจาก app Python"
+  },
+  "T10": {
+    "methods": [
+      "M19",
+      "M21",
+      "M18"
+    ],
+    "change": "วัดhealth200/HTTPanswer/modelreceiptเป็นคนละmetric",
+    "verify": "typedanswerผ่านไม่ใช้ปิดmodelinferencegateทุกkind",
+    "status": "T10 / P1 / เปิด",
+    "finding": "HTTP app health/HTTP200 กับ model call สำเร็จเป็นคนละเหตุการณ์"
+  },
+  "T11": {
+    "methods": [
+      "M24",
+      "M19"
+    ],
+    "change": "อ้างdisk/approval/migrationตามเวลาตรวจจริง",
+    "verify": "ไม่ใช้พื้นที่Cเก่าหรือpolicyblockเก่าอธิบายcurrentfailureโดยไม่มีlog",
+    "status": "T11 / P2 / ประวัติที่ต้องรักษา",
+    "finding": "เคยมี automatic approval review block งานบางคำสั่ง และพื้นที่ C ต่ำ ก่อนย้าย D"
+  },
+  "T12": {
+    "methods": [
+      "M18",
+      "M17",
+      "M22"
+    ],
+    "change": "ภายหลังทำboundedloadtestแยกจากworker1eval",
+    "verify": "queuewait/admissionrate/GPUloadและoutputcorrectnessถูกวัดพร้อมกัน",
+    "status": "T12 / P1 / ความเสี่ยงที่ต้องตรวจ",
+    "finding": "ยังไม่มีผลวัดพร้อมกันหลายผู้ใช้ที่รับรอง latency/queue ของรุ่นปัจจุบัน"
+  },
+  "I01": {
+    "methods": [
+      "M07",
+      "M05",
+      "M21"
+    ],
+    "change": "แยกneedตามrawและเช็กcoverageทั้งก่อนและหลังreader",
+    "verify": "ราคา+จองภาษา/ลำดับต่างยังครบและไม่มีextra task",
+    "status": "I01 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "compound ราคา+จองเคยตอบเพียงราคา โดยจองยังงไไม่ถูกถือเป็นงานที่อ่านได้"
+  },
+  "I02": {
+    "methods": [
+      "M05",
+      "M07",
+      "M04"
+    ],
+    "change": "slotมีtaskowner/rawdspan/sharedrelationreceipt",
+    "verify": "จำนวนคนราคาไม่ไปใช้กับtaskปุ่มเกมหรือบริการอื่น",
+    "status": "I02 / P0 / เปิด",
+    "finding": "global constraints เคยถูกคัดลอกไปทุก task หรือข้าม target"
+  },
+  "I03": {
+    "methods": [
+      "M07",
+      "M15",
+      "M21"
+    ],
+    "change": "observedneedsแยกจากplannedtasksและreviewomission",
+    "verify": "ตัดtaskที่ควรตอบออกต้องไม่complete แม้claimsที่เหลือถูก",
+    "status": "I03 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "ก่อนแก้ independent coverage ตรวจเฉพาะ tasks ที่ planner สร้าง ทำให้ need ที่หลุดไม่อยู่ใน ledger"
+  },
+  "I04": {
+    "methods": [
+      "M08",
+      "M13",
+      "M11"
+    ],
+    "change": "absencequeryต้องexplicitnegativefactsหรือcompleteuniverse",
+    "verify": "ไม่มีเกมไม่คืนเกมที่มี;ไม่ตีmissingrecordเป็นfalse",
+    "status": "I04 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "ไม่มีเกมอะไรบ้างเคยตอบรายชื่อเกมที่มีอยู่จริง"
+  },
+  "I05": {
+    "methods": [
+      "M08",
+      "M05",
+      "M21"
+    ],
+    "change": "เก็บpolarity/exception/actionscopeไม่เพียงprotectตัวอักษร",
+    "verify": "กลับคำว่าไม่/ยกเว้นแล้วผลเปลี่ยนถูกทิศและไม่มีfalsepermission",
+    "status": "I05 / P0 / เปิด",
+    "finding": "คำว่าไม่/ยกเว้น/เฉพาะ/ก่อน/หลังมีผลต่อ applicability ไม่ใช่ stopword"
+  },
+  "I06": {
+    "methods": [
+      "M05",
+      "M04",
+      "M20"
+    ],
+    "change": "typedintentแยกofferingจากoccupancyโดยเวลา/สถานะpredicate",
+    "verify": "มีเกมไหมไม่เรียกlive;ว่างคืนนี้ต้องใช้timewindowobservation",
+    "status": "I06 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "Is there an It Takes Two game available เคยไป live booking"
+  },
+  "I07": {
+    "methods": [
+      "M05",
+      "M07",
+      "M21"
+    ],
+    "change": "word-boundaryและsemanticfielddescriptionแทนkeywordภายในคำ",
+    "verify": "ใบเสนอราคาไม่สร้างprice;buttonfunctionไม่เพิ่มequipmentdescription",
+    "status": "I07 / P1 / ประวัติที่ต้องรักษา",
+    "finding": "ใบเสนอราคาเคยกระตุ้น price task เพราะมีคำว่าราคา; ปุ่มใช้ทำอะไรเคยเพิ่ม equipment usage task ที่ไม่ขอ"
+  },
+  "I08": {
+    "methods": [
+      "M05",
+      "M16",
+      "M01"
+    ],
+    "change": "desiredoutputdefinition/usage/location/specแยกsourcefields",
+    "verify": "อะไรคือได้คำอธิบายหน้าที่ที่รองรับ ไม่ใช้quantityแทนdefinition",
+    "status": "I08 / P1 / เปิด",
+    "finding": "คำว่าอะไร/ยังไง/อยู่ไหนต้องการคำตอบต่างกัน: definition, usage, location, specs"
+  },
+  "I09": {
+    "methods": [
+      "M04",
+      "M02",
+      "M13"
+    ],
+    "change": "event/release/editionต้องsource-boundทุกcompareoption",
+    "verify": "gameyearไม่กลายrulebookyearและสองeditionไม่ถูกmerged",
+    "status": "I09 / P0 / เปิด",
+    "finding": "ชื่อเกมเดียวกันหลาย edition/event และเลขปีในชื่อเกมอาจถูกใช้เป็นปี rulebook"
+  },
+  "I10": {
+    "methods": [
+      "M11",
+      "M05",
+      "M08"
+    ],
+    "change": "ถามpredicateที่กำกวมแทนเลือกtopicใกล้สุด",
+    "verify": "drinks/areaต้องแยกbring/consume/facilityได้ก่อนclaim",
+    "status": "I10 / P1 / เปิด",
+    "finding": "ประโยคสั้นหรือ fragment เช่นเครื่องดื่ม/พื้นที่ไม่ได้ยืนยันว่าถามถือเข้า ดื่ม หรือสิ่งอำนวยความสะดวก"
+  },
+  "I11": {
+    "methods": [
+      "M07",
+      "M03",
+      "M19"
+    ],
+    "change": "ใช้deliverycarrier/session/turnและsnapshot-boundfollowup",
+    "verify": "forgedclienthistoryกับoldrequestไม่สร้างtargetauthority",
+    "status": "I11 / P0 / เปิด",
+    "finding": "follow-up เช่นอันนั้น/สองคน/พรุ่งนี้อาจผูกกับบริการผิดหรือใช้ประวัติที่ไม่ผ่านการส่งจริง"
+  },
+  "I12": {
+    "methods": [
+      "M05",
+      "M09",
+      "M10",
+      "M21"
+    ],
+    "change": "alignnativepredicateกับfieldvocabularyและkeepraw",
+    "verify": "Shifter/Mouse/unknownlocationผ่านdispatcherไม่เฉพาะnativeunit",
+    "status": "I12 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "“อยู่ซนไหน” เคยหลุด native predicate และหลังแก้ชั้นแรก Gaming Mouse ยังไปผิด field"
+  },
+  "I13": {
+    "methods": [
+      "M07",
+      "M06",
+      "M21"
+    ],
+    "change": "compileexecutionDAGจริง แยกsharedentityedgesจากoutputdeps",
+    "verify": "both/unless/unknown/cycleมีoutcomeและprerequisiteverifiedก่อนdependent",
+    "status": "I13 / P1 / เปิด",
+    "finding": "execution_dependencies มีช่องสัญญาแต่ G40 ยังระบุการ populate/consume graph ไม่ครบ"
+  },
+  "I14": {
+    "methods": [
+      "M05",
+      "M20",
+      "M06",
+      "M23"
+    ],
+    "change": "แก้schemawire/labelsให้แยกnamedplaysessionกับbookableperiod",
+    "verify": "namedafternoon+weekdayและdatedexceptionsไม่ไปfieldผิด",
+    "status": "I14 / P1 / เปิด",
+    "finding": "named afternoon session กับ booking window เป็นคนละ field; model wire/dated exception mapping ยังมีช่องว่าง G115"
+  },
+  "L01": {
+    "methods": [
+      "M09",
+      "M10",
+      "M24"
+    ],
+    "change": "คงwiringก่อนnative/compatพร้อมruntimeidentity",
+    "verify": "คำผิดผ่านHTTPเส้นทางจริงและเดิมrecognizedยังKEEP",
+    "status": "L01 / P1 / ประวัติที่ต้องรักษา",
+    "finding": "Flowเก่ามี keyboard/phrase/intent helpers แต่ common reader รุ่นใหม่ไม่ผ่าน preprocess เดิม"
+  },
+  "L02": {
+    "methods": [
+      "M09",
+      "M21",
+      "M11"
+    ],
+    "change": "เพิ่มcandidatefamiliesตามชุดunseenจริงอย่างมีขอบเขต",
+    "verify": "วัดแก้ถูก/ผิด/ไม่แก้/ถามกลับ ไม่เพิ่มaliasทีละคำถามอย่างเดียว",
+    "status": "L02 / P1 / เปิด",
+    "finding": "ตัวสร้าง candidate ยังจำกัด intent frames และ tokens"
+  },
+  "L03": {
+    "methods": [
+      "M04",
+      "M09",
+      "M11"
+    ],
+    "change": "entitycandidateproposalแยกจากintentautocorrection",
+    "verify": "ชื่อผิดใกล้สองเกมถามยืนยัน ไม่แก้เป็นอันดับแรก",
+    "status": "L03 / P0 / เปิด",
+    "finding": "ชื่อเกม/คน/อุปกรณ์สะกดผิดอาจใกล้หลายชื่อ"
+  },
+  "L04": {
+    "methods": [
+      "M11",
+      "M07"
+    ],
+    "change": "missingcontentwordใช้validatedcontextหรือถามdomain",
+    "verify": "มีอะไรบ้างไม่เติมเกมเองและhistoryปลอมไม่ถูกใช้",
+    "status": "L04 / P1 / เปิด",
+    "finding": "คำสำคัญหายทั้งคำ เช่นมีอะไรบ้าง อาจหมายถึงเกม อุปกรณ์ หรือบริการ"
+  },
+  "L05": {
+    "methods": [
+      "M09",
+      "M10",
+      "M21"
+    ],
+    "change": "ขยายขอบเขตeditหลังวัดต้นทุนและfalsepositive ไม่ลบcapsทันที",
+    "verify": "multipleerrors/longcleanpassageมีworstcaseboundedtimeและไม่overedit",
+    "status": "L05 / P1 / เปิด",
+    "finding": "หลายตำแหน่งผิดพร้อมกันหรือข้อความยาวอาจเกินขอบเขต"
+  },
+  "L06": {
+    "methods": [
+      "M11",
+      "M22",
+      "M09"
+    ],
+    "change": "calibratecostthreshold/marginบนdevแยก",
+    "verify": "รายงานerror–coverageพร้อมdenominator ไม่แปลงcostเป็นconfidence",
+    "status": "L06 / P1 / เปิด",
+    "finding": "ต้นทุน edit และช่องว่างอันดับ .75 เป็นค่าที่ตั้งทางวิศวกรรม"
+  },
+  "L07": {
+    "methods": [
+      "M10",
+      "M07",
+      "M04"
+    ],
+    "change": "เทียบsemantic-taskshapeและbindingก่อนacceptrewrite",
+    "verify": "ราคา400+bookingยังผ่านreceiptและไม่bypasscross-taskguard",
+    "status": "L07 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "แก้จองยังงไแล้วทำให้ compound ถูกปฏิเสธ unproven_cross_task_target"
+  },
+  "L08": {
+    "methods": [
+      "M07",
+      "M10",
+      "M21"
+    ],
+    "change": "KEEPต่อเมื่อneedset/targetครบ ไม่ใช่acceptedflagอย่างเดียว",
+    "verify": "เกมผิด+ราคาrawacceptedแค่ราคาต้องไม่ทำเกมหลุด",
+    "status": "L08 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "ทดลอง KEEP แค่ raw native accepted แล้วเกมหลุดในเกม+ราคา"
+  },
+  "L09": {
+    "methods": [
+      "M08",
+      "M11",
+      "M10"
+    ],
+    "change": "candidateมีnegativeต้องconfirmก่อนและมีcleannegativegate",
+    "verify": "ทั้งclean/typoไม่กลับเป็นpositiveและไม่แก้negativespan",
+    "status": "L09 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "การแก้คำที่มีปฏิเสธอาจทำให้เข้าคำตอบบวก"
+  },
+  "L10": {
+    "methods": [
+      "M10",
+      "M09",
+      "M21"
+    ],
+    "change": "เพิ่มTCC-awarealignment/metricsแยกจากcurrentcodepoint",
+    "verify": "tone/combining/loanwordcasesไม่ถูกนับผ่านเพราะตัวอักษรใกล้",
+    "status": "L10 / P1 / เปิด",
+    "finding": "algorithmทำงานระดับ codepoint/กรอบคำ ไม่ใช่ Thai character cluster segmentation เต็ม"
+  },
+  "L11": {
+    "methods": [
+      "M21",
+      "M22",
+      "M10"
+    ],
+    "change": "มีhuman-reviewedsemanticoracleนอกsharedgenerator",
+    "verify": "forgedexecutionและshared-helperbugมีcontrolsจากคนละbasis",
+    "status": "L11 / P1 / เปิด",
+    "finding": "ตัวตรวจ derivation คำนวณ candidateซ้ำด้วย helperเดียวกับตัวเสนอ"
+  },
+  "L12": {
+    "methods": [
+      "M21",
+      "M22",
+      "M26"
+    ],
+    "change": "สร้างheldoutmechanism×length×clean/misspelledmatrix",
+    "verify": "ไม่ใช้35controlsเดิมอ้างgeneralaccuracyหรือfitthresholdบนtest",
+    "status": "L12 / P1 / เปิด",
+    "finding": "ชุด35checksและ11HTTPเป็น purpose-built controls ไม่มี holdout typo corpus"
+  },
+  "F01": {
+    "methods": [
+      "M12",
+      "M05",
+      "M11"
+    ],
+    "change": "typedIRแยกunitratealternativesกับpurchaseplan",
+    "verify": "ถามราคาไม่ขอtotalยังเห็นอัตรา;missingheadcountถามเมื่อจำเป็น",
+    "status": "F01 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "แสดง unit rates หลาย audience เคยถูกบังคับให้พิสูจน์ headcount/total จึงไม่มีคำตอบทั้งที่มี rates"
+  },
+  "F02": {
+    "methods": [
+      "M12",
+      "M01",
+      "M16",
+      "M21"
+    ],
+    "change": "recomputeจากsourceและrawquantityแยกจากexecutorclaims",
+    "verify": "forgedtotal/quantity/billinglines/finaltextถูกrejectและpositiveยังตอบ",
+    "status": "F02 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "direct forged total/quantity/billing lines เคยผ่าน guard บางรุ่น"
+  },
+  "F03": {
+    "methods": [
+      "M12",
+      "M07",
+      "M04"
+    ],
+    "change": "lineมีservice/audience/count/durationownersและsourceunit",
+    "verify": "สองกลุ่มจำนวนต่างไม่ใช้countแรกซ้ำและactualeditrecomputes",
+    "status": "F03 / P0 / เปิด",
+    "finding": "หลาย audience หลาย quantity หลาย duration มีการจับคู่และ allocation ซับซ้อน"
+  },
+  "F04": {
+    "methods": [
+      "M12",
+      "M01",
+      "M11"
+    ],
+    "change": "sourceunitและgroupboundsเป็นtypedไม่ใช่ชื่อlabel",
+    "verify": "ราคาเหมากลุ่ม/รายวันไม่ถูกคิดต่อคนเมื่อไม่มีallocation",
+    "status": "F04 / P0 / เปิด",
+    "finding": "ช่วงจำนวนคนหรือ packageราคาเหมารวมไม่เท่ากับราคาต่อคน"
+  },
+  "F05": {
+    "methods": [
+      "M16",
+      "M04",
+      "M13"
+    ],
+    "change": "renderแยกserviceidentityแล้วgroupเฉพาะfactsที่scopeเท่ากัน",
+    "verify": "PCสองserviceยังอยู่พร้อมlabelsโดยไม่sumหรือdedupeเดา",
+    "status": "F05 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "ราคาPCดูซ้ำเพราะ2services #01–#02กับ#03–#10 แม้platformเหมือนกัน"
+  },
+  "F06": {
+    "methods": [
+      "M16",
+      "M12",
+      "M21"
+    ],
+    "change": "finalnumericfactsตรวจจากIRไม่พึ่งtotalregexเพียงอย่างเดียว",
+    "verify": "Thai/ENparaphraseยอดรวมปลอมกับratesถูกมีผลต่างชัด",
+    "status": "F06 / P0 / เปิด",
+    "finding": "output total guardบางส่วนเป็น regex; Thai/Englishรูปแบบใหม่เคยหลุด4controls"
+  },
+  "F07": {
+    "methods": [
+      "M12",
+      "M07",
+      "M02"
+    ],
+    "change": "durationproofผูกsource+rawdspan+taskและapplicabilityแยกกัน",
+    "verify": "2ชั่วโมง→120นาทีมีproof;หลายdurationไม่อ้างผ่านจากsingleproof",
+    "status": "F07 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "ตอบ400บาทสำหรับ120นาทีแต่ยังแจ้งว่ายืนยัน2ชั่วโมงไม่ได้"
+  },
+  "F08": {
+    "methods": [
+      "M11",
+      "M12",
+      "M10"
+    ],
+    "change": "duplicatequantityไม่ถูกtyponormalizeเหลือค่าเดียว",
+    "verify": "1ชั่วโมง1ชั่วโมงต้องconfirmtotal/rolesก่อนคิดเงิน",
+    "status": "F08 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "VR 1ชั่วโมง1ชั่วโมงเคยถูกตีเป็น1ชั่วโมงแล้วคิดเงินทันที"
+  },
+  "F09": {
+    "methods": [
+      "M11",
+      "M19",
+      "M12"
+    ],
+    "change": "reasonเลือกจากboundservice/field/receipterrorจริง",
+    "verify": "missingrateไม่ถามserviceซ้ำ;invalidcalculationไม่กล่าวsourceไม่มี",
+    "status": "F09 / P1 / เปิด",
+    "finding": "audience/duration/serviceขาด กับไม่มีsource กับ verifierล้ม เคยใช้ข้อความเดียว"
+  },
+  "F10": {
+    "methods": [
+      "M20",
+      "M05",
+      "M02"
+    ],
+    "change": "แยกcalendarfacetsและrequestedwindowอย่างชัดเจน",
+    "verify": "เวลาอาคารไม่ใช้แทนเปิดเล่นหรือlivefree",
+    "status": "F10 / P0 / เปิด",
+    "finding": "เปิดอาคาร เปิดเล่น ช่วงจอง ตารางซ่อม และสถานะว่างจริงเป็นคนละแหล่งความหมาย"
+  },
+  "F11": {
+    "methods": [
+      "M20",
+      "M13",
+      "M19"
+    ],
+    "change": "reconcileexactresources/slots/freshnessกับactualproviderreceipt",
+    "verify": "missinggap/resourceไม่กลายoccupiedหรือfreeจากสมาชิกอื่น",
+    "status": "F11 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "live receiptsเคยใช้resource flagแทนrequested slots; gapเคยแสดงเป็นไม่ว่าง"
+  },
+  "F12": {
+    "methods": [
+      "M20",
+      "M02",
+      "M21"
+    ],
+    "change": "ใช้normalizedintervalunionและdatedexception",
+    "verify": "24:00/adjacent/weekly/futureexplicitdateไม่ใช้yearheuristicผิด",
+    "status": "F12 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "ตารางเคยแปลช่วงติดกันเป็นgap,ไม่รู้24:00,ใช้closureนอกvalidityหรือบังคับวันเดียวทั้งที่ถามรายสัปดาห์"
+  },
+  "F13": {
+    "methods": [
+      "M05",
+      "M07",
+      "M16",
+      "M24"
+    ],
+    "change": "แยกprocedure/read-onlyobservation/transactionstate",
+    "verify": "แสดงวิธีจองไม่กล่าวจองสำเร็จและcancelunknownมีnoticeก่อน",
+    "status": "F13 / P0 / เปิด",
+    "finding": "ขั้นตอนจอง/ยกเลิก/ชำระเงินเป็นคำแนะนำ ไม่ใช่หลักฐานว่าทำธุรกรรมสำเร็จ"
+  },
+  "F14": {
+    "methods": [
+      "M04",
+      "M14",
+      "M12",
+      "M07"
+    ],
+    "change": "retrieveclauseตามevent/action/unitและtransitivedeps",
+    "verify": "games/matchไม่ใช้rounds/game;boostใช้specificconditionไม่genericexploit",
+    "status": "F14 / P0 / เปิด",
+    "finding": "กติกาแข่งขันมีunitต่างกัน เช่น rounds/gameกับgames/match และข้อยกเว้นเฉพาะevent"
+  },
+  "V01": {
+    "methods": [
+      "M01",
+      "M04",
+      "M21"
+    ],
+    "change": "independentscopecheckจากraw+sourcesไม่เชื่อplannertargetอย่างเดียว",
+    "verify": "omittedtarget/wrongaudience/editionreceiptถูกsourceแต่ผิดเรื่องต้องตก",
+    "status": "V01 / P0 / เปิด",
+    "finding": "sourceถูกแต่entity/audience/event/editionผิดยังเป็นคำตอบผิด"
+  },
+  "V02": {
+    "methods": [
+      "M05",
+      "M06",
+      "M24"
+    ],
+    "change": "capabilitymatrixเชื่อมprojection→predicate→executor→verifier",
+    "verify": "ownerfieldใหม่มีpositivenaturalreadหรือประกาศunsupportedจริง",
+    "status": "V02 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "readerอ่านfieldได้แต่predicate/dispatchไม่มี ทำให้fallbackไปโมเดลหรือunknown"
+  },
+  "V03": {
+    "methods": [
+      "M06",
+      "M01",
+      "M24",
+      "M14"
+    ],
+    "change": "predeclarecompatrouteและadaptreceiptsก่อนverifyร่วม",
+    "verify": "source-rejectedneedไม่retryผ่านlegacybypass",
+    "status": "V03 / P0 / เปิด",
+    "finding": "R134 compatibilityอาจดูตอบเก่งกว่าแต่บางผลผูกsourceไม่ได้"
+  },
+  "V04": {
+    "methods": [
+      "M06",
+      "M08",
+      "M21"
+    ],
+    "change": "gateในsharedentry/finishและทดสอบทุกroute",
+    "verify": "nativeunknownfacetไม่ทำcompatคืนpositivecatalog",
+    "status": "V04 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "unknown facetในnativeเพียงชั้นเดียวไม่กันlegacyrouteในกรณีnegativecatalog"
+  },
+  "V05": {
+    "methods": [
+      "M13",
+      "M07",
+      "M21"
+    ],
+    "change": "set/option/fieldcoverageตามrequestและsource",
+    "verify": "dropoption/memberไม่complete;list/count/compareทดสอบแยก",
+    "status": "V05 / P0 / เปิด",
+    "finding": "list/count/compareอาจอ่านหนึ่งrecordได้แต่ไม่ครบชุด"
+  },
+  "V06": {
+    "methods": [
+      "M12",
+      "M21",
+      "M22"
+    ],
+    "change": "separateoracleสำหรับnumeric/sourceและsemanticreview",
+    "verify": "selector/verifierใช้helperร่วมถูกระบุข้อจำกัด ไม่อ้างindependentเต็ม",
+    "status": "V06 / P0 / เปิด",
+    "finding": "verifierบางส่วนกับselectorใช้helperร่วม เช่น billingหรือderivation"
+  },
+  "V07": {
+    "methods": [
+      "M07",
+      "M16",
+      "M19"
+    ],
+    "change": "centralterminalstatesและdeliveryproofretraction",
+    "verify": "renderreject/snapshotretry/partialouterมีstateตรงกับartifact/UI",
+    "status": "V07 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "partial/rejected/unsupportedเคยเปลี่ยนเป็นsupportedที่outeraggregation"
+  },
+  "V08": {
+    "methods": [
+      "M16",
+      "M12",
+      "M15"
+    ],
+    "change": "verifyrenderedfactsหลังformatก่อนส่งจริง",
+    "verify": "เงิน/คน/วัน/negative/caveatเปลี่ยนแล้วส่งไม่ได้",
+    "status": "V08 / P0 / เปิด",
+    "finding": "ข้อความหลังrenderอาจเปลี่ยนจำนวน หน่วย คน เงื่อนไข หรือคำปฏิเสธ แม้claimถูก"
+  },
+  "V09": {
+    "methods": [
+      "M19",
+      "M01"
+    ],
+    "change": "capturepre-assessinputs+postrejectstateโดยไม่retainasdelivered",
+    "verify": "0claimsหลังguardไม่ถูกวินิจฉัยว่าsourceไม่มี",
+    "status": "V09 / P1 / เปิด",
+    "finding": "เมื่อguardปฏิเสธแล้วclaimsปลายทางว่าง ไม่ได้แปลว่าต้นทางไม่มีข้อมูล"
+  },
+  "V10": {
+    "methods": [
+      "M11",
+      "M21",
+      "M22"
+    ],
+    "change": "gateacceptanceมีanswerablepositiveคู่กับnegative",
+    "verify": "blockedvalidqueryปรากฏในcoverage ไม่ผ่านจาก0claimsทุกข้อ",
+    "status": "V10 / P1 / เปิด",
+    "finding": "fail-closedอาจblockvalidpositiveถ้าguardกว้างเกิน"
+  },
+  "O01": {
+    "methods": [
+      "M01",
+      "M15",
+      "M16"
+    ],
+    "change": "แยกinternalproof/publiccitation/authority/validityในmodelและUI",
+    "verify": "noURLไม่กลายunavailableและhomepageไม่ทำwrongclaimผ่าน",
+    "status": "O01 / P1 / เปิด",
+    "finding": "ไม่มีURLกับไม่มีหลักฐานรองรับเคยถูกเข้าใจว่าอย่างเดียวกัน"
+  },
+  "O02": {
+    "methods": [
+      "M15",
+      "M01"
+    ],
+    "change": "citationregistryexactpinsและclausecoverage",
+    "verify": "markerทุกตัวมีrealsource/supportและไม่มีdanglingrefs",
+    "status": "O02 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "publiccitationsเคยมีmarkersที่ผู้ใช้ตรวจตามไม่ได้"
+  },
+  "O03": {
+    "methods": [
+      "M03",
+      "M15",
+      "M01"
+    ],
+    "change": "revokedrevision/sourcehashinvalidatespubliccitation",
+    "verify": "แก้/ถอน/ปลอมmappingไม่แปะเว็บเดิม",
+    "status": "O03 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "การแก้recordอาจยังแปะเว็บรับรองข้อความเก่าต่อ"
+  },
+  "O04": {
+    "methods": [
+      "M15",
+      "M22"
+    ],
+    "change": "รายงานcitationprecision/coverageตามclaimไม่ใช่มีURLต่อquestion",
+    "verify": "1supportedclauseไม่รับรองทั้งanswer;denominatorชัด",
+    "status": "O04 / P1 / เปิด",
+    "finding": "citationreviewเก่าพบ31จาก200คำถามมีอย่างน้อยหนึ่งclaimที่corroborate ไม่ใช่ทั้งคำตอบ"
+  },
+  "O05": {
+    "methods": [
+      "M16",
+      "M05"
+    ],
+    "change": "templateตามdesiredoutputและanswerfirstheading",
+    "verify": "definition/compare/procedureไม่ใช้คำถามผิดเป็นหัวข้อหรือกลบanswer",
+    "status": "O05 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "FAQเคยเอาข้อความคำถามเป็นหัวข้อคำตอบ เช่นBook how many session pay"
+  },
+  "O06": {
+    "methods": [
+      "M19",
+      "M11",
+      "M16"
+    ],
+    "change": "reason-specificusernoticeผูกneedและnextaction",
+    "verify": "admission/timeout/conflict/missingslotแสดงไม่เหมือนnosource",
+    "status": "O06 / P1 / เปิด",
+    "finding": "ข้อความไม่มีข้อมูลยืนยัน/ระบบไม่พร้อมกว้างเกินไป"
+  },
+  "O07": {
+    "methods": [
+      "M16",
+      "M13",
+      "M12"
+    ],
+    "change": "scope-awaretable/servicelabelsลดซ้ำโดยคงunits/currentness",
+    "verify": "ย่อข้อความแล้วfactsไม่หายและalternativesไม่กลายtotal",
+    "status": "O07 / P1 / เปิด",
+    "finding": "ราคาหลายบริการยังยาวเป็นหลายบรรทัดและมีcaveatซ้ำ"
+  },
+  "O08": {
+    "methods": [
+      "M26",
+      "M05",
+      "M21"
+    ],
+    "change": "pinlocaleและตรวจTH/ENfactparityทั้งroutes",
+    "verify": "autoEnglishไม่ออกThaiและmissingtranslationไม่fabricate",
+    "status": "O08 / P1 / แก้เฉพาะขอบเขต",
+    "finding": "auto localeถูกส่งต่อเป็นliteralautoจนEnglishบางข้อออกThai"
+  },
+  "O09": {
+    "methods": [
+      "M07",
+      "M16",
+      "M15"
+    ],
+    "change": "need-levelcoverageและnoticeใกล้ส่วนที่ยังขาด",
+    "verify": "partialมีคำตอบที่ผ่านพร้อมunansweredneedไม่กล่าวครบทั้งหมด",
+    "status": "O09 / P1 / เปิด",
+    "finding": "ในpartialบางส่วนถูกแต่ผู้ใช้ไม่รู้ว่าส่วนใดยังขาด"
+  },
+  "O10": {
+    "methods": [
+      "M15",
+      "M16",
+      "M24"
+    ],
+    "change": "sourceidentity/title/sectionไม่ถูกwrapperเปลี่ยน",
+    "verify": "citationdisplayตรงregistryและมีrevisionmanifest",
+    "status": "O10 / P2 / แก้เฉพาะขอบเขต",
+    "finding": "migrationwrapperเคยทับชื่อเว็บ/sectionที่ตรวจแล้วเป็นชื่อทั่วไป"
+  },
+  "Q01": {
+    "methods": [
+      "M03",
+      "M21",
+      "M24"
+    ],
+    "change": "currentowner/editorHTTPintegrationบนDBสำเนาและroute matrix",
+    "verify": "add/edit/withdrawทุกkindที่เปิดพร้อมnonemptypositiveและsiblings",
+    "status": "Q01 / P0 / เปิด",
+    "finding": "owneradd/edit/withdrawส่วนใหญ่เป็นsource/functiontests;parenthybridมีHTTP lifecycleเฉพาะขอบเขต"
+  },
+  "Q02": {
+    "methods": [
+      "M03",
+      "M01",
+      "M15"
+    ],
+    "change": "cachedependency+confirmationinvalidationตามcontent/revision",
+    "verify": "sameinstanceเห็นใหม่และoldassertionไม่รับรองnewscope",
+    "status": "Q02 / P0 / แก้เฉพาะขอบเขต",
+    "finding": "เปลี่ยนrate/serviceแล้วcacheหรือconfirmationเก่าอาจค้าง"
+  },
+  "Q03": {
+    "methods": [
+      "M01",
+      "M24",
+      "M03"
+    ],
+    "change": "authorization/approval/lifecycleแยกจากschemavalidation",
+    "verify": "draftschemaผ่านไม่publishedและunauthorizedwriteไม่ผ่านgate",
+    "status": "Q03 / P0 / เปิด",
+    "finding": "schemaผ่านไม่ได้แปลว่าpublishได้หรือมีสิทธิ์แก้นั้นจริง"
+  },
+  "Q04": {
+    "methods": [
+      "M03",
+      "M24",
+      "M21"
+    ],
+    "change": "ทดสอบDraftSnapshotView↔MigratedViewbridgeจริง",
+    "verify": "HTTPใช้DB/profile/snapshotที่ตั้งใจและไม่ยกfunctionpassแทน",
+    "status": "Q04 / P1 / เปิด",
+    "finding": "DraftSnapshotViewในfocusedtestsกับMigratedViewในแชตมีข้อจำกัดpath/snapshotต่างกัน"
+  },
+  "Q05": {
+    "methods": [
+      "M24",
+      "M19",
+      "M21"
+    ],
+    "change": "positivebusinesspreflight+negative+identityก่อนbroadrun",
+    "verify": "DBscopeผิดถูกdetectก่อน2111;harnessfailureไม่นับaccuracy",
+    "status": "Q05 / P0 / ประวัติที่ต้องรักษา",
+    "finding": "evalattemptแรก385requestsอ่านDBscopeผิดจนmigratedunavailable;preflightอีกครั้งใช้controlกำกวม"
+  },
+  "Q06": {
+    "methods": [
+      "M24",
+      "M19"
+    ],
+    "change": "oneactivecandidateidentitymanifestแยกports/DB/frozen",
+    "verify": "ดูhealth/version/processจริงก่อนแก้และไม่หยุดprotectedmodel",
+    "status": "Q06 / P1 / เปิด",
+    "finding": "หลายpreview/หลายDB/เอกสารเก่าระบุportsหรือสถานะไม่ตรงล่าสุด"
+  },
+  "Q07": {
+    "methods": [
+      "M24",
+      "M02"
+    ],
+    "change": "supersession/dateของreportsและrouteevidence",
+    "verify": "46/52entriesหรือparentreadyแยกตามรุ่นไม่เป็นstatusขัดกัน",
+    "status": "Q07 / P1 / เปิด",
+    "finding": "STATUS/flow/แผนบางส่วนมีhistoricalfieldsที่ยังค้าง เช่น46กับ52citations หรือreadyของparent"
+  },
+  "Q08": {
+    "methods": [
+      "M22",
+      "M15"
+    ],
+    "change": "literal+semantic/source+coverageรายงานแยกกัน",
+    "verify": "3/6sessionsไม่regradeเงียบ;HTTP200ไม่นับตอบถูก",
+    "status": "Q08 / P1 / เปิด",
+    "finding": "literalเกณฑ์เก่าไม่ตรวจsemantic/sourceครบ และอาจคาดค่าล้าสมัย"
+  },
+  "Q09": {
+    "methods": [
+      "M22",
+      "M21"
+    ],
+    "change": "familyheldoutและcontrolledC07แยกbroadscore",
+    "verify": "seen200ไม่เรียกunseenและthinstrataแสดงcount",
+    "status": "Q09 / P1 / เปิด",
+    "finding": "ชุด200/1056/2111เคยเปิดดูแล้ว;C07ในชุด5%/200ที่อ้างมีเพียง1ตัวอย่าง"
+  },
+  "Q10": {
+    "methods": [
+      "M15",
+      "M22",
+      "M21"
+    ],
+    "change": "stratifiedclaim/intent/sourcehumanreviewพร้อมuncertain",
+    "verify": "reviewจำนวนจริงและjudgeผิด/abstentionรายงานไม่ขยายทั้งระบบ",
+    "status": "Q10 / P1 / เปิด",
+    "finding": "ยังไม่ตรวจsemanticแบบรายclaimครบทุกคำถามทุก14หมวด"
+  },
+  "Q11": {
+    "methods": [
+      "M23",
+      "M22",
+      "M01"
+    ],
+    "change": "teacheranswerreviewก่อนpseudo-labelและแยกevalholdout",
+    "verify": "oldwrongunit/policyถูกquarantine;ไม่มีtrainleakage2111",
+    "status": "Q11 / P1 / เปิด",
+    "finding": "คำตอบFlowเก่าเป็นteachercandidateไม่ใช่gold;มีตัวอย่างตอบคนละหน่วย/ละงาน/ใช้policyเก่า"
+  },
+  "Q12": {
+    "methods": [
+      "M23",
+      "M24",
+      "M22"
+    ],
+    "change": "exactprotocol/family/source/reviewer/adjudicationhashadmission",
+    "verify": "เปลี่ยนhelper/promptแล้วoldreadyไม่ใช้ต่อและrealtrainแยกsynthetic",
+    "status": "Q12 / P1 / เปิด",
+    "finding": "trainingreview/protocol/familysplitยังมีช่องว่าง G102/G103/G110/G128/G132–G137"
+  },
+  "Q13": {
+    "methods": [
+      "M24",
+      "M21",
+      "M07"
+    ],
+    "change": "operation×field×route×dependencyacceptance",
+    "verify": "หนึ่งlaneไม่ปิดทั้งหมวดหรือ48/76;listcountcompareมีpositive",
+    "status": "Q13 / P1 / เปิด",
+    "finding": "14หมวดผ่านboundedlanesไม่ใช่ทุกoperation;48requirementsไม่ใช่48แถวแรก และยังไม่finalacceptance"
+  },
+  "Q14": {
+    "methods": [
+      "M24",
+      "M03",
+      "M19"
+    ],
+    "change": "finalrevisionbackuprestore/rollbackก่อนactivation",
+    "verify": "backupรวมWALหรือonlinebackuprestoreได้และfrozen/liveไม่ถูกทับ",
+    "status": "Q14 / P0 / เปิด",
+    "finding": "productionactivation/rollback/backupWALของfinalrevisionยังไม่ผ่านครบ"
+  }
+}

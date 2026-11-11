@@ -1,0 +1,87 @@
+{
+  "search_date": "2026-11-11",
+  "task": "Primary-source techniques and integration proposals mapped to 100 grouped issues and 143 saved audit gaps",
+  "skill": "paper-search-pro",
+  "skill_path": "C:/Users/Chokhun/.codex/skills/paper-search-pro/SKILL.md",
+  "attempted_tier": "standard",
+  "actual_method": "degraded targeted web research and manual engineering synthesis; API helper halted at configuration gate",
+  "config_presence_only": {
+    "openalex": false,
+    "ncbi": false,
+    "semantic_scholar": false,
+    "crossref": false
+  },
+  "year_limits": null,
+  "journal_rank_filter": null,
+  "literature_coverage_estimate": null,
+  "prisma_compliance_claimed": false,
+  "metadata_corrections_during_review": [
+    {"reference": "R11", "field": "doi", "verified_value": "10.18653/2026.aacl-short.17", "note": "Checked primary ACL DOI/export; do not assume the older /v1/ pattern for this 2026 entry"}
+  ],
+  "subagents_used": false,
+  "inference_calls_to_project_model": 0,
+  "exact_web_queries": [
+    "site.aclanthology.org PICARD Parsing Incrementally Constrained Auto Regressive Decoding 2021",
+    "site.aclanthology.org RAT-SQL Relation-Aware Schema Encoding Linking 2020",
+    "site.aclanthology.org Generating Benchmarks for Factuality Language Models ALCE citations 2023",
+    "site.aclanthology.org Beyond Accuracy Behavioral Testing NLP CheckList 2020",
+    "site.aclanthology.org \"Enabling Large Language Models to Generate Text with Citations\"",
+    "site.aclanthology.org \"FActScore\" 2023",
+    "site.aclanthology.org \"Description-Driven Task-Oriented Dialog Modeling\"",
+    "site.aclanthology.org \"CLAMBER\" ambiguity",
+    "site.aclanthology.org \"FinQA\" 2021 numerical reasoning",
+    "site.proceedings.mlr.press \"PAL: Program-aided Language Models\"",
+    "site.aclanthology.org \"TAT-QA\" 2021",
+    "site.openreview.net \"Self-RAG\" Learning to Retrieve Generate Critique",
+    "\"Provenance Semirings\" Green Karvounarakis Tannen 2007 pdf",
+    "site.w3.org TR prov-dm PROV-DM",
+    "\"Datasheets for Datasets\" Gebru 2021 ACM",
+    "\"The Tail at Scale\" Dean Barroso 2013 research.google",
+    "site.aclanthology.org \"Scalable Zero-shot Entity Linking with Dense Entity Retrieval\"",
+    "site.proceedings.mlr.press \"Language Models Know What They Know\" conformal 2024",
+    "site.proceedings.neurips.cc \"Selective Classification for Deep Neural Networks\"",
+    "\"Leakage and the reproducibility crisis in machine-learning-based science\" authors 2023 patterns",
+    "site.aclanthology.org \"CondaQA\" negation",
+    "\"Maintaining Knowledge about Temporal Intervals\" Allen 1983 pdf",
+    "site.arxiv.org \"Donut\" \"OCR-free Document Understanding Transformer\"",
+    "site.arxiv.org \"Distilling the Knowledge in a Neural Network\"",
+    "\"Using Anytime Algorithms in Intelligent Systems\" Zilberstein 1996",
+    "site.aclanthology.org \"Schema-Guided\" \"Description-Driven\" 2022 Zhao",
+    "\"Description-Driven Task-Oriented Dialog Modeling\" ACL 2022 anthology",
+    "site.proceedings.neurips.cc \"Hidden Technical Debt in Machine Learning Systems\" 2015",
+    "\"Decomposed Prompting\" \"ICLR 2023\" openreview",
+    "site.aclanthology.org \"Sequence-Level Knowledge Distillation\" 2016",
+    "site.aclanthology.org 2026 Thai spelling correction intent robust dialogue",
+    "site.proceedings.mlr.press \"Conformal Language Modeling\"",
+    "site.aclanthology.org \"An Empirical Investigation of Statistical Significance in NLP\" 2012",
+    "\"Decomposed Prompting: A Modular Approach\" \"openreview.net/forum\""
+  ],
+  "direct_open_policy": "Open primary publisher/author/specification URLs and selected PDF sections; retained URLs recorded in references.json. No login/challenge bypass.",
+  "reading_examples": [
+    {"reference": "R15", "location": "ALCE PDF section 3.3", "purpose": "citation precision/recall distinction"},
+    {"reference": "R16", "location": "FActScore PDF section 3.1 and limitations", "purpose": "precision is not recall; abstention caveat"},
+    {"reference": "R11", "location": "ThaiEditBench PDF introduction/edit-typing", "purpose": "TCC mechanism/length evaluation, over-editing caveat"},
+    {"reference": "E04", "location": "Deadlines on server and deadline propagation", "purpose": "cooperative cancellation; remaining time"},
+    {"reference": "E09", "location": "Future.cancel/result(timeout), Python 3.12", "purpose": "timeout is not stopping running work"},
+    {"reference": "E11", "location": "open-world versus closed-world discussion", "purpose": "missing records cannot establish absent-game list without scoped completeness"}
+  ],
+  "excluded_or_not_relied_on": [
+    {"url": "https://aclanthology.org/2024.eacl-long.4/", "reason": "FACTOR returned by an imprecise ALCE query; not the target citation-method paper"},
+    {"url": "https://aclanthology.org/2022.findings-naacl.125/", "reason": "Candidate D3ST URL was a different dialogue-summarization paper; explicitly excluded, used primary arXiv/author page instead"},
+    {"url": "https://arxiv.org/abs/1503.02531", "reason": "Verified foundational soft-logit distillation work, but not retained because sequence-level KD and reranking fit the proposed hard-label workflow more directly"},
+    {"url": "https://docs.python.org/3/library/concurrent.futures.html", "reason": "Unversioned docs resolved to Python 3.15; replaced with Python 3.12 documentation matching application runtime family"},
+    {"url": "https://arxiv.org/abs/2606.03731", "reason": "New conformal variant surfaced but not examined; no claim of covering all recent conformal work"}
+  ],
+  "access_limits": [
+    {"url": "https://openreview.net/forum?id=_nGgzQjzaRy", "outcome": "browser challenge; used author camera-ready arXiv and official repository"},
+    {"url": "https://openreview.net/forum?id=hSyW5go0v8", "outcome": "browser challenge; used primary arXiv and author institution page"},
+    {"url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/31421b112e5f7faf4fc577b74e45dab2-Paper-Conference.pdf", "outcome": "PDF timeout; Conformal LM retained with abstract-only reading level and deferred recommendation"}
+  ],
+  "skipped": [
+    {"step": "automatic multi-index search/dedup/saturation/metrics", "reason": "required configuration missing; skill helper halted", "lost": "no measured retrieval-pool count, capture/recapture saturation, influential citation count or automated DOI verification", "recovery": "configure skill per references/setup.md and rerun a declared search protocol"},
+    {"step": "parallel classifier subagents", "reason": "project AGENTS.md explicitly forbids subagents", "lost": "no independent multi-reviewer screening", "recovery": "main-agent manual classifications are labeled; independent human review could be added separately"},
+    {"step": "HTML report and browser auto-open", "reason": "user requested Markdown engineering recommendations", "lost": "no interactive paper dashboard", "recovery": "use Markdown tables plus JSON/CSV/BibTeX exports"},
+    {"step": "medical/Chinese database boosters", "reason": "not a medical query and no Chinese-literature request", "lost": "not a multilingual exhaustive bibliographic search", "recovery": "extend language/source scope if the research goal changes"}
+  ],
+  "stopping_decision": "Stopped targeted retrieval after all eight issue families had relevant primary-source concepts and engineering invariants, then manually mapped every current issue and historical gap. This is not a saturation estimate or proof all literature was found."
+}
