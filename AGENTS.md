@@ -9,3 +9,4 @@
 - Keep `.local-private`, raw chat history, tokens, model weights, runtime databases/logs, and large raw evidence out of Git.
 - Local data migration must be byte-verified before originals are removed. Never follow a junction into an unrelated project during recursive cleanup.
 - User requests progress reports every six hours. State actual work, evidence, limits, and next steps without inventing completion percentages.
+- The user-approved model-first experiment is `r135_model_first_20261112`; read its `MODEL_FIRST_REPORT_TH.md`, `STATUS.json`, `flow.md` and `IMPLEMENTATION_MANIFEST.json` before continuing. It is an experimental separate candidate, not a replacement for recovery-loop02. Actual base-profile model splits needs but has known intent/context/ambiguity errors. Keep failed evidence; do not treat source replay or mocked controls as model accuracy.
