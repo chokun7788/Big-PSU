@@ -137,6 +137,15 @@ def current_corrections(index):
 def guard_result(reader,result,snap,index,question,at,lang):
     """Prevent a compatibility reader from reviving a corrected old field."""
     art=result.decision_artifact or {}
+    from .audience_role_scope import request as audience_request,notice as audience_notice
+    from .routing import need_spans
+    role=audience_request(index,question)
+    unselected_rates=any(index.records.get(h.get('record_id'),{}).get('kind')=='rate' for h in result.hits)
+    if role['unresolved'] and (len(need_spans(question,index))<=1 or unselected_rates):
+        import time
+        from dataclasses import replace
+        safe=reader.finish(snap,time.perf_counter(),audience_notice(role,lang),[],{'record_ids':[],'requested_fields':[],'method':'source_bound_audience_role_clarification'},[],response='clarification')
+        return replace(safe,decision_artifact={**safe.decision_artifact,'audience_role_scope':role,'rejected_record_ids':[h.get('record_id') for h in result.hits],'upstream_response_type':art.get('response_type')})
     from .game_edition_scope import request as edition_request,allows as edition_allows
     edition=edition_request(index,question)
     mismatches=[]

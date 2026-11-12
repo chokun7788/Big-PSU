@@ -2,7 +2,7 @@
 import json,time,urllib.request,uuid
 from pathlib import Path
 R=Path(__file__).resolve().parent;url='http://127.0.0.1:8144/'
-health=json.load(urllib.request.urlopen(url+'health',timeout=5));assert health['runtime']['version']=='R135-Recovery-loop01'
+health=json.load(urllib.request.urlopen(url+'health',timeout=5));assert health['runtime']['version']=='R135-Recovery-loop02'
 out=R/('round02_http_'+str(time.time_ns()));out.mkdir();checks={};rows=[]
 cases=[('PC นักศึกษา PSU ราคาเท่าไหร่; PC นักศึกษา PSU ราคาเท่าไหร่','0 บาท',False),('TEKKEN 8 ปุ่มอะไร','',True),('TEKKEN 9 ปุ่มอะไร','',False),('TEKKEN 8 มีให้เล่นไหม','TEKKEN 8',True),('TEKKEN 9 มีให้เล่นไหม','',False),('TEKKEN 9 คือเกมอะไร','',False),('tekken9 controls','',False)]
 for n,(q,expected,positive) in enumerate(cases):

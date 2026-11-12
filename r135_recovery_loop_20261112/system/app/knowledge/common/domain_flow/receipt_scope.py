@@ -44,6 +44,8 @@ def check(index,task,fact,question):
         basis.append('independent_requested_inventory_source_set')
         if fact['record_id'] not in allowed:errors.append('source_receipt_inventory_scope_mismatch')
     elif task.category=='C06':
+        from .audience_role_scope import request as audience_request
+        if audience_request(index,question)['unresolved']:errors.append('source_receipt_audience_role_unresolved')
         from .financial import rate_pool,audience_mentions
         candidates=rate_pool(index,question)
         if candidates:

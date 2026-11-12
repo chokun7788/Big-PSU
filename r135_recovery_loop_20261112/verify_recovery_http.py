@@ -2,7 +2,7 @@
 import json,time,urllib.request,uuid
 from pathlib import Path
 R=Path(__file__).resolve().parent;URL='http://127.0.0.1:8144/'
-health=json.load(urllib.request.urlopen(URL+'health',timeout=5));assert health['runtime']['version']=='R135-Recovery-loop01'
+health=json.load(urllib.request.urlopen(URL+'health',timeout=5));assert health['runtime']['version']=='R135-Recovery-loop02'
 out=R/('recovery_http_'+str(time.time_ns()));out.mkdir();rows=[];checks={}
 cases=[('นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท','th'),('PSU Student plays PC for 30 minutes, how much does it cost?','en'),('นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท แล้วจองยังไง','th'),('นักศึกษา PSU เล่น PC 30 นาที เสียกี่บาท; Andaman Hotel อยู่ที่ไหน','th'),('PC นักศึกษา PSU ราคาเท่าไหร่','th')]
 for n,(q,locale) in enumerate(cases):

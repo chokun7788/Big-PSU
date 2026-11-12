@@ -1,0 +1,47 @@
+{
+  "all_passed": true,
+  "rows": [
+    {
+      "script": "probe_audience_scope.py",
+      "exit_code": 0,
+      "seconds": 31.19671260000905,
+      "stdout": "{\"output\": \"D:\\\\CodexProjects\\\\Big-PSU\\\\r135_recovery_loop_20261112\\\\audience_scope_probe_1794441697739317700\", \"all_passed\": true, \"checks\": {\"normal_foreign_student_only\": true, \"typo_not_unrequested_psu_price\": true, \"normal_psu_student_retained\": true, \"explicit_all_audiences_retained\": true, \"unspecified_student_not_silently_priced_as_psu\": true, \"negated_psu_never_delivered\": true}, \"requests\": 6, \"model_calls\": 0, \"scope\": \"natural source-only audience relevance/ambiguity controls; alternative prices are not automatically false amounts; no model or semantic accuracy\"}\n",
+      "stderr": ""
+    },
+    {
+      "script": "run_robustness_matrix.py",
+      "exit_code": 0,
+      "seconds": 78.1496586999856,
+      "stdout": "{\"case\": \"price_clean\", \"passed\": true, \"seconds\": 9.666}\n{\"case\": \"price_missing_character\", \"passed\": true, \"seconds\": 2.824}\n{\"case\": \"cockpit_total\", \"passed\": true, \"seconds\": 2.234}\n{\"case\": \"compound_booking_typo\", \"passed\": true, \"seconds\": 2.619}\n{\"case\": \"catalog_clean\", \"passed\": true, \"seconds\": 1.348}\n{\"case\": \"keyboard_neighbour\", \"passed\": true, \"seconds\": 1.961}\n{\"case\": \"character_missing\", \"passed\": true, \"seconds\": 1.785}\n{\"case\": \"character_repeated\", \"passed\": true, \"seconds\": 1.799}\n{\"case\": \"character_transposed\", \"passed\": true, \"seconds\": 1.733}\n{\"case\": \"token_repeated\", \"passed\": true, \"seconds\": 1.819}\n{\"case\": \"compound_semicolon\", \"passed\": true, \"seconds\": 2.321}\n{\"case\": \"compound_reordered\", \"passed\": true, \"seconds\": 2.083}\n{\"case\": \"compound_mixed\", \"passed\": true, \"seconds\": 2.105}\n{\"case\": \"compound_unspaced\", \"passed\": true, \"seconds\": 1.221}\n{\"case\": \"same_price_repeated\", \"passed\": true, \"seconds\": 2.388}\n{\"case\": \"same_booking_repeated\", \"passed\": true, \"seconds\": 1.085}\n{\"case\": \"unknown_entity_sibling\", \"passed\": true, \"seconds\": 2.076}\n{\"case\": \"unknown_fact_sibling\", \"passed\": true, \"seconds\": 2.44}\n{\"case\": \"missing_content_word\", \"passed\": true, \"seconds\": 0.445}\n{\"case\": \"negative_typo\", \"passed\": true, \"seconds\": 0.516}\n{\"case\": \"negative_catalog\", \"passed\": true, \"seconds\": 0.512}\n{\"case\": \"duplicate_duration\", \"passed\": true, \"seconds\": 1.356}\n{\"case\": \"unknown_edition\", \"passed\": true, \"seconds\": 1.411}\n{\"case\": \"device_location_typo\", \"passed\": true, \"seconds\": 1.052}\n{\"case\": \"english_clean\", \"passed\": true, \"seconds\": 1.4}\n{\"case\": \"english_typo\", \"passed\": true, \"seconds\": 2.381}\n{\"case\": \"sessions_source\", \"passed\": true, \"seconds\": 1.287}\n{\"output\": \"D:\\\\CodexProjects\\\\Big-PSU\\\\r135_recovery_loop_20261112\\\\robustness_audience_loop02_1794441725076822500\", \"requests\": 27, \"passed\": 27, \"failed_ids\": [], \"all_passed\": true, \"manifest_sha256\": \"cafe48a277e529d44ee5a4a25927e3b1a4c6703eb7312eb30454d41c92264ac9\", \"elapsed_seconds\": 69.78228280000621, \"model_calls\": 0, \"http_requests\": 0, \"scope\": \"focused serial source-only output/source-scope expectations; not semantic accuracy or full regression score\"}\n",
+      "stderr": ""
+    },
+    {
+      "script": "verify_alternative_duration.py",
+      "exit_code": 0,
+      "seconds": 12.930492900020909,
+      "stdout": "{\"output\": \"D:\\\\CodexProjects\\\\Big-PSU\\\\r135_recovery_loop_20261112\\\\alternative_duration_controls_1794441807839497200\", \"all_passed\": true, \"checks\": {\"all_two_alternatives_proven\": true, \"not_a_combined_total\": true, \"second_amount_forged\": true, \"second_total_forged\": true, \"second_duration_forged\": true, \"second_quantity_forged\": true, \"second_revision_forged\": true, \"second_scope_unverified\": true, \"second_refs_missing\": true, \"second_calculation_missing\": true, \"duplicate_calculation\": true, \"extra_claim_no_calculation\": true, \"wrong_audience\": true, \"wrong_service\": true, \"total_requested_not_alternatives\": true, \"multi_person_total_unsupported\": true, \"repeated_duration_ambiguous\": true, \"stale_snapshot\": true, \"rejected_executor\": true, \"fatal_receipt\": true}, \"scope\": \"saved natural source-backed contract replay, all-lines proof and forced negative controls; no model, authority or full semantic proof\"}\n",
+      "stderr": ""
+    },
+    {
+      "script": "verify_price_currency.py",
+      "exit_code": 0,
+      "seconds": 8.846773400029633,
+      "stdout": "{\"output\": \"D:\\\\CodexProjects\\\\Big-PSU\\\\r135_recovery_loop_20261112\\\\price_currency_1794441815916250700\", \"all_passed\": true, \"checks\": {\"C06_known_amount_and_currency_delivered\": true, \"C06_currency_has_actual_source_locator_in_claim\": true, \"C06_missing_currency_evidence_rejected\": true, \"C06_old_fact_not_authority_after_currency_unconfirmed\": true, \"C06_unknown_currency_no_numeric_price_claim\": true, \"C06_independent_duration_not_erased_with_currency\": true, \"C07_known_amount_and_currency_delivered\": true, \"C07_currency_has_actual_source_locator_in_claim\": true, \"C07_missing_currency_evidence_rejected\": true, \"C07_old_fact_not_authority_after_currency_unconfirmed\": true, \"C07_unknown_currency_no_numeric_price_claim\": true, \"C07_independent_duration_not_erased_with_currency\": true}, \"actual_model_inferences\": 0, \"actual_http_calls\": 0, \"user_data_modified\": false, \"controlled_source_not_real_business_data\": true}\n",
+      "stderr": ""
+    },
+    {
+      "script": "verify_bounded_response.py",
+      "exit_code": 0,
+      "seconds": 17.667795400018804,
+      "stdout": "{\"output\": \"D:\\\\CodexProjects\\\\Big-PSU\\\\r135_recovery_loop_20261112\\\\bounded_response_1794441824187999300\", \"checks\": {\"long_model_call_capped\": true, \"expired_budget_zero\": true, \"expired_gateway_skips_admission\": true, \"expired_legacy_skips_admission\": true, \"typed_price_still_delivered\": true, \"typed_booking_still_delivered\": true}, \"all_passed\": true, \"scope\": \"fake clock/admission and source-only natural response; no live inference or hard deadline proof\"}\n",
+      "stderr": ""
+    },
+    {
+      "script": "verify_verified_sources.py",
+      "exit_code": 0,
+      "seconds": 49.822035699966364,
+      "stdout": "{\"output\": \"D:\\\\CodexProjects\\\\Big-PSU\\\\r135_recovery_loop_20261112\\\\verified_sources_controls_1794441845453511000\", \"all_passed\": true, \"checks\": {\"normal_six_0\": true, \"normal_six_1\": true, \"direct_answer_heading_1\": true, \"normal_six_2\": true, \"direct_answer_heading_2\": true, \"sessions_and_payment\": true, \"price_and_booking_both\": true, \"wrong_subject_withheld_0\": true, \"scope_reason_0\": true, \"wrong_subject_withheld_1\": true, \"scope_reason_1\": true, \"wrong_subject_withheld_2\": true, \"scope_reason_2\": true, \"price_source_platform_positive\": true, \"wrong_price_platform_rejected\": true, \"missing_relation\": true, \"forged_relation\": true, \"missing_center\": true, \"lifecycle_before_six\": true, \"lifecycle_new_value\": true, \"edit_invalidates_web_citation\": true, \"withdrawn_not_claimed\": true}, \"scope\": \"source-only natural delivery + direct relation mutations + isolated actual edit/withdraw; 5 sessions is fixture only; not full semantic/authority proof\"}\n",
+      "stderr": ""
+    }
+  ]
+}

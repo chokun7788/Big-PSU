@@ -2,7 +2,7 @@
 import json,time,urllib.request,uuid
 from pathlib import Path
 P=Path(__file__).resolve().parent;URL='http://127.0.0.1:8144/'
-health=json.load(urllib.request.urlopen(URL+'health',timeout=5));assert health['runtime']['version']=='R135-Recovery-loop01'
+health=json.load(urllib.request.urlopen(URL+'health',timeout=5));assert health['runtime']['version']=='R135-Recovery-loop02'
 out=P/('typo_http_'+str(time.time_ns()));out.mkdir();checks={};rows=[]
 def ask(q,locale='th'):
  body={'question':q,'locale':locale,'client_session_id':'typo-'+uuid.uuid4().hex,'client_turn_id':uuid.uuid4().hex,'recent_history':[],'debug':False}

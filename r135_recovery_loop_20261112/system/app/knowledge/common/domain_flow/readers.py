@@ -39,6 +39,10 @@ def guard(index,cat,q,at):
         if not positive and re.search(r'บุคคลทั่วไป|นักศึกษา|คนนอก|\b(?:visitors?|students?|individuals?)\b',q,re.I):return Plan(category=cat,status='missing_input',reason='personal_audience_not_organization_group',locked=True,metadata={'missing_slots':['organization_group']})
         if any(u['quantity']<=0 or not u['quantity'].is_integer() for u in rental_units(q)):return blocked(cat,'invalid_package_quantity','missing_input')
     if cat=='C06':
+        from .audience_role_scope import request as audience_request,notice as audience_notice
+        role=audience_request(index,q)
+        if role['unresolved']:
+            return Plan(category=cat,status='missing_input',reason='audience_role_needs_confirmation',locked=True,metadata={'missing_slots':['audience'],'audience_role_scope':role,'execution_notice':{lang:audience_notice(role,lang) for lang in ['th','en']}})
         from .financial import quantity_text
         quantities=quantity_text(index,q,fs)
         if matches(r'(?<!\d)(?:-\d+|0|\d+\.\d+)\s*(?:คน|รอบ|sessions?|people|persons?|players?)',quantities):
