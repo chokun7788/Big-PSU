@@ -197,6 +197,14 @@ def verify(index,question,contract,answer='',children=None):
     constraint_rows=[]
     for constraint in observed['constraints']:
         owner=constraint['owner_span'];related=[t for t in tasks if t['source_span']['start']<owner['end'] and owner['start']<t['source_span']['end']]
+        # A coarse independently observed clause can contain two separate
+        # purchases. A quantity literally owned by one disjoint task must not
+        # borrow another task's calculation proof. Explicit shared bindings
+        # retain the existing dependency verifier; this change does not certify
+        # arbitrary shared or anaphoric quantities.
+        if constraint['kind'] in {'duration','persons','sessions','resource_quantity','package_quantity'} and len(related)>1 and not any(t.get('bindings') for t in related):
+            s=constraint['source_span'];direct=[t for t in related if t['source_span']['start']<=s['start'] and s['end']<=t['source_span']['end']]
+            if direct:related=direct
         ids={t['id'] for t in related};parts=[c for c in children if c.get('execution_contract',{}).get('task_id') in ids];verified=False;proof=[]
         if constraint['kind']=='input_device':
             from .controller_catalog import claim_errors,selection

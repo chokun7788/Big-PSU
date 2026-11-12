@@ -1,0 +1,60 @@
+{
+  "profiles": [
+    {
+      "profile": "retained",
+      "training_file_sha256": "c343e16bedc0615ab2a8abb4880ab91b1724b1bb6c837d085f3e7fbc8ec52c35",
+      "training_rows": 244,
+      "system_message_sha256": [
+        "3fe70820559d5302ebba0f0b2435a8b08dfab1408d5da48f95742a212ce1f15d"
+      ],
+      "answer_root_keys": [
+        [
+          "context_quotes",
+          "focus",
+          "tasks"
+        ]
+      ]
+    },
+    {
+      "profile": "new",
+      "training_file_sha256": "5d57a410289495aaa2d2521cdef41f20ff186a5d40bd11301bb7fa9539bb8d66",
+      "training_rows": 154,
+      "system_message_sha256": [
+        "5a9c3570baeeb7ead139610635047b152cd50f1f85ad2bfe96d6338082c8946d"
+      ],
+      "answer_root_keys": [
+        [
+          "context_quotes",
+          "focus",
+          "shared_bindings",
+          "tasks",
+          "version"
+        ]
+      ]
+    }
+  ],
+  "candidate_retained_system_sha256": "3fe70820559d5302ebba0f0b2435a8b08dfab1408d5da48f95742a212ce1f15d",
+  "candidate_system_matches_retained_training": true,
+  "serving": {
+    "serving_protocol": "r129-multi-profile-v2",
+    "pid": 26336,
+    "model": "psu-r129:latest",
+    "profiles": {
+      "base": null,
+      "retained": "e6a342902a0e469181094c05f412b355cef8cb1f57ce03aa78b6705b67f9b0d8",
+      "new": "2b06494ba249b2f09edb27340e0a4e7a89801017de8f0336ea125566b65764dc"
+    },
+    "profile_digests": {
+      "base": "d7fd41965185024bd2bbe699364511fd4b61d0f275ccbd17287cf5c467894ffd",
+      "retained": "be19a99dfb9c439bc86164a19312bfd03781ee6799e497d293db47923a0f44fa",
+      "new": "400558c1f53991fba16401446e0b5d6c6b8615cb84c58bd7fb23f99c67c465f3"
+    },
+    "base_revision": "ce0a7416fe82d4404b2b4a253ce3ac095ab1252c",
+    "quantization": "NF4 double quant BF16",
+    "url": "http://127.0.0.1:12921",
+    "other_stages": "base",
+    "actual_weight_updates_verified": true,
+    "production_installed": false
+  },
+  "finding": "Compact stage uses base; retained training uses focus/context_quotes/tasks. New adapter training uses versioned graph. Do not mix wire and adapter or claim base inference is retained."
+}

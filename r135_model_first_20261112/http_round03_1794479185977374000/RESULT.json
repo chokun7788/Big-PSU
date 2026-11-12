@@ -1,0 +1,34 @@
+{
+  "requests": 2,
+  "all_passed": true,
+  "cases": [
+    {
+      "id": "two_prices",
+      "seconds": 12.499863799952436,
+      "checks": {
+        "http_ok": true,
+        "actual_base_model": true,
+        "no_second_model_call": true,
+        "two_tasks_preserved": true,
+        "pc_price_retained": true,
+        "no_false_booking_notice": true,
+        "second_duration_not_borrowed": true,
+        "unverified_condition_visible": true
+      }
+    },
+    {
+      "id": "conflict",
+      "seconds": 6.396939400001429,
+      "checks": {
+        "http_ok": true,
+        "actual_base_model": true,
+        "no_second_model_call": true,
+        "two_tasks_preserved": true,
+        "zone_retained": true,
+        "model_error_not_missing_data": true,
+        "failed_part_not_delivered": true
+      }
+    }
+  ],
+  "scope": "two final guard/source HTTP cases; not an intent accuracy score; model conflict is a known unresolved intent failure"
+}

@@ -67,7 +67,7 @@ POLICY_INTENTS=[
  ('installation','C10',r'install.*(?:mod|program|game)|ติดตั้งเกม|ติดตั้งโปรแกรม',r'ติดตั้ง.*(?:เอง|ได้ไหม)|ลงเกมเอง|\binstall\b.*(?:myself|software|mod|game)'),
  ('arrival_waiting','C08',r'arrival waiting|รอก่อนเวลา',r'ก่อนเวลา|มาก่อน|ถึงก่อน|รอ(?:ที่ไหน|ตรงไหน)|arrive early|wait.*(?:where|before)|start.*early'),
  ('extend_session','C08',r'extend (?:play )?session|booking extension|ต่อเวลา',r'ต่อเวลา|จองต่อ|เล่นต่อ|extend.*(?:play|session)|session.*extend'),
- ('change_service','C08',r'change service|เปลี่ยนบริการระหว่าง',r'เปลี่ยน.{0,14}(?:เครื่อง|บริการ)|(?:pc|ps5).*(?:ไป|เป็น).*(?:pc|ps5)|change.*(?:service|machine)|switch.*(?:service|machine)'),
+ ('change_service','C08',r'change service|เปลี่ยนบริการระหว่าง',r'เปลี่ยน.{0,14}(?:เครื่อง|บริการ)|(?<![a-z0-9])(?:pc|ps5)(?![a-z0-9])\s*(?:แล้ว\s*)?(?:ไป(?:เล่น|ใช้|เป็น)?|เป็น|(?:เปลี่ยน|ย้าย|สลับ)(?:ไป)?(?:เล่น|ใช้|เป็น)?)\s*(?:pc|ps5)(?![a-z0-9])|change.*(?:service|machine)|switch.*(?:service|machine)'),
  ('correct_booking_name','C08',r'correct booking name|แก้ชื่อ',r'กรอกชื่อผิด|ชื่อผิด|แก้(?:ไข)?ชื่อ.*(?:รายการจอง|จอง)|wrong name|correct.{0,30}name.{0,30}(?:booking|reservation)'),
  ('change_paid_booking','C08',r'change paid booking|แก้รายการจองที่จ่ายแล้ว',r'จองผิดวัน|เปลี่ยนวัน|แก้.*(?:รายการจอง|หลังจอง)|wrong date|change.*(?:paid booking|date)|correct.*(?:paid booking|date)'),
  ('late_notice','C08',r'late arrival notice|ไปไม่ทันรอบ',r'ไปไม่ทัน|มาสาย|ไปสาย|แจ้ง.*ช้า|cannot arrive|late.*(?:arrival|session)|arrive.*(?:late|time)|notify.*studio'),

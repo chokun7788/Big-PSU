@@ -26,7 +26,7 @@ def call(client,payload):
  try:
   timeout=analysis_timeout(timeout_for_call(client.timeout))
   if timeout<=0:raise TimeoutError('request_deadline_exhausted')
-  margin=2.0 if stage=='model_first_plan' else 0.0
+  margin=2.0 if stage in {'model_first_plan','context_understanding'} else 0.0
   if margin and timeout<=margin+1:raise ModelBudgetExhausted('server_finalizer_budget_unavailable')
   payload['request_timeout_sec']=timeout-margin
   req=urllib.request.Request(os.environ.get('OLLAMA_URL','http://127.0.0.1:11434').rstrip('/')+'/api/chat',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})

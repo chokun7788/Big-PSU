@@ -98,17 +98,25 @@ def answer(reader,question,locale,history,at,snapshot):
  payload['messages'][0]['content']=instructions
  audit={'version':3,'planner':'actual_local_model_whole_question','model':model,'raw_question':raw,'legacy_splitter_used_before_model':False,'rendering':'existing_verified_source_blocks','free_form_model_rendering_enabled':False}
  try:
-  response=call(client,payload);audit['raw_model_content']=response.get('message',{}).get('content','');audit['returned_provenance']=response.get('provenance',{});audit['transport_completed']=True;audit['http_attempted']=client.http_attempted
-  needs=parse(audit['raw_model_content'],raw);audit['validated_needs']=needs
+  if os.getenv('PSU_MODEL_FIRST_PLANNER','compact')=='retained':
+   from .trained_planner import plan as trained_plan
+   needs,audit=trained_plan(raw,engine.index)
+   if not needs:raise ValueError('no_valid_retained_model_plan')
+  else:
+   response=call(client,payload);audit['raw_model_content']=response.get('message',{}).get('content','');audit['returned_provenance']=response.get('provenance',{});audit['transport_completed']=True;audit['http_attempted']=client.http_attempted
+   needs=parse(audit['raw_model_content'],raw);audit['validated_needs']=needs
+   if os.getenv('PSU_MODEL_FIRST_REVIEW','0') in {'1','guard'}:
+    from .plan_review import review
+    needs,audit=review(raw,engine.index,needs,audit,client,payload)
  except (OSError,ValueError,TypeError,KeyError) as exc:
-  audit.update(failure_type=type(exc).__name__,failure=str(exc),http_attempted=client.http_attempted)
+  audit.update(failure_type=type(exc).__name__,failure=str(exc),http_attempted=bool(client.http_attempted or any(a.get('http_attempted') for a in audit.get('attempts',[]))))
   body='โมเดลตีโจทย์ไม่พร้อมหรือส่งแผนที่ตรวจไม่ผ่านในรอบนี้ จึงยังไม่ตอบแทนด้วยเส้นทางกฎเดิมครับ' if lang=='th' else 'The model planner was unavailable or returned an invalid plan; this trial did not silently substitute a legacy answer.'
   result=reader.finish(snap,started,body,[],{'method':'model_first_planner_failure'},[],response='unavailable')
   return replace(result,decision_artifact={**result.decision_artifact,'model_first':audit})
  from .domain_flow.plan_contract import compile_request
  from .domain_flow.native_contract import aggregate_contract
  from .flow_context import request_reference_time
- meanings=[MeaningTask(item['quote'],next((k for k,v in DOMAINS.items() if v[0]==item['category']),'unresolved'),item['category'],item['operation'],item['facet'],'',canonical_operation=item['canonical_operation']) for item in needs]
+ meanings=[MeaningTask(item['quote'],next((k for k,v in DOMAINS.items() if v[0]==item['category']),'unresolved'),item['category'],item['operation'],item['facet'],item.get('target',''),constraints=item.get('constraints',[]),canonical_operation=item['canonical_operation']) for item in needs]
  ref=request_reference_time(at)
  compiled=compile_request(raw,Understanding(meanings,True,'model_first_context_plan',{}),engine.index,{'release_id':engine.data.get('release_id'),'epoch':engine.data.get('epoch'),'reference_time':ref.isoformat()})
  outputs=[];public_needs=[]
@@ -117,6 +125,7 @@ def answer(reader,question,locale,history,at,snapshot):
   derived_input(quote,'compiled_parent_task',[{'source_span':item['source_span']}],index=engine.index,parent_question=raw)
   if cat is None or item['ambiguity']!='none':
    body=('คำว่า “พร้อมให้เล่น” หมายถึงเครื่องที่รองรับเกม หรือเครื่องที่ว่างในวันและเวลาใดครับ?' if lang=='th' else 'Does ready to play mean machines supporting the game, or machines free at a particular date and time?') if item['ambiguity']=='ready_support_or_live' else ('กรุณาระบุรายละเอียดส่วนนี้เพิ่มเติมครับ: ' if lang=='th' else 'Please clarify this part: ')+quote
+   if item['ambiguity']=='model_plan_conflict':body=('โมเดลยังตีความส่วนนี้ไม่ผ่านการตรวจ กรุณาแยกถามส่วนนี้อีกครั้งครับ: ' if lang=='th' else 'The model interpretation of this part failed validation. Please ask this part separately: ')+quote
    result=reader.finish(snap,started,body,[],{'method':'model_first_need_clarification','missing_slots':['requested_scope']},[],response='clarification')
    result=replace(result,decision_artifact={**result.decision_artifact,'need_results':[{'need_id':nid,'task':TASKS.get(cat,'unresolved'),'source_span':quote,'status':'needs_user_slot','reason_codes':['model_proposed_scope_ambiguity'],'claim_packets':[],'receipts':[]}]})
   else:
@@ -136,12 +145,12 @@ def answer(reader,question,locale,history,at,snapshot):
  contract=aggregate_contract(compiled,outputs,typed_first=True)
  contract.update(path='model_first_compound_bridge',model_plan_not_semantic_proof=True,literal_context_bindings=[{'task_id':task.id,'context_span':item['source_span'],'predicate_span':item['predicate_span'],'context_origin':item['context_origin']} for task,item in zip(compiled.tasks,needs)])
  for task,item,ledger in zip(compiled.tasks,needs,contract['tasks']):
-  if item['ambiguity']!='none':ledger.update(terminal_state='missing_input',reason_codes=['model_proposed_scope_ambiguity'])
+  if item['ambiguity']!='none':ledger.update(terminal_state='invalid_plan' if item['ambiguity']=='model_plan_conflict' else 'missing_input',reason_codes=['model_plan_conflict' if item['ambiguity']=='model_plan_conflict' else 'model_proposed_scope_ambiguity'])
  if result.decision_artifact.get('response_type')=='retry':
   from .domain_flow.native_contract import invalidate
   contract=invalidate(contract)
  result=replace(result,decision_artifact={**result.decision_artifact,'execution_contract':contract})
- partial=any((r.decision_artifact or {}).get('response_type')!='answer' for r in outputs)
+ partial=bool(audit.get('remaining_plan_problems')) or any((r.decision_artifact or {}).get('response_type')!='answer' for r in outputs)
  if partial:
   art={**result.decision_artifact,'response_type':'partial_answer'}
   art['need_results']=[{**row,'status':'partial_supported'} if (r.decision_artifact or {}).get('response_type')!='answer' and row.get('status') in {'supported','scope_unverified'} else row for row,r in zip(art.get('need_results',[]),outputs)]
