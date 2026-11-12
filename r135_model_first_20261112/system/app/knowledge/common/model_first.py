@@ -8,9 +8,19 @@ import json,os,time,types,re
 from dataclasses import replace
 
 def schema():
- return {'type':'array','minItems':1,'maxItems':8,'items':{'type':'array','minItems':3,'maxItems':3,'prefixItems':[{'type':'string','enum':list(CODES)},{'type':'integer','minimum':0},{'type':'integer','minimum':0}]}}
+ return {'type':'array','minItems':1,'maxItems':8,'items':{'type':'array','minItems':3,'maxItems':3,'prefixItems':[{'type':'string','enum':list(CODES)},*[{'type':'integer','minimum':0} for _ in range(2)]]}}
 
 CODES={'Z':('C04','detail','zone','none'),'S':('C04','detail','studio_services','none'),'R':('C12','availability','live_status','ready_support_or_live'),'L':('C12','availability','live_status','none'),'P':('C06','detail','amount','none'),'B':('C08','detail','owner_policy','none'),'G':('C04','list','game_catalog','none'),'C':('C05','control','input_bindings','none'),'E':('C03','detail','location','none'),'D':('C04','detail','summary','none'),'Q':(None,'detail','','unspecified')}
+
+PLANNER_INSTRUCTIONS='''ตีโจทย์ทุกคำถามย่อยจากข้อความเต็ม ห้ามตอบข้อเท็จจริง ส่งเฉพาะ JSON array ของงาน
+แต่ละงานมี3ค่า [รหัส,indexเริ่ม,indexจบ] indexมาจากชิ้นข้อความที่ให้ รวมปลายทั้งคู่
+เลือกข้อความทั้งส่วนของงานนั้น รวมชื่อบริการ กลุ่มผู้ใช้ จำนวนและเวลา อย่าเลือกแค่คำท้ายเช่นเสียกี่บาท ห้ามรวมคำถามอีกงานหรือเดาบริบท ชิ้นข้อความแบ่งช่องว่าง ไม่ใช่การแบ่งเจตนา
+Z=โซนที่ตั้ง,S=บริการที่มีเกม,R=พร้อมเล่นกำกวมว่ารองรับหรือว่าง,L=ว่างหรือถูกจอง ณ เวลาที่ถาม,P=ราคาหรือเสียกี่บาท,B=วิธีจอง,G=รายชื่อเกม,C=ปุ่มควบคุมเกม,E=ตำแหน่งอุปกรณ์,D=ข้อมูลเกม,Q=ไม่ชัด
+ถามหลายเรื่องให้หลายงาน ราคาไม่ใช่โซน ว่างตอนนี้ไม่ใช่บริการที่มีเกม พร้อมเล่นที่กำกวมให้R
+ตัวอย่าง0=VR,1=ราคาเท่าไหร่,2=แล้วจองยังไง → [["P",0,1],["B",2,2]]
+ตัวอย่าง0=นักศึกษา,1=PSU,2=เล่น,3=PC,4=30,5=นาที,6=เสียกี่บาท,7=แล้วจองยังไง → [["P",0,6],["B",7,7]]
+ตัวอย่าง0=PS5,1=ว่างพรุ่งนี้ไหม → [["L",0,1]]
+JSONเท่านั้น ไม่อธิบาย'''
 
 def chunks(question):return [{'start':m.start(),'end':m.end(),'text':m[0]} for m in re.finditer(r'\S+',question)]
 
@@ -18,13 +28,19 @@ def parse(content,question):
  needs=json.loads(content);pieces=chunks(question);seen=set();out=[]
  if not isinstance(needs,list) or not 1<=len(needs)<=8:raise ValueError('invalid_need_count')
  for item in needs:
-  if not isinstance(item,list) or len(item)!=3:raise ValueError('invalid_compact_need')
-  code,a,b=item
-  if code not in CODES or type(a) is not int or type(b) is not int or not 0<=a<=b<len(pieces):raise ValueError('invalid_code_or_raw_chunk_range')
+  if not isinstance(item,list) or len(item) not in {3,5}:raise ValueError('invalid_compact_need')
+  code,a,b=item[:3];ca,cb=item[3:] if len(item)==5 else (a,b)
+  if not isinstance(code,str) or code not in CODES or any(type(v) is not int for v in (a,b,ca,cb)) or not 0<=ca<=a<=b<=cb<len(pieces):raise ValueError('invalid_code_or_raw_chunk_range')
   if (code,a,b) in seen:raise ValueError('duplicate_identical_need')
-  seen.add((code,a,b));start=pieces[a]['start'];end=pieces[b]['end'];quote=question[start:end]
+  seen.add((code,a,b));start=pieces[ca]['start'];end=pieces[cb]['end'];quote=question[start:end]
   cat,op,facet,ambiguity=CODES[code]
-  out.append({'quote':quote,'category':cat,'operation':op,'facet':facet,'target':'','ambiguity':ambiguity,'source_span':{'start':start,'end':end,'text':quote}})
+  out.append({'quote':quote,'category':cat,'operation':op,'facet':facet,'canonical_operation':'policy.booking_steps' if code=='B' else '','target':'','ambiguity':ambiguity,'source_span':{'start':start,'end':end,'text':quote},'predicate_span':{'start':pieces[a]['start'],'end':pieces[b]['end'],'text':question[pieces[a]['start']:pieces[b]['end']]},'predicate_span_separately_proposed':len(item)==5,'context_origin':'model_literal_range' if len(item)==5 else 'model_compact_range_no_separate_predicate'})
+ # Entity context may overlap; swallowing another distinct task predicate may not.
+ # Literal ownership is not proof that the model's intent classification is right.
+ for n in out:
+  for other in out:
+   a,b=n['source_span'],other['predicate_span']
+   if n is not other and n['predicate_span']!=b and a['start']<b['end'] and b['start']<a['end']:raise ValueError('context_crosses_another_task_predicate')
  return out
 
 def execute_typed(reader,engine,quote,meaning,snap,started,at,lang):
@@ -76,10 +92,11 @@ def answer(reader,question,locale,history,at,snapshot):
  if not snap.get('release'):return reader.finish(snap,started,'ยังไม่มี snapshot สำหรับทดลองครับ',[],{'method':'model_first_no_snapshot'},[],response='unavailable')
  if ctx:ctx.bind_snapshot(snap)
  engine=Engine.from_snapshot(snap,cache_key=reader.store.path.resolve())
- instructions=('ตีโจทย์ทุกคำถามย่อยในข้อความเต็ม ห้ามตอบข้อเท็จจริง ส่งเฉพาะ JSON array แต่ละงานคือ [รหัส,indexเริ่ม,indexจบ] โดยindexอ้างอิงชิ้นข้อความที่ให้ (รวมปลายทั้งคู่). ชิ้นข้อความแบ่งเพียงช่องว่าง ไม่ใช่การแบ่งเจตนา คุณเป็นผู้ตัดสินจำนวนงานเอง หนึ่งช่วงมีหลายงานได้. รหัส Z=ถามที่ตั้งหรือโซนเท่านั้น,S=เครื่องหรือบริการที่รองรับเกมแบบข้อมูลคงที่,R=พร้อมเล่นยังไม่ชัดว่ารองรับหรือว่างสด,L=ว่าง/ถูกจอง ณ วันเวลาที่ถาม,P=ราคา/ค่าใช้จ่าย/เสียกี่บาท,B=วิธีจอง,G=รายชื่อเกม,C=ปุ่มควบคุมเกม,E=ตำแหน่งอุปกรณ์,D=ข้อมูลเกม,Q=ไม่ชัดหรือนอกขอบเขต. ราคาแม้มีชื่อโซนก็ต้องPไม่ใช่Z. คำถามว่างตอนนี้ต้องLไม่ใช่S. คำว่าพร้อมโดยไม่ระบุว่ารองรับหรือว่างให้R. ถามสองเรื่องต้องสองงาน. ตัวอย่าง 0=VR,1=ราคาเท่าไหร่,2=แล้วจองยังไง ตอบ [["P",0,1],["B",2,2]]. ตัวอย่าง 0=PS5,1=ว่างพรุ่งนี้ไหม ตอบ [["L",0,1]]. JSONเท่านั้น ไม่อธิบาย.')
+ instructions=PLANNER_INSTRUCTIONS
  model=os.getenv('PSU_CHATBOT_OLLAMA_MODEL','psu-r129:latest');client=types.SimpleNamespace(model=model,timeout=35,http_attempted=False,admission={})
  payload={'model':model,'stage':'model_first_plan','messages':[{'role':'system','content':instructions},{'role':'user','content':json.dumps({'raw_question':raw,'chunks':{str(n):p['text'] for n,p in enumerate(chunks(raw))}},ensure_ascii=False)}],'format':schema(),'stream':False,'think':False,'keep_alive':'30m','options':{'temperature':0,'seed':135,'num_ctx':8192,'num_predict':160}}
- audit={'version':1,'planner':'actual_local_model_whole_question','model':model,'raw_question':raw,'legacy_splitter_used_before_model':False,'rendering':'existing_verified_source_blocks','free_form_model_rendering_enabled':False}
+ payload['messages'][0]['content']=instructions
+ audit={'version':3,'planner':'actual_local_model_whole_question','model':model,'raw_question':raw,'legacy_splitter_used_before_model':False,'rendering':'existing_verified_source_blocks','free_form_model_rendering_enabled':False}
  try:
   response=call(client,payload);audit['raw_model_content']=response.get('message',{}).get('content','');audit['returned_provenance']=response.get('provenance',{});audit['transport_completed']=True;audit['http_attempted']=client.http_attempted
   needs=parse(audit['raw_model_content'],raw);audit['validated_needs']=needs
@@ -88,17 +105,22 @@ def answer(reader,question,locale,history,at,snapshot):
   body='โมเดลตีโจทย์ไม่พร้อมหรือส่งแผนที่ตรวจไม่ผ่านในรอบนี้ จึงยังไม่ตอบแทนด้วยเส้นทางกฎเดิมครับ' if lang=='th' else 'The model planner was unavailable or returned an invalid plan; this trial did not silently substitute a legacy answer.'
   result=reader.finish(snap,started,body,[],{'method':'model_first_planner_failure'},[],response='unavailable')
   return replace(result,decision_artifact={**result.decision_artifact,'model_first':audit})
+ from .domain_flow.plan_contract import compile_request
+ from .domain_flow.native_contract import aggregate_contract
+ from .flow_context import request_reference_time
+ meanings=[MeaningTask(item['quote'],next((k for k,v in DOMAINS.items() if v[0]==item['category']),'unresolved'),item['category'],item['operation'],item['facet'],'',canonical_operation=item['canonical_operation']) for item in needs]
+ ref=request_reference_time(at)
+ compiled=compile_request(raw,Understanding(meanings,True,'model_first_context_plan',{}),engine.index,{'release_id':engine.data.get('release_id'),'epoch':engine.data.get('epoch'),'reference_time':ref.isoformat()})
  outputs=[];public_needs=[]
  for n,item in enumerate(needs,1):
-  quote=item['quote'];nid='model_n'+str(n);cat=item['category'];public_needs.append(Need(nid,TASKS.get(cat,'unresolved'),quote,quote,[],[],predicate=item['facet']))
+  quote=item['quote'];nid='model_n'+str(n);cat=item['category'];public_needs.append(Need(nid,TASKS.get(cat,'unresolved'),quote,item['predicate_span']['text'],[],[],predicate=item['facet']))
   derived_input(quote,'compiled_parent_task',[{'source_span':item['source_span']}],index=engine.index,parent_question=raw)
   if cat is None or item['ambiguity']!='none':
    body=('คำว่า “พร้อมให้เล่น” หมายถึงเครื่องที่รองรับเกม หรือเครื่องที่ว่างในวันและเวลาใดครับ?' if lang=='th' else 'Does ready to play mean machines supporting the game, or machines free at a particular date and time?') if item['ambiguity']=='ready_support_or_live' else ('กรุณาระบุรายละเอียดส่วนนี้เพิ่มเติมครับ: ' if lang=='th' else 'Please clarify this part: ')+quote
    result=reader.finish(snap,started,body,[],{'method':'model_first_need_clarification','missing_slots':['requested_scope']},[],response='clarification')
    result=replace(result,decision_artifact={**result.decision_artifact,'need_results':[{'need_id':nid,'task':TASKS.get(cat,'unresolved'),'source_span':quote,'status':'needs_user_slot','reason_codes':['model_proposed_scope_ambiguity'],'claim_packets':[],'receipts':[]}]})
   else:
-   domain=next(k for k,v in DOMAINS.items() if v[0]==cat)
-   meaning=MeaningTask(quote,domain,cat,item['operation'],item['facet'],item['target'] if item['target'] in quote else '')
+   meaning=meanings[n-1]
    proposed=Understanding([meaning],True,'model_first_validated_literal_plan',{'method':'model_first_plan','model_called':True,'whole_question_semantics_verified':False})
    result=domain_answer(reader,quote,locale=lang,history=None,at=at,planner=None,_composing=True,_snapshot=snap,_budget=RequestBudget(max_model_calls=0),_understanding=proposed) if cat=='C12' else execute_typed(reader,engine,quote,meaning,snap,started,at,lang)
    if result is None:result=reader.finish(snap,started,'ยังไม่มีตัวอ่านข้อมูลที่รองรับส่วนนี้ครับ' if lang=='th' else 'No verified reader is available for this need.',[],{'method':'model_first_reader_missing'},[],response='unconfirmed')
@@ -109,6 +131,16 @@ def answer(reader,question,locale,history,at,snapshot):
   outputs.append(result)
  plan=RequestPlan(VERSION,raw,public_needs,{'source':'model_first_proposal_then_pinned_source_readers','model_plan_not_semantic_proof':True})
  result=aggregate(reader,snap,started,plan,outputs,lang)
+ # Preserve the typed child contracts with parent raw offsets. Losing them made
+ # the independent observer report already executed operations as unplanned.
+ contract=aggregate_contract(compiled,outputs,typed_first=True)
+ contract.update(path='model_first_compound_bridge',model_plan_not_semantic_proof=True,literal_context_bindings=[{'task_id':task.id,'context_span':item['source_span'],'predicate_span':item['predicate_span'],'context_origin':item['context_origin']} for task,item in zip(compiled.tasks,needs)])
+ for task,item,ledger in zip(compiled.tasks,needs,contract['tasks']):
+  if item['ambiguity']!='none':ledger.update(terminal_state='missing_input',reason_codes=['model_proposed_scope_ambiguity'])
+ if result.decision_artifact.get('response_type')=='retry':
+  from .domain_flow.native_contract import invalidate
+  contract=invalidate(contract)
+ result=replace(result,decision_artifact={**result.decision_artifact,'execution_contract':contract})
  partial=any((r.decision_artifact or {}).get('response_type')!='answer' for r in outputs)
  if partial:
   art={**result.decision_artifact,'response_type':'partial_answer'}
